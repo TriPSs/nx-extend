@@ -1,7 +1,5 @@
 # strapi
 
-This library was generated with [Nx](https://nx.dev).
+Generate Strapi project with `yarn nx g @nx-extend/strapi:strapi my-app-name`
 
-## Running unit tests
-
-Run `nx test strapi` to execute the unit tests via [Jest](https://jestjs.io).
+Start Strapi develop mode `yarn nx serve my-app-name`

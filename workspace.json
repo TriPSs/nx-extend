@@ -50,6 +50,11 @@
                 "input": "./packages/strapi",
                 "glob": "executors.json",
                 "output": "."
+              },
+              {
+                "input": "./packages/strapi",
+                "glob": "builders.json",
+                "output": "."
               }
             ]
           }

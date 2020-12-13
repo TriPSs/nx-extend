@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "builders": {
+    "serve": {
+      "implementation": "./src/builders/serve/serve.impl",
+      "schema": "./src/builders/serve/schema.json",
+      "description": "Start Strapi in watch mode."
+    },
+    "build": {
+      "implementation": "./src/builders/build/executor",
+      "schema": "./src/builders/build/schema.json",
+      "description": "build executor"
+    }
+  }
+}
