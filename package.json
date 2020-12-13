@@ -26,8 +26,11 @@
     "help": "nx help"
   },
   "private": true,
-  "dependencies": {},
+  "dependencies": {
+    "strapi-generate-new": "^3.3.4"
+  },
   "devDependencies": {
+    "@angular-devkit/architect": "^0.1100.4",
     "@nrwl/cli": "11.0.2",
     "@nrwl/devkit": "11.0.2",
     "@nrwl/eslint-plugin-nx": "11.0.2",
