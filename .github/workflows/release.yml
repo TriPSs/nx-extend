@@ -53,6 +53,7 @@ jobs:
 
       - name: Conventional Changelog Action
         uses: TriPSs/conventional-changelog-action@v3
+        id: changelog
         with:
           github-token: ${{ secrets.github_token }}
           version-file: './package.json,./packages/strapi/package.json'
