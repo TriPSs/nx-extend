@@ -3,5 +3,9 @@
   "version": "0.0.1",
   "main": "src/index.js",
   "generators": "./generators.json",
-  "builders": "./builders.json"
+  "builders": "./builders.json",
+  "license": "MIT",
+  "dependencies": {
+    "strapi-generate-new": "^3.3.4"
+  }
 }

@@ -46,8 +46,13 @@ export default async function (host: Tree, options: StrapiGeneratorSchema) {
         executor: '@nx-extend/strapi:serve'
       },
       build: {
-        executor: '@nx-extend/strapi:build'
-      },
+        executor: '@nx-extend/strapi:build',
+        configurations: {
+          production: {
+            production: true
+          }
+        }
+      }
     },
     tags: normalizedOptions.parsedTags
   })
@@ -59,5 +64,6 @@ export default async function (host: Tree, options: StrapiGeneratorSchema) {
       run: false
     }
   )
+
   await formatFiles(host)
 }
