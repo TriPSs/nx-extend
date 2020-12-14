@@ -1,6 +1,6 @@
 {
   "name": "@nx-extend/strapi",
-  "version": "0.1.1",
+  "version": "1.0.0",
   "main": "src/index.js",
   "generators": "./generators.json",
   "builders": "./builders.json",
