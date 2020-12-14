@@ -70,8 +70,8 @@ jobs:
           body: ${{ steps.changelog.outputs.clean_changelog }}
 
       - name: Publish to NPM
-      run: |
-        echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
-        npm publish ./dist/packages/strapi --access public
+        run: |
+          echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
+          npm publish ./dist/packages/strapi --access public
       env:
         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
