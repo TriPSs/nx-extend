@@ -1,3 +1,17 @@
+# [1.0.0](https://github.com/TriPSs/nx-extend/compare/v0.1.1...v1.0.0) (2020-12-14)
+
+
+### Bug Fixes
+
+* Fixed publish to NPM ([4fe6784](https://github.com/TriPSs/nx-extend/commit/4fe6784b08cf735205fcb07368f077f5f960bea2))
+
+
+### BREAKING CHANGES
+
+* Release as v1
+
+
+
 ## [0.1.1](https://github.com/TriPSs/nx-extend/compare/v0.1.0...v0.1.1) (2020-12-14)
 
 
