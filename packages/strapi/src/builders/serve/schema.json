@@ -4,6 +4,12 @@
   "title": "Serve executor",
   "description": "",
   "type": "object",
-  "properties": {},
+  "properties": {
+    "production": {
+      "type": "boolean",
+      "description": "Build Strapi in production mode",
+      "$default": false
+    }
+  },
   "required": []
 }
