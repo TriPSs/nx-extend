@@ -31,7 +31,7 @@ export async function runBuilder(
     context.reportStatus('Strapi build done')
   }
 
-  return { success: false }
+  return { success }
 }
 
 export function copyFolderSync(from, to) {
