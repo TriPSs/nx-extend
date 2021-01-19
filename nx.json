@@ -29,6 +29,13 @@
     "strapi-e2e": {
       "tags": [],
       "implicitDependencies": ["strapi"]
+    },
+    "traduora": {
+      "tags": []
+    },
+    "traduora-e2e": {
+      "tags": [],
+      "implicitDependencies": ["traduora"]
     }
   },
   "workspaceLayout": {

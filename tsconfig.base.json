@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "nx-extend/strapi": ["packages/strapi/src/index.ts"]
+      "nx-extend/strapi": ["packages/strapi/src/index.ts"],
+      "@nx-extend/traduora": ["packages/traduora/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
