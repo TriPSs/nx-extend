@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "name": "traduora",
+  "version": "0.0.1",
+  "generators": {
+    "traduora": {
+      "factory": "./src/generators/traduora/generator",
+      "schema": "./src/generators/traduora/schema.json",
+      "description": "traduora generator"
+    }
+  }
+}
