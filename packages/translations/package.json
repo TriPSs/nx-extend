@@ -1,0 +1,10 @@
+{
+  "name": "@nx-extend/translations",
+  "version": "0.1.0",
+  "main": "src/index.js",
+  "generators": "./generators.json",
+  "builders": "./builders.json",
+  "dependencies": {
+    "extract-react-intl-messages": "^4.1.1"
+  }
+}

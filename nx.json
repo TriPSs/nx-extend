@@ -18,7 +18,12 @@
     "default": {
       "runner": "@nrwl/workspace/tasks-runners/default",
       "options": {
-        "cacheableOperations": ["build", "lint", "test", "e2e"]
+        "cacheableOperations": [
+          "build",
+          "lint",
+          "test",
+          "e2e"
+        ]
       }
     }
   },
@@ -28,14 +33,18 @@
     },
     "strapi-e2e": {
       "tags": [],
-      "implicitDependencies": ["strapi"]
+      "implicitDependencies": [
+        "strapi"
+      ]
     },
-    "traduora": {
+    "translations": {
       "tags": []
     },
-    "traduora-e2e": {
+    "translations-e2e": {
       "tags": [],
-      "implicitDependencies": ["traduora"]
+      "implicitDependencies": [
+        "translations"
+      ]
     }
   },
   "workspaceLayout": {

@@ -27,6 +27,7 @@
   },
   "private": true,
   "dependencies": {
+    "extract-react-intl-messages": "^4.1.1",
     "strapi-generate-new": "^3.3.4"
   },
   "devDependencies": {
