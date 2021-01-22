@@ -2,13 +2,15 @@ import { JsonObject } from '@angular-devkit/core'
 
 export interface ExtractSchema extends JsonObject {
 
+  provider?: string
+
   sourceRoot?: string
 
   pattern?: string
 
-  defaultLanguage: string
+  defaultLanguage?: string
 
-  languages: string[]
+  languages?: string[]
 
   output?: string
 

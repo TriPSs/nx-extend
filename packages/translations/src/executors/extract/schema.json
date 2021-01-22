@@ -5,6 +5,10 @@
   "description": "",
   "type": "object",
   "properties": {
+    "provider": {
+      "type": "string",
+      "description": "What provider to use, for example: traduora"
+    },
     "sourceRoot": {
       "type": "string",
       "description": "Root directory to search in",
