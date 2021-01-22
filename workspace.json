@@ -77,26 +77,26 @@
         }
       }
     },
-    "traduora": {
-      "root": "packages/traduora",
-      "sourceRoot": "packages/traduora/src",
+    "translations": {
+      "root": "packages/translations",
+      "sourceRoot": "packages/translations/src",
       "projectType": "library",
       "targets": {
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "packages/traduora/**/*.ts"
+              "packages/translations/**/*.ts"
             ]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
           "outputs": [
-            "coverage/packages/traduora"
+            "coverage/packages/translations"
           ],
           "options": {
-            "jestConfig": "packages/traduora/jest.config.js",
+            "jestConfig": "packages/translations/jest.config.js",
             "passWithNoTests": true
           }
         },
@@ -106,25 +106,30 @@
             "{options.outputPath}"
           ],
           "options": {
-            "outputPath": "dist/packages/traduora",
-            "tsConfig": "packages/traduora/tsconfig.lib.json",
-            "packageJson": "packages/traduora/package.json",
-            "main": "packages/traduora/src/index.ts",
+            "outputPath": "dist/packages/translations",
+            "tsConfig": "packages/translations/tsconfig.lib.json",
+            "packageJson": "packages/translations/package.json",
+            "main": "packages/translations/src/index.ts",
             "assets": [
-              "packages/traduora/*.md",
+              "packages/translations/*.md",
               {
-                "input": "./packages/traduora/src",
+                "input": "./packages/translations/src",
                 "glob": "**/*.!(ts)",
                 "output": "./src"
               },
               {
-                "input": "./packages/traduora",
+                "input": "./packages/translations",
                 "glob": "generators.json",
                 "output": "."
               },
               {
-                "input": "./packages/traduora",
+                "input": "./packages/translations",
                 "glob": "executors.json",
+                "output": "."
+              },
+              {
+                "input": "./packages/translations",
+                "glob": "builders.json",
                 "output": "."
               }
             ]
@@ -132,18 +137,18 @@
         }
       }
     },
-    "traduora-e2e": {
+    "translations-e2e": {
       "projectType": "application",
-      "root": "e2e/traduora-e2e",
-      "sourceRoot": "e2e/traduora-e2e/src",
+      "root": "e2e/translations-e2e",
+      "sourceRoot": "e2e/translations-e2e/src",
       "targets": {
         "e2e": {
           "executor": "@nrwl/nx-plugin:e2e",
           "options": {
-            "target": "traduora:build",
+            "target": "translations:build",
             "npmPackageName": "@nx-extend/traduora",
             "pluginOutputPath": "dist/packages/traduora",
-            "jestConfig": "e2e/traduora-e2e/jest.config.js"
+            "jestConfig": "e2e/translations-e2e/jest.config.js"
           }
         }
       }
