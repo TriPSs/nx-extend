@@ -15,7 +15,7 @@ export async function runBuilder(
 
   const isProduction = options.production || process.env.NODE_ENV === 'production'
 
-  const { success } = await execCommand(`${isProduction ? 'NODE_ENV=production' : ''} yarn strapi build`, {
+  const { success } = await execCommand(`${isProduction ? 'NODE_ENV=production' : ''} npx strapi build`, {
     cwd: `${context.workspaceRoot}/${projectMeta.root}`
   })
 
