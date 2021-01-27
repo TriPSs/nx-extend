@@ -27,7 +27,7 @@
   },
   "private": true,
   "dependencies": {
-    "strapi-generate-new": "^3.3.4"
+    "strapi-generate-new": "^3.4.5"
   },
   "devDependencies": {
     "@angular-devkit/architect": "^0.1100.4",

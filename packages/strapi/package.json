@@ -6,6 +6,6 @@
   "builders": "./builders.json",
   "license": "MIT",
   "dependencies": {
-    "strapi-generate-new": "^3.3.4"
+    "strapi-generate-new": "^3.4.5"
   }
 }
