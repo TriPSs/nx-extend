@@ -1,3 +1,12 @@
+## [1.0.4](https://github.com/TriPSs/nx-extend/compare/v1.0.3...v1.0.4) (2021-01-27)
+
+
+### Bug Fixes
+
+* Update all deps and release Strapi ([522fd58](https://github.com/TriPSs/nx-extend/commit/522fd58881de03302241fad7580ece20d3f043d8))
+
+
+
 ## [1.0.3](https://github.com/TriPSs/nx-extend/compare/v1.0.2...v1.0.3) (2020-12-27)
 
 
@@ -36,15 +45,6 @@
 ### BREAKING CHANGES
 
 * Release as v1
-
-
-
-## [0.1.1](https://github.com/TriPSs/nx-extend/compare/v0.1.0...v0.1.1) (2020-12-14)
-
-
-### Bug Fixes
-
-* Fix releases ([e37f069](https://github.com/TriPSs/nx-extend/commit/e37f069ff0104122e6e15cb98d60fb1aa3b0776c))
 
 
 
