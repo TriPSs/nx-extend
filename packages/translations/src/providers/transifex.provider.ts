@@ -1,9 +1,10 @@
-import { resolve } from 'path'
+import { join, resolve } from 'path'
 import { readFileSync, existsSync, writeFileSync } from 'fs'
 import axios from 'axios'
 import * as deepmerge from 'deepmerge'
 
 import BaseProvider, { ExtractSettings } from './base.provider'
+import { injectProjectRoot } from '../utils'
 
 export interface TransifexConfig {
 
@@ -34,7 +35,8 @@ export default class Transifex extends BaseProvider<TransifexConfig> {
   public getExtractSettings(): ExtractSettings {
     return {
       languages: [this.config.sourceLang],
-      defaultLocale: this.config.sourceFile
+      defaultLocale: this.config.sourceLang,
+      outputDirectory: this.config.outputDirectory
     }
   }
 
@@ -57,8 +59,11 @@ export default class Transifex extends BaseProvider<TransifexConfig> {
       const languageId = language.relationships.language.data.id
       const languageString = languageId.split(':').pop()
       const writeTo = resolve(
-        this.projectRoot,
-        this.config.outputDirectory,
+        injectProjectRoot(
+          this.config.outputDirectory,
+          this.projectRoot,
+          this.context.workspaceRoot
+        ),
         `${languageString}.json`
       )
 
@@ -105,7 +110,8 @@ export default class Transifex extends BaseProvider<TransifexConfig> {
    */
   public async push(): Promise<void> {
     const resource = `o:${this.config.organization}:p:${this.config.project}:r:${this.config.recourse}`
-    const sourceFileContent = readFileSync(resolve(this.projectRoot, this.config.sourceFile), 'utf8')
+    const sourceFileLocation = injectProjectRoot(this.config.sourceFile, this.projectRoot, this.context.workspaceRoot)
+    const sourceFileContent = readFileSync(sourceFileLocation, 'utf8')
     const sourceFileMinified = JSON.stringify(JSON.parse(sourceFileContent))
 
     try {

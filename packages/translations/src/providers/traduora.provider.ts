@@ -4,11 +4,13 @@ import BaseProvider, { ExtractSettings } from './base.provider'
 
 export interface TraduoraConfig {
 
-  'base-url': string
+  baseUrl: string
 
-  locale: string
+  sourceLang: string
 
   locales: string[]
+
+  outputDirectory?: string
 
 }
 
@@ -17,7 +19,8 @@ export default class Traduora extends BaseProvider<TraduoraConfig> {
   getExtractSettings(): ExtractSettings {
     return {
       languages: this.config.locales,
-      defaultLocale: this.config.locale
+      defaultLocale: this.config.sourceLang,
+      outputDirectory: this.config.outputDirectory
     }
   }
 

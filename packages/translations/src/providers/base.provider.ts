@@ -7,6 +7,8 @@ export interface ExtractSettings {
 
   languages: string[]
 
+  outputDirectory?: string
+
 }
 
 export default abstract class BaseProvider<Config = {}> {
@@ -14,6 +16,8 @@ export default abstract class BaseProvider<Config = {}> {
   protected readonly context: BuilderContext
 
   protected projectRoot: string = null
+
+  protected projectMetadata = null
 
   protected config: Config = null
 
@@ -27,7 +31,7 @@ export default abstract class BaseProvider<Config = {}> {
     this.config = await this.getConfigFile()
   }
 
-  public abstract getExtractSettings(projectRoot: string): ExtractSettings
+  public abstract getExtractSettings(): ExtractSettings
 
   public abstract pull(): Promise<void>
 
