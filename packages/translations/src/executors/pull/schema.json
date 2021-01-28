@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema",
+  "$id": "https://json-schema.org/draft-07/schema",
+  "title": "Pull translations from provider",
+  "description": "",
+  "type": "object",
+  "properties": {
+    "provider": {
+      "type": "string",
+      "description": "What provider to use, for example: traduora or transifex"
+    }
+  },
+  "required": []
+}

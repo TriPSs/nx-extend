@@ -20,7 +20,7 @@ export async function runBuilder(
 
   // If provider is given then try to use it
   if (options.provider) {
-    provider = getProvider(options.provider, context)
+    provider = await getProvider(options.provider, context)
   }
 
   if (provider) {
