@@ -12,19 +12,25 @@ export interface TraduoraConfig {
 
 }
 
-export default new (class Traduora extends BaseProvider {
+export default class Traduora extends BaseProvider<TraduoraConfig> {
 
-  getExtractSettings(projectRoot: string): ExtractSettings {
-    const configFile = this.getConfigFile(projectRoot)
-
+  getExtractSettings(): ExtractSettings {
     return {
-      languages: configFile.locales,
-      defaultLocale: configFile.locale
+      languages: this.config.locales,
+      defaultLocale: this.config.locale
     }
   }
 
-  private getConfigFile(projectRoot: string): TraduoraConfig {
-    return JSON.parse(readFileSync(resolve(projectRoot, '.traduorarc.json'), 'utf8'))
+  public async pull() {
+    console.warn('Not implemented yet')
   }
 
-})()
+  public async push() {
+    console.warn('Not implemented yet')
+  }
+
+  public getConfigFile(): Promise<TraduoraConfig> {
+    return JSON.parse(readFileSync(resolve(this.projectRoot, '.traduorarc.json'), 'utf8'))
+  }
+
+}
