@@ -12,7 +12,7 @@
     "sourceRoot": {
       "type": "string",
       "description": "Root directory to search in",
-      "default": "<sourceRoot>"
+      "default": "<projectRoot>"
     },
     "pattern": {
       "type": "string",
@@ -33,7 +33,7 @@
     "output": {
       "type": "string",
       "description": "Languages to export",
-      "default": "/translations"
+      "default": "<projectRoot>/src/translations"
     },
     "format": {
       "type": "string",
