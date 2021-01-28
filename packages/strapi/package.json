@@ -1,11 +1,27 @@
 {
   "name": "@nx-extend/strapi",
   "version": "1.0.2",
-  "main": "src/index.js",
-  "generators": "./generators.json",
-  "builders": "./builders.json",
+  "keywords": [
+    "nx",
+    "strapi"
+  ],
+  "homepage": "https://github.com/tripss/nx-extend#readme",
+  "bugs": {
+    "url": "https://github.com/tripss/nx-extend/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tripss/nx-extend"
+  },
   "license": "MIT",
+  "author": {
+    "name": "Tycho Bokdam",
+    "email": "tycho@palmtreecoding.com"
+  },
+  "main": "src/index.js",
   "dependencies": {
     "strapi-generate-new": "^3.3.4"
-  }
+  },
+  "builders": "./builders.json",
+  "generators": "./generators.json"
 }
