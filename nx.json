@@ -18,12 +18,7 @@
     "default": {
       "runner": "@nrwl/workspace/tasks-runners/default",
       "options": {
-        "cacheableOperations": [
-          "build",
-          "lint",
-          "test",
-          "e2e"
-        ]
+        "cacheableOperations": ["build", "lint", "test", "e2e"]
       }
     }
   },
@@ -33,18 +28,35 @@
     },
     "strapi-e2e": {
       "tags": [],
-      "implicitDependencies": [
-        "strapi"
-      ]
+      "implicitDependencies": ["strapi"]
     },
     "translations": {
       "tags": []
     },
     "translations-e2e": {
       "tags": [],
-      "implicitDependencies": [
-        "translations"
-      ]
+      "implicitDependencies": ["translations"]
+    },
+    "gcp-functions": {
+      "tags": []
+    },
+    "gcp-functions-e2e": {
+      "tags": [],
+      "implicitDependencies": ["gcp-functions"]
+    },
+    "gcp-storage": {
+      "tags": []
+    },
+    "gcp-storage-e2e": {
+      "tags": [],
+      "implicitDependencies": ["gcp-storage"]
+    },
+    "gcp-core": {
+      "tags": []
+    },
+    "gcp-core-e2e": {
+      "tags": [],
+      "implicitDependencies": ["gcp-core"]
     }
   },
   "workspaceLayout": {

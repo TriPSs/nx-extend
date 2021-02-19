@@ -10,24 +10,17 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "lib": [
-      "es2017",
-      "dom"
-    ],
+    "lib": ["es2017", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "nx-extend/strapi": [
-        "packages/strapi/src/index.ts"
-      ],
-      "@nx-extend/translations": [
-        "packages/translations/src/index.ts"
-      ]
+      "@nx-extend/strapi": ["packages/strapi/src/index.ts"],
+      "@nx-extend/translations": ["packages/translations/src/index.ts"],
+      "@nx-extend/gcp-functions": ["packages/gcp-functions/src/index.ts"],
+      "@nx-extend/gcp-storage": ["packages/gcp-storage/src/index.ts"],
+      "@nx-extend/gcp-core": ["packages/gcp-core/src/index.ts"]
     }
   },
-  "exclude": [
-    "node_modules",
-    "tmp"
-  ]
+  "exclude": ["node_modules", "tmp"]
 }
