@@ -152,6 +152,229 @@
           }
         }
       }
+    },
+    "gcp-functions": {
+      "root": "packages/gcp-functions",
+      "sourceRoot": "packages/gcp-functions/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/gcp-functions/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/packages/gcp-functions"
+          ],
+          "options": {
+            "jestConfig": "packages/gcp-functions/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "executor": "@nrwl/node:package",
+          "outputs": [
+            "{options.outputPath}"
+          ],
+          "options": {
+            "outputPath": "dist/packages/gcp-functions",
+            "tsConfig": "packages/gcp-functions/tsconfig.lib.json",
+            "packageJson": "packages/gcp-functions/package.json",
+            "main": "packages/gcp-functions/src/index.ts",
+            "assets": [
+              "packages/gcp-functions/*.md",
+              {
+                "input": "./packages/gcp-functions/src",
+                "glob": "**/*.!(ts)",
+                "output": "./src"
+              },
+              {
+                "input": "./packages/gcp-functions",
+                "glob": "generators.json",
+                "output": "."
+              },
+              {
+                "input": "./packages/gcp-functions",
+                "glob": "executors.json",
+                "output": "."
+              },
+              {
+                "input": "./packages/gcp-functions",
+                "glob": "builders.json",
+                "output": "."
+              }
+            ]
+          }
+        }
+      }
+    },
+    "gcp-functions-e2e": {
+      "projectType": "application",
+      "root": "e2e/gcp-functions-e2e",
+      "sourceRoot": "e2e/gcp-functions-e2e/src",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/nx-plugin:e2e",
+          "options": {
+            "target": "gcp-functions:build",
+            "npmPackageName": "@nx-extend/gcp-functions",
+            "pluginOutputPath": "dist/packages/gcp-functions",
+            "jestConfig": "e2e/gcp-functions-e2e/jest.config.js"
+          }
+        }
+      }
+    },
+    "gcp-storage": {
+      "root": "packages/gcp-storage",
+      "sourceRoot": "packages/gcp-storage/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/gcp-storage/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/packages/gcp-storage"
+          ],
+          "options": {
+            "jestConfig": "packages/gcp-storage/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "executor": "@nrwl/node:package",
+          "outputs": [
+            "{options.outputPath}"
+          ],
+          "options": {
+            "outputPath": "dist/packages/gcp-storage",
+            "tsConfig": "packages/gcp-storage/tsconfig.lib.json",
+            "packageJson": "packages/gcp-storage/package.json",
+            "main": "packages/gcp-storage/src/index.ts",
+            "assets": [
+              "packages/gcp-storage/*.md",
+              {
+                "input": "./packages/gcp-storage/src",
+                "glob": "**/*.!(ts)",
+                "output": "./src"
+              },
+              {
+                "input": "./packages/gcp-storage",
+                "glob": "generators.json",
+                "output": "."
+              },
+              {
+                "input": "./packages/gcp-storage",
+                "glob": "executors.json",
+                "output": "."
+              },
+              {
+                "input": "./packages/gcp-storage",
+                "glob": "builders.json",
+                "output": "."
+              }
+            ]
+          }
+        }
+      }
+    },
+    "gcp-storage-e2e": {
+      "projectType": "application",
+      "root": "e2e/gcp-storage-e2e",
+      "sourceRoot": "e2e/gcp-storage-e2e/src",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/nx-plugin:e2e",
+          "options": {
+            "target": "gcp-storage:build",
+            "npmPackageName": "@nx-extend/gcp-storage",
+            "pluginOutputPath": "dist/packages/gcp-storage",
+            "jestConfig": "e2e/gcp-storage-e2e/jest.config.js"
+          }
+        }
+      }
+    },
+    "gcp-core": {
+      "root": "packages/gcp-core",
+      "sourceRoot": "packages/gcp-core/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/gcp-core/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/packages/gcp-core"
+          ],
+          "options": {
+            "jestConfig": "packages/gcp-core/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "executor": "@nrwl/node:package",
+          "outputs": [
+            "{options.outputPath}"
+          ],
+          "options": {
+            "outputPath": "dist/packages/gcp-core",
+            "tsConfig": "packages/gcp-core/tsconfig.lib.json",
+            "packageJson": "packages/gcp-core/package.json",
+            "main": "packages/gcp-core/src/index.ts",
+            "assets": [
+              "packages/gcp-core/*.md",
+              {
+                "input": "./packages/gcp-core/src",
+                "glob": "**/*.!(ts)",
+                "output": "./src"
+              },
+              {
+                "input": "./packages/gcp-core",
+                "glob": "generators.json",
+                "output": "."
+              },
+              {
+                "input": "./packages/gcp-core",
+                "glob": "executors.json",
+                "output": "."
+              }
+            ]
+          }
+        }
+      }
+    },
+    "gcp-core-e2e": {
+      "projectType": "application",
+      "root": "e2e/gcp-core-e2e",
+      "sourceRoot": "e2e/gcp-core-e2e/src",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/nx-plugin:e2e",
+          "options": {
+            "target": "gcp-core:build",
+            "npmPackageName": "@nx-extend/gcp-core",
+            "pluginOutputPath": "dist/packages/gcp-core",
+            "jestConfig": "e2e/gcp-core-e2e/jest.config.js"
+          }
+        }
+      }
     }
   },
   "cli": {
