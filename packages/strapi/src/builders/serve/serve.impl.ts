@@ -9,7 +9,7 @@ export async function runBuilder(
 ): Promise<{ success: boolean }> {
   const projectMeta = await context.getProjectMetadata(context.target.project)
 
-  return execCommand('yarn strapi develop', {
+  return execCommand('npx strapi develop', {
     cwd: `${context.workspaceRoot}/${projectMeta.root}`
   })
 }

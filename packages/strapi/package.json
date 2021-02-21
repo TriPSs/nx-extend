@@ -20,7 +20,7 @@
   },
   "main": "src/index.js",
   "dependencies": {
-    "strapi-generate-new": "^3.3.4"
+    "strapi-generate-new": "^3.4.5"
   },
   "builders": "./builders.json",
   "generators": "./generators.json"
