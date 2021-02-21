@@ -18,4 +18,6 @@ export interface DeployExecutorSchema extends JsonObject {
 
   triggerValue?: string
 
+  project?: string
+
 }

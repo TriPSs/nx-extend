@@ -1,5 +1,6 @@
 import { createBuilder, BuilderContext } from '@angular-devkit/architect'
 import { execCommand } from '@nx-extend/gcp-core'
+import { resolve } from 'path'
 
 import { UploadExecutorSchema } from './schema'
 
@@ -8,7 +9,9 @@ export async function runBuilder(
   context: BuilderContext
 ): Promise<{ success: boolean }> {
   const {
-    directory = '',
+    directory,
+    gzip = false,
+    gzipExtensions,
     bucket
   } = options
 
@@ -24,9 +27,15 @@ export async function runBuilder(
 
   const gsutilCommand = [
     'gsutil rsync -R',
-    directoryToUpload,
+    gzip
+      ? `-z "${gzipExtensions}"`
+      : false,
+    resolve(
+      process.cwd(),
+      directoryToUpload
+    ),
     uploadTo
-  ]
+  ].filter(Boolean)
 
   return execCommand(
     gsutilCommand.join(' '),

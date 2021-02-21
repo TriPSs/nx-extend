@@ -4,6 +4,8 @@ export interface UploadExecutorSchema extends JsonObject {
 
   bucket: string
 
-  directory?: string
+  directory: string
+
+  gzip: boolean
 
 }

@@ -57,6 +57,13 @@
     "gcp-core-e2e": {
       "tags": [],
       "implicitDependencies": ["gcp-core"]
+    },
+    "gcp-deployment-manager": {
+      "tags": []
+    },
+    "gcp-deployment-manager-e2e": {
+      "tags": [],
+      "implicitDependencies": ["gcp-deployment-manager"]
     }
   },
   "workspaceLayout": {

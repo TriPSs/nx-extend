@@ -12,7 +12,17 @@
     "directory": {
       "type": "string",
       "description": "Folder from the outputPath to upload",
-      "default": "/"
+      "default": ""
+    },
+    "gzip": {
+      "type": "boolean",
+      "description": "Should the files that are uploaded be gzipped",
+      "default": false
+    },
+    "gzipExtensions": {
+      "type": "string",
+      "description": "What extensions to gzip",
+      "default": "js,css,html"
     }
   }
 }
