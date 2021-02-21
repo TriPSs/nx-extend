@@ -49,7 +49,7 @@ function addFiles(host: Tree, options: NormalizedSchema) {
   }
   generateFiles(
     host,
-    path.join(__dirname, 'files'),
+    path.join(__dirname, 'apps'),
     options.projectRoot,
     templateOptions
   )
@@ -64,7 +64,7 @@ export default async function (
 
   addProjectConfiguration(host, normalizedOptions.projectName, {
     root: normalizedOptions.projectRoot,
-    projectType: 'library',
+    projectType: 'application',
     sourceRoot: normalizedOptions.projectRoot,
     targets: {
       create: {

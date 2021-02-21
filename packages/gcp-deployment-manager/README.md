@@ -1,7 +1,21 @@
-# gcp-deployment-manager
+# GCP Deployment Manager
 
-This library was generated with [Nx](https://nx.dev).
+To generate a project:
+```shell
+nx g @nx-extend/gcp-deployment-manager:init <project name>
+```
 
-## Running unit tests
+To create the deployment
+```shell
+nx create <project name>
+```
 
-Run `nx test gcp-deployment-manager` to execute the unit tests via [Jest](https://jestjs.io).
+To update the deployment
+```shell
+nx update <project name>
+```
+
+To delete the deployment
+```shell
+nx delete <project name>
+```
