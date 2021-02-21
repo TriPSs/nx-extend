@@ -12,5 +12,7 @@ module.exports = {
     '<rootDir>/e2e/gcp-storage-e2e',
     '<rootDir>/packages/gcp-core',
     '<rootDir>/e2e/gcp-core-e2e',
+    '<rootDir>/packages/gcp-deployment-manager',
+    '<rootDir>/e2e/gcp-deployment-manager-e2e',
   ],
 };
