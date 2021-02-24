@@ -17,7 +17,8 @@ export async function runBuilder(
     allowUnauthenticated = true,
     envVarsFile = null,
     maxInstances = 10,
-    project = null
+    project = null,
+    memory = '128MB'
   } = options
 
   const buildOptions = await context.getTargetOptions({
@@ -37,6 +38,7 @@ export async function runBuilder(
     functionName,
     `--trigger-${trigger}${triggerValue ? `=${triggerValue}` : ''}`,
     `--runtime=${runtime}`,
+    `--memory=${memory}`,
     `--region=${region}`,
 
     envVarsFile
