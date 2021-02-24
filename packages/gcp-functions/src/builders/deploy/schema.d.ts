@@ -6,6 +6,8 @@ export interface DeployExecutorSchema extends JsonObject {
 
   runtime?: string
 
+  memory?: string
+
   region: string
 
   envVarsFile?: string

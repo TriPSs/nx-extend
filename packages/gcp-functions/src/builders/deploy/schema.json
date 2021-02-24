@@ -29,6 +29,17 @@
         "nodejs12"
       ]
     },
+    "memory": {
+      "type": "string",
+      "enum": [
+        "128MB",
+        "256MB",
+        "512MB",
+        "1024MB",
+        "2048MB",
+        "4096MB"
+      ]
+    },
     "allowUnauthenticated": {
       "type": "boolean"
     },
