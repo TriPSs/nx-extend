@@ -22,6 +22,9 @@
       "@nx-extend/gcp-core": ["packages/gcp-core/src/index.ts"],
       "@nx-extend/gcp-deployment-manager": [
         "packages/gcp-deployment-manager/src/index.ts"
+      ],
+      "@nx-extend/conventional-changelog": [
+        "packages/conventional-changelog/src/index.ts"
       ]
     }
   },
