@@ -12,55 +12,9 @@
       "type": "string",
       "description": "The name of the Typescript configuration file."
     },
-    "yamlConfig": {
-      "type": "string",
-      "description": "The name of the yaml configuration file."
-    },
     "outputPath": {
       "type": "string",
       "description": "The output path of the generated files."
-    },
-    "watch": {
-      "type": "boolean",
-      "description": "Run build when files change.",
-      "default": false
-    },
-    "setRootTsConfig": {
-      "type": "boolean",
-      "description": "Update your config to build",
-      "default": true
-    },
-    "setRootJestConfig": {
-      "type": "boolean",
-      "description": "Update your config to build",
-      "default": true
-    },
-    "setRootEsLint": {
-      "type": "boolean",
-      "description": "Update your tslint configuration",
-      "default": true
-    },
-    "poll": {
-      "type": "number",
-      "description": "Frequency of file watcher in ms."
-    },
-    "sourceMap": {
-      "type": "boolean",
-      "description": "Produce source maps.",
-      "default": true
-    },
-    "progress": {
-      "type": "boolean",
-      "description": "Log progress to the console while building.",
-      "default": false
-    },
-    "assets": {
-      "type": "array",
-      "description": "List of static application assets.",
-      "default": [],
-      "items": {
-        "$ref": "#/definitions/assetPattern"
-      }
     },
     "externalDependencies": {
       "oneOf": [
@@ -78,38 +32,10 @@
       "description": "Dependencies to keep external to the bundle. (\"all\" (default), \"none\", or an array of module names)",
       "default": "all"
     },
-    "statsJson": {
-      "type": "boolean",
-      "description": "Generates a 'stats.json' file which can be analyzed using tools such as: #webpack-bundle-analyzer' or https: //webpack.github.io/analyse.",
-      "default": false
-    },
-    "verbose": {
-      "type": "boolean",
-      "description": "Emits verbose output",
-      "default": false
-    },
-    "extractLicenses": {
-      "type": "boolean",
-      "description": "Extract all licenses in a separate file, in the case of production builds only.",
-      "default": false
-    },
     "optimization": {
       "type": "boolean",
       "description": "Defines the optimization level of the build.",
       "default": false
-    },
-    "showCircularDependencies": {
-      "type": "boolean",
-      "description": "Show circular dependency warnings on builds.",
-      "default": true
-    },
-    "maxWorkers": {
-      "type": "number",
-      "description": "Number of workers to use for type checking. (defaults to # of CPUS - 2)"
-    },
-    "memoryLimit": {
-      "type": "number",
-      "description": "Memory limit for type checking service process in MB. (defaults to 2048)"
     },
     "fileReplacements": {
       "description": "Replace files with other files in the build.",

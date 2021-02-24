@@ -14,5 +14,7 @@ module.exports = {
     '<rootDir>/e2e/gcp-core-e2e',
     '<rootDir>/packages/gcp-deployment-manager',
     '<rootDir>/e2e/gcp-deployment-manager-e2e',
+    '<rootDir>/packages/conventional-changelog',
+    '<rootDir>/e2e/conventional-changelog-e2e',
   ],
 };

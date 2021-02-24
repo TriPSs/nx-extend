@@ -451,6 +451,77 @@
           }
         }
       }
+    },
+    "conventional-changelog": {
+      "root": "packages/conventional-changelog",
+      "sourceRoot": "packages/conventional-changelog/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/conventional-changelog/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/packages/conventional-changelog"
+          ],
+          "options": {
+            "jestConfig": "packages/conventional-changelog/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "executor": "@nrwl/node:package",
+          "outputs": [
+            "{options.outputPath}"
+          ],
+          "options": {
+            "outputPath": "dist/packages/conventional-changelog",
+            "tsConfig": "packages/conventional-changelog/tsconfig.lib.json",
+            "packageJson": "packages/conventional-changelog/package.json",
+            "main": "packages/conventional-changelog/src/index.ts",
+            "assets": [
+              "packages/conventional-changelog/*.md",
+              {
+                "input": "./packages/conventional-changelog/src",
+                "glob": "**/*.!(ts)",
+                "output": "./src"
+              },
+              {
+                "input": "./packages/conventional-changelog",
+                "glob": "generators.json",
+                "output": "."
+              },
+              {
+                "input": "./packages/conventional-changelog",
+                "glob": "executors.json",
+                "output": "."
+              }
+            ]
+          }
+        }
+      }
+    },
+    "conventional-changelog-e2e": {
+      "projectType": "application",
+      "root": "e2e/conventional-changelog-e2e",
+      "sourceRoot": "e2e/conventional-changelog-e2e/src",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/nx-plugin:e2e",
+          "options": {
+            "target": "conventional-changelog:build",
+            "npmPackageName": "@nx-extend/conventional-changelog",
+            "pluginOutputPath": "dist/packages/conventional-changelog",
+            "jestConfig": "e2e/conventional-changelog-e2e/jest.config.js"
+          }
+        }
+      }
     }
   },
   "cli": {

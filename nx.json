@@ -1,14 +1,9 @@
 {
   "npmScope": "nx-extend",
-  "affected": {
-    "defaultBase": "master"
-  },
+  "affected": { "defaultBase": "master" },
   "implicitDependencies": {
     "workspace.json": "*",
-    "package.json": {
-      "dependencies": "*",
-      "devDependencies": "*"
-    },
+    "package.json": { "dependencies": "*", "devDependencies": "*" },
     "tsconfig.base.json": "*",
     "tslint.json": "*",
     ".eslintrc.json": "*",
@@ -17,57 +12,36 @@
   "tasksRunnerOptions": {
     "default": {
       "runner": "@nrwl/workspace/tasks-runners/default",
-      "options": {
-        "cacheableOperations": ["build", "lint", "test", "e2e"]
-      }
+      "options": { "cacheableOperations": ["build", "lint", "test", "e2e"] }
     }
   },
   "projects": {
-    "strapi": {
-      "tags": []
-    },
-    "strapi-e2e": {
-      "tags": [],
-      "implicitDependencies": ["strapi"]
-    },
-    "translations": {
-      "tags": []
-    },
+    "strapi": { "tags": [] },
+    "strapi-e2e": { "tags": [], "implicitDependencies": ["strapi"] },
+    "translations": { "tags": [] },
     "translations-e2e": {
       "tags": [],
       "implicitDependencies": ["translations"]
     },
-    "gcp-functions": {
-      "tags": []
-    },
+    "gcp-functions": { "tags": [] },
     "gcp-functions-e2e": {
       "tags": [],
       "implicitDependencies": ["gcp-functions"]
     },
-    "gcp-storage": {
-      "tags": []
-    },
-    "gcp-storage-e2e": {
-      "tags": [],
-      "implicitDependencies": ["gcp-storage"]
-    },
-    "gcp-core": {
-      "tags": []
-    },
-    "gcp-core-e2e": {
-      "tags": [],
-      "implicitDependencies": ["gcp-core"]
-    },
-    "gcp-deployment-manager": {
-      "tags": []
-    },
+    "gcp-storage": { "tags": [] },
+    "gcp-storage-e2e": { "tags": [], "implicitDependencies": ["gcp-storage"] },
+    "gcp-core": { "tags": [] },
+    "gcp-core-e2e": { "tags": [], "implicitDependencies": ["gcp-core"] },
+    "gcp-deployment-manager": { "tags": [] },
     "gcp-deployment-manager-e2e": {
       "tags": [],
       "implicitDependencies": ["gcp-deployment-manager"]
+    },
+    "conventional-changelog": { "tags": [] },
+    "conventional-changelog-e2e": {
+      "tags": [],
+      "implicitDependencies": ["conventional-changelog"]
     }
   },
-  "workspaceLayout": {
-    "appsDir": "e2e",
-    "libsDir": "packages"
-  }
+  "workspaceLayout": { "appsDir": "e2e", "libsDir": "packages" }
 }
