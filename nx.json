@@ -41,6 +41,11 @@
     "conventional-changelog-e2e": {
       "tags": [],
       "implicitDependencies": ["conventional-changelog"]
+    },
+    "gcp-cloud-run": { "tags": [] },
+    "gcp-cloud-run-e2e": {
+      "tags": [],
+      "implicitDependencies": ["gcp-cloud-run"]
     }
   },
   "workspaceLayout": { "appsDir": "e2e", "libsDir": "packages" }
