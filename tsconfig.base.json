@@ -26,7 +26,8 @@
       "@nx-extend/conventional-changelog": [
         "packages/conventional-changelog/src/index.ts"
       ],
-      "@nx-extend/gcp-cloud-run": ["packages/gcp-cloud-run/src/index.ts"]
+      "@nx-extend/gcp-cloud-run": ["packages/gcp-cloud-run/src/index.ts"],
+      "@nx-extend/gcp-secrets": ["packages/gcp-secrets/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

@@ -1,9 +1,15 @@
 import { exec, ExecOptions } from 'child_process'
 
+export interface Options extends ExecOptions {
+
+  silent?: boolean
+
+}
+
 export async function execCommand(
   command,
-  options: ExecOptions = {}
-): Promise<{ success: boolean }> {
+  options: Options
+): Promise<{ success: boolean, output?: string }> {
   const childProcess = exec(command, options)
 
   /**
@@ -11,9 +17,15 @@ export async function execCommand(
    */
   process.on('exit', () => childProcess.kill())
 
-  return new Promise<{ success: boolean }>((res) => {
+  return new Promise<{ success: boolean, output?: string }>((res) => {
+    let output = ''
+
     childProcess.stdout.on('data', (data) => {
-      process.stdout.write(data)
+      output += data
+
+      if (!options.silent) {
+        process.stdout.write(data)
+      }
     })
 
     childProcess.stderr.on('data', (err) => {
@@ -21,7 +33,7 @@ export async function execCommand(
     })
 
     childProcess.on('close', (code) => {
-      res({ success: code === 0 })
+      res({ success: code === 0, output })
     })
   })
 }

@@ -11,10 +11,10 @@ import * as path from 'path'
 import { GcpDeploymentManagerGeneratorSchema } from './schema'
 
 interface NormalizedSchema extends GcpDeploymentManagerGeneratorSchema {
-  projectName: string;
-  projectRoot: string;
-  projectDirectory: string;
-  parsedTags: string[];
+  projectName: string
+  projectRoot: string
+  projectDirectory: string
+  parsedTags: string[]
 }
 
 function normalizeOptions(
@@ -49,7 +49,7 @@ function addFiles(host: Tree, options: NormalizedSchema) {
   }
   generateFiles(
     host,
-    path.join(__dirname, 'apps'),
+    path.join(__dirname, 'files'),
     options.projectRoot,
     templateOptions
   )
@@ -60,31 +60,21 @@ export default async function (
   options: GcpDeploymentManagerGeneratorSchema
 ) {
   const normalizedOptions = normalizeOptions(host, options)
-  const file = `${normalizedOptions.name}.deployment.yml`
 
   addProjectConfiguration(host, normalizedOptions.projectName, {
     root: normalizedOptions.projectRoot,
     projectType: 'application',
     sourceRoot: normalizedOptions.projectRoot,
     targets: {
-      create: {
-        executor: '@nx-extend/gcp-deployment-manager:create',
-        options: {
-          file
-        }
+      deploy: {
+        executor: '@nx-extend/gcp-secrets:deploy'
       },
-      update: {
-        executor: '@nx-extend/gcp-deployment-manager:update',
-        options: {
-          file
-        }
+      encrypt: {
+        executor: '@nx-extend/gcp-secrets:encrypt'
       },
-      delete: {
-        executor: '@nx-extend/gcp-deployment-manager:delete',
-        options: {
-          file
-        }
-      },
+      decrypt: {
+        executor: '@nx-extend/gcp-secrets:decrypt'
+      }
     },
     tags: normalizedOptions.parsedTags
   })

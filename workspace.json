@@ -598,6 +598,82 @@
           }
         }
       }
+    },
+    "gcp-secrets": {
+      "root": "packages/gcp-secrets",
+      "sourceRoot": "packages/gcp-secrets/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/gcp-secrets/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/packages/gcp-secrets"
+          ],
+          "options": {
+            "jestConfig": "packages/gcp-secrets/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "executor": "@nrwl/node:package",
+          "outputs": [
+            "{options.outputPath}"
+          ],
+          "options": {
+            "outputPath": "dist/packages/gcp-secrets",
+            "tsConfig": "packages/gcp-secrets/tsconfig.lib.json",
+            "packageJson": "packages/gcp-secrets/package.json",
+            "main": "packages/gcp-secrets/src/index.ts",
+            "assets": [
+              "packages/gcp-secrets/*.md",
+              {
+                "input": "./packages/gcp-secrets/src",
+                "glob": "**/*.!(ts)",
+                "output": "./src"
+              },
+              {
+                "input": "./packages/gcp-secrets",
+                "glob": "generators.json",
+                "output": "."
+              },
+              {
+                "input": "./packages/gcp-secrets",
+                "glob": "executors.json",
+                "output": "."
+              },
+              {
+                "input": "./packages/gcp-secrets",
+                "glob": "builders.json",
+                "output": "."
+              }
+            ]
+          }
+        }
+      }
+    },
+    "gcp-secrets-e2e": {
+      "projectType": "application",
+      "root": "e2e/gcp-secrets-e2e",
+      "sourceRoot": "e2e/gcp-secrets-e2e/src",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/nx-plugin:e2e",
+          "options": {
+            "target": "gcp-secrets:build",
+            "npmPackageName": "@nx-extend/gcp-secrets",
+            "pluginOutputPath": "dist/packages/gcp-secrets",
+            "jestConfig": "e2e/gcp-secrets-e2e/jest.config.js"
+          }
+        }
+      }
     }
   },
   "cli": {
