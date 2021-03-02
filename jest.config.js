@@ -18,5 +18,7 @@ module.exports = {
     '<rootDir>/e2e/conventional-changelog-e2e',
     '<rootDir>/packages/gcp-cloud-run',
     '<rootDir>/e2e/gcp-cloud-run-e2e',
+    '<rootDir>/packages/gcp-secrets',
+    '<rootDir>/e2e/gcp-secrets-e2e',
   ],
 };

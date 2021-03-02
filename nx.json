@@ -46,7 +46,9 @@
     "gcp-cloud-run-e2e": {
       "tags": [],
       "implicitDependencies": ["gcp-cloud-run"]
-    }
+    },
+    "gcp-secrets": { "tags": [] },
+    "gcp-secrets-e2e": { "tags": [], "implicitDependencies": ["gcp-secrets"] }
   },
   "workspaceLayout": { "appsDir": "e2e", "libsDir": "packages" }
 }

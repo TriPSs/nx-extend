@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema",
+  "$id": "https://json-schema.org/draft-07/schema",
+  "title": "Decrypt executor",
+  "description": "Decrypt",
+  "type": "object",
+  "properties": {
+    "project": {
+      "type": "string",
+      "description": "Project id to deploy to"
+    }
+  }
+}

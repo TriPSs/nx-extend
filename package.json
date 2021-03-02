@@ -29,6 +29,7 @@
   "dependencies": {
     "axios": "^0.21.1",
     "clean-webpack-plugin": "^3.0.0",
+    "crypto-js": "^4.0.0",
     "deepmerge": "^4.2.2",
     "extract-react-intl-messages": "^4.1.1",
     "strapi-generate-new": "^3.5.0"
