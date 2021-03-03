@@ -1,5 +1,5 @@
 module.exports = {
-  displayName: 'gcp-core',
+  displayName: 'core',
   preset: '../../jest.preset.js',
   globals: {
     'ts-jest': {
@@ -10,5 +10,5 @@ module.exports = {
     '^.+\\.[tj]sx?$': 'ts-jest',
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
-  coverageDirectory: '../../coverage/packages/gcp-core',
+  coverageDirectory: '../../coverage/packages/core',
 };
