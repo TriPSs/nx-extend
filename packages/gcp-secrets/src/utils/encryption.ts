@@ -20,25 +20,29 @@ export const getEncryptionKey = (): string => {
 /**
  * Encrypts the content text but only if its a string and not empty
  */
-export const encrypt = (content: string): string => {
+export const encrypt = (content: string): string | Array<Record<string, string>> => {
   if (typeof content === 'string' && content.trim().length > 0) {
     return AES.encrypt(content, getEncryptionKey()).toString()
 
-  } else {
-    return content
+  } else if (Array.isArray(content)) {
+    return content.map((item: SecretFile) => encryptFile(item, true))
   }
+
+  return content
 }
 
 /**
  * Decrypts the cipher text but only if its a string and not empty
  */
-export const decrypt = (cipherText: string): string => {
+export const decrypt = (cipherText: string): string | Array<Record<string, string>> => {
   if (typeof cipherText === 'string' && cipherText.trim().length > 0) {
     return AES.decrypt(cipherText, getEncryptionKey()).toString(enc.Utf8)
 
-  } else {
-    return cipherText
+  } else if (Array.isArray(cipherText)) {
+    return cipherText.map((item: SecretFile) => decryptFile(item, true))
   }
+
+  return cipherText
 }
 
 export const decryptFile = (encryptedFileContent: SecretFile, removeMetadata = false): SecretFile => {
@@ -68,23 +72,30 @@ export const decryptFile = (encryptedFileContent: SecretFile, removeMetadata = f
   )
 }
 
-export const encryptFile = (decryptedFileContent: SecretFile): SecretFile => {
+export const encryptFile = (decryptedFileContent: SecretFile, removeMetadata = false): SecretFile => {
   return Object.keys(decryptedFileContent).reduce((secretFile: SecretFile, fileKey: string) => {
-    // Don't update __gcp_metadata
-    if (fileKey !== '__gcp_metadata') {
-      secretFile[fileKey] = encrypt(decryptedFileContent[fileKey])
-    } else {
-      secretFile[fileKey] = {
-        ...decryptedFileContent[fileKey],
-        ...secretFile[fileKey]
-      }
-    }
+      // Don't update __gcp_metadata
+      if (fileKey !== '__gcp_metadata') {
+        secretFile[fileKey] = encrypt(decryptedFileContent[fileKey])
 
-    return secretFile
-  }, {
-    __gcp_metadata: {
-      status: 'encrypted'
-    }
-  })
+      } else if (!removeMetadata) {
+        secretFile[fileKey] = {
+          ...decryptedFileContent[fileKey],
+          ...secretFile[fileKey]
+        }
+      }
+
+      return secretFile
+    },
+    (
+      removeMetadata
+        ? {}
+        : {
+          __gcp_metadata: {
+            status: 'encrypted'
+          }
+        }
+    ) as SecretFile
+  )
 }
 
