@@ -1,11 +1,20 @@
 import { createBuilder, BuilderContext } from '@angular-devkit/architect'
-import { execCommand, buildCommand } from '@nx-extend/gcp-core'
+import { execCommand, buildCommand } from '@nx-extend/core'
+import { ShellString, echo } from 'shelljs'
+import { yellow } from 'chalk'
 
 import { ExecutorSchema } from '../schema'
-
 import { isEncryptionKeySet, decryptFile } from '../../utils/encryption'
 import { getAllSecretFiles } from '../../utils/get-all-secret-files'
 import { getFileContent, getFileName, storeFile } from '../../utils/file'
+
+export interface ExistingSecret {
+  name: string;
+
+  labels?: {
+    [key: string]: string
+  }
+}
 
 export async function runBuilder(
   options: ExecutorSchema,
@@ -16,20 +25,24 @@ export async function runBuilder(
 
   if (isEncryptionKeySet()) {
     try {
-      const { output } = await execCommand(
+      const existingSecrets = execCommand<ExistingSecret[]>(
         buildCommand([
           `gcloud secrets list`,
           '--format=json',
           getCommandOptions(options)
         ]),
         {
-          cwd: context.workspaceRoot,
-          silent: true
+          silent: true,
+          asJSON: true
         }
+      ).map(
+        (secret) => ({
+          ...secret,
+          name: secret.name.split('/secrets/').pop()
+        })
       )
 
       const files = getAllSecretFiles(projectRoot)
-      const existingSecrets: string[] = JSON.parse(output).map((secret) => secret.name.split('/secrets/').pop())
 
       const secretsCreated = await Promise.all(
         files.map(async (file) => {
@@ -48,40 +61,74 @@ export async function runBuilder(
             storeFile(file, decryptFile(fileContent, true))
           }
 
-          const secretExists = existingSecrets.includes(secretName)
+          // Check if the secret exists
+          const secretExists = existingSecrets.find(
+            (secret) => secret.name === secretName
+          )
           let success
 
           // If the secret already exists we update it
           // and optionally remove older versions
           if (secretExists) {
-            const updatedResult = await execCommand(
-              buildCommand([
+            const existingLabeles = Object.keys(secretExists?.labels || {}).reduce((labels, labelKey) => {
+              labels.push(`${labelKey}=${secretExists.labels[labelKey]}`)
+
+              return labels
+            }, [])
+
+            // Check if we need to update the sercrets labels
+            if (JSON.stringify(existingLabeles) !== JSON.stringify(fileContent.__gcp_metadata.labels)) {
+              echo(`Updating "${secretName}" it's labels`)
+
+              execCommand(buildCommand([
                 `gcloud secrets update ${secretName}`,
-                `--data-file="${file}"`,
-                '--replication-policy=automatic',
                 addLabelsIfNeeded(fileContent.__gcp_metadata.labels, false),
+                getCommandOptions(options)
+              ]), {
+                silent: true
+              })
+            }
+
+            // Get the new version of the secret
+            const newVersion = execCommand<{ name: string }>(
+              buildCommand([
+                `gcloud secrets versions add ${secretName}`,
+                `--data-file="${file}"`,
+                '--format=json',
                 getCommandOptions(options)
               ]),
               {
-                cwd: context.workspaceRoot
+                asJSON: true,
+                silent: true
               }
-            )
+            ).name.split('/versions/').pop()
 
-            const updateBehavior = fileContent.__gcp_metadata.onUpdateBehavior || 'delete'
+            const updateBehavior = fileContent.__gcp_metadata.onUpdateBehavior || 'destroy'
 
-            if(updateBehavior !== 'none') {
-              // TODO:: Get all now active versions and delete / disable all except the latest
+            if (updateBehavior !== 'none') {
+              if (['destroy', 'disable'].includes(updateBehavior)) {
+                const previousVersion = parseInt(newVersion, 10) - 1
 
-              // gcloud secrets versions destroy 123 --secret=my-secret
-              // gcloud secrets versions disable 123 --secret=my-secret
+                echo(`${updateBehavior === 'disable' ? 'Disabling' : 'Destroying'} previous version of secret "${secretName}"`)
+
+                execCommand(buildCommand([
+                  `gcloud secrets versions ${updateBehavior} ${previousVersion}`,
+                  `--secret=${secretName}`,
+                  '--quiet',
+
+                  getCommandOptions(options)
+                ]))
+
+              } else {
+                echo(yellow(`"${updateBehavior}" is an invalid onUpdateBehavior, valid are: "none", "disable" or "destroy"`))
+              }
             }
 
-            success = updatedResult.success
-
+            success = true
           } else {
             context.logger.info(`Creating secret "${secretName}" from file "${fileName}"`)
 
-            const createdResult = await execCommand(
+            const { code } = execCommand<ShellString>(
               buildCommand([
                 `gcloud secrets create ${secretName}`,
                 `--data-file="${file}"`,
@@ -90,11 +137,11 @@ export async function runBuilder(
                 getCommandOptions(options)
               ]),
               {
-                cwd: context.workspaceRoot
+                fatal: true
               }
             )
 
-            success = createdResult.success
+            success = code === 0
           }
 
           // Store the encrypted file again
@@ -109,14 +156,12 @@ export async function runBuilder(
       return {
         success: secretsCreated.filter(Boolean).length === files.length
       }
-
     } catch (err) {
       context.logger.error(`Error happend trying to decrypt files: ${err.message || err}`)
       console.error(err.trace)
 
       return { success: false }
     }
-
   } else {
     return { success: true }
   }
@@ -130,12 +175,13 @@ export const getCommandOptions = (options: ExecutorSchema): string => {
   ])
 }
 
-export const addLabelsIfNeeded = (labels: string[], isCreating: boolean): string => {
+export const addLabelsIfNeeded = (
+  labels: string[],
+  isCreating: boolean
+): string => {
   if (labels.length > 0) {
     if (isCreating) {
-      return buildCommand([
-        `--labels=${labels.join(',')}`
-      ])
+      return buildCommand([`--labels=${labels.join(',')}`])
 
     } else {
       return buildCommand([
@@ -143,9 +189,11 @@ export const addLabelsIfNeeded = (labels: string[], isCreating: boolean): string
         `--update-labels=${labels.join(',')}`
       ])
     }
+  } else {
+    return buildCommand([
+      '--clear-labels'
+    ])
   }
-
-  return ''
 }
 
 export default createBuilder(runBuilder)

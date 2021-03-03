@@ -43,20 +43,29 @@ export const decrypt = (cipherText: string): string => {
 
 export const decryptFile = (encryptedFileContent: SecretFile, removeMetadata = false): SecretFile => {
   return Object.keys(encryptedFileContent).reduce((secretFile: SecretFile, fileKey: string) => {
-    // Don't update __gcp_metadata
-    if (fileKey !== '__gcp_metadata') {
-      secretFile[fileKey] = decrypt(encryptedFileContent[fileKey])
+      // Don't update __gcp_metadata
+      if (fileKey !== '__gcp_metadata') {
+        secretFile[fileKey] = decrypt(encryptedFileContent[fileKey])
 
-    } else if (removeMetadata) {
-      delete secretFile[fileKey]
-    }
+      } else if (!removeMetadata) {
+        secretFile[fileKey] = {
+          ...encryptedFileContent[fileKey],
+          ...secretFile[fileKey]
+        }
+      }
 
-    return secretFile
-  }, {
-    __gcp_metadata: {
-      status: 'decrypted'
-    }
-  })
+      return secretFile
+    },
+    (
+      removeMetadata
+        ? {}
+        : {
+          __gcp_metadata: {
+            status: 'decrypted'
+          }
+        }
+    ) as SecretFile
+  )
 }
 
 export const encryptFile = (decryptedFileContent: SecretFile): SecretFile => {
@@ -64,6 +73,11 @@ export const encryptFile = (decryptedFileContent: SecretFile): SecretFile => {
     // Don't update __gcp_metadata
     if (fileKey !== '__gcp_metadata') {
       secretFile[fileKey] = encrypt(decryptedFileContent[fileKey])
+    } else {
+      secretFile[fileKey] = {
+        ...decryptedFileContent[fileKey],
+        ...secretFile[fileKey]
+      }
     }
 
     return secretFile

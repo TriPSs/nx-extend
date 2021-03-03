@@ -19,7 +19,6 @@
       "@nx-extend/translations": ["packages/translations/src/index.ts"],
       "@nx-extend/gcp-functions": ["packages/gcp-functions/src/index.ts"],
       "@nx-extend/gcp-storage": ["packages/gcp-storage/src/index.ts"],
-      "@nx-extend/gcp-core": ["packages/gcp-core/src/index.ts"],
       "@nx-extend/gcp-deployment-manager": [
         "packages/gcp-deployment-manager/src/index.ts"
       ],
@@ -27,7 +26,8 @@
         "packages/conventional-changelog/src/index.ts"
       ],
       "@nx-extend/gcp-cloud-run": ["packages/gcp-cloud-run/src/index.ts"],
-      "@nx-extend/gcp-secrets": ["packages/gcp-secrets/src/index.ts"]
+      "@nx-extend/gcp-secrets": ["packages/gcp-secrets/src/index.ts"],
+      "@nx-extend/core": ["packages/core/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
