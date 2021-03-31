@@ -6,19 +6,13 @@ import * as deepmerge from 'deepmerge'
 import BaseProvider, { ExtractSettings } from './base.provider'
 import { injectProjectRoot } from '../utils'
 
-export interface TransifexConfig {
+export interface TransifexConfig extends ExtractSettings {
 
   organization: string
 
   project: string
 
   recourse: string
-
-  outputDirectory: string
-
-  sourceFile: string
-
-  sourceLang: string
 
   token?: string
 
@@ -34,9 +28,9 @@ export default class Transifex extends BaseProvider<TransifexConfig> {
 
   public getExtractSettings(): ExtractSettings {
     return {
-      languages: [this.config.sourceLang],
-      defaultLocale: this.config.sourceLang,
-      outputDirectory: this.config.outputDirectory
+      defaultLocale: this.config.defaultLocale,
+      outputDirectory: this.config.outputDirectory,
+      extractor: this.config.extractor
     }
   }
 
@@ -67,7 +61,7 @@ export default class Transifex extends BaseProvider<TransifexConfig> {
         `${languageString}.json`
       )
 
-      if (languageString === this.config.sourceLang) {
+      if (languageString === this.config.defaultLocale) {
         // Skip pulling the source file
         return
       }
@@ -110,7 +104,7 @@ export default class Transifex extends BaseProvider<TransifexConfig> {
    */
   public async push(): Promise<void> {
     const resource = `o:${this.config.organization}:p:${this.config.project}:r:${this.config.recourse}`
-    const sourceFileLocation = injectProjectRoot(this.config.sourceFile, this.projectRoot, this.context.workspaceRoot)
+    const sourceFileLocation = injectProjectRoot(this.sourceFile, this.projectRoot, this.context.workspaceRoot)
     const sourceFileContent = readFileSync(sourceFileLocation, 'utf8')
     const sourceFileMinified = JSON.stringify(JSON.parse(sourceFileContent))
 
