@@ -39,6 +39,11 @@
       "type": "string",
       "description": "Format of translations output: json or yaml",
       "default": "json"
+    },
+    "extractor": {
+      "type": "string",
+      "description": "Extractor to use",
+      "default": "react-intl"
     }
   },
   "required": []

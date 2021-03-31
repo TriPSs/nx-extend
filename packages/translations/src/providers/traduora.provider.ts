@@ -2,15 +2,9 @@ import { resolve } from 'path'
 import { readFileSync } from 'fs'
 import BaseProvider, { ExtractSettings } from './base.provider'
 
-export interface TraduoraConfig {
+export interface TraduoraConfig extends ExtractSettings {
 
   baseUrl: string
-
-  sourceLang: string
-
-  locales: string[]
-
-  outputDirectory?: string
 
 }
 
@@ -18,9 +12,9 @@ export default class Traduora extends BaseProvider<TraduoraConfig> {
 
   getExtractSettings(): ExtractSettings {
     return {
-      languages: this.config.locales,
-      defaultLocale: this.config.sourceLang,
-      outputDirectory: this.config.outputDirectory
+      defaultLocale: this.config.defaultLocale,
+      outputDirectory: this.config.outputDirectory,
+      extractor: this.config.extractor
     }
   }
 

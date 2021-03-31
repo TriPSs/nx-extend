@@ -5,7 +5,7 @@ import TransifexProvider from './transifex.provider'
 
 export { default as BaseProvider } from './base.provider'
 
-export const getProvider = async (provider: string, context: BuilderContext): Promise<BaseProvider> => {
+export const getProvider = async (provider: string, context: BuilderContext): Promise<BaseProvider<any>> => {
   let providerClass
   if (provider === 'traduora') {
     context.logger.info(`Using "${provider}" provider`)

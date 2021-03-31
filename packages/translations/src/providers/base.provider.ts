@@ -1,17 +1,19 @@
 import { BuilderContext } from '@angular-devkit/architect'
 import { join } from 'path'
 
+export type Extractors = 'formatjs' | 'react-intl'
+
 export interface ExtractSettings {
 
   defaultLocale: string
 
-  languages: string[]
-
   outputDirectory?: string
+
+  extractor?: Extractors
 
 }
 
-export default abstract class BaseProvider<Config = {}> {
+export default abstract class BaseProvider<Config extends ExtractSettings> {
 
   protected readonly context: BuilderContext
 
@@ -21,6 +23,8 @@ export default abstract class BaseProvider<Config = {}> {
 
   protected config: Config = null
 
+  protected sourceFile: string = null
+
   constructor(context: BuilderContext) {
     this.context = context
   }
@@ -29,6 +33,8 @@ export default abstract class BaseProvider<Config = {}> {
     await this.setProjectRoot()
 
     this.config = await this.getConfigFile()
+
+    this.sourceFile = join(this.config.outputDirectory, `${this.config.defaultLocale}.json`)
   }
 
   public abstract getExtractSettings(): ExtractSettings

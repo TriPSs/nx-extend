@@ -6,6 +6,7 @@ import { ExtractSchema } from './schema'
 import { ExtractSettings } from '../../providers/base.provider'
 import { BaseProvider, getProvider } from '../../providers'
 import { injectProjectRoot } from '../../utils'
+import { buildCommand, execCommand } from '@nx-extend/core'
 
 export async function runBuilder(
   options: ExtractSchema,
@@ -14,11 +15,11 @@ export async function runBuilder(
   const projectMetadata = await context.getProjectMetadata(context.target.project)
   const projectRoot = join(`${context.workspaceRoot}`, `${projectMetadata.root}`)
 
-  let provider: BaseProvider = null
+  let provider: BaseProvider<any> = null
   let settings: ExtractSettings = {
-    languages: options.languages,
     defaultLocale: options.defaultLanguage,
-    outputDirectory: undefined
+    outputDirectory: undefined,
+    extractor: options.extractor
   }
 
   // If provider is given then try to use it
@@ -35,20 +36,37 @@ export async function runBuilder(
     settings.outputDirectory = options.output
   }
 
-  try {
-    const sourceDirectory = injectProjectRoot(options.sourceRoot, projectRoot, context.workspaceRoot)
-    const outputDirectory = injectProjectRoot(settings.outputDirectory, projectRoot, context.workspaceRoot)
+  const sourceDirectory = injectProjectRoot(options.sourceRoot, projectRoot, context.workspaceRoot)
+  const outputDirectory = injectProjectRoot(settings.outputDirectory, projectRoot, context.workspaceRoot)
 
-    await extractIntlMessages(
-      settings.languages,
-      join(sourceDirectory, options.pattern),
-      outputDirectory,
-      {
-        defaultLocale: settings.defaultLocale,
-        flat: true,
-        format: 'json'
+  try {
+    if (settings.extractor === 'react-intl') {
+      await extractIntlMessages(
+        [settings.defaultLocale],
+        join(sourceDirectory, options.pattern),
+        outputDirectory,
+        {
+          defaultLocale: settings.defaultLocale,
+          flat: true,
+          format: 'json'
+        }
+      )
+    } else if (settings.extractor === 'formatjs') {
+      await execCommand(buildCommand([
+        'npx formatjs extract',
+        `'${join(sourceDirectory, options.pattern)}'`,
+        `--out-file='${outputDirectory}/${settings.defaultLocale}.json'`,
+        '--id-interpolation-pattern=\'[sha512:contenthash:base64:6]\'',
+        '--format=simple'
+      ]))
+
+    } else {
+      context.logger.error('Unsupported extractor!')
+
+      return {
+        success: false
       }
-    )
+    }
 
     context.logger.info('Translations extracted')
 
