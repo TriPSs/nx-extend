@@ -24,7 +24,7 @@ export type NodeBuildEvent = BuildResult & {
 
 export default createBuilder(run)
 
-function run(options: BuildExecutorSchema, context: BuilderContext): Observable<NodeBuildEvent> {
+export function run(options: BuildExecutorSchema, context: BuilderContext): Observable<NodeBuildEvent> {
   const projGraph = createProjectGraph()
 
   if (!options.buildLibsFromSource) {

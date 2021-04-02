@@ -1,8 +1,8 @@
-import { createBuilder, BuilderContext } from '@angular-devkit/architect';
-import { execCommand } from '@nx-extend/core';
-import { resolve } from 'path';
+import { createBuilder, BuilderContext } from '@angular-devkit/architect'
+import { execCommand } from '@nx-extend/core'
+import { resolve } from 'path'
 
-import { DeployExecutorSchema } from './schema';
+import { DeployExecutorSchema } from './schema'
 
 export async function runBuilder(
   options: DeployExecutorSchema,
@@ -19,21 +19,23 @@ export async function runBuilder(
     maxInstances = 10,
     project = null,
     memory = '128MB',
-  } = options;
+    serviceAccount = null,
+    entryPoint = null
+  } = options
 
   const buildOptions = await context.getTargetOptions({
     project: context.target && context.target.project,
-    target: 'build',
-  });
+    target: 'build'
+  })
 
   const sourceDirectory = resolve(
     process.cwd(),
     buildOptions.outputPath.toString()
-  );
+  )
 
   context.logger.info(
     `Deploy function "${functionName}" with source from "${sourceDirectory}"`
-  );
+  )
 
   const gcloudCommand = [
     'gcloud functions deploy',
@@ -43,17 +45,19 @@ export async function runBuilder(
     `--memory=${memory}`,
     `--region=${region}`,
 
+    entryPoint ? `--entry-point=${entryPoint}` : false,
     envVarsFile ? `--env-vars-file=${envVarsFile}` : false,
 
     `--source=${sourceDirectory}`,
     `--max-instances=${maxInstances}`,
 
     allowUnauthenticated ? '--allow-unauthenticated' : false,
+    serviceAccount ? `--service-account=${serviceAccount}` : false,
 
-    project ? `--project=${project}` : false,
-  ].filter(Boolean);
+    project ? `--project=${project}` : false
+  ].filter(Boolean)
 
-  return execCommand(gcloudCommand.join(' '));
+  return execCommand(gcloudCommand.join(' '))
 }
 
-export default createBuilder(runBuilder);
+export default createBuilder(runBuilder)

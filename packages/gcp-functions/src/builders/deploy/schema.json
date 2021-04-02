@@ -9,6 +9,10 @@
       "type": "string",
       "description": "Name of the function"
     },
+    "entryPoint": {
+      "type": "string",
+      "description": "Entrypoint of the file to use, default is functionName"
+    },
     "trigger": {
       "type": "string",
       "description": "Trigger type",
