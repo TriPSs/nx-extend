@@ -6,6 +6,10 @@ export interface DeployExecutorSchema extends JsonObject {
 
   runtime?: string
 
+  entryPoint?: string
+
+  serviceAccount?: string
+
   memory?: string
 
   region: string

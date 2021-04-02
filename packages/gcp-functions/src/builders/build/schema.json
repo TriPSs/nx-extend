@@ -1,6 +1,6 @@
 {
   "title": "GcpFunction builder",
-  "description": "",
+  "cli": "nx",
   "type": "object",
   "source-map-support": "0.5.12",
   "properties": {
