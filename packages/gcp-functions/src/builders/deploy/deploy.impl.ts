@@ -1,5 +1,5 @@
 import { createBuilder, BuilderContext } from '@angular-devkit/architect'
-import { execCommand } from '@nx-extend/core'
+import { buildCommand, execCommand } from '@nx-extend/core'
 import { resolve } from 'path'
 
 import { DeployExecutorSchema } from './schema'
@@ -37,7 +37,7 @@ export async function runBuilder(
     `Deploy function "${functionName}" with source from "${sourceDirectory}"`
   )
 
-  const gcloudCommand = [
+  return execCommand(buildCommand([
     'gcloud functions deploy',
     functionName,
     `--trigger-${trigger}${triggerValue ? `=${triggerValue}` : ''}`,
@@ -55,9 +55,7 @@ export async function runBuilder(
     serviceAccount ? `--service-account=${serviceAccount}` : false,
 
     project ? `--project=${project}` : false
-  ].filter(Boolean)
-
-  return execCommand(gcloudCommand.join(' '))
+  ]))
 }
 
 export default createBuilder(runBuilder)

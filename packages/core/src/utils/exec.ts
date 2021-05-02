@@ -18,10 +18,10 @@ export type Result<Output> = Output extends string
   ? string
   : Output
 
-export const execCommand = <Output>(
+export const execCommand = <Output = { success: boolean, output: string }>(
   command,
   options: Options = {
-    asString: true,
+    asString: false,
     asJSON: false
   }
 ): Output => {
@@ -39,5 +39,8 @@ export const execCommand = <Output>(
 
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
-  return result as ShellString | ChildProcess
+  return {
+    success: result['code'] === 0,
+    output: result.stdout
+  }
 }

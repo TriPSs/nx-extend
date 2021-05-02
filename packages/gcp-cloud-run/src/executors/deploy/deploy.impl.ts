@@ -1,19 +1,19 @@
-import { createBuilder, BuilderContext } from '@angular-devkit/architect';
-import { execCommand } from '@nx-extend/core';
-import { readFileSync, writeFileSync } from 'fs';
-import { join } from 'path';
+import { createBuilder, BuilderContext } from '@angular-devkit/architect'
+import { execCommand, buildCommand } from '@nx-extend/core'
+import { readFileSync, writeFileSync } from 'fs'
+import { join } from 'path'
 
-import { ExecutorSchema } from '../schema';
+import { ExecutorSchema } from '../schema'
 
 export async function runBuilder(
   options: ExecutorSchema,
   context: BuilderContext
 ): Promise<{ success: boolean }> {
-  const projectMeta = await context.getProjectMetadata(context.target.project);
+  const projectMeta = await context.getProjectMetadata(context.target.project)
   const buildOptions = await context.getTargetOptions({
     project: context.target && context.target.project,
-    target: 'build',
-  });
+    target: 'build'
+  })
 
   const {
     region,
@@ -26,64 +26,62 @@ export async function runBuilder(
     memory = '128Mi',
     cloudSqlInstance = null,
     http2 = false,
-    serviceAccount = null,
-  } = options;
+    serviceAccount = null
+  } = options
 
   const dockerFile = readFileSync(
     join(context.workspaceRoot, options.dockerFile),
     'utf8'
-  );
+  )
 
   const distDirectory = join(
     context.workspaceRoot,
     buildOptions.outputPath.toString()
-  );
+  )
 
-  const containerName = `gcr.io/${options.project}/${name}`;
+  const containerName = `gcr.io/${options.project}/${name}`
 
   // Add the docker file to the dist folder
-  writeFileSync(join(distDirectory, 'Dockerfile'), dockerFile);
+  writeFileSync(join(distDirectory, 'Dockerfile'), dockerFile)
 
-  const buildCommand = [
-    'gcloud builds submit',
-    `--tag=${containerName}`,
-    `--project=${options.project}`,
-    options.tag ? `--tag=${options.tag}` : false,
-  ].filter(Boolean);
-
-  const { success } = await execCommand(buildCommand.join(' '), {
-    cwd: distDirectory,
-  });
+  const { success } = await execCommand(
+    buildCommand([
+      'gcloud builds submit',
+      `--tag=${containerName}`,
+      `--project=${options.project}`,
+      options.tag ? `--tag=${options.tag}` : false
+    ]), {
+      cwd: distDirectory
+    })
 
   if (success) {
     const setEnvVars = Object.keys(envVars).reduce((env, envVar) => {
-      env.push(`${envVar}=${envVars[envVar]}`);
+      env.push(`${envVar}=${envVars[envVar]}`)
 
-      return env;
-    }, []);
+      return env
+    }, [])
 
-    const deployCommand = [
-      `gcloud beta run deploy ${name}`,
-      `--image=${containerName}`,
-      `--project=${project}`,
-      '--platform=managed',
-      `--memory=${memory}`,
-      `--region=${region}`,
-      `--min-instances=${minInstances}`,
-      `--max-instances=${maxInstances}`,
-      serviceAccount ? `--service-account=${serviceAccount}` : false,
-      http2 ? '--use-http2' : false,
-      setEnvVars.length > 0 ? `--set-env-vars=${setEnvVars.join(',')}` : false,
-      cloudSqlInstance ? `--add-cloudsql-instances=${cloudSqlInstance}` : false,
-      allowUnauthenticated ? '--allow-unauthenticated' : false,
-    ].filter(Boolean);
-
-    return execCommand(deployCommand.join(' '), {
-      cwd: distDirectory,
-    });
+    return execCommand(
+      buildCommand([
+        `gcloud beta run deploy ${name}`,
+        `--image=${containerName}`,
+        `--project=${project}`,
+        '--platform=managed',
+        `--memory=${memory}`,
+        `--region=${region}`,
+        `--min-instances=${minInstances}`,
+        `--max-instances=${maxInstances}`,
+        serviceAccount ? `--service-account=${serviceAccount}` : false,
+        http2 ? '--use-http2' : false,
+        setEnvVars.length > 0 ? `--set-env-vars=${setEnvVars.join(',')}` : false,
+        cloudSqlInstance ? `--add-cloudsql-instances=${cloudSqlInstance}` : false,
+        allowUnauthenticated ? '--allow-unauthenticated' : false
+      ]), {
+        cwd: distDirectory
+      })
   }
 
-  return { success: false };
+  return { success: false }
 }
 
-export default createBuilder(runBuilder);
+export default createBuilder(runBuilder)
