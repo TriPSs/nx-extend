@@ -128,7 +128,7 @@ export async function runBuilder(
           } else {
             context.logger.info(`Creating secret "${secretName}" from file "${fileName}"`)
 
-            const { code } = execCommand<ShellString>(
+            const { success: commandSuccess } = execCommand(
               buildCommand([
                 `gcloud secrets create ${secretName}`,
                 `--data-file="${file}"`,
@@ -141,7 +141,7 @@ export async function runBuilder(
               }
             )
 
-            success = code === 0
+            success = commandSuccess
           }
 
           // Store the encrypted file again

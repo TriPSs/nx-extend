@@ -1,6 +1,6 @@
 {
   "name": "@nx-extend/gcp-cloud-run",
-  "version": "0.5.0",
+  "version": "1.0.0",
   "main": "src/index.js",
   "generators": "./generators.json",
   "builders": "./builders.json"
