@@ -5,7 +5,6 @@ import { BuildResult, runWebpack } from '@angular-devkit/build-webpack'
 import { from, Observable } from 'rxjs'
 import { concatMap, map, tap } from 'rxjs/operators'
 import { createProjectGraph } from '@nrwl/workspace/src/core/project-graph'
-import { generatePackageJson } from '@nrwl/node/src/utils/generate-package-json'
 import { normalizeBuildOptions } from '@nrwl/node/src/utils/normalize'
 import { getNodeWebpackConfig } from '@nrwl/node/src/utils/node.config'
 import {
@@ -16,10 +15,12 @@ import {
 import { OUT_FILENAME } from '@nrwl/node/src/utils/config'
 import { NxScopedHost } from '@nrwl/tao/src/commands/ngcli-adapter'
 
+import { generatePackageJson } from '../../utils/generate-package-json'
 import { BuildExecutorSchema } from './schema'
+import { BuildNodeBuilderOptions } from '@nrwl/node/src/utils/types'
 
 export type NodeBuildEvent = BuildResult & {
-  outfile: string;
+  outfile: string
 }
 
 export default createBuilder(run)
@@ -45,24 +46,21 @@ export function run(options: BuildExecutorSchema, context: BuilderContext): Obse
     }
   }
 
+  let normalizeOptions: BuildNodeBuilderOptions
+
   return from(getRoots(context))
     .pipe(
-      map(({ sourceRoot, projectRoot }) =>
-        normalizeBuildOptions(
+      map(({ sourceRoot, projectRoot }) => {
+        normalizeOptions = normalizeBuildOptions(
           options,
           context.workspaceRoot,
           sourceRoot,
           projectRoot
         )
-      ),
-      tap((normalizedOptions) => {
-        generatePackageJson(
-          context.target.project,
-          projGraph,
-          normalizedOptions
-        )
+
+        return normalizeOptions
       }),
-      map(options => {
+      map((options) => {
         let config = getNodeWebpackConfig(options)
 
         if (options.webpackConfig) {
@@ -77,7 +75,7 @@ export function run(options: BuildExecutorSchema, context: BuilderContext): Obse
 
         return config
       }),
-      concatMap(config => runWebpack(config, context, {
+      concatMap((config) => runWebpack(config, context, {
         logging: (stats) => {
           context.logger.info(stats.toString(config.stats))
         },
@@ -90,13 +88,16 @@ export function run(options: BuildExecutorSchema, context: BuilderContext): Obse
           OUT_FILENAME
         )
         return buildEvent as NodeBuildEvent
-      })
+      }),
+      tap(() => generatePackageJson(
+        context.target.project,
+        normalizeOptions,
+        context.workspaceRoot
+      ))
     )
 }
 
-async function getRoots(
-  context: BuilderContext
-): Promise<{ sourceRoot: string; projectRoot: string }> {
+async function getRoots(context: BuilderContext): Promise<{ sourceRoot: string; projectRoot: string }> {
   const workspaceHost = workspaces.createWorkspaceHost(
     new NxScopedHost(normalize(context.workspaceRoot))
   )

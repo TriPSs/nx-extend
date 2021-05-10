@@ -9,7 +9,7 @@
     "build": {
       "implementation": "./src/builders/build/build.impl",
       "schema": "./src/builders/build/schema.json",
-      "description": "Deploy a function"
+      "description": "Build a function"
     }
   }
 }

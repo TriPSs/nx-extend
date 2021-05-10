@@ -4,10 +4,7 @@ import { resolve } from 'path'
 
 import { DeployExecutorSchema } from './schema'
 
-export async function runBuilder(
-  options: DeployExecutorSchema,
-  context: BuilderContext
-): Promise<{ success: boolean }> {
+export async function runBuilder(options: DeployExecutorSchema, context: BuilderContext): Promise<{ success: boolean }> {
   const {
     functionName,
     region,
