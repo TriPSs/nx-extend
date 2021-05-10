@@ -1,117 +1,107 @@
-import { resolve } from 'path'
-import { BuilderContext, createBuilder } from '@angular-devkit/architect'
-import { normalize, workspaces } from '@angular-devkit/core'
-import { BuildResult, runWebpack } from '@angular-devkit/build-webpack'
-import { from, Observable } from 'rxjs'
-import { concatMap, map, tap } from 'rxjs/operators'
+import { ExecutorContext } from '@nrwl/devkit'
+
 import { createProjectGraph } from '@nrwl/workspace/src/core/project-graph'
-import { normalizeBuildOptions } from '@nrwl/node/src/utils/normalize'
-import { getNodeWebpackConfig } from '@nrwl/node/src/utils/node.config'
 import {
   calculateProjectDependencies,
   checkDependentProjectsHaveBeenBuilt,
   createTmpTsConfig
-} from '@nrwl/workspace/src/utils/buildable-libs-utils'
-import { OUT_FILENAME } from '@nrwl/node/src/utils/config'
-import { NxScopedHost } from '@nrwl/tao/src/commands/ngcli-adapter'
+} from '@nrwl/workspace/src/utilities/buildable-libs-utils'
+import { runWebpack } from '@nrwl/workspace/src/utilities/run-webpack'
+import * as webpack from 'webpack'
 
+import { map, tap } from 'rxjs/operators'
+import { eachValueFrom } from 'rxjs-for-await'
+import { resolve } from 'path'
+
+import { getNodeWebpackConfig } from '../../utils/node.config'
+import { OUT_FILENAME } from '../../utils/config'
+import { BuildNodeBuilderOptions } from '../../utils/types'
+import { normalizeBuildOptions } from '../../utils/normalize'
 import { generatePackageJson } from '../../utils/generate-package-json'
-import { BuildExecutorSchema } from './schema'
-import { BuildNodeBuilderOptions } from '@nrwl/node/src/utils/types'
 
-export type NodeBuildEvent = BuildResult & {
-  outfile: string
+try {
+  require('dotenv').config()
+} catch (e) {
 }
 
-export default createBuilder(run)
+export type NodeBuildEvent = {
+  outfile: string;
+  success: boolean;
+};
 
-export function run(options: BuildExecutorSchema, context: BuilderContext): Observable<NodeBuildEvent> {
+export function buildExecutor(
+  rawOptions: BuildNodeBuilderOptions,
+  context: ExecutorContext
+) {
+  const { sourceRoot, root } = context.workspace.projects[context.projectName]
+
+  if (!sourceRoot) {
+    throw new Error(`${context.projectName} does not have a sourceRoot.`)
+  }
+
+  if (!root) {
+    throw new Error(`${context.projectName} does not have a root.`)
+  }
+
+  const options = normalizeBuildOptions(
+    rawOptions,
+    context.root,
+    sourceRoot,
+    root
+  )
   const projGraph = createProjectGraph()
-
   if (!options.buildLibsFromSource) {
     const { target, dependencies } = calculateProjectDependencies(
       projGraph,
-      context
+      context.root,
+      context.projectName,
+      context.targetName,
+      context.configurationName
     )
-
     options.tsConfig = createTmpTsConfig(
       options.tsConfig,
-      context.workspaceRoot,
+      context.root,
       target.data.root,
       dependencies
     )
 
-    if (!checkDependentProjectsHaveBeenBuilt(context, dependencies)) {
+    if (
+      !checkDependentProjectsHaveBeenBuilt(
+        context.root,
+        context.projectName,
+        context.targetName,
+        dependencies
+      )
+    ) {
       return { success: false } as any
     }
   }
 
-  let normalizeOptions: BuildNodeBuilderOptions
+  const config = options.webpackConfig.reduce((currentConfig, plugin) => {
+    return require(plugin)(currentConfig, {
+      options,
+      configuration: context.configurationName
+    })
+  }, getNodeWebpackConfig(options))
 
-  return from(getRoots(context))
-    .pipe(
-      map(({ sourceRoot, projectRoot }) => {
-        normalizeOptions = normalizeBuildOptions(
-          options,
-          context.workspaceRoot,
-          sourceRoot,
-          projectRoot
-        )
-
-        return normalizeOptions
+  return eachValueFrom(
+    runWebpack(config, webpack).pipe(
+      tap((stats) => {
+        console.info(stats.toString(config.stats))
       }),
-      map((options) => {
-        let config = getNodeWebpackConfig(options)
-
-        if (options.webpackConfig) {
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-ignore
-          // eslint-disable-next-line @typescript-eslint/no-var-requires
-          config = require(options.webpackConfig)(config, {
-            options,
-            configuration: context.target.configuration
-          })
+      map((stats) => {
+        return {
+          success: !stats.hasErrors(),
+          outfile: resolve(context.root, options.outputPath, OUT_FILENAME)
+        } as NodeBuildEvent
+      }),
+      tap(({ outfile }) => {
+        if (options.generatePackageJson) {
+          generatePackageJson(context.projectName, projGraph, options, outfile, context.root)
         }
-
-        return config
-      }),
-      concatMap((config) => runWebpack(config, context, {
-        logging: (stats) => {
-          context.logger.info(stats.toString(config.stats))
-        },
-        webpackFactory: require('webpack')
-      })),
-      map((buildEvent: BuildResult) => {
-        buildEvent.outfile = resolve(
-          context.workspaceRoot,
-          options.outputPath,
-          OUT_FILENAME
-        )
-        return buildEvent as NodeBuildEvent
-      }),
-      tap(() => generatePackageJson(
-        context.target.project,
-        normalizeOptions,
-        context.workspaceRoot
-      ))
+      })
     )
-}
-
-async function getRoots(context: BuilderContext): Promise<{ sourceRoot: string; projectRoot: string }> {
-  const workspaceHost = workspaces.createWorkspaceHost(
-    new NxScopedHost(normalize(context.workspaceRoot))
   )
-
-  const { workspace } = await workspaces.readWorkspace('', workspaceHost)
-  const { project } = context.target
-  const { sourceRoot, root } = workspace.projects.get(project)
-
-  if (sourceRoot && root) {
-    return { sourceRoot, projectRoot: root }
-  }
-
-  context.reportStatus('Error')
-  const message = `${project} does not have a sourceRoot or root. Please define both.`
-  context.logger.error(message)
-  throw new Error(message)
 }
+
+export default buildExecutor

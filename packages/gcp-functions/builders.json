@@ -1,5 +1,11 @@
 {
-  "$schema": "http://json-schema.org/schema",
+  "executors": {
+    "build": {
+      "implementation": "./src/builders/build/build.impl",
+      "schema": "./src/builders/build/schema.json",
+      "description": "Build a Node application"
+    }
+  },
   "builders": {
     "deploy": {
       "implementation": "./src/builders/deploy/deploy.impl",
@@ -7,9 +13,9 @@
       "description": "Deploy a function"
     },
     "build": {
-      "implementation": "./src/builders/build/build.impl",
+      "implementation": "./src/builders/build/compat",
       "schema": "./src/builders/build/schema.json",
-      "description": "Build a function"
+      "description": "Build a Node application"
     }
   }
 }

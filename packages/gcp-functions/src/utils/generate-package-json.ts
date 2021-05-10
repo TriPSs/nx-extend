@@ -1,12 +1,25 @@
 import * as fs from 'fs'
 import { join } from 'path'
 import { fileExists, readJsonFile, writeToFile } from '@nrwl/workspace/src/utils/fileutils'
+import { createPackageJson } from '@nrwl/workspace/src/utilities/create-package-json'
+import { ProjectGraph } from '@nrwl/workspace/src/core/project-graph'
 
-import { BuildNodeBuilderOptions } from '@nrwl/node/src/utils/types'
+import { OUT_FILENAME } from './config'
+import { BuildNodeBuilderOptions } from './types'
 
-export const generatePackageJson = (project: string, options: BuildNodeBuilderOptions, workspaceRoot: string) => {
+export const generatePackageJson = (
+  projectName: string,
+  graph: ProjectGraph,
+  options: BuildNodeBuilderOptions,
+  outFile: string,
+  workspaceRoot: string
+) => {
+  const packageJson = createPackageJson(projectName, graph, options)
+  packageJson.main = OUT_FILENAME
+  delete packageJson.devDependencies
+
   const dependencies = {}
-  const buildFile = fs.readFileSync(`${options.outputPath}/main.js`, 'utf8')
+  const buildFile = fs.readFileSync(outFile, 'utf8')
   const re2 = /"(.*)"/gm
   const externalDependencies = buildFile.match(/require\("(.*)"\)/gm)
 
@@ -23,16 +36,16 @@ export const generatePackageJson = (project: string, options: BuildNodeBuilderOp
     })
   }
 
-  const packageJson = join(options.projectRoot, 'package.json')
+  const projectPackageJson = join(options.projectRoot, 'package.json')
 
-  const originalPackageJson = fileExists(packageJson)
-    ? readJsonFile(packageJson)
+  const originalPackageJson = fileExists(projectPackageJson)
+    ? readJsonFile(projectPackageJson)
     : { dependencies: {} }
 
-  originalPackageJson.dependencies = {
+  packageJson.dependencies = {
     ...originalPackageJson.dependencies,
     ...externalDependencies
   }
 
-  writeToFile(join(options.outputPath, 'package.json'), JSON.stringify(originalPackageJson, null, 2))
+  writeToFile(join(options.outputPath, 'package.json'), JSON.stringify(packageJson, null, 2))
 }
