@@ -84,7 +84,7 @@ export default async function (
         options: {
           file
         }
-      },
+      }
     },
     tags: normalizedOptions.parsedTags
   })

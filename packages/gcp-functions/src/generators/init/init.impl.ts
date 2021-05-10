@@ -90,11 +90,11 @@ export default async function (
         }
       },
       build: {
-        'executor': '@nrwl/node:build',
+        'executor': '@nx-extend/gcp-functions:build',
         'options': {
           'generatePackageJson': true,
           'outputPath': `dist/${normalizedOptions.projectRoot}`,
-          'main': `${normalizedOptions.projectRoot}/src/${normalizedOptions.name}.ts`,
+          'main': `${normalizedOptions.projectRoot}/src/main.ts`,
           'tsConfig': `${normalizedOptions.projectRoot}/tsconfig.app.json`,
           'assets': []
         },
