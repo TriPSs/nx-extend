@@ -10,7 +10,7 @@ describe('gcp-functions e2e', () => {
     const plugin = uniq('gcp-functions');
     ensureNxProject('@nx-extend/gcp-functions', 'dist/packages/gcp-functions');
     await runNxCommandAsync(
-      `generate @nx-extend/gcp-functions:gcp-functions ${plugin}`
+      `generate @nx-extend/gcp-functions:init ${plugin}`
     );
 
     const result = await runNxCommandAsync(`build ${plugin}`);

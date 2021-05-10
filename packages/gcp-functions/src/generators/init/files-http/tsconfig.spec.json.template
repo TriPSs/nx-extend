@@ -1,8 +1,8 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "../../../dist/out-tsc-jest/dev/functions/contact-form",
     "module": "commonjs",
+    "outDir": "<%= offsetFromRoot %>dist/out-jest/<%= fileName %>",
     "types": [
       "jest",
       "node"
