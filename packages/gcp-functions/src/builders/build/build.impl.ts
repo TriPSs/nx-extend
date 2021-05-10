@@ -13,10 +13,10 @@ import { map, tap } from 'rxjs/operators'
 import { eachValueFrom } from 'rxjs-for-await'
 import { resolve } from 'path'
 
-import { getNodeWebpackConfig } from '../../utils/node.config'
-import { OUT_FILENAME } from '../../utils/config'
-import { BuildNodeBuilderOptions } from '../../utils/types'
-import { normalizeBuildOptions } from '../../utils/normalize'
+import { getNodeWebpackConfig } from '@nrwl/node/src/utils/node.config'
+import { OUT_FILENAME } from '@nrwl/node/src/utils/config'
+import { BuildNodeBuilderOptions } from '@nrwl/node/src/utils/types'
+import { normalizeBuildOptions } from '@nrwl/node/src/utils/normalize'
 import { generatePackageJson } from '../../utils/generate-package-json'
 
 try {
@@ -95,11 +95,9 @@ export function buildExecutor(
           outfile: resolve(context.root, options.outputPath, OUT_FILENAME)
         } as NodeBuildEvent
       }),
-      tap(({ outfile }) => {
-        if (options.generatePackageJson) {
-          generatePackageJson(context.projectName, projGraph, options, outfile, context.root)
-        }
-      })
+      tap(({ outfile }) => (
+        generatePackageJson(context.projectName, projGraph, options, outfile, context.root)
+      ))
     )
   )
 }

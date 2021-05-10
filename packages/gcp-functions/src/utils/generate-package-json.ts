@@ -4,8 +4,8 @@ import { fileExists, readJsonFile, writeToFile } from '@nrwl/workspace/src/utils
 import { createPackageJson } from '@nrwl/workspace/src/utilities/create-package-json'
 import { ProjectGraph } from '@nrwl/workspace/src/core/project-graph'
 
-import { OUT_FILENAME } from './config'
-import { BuildNodeBuilderOptions } from './types'
+import { OUT_FILENAME } from '@nrwl/node/src/utils/config'
+import { BuildNodeBuilderOptions } from '@nrwl/node/src/utils/types'
 
 export const generatePackageJson = (
   projectName: string,
@@ -44,7 +44,7 @@ export const generatePackageJson = (
 
   packageJson.dependencies = {
     ...originalPackageJson.dependencies,
-    ...externalDependencies
+    ...dependencies
   }
 
   writeToFile(join(options.outputPath, 'package.json'), JSON.stringify(packageJson, null, 2))
