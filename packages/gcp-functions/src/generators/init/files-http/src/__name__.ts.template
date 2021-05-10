@@ -4,7 +4,7 @@ const {
   foo = 'testBar'
 } = process.env
 
-export const <% className >: HttpFunction = async (req, res) => {
+export const <%= className %>: HttpFunction = async (req, res) => {
   res.status(200)
     .send(foo)
 }
