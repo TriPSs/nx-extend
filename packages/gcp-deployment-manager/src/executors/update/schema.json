@@ -12,6 +12,12 @@
     "project": {
       "type": "string",
       "description": "Project id to deploy to"
+    },
+    "deletePolicy": {
+      "type": "string"
+    },
+    "createPolicy": {
+      "type": "string"
     }
   }
 }

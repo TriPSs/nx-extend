@@ -17,7 +17,8 @@ export async function runBuilder(options: DeployExecutorSchema, context: Builder
     project = null,
     memory = '128MB',
     serviceAccount = null,
-    entryPoint = null
+    entryPoint = null,
+    retry = false
   } = options
 
   const buildOptions = await context.getTargetOptions({
@@ -44,6 +45,7 @@ export async function runBuilder(options: DeployExecutorSchema, context: Builder
 
     entryPoint ? `--entry-point=${entryPoint}` : false,
     envVarsFile ? `--env-vars-file=${envVarsFile}` : false,
+    retry ? `---retry` : false,
 
     `--source=${sourceDirectory}`,
     `--max-instances=${maxInstances}`,

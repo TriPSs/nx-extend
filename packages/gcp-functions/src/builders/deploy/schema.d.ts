@@ -26,4 +26,6 @@ export interface DeployExecutorSchema extends JsonObject {
 
   project?: string
 
+  retry?: boolean
+
 }

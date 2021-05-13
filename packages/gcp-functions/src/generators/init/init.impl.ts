@@ -65,19 +65,6 @@ export default async function (
     projectType: 'application',
     sourceRoot: normalizedOptions.projectRoot,
     targets: {
-      serve: {
-        executor: '@nrwl/workspace:run-commands',
-        options: {
-          commands: [
-            {
-              command: `npx @google-cloud/functions-framework --source ./dist/${normalizedOptions.projectRoot}`
-            },
-            {
-              command: `npx @google-cloud/functions-framework --target pubSub --signature-type=cloudevent --source ./dist/${normalizedOptions.projectRoot}`
-            }
-          ]
-        }
-      },
       lint: {
         'executor': '@nrwl/linter:eslint',
         'options': {}
