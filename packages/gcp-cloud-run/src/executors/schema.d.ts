@@ -23,6 +23,8 @@ export interface ExecutorSchema extends JsonObject {
     [key: string]: string
   }
 
+  concurrency?: number
+
   maxInstances?: number
 
   minInstances?: number
