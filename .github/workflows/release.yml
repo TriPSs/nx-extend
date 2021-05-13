@@ -1,9 +1,9 @@
 name: Publish
 
-on:
-  push:
-    branches:
-      - master
+#on:
+#  push:
+#    branches:
+#      - master
 
 jobs:
   install-deps:

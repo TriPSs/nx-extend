@@ -7,6 +7,11 @@
       "factory": "./src/generators/init/init.impl",
       "schema": "./src/generators/init/schema.json",
       "description": "generator"
+    },
+    "init-runner": {
+      "factory": "./src/generators/init-runner/init.impl",
+      "schema": "./src/generators/init-runner/schema.json",
+      "description": "generator"
     }
   }
 }

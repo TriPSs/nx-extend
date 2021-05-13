@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "@angular-devkit/build-webpack": "^0.1102.12",
+    "@nrwl/node": "12.2.0",
     "axios": "^0.21.1",
     "chalk": "^4.1.1",
     "clean-webpack-plugin": "^3.0.0",
@@ -36,6 +37,7 @@
     "crypto-js": "^4.0.0",
     "deepmerge": "^4.2.2",
     "extract-react-intl-messages": "^4.1.1",
+    "rxjs-for-await": "^0.0.2",
     "shelljs": "^0.8.4",
     "strapi-generate-new": "^3.6.1"
   },
@@ -45,7 +47,6 @@
     "@nrwl/devkit": "12.2.0",
     "@nrwl/eslint-plugin-nx": "12.2.0",
     "@nrwl/jest": "12.2.0",
-    "@nrwl/node": "12.2.0",
     "@nrwl/nx-plugin": "12.2.0",
     "@nrwl/tao": "12.2.0",
     "@nrwl/workspace": "12.2.0",

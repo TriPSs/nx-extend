@@ -11,10 +11,10 @@ import * as path from 'path'
 import { GcpDeploymentManagerGeneratorSchema } from './schema'
 
 interface NormalizedSchema extends GcpDeploymentManagerGeneratorSchema {
-  projectName: string;
-  projectRoot: string;
-  projectDirectory: string;
-  parsedTags: string[];
+  projectName: string
+  projectRoot: string
+  projectDirectory: string
+  parsedTags: string[]
 }
 
 function normalizeOptions(
@@ -41,17 +41,16 @@ function normalizeOptions(
 }
 
 function addFiles(host: Tree, options: NormalizedSchema) {
-  const templateOptions = {
-    ...options,
-    ...names(options.name),
-    offsetFromRoot: offsetFromRoot(options.projectRoot),
-    template: ''
-  }
   generateFiles(
     host,
-    path.join(__dirname, 'files'),
+    path.join(__dirname, 'files-runner'),
     options.projectRoot,
-    templateOptions
+    {
+      ...options,
+      ...names(options.name),
+      offsetFromRoot: offsetFromRoot(options.projectRoot),
+      template: ''
+    }
   )
 }
 
@@ -60,31 +59,34 @@ export default async function (
   options: GcpDeploymentManagerGeneratorSchema
 ) {
   const normalizedOptions = normalizeOptions(host, options)
-  const file = `deployment.yml`
 
   addProjectConfiguration(host, normalizedOptions.projectName, {
     root: normalizedOptions.projectRoot,
     projectType: 'application',
     sourceRoot: normalizedOptions.projectRoot,
     targets: {
-      create: {
-        executor: '@nx-extend/gcp-deployment-manager:create',
-        options: {
-          file
+      'build': {
+        'executor': '@nrwl/node:build',
+        'outputs': ['{options.outputPath}'],
+        'options': {
+          'outputPath': `dist/${normalizedOptions.projectRoot}`,
+          'main': `${normalizedOptions.projectRoot}/src/main.ts`,
+          'tsConfig': `${normalizedOptions.projectRoot}/tsconfig.app.json`,
+        },
+        'configurations': {
+          'production': {
+            'optimization': true,
+            'extractLicenses': true,
+            'inspect': false
+          }
         }
       },
-      update: {
-        executor: '@nx-extend/gcp-deployment-manager:update',
-        options: {
-          file
+      'serve': {
+        'executor': '@nrwl/node:execute',
+        'options': {
+          'buildTarget': `${normalizedOptions.projectName}:build`
         }
       },
-      delete: {
-        executor: '@nx-extend/gcp-deployment-manager:delete',
-        options: {
-          file
-        }
-      }
     },
     tags: normalizedOptions.parsedTags
   })

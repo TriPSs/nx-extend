@@ -55,6 +55,10 @@
     },
     "project": {
       "type": "string"
+    },
+    "retry": {
+      "type": "boolean",
+      "default": false
     }
   }
 }
