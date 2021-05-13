@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema",
+  "$id": "https://json-schema.org/draft-07/schema",
+  "title": "deploy",
+  "description": "Deploy a Google Cloud Platform function",
+  "type": "object",
+  "properties": {
+    "functionName": {
+      "type": "string",
+      "description": "Name of the function"
+    },
+    "entryPoint": {
+      "type": "string",
+      "description": "Entrypoint of the file to use, default is functionName"
+    },
+    "trigger": {
+      "type": "string",
+      "description": "Trigger type",
+      "enum": [
+        "http",
+        "bucket",
+        "topic"
+      ]
+    },
+    "triggerValue": {
+      "type": "string",
+      "description": "Value of the trigger, only if trigger is bucket"
+    },
+    "runtime": {
+      "type": "string",
+      "enum": [
+        "nodejs10",
+        "nodejs12"
+      ]
+    },
+    "memory": {
+      "type": "string",
+      "enum": [
+        "128MB",
+        "256MB",
+        "512MB",
+        "1024MB",
+        "2048MB",
+        "4096MB"
+      ]
+    },
+    "allowUnauthenticated": {
+      "type": "boolean"
+    },
+    "maxInstances": {
+      "type": "number"
+    },
+    "envVarsFile": {
+      "type": "string"
+    },
+    "project": {
+      "type": "string"
+    },
+    "retry": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "generators": {},
+  "builders": {
+    "upload": {
+      "implementation": "./src/builders/upload/upload.impl",
+      "schema": "./src/builders/upload/schema.json",
+      "description": "Upload to GCP storage"
+    }
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema",
+  "$id": "https://json-schema.org/draft-07/schema",
+  "title": "Extract translations executor",
+  "description": "",
+  "type": "object",
+  "properties": {
+    "provider": {
+      "type": "string",
+      "description": "What provider to use, for example: traduora"
+    },
+    "sourceRoot": {
+      "type": "string",
+      "description": "Root directory to search in",
+      "default": "<projectRoot>"
+    },
+    "pattern": {
+      "type": "string",
+      "description": "Pattern to use in the directories",
+      "default": "/**/!(*.test).{js,jsx,ts,tsx}"
+    },
+    "defaultLanguage": {
+      "type": "string",
+      "description": "Default language of the application"
+    },
+    "languages": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Languages to export"
+    },
+    "output": {
+      "type": "string",
+      "description": "Languages to export",
+      "default": "<projectRoot>/src/translations"
+    },
+    "format": {
+      "type": "string",
+      "description": "Format of translations output: json or yaml",
+      "default": "json"
+    },
+    "extractor": {
+      "type": "string",
+      "description": "Extractor to use",
+      "default": "react-intl"
+    }
+  },
+  "required": []
+}

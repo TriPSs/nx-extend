@@ -1,0 +1,20 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "builders": {
+    "extract": {
+      "implementation": "./src/executors/extract/extract.impl",
+      "schema": "./src/executors/extract/schema.json",
+      "description": "Extract translations from project."
+    },
+    "pull": {
+      "implementation": "./src/executors/pull/pull.impl",
+      "schema": "./src/executors/pull/schema.json",
+      "description": "Pull translations from providers."
+    },
+    "push": {
+      "implementation": "./src/executors/push/push.impl",
+      "schema": "./src/executors/push/schema.json",
+      "description": "Push translations to providers."
+    }
+  }
+}

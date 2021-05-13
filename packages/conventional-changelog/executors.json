@@ -1,0 +1,10 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "executors": {
+    "generate": {
+      "implementation": "./src/executors/generate/generate.impl",
+      "schema": "./src/executors/generate/schema.json",
+      "description": "Generate changelog"
+    }
+  }
+}

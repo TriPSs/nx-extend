@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema",
+  "$id": "https://json-schema.org/draft-07/schema",
+  "title": "Deploy executor",
+  "description": "Deploy",
+  "type": "object",
+  "properties": {
+    "region": {
+      "type": "string",
+      "description": "Region to deploy to"
+    },
+    "project": {
+      "type": "string",
+      "description": "Project id to deploy to"
+    }
+  }
+}
