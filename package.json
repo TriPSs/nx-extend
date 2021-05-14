@@ -37,6 +37,7 @@
     "crypto-js": "^4.0.0",
     "deepmerge": "^4.2.2",
     "extract-react-intl-messages": "^4.1.1",
+    "p-map": "4.0.0",
     "rxjs-for-await": "^0.0.2",
     "shelljs": "^0.8.4",
     "strapi-generate-new": "^3.6.1"
