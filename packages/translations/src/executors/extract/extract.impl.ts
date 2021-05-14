@@ -1,19 +1,19 @@
 import { BuilderContext, createBuilder } from '@angular-devkit/architect'
 import extractIntlMessages from 'extract-react-intl-messages'
 import { join } from 'path'
+import { buildCommand, execCommand } from '@nx-extend/core'
+import { createProjectGraph } from '@nrwl/workspace/src/core/project-graph'
 
 import { ExtractSchema } from './schema'
 import { ExtractSettings } from '../../providers/base.provider'
 import { BaseProvider, getProvider } from '../../providers'
 import { injectProjectRoot } from '../../utils'
-import { buildCommand, execCommand } from '@nx-extend/core'
 
 export async function runBuilder(
   options: ExtractSchema,
   context: BuilderContext
 ): Promise<{ success: boolean }> {
   const projectMetadata = await context.getProjectMetadata(context.target.project)
-  const projectRoot = join(`${context.workspaceRoot}`, `${projectMetadata.root}`)
 
   let provider: BaseProvider<any> = null
   let settings: ExtractSettings = {
@@ -36,8 +36,31 @@ export async function runBuilder(
     settings.outputDirectory = options.output
   }
 
-  const sourceDirectory = injectProjectRoot(options.sourceRoot, projectRoot, context.workspaceRoot)
-  const outputDirectory = injectProjectRoot(settings.outputDirectory, projectRoot, context.workspaceRoot)
+  // Check if we need to extract from connected libs
+  if (options.withLibs) {
+    const projGraph = createProjectGraph()
+
+    // Get all libs that are connected to this app
+    const connectedLibs = projGraph.dependencies[context.target.project].filter((dep) => (
+      !dep.target.startsWith('npm:')
+      && (!options.libPrefix || dep.target.startsWith(options.libPrefix))
+    ))
+
+    const libRoots = []
+
+    await Promise.all(connectedLibs.map(async (connectedLib) => {
+      const projectMetadata = await context.getProjectMetadata(connectedLib.target)
+
+      libRoots.push(projectMetadata.root)
+    }))
+
+    if (libRoots.length > 0) {
+      options.sourceRoot = `{${options.sourceRoot},${libRoots.join(',')}}`
+    }
+  }
+
+  const sourceDirectory = injectProjectRoot(options.sourceRoot, projectMetadata.root, context.workspaceRoot)
+  const outputDirectory = injectProjectRoot(settings.outputDirectory, projectMetadata.root, context.workspaceRoot)
 
   try {
     if (settings.extractor === 'react-intl') {

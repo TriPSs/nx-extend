@@ -18,4 +18,8 @@ export interface ExtractSchema extends JsonObject {
 
   extractor?: 'formatjs' | 'react-intl'
 
+  libPrefix?: string
+
+  withLibs?: boolean
+
 }
