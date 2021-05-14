@@ -44,6 +44,16 @@
       "type": "string",
       "description": "Extractor to use",
       "default": "react-intl"
+    },
+    "withLibs": {
+      "type": "boolean",
+      "description": "Also extract from connected libs.",
+      "default": true
+    },
+    "libPrefix": {
+      "type": "string",
+      "description": "Prefix the lib should have to match for extraction.",
+      "default": null
     }
   },
   "required": []
