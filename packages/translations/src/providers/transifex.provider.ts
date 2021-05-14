@@ -1,4 +1,4 @@
-import { join, resolve } from 'path'
+import { resolve } from 'path'
 import { readFileSync, existsSync, writeFileSync } from 'fs'
 import axios from 'axios'
 import * as deepmerge from 'deepmerge'
