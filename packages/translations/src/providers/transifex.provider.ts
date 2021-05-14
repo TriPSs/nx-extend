@@ -125,6 +125,10 @@ export default class Transifex extends BaseProvider<TransifexConfig> {
     await this.uploadResourceFile(sourceFileMinified, resource)
   }
 
+  public async translate() {
+    console.warn('Not yet implemented!')
+  }
+
   /**
    * Get config file for Transifex
    */

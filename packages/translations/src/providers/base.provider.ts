@@ -43,6 +43,8 @@ export default abstract class BaseProvider<Config extends ExtractSettings> {
 
   public abstract push(): Promise<void>
 
+  public abstract translate(): Promise<void>
+
   public abstract getConfigFile(): Promise<Config>
 
   protected async setProjectRoot(): Promise<void> {
