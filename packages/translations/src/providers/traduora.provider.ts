@@ -53,7 +53,7 @@ export default class Traduora extends BaseProvider<TraduoraConfig> {
 
     const terms = await this.getTerms(token)
 
-    const fallbackTerms = await this.getFallbackTerms(token)
+    const defaultTerms = await this.getDefaultTerms(token)
 
     await Promise.all(locals.map(async ({ locale: { code, language } }) => {
       if (code !== this.config.defaultLocale) {
@@ -65,20 +65,20 @@ export default class Traduora extends BaseProvider<TraduoraConfig> {
         )
 
         try {
-          const translatedTerms = await this.getLanguageTerms(token, code)
+          const languageTerms = await this.getLanguageTerms(token, code)
 
-          const translatedData = translatedTerms.reduce((newTranslations, translation) => {
+          const translatedData = defaultTerms.reduce((newTranslations, defaultTerm) => {
             const term = terms.find((term) => (
-              term.id === translation.termId
+              term.id === defaultTerm.termId
             ))
 
-            const fallback = fallbackTerms.find((term) => (
-              term.termId === translation.termId
+            const translationTerm = languageTerms.find((term) => (
+              term.termId === defaultTerm.termId
             ))
 
             return {
               ...newTranslations,
-              [term.value]: translation.value || fallback?.value || ''
+              [term.value]: translationTerm?.value || defaultTerm?.value || ''
             }
           }, {})
 
@@ -120,7 +120,7 @@ export default class Traduora extends BaseProvider<TraduoraConfig> {
     const terms = await this.getTerms(token)
 
     this.context.logger.info('Fetch all fallback terms')
-    const fallbackTerms = await this.getFallbackTerms(token)
+    const defaultTerms = await this.getDefaultTerms(token)
 
     await Promise.all(locals.map(async ({ locale: { code, language } }) => {
       if (code !== this.config.defaultLocale) {
@@ -135,19 +135,19 @@ export default class Traduora extends BaseProvider<TraduoraConfig> {
 
         const toTranslate = []
 
-        languageTerms.forEach((translation) => {
+        defaultTerms.forEach((defaultTerm) => {
           const term = terms.find((term) => (
-            term.id === translation.termId
+            term.id === defaultTerm.termId
           ))
 
-          const fallback = fallbackTerms.find((term) => (
-            term.termId === translation.termId
+          const languageTerm = languageTerms.find((term) => (
+            term.termId === defaultTerm.termId
           ))
 
-          if (!translation.value && fallback?.value) {
+          if (!languageTerm) {
             toTranslate.push({
               key: term.value,
-              value: fallback.value
+              value: defaultTerm.value
             })
           }
         })
@@ -212,7 +212,7 @@ export default class Traduora extends BaseProvider<TraduoraConfig> {
     return terms
   }
 
-  private async getFallbackTerms(token) {
+  private async getDefaultTerms(token) {
     return this.getLanguageTerms(token, this.config.defaultLocale)
   }
 
