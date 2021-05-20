@@ -85,6 +85,13 @@
     },
     "core": {
       "tags": []
+    },
+    "firebase-hosting": {
+      "tags": []
+    },
+    "firebase-hosting-e2e": {
+      "tags": [],
+      "implicitDependencies": ["firebase-hosting"]
     }
   },
   "workspaceLayout": {

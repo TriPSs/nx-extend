@@ -5,7 +5,6 @@ import { buildCommand, execCommand } from '@nx-extend/core'
 import { createProjectGraph } from '@nrwl/workspace/src/core/project-graph'
 
 import { ExtractSchema } from './schema'
-import { ExtractSettings } from '../../providers/base.provider'
 import { BaseProvider, getProvider } from '../../providers'
 import { injectProjectRoot } from '../../utils'
 

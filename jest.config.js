@@ -20,5 +20,7 @@ module.exports = {
     '<rootDir>/e2e/gcp-cloud-run-e2e',
     '<rootDir>/packages/gcp-secrets',
     '<rootDir>/e2e/gcp-secrets-e2e',
+    '<rootDir>/packages/firebase-hosting',
+    '<rootDir>/e2e/firebase-hosting-e2e',
   ],
 };
