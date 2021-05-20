@@ -9,12 +9,16 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["packages/strapi/**/*.ts"]
+            "lintFilePatterns": [
+              "packages/strapi/**/*.ts"
+            ]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/packages/strapi"],
+          "outputs": [
+            "coverage/packages/strapi"
+          ],
           "options": {
             "jestConfig": "packages/strapi/jest.config.js",
             "passWithNoTests": true
@@ -22,7 +26,9 @@
         },
         "build": {
           "executor": "@nrwl/node:package",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/packages/strapi",
             "tsConfig": "packages/strapi/tsconfig.lib.json",
@@ -79,12 +85,16 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["packages/translations/**/*.ts"]
+            "lintFilePatterns": [
+              "packages/translations/**/*.ts"
+            ]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/packages/translations"],
+          "outputs": [
+            "coverage/packages/translations"
+          ],
           "options": {
             "jestConfig": "packages/translations/jest.config.js",
             "passWithNoTests": true
@@ -92,7 +102,9 @@
         },
         "build": {
           "executor": "@nrwl/node:package",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/packages/translations",
             "tsConfig": "packages/translations/tsconfig.lib.json",
@@ -149,12 +161,16 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["packages/gcp-functions/**/*.ts"]
+            "lintFilePatterns": [
+              "packages/gcp-functions/**/*.ts"
+            ]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/packages/gcp-functions"],
+          "outputs": [
+            "coverage/packages/gcp-functions"
+          ],
           "options": {
             "jestConfig": "packages/gcp-functions/jest.config.js",
             "passWithNoTests": true
@@ -162,7 +178,9 @@
         },
         "build": {
           "executor": "@nrwl/node:package",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/packages/gcp-functions",
             "tsConfig": "packages/gcp-functions/tsconfig.lib.json",
@@ -219,12 +237,16 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["packages/gcp-storage/**/*.ts"]
+            "lintFilePatterns": [
+              "packages/gcp-storage/**/*.ts"
+            ]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/packages/gcp-storage"],
+          "outputs": [
+            "coverage/packages/gcp-storage"
+          ],
           "options": {
             "jestConfig": "packages/gcp-storage/jest.config.js",
             "passWithNoTests": true
@@ -232,7 +254,9 @@
         },
         "build": {
           "executor": "@nrwl/node:package",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/packages/gcp-storage",
             "tsConfig": "packages/gcp-storage/tsconfig.lib.json",
@@ -305,12 +329,16 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["packages/gcp-deployment-manager/**/*.ts"]
+            "lintFilePatterns": [
+              "packages/gcp-deployment-manager/**/*.ts"
+            ]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/packages/gcp-deployment-manager"],
+          "outputs": [
+            "coverage/packages/gcp-deployment-manager"
+          ],
           "options": {
             "jestConfig": "packages/gcp-deployment-manager/jest.config.js",
             "passWithNoTests": true
@@ -318,7 +346,9 @@
         },
         "build": {
           "executor": "@nrwl/node:package",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/packages/gcp-deployment-manager",
             "tsConfig": "packages/gcp-deployment-manager/tsconfig.lib.json",
@@ -375,12 +405,16 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["packages/conventional-changelog/**/*.ts"]
+            "lintFilePatterns": [
+              "packages/conventional-changelog/**/*.ts"
+            ]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/packages/conventional-changelog"],
+          "outputs": [
+            "coverage/packages/conventional-changelog"
+          ],
           "options": {
             "jestConfig": "packages/conventional-changelog/jest.config.js",
             "passWithNoTests": true
@@ -388,7 +422,9 @@
         },
         "build": {
           "executor": "@nrwl/node:package",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/packages/conventional-changelog",
             "tsConfig": "packages/conventional-changelog/tsconfig.lib.json",
@@ -440,12 +476,16 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["packages/gcp-cloud-run/**/*.ts"]
+            "lintFilePatterns": [
+              "packages/gcp-cloud-run/**/*.ts"
+            ]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/packages/gcp-cloud-run"],
+          "outputs": [
+            "coverage/packages/gcp-cloud-run"
+          ],
           "options": {
             "jestConfig": "packages/gcp-cloud-run/jest.config.js",
             "passWithNoTests": true
@@ -453,7 +493,9 @@
         },
         "build": {
           "executor": "@nrwl/node:package",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/packages/gcp-cloud-run",
             "tsConfig": "packages/gcp-cloud-run/tsconfig.lib.json",
@@ -510,12 +552,16 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["packages/gcp-secrets/**/*.ts"]
+            "lintFilePatterns": [
+              "packages/gcp-secrets/**/*.ts"
+            ]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/packages/gcp-secrets"],
+          "outputs": [
+            "coverage/packages/gcp-secrets"
+          ],
           "options": {
             "jestConfig": "packages/gcp-secrets/jest.config.js",
             "passWithNoTests": true
@@ -523,7 +569,9 @@
         },
         "build": {
           "executor": "@nrwl/node:package",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/packages/gcp-secrets",
             "tsConfig": "packages/gcp-secrets/tsconfig.lib.json",
@@ -580,12 +628,16 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["packages/core/**/*.ts"]
+            "lintFilePatterns": [
+              "packages/core/**/*.ts"
+            ]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/packages/core"],
+          "outputs": [
+            "coverage/packages/core"
+          ],
           "options": {
             "jestConfig": "packages/core/jest.config.js",
             "passWithNoTests": true
@@ -593,7 +645,9 @@
         },
         "build": {
           "executor": "@nrwl/node:package",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/packages/core",
             "tsConfig": "packages/core/tsconfig.lib.json",
@@ -617,6 +671,82 @@
                 "output": "."
               }
             ]
+          }
+        }
+      }
+    },
+    "firebase-hosting": {
+      "root": "packages/firebase-hosting",
+      "sourceRoot": "packages/firebase-hosting/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/firebase-hosting/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/packages/firebase-hosting"
+          ],
+          "options": {
+            "jestConfig": "packages/firebase-hosting/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "executor": "@nrwl/node:package",
+          "outputs": [
+            "{options.outputPath}"
+          ],
+          "options": {
+            "outputPath": "dist/packages/firebase-hosting",
+            "tsConfig": "packages/firebase-hosting/tsconfig.lib.json",
+            "packageJson": "packages/firebase-hosting/package.json",
+            "main": "packages/firebase-hosting/src/index.ts",
+            "assets": [
+              "packages/firebase-hosting/*.md",
+              {
+                "input": "./packages/firebase-hosting/src",
+                "glob": "**/!(*.ts)",
+                "output": "./src"
+              },
+              {
+                "input": "./packages/firebase-hosting/src",
+                "glob": "**/*.d.ts",
+                "output": "./src"
+              },
+              {
+                "input": "./packages/firebase-hosting",
+                "glob": "generators.json",
+                "output": "."
+              },
+              {
+                "input": "./packages/firebase-hosting",
+                "glob": "executors.json",
+                "output": "."
+              }
+            ]
+          }
+        }
+      }
+    },
+    "firebase-hosting-e2e": {
+      "projectType": "application",
+      "root": "e2e/firebase-hosting-e2e",
+      "sourceRoot": "e2e/firebase-hosting-e2e/src",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/nx-plugin:e2e",
+          "options": {
+            "target": "firebase-hosting:build",
+            "npmPackageName": "@nx-extend/firebase-hosting",
+            "pluginOutputPath": "dist/packages/firebase-hosting",
+            "jestConfig": "e2e/firebase-hosting-e2e/jest.config.js"
           }
         }
       }
