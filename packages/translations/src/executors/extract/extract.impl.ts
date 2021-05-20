@@ -16,24 +16,28 @@ export async function runBuilder(
   const projectMetadata = await context.getProjectMetadata(context.target.project)
 
   let provider: BaseProvider<any> = null
-  let settings: ExtractSettings = {
-    defaultLocale: options.defaultLanguage,
-    outputDirectory: undefined,
-    extractor: options.extractor
-  }
+  let settings
 
   // If provider is given then try to use it
   if (options.provider) {
     provider = await getProvider(options.provider, context)
-  }
 
-  if (provider) {
     settings = provider.getExtractSettings()
   }
 
   // If no output directory is defined the use the one from options
   if (!settings.outputDirectory) {
     settings.outputDirectory = options.output
+  }
+
+  // If no output directory is defined the use the one from options
+  if (!settings.defaultLanguage) {
+    settings.defaultLanguage = options.defaultLanguage
+  }
+
+  // If no output directory is defined the use the one from options
+  if (!settings.extractor) {
+    settings.extractor = options.extractor
   }
 
   // Check if we need to extract from connected libs

@@ -11,6 +11,8 @@ export const getTranslator = (translator: string, context: BuilderContext): Deep
     context.logger.info(`Using "${translator}" translator`)
 
     providerClass = new DeeplTranslator('https://api.deepl.com')
+  } else if (translator === 'itranslate') {
+    // TODO:: https://www.itranslate.com/itranslate-translation-api-contact-form
   }
 
   if (providerClass) {
