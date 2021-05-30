@@ -27,7 +27,8 @@ export async function runBuilder(
     memory = '128Mi',
     cloudSqlInstance = null,
     http2 = false,
-    serviceAccount = null
+    serviceAccount = null,
+    logsDir = false
   } = options
 
   const dockerFile = readFileSync(
@@ -49,6 +50,7 @@ export async function runBuilder(
     'gcloud builds submit',
     `--tag=${containerName}`,
     `--project=${options.project}`,
+    logsDir ? `--gcs-log-dir=${logsDir}` : false,
     options.tag ? `--tag=${options.tag}` : false
   ])
 
@@ -66,7 +68,7 @@ export async function runBuilder(
     }, [])
 
     const deployCommand = buildCommand([
-      `gcloud beta run deploy ${name}`,
+      `gcloud run deploy ${name}`,
       `--image=${containerName}`,
       `--project=${project}`,
       '--platform=managed',
