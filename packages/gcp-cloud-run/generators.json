@@ -2,11 +2,5 @@
   "$schema": "http://json-schema.org/schema",
   "name": "gcp-cloud-run",
   "version": "0.0.1",
-  "generators": {
-    "gcp-cloud-run": {
-      "factory": "./src/generators/gcp-cloud-run/generator",
-      "schema": "./src/generators/gcp-cloud-run/schema.json",
-      "description": "gcp-cloud-run generator"
-    }
-  }
+  "generators": {}
 }
