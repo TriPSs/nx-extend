@@ -42,6 +42,8 @@ export const generatePackageJson = (
 
       if (packageIsDefined) {
         dependencies[depName] = workspacePackages.dependencies[depName]
+      } else {
+        console.warn(`Could not add "${dep}", is it added to the package.json?`)
       }
     })
   }
