@@ -45,15 +45,18 @@ export async function runBuilder(
   // Add the docker file to the dist folder
   writeFileSync(join(distDirectory, 'Dockerfile'), dockerFile)
 
-  const { success } = await execCommand(
-    buildCommand([
-      'gcloud builds submit',
-      `--tag=${containerName}`,
-      `--project=${options.project}`,
-      options.tag ? `--tag=${options.tag}` : false
-    ]), {
-      cwd: distDirectory
-    })
+  const buildSubmitCommand = buildCommand([
+    'gcloud builds submit',
+    `--tag=${containerName}`,
+    `--project=${options.project}`,
+    options.tag ? `--tag=${options.tag}` : false
+  ])
+
+  console.log('\nRunning', buildSubmitCommand)
+
+  const { success } = await execCommand(buildSubmitCommand, {
+    cwd: distDirectory
+  })
 
   if (success) {
     const setEnvVars = Object.keys(envVars).reduce((env, envVar) => {
@@ -62,25 +65,28 @@ export async function runBuilder(
       return env
     }, [])
 
-    return execCommand(
-      buildCommand([
-        `gcloud beta run deploy ${name}`,
-        `--image=${containerName}`,
-        `--project=${project}`,
-        '--platform=managed',
-        `--memory=${memory}`,
-        `--region=${region}`,
-        `--min-instances=${minInstances}`,
-        `--max-instances=${maxInstances}`,
-        `--concurrency=${concurrency}`,
-        serviceAccount ? `--service-account=${serviceAccount}` : false,
-        http2 ? '--use-http2' : false,
-        setEnvVars.length > 0 ? `--set-env-vars=${setEnvVars.join(',')}` : false,
-        cloudSqlInstance ? `--add-cloudsql-instances=${cloudSqlInstance}` : false,
-        allowUnauthenticated ? '--allow-unauthenticated' : false
-      ]), {
-        cwd: distDirectory
-      })
+    const deployCommand = buildCommand([
+      `gcloud beta run deploy ${name}`,
+      `--image=${containerName}`,
+      `--project=${project}`,
+      '--platform=managed',
+      `--memory=${memory}`,
+      `--region=${region}`,
+      `--min-instances=${minInstances}`,
+      `--max-instances=${maxInstances}`,
+      `--concurrency=${concurrency}`,
+      serviceAccount ? `--service-account=${serviceAccount}` : false,
+      http2 ? '--use-http2' : false,
+      setEnvVars.length > 0 ? `--set-env-vars=${setEnvVars.join(',')}` : false,
+      cloudSqlInstance ? `--add-cloudsql-instances=${cloudSqlInstance}` : false,
+      allowUnauthenticated ? '--allow-unauthenticated' : false
+    ])
+
+    console.log('\nRunning', deployCommand)
+
+    return execCommand(deployCommand, {
+      cwd: distDirectory
+    })
   }
 
   return { success: false }
