@@ -187,12 +187,23 @@ export default class Traduora extends BaseProvider<TraduoraConfig> {
   private async getToken(): Promise<string> {
     this.context.logger.info('Fetching token from Traduora')
 
+    const clientId = this.config.clientId || process.env.TRADUORA_CLIENT_ID
+    const clientSecret = this.config.clientSecret || process.env.TRADUORA_CLIENT_SECRET
+
+    if (!clientId) {
+      throw new Error('No clientId provided! Add "TRADUORA_CLIENT_ID" to your environment variables!')
+    }
+
+    if (!clientSecret) {
+      throw new Error('No clientId provided! Add "TRADUORA_CLIENT_SECRET" to your environment variables!')
+    }
+
     const { data } = await axios.post(
       `${this.config.baseUrl}/api/v1/auth/token`,
       {
         'grant_type': 'client_credentials',
-        'client_id': this.config.clientId,
-        'client_secret': this.config.clientSecret
+        'client_id': clientId,
+        'client_secret': clientSecret
       }
     )
 
