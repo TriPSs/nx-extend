@@ -144,7 +144,7 @@ export default class Traduora extends BaseProvider<TraduoraConfig> {
             term.termId === defaultTerm.termId
           ))
 
-          if (!languageTerm) {
+          if (!languageTerm || !languageTerm.value) {
             toTranslate.push({
               key: term.value,
               value: defaultTerm.value
@@ -154,7 +154,7 @@ export default class Traduora extends BaseProvider<TraduoraConfig> {
 
         this.context.logger.info(`${toTranslate.length} terms in need of translating`)
 
-        const translatorTerms = await translator.translate(toTranslate.slice(0, 30), this.config.defaultLocale, code)
+        const translatorTerms = await translator.translate(toTranslate, this.config.defaultLocale, code)
         const translatedTerms = {}
 
         translatorTerms.map((translatorTerm) => {
