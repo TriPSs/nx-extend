@@ -44,18 +44,7 @@ export async function runBuilder(
     const projGraph = createProjectGraph()
 
     // Get all libs that are connected to this app
-    const connectedLibs = projGraph.dependencies[context.target.project].filter((dep) => (
-      !dep.target.startsWith('npm:')
-      && (!options.libPrefix || dep.target.startsWith(options.libPrefix))
-    ))
-
-    const libRoots = []
-
-    await Promise.all(connectedLibs.map(async (connectedLib) => {
-      const projectMetadata = await context.getProjectMetadata(connectedLib.target)
-
-      libRoots.push(projectMetadata.root)
-    }))
+    const libRoots = await getLibsRoot(context, projGraph.dependencies, context.target.project, options.libPrefix)
 
     if (libRoots.length > 0) {
       options.sourceRoot = `{${options.sourceRoot},${libRoots.join(',')}}`
@@ -107,6 +96,37 @@ export async function runBuilder(
   return {
     success: false
   }
+}
+
+export const getConnectedLibs = (dependencies, project: string, prefix?: string) => (
+  dependencies[project].filter((dep) => (
+    !dep.target.startsWith('npm:')
+    && (!prefix || dep.target.startsWith(prefix))
+  ))
+)
+
+export const getLibsRoot = async (context: BuilderContext, dependencies, project: string, prefix?: string, targetsDone = []): Promise<string[]> => {
+  let roots = []
+
+  const libs = getConnectedLibs(dependencies, project, prefix)
+
+  await Promise.all(libs.map(async (connectedLib) => {
+    if (targetsDone.includes(connectedLib.target)) {
+      // If the target is already done then skip it
+      return
+    }
+
+    const projectMetadata = await context.getProjectMetadata(connectedLib.target)
+    targetsDone.push(connectedLib.target)
+
+    if (!roots.includes(projectMetadata.root)) {
+      roots.push(projectMetadata.root)
+    }
+
+    roots = roots.concat(roots, await getLibsRoot(context, dependencies, connectedLib.target, prefix, targetsDone))
+  }))
+
+  return roots
 }
 
 export default createBuilder(runBuilder)
