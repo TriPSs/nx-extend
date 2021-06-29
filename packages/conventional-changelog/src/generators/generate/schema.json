@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema",
+  "$id": "https://json-schema.org/draft-07/schema",
+  "cli": "nx",
+  "type": "object",
+  "properties": {
+    "production": {
+      "type": "boolean",
+      "alias": "prod",
+      "default": false
+    },
+    "preset": {
+      "type": "string",
+      "default": "angular"
+    },
+    "tagPrefix": {
+      "type": "string",
+      "default": "v"
+    },
+    "releaseCount": {
+      "type": "number",
+      "default": 10
+    }
+  }
+}

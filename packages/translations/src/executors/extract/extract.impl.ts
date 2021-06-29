@@ -5,7 +5,6 @@ import { buildCommand, execCommand } from '@nx-extend/core'
 import { createProjectGraph } from '@nrwl/workspace/src/core/project-graph'
 
 import { ExtractSchema } from './schema'
-import { ExtractSettings } from '../../providers/base.provider'
 import { BaseProvider, getProvider } from '../../providers'
 import { injectProjectRoot } from '../../utils'
 
@@ -16,18 +15,12 @@ export async function runBuilder(
   const projectMetadata = await context.getProjectMetadata(context.target.project)
 
   let provider: BaseProvider<any> = null
-  let settings: ExtractSettings = {
-    defaultLocale: options.defaultLanguage,
-    outputDirectory: undefined,
-    extractor: options.extractor
-  }
+  let settings
 
   // If provider is given then try to use it
   if (options.provider) {
     provider = await getProvider(options.provider, context)
-  }
 
-  if (provider) {
     settings = provider.getExtractSettings()
   }
 
@@ -36,23 +29,22 @@ export async function runBuilder(
     settings.outputDirectory = options.output
   }
 
+  // If no output directory is defined the use the one from options
+  if (!settings.defaultLanguage) {
+    settings.defaultLanguage = options.defaultLanguage
+  }
+
+  // If no output directory is defined the use the one from options
+  if (!settings.extractor) {
+    settings.extractor = options.extractor
+  }
+
   // Check if we need to extract from connected libs
   if (options.withLibs) {
     const projGraph = createProjectGraph()
 
     // Get all libs that are connected to this app
-    const connectedLibs = projGraph.dependencies[context.target.project].filter((dep) => (
-      !dep.target.startsWith('npm:')
-      && (!options.libPrefix || dep.target.startsWith(options.libPrefix))
-    ))
-
-    const libRoots = []
-
-    await Promise.all(connectedLibs.map(async (connectedLib) => {
-      const projectMetadata = await context.getProjectMetadata(connectedLib.target)
-
-      libRoots.push(projectMetadata.root)
-    }))
+    const libRoots = await getLibsRoot(context, projGraph.dependencies, context.target.project, options.libPrefix)
 
     if (libRoots.length > 0) {
       options.sourceRoot = `{${options.sourceRoot},${libRoots.join(',')}}`
@@ -104,6 +96,37 @@ export async function runBuilder(
   return {
     success: false
   }
+}
+
+export const getConnectedLibs = (dependencies, project: string, prefix?: string) => (
+  dependencies[project].filter((dep) => (
+    !dep.target.startsWith('npm:')
+    && (!prefix || dep.target.startsWith(prefix))
+  ))
+)
+
+export const getLibsRoot = async (context: BuilderContext, dependencies, project: string, prefix?: string, targetsDone = []): Promise<string[]> => {
+  let roots = []
+
+  const libs = getConnectedLibs(dependencies, project, prefix)
+
+  await Promise.all(libs.map(async (connectedLib) => {
+    if (targetsDone.includes(connectedLib.target)) {
+      // If the target is already done then skip it
+      return
+    }
+
+    const projectMetadata = await context.getProjectMetadata(connectedLib.target)
+    targetsDone.push(connectedLib.target)
+
+    if (!roots.includes(projectMetadata.root)) {
+      roots.push(projectMetadata.root)
+    }
+
+    roots = roots.concat(roots, await getLibsRoot(context, dependencies, connectedLib.target, prefix, targetsDone))
+  }))
+
+  return roots
 }
 
 export default createBuilder(runBuilder)

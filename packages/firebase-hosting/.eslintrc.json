@@ -1,12 +1,11 @@
 {
   "extends": ["../../.eslintrc.json"],
   "ignorePatterns": ["!**/*"],
-  "rules": {},
   "overrides": [
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
       "parserOptions": {
-        "project": ["packages/conventional-changelog/tsconfig.*?.json"]
+        "project": ["packages/firebase-hosting/tsconfig.*?.json"]
       },
       "rules": {}
     },

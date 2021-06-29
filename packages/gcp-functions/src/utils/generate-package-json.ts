@@ -29,10 +29,22 @@ export const generatePackageJson = (
     const dependenciesName = externalDependencies.map((x) => x.match(re2)[0].replace(/"/gm, ''))
 
     dependenciesName.forEach((dep) => {
-      const packageIsDefined = dep in workspacePackages.dependencies
-      dependencies[dep] = packageIsDefined
-        ? workspacePackages.dependencies[dep]
-        : '*'
+      let depName = dep
+
+      let packageIsDefined = depName in workspacePackages.dependencies
+
+      if (!packageIsDefined) {
+        if (depName.includes('/')) {
+          depName = depName.split('/').shift()
+          packageIsDefined = depName in workspacePackages.dependencies
+        }
+      }
+
+      if (packageIsDefined) {
+        dependencies[depName] = workspacePackages.dependencies[depName]
+      } else {
+        console.warn(`Could not add "${dep}", is it added to the package.json?`)
+      }
     })
   }
 

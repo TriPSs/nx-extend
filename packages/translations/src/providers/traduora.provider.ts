@@ -53,7 +53,7 @@ export default class Traduora extends BaseProvider<TraduoraConfig> {
 
     const terms = await this.getTerms(token)
 
-    const fallbackTerms = await this.getFallbackTerms(token)
+    const defaultTerms = await this.getDefaultTerms(token)
 
     await Promise.all(locals.map(async ({ locale: { code, language } }) => {
       if (code !== this.config.defaultLocale) {
@@ -65,20 +65,20 @@ export default class Traduora extends BaseProvider<TraduoraConfig> {
         )
 
         try {
-          const translatedTerms = await this.getLanguageTerms(token, code)
+          const languageTerms = await this.getLanguageTerms(token, code)
 
-          const translatedData = translatedTerms.reduce((newTranslations, translation) => {
+          const translatedData = defaultTerms.reduce((newTranslations, defaultTerm) => {
             const term = terms.find((term) => (
-              term.id === translation.termId
+              term.id === defaultTerm.termId
             ))
 
-            const fallback = fallbackTerms.find((term) => (
-              term.termId === translation.termId
+            const translationTerm = languageTerms.find((term) => (
+              term.termId === defaultTerm.termId
             ))
 
             return {
               ...newTranslations,
-              [term.value]: translation.value || fallback?.value || ''
+              [term.value]: translationTerm?.value || defaultTerm?.value || ''
             }
           }, {})
 
@@ -120,7 +120,7 @@ export default class Traduora extends BaseProvider<TraduoraConfig> {
     const terms = await this.getTerms(token)
 
     this.context.logger.info('Fetch all fallback terms')
-    const fallbackTerms = await this.getFallbackTerms(token)
+    const defaultTerms = await this.getDefaultTerms(token)
 
     await Promise.all(locals.map(async ({ locale: { code, language } }) => {
       if (code !== this.config.defaultLocale) {
@@ -135,26 +135,26 @@ export default class Traduora extends BaseProvider<TraduoraConfig> {
 
         const toTranslate = []
 
-        languageTerms.forEach((translation) => {
+        defaultTerms.forEach((defaultTerm) => {
           const term = terms.find((term) => (
-            term.id === translation.termId
+            term.id === defaultTerm.termId
           ))
 
-          const fallback = fallbackTerms.find((term) => (
-            term.termId === translation.termId
+          const languageTerm = languageTerms.find((term) => (
+            term.termId === defaultTerm.termId
           ))
 
-          if (!translation.value && fallback?.value) {
+          if (!languageTerm || !languageTerm.value) {
             toTranslate.push({
               key: term.value,
-              value: fallback.value
+              value: defaultTerm.value
             })
           }
         })
 
         this.context.logger.info(`${toTranslate.length} terms in need of translating`)
 
-        const translatorTerms = await translator.translate(toTranslate.slice(0, 30), this.config.defaultLocale, code)
+        const translatorTerms = await translator.translate(toTranslate, this.config.defaultLocale, code)
         const translatedTerms = {}
 
         translatorTerms.map((translatorTerm) => {
@@ -187,12 +187,23 @@ export default class Traduora extends BaseProvider<TraduoraConfig> {
   private async getToken(): Promise<string> {
     this.context.logger.info('Fetching token from Traduora')
 
+    const clientId = this.config.clientId || process.env.TRADUORA_CLIENT_ID
+    const clientSecret = this.config.clientSecret || process.env.TRADUORA_CLIENT_SECRET
+
+    if (!clientId) {
+      throw new Error('No clientId provided! Add "TRADUORA_CLIENT_ID" to your environment variables!')
+    }
+
+    if (!clientSecret) {
+      throw new Error('No clientId provided! Add "TRADUORA_CLIENT_SECRET" to your environment variables!')
+    }
+
     const { data } = await axios.post(
       `${this.config.baseUrl}/api/v1/auth/token`,
       {
         'grant_type': 'client_credentials',
-        'client_id': this.config.clientId,
-        'client_secret': this.config.clientSecret
+        'client_id': clientId,
+        'client_secret': clientSecret
       }
     )
 
@@ -212,7 +223,7 @@ export default class Traduora extends BaseProvider<TraduoraConfig> {
     return terms
   }
 
-  private async getFallbackTerms(token) {
+  private async getDefaultTerms(token) {
     return this.getLanguageTerms(token, this.config.defaultLocale)
   }
 

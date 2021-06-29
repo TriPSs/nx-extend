@@ -27,7 +27,8 @@
       ],
       "@nx-extend/gcp-cloud-run": ["packages/gcp-cloud-run/src/index.ts"],
       "@nx-extend/gcp-secrets": ["packages/gcp-secrets/src/index.ts"],
-      "@nx-extend/core": ["packages/core/src/index.ts"]
+      "@nx-extend/core": ["packages/core/src/index.ts"],
+      "@nx-extend/firebase-hosting": ["packages/firebase-hosting/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

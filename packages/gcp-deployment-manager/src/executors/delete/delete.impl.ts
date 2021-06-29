@@ -12,7 +12,7 @@ export async function runBuilder(
   return execCommand(buildCommand([
     'gcloud deployment-manager deployments delete',
     context.target.project,
-    `--config=${options.file}`,
+    '-q',
     options.project ? `--project=${options.project}` : false
   ]), {
     cwd: `${context.workspaceRoot}/${projectMeta.root}`

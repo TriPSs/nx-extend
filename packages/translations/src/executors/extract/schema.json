@@ -43,7 +43,7 @@
     "extractor": {
       "type": "string",
       "description": "Extractor to use",
-      "default": "react-intl"
+      "default": "formatjs"
     },
     "withLibs": {
       "type": "boolean",
@@ -52,8 +52,7 @@
     },
     "libPrefix": {
       "type": "string",
-      "description": "Prefix the lib should have to match for extraction.",
-      "default": null
+      "description": "Prefix the lib should have to match for extraction."
     }
   },
   "required": []

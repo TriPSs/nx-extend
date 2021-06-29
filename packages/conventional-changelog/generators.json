@@ -7,6 +7,11 @@
       "factory": "./src/generators/init/init.impl",
       "schema": "./src/generators/init/schema.json",
       "description": "Add conventional-changelog to your app."
+    },
+    "generate": {
+      "factory": "./src/generators/init/generate.impl",
+      "schema": "./src/generators/init/schema.json",
+      "description": "Creates changelog with root config"
     }
   }
 }

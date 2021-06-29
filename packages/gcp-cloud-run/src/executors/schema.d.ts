@@ -33,4 +33,6 @@ export interface ExecutorSchema extends JsonObject {
 
   cloudSqlInstance?: string
 
+  logsDir?: string
+
 }

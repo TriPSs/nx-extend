@@ -242,7 +242,7 @@ export default class Transifex extends BaseProvider<TransifexConfig> {
     const token = this.config.token || process.env.TX_TOKEN
 
     if (!token) {
-      throw new Error('No token provided! Add "NX_TOKEN" to your environment variables!')
+      throw new Error('No token provided! Add "TX_TOKEN" to your environment variables!')
     }
 
     return token
