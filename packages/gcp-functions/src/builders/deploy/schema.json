@@ -30,7 +30,8 @@
       "type": "string",
       "enum": [
         "nodejs10",
-        "nodejs12"
+        "nodejs12",
+        "nodejs14"
       ]
     },
     "memory": {
@@ -59,6 +60,21 @@
     "retry": {
       "type": "boolean",
       "default": false
+    },
+    "ingressSettings": {
+      "type": "string",
+      "enum": [
+        "all",
+        "internal-only",
+        "internal-and-gclb"
+      ]
+    },
+    "egressSettings": {
+      "type": "string",
+      "enum": [
+        "all",
+        "private-ranges-only"
+      ]
     }
   }
 }

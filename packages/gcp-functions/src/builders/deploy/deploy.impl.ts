@@ -10,7 +10,7 @@ export async function runBuilder(options: DeployExecutorSchema, context: Builder
     region,
     trigger = 'http',
     triggerValue = null,
-    runtime = 'nodejs12',
+    runtime = 'nodejs14',
     allowUnauthenticated = true,
     envVarsFile = null,
     maxInstances = 10,
@@ -18,7 +18,9 @@ export async function runBuilder(options: DeployExecutorSchema, context: Builder
     memory = '128MB',
     serviceAccount = null,
     entryPoint = null,
-    retry = false
+    retry = false,
+    ingressSettings = null,
+    egressSettings = null
   } = options
 
   const buildOptions = await context.getTargetOptions({
@@ -45,7 +47,9 @@ export async function runBuilder(options: DeployExecutorSchema, context: Builder
 
     entryPoint ? `--entry-point=${entryPoint}` : false,
     envVarsFile ? `--env-vars-file=${envVarsFile}` : false,
-    retry ? `---retry` : false,
+    retry ? `--retry` : false,
+    ingressSettings ? `--ingress-settings=${ingressSettings}` : false,
+    egressSettings ? `--egress-settings=${egressSettings}` : false,
 
     `--source=${sourceDirectory}`,
     `--max-instances=${maxInstances}`,
