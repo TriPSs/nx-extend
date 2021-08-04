@@ -10,6 +10,7 @@ export async function runBuilder(options: DeployExecutorSchema, context: Builder
     region,
     trigger = 'http',
     triggerValue = null,
+    triggerEvent = null,
     runtime = 'nodejs14',
     allowUnauthenticated = true,
     envVarsFile = null,
@@ -20,7 +21,8 @@ export async function runBuilder(options: DeployExecutorSchema, context: Builder
     entryPoint = null,
     retry = false,
     ingressSettings = null,
-    egressSettings = null
+    egressSettings = null,
+    securityLevel = null
   } = options
 
   const buildOptions = await context.getTargetOptions({
@@ -41,6 +43,7 @@ export async function runBuilder(options: DeployExecutorSchema, context: Builder
     'gcloud functions deploy',
     functionName,
     `--trigger-${trigger}${triggerValue ? `=${triggerValue}` : ''}`,
+    triggerEvent ? `--trigger-event=${triggerEvent}` : false,
     `--runtime=${runtime}`,
     `--memory=${memory}`,
     `--region=${region}`,
@@ -50,6 +53,7 @@ export async function runBuilder(options: DeployExecutorSchema, context: Builder
     retry ? `--retry` : false,
     ingressSettings ? `--ingress-settings=${ingressSettings}` : false,
     egressSettings ? `--egress-settings=${egressSettings}` : false,
+    securityLevel ? `--security-level=${securityLevel}` : false,
 
     `--source=${sourceDirectory}`,
     `--max-instances=${maxInstances}`,
