@@ -1,6 +1,4 @@
 {
-  "$schema": "https://json-schema.org/draft-07/schema",
-  "$id": "https://json-schema.org/draft-07/schema",
   "title": "upload",
   "description": "Upload files to Google Cloud Storage",
   "type": "object",
