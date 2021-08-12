@@ -9,14 +9,41 @@ export interface Message {
 
 }
 
+export interface Options {
+
+  /**
+   * Sets whether the translated text should lean towards formal or informal language. This feature
+   * currently only works for target languages
+   * - "DE" (German)
+   * - "FR" (French
+   * - "IT" (Italian)
+   * - "ES" (Spanish)
+   * - "NL" (Dutch)
+   * - "PL" (Polish)
+   * - "PT-PT"
+   * - "PT-BR" (Portuguese)
+   * - "RU" (Russian)
+   *
+   * Possible options are:
+   * "default" (default)
+   * "more" - for a more formal language
+   * "less" - for a more informal language
+   */
+  formality?: 'default' | 'more' | 'less'
+
+}
+
 export default class DeeplTranslator {
 
   private readonly apiKey = process.env.DEEPL_API_KEY
 
   private readonly endpoint: string
 
-  constructor(endpoint: string) {
+  private readonly options: Options
+
+  constructor(endpoint: string, options: Options) {
     this.endpoint = endpoint
+    this.options = options
   }
 
   public async translate(messages: Message[], fromLocale: string, toLocale: string) {
@@ -41,8 +68,9 @@ export default class DeeplTranslator {
           `source_lang=${fromLocale}`,
           'preserve_formatting=1',
           'tag_handling=xml',
-          'ignore_tags=deepSkip'
-        ]
+          'ignore_tags=deepSkip',
+          this.options.formality && `formality=${this.options.formality}`
+        ].filter(Boolean)
 
         const { status, data: { translations } } = await axios.get(url.join('&'))
 

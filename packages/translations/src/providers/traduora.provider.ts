@@ -20,6 +20,10 @@ export interface TraduoraConfig extends ExtractSettings {
 
   translator?: string
 
+  translatorOptions?: {
+    [key: string]: never
+  }
+
 }
 
 export default class Traduora extends BaseProvider<TraduoraConfig> {
@@ -105,7 +109,7 @@ export default class Traduora extends BaseProvider<TraduoraConfig> {
   }
 
   public async translate() {
-    const translator = getTranslator(this.config.translator, this.context)
+    const translator = getTranslator(this.config.translator, this.context, this.config.translatorOptions)
 
     if (!translator) {
       throw new Error('No translator!')
