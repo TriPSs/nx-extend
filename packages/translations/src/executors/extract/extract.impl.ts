@@ -67,7 +67,7 @@ export async function runBuilder(
         }
       )
     } else if (settings.extractor === 'formatjs') {
-      await execCommand(buildCommand([
+      execCommand(buildCommand([
         'npx formatjs extract',
         `'${join(sourceDirectory, options.pattern)}'`,
         `--out-file='${outputDirectory}/${settings.defaultLocale}.json'`,
@@ -90,7 +90,7 @@ export async function runBuilder(
     }
   } catch (err) {
     context.logger.error('Error extracting translations')
-    console.error(err)
+    context.logger.error(err)
   }
 
   return {
