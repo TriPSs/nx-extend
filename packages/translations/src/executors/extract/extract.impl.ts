@@ -105,9 +105,7 @@ export const getConnectedLibs = (dependencies, project: string, prefix?: string)
   ))
 )
 
-export const getLibsRoot = async (context: BuilderContext, dependencies, project: string, prefix?: string, targetsDone = []): Promise<string[]> => {
-  let roots = []
-
+export const getLibsRoot = async (context: BuilderContext, dependencies, project: string, prefix?: string, targetsDone = [], roots = []): Promise<string[]> => {
   const libs = getConnectedLibs(dependencies, project, prefix)
 
   await Promise.all(libs.map(async (connectedLib) => {
@@ -123,7 +121,7 @@ export const getLibsRoot = async (context: BuilderContext, dependencies, project
       roots.push(projectMetadata.root)
     }
 
-    roots = roots.concat(roots, await getLibsRoot(context, dependencies, connectedLib.target, prefix, targetsDone))
+    await getLibsRoot(context, dependencies, connectedLib.target, prefix, targetsDone, roots)
   }))
 
   return roots
