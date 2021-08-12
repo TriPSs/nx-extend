@@ -12,9 +12,19 @@ export interface TraduoraConfig extends ExtractSettings {
 
   projectId: string
 
-  clientId: string
+  clientId?: string
 
-  clientSecret: string
+  /**
+   * If provided try to get the client id from this env variable
+   */
+  clientIdEnv?: string
+
+  clientSecret?: string
+
+  /**
+   * If provided try to get the client secret from this env variable
+   */
+  clientSecretEnv?: string
 
   outputLocals?: string
 
@@ -191,8 +201,16 @@ export default class Traduora extends BaseProvider<TraduoraConfig> {
   private async getToken(): Promise<string> {
     this.context.logger.info('Fetching token from Traduora')
 
-    const clientId = this.config.clientId || process.env.TRADUORA_CLIENT_ID
-    const clientSecret = this.config.clientSecret || process.env.TRADUORA_CLIENT_SECRET
+    let clientId = this.config.clientId || process.env.TRADUORA_CLIENT_ID
+    let clientSecret = this.config.clientSecret || process.env.TRADUORA_CLIENT_SECRET
+
+    if (!clientId && this.config.clientIdEnv) {
+      clientId = process.env[this.config.clientIdEnv]
+    }
+
+    if (!clientSecret && this.config.clientSecretEnv) {
+      clientSecret = process.env[this.config.clientSecretEnv]
+    }
 
     if (!clientId) {
       throw new Error('No clientId provided! Add "TRADUORA_CLIENT_ID" to your environment variables!')
