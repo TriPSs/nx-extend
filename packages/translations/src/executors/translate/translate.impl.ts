@@ -29,8 +29,7 @@ export async function runBuilder(
     }
   } catch (err) {
     context.logger.error('Error pushing source file')
-
-    console.error(err.message || err)
+    context.logger.error(err.message || err)
   }
 
   return {

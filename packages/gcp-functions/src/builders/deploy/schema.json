@@ -1,6 +1,4 @@
 {
-  "$schema": "https://json-schema.org/draft-07/schema",
-  "$id": "https://json-schema.org/draft-07/schema",
   "title": "deploy",
   "description": "Deploy a Google Cloud Platform function",
   "type": "object",
@@ -19,7 +17,8 @@
       "enum": [
         "http",
         "bucket",
-        "topic"
+        "topic",
+        "resource"
       ]
     },
     "triggerValue": {
@@ -74,6 +73,13 @@
       "enum": [
         "all",
         "private-ranges-only"
+      ]
+    },
+    "securityLevel": {
+      "type": "string",
+      "enum": [
+        "secure-optional",
+        "secure-always"
       ]
     }
   }
