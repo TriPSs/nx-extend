@@ -21,7 +21,7 @@ export async function runBuilder(
   context: BuilderContext
 ): Promise<{ success: boolean }> {
   const projectMeta = await context.getProjectMetadata(context.target.project)
-  const projectRoot = `${context.workspaceRoot}/${projectMeta.root}`
+  const projectSourceRoot = `${context.workspaceRoot}/${projectMeta.sourceRoot}`
 
   if (isEncryptionKeySet()) {
     try {
@@ -35,129 +35,125 @@ export async function runBuilder(
           silent: true,
           asJSON: true
         }
-      ).map(
-        (secret) => ({
-          ...secret,
-          name: secret.name.split('/secrets/').pop()
-        })
-      )
+      ).map((secret) => ({
+        ...secret,
+        name: secret.name.split('/secrets/').pop()
+      }))
 
-      const files = getAllSecretFiles(projectRoot)
+      const files = getAllSecretFiles(projectSourceRoot)
 
-      const secretsCreated = await Promise.all(
-        files.map(async (file) => {
-          const fileName = getFileName(file)
-          const fileNameParts = fileName.split('.')
-          fileNameParts.pop()
+      const secretsCreated = await Promise.all(files.map(async (file) => {
+        const fileName = getFileName(file)
+        const fileNameParts = fileName.split('.')
+        fileNameParts.pop()
 
-          const secretName = fileNameParts.join('.')
+        const secretName = fileNameParts.join('.')
 
-          // Get the content of the file
-          const fileContent = getFileContent(file)
-          const isFileEncrypted = fileContent.__gcp_metadata.status === 'encrypted'
+        // Get the content of the file
+        const fileContent = getFileContent(file)
+        const isFileEncrypted = fileContent.__gcp_metadata.status === 'encrypted'
 
-          // Decrypt the file if it's encrypted
-          if (isFileEncrypted) {
-            storeFile(file, decryptFile(fileContent, true))
+        // Decrypt the file if it's encrypted
+        if (isFileEncrypted) {
+          storeFile(file, decryptFile(fileContent, true))
+        }
+
+        // Check if the secret exists
+        const secretExists = existingSecrets.find(
+          (secret) => secret.name === secretName
+        )
+        let success
+
+        // If the secret already exists we update it
+        // and optionally remove older versions
+        if (secretExists) {
+          const existingLabeles = Object.keys(secretExists?.labels || {}).reduce((labels, labelKey) => {
+            labels.push(`${labelKey}=${secretExists.labels[labelKey]}`)
+
+            return labels
+          }, [])
+
+          // Check if we need to update the sercrets labels
+          if (JSON.stringify(existingLabeles) !== JSON.stringify(fileContent.__gcp_metadata.labels)) {
+            echo(`Updating "${secretName}" it's labels`)
+
+            execCommand(buildCommand([
+              `gcloud secrets update ${secretName}`,
+              addLabelsIfNeeded(fileContent.__gcp_metadata.labels, false),
+              getCommandOptions(options)
+            ]), {
+              silent: true
+            })
           }
 
-          // Check if the secret exists
-          const secretExists = existingSecrets.find(
-            (secret) => secret.name === secretName
-          )
-          let success
+          // Get the new version of the secret
+          const newVersion = execCommand<{ name: string }>(
+            buildCommand([
+              `gcloud secrets versions add ${secretName}`,
+              `--data-file="${file}"`,
+              '--format=json',
+              getCommandOptions(options)
+            ]),
+            {
+              asJSON: true,
+              silent: true
+            }
+          ).name.split('/versions/').pop()
 
-          // If the secret already exists we update it
-          // and optionally remove older versions
-          if (secretExists) {
-            const existingLabeles = Object.keys(secretExists?.labels || {}).reduce((labels, labelKey) => {
-              labels.push(`${labelKey}=${secretExists.labels[labelKey]}`)
+          const updateBehavior = fileContent.__gcp_metadata.onUpdateBehavior || 'destroy'
 
-              return labels
-            }, [])
+          if (updateBehavior !== 'none') {
+            if (['destroy', 'disable'].includes(updateBehavior)) {
+              const previousVersion = parseInt(newVersion, 10) - 1
 
-            // Check if we need to update the sercrets labels
-            if (JSON.stringify(existingLabeles) !== JSON.stringify(fileContent.__gcp_metadata.labels)) {
-              echo(`Updating "${secretName}" it's labels`)
+              echo(`${updateBehavior === 'disable' ? 'Disabling' : 'Destroying'} previous version of secret "${secretName}"`)
 
               execCommand(buildCommand([
-                `gcloud secrets update ${secretName}`,
-                addLabelsIfNeeded(fileContent.__gcp_metadata.labels, false),
+                `gcloud secrets versions ${updateBehavior} ${previousVersion}`,
+                `--secret=${secretName}`,
+                '--quiet',
+
                 getCommandOptions(options)
-              ]), {
-                silent: true
-              })
+              ]))
+
+            } else {
+              echo(yellow(`"${updateBehavior}" is an invalid onUpdateBehavior, valid are: "none", "disable" or "destroy"`))
             }
-
-            // Get the new version of the secret
-            const newVersion = execCommand<{ name: string }>(
-              buildCommand([
-                `gcloud secrets versions add ${secretName}`,
-                `--data-file="${file}"`,
-                '--format=json',
-                getCommandOptions(options)
-              ]),
-              {
-                asJSON: true,
-                silent: true
-              }
-            ).name.split('/versions/').pop()
-
-            const updateBehavior = fileContent.__gcp_metadata.onUpdateBehavior || 'destroy'
-
-            if (updateBehavior !== 'none') {
-              if (['destroy', 'disable'].includes(updateBehavior)) {
-                const previousVersion = parseInt(newVersion, 10) - 1
-
-                echo(`${updateBehavior === 'disable' ? 'Disabling' : 'Destroying'} previous version of secret "${secretName}"`)
-
-                execCommand(buildCommand([
-                  `gcloud secrets versions ${updateBehavior} ${previousVersion}`,
-                  `--secret=${secretName}`,
-                  '--quiet',
-
-                  getCommandOptions(options)
-                ]))
-
-              } else {
-                echo(yellow(`"${updateBehavior}" is an invalid onUpdateBehavior, valid are: "none", "disable" or "destroy"`))
-              }
-            }
-
-            success = true
-          } else {
-            context.logger.info(`Creating secret "${secretName}" from file "${fileName}"`)
-
-            const { success: commandSuccess } = execCommand(
-              buildCommand([
-                `gcloud secrets create ${secretName}`,
-                `--data-file="${file}"`,
-                '--replication-policy=automatic',
-                addLabelsIfNeeded(fileContent.__gcp_metadata.labels, true),
-                getCommandOptions(options)
-              ]),
-              {
-                fatal: true
-              }
-            )
-
-            success = commandSuccess
           }
 
-          // Store the encrypted file again
-          if (isFileEncrypted) {
-            storeFile(file, fileContent)
-          }
+          success = true
+        } else {
+          context.logger.info(`Creating secret "${secretName}" from file "${fileName}"`)
 
-          return success
-        })
-      )
+          const { success: commandSuccess } = execCommand(
+            buildCommand([
+              `gcloud secrets create ${secretName}`,
+              `--data-file="${file}"`,
+              '--replication-policy=automatic',
+              addLabelsIfNeeded(fileContent.__gcp_metadata.labels, true),
+              getCommandOptions(options)
+            ]),
+            {
+              fatal: true
+            }
+          )
+
+          success = commandSuccess
+        }
+
+        // Store the encrypted file again
+        if (isFileEncrypted) {
+          storeFile(file, fileContent)
+        }
+
+        return success
+      }))
 
       return {
         success: secretsCreated.filter(Boolean).length === files.length
       }
     } catch (err) {
-      context.logger.error(`Error happend trying to decrypt files: ${err.message || err}`)
+      context.logger.error(`Error happened trying to decrypt files: ${err.message || err}`)
       console.error(err.trace)
 
       return { success: false }
