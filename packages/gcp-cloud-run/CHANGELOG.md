@@ -2,6 +2,19 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [2.0.0](https://github.com/TriPSs/nx-extend/compare/gcp-cloud-run@1.2.0...gcp-cloud-run@2.0.0) (2021-10-08)
+
+
+* feat!: Added support for artifact registry ([fe70271](https://github.com/TriPSs/nx-extend/commit/fe702710993138d55f3c81fc4d2f24e4c700234c))
+
+
+### BREAKING CHANGES
+
+* Building with artifact registry is now the default
+Set `buildWith` to `container-registery` to maintain old behaviour
+
+
+
 # [1.2.0](https://github.com/TriPSs/nx-extend/compare/gcp-cloud-run@1.1.5...gcp-cloud-run@1.2.0) (2021-10-08)
 
 
