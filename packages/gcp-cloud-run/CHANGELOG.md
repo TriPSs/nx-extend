@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [2.0.2](https://github.com/TriPSs/nx-extend/compare/gcp-cloud-run@2.0.1...gcp-cloud-run@2.0.2) (2021-10-08)
+
+
+### Bug Fixes
+
+* Always write the docker file to the dist directory if option is defined ([d94c015](https://github.com/TriPSs/nx-extend/commit/d94c01542c239fb079b2eaa9f7fdb2e35a29d5b1))
+
+
+
 ## [2.0.1](https://github.com/TriPSs/nx-extend/compare/gcp-cloud-run@2.0.0...gcp-cloud-run@2.0.1) (2021-10-08)
 
 
