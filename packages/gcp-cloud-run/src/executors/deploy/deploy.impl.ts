@@ -106,7 +106,7 @@ export async function runBuilder(
     `--min-instances=${minInstances}`,
     `--max-instances=${maxInstances}`,
     `--concurrency=${concurrency}`,
-    `--revision-suffix=${revisionSuffix}`,
+    revisionSuffix && `--revision-suffix=${revisionSuffix}`,
     serviceAccount && `--service-account=${serviceAccount}`,
     http2 && '--use-http2',
     noTraffic && '--no-traffic',
