@@ -1,6 +1,6 @@
 import { createBuilder, BuilderContext } from '@angular-devkit/architect'
 import { execCommand, buildCommand } from '@nx-extend/core'
-import { readFileSync, writeFileSync } from 'fs'
+import { existsSync, readFileSync, writeFileSync } from 'fs'
 import { join } from 'path'
 
 import { ExecutorSchema } from '../schema'
@@ -29,7 +29,12 @@ export async function runBuilder(
     http2 = false,
     serviceAccount = null,
     logsDir = false,
-    tagWithVersion = false
+    tagWithVersion = false,
+    noTraffic = false,
+
+    revisionSuffix = false,
+    buildWith = 'artifact-registry',
+    autoCreateArtifactsRepo = true
   } = options
 
   const distDirectory = join(
@@ -37,66 +42,88 @@ export async function runBuilder(
     buildOptions.outputPath.toString()
   )
 
+  const buildWithArtifactRegistry = buildWith === 'artifact-registry'
   const containerName = `gcr.io/${options.project}/${name}`
 
-  // If the user provided a dockerfile then write it to the dist direcotry
-  if (options.dockerFile) {
-    const dockerFile = readFileSync(
-      join(context.workspaceRoot, options.dockerFile),
-      'utf8'
-    )
+  if (!buildWithArtifactRegistry) {
+    // If the user provided a dockerfile then write it to the dist directory
+    if (options.dockerFile) {
+      const dockerFile = readFileSync(
+        join(context.workspaceRoot, options.dockerFile),
+        'utf8'
+      )
 
-    // Add the docker file to the dist folder
-    writeFileSync(join(distDirectory, 'Dockerfile'), dockerFile)
-  }
+      // Add the docker file to the dist folder
+      writeFileSync(join(distDirectory, 'Dockerfile'), dockerFile)
+    }
 
-  const buildSubmitCommand = buildCommand([
-    'gcloud builds submit',
-    `--tag=${containerName}`,
-    `--project=${options.project}`,
-    logsDir ? `--gcs-log-dir=${logsDir}` : false,
-    options.tag ? `--tag=${options.tag}` : false
-  ])
-
-  console.log('\nRunning', buildSubmitCommand)
-
-  const { success } = execCommand(buildSubmitCommand, {
-    cwd: distDirectory
-  })
-
-  if (success) {
-    const setEnvVars = Object.keys(envVars).reduce((env, envVar) => {
-      env.push(`${envVar}=${envVars[envVar]}`)
-
-      return env
-    }, [])
-
-    const deployCommand = buildCommand([
-      `gcloud run deploy ${name}`,
-      `--image=${containerName}`,
-      `--project=${project}`,
-      '--platform=managed',
-      `--memory=${memory}`,
-      `--region=${region}`,
-      `--min-instances=${minInstances}`,
-      `--max-instances=${maxInstances}`,
-      `--concurrency=${concurrency}`,
-      serviceAccount ? `--service-account=${serviceAccount}` : false,
-      http2 ? '--use-http2' : false,
-      setEnvVars.length > 0 ? `--set-env-vars=${setEnvVars.join(',')}` : false,
-      cloudSqlInstance ? `--add-cloudsql-instances=${cloudSqlInstance}` : false,
-      allowUnauthenticated ? '--allow-unauthenticated' : false,
-      tagWithVersion ? '--tag=${package json version number here}' : false
+    const buildSubmitCommand = buildCommand([
+      'gcloud builds submit',
+      `--tag=${containerName}`,
+      `--project=${options.project}`,
+      logsDir ? `--gcs-log-dir=${logsDir}` : false
     ])
 
-    console.log('\nRunning', deployCommand)
+    console.log('\nRunning', buildSubmitCommand)
 
-    return execCommand(deployCommand, {
+    const { success } = execCommand(buildSubmitCommand, {
       cwd: distDirectory
     })
+
+    if (!success) {
+      throw new Error('Failed building container!')
+    }
   }
 
-  return { success: false }
+  let packageVersion = null
+
+  if (tagWithVersion) {
+    const packageJsonLocation = join(context.workspaceRoot, `${projectMeta.root}`, 'package.json')
+
+    if (existsSync(packageJsonLocation)) {
+      const packageJson = JSON.parse(readFileSync(packageJsonLocation, 'utf8'))
+
+      if (packageJson && packageJson.version) {
+        packageVersion = `v${packageJson.version.replace(/\./g, '-')}`
+      }
+    }
+  }
+
+  const setEnvVars = Object.keys(envVars).reduce((env, envVar) => {
+    env.push(`${envVar}=${envVars[envVar]}`)
+
+    return env
+  }, [])
+
+  const deployCommand = buildCommand([
+    `gcloud run deploy ${name}`,
+    !buildWithArtifactRegistry && `--image=${containerName}`,
+    buildWithArtifactRegistry && '--source=./',
+    `--project=${project}`,
+    '--platform=managed',
+    `--memory=${memory}`,
+    `--region=${region}`,
+    `--min-instances=${minInstances}`,
+    `--max-instances=${maxInstances}`,
+    `--concurrency=${concurrency}`,
+    `--revision-suffix=${revisionSuffix}`,
+    serviceAccount && `--service-account=${serviceAccount}`,
+    http2 && '--use-http2',
+    noTraffic && '--no-traffic',
+    setEnvVars.length > 0 && `--set-env-vars=${setEnvVars.join(',')}`,
+    cloudSqlInstance && `--add-cloudsql-instances=${cloudSqlInstance}`,
+    allowUnauthenticated && '--allow-unauthenticated',
+    tagWithVersion && packageVersion && `--tag=${packageVersion}`,
+
+    // There can be a question if a repo should be created
+    buildWithArtifactRegistry && autoCreateArtifactsRepo && '--quiet'
+  ])
+
+  console.log('\nRunning', deployCommand)
+
+  return execCommand(deployCommand, {
+    cwd: distDirectory
+  })
 }
 
 export default createBuilder(runBuilder)
