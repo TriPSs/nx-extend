@@ -45,18 +45,18 @@ export async function runBuilder(
   const buildWithArtifactRegistry = buildWith === 'artifact-registry'
   const containerName = `gcr.io/${options.project}/${name}`
 
+  // If the user provided a dockerfile then write it to the dist directory
+  if (options.dockerFile) {
+    const dockerFile = readFileSync(
+      join(context.workspaceRoot, options.dockerFile),
+      'utf8'
+    )
+
+    // Add the docker file to the dist folder
+    writeFileSync(join(distDirectory, 'Dockerfile'), dockerFile)
+  }
+
   if (!buildWithArtifactRegistry) {
-    // If the user provided a dockerfile then write it to the dist directory
-    if (options.dockerFile) {
-      const dockerFile = readFileSync(
-        join(context.workspaceRoot, options.dockerFile),
-        'utf8'
-      )
-
-      // Add the docker file to the dist folder
-      writeFileSync(join(distDirectory, 'Dockerfile'), dockerFile)
-    }
-
     const buildSubmitCommand = buildCommand([
       'gcloud builds submit',
       `--tag=${containerName}`,
