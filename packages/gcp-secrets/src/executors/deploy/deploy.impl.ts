@@ -1,6 +1,6 @@
 import { createBuilder, BuilderContext } from '@angular-devkit/architect'
 import { execCommand, buildCommand } from '@nx-extend/core'
-import { ShellString, echo } from 'shelljs'
+import { echo } from 'shelljs'
 import { yellow } from 'chalk'
 
 import { ExecutorSchema } from '../schema'
