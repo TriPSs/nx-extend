@@ -1,7 +1,3 @@
-# gcp-secrets
+# NX - GCP Secrets
 
-This library was generated with [Nx](https://nx.dev).
-
-## Running unit tests
-
-Run `nx test gcp-secrets` to execute the unit tests via [Jest](https://jestjs.io).
+Deploy your secrets to Google Cloud secrets

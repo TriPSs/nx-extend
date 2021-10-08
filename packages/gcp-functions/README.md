@@ -1,4 +1,4 @@
-# GCP Functions
+# NX - GCP Functions
 
 Create new function
 > This is not implemented yet

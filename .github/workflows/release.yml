@@ -10,21 +10,28 @@ jobs:
   prepare-env:
     runs-on: ubuntu-latest
     outputs:
-      GITHUB_HEAD_REF: ${{ steps.GITHUB_HEAD_REF.outputs.value }}
-      GITHUB_BASE_REF: ${{ steps.GITHUB_BASE_REF.outputs.value }}
+      GITHUB_HEAD_REF: ${{ steps.script.outputs.headRef }}
+      GITHUB_BASE_REF: ${{ steps.script.outputs.tagHash }}
     steps:
-      - uses: nrwl/last-successful-commit-action@v1
-        id: last_successful_commit
+      - uses: actions/checkout@v2
         with:
-          branch: 'master'
-          workflow_id: 'release.yml'
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
 
-      - id: GITHUB_HEAD_REF
-        run: echo "::set-output name=value::$(echo ${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}})"
+      - name: Cache node modules
+        id: cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            **/node_modules
+          key: ${{ env.DEPENDENCIES_CACHE }}-${{ hashFiles('yarn.lock') }}
 
-      - id: GITHUB_BASE_REF
-        run: echo "::set-output name=value::$(echo ${{ steps.last_successful_commit.outputs.commit_hash }}})"
+      - name: yarn install
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: yarn install --pure-lockfile --prefer-offline
+
+      - name: Set correct env vars
+        id: script
+        uses: ./tools/actions/set-master-vars
 
   release:
     needs: [ prepare-env ]
@@ -35,7 +42,6 @@ jobs:
           fetch-depth: 0
 
       - name: Cache node modules
-        id: cache
         uses: actions/cache@v2
         with:
           path: |
@@ -51,10 +57,6 @@ jobs:
             ${{ env.NX_CACHE }}-${{ hashFiles('yarn.lock') }}-${{ matrix.target }}-${{ matrix.index }}-
             ${{ env.NX_CACHE }}-${{ hashFiles('yarn.lock') }}-
             ${{ env.NX_CACHE }}-
-
-      - name: yarn install
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: yarn install --pure-lockfile
 
       - name: GIT config
         run: |

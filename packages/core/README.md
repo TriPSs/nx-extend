@@ -1,7 +1,3 @@
-# gcp-core
+# Core
 
-This library was generated with [Nx](https://nx.dev).
-
-## Running unit tests
-
-Run `nx test gcp-core` to execute the unit tests via [Jest](https://jestjs.io).
+Only for internal usage!
