@@ -32,8 +32,13 @@ if (affectedProjects.length > 0) {
     while (affectedProjects.length > 0) {
       const project = affectedProjects.shift()
 
-      // Publish the package
-      execSync(`npm publish ./dist/packages/${project} --access public`, { stdio: 'inherit' })
+      // Try to publish the package
+      try {
+        execSync(`npm publish ./dist/packages/${project} --access public`, { stdio: 'inherit' })
+
+      } catch (err) {
+        console.warn(err)
+      }
     }
 
   } else {
