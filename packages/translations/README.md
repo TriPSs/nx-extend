@@ -1,54 +1,29 @@
-# NX Translations
+# NX - Translations
 
 Extract/upload translations from your NX projects
 
-Example extract
+## Steps
+1. Create a `.translationsrc.json` inside your project
 
+Example config
 ```json
 {
-  "targets": {
-    "extract-translations": {
-      "builder": "@nx-extend/translations:extract",
-      "options": {
-        "defaultLanguage": "en",
-        "withLibs": true
-      }
-    }
-  }
-}
-```
-
-Example upload (Transifex)
-
-Transifex requires you to have a `.transifex.json` inside the apps directory. Example:
-```json
-{
-  "organization": "org name",
-  "project": "project name",
-  "recourse": "recourse name",
+  "provider": "traduora",
+  "baseUrl": "http://localhost:8090",
   "outputDirectory": "<projectRoot>/src/translations",
-  "sourceFile": "<projectRoot>/src/translations/en.json",
-  "sourceLang": "en",
-  "createResourceIfNeeded": true
-}
-
-```
-
-```json
-{
-  "targets": {
-    "pull-translations": {
-      "builder": "@nx-extend/translations:pull",
-      "options": {
-        "provider": "transifex"
-      }
-    },
-    "push-translations": {
-      "builder": "@nx-extend/translations:push",
-      "options": {
-        "provider": "transifex"
-      }
-    }
-  }
+  "outputLanguages": "<projectRoot>/src/translations/locales.json",
+  "defaultLanguage": "en",
+  "extractor": "formatjs",
+  "translator": "free-deepl",
+  "translatorOptions": {
+    "formality": "less"
+  },
+  "languages": [
+    "en",
+    "de",
+    "nl",
+    "pl",
+    "fr"
+  ]
 }
 ```

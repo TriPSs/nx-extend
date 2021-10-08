@@ -1,4 +1,4 @@
-# strapi
+# NX - Strapi
 
 Generate Strapi project with `yarn/npx nx g @nx-extend/strapi:strapi my-app-name`
 
