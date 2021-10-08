@@ -69,12 +69,6 @@
             "pluginOutputPath": "dist/packages/core",
             "jestConfig": "e2e/core-e2e/jest.config.js"
           }
-        },
-        "version": {
-          "executor": "@jscutlery/semver:version",
-          "options": {
-            "versionTagPrefix": "${target}@"
-          }
         }
       }
     },
