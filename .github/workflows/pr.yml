@@ -25,7 +25,7 @@ jobs:
       - id: GITHUB_BASE_REF
         run: echo "::set-output name=value::$(echo ${{ steps.last_successful_commit.outputs.commit_hash }}})"
 
-  release:
+  pr:
     needs: [ prepare-env ]
     runs-on: ubuntu-latest
     steps:

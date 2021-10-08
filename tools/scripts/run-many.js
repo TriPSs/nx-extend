@@ -11,7 +11,7 @@ const nxArgs = headRef !== baseRef && baseRef !== 'empty'
 
 const buildAffectedCommand = [
   'npx nx print-affected',
-  `--target=${target}`,
+  `--target=${target !== 'publish' ? target : 'version'}`,
   nxArgs
 ]
 
