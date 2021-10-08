@@ -43,6 +43,7 @@
     "strapi-generate-new": "^3.6.1"
   },
   "devDependencies": {
+    "@actions/core": "^1.6.0",
     "@angular-devkit/architect": "^0.1102.12",
     "@jscutlery/semver": "^2.10.0",
     "@nrwl/cli": "12.2.0",

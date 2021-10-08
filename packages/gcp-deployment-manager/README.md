@@ -1,4 +1,4 @@
-# GCP Deployment Manager
+# NX - GCP Deployment Manager
 
 To generate a project:
 ```shell
