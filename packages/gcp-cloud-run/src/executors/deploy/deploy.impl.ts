@@ -28,13 +28,9 @@ export async function runBuilder(
     cloudSqlInstance = null,
     http2 = false,
     serviceAccount = null,
-    logsDir = false
+    logsDir = false,
+    tagWithVersion = false
   } = options
-
-  const dockerFile = readFileSync(
-    join(context.workspaceRoot, options.dockerFile),
-    'utf8'
-  )
 
   const distDirectory = join(
     context.workspaceRoot,
@@ -43,8 +39,16 @@ export async function runBuilder(
 
   const containerName = `gcr.io/${options.project}/${name}`
 
-  // Add the docker file to the dist folder
-  writeFileSync(join(distDirectory, 'Dockerfile'), dockerFile)
+  // If the user provided a dockerfile then write it to the dist direcotry
+  if (options.dockerFile) {
+    const dockerFile = readFileSync(
+      join(context.workspaceRoot, options.dockerFile),
+      'utf8'
+    )
+
+    // Add the docker file to the dist folder
+    writeFileSync(join(distDirectory, 'Dockerfile'), dockerFile)
+  }
 
   const buildSubmitCommand = buildCommand([
     'gcloud builds submit',
@@ -56,7 +60,7 @@ export async function runBuilder(
 
   console.log('\nRunning', buildSubmitCommand)
 
-  const { success } = await execCommand(buildSubmitCommand, {
+  const { success } = execCommand(buildSubmitCommand, {
     cwd: distDirectory
   })
 
@@ -69,7 +73,8 @@ export async function runBuilder(
 
     const deployCommand = buildCommand([
       `gcloud run deploy ${name}`,
-      `--image=${containerName}`,
+      '--source=./',
+      // `--image=${containerName}`,
       `--project=${project}`,
       '--platform=managed',
       `--memory=${memory}`,
@@ -81,7 +86,8 @@ export async function runBuilder(
       http2 ? '--use-http2' : false,
       setEnvVars.length > 0 ? `--set-env-vars=${setEnvVars.join(',')}` : false,
       cloudSqlInstance ? `--add-cloudsql-instances=${cloudSqlInstance}` : false,
-      allowUnauthenticated ? '--allow-unauthenticated' : false
+      allowUnauthenticated ? '--allow-unauthenticated' : false,
+      tagWithVersion ? '--tag=${package json version number here}' : false
     ])
 
     console.log('\nRunning', deployCommand)
@@ -95,3 +101,7 @@ export async function runBuilder(
 }
 
 export default createBuilder(runBuilder)
+
+
+// Check if this works and if the tag is also added to inside the container registery
+// gcloud run deploy main --source=./ --project=straetus-app --tag=0.3.0 --platform=managed --memory=256Mi --region=europe-west4 --min-instances=0 --max-instances=4 --concurrency=200 --service-account=api-main@***.iam.gserviceaccount.com --set-env-vars=DB_HOST=***:europe-west4:straetus-db-eu,DB_USERNAME=straetus_main_api,TZ=UTC --add-cloudsql-instances=***:europe-west4:straetus-db-eu --allow-unauthenticated

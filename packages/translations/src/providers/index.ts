@@ -1,30 +1,25 @@
 import { BuilderContext } from '@angular-devkit/architect'
+
+import type { BaseConfigFile } from '../utils/config-file'
 import BaseProvider from './base.provider'
-import TraduoraProvider from './traduora.provider'
-import TransifexProvider from './transifex.provider'
+import TraduoraProvider, { TraduoraConfig } from './traduora.provider'
+import TransifexProvider, { TransifexConfig } from './transifex.provider'
+import PoeditorProvider, { PoeditorConfig } from './poeditor.provider'
 
-export { default as BaseProvider } from './base.provider'
+export const getProvider = async (provider: string, context: BuilderContext, configFile: BaseConfigFile): Promise<BaseProvider<any>> => {
+  switch (provider) {
+    case 'traduora':
+      return new TraduoraProvider(context, configFile as TraduoraConfig)
 
-export const getProvider = async (provider: string, context: BuilderContext): Promise<BaseProvider<any>> => {
-  let providerClass
-  if (provider === 'traduora') {
-    context.logger.info(`Using "${provider}" provider`)
+    case 'transifex':
+      return new TransifexProvider(context, configFile as TransifexConfig)
 
-    providerClass = new TraduoraProvider(context)
+    case 'poeditor':
+      return new PoeditorProvider(context, configFile as PoeditorConfig)
 
-  } else if (provider === 'transifex') {
-    context.logger.info(`Using "${provider}" provider`)
+    default:
+      context.logger.warn(`"${provider}" is not an valid provider!`)
 
-    providerClass = new TransifexProvider(context)
+      return null
   }
-
-  if (providerClass) {
-    await providerClass.init()
-
-    return providerClass
-  }
-
-  context.logger.warn(`"${provider}" is not an valid provider!`)
-
-  return null
 }

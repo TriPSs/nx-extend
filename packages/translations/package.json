@@ -6,7 +6,10 @@
     "translations",
     "react-intl",
     "transifex",
-    "traduora"
+    "traduora",
+    "poeditor",
+    "deepl",
+    "formatjs"
   ],
   "homepage": "https://github.com/tripss/nx-extend#readme",
   "bugs": {
@@ -23,7 +26,6 @@
   },
   "main": "src/index.js",
   "dependencies": {
-    "extract-react-intl-messages": "^4.1.1",
     "axios": "^0.21.1",
     "deepmerge": "^4.2.2"
   },

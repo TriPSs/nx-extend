@@ -1,12 +1,13 @@
 import { resolve } from 'path'
-import { readFileSync, existsSync, writeFileSync } from 'fs'
+import { readFileSync, writeFileSync } from 'fs'
 import axios from 'axios'
 import * as deepmerge from 'deepmerge'
 
-import BaseProvider, { ExtractSettings } from './base.provider'
 import { injectProjectRoot } from '../utils'
+import { BaseConfigFile } from '../utils/config-file'
+import BaseProvider from './base.provider'
 
-export interface TransifexConfig extends ExtractSettings {
+export interface TransifexConfig extends BaseConfigFile {
 
   organization: string
 
@@ -25,14 +26,6 @@ export default class Transifex extends BaseProvider<TransifexConfig> {
   private readonly apiClient = axios.create({
     baseURL: 'https://rest.api.transifex.com'
   })
-
-  public getExtractSettings(): ExtractSettings {
-    return {
-      defaultLocale: this.config.defaultLocale,
-      outputDirectory: this.config.outputDirectory,
-      extractor: this.config.extractor
-    }
-  }
 
   /**
    * Pull translations from Transifex
@@ -55,13 +48,13 @@ export default class Transifex extends BaseProvider<TransifexConfig> {
       const writeTo = resolve(
         injectProjectRoot(
           this.config.outputDirectory,
-          this.projectRoot,
+          this.config.projectRoot,
           this.context.workspaceRoot
         ),
         `${languageString}.json`
       )
 
-      if (languageString === this.config.defaultLocale) {
+      if (languageString === this.config.defaultLanguage) {
         // Skip pulling the source file
         return
       }
@@ -104,8 +97,7 @@ export default class Transifex extends BaseProvider<TransifexConfig> {
    */
   public async push(): Promise<void> {
     const resource = `o:${this.config.organization}:p:${this.config.project}:r:${this.config.recourse}`
-    const sourceFileLocation = injectProjectRoot(this.sourceFile, this.projectRoot, this.context.workspaceRoot)
-    const sourceFileContent = readFileSync(sourceFileLocation, 'utf8')
+    const sourceFileContent = readFileSync(this.sourceFile, 'utf8')
     const sourceFileMinified = JSON.stringify(JSON.parse(sourceFileContent))
 
     try {
@@ -127,19 +119,6 @@ export default class Transifex extends BaseProvider<TransifexConfig> {
 
   public async translate() {
     console.warn('Not yet implemented!')
-  }
-
-  /**
-   * Get config file for Transifex
-   */
-  public async getConfigFile(): Promise<TransifexConfig> {
-    const configFileLoc = resolve(this.projectRoot, '.transifex.json')
-
-    if (!existsSync(configFileLoc)) {
-      throw Error('No ".transifex.json" found!')
-    }
-
-    return JSON.parse(readFileSync(configFileLoc, 'utf8'))
   }
 
   /**
@@ -246,6 +225,18 @@ export default class Transifex extends BaseProvider<TransifexConfig> {
     }
 
     return token
+  }
+
+  getTranslations(language: string): Promise<{ [p: string]: string }> {
+    return Promise.resolve({});
+  }
+
+  uploadTranslations(language: string, translations: { [p: string]: string }): Promise<boolean> {
+    return Promise.resolve(false);
+  }
+
+  protected assureRequirementsExists(): Promise<void> {
+    return Promise.resolve(undefined);
   }
 
 }

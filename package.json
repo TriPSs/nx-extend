@@ -44,6 +44,7 @@
   },
   "devDependencies": {
     "@angular-devkit/architect": "^0.1102.12",
+    "@jscutlery/semver": "^2.10.0",
     "@nrwl/cli": "12.2.0",
     "@nrwl/devkit": "12.2.0",
     "@nrwl/eslint-plugin-nx": "12.2.0",
