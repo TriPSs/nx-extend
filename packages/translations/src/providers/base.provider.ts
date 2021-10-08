@@ -83,9 +83,9 @@ export default abstract class BaseProvider<Config extends BaseConfigFile> {
       throw new Error('Source file does not exist!')
     }
 
-    this.context.logger.info('Going to upload translations!')
-
     const sourceTerms = this.getSourceTerms()
+
+    this.context.logger.info(`Going to upload ${sourceTerms} source terms!`)
 
     await this.uploadTranslations(this.config.defaultLanguage, sourceTerms)
   }

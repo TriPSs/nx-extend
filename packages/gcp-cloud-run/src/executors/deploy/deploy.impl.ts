@@ -73,8 +73,7 @@ export async function runBuilder(
 
     const deployCommand = buildCommand([
       `gcloud run deploy ${name}`,
-      '--source=./',
-      // `--image=${containerName}`,
+      `--image=${containerName}`,
       `--project=${project}`,
       '--platform=managed',
       `--memory=${memory}`,
@@ -101,7 +100,3 @@ export async function runBuilder(
 }
 
 export default createBuilder(runBuilder)
-
-
-// Check if this works and if the tag is also added to inside the container registery
-// gcloud run deploy main --source=./ --project=straetus-app --tag=0.3.0 --platform=managed --memory=256Mi --region=europe-west4 --min-instances=0 --max-instances=4 --concurrency=200 --service-account=api-main@***.iam.gserviceaccount.com --set-env-vars=DB_HOST=***:europe-west4:straetus-db-eu,DB_USERNAME=straetus_main_api,TZ=UTC --add-cloudsql-instances=***:europe-west4:straetus-db-eu --allow-unauthenticated

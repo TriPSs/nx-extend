@@ -55,5 +55,13 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
         run: yarn install --pure-lockfile
 
+      - name: GIT config
+        run: |
+          git config user.name "${GITHUB_ACTOR}"
+          git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+
+      - name: nx affected:version
+        run: node ./tools/scripts/run-many.js version origin/${{ needs.prepare-env.outputs.GITHUB_HEAD_REF }} ${{ needs.prepare-env.outputs.GITHUB_BASE_REF }}
+
       - name: nx affected:build
         run: node ./tools/scripts/run-many.js build origin/${{ needs.prepare-env.outputs.GITHUB_HEAD_REF }} ${{ needs.prepare-env.outputs.GITHUB_BASE_REF }}
