@@ -1,29 +1,22 @@
 import { BuilderContext } from '@angular-devkit/architect'
 
 import DeeplTranslator from './deepl.translator'
+import { BaseConfigFile } from '../utils/config-file'
 
-export const getTranslator = (translator: string, context: BuilderContext, options = {}): DeeplTranslator => {
-  let providerClass
+export const getTranslator = (context: BuilderContext, config: BaseConfigFile): DeeplTranslator => {
 
-  if (translator === 'free-deepl') {
-    context.logger.info(`Using "${translator}" translator`)
+  switch (config.translator) {
+    case 'free-deepl':
+      return new DeeplTranslator(context, config, 'https://api-free.deepl.com')
 
-    providerClass = new DeeplTranslator('https://api-free.deepl.com', options)
+    case 'deepl':
+      return new DeeplTranslator(context, config, 'https://api.deepl.com')
 
-  } else if (translator === 'deepl') {
-    context.logger.info(`Using "${translator}" translator`)
-
-    providerClass = new DeeplTranslator('https://api.deepl.com', options)
-
-  } else if (translator === 'itranslate') {
+    // case 'itranslate':
     // TODO:: https://www.itranslate.com/itranslate-translation-api-contact-form
+
+    default:
+      context.logger.warn(`"${config.translator}" is not an valid translator!`)
+      return null
   }
-
-  if (providerClass) {
-    return providerClass
-  }
-
-  context.logger.warn(`"${translator}" is not an valid translator!`)
-
-  return null
 }

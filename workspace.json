@@ -1,625 +1,6 @@
 {
   "version": 2,
   "projects": {
-    "strapi": {
-      "root": "packages/strapi",
-      "sourceRoot": "packages/strapi/src",
-      "projectType": "library",
-      "targets": {
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "packages/strapi/**/*.ts"
-            ]
-          }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/strapi"
-          ],
-          "options": {
-            "jestConfig": "packages/strapi/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "build": {
-          "executor": "@nrwl/node:package",
-          "outputs": [
-            "{options.outputPath}"
-          ],
-          "options": {
-            "outputPath": "dist/packages/strapi",
-            "tsConfig": "packages/strapi/tsconfig.lib.json",
-            "packageJson": "packages/strapi/package.json",
-            "main": "packages/strapi/src/index.ts",
-            "assets": [
-              "packages/strapi/*.md",
-              {
-                "input": "./packages/strapi/src",
-                "glob": "**/*.!(ts)",
-                "output": "./src"
-              },
-              {
-                "input": "./packages/strapi",
-                "glob": "generators.json",
-                "output": "."
-              },
-              {
-                "input": "./packages/strapi",
-                "glob": "executors.json",
-                "output": "."
-              },
-              {
-                "input": "./packages/strapi",
-                "glob": "builders.json",
-                "output": "."
-              }
-            ]
-          }
-        }
-      }
-    },
-    "strapi-e2e": {
-      "projectType": "application",
-      "root": "e2e/strapi-e2e",
-      "sourceRoot": "e2e/strapi-e2e/src",
-      "targets": {
-        "e2e": {
-          "executor": "@nrwl/nx-plugin:e2e",
-          "options": {
-            "target": "strapi:build",
-            "npmPackageName": "@nx-extend/strapi",
-            "pluginOutputPath": "dist/packages/strapi",
-            "jestConfig": "e2e/strapi-e2e/jest.config.js"
-          }
-        }
-      }
-    },
-    "translations": {
-      "root": "packages/translations",
-      "sourceRoot": "packages/translations/src",
-      "projectType": "library",
-      "targets": {
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "packages/translations/**/*.ts"
-            ]
-          }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/translations"
-          ],
-          "options": {
-            "jestConfig": "packages/translations/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "build": {
-          "executor": "@nrwl/node:package",
-          "outputs": [
-            "{options.outputPath}"
-          ],
-          "options": {
-            "outputPath": "dist/packages/translations",
-            "tsConfig": "packages/translations/tsconfig.lib.json",
-            "packageJson": "packages/translations/package.json",
-            "main": "packages/translations/src/index.ts",
-            "assets": [
-              "packages/translations/*.md",
-              {
-                "input": "./packages/translations/src",
-                "glob": "**/*.!(ts)",
-                "output": "./src"
-              },
-              {
-                "input": "./packages/translations",
-                "glob": "generators.json",
-                "output": "."
-              },
-              {
-                "input": "./packages/translations",
-                "glob": "executors.json",
-                "output": "."
-              },
-              {
-                "input": "./packages/translations",
-                "glob": "builders.json",
-                "output": "."
-              }
-            ]
-          }
-        }
-      }
-    },
-    "translations-e2e": {
-      "projectType": "application",
-      "root": "e2e/translations-e2e",
-      "sourceRoot": "e2e/translations-e2e/src",
-      "targets": {
-        "e2e": {
-          "executor": "@nrwl/nx-plugin:e2e",
-          "options": {
-            "target": "translations:build",
-            "npmPackageName": "@nx-extend/traduora",
-            "pluginOutputPath": "dist/packages/traduora",
-            "jestConfig": "e2e/translations-e2e/jest.config.js"
-          }
-        }
-      }
-    },
-    "gcp-functions": {
-      "root": "packages/gcp-functions",
-      "sourceRoot": "packages/gcp-functions/src",
-      "projectType": "library",
-      "targets": {
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "packages/gcp-functions/**/*.ts"
-            ]
-          }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/gcp-functions"
-          ],
-          "options": {
-            "jestConfig": "packages/gcp-functions/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "build": {
-          "executor": "@nrwl/node:package",
-          "outputs": [
-            "{options.outputPath}"
-          ],
-          "options": {
-            "outputPath": "dist/packages/gcp-functions",
-            "tsConfig": "packages/gcp-functions/tsconfig.lib.json",
-            "packageJson": "packages/gcp-functions/package.json",
-            "main": "packages/gcp-functions/src/index.ts",
-            "assets": [
-              "packages/gcp-functions/*.md",
-              {
-                "input": "./packages/gcp-functions/src",
-                "glob": "**/*.!(ts)",
-                "output": "./src"
-              },
-              {
-                "input": "./packages/gcp-functions",
-                "glob": "generators.json",
-                "output": "."
-              },
-              {
-                "input": "./packages/gcp-functions",
-                "glob": "executors.json",
-                "output": "."
-              },
-              {
-                "input": "./packages/gcp-functions",
-                "glob": "builders.json",
-                "output": "."
-              }
-            ]
-          }
-        }
-      }
-    },
-    "gcp-functions-e2e": {
-      "projectType": "application",
-      "root": "e2e/gcp-functions-e2e",
-      "sourceRoot": "e2e/gcp-functions-e2e/src",
-      "targets": {
-        "e2e": {
-          "executor": "@nrwl/nx-plugin:e2e",
-          "options": {
-            "target": "gcp-functions:build",
-            "npmPackageName": "@nx-extend/gcp-functions",
-            "pluginOutputPath": "dist/packages/gcp-functions",
-            "jestConfig": "e2e/gcp-functions-e2e/jest.config.js"
-          }
-        }
-      }
-    },
-    "gcp-storage": {
-      "root": "packages/gcp-storage",
-      "sourceRoot": "packages/gcp-storage/src",
-      "projectType": "library",
-      "targets": {
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "packages/gcp-storage/**/*.ts"
-            ]
-          }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/gcp-storage"
-          ],
-          "options": {
-            "jestConfig": "packages/gcp-storage/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "build": {
-          "executor": "@nrwl/node:package",
-          "outputs": [
-            "{options.outputPath}"
-          ],
-          "options": {
-            "outputPath": "dist/packages/gcp-storage",
-            "tsConfig": "packages/gcp-storage/tsconfig.lib.json",
-            "packageJson": "packages/gcp-storage/package.json",
-            "main": "packages/gcp-storage/src/index.ts",
-            "assets": [
-              "packages/gcp-storage/*.md",
-              {
-                "input": "./packages/gcp-storage/src",
-                "glob": "**/*.!(ts)",
-                "output": "./src"
-              },
-              {
-                "input": "./packages/gcp-storage",
-                "glob": "generators.json",
-                "output": "."
-              },
-              {
-                "input": "./packages/gcp-storage",
-                "glob": "executors.json",
-                "output": "."
-              },
-              {
-                "input": "./packages/gcp-storage",
-                "glob": "builders.json",
-                "output": "."
-              }
-            ]
-          }
-        }
-      }
-    },
-    "gcp-storage-e2e": {
-      "projectType": "application",
-      "root": "e2e/gcp-storage-e2e",
-      "sourceRoot": "e2e/gcp-storage-e2e/src",
-      "targets": {
-        "e2e": {
-          "executor": "@nrwl/nx-plugin:e2e",
-          "options": {
-            "target": "gcp-storage:build",
-            "npmPackageName": "@nx-extend/gcp-storage",
-            "pluginOutputPath": "dist/packages/gcp-storage",
-            "jestConfig": "e2e/gcp-storage-e2e/jest.config.js"
-          }
-        }
-      }
-    },
-    "core-e2e": {
-      "projectType": "application",
-      "root": "e2e/core-e2e",
-      "sourceRoot": "e2e/core-e2e/src",
-      "targets": {
-        "e2e": {
-          "executor": "@nrwl/nx-plugin:e2e",
-          "options": {
-            "target": "core:build",
-            "npmPackageName": "@nx-extend/core",
-            "pluginOutputPath": "dist/packages/core",
-            "jestConfig": "e2e/core-e2e/jest.config.js"
-          }
-        }
-      }
-    },
-    "gcp-deployment-manager": {
-      "root": "packages/gcp-deployment-manager",
-      "sourceRoot": "packages/gcp-deployment-manager/src",
-      "projectType": "library",
-      "targets": {
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "packages/gcp-deployment-manager/**/*.ts"
-            ]
-          }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/gcp-deployment-manager"
-          ],
-          "options": {
-            "jestConfig": "packages/gcp-deployment-manager/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "build": {
-          "executor": "@nrwl/node:package",
-          "outputs": [
-            "{options.outputPath}"
-          ],
-          "options": {
-            "outputPath": "dist/packages/gcp-deployment-manager",
-            "tsConfig": "packages/gcp-deployment-manager/tsconfig.lib.json",
-            "packageJson": "packages/gcp-deployment-manager/package.json",
-            "main": "packages/gcp-deployment-manager/src/index.ts",
-            "assets": [
-              "packages/gcp-deployment-manager/*.md",
-              {
-                "input": "./packages/gcp-deployment-manager/src",
-                "glob": "**/*.!(ts)",
-                "output": "./src"
-              },
-              {
-                "input": "./packages/gcp-deployment-manager",
-                "glob": "generators.json",
-                "output": "."
-              },
-              {
-                "input": "./packages/gcp-deployment-manager",
-                "glob": "executors.json",
-                "output": "."
-              },
-              {
-                "input": "./packages/gcp-deployment-manager",
-                "glob": "builders.json",
-                "output": "."
-              }
-            ]
-          }
-        }
-      }
-    },
-    "gcp-deployment-manager-e2e": {
-      "projectType": "application",
-      "root": "e2e/gcp-deployment-manager-e2e",
-      "sourceRoot": "e2e/gcp-deployment-manager-e2e/src",
-      "targets": {
-        "e2e": {
-          "executor": "@nrwl/nx-plugin:e2e",
-          "options": {
-            "target": "gcp-deployment-manager:build",
-            "npmPackageName": "@nx-extend/gcp-deployment-manager",
-            "pluginOutputPath": "dist/packages/gcp-deployment-manager",
-            "jestConfig": "e2e/gcp-deployment-manager-e2e/jest.config.js"
-          }
-        }
-      }
-    },
-    "conventional-changelog": {
-      "root": "packages/conventional-changelog",
-      "sourceRoot": "packages/conventional-changelog/src",
-      "projectType": "library",
-      "targets": {
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "packages/conventional-changelog/**/*.ts"
-            ]
-          }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/conventional-changelog"
-          ],
-          "options": {
-            "jestConfig": "packages/conventional-changelog/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "build": {
-          "executor": "@nrwl/node:package",
-          "outputs": [
-            "{options.outputPath}"
-          ],
-          "options": {
-            "outputPath": "dist/packages/conventional-changelog",
-            "tsConfig": "packages/conventional-changelog/tsconfig.lib.json",
-            "packageJson": "packages/conventional-changelog/package.json",
-            "main": "packages/conventional-changelog/src/index.ts",
-            "assets": [
-              "packages/conventional-changelog/*.md",
-              {
-                "input": "./packages/conventional-changelog/src",
-                "glob": "**/*.!(ts)",
-                "output": "./src"
-              },
-              {
-                "input": "./packages/conventional-changelog",
-                "glob": "generators.json",
-                "output": "."
-              },
-              {
-                "input": "./packages/conventional-changelog",
-                "glob": "executors.json",
-                "output": "."
-              }
-            ]
-          }
-        }
-      }
-    },
-    "conventional-changelog-e2e": {
-      "projectType": "application",
-      "root": "e2e/conventional-changelog-e2e",
-      "sourceRoot": "e2e/conventional-changelog-e2e/src",
-      "targets": {
-        "e2e": {
-          "executor": "@nrwl/nx-plugin:e2e",
-          "options": {
-            "target": "conventional-changelog:build",
-            "npmPackageName": "@nx-extend/conventional-changelog",
-            "pluginOutputPath": "dist/packages/conventional-changelog",
-            "jestConfig": "e2e/conventional-changelog-e2e/jest.config.js"
-          }
-        }
-      }
-    },
-    "gcp-cloud-run": {
-      "root": "packages/gcp-cloud-run",
-      "sourceRoot": "packages/gcp-cloud-run/src",
-      "projectType": "library",
-      "targets": {
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "packages/gcp-cloud-run/**/*.ts"
-            ]
-          }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/gcp-cloud-run"
-          ],
-          "options": {
-            "jestConfig": "packages/gcp-cloud-run/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "build": {
-          "executor": "@nrwl/node:package",
-          "outputs": [
-            "{options.outputPath}"
-          ],
-          "options": {
-            "outputPath": "dist/packages/gcp-cloud-run",
-            "tsConfig": "packages/gcp-cloud-run/tsconfig.lib.json",
-            "packageJson": "packages/gcp-cloud-run/package.json",
-            "main": "packages/gcp-cloud-run/src/index.ts",
-            "assets": [
-              "packages/gcp-cloud-run/*.md",
-              {
-                "input": "./packages/gcp-cloud-run/src",
-                "glob": "**/*.!(ts)",
-                "output": "./src"
-              },
-              {
-                "input": "./packages/gcp-cloud-run",
-                "glob": "generators.json",
-                "output": "."
-              },
-              {
-                "input": "./packages/gcp-cloud-run",
-                "glob": "executors.json",
-                "output": "."
-              },
-              {
-                "input": "./packages/gcp-cloud-run",
-                "glob": "builders.json",
-                "output": "."
-              }
-            ]
-          }
-        }
-      }
-    },
-    "gcp-cloud-run-e2e": {
-      "projectType": "application",
-      "root": "e2e/gcp-cloud-run-e2e",
-      "sourceRoot": "e2e/gcp-cloud-run-e2e/src",
-      "targets": {
-        "e2e": {
-          "executor": "@nrwl/nx-plugin:e2e",
-          "options": {
-            "target": "gcp-cloud-run:build",
-            "npmPackageName": "@nx-extend/gcp-cloud-run",
-            "pluginOutputPath": "dist/packages/gcp-cloud-run",
-            "jestConfig": "e2e/gcp-cloud-run-e2e/jest.config.js"
-          }
-        }
-      }
-    },
-    "gcp-secrets": {
-      "root": "packages/gcp-secrets",
-      "sourceRoot": "packages/gcp-secrets/src",
-      "projectType": "library",
-      "targets": {
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "packages/gcp-secrets/**/*.ts"
-            ]
-          }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/gcp-secrets"
-          ],
-          "options": {
-            "jestConfig": "packages/gcp-secrets/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "build": {
-          "executor": "@nrwl/node:package",
-          "outputs": [
-            "{options.outputPath}"
-          ],
-          "options": {
-            "outputPath": "dist/packages/gcp-secrets",
-            "tsConfig": "packages/gcp-secrets/tsconfig.lib.json",
-            "packageJson": "packages/gcp-secrets/package.json",
-            "main": "packages/gcp-secrets/src/index.ts",
-            "assets": [
-              "packages/gcp-secrets/*.md",
-              {
-                "input": "./packages/gcp-secrets/src",
-                "glob": "**/*.!(ts)",
-                "output": "./src"
-              },
-              {
-                "input": "./packages/gcp-secrets",
-                "glob": "generators.json",
-                "output": "."
-              },
-              {
-                "input": "./packages/gcp-secrets",
-                "glob": "executors.json",
-                "output": "."
-              },
-              {
-                "input": "./packages/gcp-secrets",
-                "glob": "builders.json",
-                "output": "."
-              }
-            ]
-          }
-        }
-      }
-    },
-    "gcp-secrets-e2e": {
-      "projectType": "application",
-      "root": "e2e/gcp-secrets-e2e",
-      "sourceRoot": "e2e/gcp-secrets-e2e/src",
-      "targets": {
-        "e2e": {
-          "executor": "@nrwl/nx-plugin:e2e",
-          "options": {
-            "target": "gcp-secrets:build",
-            "npmPackageName": "@nx-extend/gcp-secrets",
-            "pluginOutputPath": "dist/packages/gcp-secrets",
-            "jestConfig": "e2e/gcp-secrets-e2e/jest.config.js"
-          }
-        }
-      }
-    },
     "core": {
       "root": "packages/core",
       "sourceRoot": "packages/core/src",
@@ -628,16 +9,12 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "packages/core/**/*.ts"
-            ]
+            "lintFilePatterns": ["packages/core/**/*.ts"]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/core"
-          ],
+          "outputs": ["coverage/packages/core"],
           "options": {
             "jestConfig": "packages/core/jest.config.js",
             "passWithNoTests": true
@@ -645,9 +22,7 @@
         },
         "build": {
           "executor": "@nrwl/node:package",
-          "outputs": [
-            "{options.outputPath}"
-          ],
+          "outputs": ["{options.outputPath}"],
           "options": {
             "outputPath": "dist/packages/core",
             "tsConfig": "packages/core/tsconfig.lib.json",
@@ -672,6 +47,34 @@
               }
             ]
           }
+        },
+        "version": {
+          "executor": "@jscutlery/semver:version",
+          "options": {
+            "versionTagPrefix": "${target}@"
+          }
+        }
+      }
+    },
+    "core-e2e": {
+      "projectType": "application",
+      "root": "e2e/core-e2e",
+      "sourceRoot": "e2e/core-e2e/src",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/nx-plugin:e2e",
+          "options": {
+            "target": "core:build",
+            "npmPackageName": "@nx-extend/core",
+            "pluginOutputPath": "dist/packages/core",
+            "jestConfig": "e2e/core-e2e/jest.config.js"
+          }
+        },
+        "version": {
+          "executor": "@jscutlery/semver:version",
+          "options": {
+            "versionTagPrefix": "${target}@"
+          }
         }
       }
     },
@@ -683,16 +86,12 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "packages/firebase-hosting/**/*.ts"
-            ]
+            "lintFilePatterns": ["packages/firebase-hosting/**/*.ts"]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/firebase-hosting"
-          ],
+          "outputs": ["coverage/packages/firebase-hosting"],
           "options": {
             "jestConfig": "packages/firebase-hosting/jest.config.js",
             "passWithNoTests": true
@@ -700,9 +99,7 @@
         },
         "build": {
           "executor": "@nrwl/node:package",
-          "outputs": [
-            "{options.outputPath}"
-          ],
+          "outputs": ["{options.outputPath}"],
           "options": {
             "outputPath": "dist/packages/firebase-hosting",
             "tsConfig": "packages/firebase-hosting/tsconfig.lib.json",
@@ -732,6 +129,12 @@
               }
             ]
           }
+        },
+        "version": {
+          "executor": "@jscutlery/semver:version",
+          "options": {
+            "versionTagPrefix": "${target}@"
+          }
         }
       }
     },
@@ -747,6 +150,538 @@
             "npmPackageName": "@nx-extend/firebase-hosting",
             "pluginOutputPath": "dist/packages/firebase-hosting",
             "jestConfig": "e2e/firebase-hosting-e2e/jest.config.js"
+          }
+        }
+      }
+    },
+    "gcp-cloud-run": {
+      "root": "packages/gcp-cloud-run",
+      "sourceRoot": "packages/gcp-cloud-run/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["packages/gcp-cloud-run/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/packages/gcp-cloud-run"],
+          "options": {
+            "jestConfig": "packages/gcp-cloud-run/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "executor": "@nrwl/node:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/packages/gcp-cloud-run",
+            "tsConfig": "packages/gcp-cloud-run/tsconfig.lib.json",
+            "packageJson": "packages/gcp-cloud-run/package.json",
+            "main": "packages/gcp-cloud-run/src/index.ts",
+            "assets": [
+              "packages/gcp-cloud-run/*.md",
+              {
+                "input": "./packages/gcp-cloud-run/src",
+                "glob": "**/*.!(ts)",
+                "output": "./src"
+              },
+              {
+                "input": "./packages/gcp-cloud-run",
+                "glob": "generators.json",
+                "output": "."
+              },
+              {
+                "input": "./packages/gcp-cloud-run",
+                "glob": "executors.json",
+                "output": "."
+              },
+              {
+                "input": "./packages/gcp-cloud-run",
+                "glob": "builders.json",
+                "output": "."
+              }
+            ]
+          }
+        },
+        "version": {
+          "executor": "@jscutlery/semver:version",
+          "options": {
+            "versionTagPrefix": "${target}@"
+          }
+        }
+      }
+    },
+    "gcp-cloud-run-e2e": {
+      "projectType": "application",
+      "root": "e2e/gcp-cloud-run-e2e",
+      "sourceRoot": "e2e/gcp-cloud-run-e2e/src",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/nx-plugin:e2e",
+          "options": {
+            "target": "gcp-cloud-run:build",
+            "npmPackageName": "@nx-extend/gcp-cloud-run",
+            "pluginOutputPath": "dist/packages/gcp-cloud-run",
+            "jestConfig": "e2e/gcp-cloud-run-e2e/jest.config.js"
+          }
+        }
+      }
+    },
+    "gcp-deployment-manager": {
+      "root": "packages/gcp-deployment-manager",
+      "sourceRoot": "packages/gcp-deployment-manager/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["packages/gcp-deployment-manager/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/packages/gcp-deployment-manager"],
+          "options": {
+            "jestConfig": "packages/gcp-deployment-manager/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "executor": "@nrwl/node:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/packages/gcp-deployment-manager",
+            "tsConfig": "packages/gcp-deployment-manager/tsconfig.lib.json",
+            "packageJson": "packages/gcp-deployment-manager/package.json",
+            "main": "packages/gcp-deployment-manager/src/index.ts",
+            "assets": [
+              "packages/gcp-deployment-manager/*.md",
+              {
+                "input": "./packages/gcp-deployment-manager/src",
+                "glob": "**/*.!(ts)",
+                "output": "./src"
+              },
+              {
+                "input": "./packages/gcp-deployment-manager",
+                "glob": "generators.json",
+                "output": "."
+              },
+              {
+                "input": "./packages/gcp-deployment-manager",
+                "glob": "executors.json",
+                "output": "."
+              },
+              {
+                "input": "./packages/gcp-deployment-manager",
+                "glob": "builders.json",
+                "output": "."
+              }
+            ]
+          }
+        },
+        "version": {
+          "executor": "@jscutlery/semver:version",
+          "options": {
+            "versionTagPrefix": "${target}@"
+          }
+        }
+      }
+    },
+    "gcp-deployment-manager-e2e": {
+      "projectType": "application",
+      "root": "e2e/gcp-deployment-manager-e2e",
+      "sourceRoot": "e2e/gcp-deployment-manager-e2e/src",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/nx-plugin:e2e",
+          "options": {
+            "target": "gcp-deployment-manager:build",
+            "npmPackageName": "@nx-extend/gcp-deployment-manager",
+            "pluginOutputPath": "dist/packages/gcp-deployment-manager",
+            "jestConfig": "e2e/gcp-deployment-manager-e2e/jest.config.js"
+          }
+        }
+      }
+    },
+    "gcp-functions": {
+      "root": "packages/gcp-functions",
+      "sourceRoot": "packages/gcp-functions/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["packages/gcp-functions/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/packages/gcp-functions"],
+          "options": {
+            "jestConfig": "packages/gcp-functions/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "executor": "@nrwl/node:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/packages/gcp-functions",
+            "tsConfig": "packages/gcp-functions/tsconfig.lib.json",
+            "packageJson": "packages/gcp-functions/package.json",
+            "main": "packages/gcp-functions/src/index.ts",
+            "assets": [
+              "packages/gcp-functions/*.md",
+              {
+                "input": "./packages/gcp-functions/src",
+                "glob": "**/*.!(ts)",
+                "output": "./src"
+              },
+              {
+                "input": "./packages/gcp-functions",
+                "glob": "generators.json",
+                "output": "."
+              },
+              {
+                "input": "./packages/gcp-functions",
+                "glob": "executors.json",
+                "output": "."
+              },
+              {
+                "input": "./packages/gcp-functions",
+                "glob": "builders.json",
+                "output": "."
+              }
+            ]
+          }
+        },
+        "version": {
+          "executor": "@jscutlery/semver:version",
+          "options": {
+            "versionTagPrefix": "${target}@"
+          }
+        }
+      }
+    },
+    "gcp-functions-e2e": {
+      "projectType": "application",
+      "root": "e2e/gcp-functions-e2e",
+      "sourceRoot": "e2e/gcp-functions-e2e/src",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/nx-plugin:e2e",
+          "options": {
+            "target": "gcp-functions:build",
+            "npmPackageName": "@nx-extend/gcp-functions",
+            "pluginOutputPath": "dist/packages/gcp-functions",
+            "jestConfig": "e2e/gcp-functions-e2e/jest.config.js"
+          }
+        }
+      }
+    },
+    "gcp-secrets": {
+      "root": "packages/gcp-secrets",
+      "sourceRoot": "packages/gcp-secrets/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["packages/gcp-secrets/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/packages/gcp-secrets"],
+          "options": {
+            "jestConfig": "packages/gcp-secrets/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "executor": "@nrwl/node:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/packages/gcp-secrets",
+            "tsConfig": "packages/gcp-secrets/tsconfig.lib.json",
+            "packageJson": "packages/gcp-secrets/package.json",
+            "main": "packages/gcp-secrets/src/index.ts",
+            "assets": [
+              "packages/gcp-secrets/*.md",
+              {
+                "input": "./packages/gcp-secrets/src",
+                "glob": "**/*.!(ts)",
+                "output": "./src"
+              },
+              {
+                "input": "./packages/gcp-secrets",
+                "glob": "generators.json",
+                "output": "."
+              },
+              {
+                "input": "./packages/gcp-secrets",
+                "glob": "executors.json",
+                "output": "."
+              },
+              {
+                "input": "./packages/gcp-secrets",
+                "glob": "builders.json",
+                "output": "."
+              }
+            ]
+          }
+        },
+        "version": {
+          "executor": "@jscutlery/semver:version",
+          "options": {
+            "versionTagPrefix": "${target}@"
+          }
+        }
+      }
+    },
+    "gcp-secrets-e2e": {
+      "projectType": "application",
+      "root": "e2e/gcp-secrets-e2e",
+      "sourceRoot": "e2e/gcp-secrets-e2e/src",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/nx-plugin:e2e",
+          "options": {
+            "target": "gcp-secrets:build",
+            "npmPackageName": "@nx-extend/gcp-secrets",
+            "pluginOutputPath": "dist/packages/gcp-secrets",
+            "jestConfig": "e2e/gcp-secrets-e2e/jest.config.js"
+          }
+        }
+      }
+    },
+    "gcp-storage": {
+      "root": "packages/gcp-storage",
+      "sourceRoot": "packages/gcp-storage/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["packages/gcp-storage/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/packages/gcp-storage"],
+          "options": {
+            "jestConfig": "packages/gcp-storage/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "executor": "@nrwl/node:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/packages/gcp-storage",
+            "tsConfig": "packages/gcp-storage/tsconfig.lib.json",
+            "packageJson": "packages/gcp-storage/package.json",
+            "main": "packages/gcp-storage/src/index.ts",
+            "assets": [
+              "packages/gcp-storage/*.md",
+              {
+                "input": "./packages/gcp-storage/src",
+                "glob": "**/*.!(ts)",
+                "output": "./src"
+              },
+              {
+                "input": "./packages/gcp-storage",
+                "glob": "generators.json",
+                "output": "."
+              },
+              {
+                "input": "./packages/gcp-storage",
+                "glob": "executors.json",
+                "output": "."
+              },
+              {
+                "input": "./packages/gcp-storage",
+                "glob": "builders.json",
+                "output": "."
+              }
+            ]
+          }
+        },
+        "version": {
+          "executor": "@jscutlery/semver:version",
+          "options": {
+            "versionTagPrefix": "${target}@"
+          }
+        }
+      }
+    },
+    "gcp-storage-e2e": {
+      "projectType": "application",
+      "root": "e2e/gcp-storage-e2e",
+      "sourceRoot": "e2e/gcp-storage-e2e/src",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/nx-plugin:e2e",
+          "options": {
+            "target": "gcp-storage:build",
+            "npmPackageName": "@nx-extend/gcp-storage",
+            "pluginOutputPath": "dist/packages/gcp-storage",
+            "jestConfig": "e2e/gcp-storage-e2e/jest.config.js"
+          }
+        }
+      }
+    },
+    "strapi": {
+      "root": "packages/strapi",
+      "sourceRoot": "packages/strapi/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["packages/strapi/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/packages/strapi"],
+          "options": {
+            "jestConfig": "packages/strapi/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "executor": "@nrwl/node:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/packages/strapi",
+            "tsConfig": "packages/strapi/tsconfig.lib.json",
+            "packageJson": "packages/strapi/package.json",
+            "main": "packages/strapi/src/index.ts",
+            "assets": [
+              "packages/strapi/*.md",
+              {
+                "input": "./packages/strapi/src",
+                "glob": "**/*.!(ts)",
+                "output": "./src"
+              },
+              {
+                "input": "./packages/strapi",
+                "glob": "generators.json",
+                "output": "."
+              },
+              {
+                "input": "./packages/strapi",
+                "glob": "executors.json",
+                "output": "."
+              },
+              {
+                "input": "./packages/strapi",
+                "glob": "builders.json",
+                "output": "."
+              }
+            ]
+          }
+        },
+        "version": {
+          "executor": "@jscutlery/semver:version",
+          "options": {
+            "versionTagPrefix": "${target}@"
+          }
+        }
+      }
+    },
+    "strapi-e2e": {
+      "projectType": "application",
+      "root": "e2e/strapi-e2e",
+      "sourceRoot": "e2e/strapi-e2e/src",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/nx-plugin:e2e",
+          "options": {
+            "target": "strapi:build",
+            "npmPackageName": "@nx-extend/strapi",
+            "pluginOutputPath": "dist/packages/strapi",
+            "jestConfig": "e2e/strapi-e2e/jest.config.js"
+          }
+        }
+      }
+    },
+    "translations": {
+      "root": "packages/translations",
+      "sourceRoot": "packages/translations/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["packages/translations/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/packages/translations"],
+          "options": {
+            "jestConfig": "packages/translations/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "executor": "@nrwl/node:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/packages/translations",
+            "tsConfig": "packages/translations/tsconfig.lib.json",
+            "packageJson": "packages/translations/package.json",
+            "main": "packages/translations/src/index.ts",
+            "assets": [
+              "packages/translations/*.md",
+              {
+                "input": "./packages/translations/src",
+                "glob": "**/*.!(ts)",
+                "output": "./src"
+              },
+              {
+                "input": "./packages/translations",
+                "glob": "generators.json",
+                "output": "."
+              },
+              {
+                "input": "./packages/translations",
+                "glob": "executors.json",
+                "output": "."
+              },
+              {
+                "input": "./packages/translations",
+                "glob": "builders.json",
+                "output": "."
+              }
+            ]
+          }
+        },
+        "version": {
+          "executor": "@jscutlery/semver:version",
+          "options": {
+            "versionTagPrefix": "${target}@"
+          }
+        }
+      }
+    },
+    "translations-e2e": {
+      "projectType": "application",
+      "root": "e2e/translations-e2e",
+      "sourceRoot": "e2e/translations-e2e/src",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/nx-plugin:e2e",
+          "options": {
+            "target": "translations:build",
+            "npmPackageName": "@nx-extend/traduora",
+            "pluginOutputPath": "dist/packages/traduora",
+            "jestConfig": "e2e/translations-e2e/jest.config.js"
           }
         }
       }

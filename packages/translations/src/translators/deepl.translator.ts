@@ -1,5 +1,9 @@
 import axios from 'axios'
 import * as pMap from 'p-map'
+import { BuilderContext } from '@angular-devkit/architect'
+
+import { BaseConfigFile } from '../utils/config-file'
+import BaseProvider from '../providers/base.provider'
 
 export interface Message {
 
@@ -9,44 +13,75 @@ export interface Message {
 
 }
 
-export interface Options {
-
-  /**
-   * Sets whether the translated text should lean towards formal or informal language. This feature
-   * currently only works for target languages
-   * - "DE" (German)
-   * - "FR" (French
-   * - "IT" (Italian)
-   * - "ES" (Spanish)
-   * - "NL" (Dutch)
-   * - "PL" (Polish)
-   * - "PT-PT"
-   * - "PT-BR" (Portuguese)
-   * - "RU" (Russian)
-   *
-   * Possible options are:
-   * "default" (default)
-   * "more" - for a more formal language
-   * "less" - for a more informal language
-   */
-  formality?: 'default' | 'more' | 'less'
-
-}
-
 export default class DeeplTranslator {
 
   private readonly apiKey = process.env.DEEPL_API_KEY
 
   private readonly endpoint: string
 
-  private readonly options: Options
+  private readonly context: BuilderContext
 
-  constructor(endpoint: string, options: Options) {
+  private readonly config: BaseConfigFile
+
+  constructor(context: BuilderContext, config: BaseConfigFile, endpoint: string) {
     this.endpoint = endpoint
-    this.options = options
+    this.context = context
+    this.config = config
   }
 
-  public async translate(messages: Message[], fromLocale: string, toLocale: string) {
+  public async translateAll<Provider extends BaseProvider<BaseConfigFile>>(provider: Provider) {
+    if (!this.apiKey) {
+      throw new Error('No "DEEPL_API_KEY" defined!')
+    }
+
+    // All the languages
+    const languages = [...this.config.languages]
+
+    // Source terms
+    const sourceTerms = provider.getSourceTerms()
+
+    while (languages.length > 0) {
+      const code = languages.shift()
+
+      if (code !== this.config.defaultLanguage) {
+        const terms = await provider.getTranslations(code)
+
+        const toTranslate = []
+
+        Object.keys(terms)
+          .forEach((term) => {
+            const content = terms[term]
+
+            // If term is not defined use the source term
+            if (!content || content.length === 0) {
+              toTranslate.push({
+                key: term,
+                value: sourceTerms[term]
+              })
+            }
+          })
+
+        console.log('\r\n')
+        const translatorTerms = await this.translate(toTranslate, code)
+        const translatedTerms = {}
+
+        translatorTerms.map((translatorTerm) => {
+          translatedTerms[translatorTerm.key] = translatorTerm.value
+        })
+
+        // Get the existing terms from file
+        const existingTerms = provider.getLanguageTerms(code)
+
+        // Merge translated terms with existing
+        provider.writeLocaleToFile(code, Object.assign(existingTerms, translatedTerms))
+
+        // Upload the translations to the provider
+        await provider.uploadTranslations(code, translatedTerms)
+      }
+    }
+  }
+
+  public async translate(messages: Message[], toLocale: string) {
     if (!this.apiKey) {
       throw new Error('No "DEEPL_API_KEY" defined!')
     }
@@ -54,7 +89,9 @@ export default class DeeplTranslator {
     return pMap(
       messages,
       async (message, index) => {
-        console.log(`Translating message ${index + 1} of ${messages.length}`)
+        process.stdout.clearLine(-1)
+        process.stdout.cursorTo(0)
+        process.stdout.write(`[DeepL] Translating "${toLocale}" ${(((index + 1) / messages.length) * 100).toFixed(2)}%`)
 
         const url = [
           `${this.endpoint}/v2/translate?`,
@@ -65,11 +102,11 @@ export default class DeeplTranslator {
               .replace(/}/g, '</deepSkip>')
           }`,
           `target_lang=${toLocale}`,
-          `source_lang=${fromLocale}`,
+          `source_lang=${this.config.defaultLanguage}`,
           'preserve_formatting=1',
           'tag_handling=xml',
           'ignore_tags=deepSkip',
-          this.options.formality && `formality=${this.options.formality}`
+          this.config?.translatorOptions?.formality && `formality=${this.config.translatorOptions.formality}`
         ].filter(Boolean)
 
         const { status, data: { translations } } = await axios.get(url.join('&'))
