@@ -43,25 +43,25 @@ export async function runBuilder(options: DeployExecutorSchema, context: Builder
     'gcloud functions deploy',
     functionName,
     `--trigger-${trigger}${triggerValue ? `=${triggerValue}` : ''}`,
-    triggerEvent ? `--trigger-event=${triggerEvent}` : false,
+    triggerEvent && `--trigger-event=${triggerEvent}`,
     `--runtime=${runtime}`,
     `--memory=${memory}`,
     `--region=${region}`,
 
-    entryPoint ? `--entry-point=${entryPoint}` : false,
-    envVarsFile ? `--env-vars-file=${envVarsFile}` : false,
-    retry ? `--retry` : false,
-    ingressSettings ? `--ingress-settings=${ingressSettings}` : false,
-    egressSettings ? `--egress-settings=${egressSettings}` : false,
-    securityLevel ? `--security-level=${securityLevel}` : false,
+    entryPoint && `--entry-point=${entryPoint}`,
+    envVarsFile && `--env-vars-file=${envVarsFile}`,
+    retry && `--retry`,
+    ingressSettings && `--ingress-settings=${ingressSettings}`,
+    egressSettings && `--egress-settings=${egressSettings}`,
+    securityLevel && `--security-level=${securityLevel}`,
 
     `--source=${sourceDirectory}`,
     `--max-instances=${maxInstances}`,
 
-    allowUnauthenticated ? '--allow-unauthenticated' : false,
-    serviceAccount ? `--service-account=${serviceAccount}` : false,
+    allowUnauthenticated && '--allow-unauthenticated',
+    serviceAccount && `--service-account=${serviceAccount}`,
 
-    project ? `--project=${project}` : false
+    project && `--project=${project}`
   ]))
 }
 
