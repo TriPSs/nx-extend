@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [2.0.1](https://github.com/TriPSs/nx-extend/compare/gcp-cloud-run@2.0.0...gcp-cloud-run@2.0.1) (2021-10-08)
+
+
+### Bug Fixes
+
+* Fixed revisionSuffix always being added ([366ee2e](https://github.com/TriPSs/nx-extend/commit/366ee2eecb4948930d164060cbc9dfa66976e7e4))
+
+
+
 # [2.0.0](https://github.com/TriPSs/nx-extend/compare/gcp-cloud-run@1.2.0...gcp-cloud-run@2.0.0) (2021-10-08)
 
 
