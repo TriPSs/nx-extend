@@ -1,5 +1,6 @@
 const { logger } = require('@nrwl/devkit')
 const { execSync } = require('child_process')
+const core = require('@actions/core')
 
 const target = process.argv[2]
 const headRef = process.argv[5]
@@ -32,12 +33,12 @@ if (affectedProjects.length > 0) {
     while (affectedProjects.length > 0) {
       const project = affectedProjects.shift()
 
-      // Try to publish the package
+      // Try to Publish the package
       try {
         execSync(`npm publish ./dist/packages/${project} --access public`, { stdio: 'inherit' })
 
       } catch (err) {
-        console.warn(err)
+        core.warning(`Error publishing ${project}`, err)
       }
     }
 
