@@ -1,313 +1,171 @@
-import { resolve } from 'path'
-import { readFileSync, createReadStream, writeFileSync, unlinkSync } from 'fs'
-import BaseProvider, { ExtractSettings } from './base.provider'
-import axios from 'axios'
+import axios, { AxiosInstance } from 'axios'
 import * as FormData from 'form-data'
-import { injectProjectRoot } from '../utils'
-import { getTranslator } from '../translators'
 
-export interface TraduoraConfig extends ExtractSettings {
+import BaseProvider from './base.provider'
+import { BaseConfigFile, updateConfigFile } from '../utils/config-file'
+
+export interface TraduoraConfig extends BaseConfigFile {
 
   baseUrl: string
-
-  projectId: string
-
-  clientId?: string
-
-  /**
-   * If provided try to get the client id from this env variable
-   */
-  clientIdEnv?: string
-
-  clientSecret?: string
-
-  /**
-   * If provided try to get the client secret from this env variable
-   */
-  clientSecretEnv?: string
-
-  outputLocals?: string
-
-  translator?: string
-
-  translatorOptions?: {
-    [key: string]: never
-  }
 
 }
 
 export default class Traduora extends BaseProvider<TraduoraConfig> {
 
-  getExtractSettings(): ExtractSettings {
-    return {
-      defaultLocale: this.config.defaultLocale,
-      outputDirectory: this.config.outputDirectory,
-      extractor: this.config.extractor
-    }
-  }
+  private apiClient: AxiosInstance
 
-  public async pull() {
-    const token = await this.getToken()
+  private token = null
 
-    this.context.logger.info('Uploading file to Traduora')
-    const locals = await this.getLocals(token)
-
-    // If outputLocals is defined then store the locals there
-    if (this.config.outputLocals) {
-      writeFileSync(
-        injectProjectRoot(this.config.outputLocals, this.projectRoot, this.context.workspaceRoot),
-        JSON.stringify(
-          locals.map(({ locale }) => ({
-              code: locale.code,
-              language: locale.language
-            })
-          ), null, 2)
-      )
-    }
-
-    const terms = await this.getTerms(token)
-
-    const defaultTerms = await this.getDefaultTerms(token)
-
-    await Promise.all(locals.map(async ({ locale: { code, language } }) => {
-      if (code !== this.config.defaultLocale) {
-        this.context.logger.info(`Pulling ${language}`)
-
-        const writeTo = resolve(
-          injectProjectRoot(this.config.outputDirectory, this.projectRoot, this.context.workspaceRoot),
-          `${code}.json`
-        )
-
-        try {
-          const languageTerms = await this.getLanguageTerms(token, code)
-
-          const translatedData = defaultTerms.reduce((newTranslations, defaultTerm) => {
-            const term = terms.find((term) => (
-              term.id === defaultTerm.termId
-            ))
-
-            const translationTerm = languageTerms.find((term) => (
-              term.termId === defaultTerm.termId
-            ))
-
-            return {
-              ...newTranslations,
-              [term.value]: translationTerm?.value || defaultTerm?.value || ''
-            }
-          }, {})
-
-          this.writeLocaleToFile(writeTo, translatedData)
-
-        } catch (err) {
-          this.context.logger.error(`Error pulling the ${language} language`)
-          console.error(err.message)
-        }
-      }
-    }))
-  }
-
-  public async push() {
-    const token = await this.getToken()
-
-    await this.uploadLocale(
-      token,
-      this.config.defaultLocale,
-      injectProjectRoot(this.sourceFile, this.projectRoot, this.context.workspaceRoot)
+  public async getTranslations(code: string): Promise<{ [key: string]: string }> {
+    const { data: { data: terms } } = await this.apiClient.get(
+      `/api/v1/projects/${this.config.projectId}/terms`
     )
 
-    this.context.logger.info('Translations uploaded!')
-  }
-
-  public async translate() {
-    const translator = getTranslator(this.config.translator, this.context, this.config.translatorOptions)
-
-    if (!translator) {
-      throw new Error('No translator!')
-    }
-
-    const token = await this.getToken()
-
-    this.context.logger.info('Fetch all locals')
-    const locals = await this.getLocals(token)
-
-    this.context.logger.info('Fetch all terms')
-    const terms = await this.getTerms(token)
-
-    this.context.logger.info('Fetch all fallback terms')
-    const defaultTerms = await this.getDefaultTerms(token)
-
-    await Promise.all(locals.map(async ({ locale: { code, language } }) => {
-      if (code !== this.config.defaultLocale) {
-        this.context.logger.info(`Translating ${language}`)
-
-        const writeTo = resolve(
-          injectProjectRoot(this.config.outputDirectory, this.projectRoot, this.context.workspaceRoot),
-          `${code}.json`
-        )
-
-        const languageTerms = await this.getLanguageTerms(token, code)
-
-        const toTranslate = []
-
-        defaultTerms.forEach((defaultTerm) => {
-          const term = terms.find((term) => (
-            term.id === defaultTerm.termId
-          ))
-
-          const languageTerm = languageTerms.find((term) => (
-            term.termId === defaultTerm.termId
-          ))
-
-          if (!languageTerm || !languageTerm.value) {
-            toTranslate.push({
-              key: term.value,
-              value: defaultTerm.value
-            })
-          }
-        })
-
-        this.context.logger.info(`${toTranslate.length} terms in need of translating`)
-
-        const translatorTerms = await translator.translate(toTranslate, this.config.defaultLocale, code)
-        const translatedTerms = {}
-
-        translatorTerms.map((translatorTerm) => {
-          translatedTerms[translatorTerm.key] = translatorTerm.value
-        })
-
-        const existingTerms = JSON.parse(readFileSync(writeTo, 'utf8'))
-
-        const tempFile = `${writeTo}.tmp`
-
-        // Merge translated terms with existing
-        this.writeLocaleToFile(writeTo, {
-          ...existingTerms,
-          ...translatedTerms
-        })
-
-        this.writeLocaleToFile(tempFile, translatedTerms)
-        await this.uploadLocale(token, code, tempFile)
-
-        // Remove the tmp file
-        unlinkSync(tempFile)
-      }
-    }))
-  }
-
-  public getConfigFile(): Promise<TraduoraConfig> {
-    return JSON.parse(readFileSync(resolve(this.projectRoot, '.traduorarc.json'), 'utf8'))
-  }
-
-  private async getToken(): Promise<string> {
-    this.context.logger.info('Fetching token from Traduora')
-
-    let clientId = this.config.clientId || process.env.TRADUORA_CLIENT_ID
-    let clientSecret = this.config.clientSecret || process.env.TRADUORA_CLIENT_SECRET
-
-    if (!clientId && this.config.clientIdEnv) {
-      clientId = process.env[this.config.clientIdEnv]
-    }
-
-    if (!clientSecret && this.config.clientSecretEnv) {
-      clientSecret = process.env[this.config.clientSecretEnv]
-    }
-
-    if (!clientId) {
-      throw new Error('No clientId provided! Add "TRADUORA_CLIENT_ID" to your environment variables!')
-    }
-
-    if (!clientSecret) {
-      throw new Error('No clientId provided! Add "TRADUORA_CLIENT_SECRET" to your environment variables!')
-    }
-
-    const { data } = await axios.post(
-      `${this.config.baseUrl}/api/v1/auth/token`,
-      {
-        'grant_type': 'client_credentials',
-        'client_id': clientId,
-        'client_secret': clientSecret
-      }
+    const { data: { data } } = await this.apiClient.get(
+      `/api/v1/projects/${this.config.projectId}/translations/${code}`
     )
 
-    return data.access_token
+    const translations = {}
+
+    terms.forEach((term) => {
+      const translation = data.find(({ termId }) => termId === term.id)
+
+      translations[term.value] = translation?.value ?? ''
+    })
+
+    return translations
   }
 
-  private async getTerms(token) {
-    const { data: { data: terms } } = await axios.get(
-      `${this.config.baseUrl}/api/v1/projects/${this.config.projectId}/terms`,
-      {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      }
-    )
-
-    return terms
-  }
-
-  private async getDefaultTerms(token) {
-    return this.getLanguageTerms(token, this.config.defaultLocale)
-  }
-
-  private async getLanguageTerms(token: string, code: string) {
-    const { data: { data: terms } } = await axios.get(
-      `${this.config.baseUrl}/api/v1/projects/${this.config.projectId}/translations/${code}`,
-      {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      }
-    )
-
-    return terms
-  }
-
-  private async getLocals(token) {
-    const { data: { data: locals } } = await axios.get(
-      `${this.config.baseUrl}/api/v1/projects/${this.config.projectId}/translations`,
-      {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      }
-    )
-
-    return locals
-  }
-
-  private async uploadLocale(token, locale, sourceFile) {
+  public async uploadTranslations(language: string, translations: { [p: string]: string }): Promise<boolean> {
     const form = new FormData()
 
-    form.append('file', createReadStream(sourceFile))
+    form.append('file', Buffer.from(JSON.stringify(translations)), {
+      filename: `${language}.json`
+    })
 
-    this.context.logger.info(`Uploading ${locale} to Traduora`)
-    await axios.post(
-      `${this.config.baseUrl}/api/v1/projects/${this.config.projectId}/imports?format=jsonflat&locale=${locale}`,
+    this.context.logger.info(`Uploading ${language} to Traduora`)
+    await this.apiClient.post(
+      `/api/v1/projects/${this.config.projectId}/imports?format=jsonflat&locale=${language}`,
       form,
       {
         headers: {
-          'Authorization': `Bearer ${token}`,
+          'Authorization': `Bearer ${await this.getToken()}`,
           ...form.getHeaders()
         }
       }
     )
 
+    return true
   }
 
-  private writeLocaleToFile(location, translatedData) {
-    writeFileSync(
-      location,
-      JSON.stringify(
-        Object.keys(translatedData)
-          .sort()
-          .reduce((sortedTranslations, key) => {
-            sortedTranslations[key] = translatedData[key]
+  protected async assureRequirementsExists() {
+    await this.assureApiClientExists()
+    await this.assureProjectExists()
+    await this.assureLanguageExists()
+  }
 
-            return sortedTranslations
-          }, {}),
-        null,
-        2
-      )
+  private async assureApiClientExists() {
+    if (!this.config.baseUrl) {
+      throw new Error('No "baseUrl" defined in config!')
+    }
+
+    this.apiClient = axios.create({
+      baseURL: this.config.baseUrl,
+      headers: {
+        'Authorization': `Bearer ${await this.getToken()}`
+      }
+    })
+  }
+
+  private async assureProjectExists() {
+    if (this.config.projectId) {
+      return true
+    }
+
+    if (!this.config.projectName) {
+      throw new Error('No "projectName" or "projectId" provided!')
+    }
+
+    const { data: { data } } = await this.apiClient.get('/api/v1/projects')
+
+    let project = data.find((project) => project.name === this.config.projectName)
+
+    if (!project) {
+      this.context.logger.info(`Project "${this.config.projectName}" does not exist, going to create it!`)
+
+      const { data: { data: { id } } } = await this.apiClient.post('/api/v1/projects', {
+        name: this.config.projectName
+      })
+
+      project = {
+        id
+      }
+
+    } else {
+      this.context.logger.info(`Found "${this.config.projectName}" project, storing id in config`)
+    }
+
+    // Update the config file
+    await updateConfigFile(this.context, {
+      projectId: project.id
+    })
+
+    // Update the current config
+    this.config = Object.assign(this.config, {
+      projectId: project.id
+    })
+  }
+
+  private async assureLanguageExists() {
+    if (!this.config.languages || this.config.languages.length === 0) {
+      throw new Error('No "languages" defined!')
+    }
+
+    const { data: { data } } = await this.apiClient.get(`/api/v1/projects/${this.config.projectId}/translations`)
+
+    const existingCodes = data.map(({ locale }) => locale.code)
+
+    const nonExistingCodes = [...this.config.languages]
+      .filter((code) => !existingCodes.includes(code))
+
+    while (nonExistingCodes.length > 0) {
+      const code = nonExistingCodes.shift()
+      this.context.logger.info(`Going add language "${code}" to project "${this.config.projectName}"`)
+
+      await this.apiClient.post(`/api/v1/projects/${this.config.projectId}/translations`, {
+        code
+      })
+    }
+  }
+
+  private async getToken(): Promise<string> {
+    if (this.token) {
+      return this.token
+    }
+
+    this.context.logger.info('Fetching token from Traduora')
+
+    const username = process.env.NX_EXTEND_TRADUORA_USERNAME
+    const password = process.env.NX_EXTEND_TRADUORA_PASSWORD
+
+    if (!username) {
+      throw new Error('No username provided! Add "NX_EXTEND_TRADUORA_USERNAME" to your environment variables!')
+    }
+
+    if (!password) {
+      throw new Error('No password provided! Add "NX_EXTEND_TRADUORA_PASSWORD" to your environment variables!')
+    }
+
+    const { data } = await axios.post(
+      `${this.config.baseUrl}/api/v1/auth/token`,
+      {
+        grant_type: 'password',
+        username,
+        password
+      }
     )
+
+    return this.token = data.access_token
   }
+
 }

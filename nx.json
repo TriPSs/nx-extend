@@ -23,6 +23,55 @@
     }
   },
   "projects": {
+    "core": {
+      "tags": []
+    },
+    "core-e2e": {
+      "tags": [],
+      "implicitDependencies": ["core"]
+    },
+    "firebase-hosting": {
+      "tags": []
+    },
+    "firebase-hosting-e2e": {
+      "tags": [],
+      "implicitDependencies": ["firebase-hosting"]
+    },
+    "gcp-cloud-run": {
+      "tags": []
+    },
+    "gcp-cloud-run-e2e": {
+      "tags": [],
+      "implicitDependencies": ["gcp-cloud-run"]
+    },
+    "gcp-deployment-manager": {
+      "tags": []
+    },
+    "gcp-deployment-manager-e2e": {
+      "tags": [],
+      "implicitDependencies": ["gcp-deployment-manager"]
+    },
+    "gcp-functions": {
+      "tags": []
+    },
+    "gcp-functions-e2e": {
+      "tags": [],
+      "implicitDependencies": ["gcp-functions"]
+    },
+    "gcp-secrets": {
+      "tags": []
+    },
+    "gcp-secrets-e2e": {
+      "tags": [],
+      "implicitDependencies": ["gcp-secrets"]
+    },
+    "gcp-storage": {
+      "tags": []
+    },
+    "gcp-storage-e2e": {
+      "tags": [],
+      "implicitDependencies": ["gcp-storage"]
+    },
     "strapi": {
       "tags": []
     },
@@ -36,62 +85,6 @@
     "translations-e2e": {
       "tags": [],
       "implicitDependencies": ["translations"]
-    },
-    "gcp-functions": {
-      "tags": []
-    },
-    "gcp-functions-e2e": {
-      "tags": [],
-      "implicitDependencies": ["gcp-functions"]
-    },
-    "gcp-storage": {
-      "tags": []
-    },
-    "gcp-storage-e2e": {
-      "tags": [],
-      "implicitDependencies": ["gcp-storage"]
-    },
-    "core-e2e": {
-      "tags": [],
-      "implicitDependencies": ["core"]
-    },
-    "gcp-deployment-manager": {
-      "tags": []
-    },
-    "gcp-deployment-manager-e2e": {
-      "tags": [],
-      "implicitDependencies": ["gcp-deployment-manager"]
-    },
-    "conventional-changelog": {
-      "tags": []
-    },
-    "conventional-changelog-e2e": {
-      "tags": [],
-      "implicitDependencies": ["conventional-changelog"]
-    },
-    "gcp-cloud-run": {
-      "tags": []
-    },
-    "gcp-cloud-run-e2e": {
-      "tags": [],
-      "implicitDependencies": ["gcp-cloud-run"]
-    },
-    "gcp-secrets": {
-      "tags": []
-    },
-    "gcp-secrets-e2e": {
-      "tags": [],
-      "implicitDependencies": ["gcp-secrets"]
-    },
-    "core": {
-      "tags": []
-    },
-    "firebase-hosting": {
-      "tags": []
-    },
-    "firebase-hosting-e2e": {
-      "tags": [],
-      "implicitDependencies": ["firebase-hosting"]
     }
   },
   "workspaceLayout": {
