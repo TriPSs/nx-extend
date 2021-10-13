@@ -11,11 +11,11 @@ export async function runBuilder(
   context: BuilderContext
 ): Promise<{ success: boolean }> {
   const projectMeta = await context.getProjectMetadata(context.target.project)
-  const projectRoot = `${context.workspaceRoot}/${projectMeta.root}`
+  const projectSourceRoot = `${context.workspaceRoot}/${projectMeta.sourceRoot}`
 
   if (isEncryptionKeySet()) {
     try {
-      const files = getAllSecretFiles(projectRoot)
+      const files = getAllSecretFiles(projectSourceRoot)
 
       files.map((file) => {
         const fileName = getFileName(file)
@@ -39,7 +39,7 @@ export async function runBuilder(
 
       return { success: true }
     } catch (err) {
-      context.logger.error(`Error happend trying to encrypt files: ${err.message || err}`)
+      context.logger.error(`Error happened trying to encrypt files: ${err.message || err}`)
       console.error(err.trace)
 
       return { success: false }
