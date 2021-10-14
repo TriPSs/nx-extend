@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [1.0.4](https://github.com/TriPSs/nx-extend/compare/firebase-hosting@1.0.3...firebase-hosting@1.0.4) (2021-10-14)
+
+
+### Bug Fixes
+
+* **translations:** Fixed Transifex provider ([c8f9953](https://github.com/TriPSs/nx-extend/commit/c8f9953e01b62cf7687846c6068a5db666850980))
+
+
+
 ## [1.0.3](https://github.com/TriPSs/nx-extend/compare/firebase-hosting@1.0.2...firebase-hosting@1.0.3) (2021-10-08)
 
 

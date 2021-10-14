@@ -1,6 +1,6 @@
 {
   "name": "@nx-extend/firebase-hosting",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "main": "src/index.js",
   "generators": "./generators.json",
   "executors": "./executors.json",
