@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "cli": "nx",
+  "id": "translations",
+  "title": "",
+  "type": "object",
+  "properties": {
+    "target": {
+      "type": "string",
+      "description": "",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": "To what app would you like to add translations?"
+    }
+  },
+  "required": [
+    "target"
+  ]
+}
