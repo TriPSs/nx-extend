@@ -1,0 +1,18 @@
+{
+  "projectType": "application",
+  "root": "e2e/gcp-cloud-run-e2e",
+  "sourceRoot": "e2e/gcp-cloud-run-e2e/src",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/nx-plugin:e2e",
+      "options": {
+        "target": "gcp-cloud-run:build",
+        "npmPackageName": "@nx-extend/gcp-cloud-run",
+        "pluginOutputPath": "dist/packages/gcp-cloud-run",
+        "jestConfig": "e2e/gcp-cloud-run-e2e/jest.config.js"
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["gcp-cloud-run"]
+}

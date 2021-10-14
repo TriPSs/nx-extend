@@ -3,9 +3,11 @@
 Extract/upload translations from your NX projects
 
 ## Steps
+
 1. Create a `.translationsrc.json` inside your project
 
 Example config
+
 ```json
 {
   "provider": "traduora",

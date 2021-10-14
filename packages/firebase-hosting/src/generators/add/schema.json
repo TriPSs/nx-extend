@@ -24,5 +24,8 @@
       "x-prompt": "What is the Firebase site name?"
     }
   },
-  "required": ["target", "site"]
+  "required": [
+    "target",
+    "site"
+  ]
 }

@@ -1,0 +1,67 @@
+{
+  "root": "packages/firebase-hosting",
+  "sourceRoot": "packages/firebase-hosting/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "packages/firebase-hosting/**/*.ts"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "coverage/packages/firebase-hosting"
+      ],
+      "options": {
+        "jestConfig": "packages/firebase-hosting/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "build": {
+      "executor": "@nrwl/node:package",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "outputPath": "dist/packages/firebase-hosting",
+        "tsConfig": "packages/firebase-hosting/tsconfig.lib.json",
+        "packageJson": "packages/firebase-hosting/package.json",
+        "main": "packages/firebase-hosting/src/index.ts",
+        "assets": [
+          "packages/firebase-hosting/*.md",
+          {
+            "input": "./packages/firebase-hosting/src",
+            "glob": "**/!(*.ts)",
+            "output": "./src"
+          },
+          {
+            "input": "./packages/firebase-hosting/src",
+            "glob": "**/*.d.ts",
+            "output": "./src"
+          },
+          {
+            "input": "./packages/firebase-hosting",
+            "glob": "generators.json",
+            "output": "."
+          },
+          {
+            "input": "./packages/firebase-hosting",
+            "glob": "executors.json",
+            "output": "."
+          }
+        ]
+      }
+    },
+    "version": {
+      "executor": "@jscutlery/semver:version",
+      "options": {
+        "versionTagPrefix": "${target}@"
+      }
+    }
+  },
+  "tags": []
+}

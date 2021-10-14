@@ -215,7 +215,7 @@ export default class Transifex extends BaseProvider<TransifexConfig> {
    * Get's from the Transifex API and if there is a next link also retrieves that
    */
   private async getFromAPI(uri: string, params = {}) {
-    const { data: { links, ...response } } = await this.apiClient.get(
+    const { data: { links, ...response } } = await this.apiClient.get<any>(
       uri,
       {
         params,

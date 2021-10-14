@@ -17,11 +17,11 @@ export default class Traduora extends BaseProvider<TraduoraConfig> {
   private token = null
 
   public async getTranslations(code: string): Promise<{ [key: string]: string }> {
-    const { data: { data: terms } } = await this.apiClient.get(
+    const { data: { data: terms } } = await this.apiClient.get<any>(
       `/api/v1/projects/${this.config.projectId}/terms`
     )
 
-    const { data: { data } } = await this.apiClient.get(
+    const { data: { data } } = await this.apiClient.get<any>(
       `/api/v1/projects/${this.config.projectId}/translations/${code}`
     )
 
@@ -86,14 +86,14 @@ export default class Traduora extends BaseProvider<TraduoraConfig> {
       throw new Error('No "projectName" or "projectId" provided!')
     }
 
-    const { data: { data } } = await this.apiClient.get('/api/v1/projects')
+    const { data: { data } } = await this.apiClient.get<any>('/api/v1/projects')
 
     let project = data.find((project) => project.name === this.config.projectName)
 
     if (!project) {
       this.context.logger.info(`Project "${this.config.projectName}" does not exist, going to create it!`)
 
-      const { data: { data: { id } } } = await this.apiClient.post('/api/v1/projects', {
+      const { data: { data: { id } } } = await this.apiClient.post<any>('/api/v1/projects', {
         name: this.config.projectName
       })
 
@@ -121,7 +121,7 @@ export default class Traduora extends BaseProvider<TraduoraConfig> {
       throw new Error('No "languages" defined!')
     }
 
-    const { data: { data } } = await this.apiClient.get(`/api/v1/projects/${this.config.projectId}/translations`)
+    const { data: { data } } = await this.apiClient.get<any>(`/api/v1/projects/${this.config.projectId}/translations`)
 
     const existingCodes = data.map(({ locale }) => locale.code)
 
@@ -156,7 +156,7 @@ export default class Traduora extends BaseProvider<TraduoraConfig> {
       throw new Error('No password provided! Add "NX_EXTEND_TRADUORA_PASSWORD" to your environment variables!')
     }
 
-    const { data } = await axios.post(
+    const { data } = await axios.post<{ access_token: string }>(
       `${this.config.baseUrl}/api/v1/auth/token`,
       {
         grant_type: 'password',

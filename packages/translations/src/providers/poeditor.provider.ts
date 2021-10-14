@@ -55,7 +55,7 @@ export default class Poeditor extends BaseProvider<PoeditorConfig> {
 
     const translations: { [key: string]: string } = {}
 
-    const { data } = await this.apiClient.post(
+    const { data } = await this.apiClient.post<any>(
       '/terms/list',
       form,
       {
@@ -119,7 +119,7 @@ export default class Poeditor extends BaseProvider<PoeditorConfig> {
     let form = new FormData()
     form.append('api_token', this.getToken())
 
-    const { data: { result: { projects } } } = await this.apiClient.post(
+    const { data: { result: { projects } } } = await this.apiClient.post<any>(
       '/projects/list',
       form,
       {
@@ -136,7 +136,7 @@ export default class Poeditor extends BaseProvider<PoeditorConfig> {
       form.append('api_token', this.getToken())
       form.append('name', this.config.projectName)
 
-      const { data: { result } } = await this.apiClient.post(
+      const { data: { result } } = await this.apiClient.post<any>(
         '/projects/add',
         form,
         {
@@ -183,7 +183,7 @@ export default class Poeditor extends BaseProvider<PoeditorConfig> {
     form.append('api_token', this.getToken())
     form.append('id', this.config.projectId)
 
-    const { data: { result: { languages } } } = await this.apiClient.post(
+    const { data: { result: { languages } } } = await this.apiClient.post<any>(
       '/languages/list',
       form,
       {
@@ -204,7 +204,7 @@ export default class Poeditor extends BaseProvider<PoeditorConfig> {
       form.append('id', this.config.projectId)
       form.append('language', code)
 
-      const { data: { response: { status } } } = await this.apiClient.post(
+      const { data: { response: { status } } } = await this.apiClient.post<any>(
         '/languages/add',
         form,
         {

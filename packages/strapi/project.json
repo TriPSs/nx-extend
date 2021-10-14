@@ -1,0 +1,67 @@
+{
+  "root": "packages/strapi",
+  "sourceRoot": "packages/strapi/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "packages/strapi/**/*.ts"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "coverage/packages/strapi"
+      ],
+      "options": {
+        "jestConfig": "packages/strapi/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "build": {
+      "executor": "@nrwl/node:package",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "outputPath": "dist/packages/strapi",
+        "tsConfig": "packages/strapi/tsconfig.lib.json",
+        "packageJson": "packages/strapi/package.json",
+        "main": "packages/strapi/src/index.ts",
+        "assets": [
+          "packages/strapi/*.md",
+          {
+            "input": "./packages/strapi/src",
+            "glob": "**/*.!(ts)",
+            "output": "./src"
+          },
+          {
+            "input": "./packages/strapi",
+            "glob": "generators.json",
+            "output": "."
+          },
+          {
+            "input": "./packages/strapi",
+            "glob": "executors.json",
+            "output": "."
+          },
+          {
+            "input": "./packages/strapi",
+            "glob": "builders.json",
+            "output": "."
+          }
+        ]
+      }
+    },
+    "version": {
+      "executor": "@jscutlery/semver:version",
+      "options": {
+        "versionTagPrefix": "${target}@"
+      }
+    }
+  },
+  "tags": []
+}

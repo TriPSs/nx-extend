@@ -23,7 +23,7 @@ export async function runBuilder(
     `--config=${options.file}`,
     options.project ? `--project=${options.project}` : false,
     options.createPolicy ? `--delete-policy=${options.deletePolicy}` : false,
-    options.deletePolicy ? `--delete-policy=${options.deletePolicy}` : false,
+    options.deletePolicy ? `--delete-policy=${options.deletePolicy}` : false
   ]), {
     cwd: `${context.workspaceRoot}/${projectMeta.root}`
   })

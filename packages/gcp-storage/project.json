@@ -1,0 +1,67 @@
+{
+  "root": "packages/gcp-storage",
+  "sourceRoot": "packages/gcp-storage/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "packages/gcp-storage/**/*.ts"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "coverage/packages/gcp-storage"
+      ],
+      "options": {
+        "jestConfig": "packages/gcp-storage/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "build": {
+      "executor": "@nrwl/node:package",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "outputPath": "dist/packages/gcp-storage",
+        "tsConfig": "packages/gcp-storage/tsconfig.lib.json",
+        "packageJson": "packages/gcp-storage/package.json",
+        "main": "packages/gcp-storage/src/index.ts",
+        "assets": [
+          "packages/gcp-storage/*.md",
+          {
+            "input": "./packages/gcp-storage/src",
+            "glob": "**/*.!(ts)",
+            "output": "./src"
+          },
+          {
+            "input": "./packages/gcp-storage",
+            "glob": "generators.json",
+            "output": "."
+          },
+          {
+            "input": "./packages/gcp-storage",
+            "glob": "executors.json",
+            "output": "."
+          },
+          {
+            "input": "./packages/gcp-storage",
+            "glob": "builders.json",
+            "output": "."
+          }
+        ]
+      }
+    },
+    "version": {
+      "executor": "@jscutlery/semver:version",
+      "options": {
+        "versionTagPrefix": "${target}@"
+      }
+    }
+  },
+  "tags": []
+}

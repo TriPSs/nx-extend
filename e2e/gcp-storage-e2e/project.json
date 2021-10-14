@@ -1,0 +1,18 @@
+{
+  "projectType": "application",
+  "root": "e2e/gcp-storage-e2e",
+  "sourceRoot": "e2e/gcp-storage-e2e/src",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/nx-plugin:e2e",
+      "options": {
+        "target": "gcp-storage:build",
+        "npmPackageName": "@nx-extend/gcp-storage",
+        "pluginOutputPath": "dist/packages/gcp-storage",
+        "jestConfig": "e2e/gcp-storage-e2e/jest.config.js"
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["gcp-storage"]
+}

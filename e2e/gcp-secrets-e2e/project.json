@@ -1,0 +1,18 @@
+{
+  "projectType": "application",
+  "root": "e2e/gcp-secrets-e2e",
+  "sourceRoot": "e2e/gcp-secrets-e2e/src",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/nx-plugin:e2e",
+      "options": {
+        "target": "gcp-secrets:build",
+        "npmPackageName": "@nx-extend/gcp-secrets",
+        "pluginOutputPath": "dist/packages/gcp-secrets",
+        "jestConfig": "e2e/gcp-secrets-e2e/jest.config.js"
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["gcp-secrets"]
+}

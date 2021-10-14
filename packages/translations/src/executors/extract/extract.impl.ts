@@ -16,7 +16,7 @@ export async function runBuilder(
   const {
     outputDirectory = options.output,
     defaultLanguage = options.defaultLanguage,
-    extractor = options.extractor,
+    extractor = options.extractor
   } = await getConfigFile(context)
 
   // Check if we need to extract from connected libs

@@ -1,0 +1,18 @@
+{
+  "projectType": "application",
+  "root": "e2e/gcp-functions-e2e",
+  "sourceRoot": "e2e/gcp-functions-e2e/src",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/nx-plugin:e2e",
+      "options": {
+        "target": "gcp-functions:build",
+        "npmPackageName": "@nx-extend/gcp-functions",
+        "pluginOutputPath": "dist/packages/gcp-functions",
+        "jestConfig": "e2e/gcp-functions-e2e/jest.config.js"
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["gcp-functions"]
+}

@@ -111,7 +111,7 @@ export default class DeeplTranslator {
           this.config?.translatorOptions?.formality && `formality=${this.config.translatorOptions.formality}`
         ].filter(Boolean)
 
-        const { status, data: { translations } } = await axios.get(url.join('&'))
+        const { status, data: { translations } } = await axios.get<any>(url.join('&'))
 
         if (status === 429) {
           this.context.logger.warn('To many requests, wait and retry')
