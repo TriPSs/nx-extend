@@ -7,8 +7,6 @@
       "executor": "@nrwl/nx-plugin:e2e",
       "options": {
         "target": "gcp-functions:build",
-        "npmPackageName": "@nx-extend/gcp-functions",
-        "pluginOutputPath": "dist/packages/gcp-functions",
         "jestConfig": "e2e/gcp-functions-e2e/jest.config.js"
       }
     }

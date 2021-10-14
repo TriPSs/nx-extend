@@ -2,11 +2,8 @@
   "version": 2,
   "projects": {
     "core": "packages/core",
-    "core-e2e": "e2e/core-e2e",
     "firebase-hosting": "packages/firebase-hosting",
-    "firebase-hosting-e2e": "e2e/firebase-hosting-e2e",
     "gcp-cloud-run": "packages/gcp-cloud-run",
-    "gcp-cloud-run-e2e": "e2e/gcp-cloud-run-e2e",
     "gcp-deployment-manager": "packages/gcp-deployment-manager",
     "gcp-deployment-manager-e2e": "e2e/gcp-deployment-manager-e2e",
     "gcp-functions": "packages/gcp-functions",
@@ -14,11 +11,9 @@
     "gcp-secrets": "packages/gcp-secrets",
     "gcp-secrets-e2e": "e2e/gcp-secrets-e2e",
     "gcp-storage": "packages/gcp-storage",
-    "gcp-storage-e2e": "e2e/gcp-storage-e2e",
     "strapi": "packages/strapi",
     "strapi-e2e": "e2e/strapi-e2e",
-    "translations": "packages/translations",
-    "translations-e2e": "e2e/translations-e2e"
+    "translations": "packages/translations"
   },
   "cli": {
     "defaultCollection": "@nrwl/workspace"
