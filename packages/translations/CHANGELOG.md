@@ -2,6 +2,21 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [5.1.0](https://github.com/TriPSs/nx-extend/compare/translations@5.0.0...translations@5.1.0) (2021-10-14)
+
+
+### Bug Fixes
+
+* **translations:** Fixed Transifex provider ([c8f9953](https://github.com/TriPSs/nx-extend/commit/c8f9953e01b62cf7687846c6068a5db666850980))
+
+
+### Features
+
+* **translations:** Added `--language` option in push to push translations ([136b887](https://github.com/TriPSs/nx-extend/commit/136b887dfebcb46ff1611269c58f38b20c0aadb8))
+* **translations:** Added `@nx-extend/translations:add` generator ([1c7db00](https://github.com/TriPSs/nx-extend/commit/1c7db003566aa589c0a9a5d2ce407d2a8976b525))
+
+
+
 # [5.0.0](https://github.com/TriPSs/nx-extend/compare/translations@4.0.1...translations@5.0.0) (2021-10-08)
 
 
