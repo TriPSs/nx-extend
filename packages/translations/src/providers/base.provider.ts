@@ -81,18 +81,26 @@ export default abstract class BaseProvider<Config extends BaseConfigFile> {
     }
   }
 
-  public async push(): Promise<void> {
+  public async push(language: string): Promise<void> {
     await this.assureRequirementsExists()
 
     if (!existsSync(this.sourceFile)) {
       throw new Error('Source file does not exist!')
     }
 
-    const sourceTerms = this.getSourceTerms()
+    const languageToPush = language || this.config.defaultLanguage
+    const termsToPush = languageToPush === this.config.defaultLanguage
+      ? this.getSourceTerms()
+      : this.getLanguageTerms(languageToPush)
 
-    this.context.logger.info(`Going to upload ${sourceTerms} source terms!`)
+    if (languageToPush === this.config.defaultLanguage) {
+      this.context.logger.info(`Going to upload ${Object.keys(termsToPush).length} source terms!`)
 
-    await this.uploadTranslations(this.config.defaultLanguage, sourceTerms)
+    } else {
+      this.context.logger.info(`Going to upload ${Object.keys(termsToPush).length} terms to "${languageToPush}"!`)
+    }
+
+    await this.uploadTranslations(languageToPush, termsToPush)
   }
 
   public async translate() {

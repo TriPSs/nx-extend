@@ -22,7 +22,7 @@ export async function runBuilder(
 
   try {
     context.logger.info('Pushing translation source file')
-    await provider.push()
+    await provider.push(options.language)
 
     return {
       success: true
