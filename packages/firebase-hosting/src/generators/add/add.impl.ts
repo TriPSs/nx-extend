@@ -1,6 +1,5 @@
 import { readProjectConfiguration, updateProjectConfiguration, Tree } from '@nrwl/devkit'
 import { ProjectConfiguration } from '@nrwl/tao/src/shared/workspace'
-import { join } from 'path'
 
 import { FirebaseHostingGeneratorSchema } from './schema'
 

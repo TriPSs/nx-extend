@@ -55,6 +55,11 @@ export default abstract class BaseProvider<Config extends BaseConfigFile> {
 
     while (languages.length > 0) {
       const code = languages.shift()
+
+      if (this.config.skipDefaultLanguage && code === this.config.defaultLanguage) {
+        continue
+      }
+
       this.context.logger.info(`Pulling "${code}"`)
 
       const terms = await this.getTranslations(code)

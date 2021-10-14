@@ -4,4 +4,6 @@ export interface PushSchema extends JsonObject {
 
   provider: string
 
+  language?: string
+
 }

@@ -3,10 +3,10 @@
   "name": "translations",
   "version": "0.0.1",
   "generators": {
-    "init": {
-      "factory": "./src/generators/init/generator",
-      "schema": "./src/generators/init/schema.json",
-      "description": "init Traduora"
+    "add": {
+      "factory": "./src/generators/add/add.impl",
+      "schema": "./src/generators/add/schema.json",
+      "description": "Add translations to an app"
     }
   }
 }

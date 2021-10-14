@@ -19,6 +19,8 @@ export interface BaseConfigFile {
 
   defaultLanguage: string
 
+  skipDefaultLanguage?: boolean
+
   outputDirectory?: string
 
   outputLanguages?: string

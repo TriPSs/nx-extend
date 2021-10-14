@@ -64,6 +64,7 @@ export default class DeeplTranslator {
         console.log('\r\n')
         const translatorTerms = await this.translate(toTranslate, code)
         const translatedTerms = {}
+        console.log('\r\n')
 
         translatorTerms.map((translatorTerm) => {
           translatedTerms[translatorTerm.key] = translatorTerm.value
@@ -101,7 +102,7 @@ export default class DeeplTranslator {
               .replace(/{/g, '<deepSkip>')
               .replace(/}/g, '</deepSkip>')
           }`,
-          `target_lang=${toLocale}`,
+          `target_lang=${toLocale.split('_').shift()}`,
           `source_lang=${this.config.defaultLanguage}`,
           'preserve_formatting=1',
           'tag_handling=xml',
@@ -112,7 +113,7 @@ export default class DeeplTranslator {
         const { status, data: { translations } } = await axios.get(url.join('&'))
 
         if (status === 429) {
-          console.log('to many, wait and retry')
+          this.context.logger.warn('To many requests, wait and retry')
 
         } else if (status === 456) {
           throw new Error('Rate limit!')
