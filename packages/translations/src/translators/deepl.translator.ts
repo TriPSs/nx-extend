@@ -45,7 +45,6 @@ export default class DeeplTranslator {
 
       if (code !== this.config.defaultLanguage) {
         const terms = await provider.getTranslations(code)
-
         const toTranslate = []
 
         Object.keys(terms)
@@ -101,6 +100,8 @@ export default class DeeplTranslator {
             message.value
               .replace(/{/g, '<deepSkip>')
               .replace(/}/g, '</deepSkip>')
+              .replace(/'<a'/g, '<deepLink')
+              .replace(/'<\/a>'/g, '</deepLink>')
           }`,
           `target_lang=${toLocale.split('_').shift()}`,
           `source_lang=${this.config.defaultLanguage}`,
@@ -124,6 +125,8 @@ export default class DeeplTranslator {
           value: translations[0].text
             .replace(/<deepSkip>/g, '{')
             .replace(/<\/deepSkip>/g, '}')
+            .replace(/<deepLink/g, '\'<a\'')
+            .replace(/<\/deepLink>/g, '\'</a>\'')
         }
       }, {
         concurrency: 1,
