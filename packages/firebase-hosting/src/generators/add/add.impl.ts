@@ -1,4 +1,10 @@
-import { readProjectConfiguration, updateProjectConfiguration, Tree } from '@nrwl/devkit'
+import {
+  readProjectConfiguration,
+  updateProjectConfiguration,
+  writeJsonFile,
+  readJsonFile,
+  Tree
+} from '@nrwl/devkit'
 import { ProjectConfiguration } from '@nrwl/tao/src/shared/workspace'
 
 import { FirebaseHostingGeneratorSchema } from './schema'
@@ -8,6 +14,12 @@ export default async function (
   options: FirebaseHostingGeneratorSchema
 ) {
   const app = readProjectConfiguration(host, options.target)
+
+  if (!app) {
+    return {
+      success: false
+    }
+  }
 
   addToFirebaseJson(host, app, options.site)
 
@@ -25,23 +37,25 @@ export default async function (
   })
 }
 
-export function addToFirebaseJson(host: Tree, app: ProjectConfiguration, site: string) {
+export function addToFirebaseJson(
+  host: Tree,
+  app: ProjectConfiguration,
+  site: string
+) {
   const firebaseJsonLocation = 'firebase.json'
 
   let firebaseJson = {
-    hosting: [{
-      target: site,
-      public: app?.targets?.build?.options?.outputPath || null,
-      ignore: [
-        'firebase.json',
-        '**/.*',
-        '**/node_modules/**'
-      ]
-    }]
+    hosting: [
+      {
+        target: site,
+        public: app?.targets?.build?.options?.outputPath || null,
+        ignore: ['firebase.json', '**/.*', '**/node_modules/**']
+      }
+    ]
   }
 
   if (host.exists(firebaseJsonLocation)) {
-    const existingFirebaseJson = JSON.parse(host.read(firebaseJsonLocation).toString('utf8'))
+    const existingFirebaseJson = readJsonFile(firebaseJsonLocation)
 
     firebaseJson = {
       ...existingFirebaseJson,
@@ -54,7 +68,6 @@ export function addToFirebaseJson(host: Tree, app: ProjectConfiguration, site: s
           ...existingFirebaseJson.hosting,
           ...firebaseJson.hosting
         ]
-
       } else {
         firebaseJson.hosting = [
           existingFirebaseJson.hosting,
@@ -64,8 +77,5 @@ export function addToFirebaseJson(host: Tree, app: ProjectConfiguration, site: s
     }
   }
 
-  host.write(
-    firebaseJsonLocation,
-    Buffer.from(JSON.stringify(firebaseJson, null, 2))
-  )
+  writeJsonFile(firebaseJsonLocation, firebaseJson)
 }
