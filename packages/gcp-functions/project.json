@@ -6,16 +6,12 @@
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "options": {
-        "lintFilePatterns": [
-          "packages/gcp-functions/**/*.ts"
-        ]
+        "lintFilePatterns": ["packages/gcp-functions/**/*.ts"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": [
-        "coverage/packages/gcp-functions"
-      ],
+      "outputs": ["coverage/packages/gcp-functions"],
       "options": {
         "jestConfig": "packages/gcp-functions/jest.config.js",
         "passWithNoTests": true
@@ -23,9 +19,7 @@
     },
     "build": {
       "executor": "@nrwl/node:package",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/packages/gcp-functions",
         "tsConfig": "packages/gcp-functions/tsconfig.lib.json",
