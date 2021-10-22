@@ -1,25 +1,45 @@
-# NX - GCP Deployment Manager
+# @nx-extend/gcp-deployment-manager
 
-To generate a project:
+<a href="https://www.npmjs.com/package/@nx-extend/gcp-deployment-manager" rel="nofollow">
+  <img src="https://badgen.net/npm/v/@nx-extend/gcp-deployment-manager" alt="@nx-extend/gcp-deployment-manager NPM package">
+</a>
 
-```shell
-nx g @nx-extend/gcp-deployment-manager:init <project name>
+**Nx plugin for deploy your app to [Cloud Run](https://cloud.google.com/run)**.
+
+## Setup
+
+### Install
+
+```sh
+npm install -D @nx-extend/gcp-deployment-manager
+nx g @nx-extend/gcp-deployment-manager:init
 ```
 
-To create the deployment
+## Usage
 
-```shell
-nx create <project name>
-```
+### Create
 
-To update the deployment
+#### Available options:
 
-```shell
-nx update <project name>
-```
+| name         | type     | default | description                                          |
+| ------------ | -------- | ------- | ---------------------------------------------------- |
+| **`--project`** | `string` | | GCP project to deploy to|
+| **`--file`** | `string` | `null` | file from source to create |
 
-To delete the deployment
+### Update
 
-```shell
-nx delete <project name>
-```
+#### Available options:
+
+| name         | type     | default | description                                          |
+| ------------ | -------- | ------- | ---------------------------------------------------- |
+| **`--project`** | `string` | | GCP project to deploy to|
+| **`--file`** | `string` | `null` | file from source to update |
+
+### Delete
+
+#### Available options:
+
+| name         | type     | default | description                                          |
+| ------------ | -------- | ------- | ---------------------------------------------------- |
+| **`--project`** | `string` | | GCP project to deploy to|
+| **`--file`** | `string` | `null` | file from source to delete |

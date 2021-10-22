@@ -16,6 +16,7 @@ export async function runBuilder(
   context: BuilderContext
 ): Promise<{ success: boolean }> {
   const projectMeta = await context.getProjectMetadata(context.target.project)
+  const projectSourceRoot = `${context.workspaceRoot}/${projectMeta.sourceRoot}`
 
   return execCommand(buildCommand([
     'gcloud deployment-manager deployments update',
@@ -25,7 +26,7 @@ export async function runBuilder(
     options.createPolicy ? `--delete-policy=${options.deletePolicy}` : false,
     options.deletePolicy ? `--delete-policy=${options.deletePolicy}` : false
   ]), {
-    cwd: `${context.workspaceRoot}/${projectMeta.root}`
+    cwd: projectSourceRoot
   })
 }
 
