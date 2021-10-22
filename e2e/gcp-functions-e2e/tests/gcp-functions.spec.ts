@@ -21,8 +21,23 @@ describe('(e2e) gcp-functions', () => {
     ).not.toThrow()
   }, 300000)
 
-  it('should be able the runner', async () => {
+  it('should be able to build a function', async () => {
     const plugin = uniq('gcp-functions')
+    ensureNxProject('@nx-extend/gcp-functions', 'dist/packages/gcp-functions')
+
+    await runNxCommandAsync(`generate @nx-extend/gcp-functions:init ${plugin}`)
+    await runNxCommandAsync(`build ${plugin}`)
+
+    expect(() =>
+      checkFilesExist(
+        `dist/apps/${plugin}/main.js`,
+        `dist/apps/${plugin}/package.json`
+      )
+    ).not.toThrow()
+  }, 300000)
+
+  it('should be able the runner', async () => {
+    const plugin = uniq('gcp-functions-runner')
     ensureNxProject('@nx-extend/gcp-functions', 'dist/packages/gcp-functions')
 
     await runNxCommandAsync(`generate @nx-extend/gcp-functions:init-runner ${plugin}`)

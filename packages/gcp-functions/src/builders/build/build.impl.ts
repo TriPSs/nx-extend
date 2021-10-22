@@ -6,8 +6,6 @@ import {
   checkDependentProjectsHaveBeenBuilt,
   createTmpTsConfig
 } from '@nrwl/workspace/src/utilities/buildable-libs-utils'
-import { runWebpack } from '@nrwl/workspace/src/utilities/run-webpack'
-import * as webpack from 'webpack'
 import { map, tap } from 'rxjs/operators'
 import { eachValueFrom } from 'rxjs-for-await'
 import { resolve } from 'path'
@@ -15,12 +13,15 @@ import { getNodeWebpackConfig } from '@nrwl/node/src/utils/node.config'
 import { OUT_FILENAME } from '@nrwl/node/src/utils/config'
 import { BuildNodeBuilderOptions } from '@nrwl/node/src/utils/types'
 import { normalizeBuildOptions } from '@nrwl/node/src/utils/normalize'
+import { runWebpack } from '@nrwl/node/src/utils/run-webpack'
 
 import { generatePackageJson } from '../../utils/generate-package-json'
 
 try {
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
   require('dotenv').config()
-} catch (e) {
+} catch {
+  // do nothing
 }
 
 export type NodeBuildEvent = {
@@ -84,7 +85,7 @@ export function buildExecutor(
   }, getNodeWebpackConfig(options))
 
   return eachValueFrom(
-    runWebpack(config, webpack).pipe(
+    runWebpack(config).pipe(
       tap((stats) => {
         console.info(stats.toString(config.stats))
       }),

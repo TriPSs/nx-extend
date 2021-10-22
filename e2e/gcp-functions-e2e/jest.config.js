@@ -11,4 +11,4 @@ module.exports = {
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
   coverageDirectory: '../../coverage/e2e/gcp-functions-e2e',
-};
+}
