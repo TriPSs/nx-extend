@@ -13,8 +13,5 @@
     "gcp-storage": "packages/gcp-storage",
     "strapi": "packages/strapi",
     "translations": "packages/translations"
-  },
-  "cli": {
-    "defaultCollection": "@nrwl/workspace"
   }
 }
