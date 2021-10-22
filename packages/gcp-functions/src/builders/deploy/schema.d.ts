@@ -20,12 +20,16 @@ export interface DeployExecutorSchema extends JsonObject {
 
   maxInstances?: number
 
-  trigger: string
+  trigger?: 'http' | 'topic'
 
   triggerValue?: string
 
   project?: string
 
   retry?: boolean
+
+  __runner?: {
+    endpoint?: string
+  }
 
 }

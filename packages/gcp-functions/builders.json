@@ -1,9 +1,14 @@
 {
   "executors": {
+    "deploy": {
+      "implementation": "./src/builders/deploy/deploy.impl",
+      "schema": "./src/builders/deploy/schema.json",
+      "description": "Deploy a function"
+    },
     "build": {
       "implementation": "./src/builders/build/build.impl",
       "schema": "./src/builders/build/schema.json",
-      "description": "Build a Node application"
+      "description": "Build the function"
     }
   },
   "builders": {
@@ -13,9 +18,9 @@
       "description": "Deploy a function"
     },
     "build": {
-      "implementation": "./src/builders/build/compat",
+      "implementation": "./src/builders/build/build.impl",
       "schema": "./src/builders/build/schema.json",
-      "description": "Build a Node application"
+      "description": "Build the function"
     }
   }
 }

@@ -1,6 +1,6 @@
 import { ExecutorContext } from '@nrwl/devkit'
 
-import { createProjectGraph } from '@nrwl/workspace/src/core/project-graph'
+import { readCachedProjectGraph } from '@nrwl/workspace/src/core/project-graph'
 import {
   calculateProjectDependencies,
   checkDependentProjectsHaveBeenBuilt,
@@ -8,15 +8,14 @@ import {
 } from '@nrwl/workspace/src/utilities/buildable-libs-utils'
 import { runWebpack } from '@nrwl/workspace/src/utilities/run-webpack'
 import * as webpack from 'webpack'
-
 import { map, tap } from 'rxjs/operators'
 import { eachValueFrom } from 'rxjs-for-await'
 import { resolve } from 'path'
-
 import { getNodeWebpackConfig } from '@nrwl/node/src/utils/node.config'
 import { OUT_FILENAME } from '@nrwl/node/src/utils/config'
 import { BuildNodeBuilderOptions } from '@nrwl/node/src/utils/types'
 import { normalizeBuildOptions } from '@nrwl/node/src/utils/normalize'
+
 import { generatePackageJson } from '../../utils/generate-package-json'
 
 try {
@@ -49,10 +48,10 @@ export function buildExecutor(
     sourceRoot,
     root
   )
-  const projGraph = createProjectGraph()
+
   if (!options.buildLibsFromSource) {
     const { target, dependencies } = calculateProjectDependencies(
-      projGraph,
+      readCachedProjectGraph(),
       context.root,
       context.projectName,
       context.targetName,
@@ -96,7 +95,7 @@ export function buildExecutor(
         } as NodeBuildEvent
       }),
       tap(({ outfile }) => (
-        generatePackageJson(context.projectName, projGraph, options, outfile, context.root)
+        generatePackageJson(context.projectName, readCachedProjectGraph(), options, outfile, context.root)
       ))
     )
   )

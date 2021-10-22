@@ -8,6 +8,7 @@ import {
   Tree
 } from '@nrwl/devkit'
 import * as path from 'path'
+
 import { GcpDeploymentManagerGeneratorSchema } from './schema'
 
 interface NormalizedSchema extends GcpDeploymentManagerGeneratorSchema {
@@ -63,7 +64,7 @@ export default async function (
   addProjectConfiguration(host, normalizedOptions.projectName, {
     root: normalizedOptions.projectRoot,
     projectType: 'application',
-    sourceRoot: normalizedOptions.projectRoot,
+    sourceRoot: `${normalizedOptions.projectRoot}/src`,
     targets: {
       _build: {
         executor: '@nrwl/node:build',

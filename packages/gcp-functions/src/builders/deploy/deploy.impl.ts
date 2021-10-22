@@ -30,14 +30,9 @@ export async function runBuilder(options: DeployExecutorSchema, context: Builder
     target: 'build'
   })
 
-  const sourceDirectory = resolve(
-    process.cwd(),
-    buildOptions.outputPath.toString()
-  )
+  const sourceDirectory = resolve(context.workspaceRoot, buildOptions.outputPath.toString())
 
-  context.logger.info(
-    `Deploy function "${functionName}" with source from "${sourceDirectory}"`
-  )
+  context.logger.info(`Deploy function "${functionName}" with source from "${sourceDirectory}"`)
 
   return execCommand(buildCommand([
     'gcloud functions deploy',
