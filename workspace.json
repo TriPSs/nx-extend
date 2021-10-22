@@ -12,7 +12,6 @@
     "gcp-secrets-e2e": "e2e/gcp-secrets-e2e",
     "gcp-storage": "packages/gcp-storage",
     "strapi": "packages/strapi",
-    "strapi-e2e": "e2e/strapi-e2e",
     "translations": "packages/translations"
   },
   "cli": {

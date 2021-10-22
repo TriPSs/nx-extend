@@ -7,12 +7,12 @@
       "executor": "@nrwl/nx-plugin:e2e",
       "options": {
         "target": "gcp-secrets:build",
-        "npmPackageName": "@nx-extend/gcp-secrets",
-        "pluginOutputPath": "dist/packages/gcp-secrets",
         "jestConfig": "e2e/gcp-secrets-e2e/jest.config.js"
       }
     }
   },
   "tags": [],
-  "implicitDependencies": ["gcp-secrets"]
+  "implicitDependencies": [
+    "gcp-secrets"
+  ]
 }

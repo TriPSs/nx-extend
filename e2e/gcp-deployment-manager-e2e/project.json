@@ -7,8 +7,6 @@
       "executor": "@nrwl/nx-plugin:e2e",
       "options": {
         "target": "gcp-deployment-manager:build",
-        "npmPackageName": "@nx-extend/gcp-deployment-manager",
-        "pluginOutputPath": "dist/packages/gcp-deployment-manager",
         "jestConfig": "e2e/gcp-deployment-manager-e2e/jest.config.js"
       }
     }
