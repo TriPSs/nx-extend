@@ -1,7 +1,7 @@
 import { BuilderContext, createBuilder } from '@angular-devkit/architect'
 import { join } from 'path'
 import { buildCommand, execCommand } from '@nx-extend/core'
-import { createProjectGraph } from '@nrwl/workspace/src/core/project-graph'
+import { createProjectGraphAsync } from '@nrwl/workspace/src/core/project-graph'
 
 import { ExtractSchema } from './schema'
 import { injectProjectRoot } from '../../utils'
@@ -21,10 +21,8 @@ export async function runBuilder(
 
   // Check if we need to extract from connected libs
   if (options.withLibs) {
-    const projGraph = createProjectGraph()
-
     // Get all libs that are connected to this app
-    const libRoots = await getLibsRoot(context, projGraph.dependencies, context.target.project, options.libPrefix)
+    const libRoots = await getLibsRoot(context, context.target.project, options.libPrefix)
 
     if (libRoots.length > 0) {
       options.sourceRoot = `{${options.sourceRoot},${libRoots.join(',')}}`
@@ -74,8 +72,9 @@ export const getConnectedLibs = (dependencies, project: string, prefix?: string)
   ))
 )
 
-export const getLibsRoot = async (context: BuilderContext, dependencies, project: string, prefix?: string, targetsDone = [], roots = []): Promise<string[]> => {
-  const libs = getConnectedLibs(dependencies, project, prefix)
+export const getLibsRoot = async (context: BuilderContext, project: string, prefix?: string, targetsDone = [], roots = []): Promise<string[]> => {
+  const projectGraph = await createProjectGraphAsync()
+  const libs = getConnectedLibs(projectGraph.dependencies, project, prefix)
 
   await Promise.all(libs.map(async (connectedLib) => {
     if (targetsDone.includes(connectedLib.target)) {
@@ -90,7 +89,7 @@ export const getLibsRoot = async (context: BuilderContext, dependencies, project
       roots.push(projectMetadata.root)
     }
 
-    await getLibsRoot(context, dependencies, connectedLib.target, prefix, targetsDone, roots)
+    await getLibsRoot(context, connectedLib.target, prefix, targetsDone, roots)
   }))
 
   return roots
