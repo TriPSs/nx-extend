@@ -7,10 +7,12 @@ import {
 
 describe('(e2e) gcp-functions', () => {
 
+  beforeEach(() => {
+    ensureNxProject('@nx-extend/gcp-functions', 'dist/packages/gcp-functions')
+  })
+
   it('should be able to generate an empty function', async () => {
     const plugin = uniq('gcp-functions')
-    ensureNxProject('@nx-extend/gcp-functions', 'dist/packages/gcp-functions')
-
     await runNxCommandAsync(`generate @nx-extend/gcp-functions:init ${plugin}`)
 
     expect(() =>
@@ -23,8 +25,6 @@ describe('(e2e) gcp-functions', () => {
 
   it('should be able to build a function', async () => {
     const plugin = uniq('gcp-functions')
-    ensureNxProject('@nx-extend/gcp-functions', 'dist/packages/gcp-functions')
-
     await runNxCommandAsync(`generate @nx-extend/gcp-functions:init ${plugin}`)
     await runNxCommandAsync(`build ${plugin}`)
 
@@ -38,8 +38,6 @@ describe('(e2e) gcp-functions', () => {
 
   it('should be able the runner', async () => {
     const plugin = uniq('gcp-functions-runner')
-    ensureNxProject('@nx-extend/gcp-functions', 'dist/packages/gcp-functions')
-
     await runNxCommandAsync(`generate @nx-extend/gcp-functions:init-runner ${plugin}`)
 
     expect(() =>
