@@ -1172,6 +1172,18 @@
     webpack-merge "^5.8.0"
     webpack-node-externals "^3.0.0"
 
+"@nrwl/nx-cloud@^12.5.1":
+  version "12.5.1"
+  resolved "https://registry.yarnpkg.com/@nrwl/nx-cloud/-/nx-cloud-12.5.1.tgz#3a73cc5f29eea83ad4d1c01df63e9cf3c742adc1"
+  integrity sha512-014+QYtQmNuKVB06Rrs7fpxob4sOi+3mKdyksNT6r7MY6mEiWETAIL4wursfpg9fUpD0yG6af/I/CxiCP3fsTQ==
+  dependencies:
+    axios "^0.21.1"
+    chalk "4.1.0"
+    node-machine-id "^1.1.12"
+    rxjs "6.5.5"
+    strip-json-comments "^3.1.1"
+    tar "6.1.11"
+
 "@nrwl/nx-plugin@13.0.1":
   version "13.0.1"
   resolved "https://registry.yarnpkg.com/@nrwl/nx-plugin/-/nx-plugin-13.0.1.tgz#f88df42167a83c042c9b547cac10bc56697d64d9"
@@ -2059,6 +2071,13 @@ axios@0.23.0, axios@^0.23.0:
   integrity sha512-NmvAE4i0YAv5cKq8zlDoPd1VLKAqX5oLuZKs8xkJa4qi6RGn0uhCYFjWtHHC9EM/MwOwYWOs53W+V0aqEXq1sg==
   dependencies:
     follow-redirects "^1.14.4"
+
+axios@^0.21.1:
+  version "0.21.4"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.21.4.tgz#c67b90dc0568e5c1cf2b0b858c43ba28e2eda575"
+  integrity sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==
+  dependencies:
+    follow-redirects "^1.14.0"
 
 babel-jest@^27.2.2, babel-jest@^27.2.5:
   version "27.2.5"
@@ -3548,7 +3567,7 @@ flatted@^3.1.0:
   resolved "https://registry.yarnpkg.com/flatted/-/flatted-3.1.1.tgz#c4b489e80096d9df1dfc97c79871aea7c617c469"
   integrity sha512-zAoAQiudy+r5SvnSw3KJy5os/oRJYHzrzja/tBDqrZtNhUw8bt6y8OBzMWcjWr+8liV8Eb6yOhw8WZ7VFZ5ZzA==
 
-follow-redirects@^1.14.4:
+follow-redirects@^1.14.0, follow-redirects@^1.14.4:
   version "1.14.4"
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.14.4.tgz#838fdf48a8bbdd79e52ee51fb1c94e3ed98b9379"
   integrity sha512-zwGkiSXC1MUJG/qmeIFH2HBJx9u0V46QGUe3YR1fXG8bXQxq7fLj0RjLZQ5nubr9qNJUZrH+xUcwXEoXNpfS+g==
@@ -5452,7 +5471,7 @@ node-int64@^0.4.0:
   resolved "https://registry.yarnpkg.com/node-int64/-/node-int64-0.4.0.tgz#87a9065cdb355d3182d8f94ce11188b825c68a3b"
   integrity sha1-h6kGXNs1XTGC2PlM4RGIuCXGijs=
 
-node-machine-id@^1.1.10:
+node-machine-id@^1.1.10, node-machine-id@^1.1.12:
   version "1.1.12"
   resolved "https://registry.yarnpkg.com/node-machine-id/-/node-machine-id-1.1.12.tgz#37904eee1e59b320bb9c5d6c0a59f3b469cb6267"
   integrity sha512-QNABxbrPa3qEIfrE6GOJ7BYIuignnJw7iQ2YPbc3Nla1HzRJjXzZOiikfF8m7eAMfichLt3M4VgLOetqgDmgGQ==
@@ -6273,6 +6292,13 @@ rxjs-for-await@0.0.2, rxjs-for-await@^0.0.2:
   resolved "https://registry.yarnpkg.com/rxjs-for-await/-/rxjs-for-await-0.0.2.tgz#26598a1d6167147cc192172970e7eed4e620384b"
   integrity sha512-IJ8R/ZCFMHOcDIqoABs82jal00VrZx8Xkgfe7TOKoaRPAW5nH/VFlG23bXpeGdrmtqI9UobFPgUKgCuFc7Lncw==
 
+rxjs@6.5.5:
+  version "6.5.5"
+  resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-6.5.5.tgz#c5c884e3094c8cfee31bf27eb87e54ccfc87f9ec"
+  integrity sha512-WfQI+1gohdf0Dai/Bbmk5L5ItH5tYqm3ki2c5GdWhKjalzjg93N3avFjVStyZZz+A2Em+ZxKH5bNghw9UeylGQ==
+  dependencies:
+    tslib "^1.9.0"
+
 rxjs@6.6.7, rxjs@^6.5.4:
   version "6.6.7"
   resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-6.6.7.tgz#90ac018acabf491bf65044235d5863c4dab804c9"
@@ -6876,6 +6902,18 @@ tapable@^2.1.1, tapable@^2.2.0:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/tapable/-/tapable-2.2.1.tgz#1967a73ef4060a82f12ab96af86d52fdb76eeca0"
   integrity sha512-GNzQvQTOIP6RyTfE2Qxb8ZVlNmw0n88vp1szwWRimP02mnTsx3Wtn5qRdqY9w2XduFNUgvOwhNnQsjwCp+kqaQ==
+
+tar@6.1.11:
+  version "6.1.11"
+  resolved "https://registry.yarnpkg.com/tar/-/tar-6.1.11.tgz#6760a38f003afa1b2ffd0ffe9e9abbd0eab3d621"
+  integrity sha512-an/KZQzQUkZCkuoAA64hM92X0Urb6VpRhAFllDzz44U2mcD5scmT3zBc4VgVpkugF580+DQn8eAFSyoQt0tznA==
+  dependencies:
+    chownr "^2.0.0"
+    fs-minipass "^2.0.0"
+    minipass "^3.0.0"
+    minizlib "^2.1.1"
+    mkdirp "^1.0.3"
+    yallist "^4.0.0"
 
 tar@6.1.4:
   version "6.1.4"

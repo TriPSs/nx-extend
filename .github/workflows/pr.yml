@@ -3,6 +3,9 @@ name: PR
 # Run on all pull requests
 on: [ pull_request ]
 
+env:
+  NX_BRANCH: ${{ github.event.number }}
+  NX_RUN_GROUP: ${{ github.run_id }}
 
 jobs:
 
@@ -54,7 +57,7 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '14'
+          node-version: '14.x'
 
       - name: yarn install
         if: steps.cache.outputs.cache-hit != 'true'
