@@ -44,7 +44,7 @@ if (affectedProjects.length > 0) {
 
   } else {
     const command = [
-      'yarn nx run-many',
+      'npx nx run-many',
       `--target=${target}`,
       `--projects=${affectedProjects.join(',')}`,
     ].join(' ')
