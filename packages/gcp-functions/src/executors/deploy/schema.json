@@ -1,7 +1,9 @@
 {
+  "$schema": "http://json-schema.org/schema",
+  "type": "object",
+  "cli": "nx",
   "title": "deploy",
   "description": "Deploy a Google Cloud Platform function",
-  "type": "object",
   "properties": {
     "functionName": {
       "type": "string",
@@ -18,17 +20,17 @@
         "http",
         "bucket",
         "topic",
-        "resource"
+        "resource",
+        "event"
       ]
     },
     "triggerValue": {
       "type": "string",
-      "description": "Value of the trigger, only if trigger is bucket"
+      "description": "Value of the trigger"
     },
     "runtime": {
       "type": "string",
       "enum": [
-        "nodejs10",
         "nodejs12",
         "nodejs14"
       ]

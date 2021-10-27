@@ -1,10 +1,34 @@
-import { createBuilder, BuilderContext } from '@angular-devkit/architect'
+import { ExecutorContext } from '@nrwl/devkit'
 import { buildCommand, execCommand } from '@nx-extend/core'
-import { resolve } from 'path'
+import { join } from 'path'
 
-import { DeployExecutorSchema } from './schema'
+export interface DeployExecutorSchema {
+  functionName: string
+  runtime?: 'nodejs12' | 'nodejs14'
+  entryPoint?: string
+  serviceAccount?: string
+  memory?: '128MB' | '256MB' | '512MB' | '1024MB' | '2048MB' | '4096MB'
+  region: string
+  envVarsFile?: string
+  allowUnauthenticated?: boolean
+  maxInstances?: number
+  trigger?: 'http' | 'topic' | 'recourse' | 'bucket'
+  triggerValue?: string
+  triggerEvent?: string
+  ingressSettings?: 'all' | 'internal-only' | 'internal-and-gclb'
+  egressSettings?: 'all' | 'private-ranges-only'
+  securityLevel?: 'secure-optional' | 'secure-always'
+  project?: string
+  retry?: boolean
+  __runner?: {
+    endpoint?: string
+  }
+}
 
-export async function runBuilder(options: DeployExecutorSchema, context: BuilderContext): Promise<{ success: boolean }> {
+export async function deployExecutor(
+  options: DeployExecutorSchema,
+  context: ExecutorContext
+): Promise<{ success: boolean }> {
   const {
     functionName,
     region,
@@ -25,14 +49,11 @@ export async function runBuilder(options: DeployExecutorSchema, context: Builder
     securityLevel = null
   } = options
 
-  const buildOptions = await context.getTargetOptions({
-    project: context.target && context.target.project,
-    target: 'build'
-  })
+  if (triggerValue && trigger === 'http') {
+    throw new Error('"triggerValue" is not accepted when trigger is "http"!')
+  }
 
-  const sourceDirectory = resolve(context.workspaceRoot, buildOptions.outputPath.toString())
-
-  context.logger.info(`Deploy function "${functionName}" with source from "${sourceDirectory}"`)
+  const { targets } = context.workspace.projects[context.projectName]
 
   return execCommand(buildCommand([
     'gcloud functions deploy',
@@ -50,7 +71,7 @@ export async function runBuilder(options: DeployExecutorSchema, context: Builder
     egressSettings && `--egress-settings=${egressSettings}`,
     securityLevel && `--security-level=${securityLevel}`,
 
-    `--source=${sourceDirectory}`,
+    `--source=${join(context.root, targets?.build?.options?.outputPath.toString())}`,
     `--max-instances=${maxInstances}`,
 
     allowUnauthenticated && '--allow-unauthenticated',
@@ -60,4 +81,4 @@ export async function runBuilder(options: DeployExecutorSchema, context: Builder
   ]))
 }
 
-export default createBuilder(runBuilder)
+export default deployExecutor

@@ -1,11 +1,5 @@
 import { ExecutorContext } from '@nrwl/devkit'
-
 import { readCachedProjectGraph } from '@nrwl/workspace/src/core/project-graph'
-import {
-  calculateProjectDependencies,
-  checkDependentProjectsHaveBeenBuilt,
-  createTmpTsConfig
-} from '@nrwl/workspace/src/utilities/buildable-libs-utils'
 import { map, tap } from 'rxjs/operators'
 import { eachValueFrom } from 'rxjs-for-await'
 import { resolve } from 'path'
@@ -14,6 +8,11 @@ import { OUT_FILENAME } from '@nrwl/node/src/utils/config'
 import { BuildNodeBuilderOptions } from '@nrwl/node/src/utils/types'
 import { normalizeBuildOptions } from '@nrwl/node/src/utils/normalize'
 import { runWebpack } from '@nrwl/node/src/utils/run-webpack'
+import {
+  calculateProjectDependencies,
+  checkDependentProjectsHaveBeenBuilt,
+  createTmpTsConfig
+} from '@nrwl/workspace/src/utilities/buildable-libs-utils'
 
 import { generatePackageJson } from '../../utils/generate-package-json'
 
@@ -25,9 +24,9 @@ try {
 }
 
 export type NodeBuildEvent = {
-  outfile: string;
-  success: boolean;
-};
+  outfile: string
+  success: boolean
+}
 
 export function buildExecutor(
   rawOptions: BuildNodeBuilderOptions,
@@ -73,11 +72,12 @@ export function buildExecutor(
         dependencies
       )
     ) {
-      return { success: false } as any
+      return { success: false }
     }
   }
 
   const config = options.webpackConfig.reduce((currentConfig, plugin) => {
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
     return require(plugin)(currentConfig, {
       options,
       configuration: context.configurationName
