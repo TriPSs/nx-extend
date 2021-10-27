@@ -28,7 +28,7 @@ export type NodeBuildEvent = {
   success: boolean
 }
 
-export function buildExecutor(
+export async function* buildExecutor(
   rawOptions: BuildNodeBuilderOptions,
   context: ExecutorContext
 ) {
@@ -84,7 +84,7 @@ export function buildExecutor(
     })
   }, getNodeWebpackConfig(options))
 
-  return eachValueFrom(
+  return yield* eachValueFrom(
     runWebpack(config).pipe(
       tap((stats) => {
         console.info(stats.toString(config.stats))
@@ -97,7 +97,10 @@ export function buildExecutor(
       }),
       tap(({ outfile }) => (
         generatePackageJson(context.projectName, readCachedProjectGraph(), options, outfile, context.root)
-      ))
+      )),
+      tap(() => ({
+        success: true
+      }))
     )
   )
 }

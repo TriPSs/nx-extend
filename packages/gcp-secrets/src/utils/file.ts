@@ -9,7 +9,7 @@ export interface SecretFile {
     onUpdateBehavior?: 'none' | 'delete' | 'disable'
   }
 
-  [key: string]: unknown
+  [key: string]: any
 
 }
 

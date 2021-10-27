@@ -6,6 +6,7 @@ import {
   Tree
 } from '@nrwl/devkit'
 import * as generateStrapi from 'strapi-generate-new'
+
 import { StrapiGeneratorSchema } from './schema'
 
 interface NormalizedSchema extends StrapiGeneratorSchema {
