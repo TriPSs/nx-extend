@@ -47,11 +47,6 @@
             "input": "./packages/gcp-secrets",
             "glob": "executors.json",
             "output": "."
-          },
-          {
-            "input": "./packages/gcp-secrets",
-            "glob": "builders.json",
-            "output": "."
           }
         ]
       }
