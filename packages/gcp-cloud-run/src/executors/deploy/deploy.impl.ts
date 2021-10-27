@@ -1,24 +1,24 @@
-import { createBuilder, BuilderContext } from '@angular-devkit/architect'
 import { execCommand, buildCommand } from '@nx-extend/core'
 import { existsSync, readFileSync, writeFileSync } from 'fs'
+import { ExecutorContext, readJsonFile } from '@nrwl/devkit'
 import { join } from 'path'
 
 import { ExecutorSchema } from '../schema'
 
-export async function runBuilder(
+export function deployExecutor(
   options: ExecutorSchema,
-  context: BuilderContext
+  context: ExecutorContext
 ): Promise<{ success: boolean }> {
-  const projectMeta = await context.getProjectMetadata(context.target.project)
-  const buildOptions = await context.getTargetOptions({
-    project: context.target && context.target.project,
-    target: 'build'
-  })
+  const { root, targets } = context.workspace.projects[context.projectName]
+
+  if (!targets?.build?.options?.outputPath) {
+    throw new Error('No build target configured!')
+  }
 
   const {
     region,
     project,
-    name = projectMeta.prefix,
+    name = context.projectName,
     allowUnauthenticated = true,
     envVars = {},
     concurrency = 250,
@@ -38,8 +38,8 @@ export async function runBuilder(
   } = options
 
   const distDirectory = join(
-    context.workspaceRoot,
-    buildOptions.outputPath.toString()
+    context.root,
+    targets?.build?.options?.outputPath.toString()
   )
 
   const buildWithArtifactRegistry = buildWith === 'artifact-registry'
@@ -48,7 +48,7 @@ export async function runBuilder(
   // If the user provided a dockerfile then write it to the dist directory
   if (options.dockerFile) {
     const dockerFile = readFileSync(
-      join(context.workspaceRoot, options.dockerFile),
+      join(context.root, options.dockerFile),
       'utf8'
     )
 
@@ -78,10 +78,10 @@ export async function runBuilder(
   let packageVersion = null
 
   if (tagWithVersion) {
-    const packageJsonLocation = join(context.workspaceRoot, `${projectMeta.root}`, 'package.json')
+    const packageJsonLocation = join(context.root, `${root}`, 'package.json')
 
     if (existsSync(packageJsonLocation)) {
-      const packageJson = JSON.parse(readFileSync(packageJsonLocation, 'utf8'))
+      const packageJson = readJsonFile(packageJsonLocation)
 
       if (packageJson && packageJson.version) {
         packageVersion = `v${packageJson.version.replace(/\./g, '-')}`
@@ -126,4 +126,4 @@ export async function runBuilder(
   })
 }
 
-export default createBuilder(runBuilder)
+export default deployExecutor

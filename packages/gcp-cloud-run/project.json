@@ -47,11 +47,6 @@
             "input": "./packages/gcp-cloud-run",
             "glob": "executors.json",
             "output": "."
-          },
-          {
-            "input": "./packages/gcp-cloud-run",
-            "glob": "builders.json",
-            "output": "."
           }
         ]
       }
