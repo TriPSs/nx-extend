@@ -47,11 +47,6 @@
             "input": "./packages/gcp-storage",
             "glob": "executors.json",
             "output": "."
-          },
-          {
-            "input": "./packages/gcp-storage",
-            "glob": "builders.json",
-            "output": "."
           }
         ]
       }
