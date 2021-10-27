@@ -1,7 +1,9 @@
 {
   "$schema": "http://json-schema.org/schema",
-  "cli": "nx",
   "type": "object",
+  "cli": "nx",
+  "title": "Deploy executor",
+  "description": "Deploy to Firebase Hosting",
   "properties": {
     "site": {
       "type": "string",

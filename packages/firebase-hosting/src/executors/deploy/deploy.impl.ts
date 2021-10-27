@@ -1,16 +1,26 @@
+// import { ExecutorContext } from '@nrwl/devkit'
 import { execCommand, buildCommand } from '@nx-extend/core'
-import { ExecutorSchema } from './schema'
 
-export default async function runExecutor(options: ExecutorSchema) {
-  // Make sure the deployment target is defined
-  execCommand(
-    buildCommand([
-      'npx firebase target:apply',
-      `hosting ${options.site} ${options.site}`
-    ])
-  )
+export interface ExecutorSchema {
 
-  execCommand(
-    buildCommand(['npx firebase deploy', `--only=hosting:${options.site}`])
-  )
+  site: string
+
 }
+
+export function deployExecutor(
+  options: ExecutorSchema,
+  // context: ExecutorContext
+): Promise<{ success: boolean }> {
+  // Make sure the deployment target is defined
+  execCommand(buildCommand([
+    'npx firebase target:apply',
+    `hosting ${options.site} ${options.site}`
+  ]))
+
+  return execCommand(buildCommand([
+    'npx firebase deploy',
+    `--only=hosting:${options.site}`
+  ]))
+}
+
+export default deployExecutor

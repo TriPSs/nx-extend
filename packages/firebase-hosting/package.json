@@ -14,6 +14,6 @@
   "dependencies": {
     "firebase-tools": "^9.19.0"
   },
-  "executors": "./executors.json",
+  "builders": "./executors.json",
   "generators": "./generators.json"
 }
