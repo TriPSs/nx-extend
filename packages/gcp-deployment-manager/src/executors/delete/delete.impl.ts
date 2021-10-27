@@ -1,23 +1,23 @@
-import { createBuilder, BuilderContext } from '@angular-devkit/architect'
+import { ExecutorContext } from '@nrwl/devkit'
 import { buildCommand, execCommand } from '@nx-extend/core'
 
 import { ExecutorSchema } from '../schema'
 
-export async function runBuilder(
+export async function deleteExecutor(
   options: ExecutorSchema,
-  context: BuilderContext
+  context: ExecutorContext
 ): Promise<{ success: boolean }> {
-  const projectMeta = await context.getProjectMetadata(context.target.project)
-  const projectSourceRoot = `${context.workspaceRoot}/${projectMeta.sourceRoot}`
+  const { sourceRoot } = context.workspace.projects[context.projectName]
 
   return execCommand(buildCommand([
     'gcloud deployment-manager deployments delete',
-    context.target.project,
+    context.projectName,
     '-q',
-    options.project ? `--project=${options.project}` : false
+
+    options.project && `--project=${options.project}`
   ]), {
-    cwd: projectSourceRoot
+    cwd: sourceRoot
   })
 }
 
-export default createBuilder(runBuilder)
+export default deleteExecutor

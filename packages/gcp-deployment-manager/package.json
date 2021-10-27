@@ -11,6 +11,6 @@
   },
   "license": "MIT",
   "main": "src/index.js",
-  "builders": "./builders.json",
+  "builders": "./executors.json",
   "generators": "./generators.json"
 }

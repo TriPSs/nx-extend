@@ -4,7 +4,7 @@
   <img src="https://badgen.net/npm/v/@nx-extend/gcp-deployment-manager" alt="@nx-extend/gcp-deployment-manager NPM package">
 </a>
 
-**Nx plugin for deploy your app to [Cloud Run](https://cloud.google.com/run)**.
+**Nx plugin for deploy your Google recourses with [Deployment Manager](https://cloud.google.com/deployment-manager/docs)**.
 
 ## Setup
 

@@ -1,9 +1,4 @@
-import { JsonObject } from '@angular-devkit/core'
-
-export interface ExecutorSchema extends JsonObject {
-
+export interface ExecutorSchema {
   file: string
-
   project?: string
-
 }
