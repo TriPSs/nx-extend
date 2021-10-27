@@ -1,12 +1,16 @@
-import { BuilderContext, createBuilder } from '@angular-devkit/architect'
+import { ExecutorContext, logger } from '@nrwl/devkit'
 
-import { PushSchema } from './schema'
 import { getProvider } from '../../providers'
 import { getConfigFile } from '../../utils/config-file'
 
-export async function runBuilder(
+export interface PushSchema {
+  provider?: string
+  language?: string
+}
+
+export async function pushExtractor(
   options: PushSchema,
-  context: BuilderContext
+  context: ExecutorContext
 ): Promise<{ success: boolean }> {
   const configFile = await getConfigFile(context)
 
@@ -21,15 +25,15 @@ export async function runBuilder(
   )
 
   try {
-    context.logger.info('Pushing translation source file')
+    logger.info('Pushing translation source file')
     await provider.push(options.language)
 
     return {
       success: true
     }
   } catch (err) {
-    context.logger.error('Error pushing source file')
-    context.logger.error(err.message || err)
+    logger.error('Error pushing source file')
+    logger.error(err.message || err)
   }
 
   return {
@@ -37,4 +41,4 @@ export async function runBuilder(
   }
 }
 
-export default createBuilder(runBuilder)
+export default pushExtractor

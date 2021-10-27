@@ -47,11 +47,6 @@
             "input": "./packages/translations",
             "glob": "executors.json",
             "output": "."
-          },
-          {
-            "input": "./packages/translations",
-            "glob": "builders.json",
-            "output": "."
           }
         ]
       }

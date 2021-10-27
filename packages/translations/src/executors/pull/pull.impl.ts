@@ -1,12 +1,15 @@
-import { BuilderContext, createBuilder } from '@angular-devkit/architect'
+import { ExecutorContext, logger } from '@nrwl/devkit'
 
-import { PullSchema } from './schema'
 import { getProvider } from '../../providers'
 import { getConfigFile } from '../../utils/config-file'
 
-export async function runBuilder(
+export interface PullSchema {
+  provider?: string
+}
+
+export async function pullExtractor(
   options: PullSchema,
-  context: BuilderContext
+  context: ExecutorContext
 ): Promise<{ success: boolean }> {
   const configFile = await getConfigFile(context)
 
@@ -21,15 +24,15 @@ export async function runBuilder(
   )
 
   try {
-    context.logger.info('Pulling translations')
+    logger.info('Pulling translations')
     await provider.pull()
 
     return {
       success: true
     }
   } catch (err) {
-    context.logger.error('Error pulling translations')
-    context.logger.error(err.message || err)
+    logger.error('Error pulling translations')
+    logger.error(err.message || err)
   }
 
   return {
@@ -37,4 +40,4 @@ export async function runBuilder(
   }
 }
 
-export default createBuilder(runBuilder)
+export default pullExtractor

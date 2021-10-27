@@ -1,4 +1,5 @@
-import axios from 'axios'
+import { logger } from '@nrwl/devkit'
+import axios, { AxiosInstance } from 'axios'
 import * as deepmerge from 'deepmerge'
 
 import { BaseConfigFile } from '../utils/config-file'
@@ -22,7 +23,7 @@ export interface TransifexLanguage {
 
 export default class Transifex extends BaseProvider<TransifexConfig> {
 
-  private readonly apiClient = axios.create({
+  private readonly apiClient: AxiosInstance = axios.create({
     baseURL: 'https://rest.api.transifex.com'
   })
 
@@ -32,7 +33,7 @@ export default class Transifex extends BaseProvider<TransifexConfig> {
     const transifexLanguage = this.languages.find(({ code }) => code === language)
 
     if (!transifexLanguage) {
-      this.context.logger.error(`Language "${language}" does not exist in Transifex!`)
+      logger.error(`Language "${language}" does not exist in Transifex!`)
       return
     }
 
@@ -61,7 +62,7 @@ export default class Transifex extends BaseProvider<TransifexConfig> {
     const transifexLanguage = this.languages.find(({ code }) => code === language)
 
     if (!transifexLanguage && language === this.config.defaultLanguage) {
-      this.context.logger.error(`Language "${language}" does not exist in Transifex!`)
+      logger.error(`Language "${language}" does not exist in Transifex!`)
       return
     }
 
@@ -121,7 +122,8 @@ export default class Transifex extends BaseProvider<TransifexConfig> {
     let tries = 0
     let status = response.data.attributes.status
     while (status !== 'succeeded' && tries <= 3) {
-      this.context.logger.info('Verify upload status...')
+      logger.info('Verify upload status...')
+
       tries++
       const { data } = await this.getFromAPI(response.data.links.self)
       status = data?.attributes?.status
@@ -131,7 +133,7 @@ export default class Transifex extends BaseProvider<TransifexConfig> {
     }
 
     if (status !== 'succeeded') {
-      this.context.logger.warn(`Could not verify upload status, last know status was "${status}"`)
+      logger.warn(`Could not verify upload status, last know status was "${status}"`)
     }
 
     return true

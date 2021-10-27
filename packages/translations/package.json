@@ -22,9 +22,10 @@
   "license": "MIT",
   "main": "src/index.js",
   "dependencies": {
+    "@formatjs/cli": "^4.4.0",
     "axios": "^0.21.1",
     "deepmerge": "^4.2.2"
   },
-  "builders": "./builders.json",
+  "builders": "./executors.json",
   "generators": "./generators.json"
 }

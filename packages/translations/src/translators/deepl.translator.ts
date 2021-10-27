@@ -1,6 +1,6 @@
+import { ExecutorContext, logger } from '@nrwl/devkit'
 import axios from 'axios'
 import * as pMap from 'p-map'
-import { BuilderContext } from '@angular-devkit/architect'
 
 import { BaseConfigFile } from '../utils/config-file'
 import BaseProvider from '../providers/base.provider'
@@ -19,11 +19,11 @@ export default class DeeplTranslator {
 
   private readonly endpoint: string
 
-  private readonly context: BuilderContext
+  private readonly context: ExecutorContext
 
   private readonly config: BaseConfigFile
 
-  constructor(context: BuilderContext, config: BaseConfigFile, endpoint: string) {
+  constructor(context: ExecutorContext, config: BaseConfigFile, endpoint: string) {
     this.endpoint = endpoint
     this.context = context
     this.config = config
@@ -114,7 +114,7 @@ export default class DeeplTranslator {
         const { status, data: { translations } } = await axios.get<any>(url.join('&'))
 
         if (status === 429) {
-          this.context.logger.warn('To many requests, wait and retry')
+          logger.warn('To many requests, wait and retry')
 
         } else if (status === 456) {
           throw new Error('Rate limit!')

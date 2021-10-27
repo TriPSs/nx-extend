@@ -1,6 +1,6 @@
-import { existsSync, readFileSync, writeFileSync } from 'fs'
+import { ExecutorContext, writeJsonFile, readJsonFile } from '@nrwl/devkit'
 import { resolve } from 'path'
-import { BuilderContext } from '@angular-devkit/architect'
+
 import { getProjectRoot } from './get-project-root'
 
 export type Extractors = 'formatjs'
@@ -55,45 +55,29 @@ export interface BaseConfigFile {
 
 }
 
-export const getFile = (projectRoot, location) => {
-  const fileLocation = resolve(projectRoot, location)
-
-  if (existsSync(fileLocation)) {
-    return JSON.parse(readFileSync(fileLocation, 'utf8'))
-  }
-
-  return {}
-}
-
-export const getConfigFile = async <Config extends BaseConfigFile>(context: BuilderContext): Promise<Config> => {
-  const projectRoot = await getProjectRoot(context)
-
-  let configFile = getFile(projectRoot, '.translationsrc.json') as Config
+export const getConfigFile = <Config extends BaseConfigFile>(context: ExecutorContext): Config => {
+  let configFile = readJsonFile<Config>(
+    resolve(getProjectRoot(context), '.translationsrc.json')
+  )
 
   if (configFile.extends) {
     configFile = Object.assign(
-      getFile(projectRoot, configFile.extends),
+      readJsonFile(resolve(getProjectRoot(context), configFile.extends)),
       configFile
     )
   }
 
   // Add project root to the config
   configFile = Object.assign(configFile, {
-    projectRoot
+    projectRoot: getProjectRoot(context)
   })
 
   return configFile as Config
 }
 
 
-export const updateConfigFile = async <Config extends BaseConfigFile>(context: BuilderContext, update): Promise<void> => {
-  const projectRoot = await getProjectRoot(context)
-  const configFile = getFile(projectRoot, '.translationsrc.json') as Config
-  const fileLocation = resolve(projectRoot, '.translationsrc.json')
+export const updateConfigFile = (context: ExecutorContext, update): void => {
+  const fileLocation = resolve(getProjectRoot(context), '.translationsrc.json')
 
-  writeFileSync(fileLocation, JSON.stringify(
-    Object.assign(configFile, update),
-    null,
-    2
-  ))
+  writeJsonFile(fileLocation, Object.assign(readJsonFile(fileLocation), update))
 }
