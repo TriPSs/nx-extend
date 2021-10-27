@@ -18,6 +18,6 @@
   "dependencies": {
     "strapi-generate-new": "^3.4.5"
   },
-  "builders": "./builders.json",
+  "builders": "./executors.json",
   "generators": "./generators.json"
 }

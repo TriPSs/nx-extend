@@ -9,10 +9,10 @@ import * as generateStrapi from 'strapi-generate-new'
 import { StrapiGeneratorSchema } from './schema'
 
 interface NormalizedSchema extends StrapiGeneratorSchema {
-  projectName: string;
-  projectRoot: string;
-  projectDirectory: string;
-  parsedTags: string[];
+  projectName: string
+  projectRoot: string
+  projectDirectory: string
+  parsedTags: string[]
 }
 
 function normalizeOptions(host: Tree, options: StrapiGeneratorSchema): NormalizedSchema {
