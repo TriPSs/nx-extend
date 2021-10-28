@@ -2,6 +2,29 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [4.0.0](https://github.com/TriPSs/nx-extend/compare/gcp-functions@3.0.0...gcp-functions@4.0.0) (2021-10-28)
+
+
+### Bug Fixes
+
+* Fixes in build ([eb1b9f1](https://github.com/TriPSs/nx-extend/commit/eb1b9f11fce7565db4c62ab760ba096878df0383))
+* **gcp-functions:** Fixed build for NX 13 ([119c3a3](https://github.com/TriPSs/nx-extend/commit/119c3a35057c8a137e16a9d8c1a6365d5b230bab))
+
+
+* feat!: Upgrade to NX 13 and remove angular `@angular-devkit` dependency ([0a6b125](https://github.com/TriPSs/nx-extend/commit/0a6b125d87431c5eecafebbdda7b12ed5fc6ab2b))
+
+
+### Features
+
+* **gcp-functions:** Added documentation and improve implementation ([961ab97](https://github.com/TriPSs/nx-extend/commit/961ab970ac996875d2e50ca6e82f9eadd46948d6))
+
+
+### BREAKING CHANGES
+
+* Removed `@angular-devkit` dependency and executors / generators implementations are updated.
+
+
+
 # [3.0.0](https://github.com/TriPSs/nx-extend/compare/gcp-functions@2.1.3...gcp-functions@3.0.0) (2021-10-08)
 
 ### Bug Fixes
