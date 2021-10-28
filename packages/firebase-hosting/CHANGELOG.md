@@ -2,6 +2,23 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [2.0.0](https://github.com/TriPSs/nx-extend/compare/firebase-hosting@1.0.4...firebase-hosting@2.0.0) (2021-10-28)
+
+
+* feat!: Upgrade to NX 13 and remove angular `@angular-devkit` dependency ([b46adbf](https://github.com/TriPSs/nx-extend/commit/b46adbf390917d5ee7eeb23519249bed47bd45fa))
+
+
+### Features
+
+* **firebase-hosting:** Added documentation and improve implementation ([7dfbfb8](https://github.com/TriPSs/nx-extend/commit/7dfbfb8c69734ca66b4837a5ffd8b35b3f91e30a))
+
+
+### BREAKING CHANGES
+
+* Removed `@angular-devkit` dependency and executors / generators implementations are updated.
+
+
+
 ## [1.0.4](https://github.com/TriPSs/nx-extend/compare/firebase-hosting@1.0.3...firebase-hosting@1.0.4) (2021-10-14)
 
 ### Bug Fixes
