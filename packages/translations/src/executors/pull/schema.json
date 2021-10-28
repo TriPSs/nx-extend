@@ -1,7 +1,9 @@
 {
+  "$schema": "http://json-schema.org/schema",
+  "type": "object",
+  "cli": "nx",
   "title": "Pull translations from provider",
   "description": "",
-  "type": "object",
   "properties": {
     "provider": {
       "type": "string",

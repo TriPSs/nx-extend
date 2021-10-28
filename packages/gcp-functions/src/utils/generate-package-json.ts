@@ -1,6 +1,6 @@
 import * as fs from 'fs'
 import { join } from 'path'
-import { fileExists, readJsonFile, writeToFile } from '@nrwl/workspace/src/utils/fileutils'
+import { fileExists, readJsonFile, writeJsonFile } from '@nrwl/workspace/src/utils/fileutils'
 import { createPackageJson } from '@nrwl/workspace/src/utilities/create-package-json'
 import { ProjectGraph } from '@nrwl/workspace/src/core/project-graph'
 
@@ -59,5 +59,5 @@ export const generatePackageJson = (
     ...dependencies
   }
 
-  writeToFile(join(options.outputPath, 'package.json'), JSON.stringify(packageJson, null, 2))
+  writeJsonFile(`${options.outputPath}/package.json`, packageJson)
 }

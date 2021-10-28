@@ -1,5 +1,5 @@
-import * as fs from 'fs'
-import * as path from 'path'
+import { writeJsonFile, readJsonFile } from '@nrwl/devkit'
+import { basename } from 'path'
 
 export interface SecretFile {
 
@@ -14,13 +14,13 @@ export interface SecretFile {
 }
 
 export const getFileContent = (file: string): SecretFile => {
-  return JSON.parse(fs.readFileSync(file, 'utf8'))
+  return readJsonFile(file)
 }
 
 export const storeFile = (file: string, content: SecretFile) => {
-  fs.writeFileSync(file, JSON.stringify(content, null, 2), 'utf8')
+  writeJsonFile(file, content)
 }
 
 export const getFileName = (file: string) => {
-  return path.basename(file)
+  return basename(file)
 }

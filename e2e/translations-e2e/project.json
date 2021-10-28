@@ -1,0 +1,18 @@
+{
+  "projectType": "application",
+  "root": "e2e/translations-e2e",
+  "sourceRoot": "e2e/translations-e2e/src",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/nx-plugin:e2e",
+      "options": {
+        "target": "translations:build",
+        "jestConfig": "e2e/translations-e2e/jest.config.js"
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": [
+    "translations"
+  ]
+}

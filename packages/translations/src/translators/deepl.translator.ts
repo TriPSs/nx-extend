@@ -1,6 +1,6 @@
+import { ExecutorContext, logger } from '@nrwl/devkit'
 import axios from 'axios'
 import * as pMap from 'p-map'
-import { BuilderContext } from '@angular-devkit/architect'
 
 import { BaseConfigFile } from '../utils/config-file'
 import BaseProvider from '../providers/base.provider'
@@ -19,11 +19,11 @@ export default class DeeplTranslator {
 
   private readonly endpoint: string
 
-  private readonly context: BuilderContext
+  private readonly context: ExecutorContext
 
   private readonly config: BaseConfigFile
 
-  constructor(context: BuilderContext, config: BaseConfigFile, endpoint: string) {
+  constructor(context: ExecutorContext, config: BaseConfigFile, endpoint: string) {
     this.endpoint = endpoint
     this.context = context
     this.config = config
@@ -45,7 +45,6 @@ export default class DeeplTranslator {
 
       if (code !== this.config.defaultLanguage) {
         const terms = await provider.getTranslations(code)
-
         const toTranslate = []
 
         Object.keys(terms)
@@ -101,6 +100,8 @@ export default class DeeplTranslator {
             message.value
               .replace(/{/g, '<deepSkip>')
               .replace(/}/g, '</deepSkip>')
+              .replace(/'<a'/g, '<deepLink')
+              .replace(/'<\/a>'/g, '</deepLink>')
           }`,
           `target_lang=${toLocale.split('_').shift()}`,
           `source_lang=${this.config.defaultLanguage}`,
@@ -110,10 +111,10 @@ export default class DeeplTranslator {
           this.config?.translatorOptions?.formality && `formality=${this.config.translatorOptions.formality}`
         ].filter(Boolean)
 
-        const { status, data: { translations } } = await axios.get(url.join('&'))
+        const { status, data: { translations } } = await axios.get<any>(url.join('&'))
 
         if (status === 429) {
-          this.context.logger.warn('To many requests, wait and retry')
+          logger.warn('To many requests, wait and retry')
 
         } else if (status === 456) {
           throw new Error('Rate limit!')
@@ -124,6 +125,8 @@ export default class DeeplTranslator {
           value: translations[0].text
             .replace(/<deepSkip>/g, '{')
             .replace(/<\/deepSkip>/g, '}')
+            .replace(/<deepLink/g, '\'<a\'')
+            .replace(/<\/deepLink>/g, '\'</a>\'')
         }
       }, {
         concurrency: 1,

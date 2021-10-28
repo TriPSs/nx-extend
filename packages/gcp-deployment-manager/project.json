@@ -1,0 +1,62 @@
+{
+  "root": "packages/gcp-deployment-manager",
+  "sourceRoot": "packages/gcp-deployment-manager/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "packages/gcp-deployment-manager/**/*.ts"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "coverage/packages/gcp-deployment-manager"
+      ],
+      "options": {
+        "jestConfig": "packages/gcp-deployment-manager/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "build": {
+      "executor": "@nrwl/node:package",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "outputPath": "dist/packages/gcp-deployment-manager",
+        "tsConfig": "packages/gcp-deployment-manager/tsconfig.lib.json",
+        "packageJson": "packages/gcp-deployment-manager/package.json",
+        "main": "packages/gcp-deployment-manager/src/index.ts",
+        "assets": [
+          "packages/gcp-deployment-manager/*.md",
+          {
+            "input": "./packages/gcp-deployment-manager/src",
+            "glob": "**/*.!(ts)",
+            "output": "./src"
+          },
+          {
+            "input": "./packages/gcp-deployment-manager",
+            "glob": "generators.json",
+            "output": "."
+          },
+          {
+            "input": "./packages/gcp-deployment-manager",
+            "glob": "executors.json",
+            "output": "."
+          }
+        ]
+      }
+    },
+    "version": {
+      "executor": "@jscutlery/semver:version",
+      "options": {
+        "versionTagPrefix": "${target}@"
+      }
+    }
+  },
+  "tags": []
+}

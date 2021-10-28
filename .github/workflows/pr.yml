@@ -3,6 +3,9 @@ name: PR
 # Run on all pull requests
 on: [ pull_request ]
 
+env:
+  NX_BRANCH: ${{ github.event.number }}
+  NX_RUN_GROUP: ${{ github.run_id }}
 
 jobs:
 
@@ -51,9 +54,14 @@ jobs:
             ${{ env.NX_CACHE }}-${{ hashFiles('yarn.lock') }}-
             ${{ env.NX_CACHE }}-
 
+      - name: Use Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14.x'
+
       - name: yarn install
         if: steps.cache.outputs.cache-hit != 'true'
-        run: yarn install --pure-lockfile
+        run: yarn install
 
       - name: GIT config
         run: |
@@ -65,3 +73,6 @@ jobs:
 
       - name: nx affected:build
         run: node ./tools/scripts/run-many.js build origin/${{ needs.prepare-env.outputs.GITHUB_HEAD_REF }} ${{ needs.prepare-env.outputs.GITHUB_BASE_REF }}
+
+      - name: nx affected:e2e
+        run: node ./tools/scripts/run-many.js e2e origin/${{ needs.prepare-env.outputs.GITHUB_HEAD_REF }} ${{ needs.prepare-env.outputs.GITHUB_BASE_REF }}

@@ -7,16 +7,16 @@
   "properties": {
     "target": {
       "type": "string",
-      "description": "",
+      "description": "Target to add Firebase Hosting to",
       "$default": {
         "$source": "argv",
         "index": 0
       },
-      "x-prompt": "To what app would you like to add Firebase hosting?"
+      "x-prompt": "To what target would you like to add Firebase hosting?"
     },
     "site": {
       "type": "string",
-      "description": "",
+      "description": "Site name in Firebase Hosting",
       "$default": {
         "$source": "argv",
         "index": 1

@@ -1,9 +1,9 @@
-import { BuilderContext } from '@angular-devkit/architect'
+import { ExecutorContext, logger } from '@nrwl/devkit'
 
 import DeeplTranslator from './deepl.translator'
 import { BaseConfigFile } from '../utils/config-file'
 
-export const getTranslator = (context: BuilderContext, config: BaseConfigFile): DeeplTranslator => {
+export const getTranslator = (context: ExecutorContext, config: BaseConfigFile): DeeplTranslator => {
 
   switch (config.translator) {
     case 'free-deepl':
@@ -16,7 +16,7 @@ export const getTranslator = (context: BuilderContext, config: BaseConfigFile): 
     // TODO:: https://www.itranslate.com/itranslate-translation-api-contact-form
 
     default:
-      context.logger.warn(`"${config.translator}" is not an valid translator!`)
+      logger.warn(`"${config.translator}" is not an valid translator!`)
       return null
   }
 }

@@ -3,9 +3,9 @@
   "name": "strapi",
   "version": "0.0.1",
   "generators": {
-    "strapi": {
-      "factory": "./src/generators/strapi/generator",
-      "schema": "./src/generators/strapi/schema.json",
+    "init": {
+      "factory": "./src/generators/init/init.impl",
+      "schema": "./src/generators/init/schema.json",
       "description": "strapi generator"
     }
   }

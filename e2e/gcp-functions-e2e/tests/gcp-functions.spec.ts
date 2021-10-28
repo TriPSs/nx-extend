@@ -1,54 +1,52 @@
 import {
   checkFilesExist,
   ensureNxProject,
-  readJson,
   runNxCommandAsync,
-  uniq,
-} from '@nrwl/nx-plugin/testing';
-describe('gcp-functions e2e', () => {
-  it('should create gcp-functions', async (done) => {
-    const plugin = uniq('gcp-functions');
-    ensureNxProject('@nx-extend/gcp-functions', 'dist/packages/gcp-functions');
-    await runNxCommandAsync(
-      `generate @nx-extend/gcp-functions:init ${plugin}`
-    );
+  uniq
+} from '@nrwl/nx-plugin/testing'
 
-    const result = await runNxCommandAsync(`build ${plugin}`);
-    expect(result.stdout).toContain('Executor ran');
+describe('(e2e) gcp-functions', () => {
 
-    done();
-  });
+  beforeEach(() => {
+    ensureNxProject('@nx-extend/gcp-functions', 'dist/packages/gcp-functions')
+  })
 
-  describe('--directory', () => {
-    it('should create src in the specified directory', async (done) => {
-      const plugin = uniq('gcp-functions');
-      ensureNxProject(
-        '@nx-extend/gcp-functions',
-        'dist/packages/gcp-functions'
-      );
-      await runNxCommandAsync(
-        `generate @nx-extend/gcp-functions:gcp-functions ${plugin} --directory subdir`
-      );
-      expect(() =>
-        checkFilesExist(`libs/subdir/${plugin}/src/index.ts`)
-      ).not.toThrow();
-      done();
-    });
-  });
+  it('should be able to generate an empty function', async () => {
+    const plugin = uniq('gcp-functions')
+    await runNxCommandAsync(`generate @nx-extend/gcp-functions:init ${plugin}`)
 
-  describe('--tags', () => {
-    it('should add tags to nx.json', async (done) => {
-      const plugin = uniq('gcp-functions');
-      ensureNxProject(
-        '@nx-extend/gcp-functions',
-        'dist/packages/gcp-functions'
-      );
-      await runNxCommandAsync(
-        `generate @nx-extend/gcp-functions:gcp-functions ${plugin} --tags e2etag,e2ePackage`
-      );
-      const nxJson = readJson('nx.json');
-      expect(nxJson.projects[plugin].tags).toEqual(['e2etag', 'e2ePackage']);
-      done();
-    });
-  });
-});
+    expect(() =>
+      checkFilesExist(
+        `apps/${plugin}/src/main.ts`,
+        `apps/${plugin}/src/environments/production.yaml`
+      )
+    ).not.toThrow()
+  }, 300000)
+
+  it('should be able to build a function', async () => {
+    const plugin = uniq('gcp-functions')
+    await runNxCommandAsync(`generate @nx-extend/gcp-functions:init ${plugin}`)
+    await runNxCommandAsync(`build ${plugin}`)
+
+    expect(() =>
+      checkFilesExist(
+        `dist/apps/${plugin}/main.js`,
+        `dist/apps/${plugin}/package.json`
+      )
+    ).not.toThrow()
+  }, 300000)
+
+  it('should be able the runner', async () => {
+    const plugin = uniq('gcp-functions-runner')
+    await runNxCommandAsync(`generate @nx-extend/gcp-functions:init-runner ${plugin}`)
+
+    expect(() =>
+      checkFilesExist(
+        `apps/${plugin}/src/main.ts`,
+        `apps/${plugin}/src/__runner.controller.ts`,
+        `apps/${plugin}/src/__runner.module.ts`
+      )
+    ).not.toThrow()
+  }, 300000)
+
+})

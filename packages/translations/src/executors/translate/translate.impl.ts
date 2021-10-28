@@ -1,12 +1,15 @@
-import { BuilderContext, createBuilder } from '@angular-devkit/architect'
+import { ExecutorContext, logger } from '@nrwl/devkit'
 
-import { PushSchema } from './schema'
 import { getProvider } from '../../providers'
 import { getConfigFile } from '../../utils/config-file'
 
-export async function runBuilder(
-  options: PushSchema,
-  context: BuilderContext
+export interface TranslateSchema {
+  provider?: string
+}
+
+export async function translateExtractor(
+  options: TranslateSchema,
+  context: ExecutorContext
 ): Promise<{ success: boolean }> {
   const configFile = await getConfigFile(context)
 
@@ -21,22 +24,16 @@ export async function runBuilder(
   )
 
   try {
-    context.logger.info('Start translating files')
+    logger.info('Start translating files')
 
-    // TODO:: Refactor this that it can also translate without provider
-    // provider.getToTranslatedTerms(options.locale)
-
-    // await translator.translate(messages.slice(0, options.batchSize), defaultLocale, options.locale)
     await provider.translate()
-
-    // provider.storeTranslatedTerms(options.locale, translatedTerms)
 
     return {
       success: true
     }
   } catch (err) {
-    context.logger.error('Error pushing source file')
-    context.logger.error(err.message || err)
+    logger.error('Error pushing source file')
+    logger.error(err.message || err)
   }
 
   return {
@@ -44,4 +41,4 @@ export async function runBuilder(
   }
 }
 
-export default createBuilder(runBuilder)
+export default translateExtractor

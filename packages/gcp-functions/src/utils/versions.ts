@@ -1,1 +1,1 @@
-export const nxVersion = '*';
+export const nxVersion = '*'

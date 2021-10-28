@@ -65,7 +65,7 @@ export default async function (
   addProjectConfiguration(host, normalizedOptions.projectName, {
     root: normalizedOptions.projectRoot,
     projectType: 'application',
-    sourceRoot: normalizedOptions.projectRoot,
+    sourceRoot: `${normalizedOptions.projectRoot}/src`,
     targets: {
       create: {
         executor: '@nx-extend/gcp-deployment-manager:create',

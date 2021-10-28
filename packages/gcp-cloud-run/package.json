@@ -1,7 +1,16 @@
 {
   "name": "@nx-extend/gcp-cloud-run",
   "version": "2.0.2",
+  "homepage": "https://github.com/TriPSs/nx-extend/blob/master/packages/gcp-cloud-run/README.md",
+  "bugs": {
+    "url": "https://github.com/tripss/nx-extend/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tripss/nx-extend"
+  },
+  "license": "MIT",
   "main": "src/index.js",
-  "generators": "./generators.json",
-  "builders": "./builders.json"
+  "builders": "./executors.json",
+  "generators": "./generators.json"
 }

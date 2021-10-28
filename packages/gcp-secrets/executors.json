@@ -1,0 +1,36 @@
+{
+  "executors": {
+    "encrypt": {
+      "implementation": "./src/executors/encrypt/encrypt.impl",
+      "schema": "./src/executors/encrypt/schema.json",
+      "description": "Encrypt executor"
+    },
+    "decrypt": {
+      "implementation": "./src/executors/decrypt/decrypt.impl",
+      "schema": "./src/executors/decrypt/schema.json",
+      "description": "Decrypt executor"
+    },
+    "deploy": {
+      "implementation": "./src/executors/deploy/deploy.impl",
+      "schema": "./src/executors/deploy/schema.json",
+      "description": "Deploy executor"
+    }
+  },
+  "builders": {
+    "encrypt": {
+      "implementation": "./src/executors/encrypt/encrypt.impl",
+      "schema": "./src/executors/encrypt/schema.json",
+      "description": "Encrypt executor"
+    },
+    "decrypt": {
+      "implementation": "./src/executors/decrypt/decrypt.impl",
+      "schema": "./src/executors/decrypt/schema.json",
+      "description": "Decrypt executor"
+    },
+    "deploy": {
+      "implementation": "./src/executors/deploy/deploy.impl",
+      "schema": "./src/executors/deploy/schema.json",
+      "description": "Deploy executor"
+    }
+  }
+}

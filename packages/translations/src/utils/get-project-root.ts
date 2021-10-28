@@ -1,8 +1,5 @@
-import { join } from 'path'
-import { BuilderContext } from '@angular-devkit/architect'
+import { ExecutorContext } from '@nrwl/devkit'
 
-export const getProjectRoot = async (context: BuilderContext): Promise<string> => {
-  const projectMetadata = await context.getProjectMetadata(context.target.project)
-
-  return join(`${context.workspaceRoot}`, `${projectMetadata.root}`)
+export const getProjectRoot = (context: ExecutorContext): string => {
+  return context.workspace.projects[context.projectName].root
 }

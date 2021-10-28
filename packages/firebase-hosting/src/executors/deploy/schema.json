@@ -1,12 +1,13 @@
 {
   "$schema": "http://json-schema.org/schema",
+  "type": "object",
   "cli": "nx",
   "title": "Deploy executor",
-  "description": "",
-  "type": "object",
+  "description": "Deploy to Firebase Hosting",
   "properties": {
     "site": {
-      "type": "string"
+      "type": "string",
+      "description": "Site name in Firebase Hosting"
     }
   }
 }

@@ -1,0 +1,26 @@
+{
+  "executors": {
+    "deploy": {
+      "implementation": "./src/executors/deploy/deploy.impl",
+      "schema": "./src/executors/deploy/schema.json",
+      "description": "Deploy a function"
+    },
+    "build": {
+      "implementation": "./src/executors/build/build.impl",
+      "schema": "./src/executors/build/schema.json",
+      "description": "Build the function"
+    }
+  },
+  "builders": {
+    "deploy": {
+      "implementation": "./src/executors/deploy/deploy.impl",
+      "schema": "./src/executors/deploy/schema.json",
+      "description": "Deploy a function"
+    },
+    "build": {
+      "implementation": "./src/executors/build/build.impl",
+      "schema": "./src/builders/build/schema.json",
+      "description": "Build the function"
+    }
+  }
+}

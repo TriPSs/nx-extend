@@ -66,38 +66,38 @@ export default async function (
     sourceRoot: `${normalizedOptions.projectRoot}/src`,
     targets: {
       lint: {
-        'executor': '@nrwl/linter:eslint',
-        'options': {}
+        executor: '@nrwl/linter:eslint',
+        options: {}
       },
       test: {
-        'executor': '@nrwl/jest:jest',
-        'options': {
-          'jestConfig': `${normalizedOptions.projectRoot}jest.config.js`,
-          'passWithNoTests': true
+        executor: '@nrwl/jest:jest',
+        options: {
+          jestConfig: `${normalizedOptions.projectRoot}jest.config.js`,
+          passWithNoTests: true
         }
       },
       build: {
-        'executor': '@nx-extend/gcp-functions:build',
-        'options': {
-          'generatePackageJson': true,
-          'outputPath': `dist/${normalizedOptions.projectRoot}`,
-          'main': `${normalizedOptions.projectRoot}/src/main.ts`,
-          'tsConfig': `${normalizedOptions.projectRoot}/tsconfig.app.json`,
-          'assets': []
+        executor: '@nx-extend/gcp-functions:build',
+        options: {
+          generatePackageJson: true,
+          outputPath: `dist/${normalizedOptions.projectRoot}`,
+          main: `${normalizedOptions.projectRoot}/src/main.ts`,
+          tsConfig: `${normalizedOptions.projectRoot}/tsconfig.app.json`,
+          assets: []
         },
-        'configurations': {
-          'production': {
-            'optimization': true,
-            'extractLicenses': false,
-            'inspect': false
+        configurations: {
+          production: {
+            optimization: true,
+            extractLicenses: false,
+            inspect: false
           }
         }
       },
       deploy: {
-        'executor': '@nx-extend/gcp-functions:deploy',
-        'options': {
-          'functionName': normalizedOptions.name,
-          'envVarsFile': `${normalizedOptions.projectRoot}/src/environments/production.yaml`
+        executor: '@nx-extend/gcp-functions:deploy',
+        options: {
+          functionName: normalizedOptions.name,
+          envVarsFile: `${normalizedOptions.projectRoot}/src/environments/production.yaml`
         }
       }
     },

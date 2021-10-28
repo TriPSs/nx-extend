@@ -64,7 +64,7 @@ export default async function (
   addProjectConfiguration(host, normalizedOptions.projectName, {
     root: normalizedOptions.projectRoot,
     projectType: 'application',
-    sourceRoot: normalizedOptions.projectRoot,
+    sourceRoot: `${normalizedOptions.projectRoot}/src`,
     targets: {
       deploy: {
         executor: '@nx-extend/gcp-secrets:deploy'

@@ -1,0 +1,88 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "type": "object",
+  "cli": "nx",
+  "title": "deploy",
+  "description": "Deploy a Google Cloud Platform function",
+  "properties": {
+    "functionName": {
+      "type": "string",
+      "description": "Name of the function"
+    },
+    "entryPoint": {
+      "type": "string",
+      "description": "Entrypoint of the file to use, default is functionName"
+    },
+    "trigger": {
+      "type": "string",
+      "description": "Trigger type",
+      "enum": [
+        "http",
+        "bucket",
+        "topic",
+        "resource",
+        "event"
+      ]
+    },
+    "triggerValue": {
+      "type": "string",
+      "description": "Value of the trigger"
+    },
+    "runtime": {
+      "type": "string",
+      "enum": [
+        "nodejs12",
+        "nodejs14"
+      ]
+    },
+    "memory": {
+      "type": "string",
+      "enum": [
+        "128MB",
+        "256MB",
+        "512MB",
+        "1024MB",
+        "2048MB",
+        "4096MB"
+      ]
+    },
+    "allowUnauthenticated": {
+      "type": "boolean"
+    },
+    "maxInstances": {
+      "type": "number"
+    },
+    "envVarsFile": {
+      "type": "string"
+    },
+    "project": {
+      "type": "string"
+    },
+    "retry": {
+      "type": "boolean",
+      "default": false
+    },
+    "ingressSettings": {
+      "type": "string",
+      "enum": [
+        "all",
+        "internal-only",
+        "internal-and-gclb"
+      ]
+    },
+    "egressSettings": {
+      "type": "string",
+      "enum": [
+        "all",
+        "private-ranges-only"
+      ]
+    },
+    "securityLevel": {
+      "type": "string",
+      "enum": [
+        "secure-optional",
+        "secure-always"
+      ]
+    }
+  }
+}

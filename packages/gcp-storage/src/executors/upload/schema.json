@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "type": "object",
+  "cli": "nx",
+  "title": "upload",
+  "description": "Upload files to Google Cloud Storage",
+  "properties": {
+    "bucket": {
+      "type": "string",
+      "description": "Bucket to upload to"
+    },
+    "directory": {
+      "type": "string",
+      "description": "Folder from the outputPath to upload",
+      "default": ""
+    },
+    "gzip": {
+      "type": "boolean",
+      "description": "Should the files that are uploaded be gzipped",
+      "default": false
+    },
+    "gzipExtensions": {
+      "type": "string",
+      "description": "What extensions to gzip",
+      "default": "js,css,html"
+    }
+  }
+}

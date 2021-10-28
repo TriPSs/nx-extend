@@ -1,58 +1,30 @@
-# Nx-extend
+# NX-extend
 
-<p align="center"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="450"></p>
-
-🔎 **Nx-extend is a set of Extensible Dev Tools for Monorepos.**
+🔎 **NX-extend is a set of tools to help your NX project.**
 
 ## Nx-extend adds the following capabilities to your workspace
 
-- [GCP Cloud Run](https://cloud.google.com/)
+- [GCP Cloud Run](./packages/gcp-cloud-run/README.md)
   - `npm install --save-dev @nx-extend/gcp-cloud-run`
-- [GCP Deployment Manager](https://cloud.google.com/)
+- [GCP Deployment Manager](./packages/gcp-deployment-manager/README.md)
   - `npm install --save-dev @nx-extend/gcp-deployment-manager`
-- [GCP Functions](https://cloud.google.com/)
+- [GCP Functions](./packages/gcp-functions/README.md)
   - `npm install --save-dev @nx-extend/gcp-functions`
-- [GCP Secrets](https://cloud.google.com/)
+- [GCP Secrets](./packages/gcp-secrets/README.md)
   - `npm install --save-dev @nx-extend/gcp-secrets`
-- [GCP Storage](https://cloud.google.com/)
+- [GCP Storage](./packages/gcp-storage/README.md)
   - `npm install --save-dev @nx-extend/gcp-storage`
-- [Firebase Hosting](https://firebase.google.com/products/hosting)
+- [Firebase Hosting](./packages/firebase-hosting/README.md)
   - `npm install --save-dev @nx-extend/firebase-hosting`
-- [Translations](#)
+- [Translations](./packages/translations/README.md)
   - `npm install --save-dev @nx-extend/translations`
+- [Strapi](./packages/strapi/README.md)
+  - `npm install --save-dev @nx-extend/strapi`
 
+## [License](./LICENSE)
 
-## GCP Cloud Run
-> TODO
+Conventional Changelog Action is [MIT licensed](./LICENSE).
 
-Build and deploy your application to Cloud Run.
+## Collaboration
 
-## GCP Deployment Manager
-> TODO
-
-Manage your Google Cloud resources create, update and delete them.
-
-## GCP Functions
-> TODO
-
-Build and deploy Google Cloud Functions, includes a runner generator to run http / pub-sub functions locally.
-
-## GCP Secrets
-> TODO
-
-Manage your Google Cloud secrets through easy to use JSON files, you can encrypt, decrypt and deploy secrets.
-
-## GCP Storage
-> TODO
-
-Upload your app / files to Google Cloud Storage
-
-## Firebase Hosting
-> TODO
-
-Upload your app to Firebase Hosting.
-
-## Translations
-> TODO
-
-Translate your apps, extracts translations and uploads them (Transifex and Traduora supported).  
+If you have questions or [issues](https://github.com/TriPSs/nx-extend/issues), please [open an issue](https://github.com/TriPSs/nx-extend/issues/new)!

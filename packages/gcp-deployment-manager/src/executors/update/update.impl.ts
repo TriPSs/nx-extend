@@ -1,4 +1,4 @@
-import { createBuilder, BuilderContext } from '@angular-devkit/architect'
+import { ExecutorContext } from '@nrwl/devkit'
 import { buildCommand, execCommand } from '@nx-extend/core'
 
 import { ExecutorSchema } from '../schema'
@@ -11,22 +11,23 @@ export interface Options extends ExecutorSchema {
 
 }
 
-export async function runBuilder(
+export async function updateExecutor(
   options: Options,
-  context: BuilderContext
+  context: ExecutorContext
 ): Promise<{ success: boolean }> {
-  const projectMeta = await context.getProjectMetadata(context.target.project)
+  const { sourceRoot } = context.workspace.projects[context.projectName]
 
   return execCommand(buildCommand([
     'gcloud deployment-manager deployments update',
-    context.target.project,
+    context.projectName,
     `--config=${options.file}`,
-    options.project ? `--project=${options.project}` : false,
-    options.createPolicy ? `--delete-policy=${options.deletePolicy}` : false,
-    options.deletePolicy ? `--delete-policy=${options.deletePolicy}` : false,
+
+    options.project && `--project=${options.project}`,
+    options.createPolicy && `--delete-policy=${options.deletePolicy}`,
+    options.deletePolicy && `--delete-policy=${options.deletePolicy}`
   ]), {
-    cwd: `${context.workspaceRoot}/${projectMeta.root}`
+    cwd: sourceRoot
   })
 }
 
-export default createBuilder(runBuilder)
+export default updateExecutor

@@ -1,5 +1,5 @@
-import { BuilderContext } from '@angular-devkit/architect'
-import { existsSync, readFileSync, writeFileSync } from 'fs'
+import { ExecutorContext, logger, readJsonFile, writeJsonFile } from '@nrwl/devkit'
+import { existsSync } from 'fs'
 import { join } from 'path'
 
 import { BaseConfigFile } from '../utils/config-file'
@@ -8,15 +8,13 @@ import { getTranslator } from '../translators'
 
 export default abstract class BaseProvider<Config extends BaseConfigFile> {
 
-  protected readonly context: BuilderContext
-
-  protected projectMetadata = null
+  protected readonly context: ExecutorContext
 
   protected config: Config = null
 
   protected sourceFile: string = null
 
-  constructor(context: BuilderContext, config: Config) {
+  constructor(context: ExecutorContext, config: Config) {
     this.context = context
     this.config = config
 
@@ -26,7 +24,7 @@ export default abstract class BaseProvider<Config extends BaseConfigFile> {
         `${this.config.defaultLanguage}.json`
       ),
       this.config.projectRoot,
-      this.context.workspaceRoot
+      this.context.root
     )
   }
 
@@ -60,7 +58,7 @@ export default abstract class BaseProvider<Config extends BaseConfigFile> {
         continue
       }
 
-      this.context.logger.info(`Pulling "${code}"`)
+      logger.info(`Pulling "${code}"`)
 
       const terms = await this.getTranslations(code)
 
@@ -94,10 +92,10 @@ export default abstract class BaseProvider<Config extends BaseConfigFile> {
       : this.getLanguageTerms(languageToPush)
 
     if (languageToPush === this.config.defaultLanguage) {
-      this.context.logger.info(`Going to upload ${Object.keys(termsToPush).length} source terms!`)
+      logger.info(`Going to upload ${Object.keys(termsToPush).length} source terms!`)
 
     } else {
-      this.context.logger.info(`Going to upload ${Object.keys(termsToPush).length} terms to "${languageToPush}"!`)
+      logger.info(`Going to upload ${Object.keys(termsToPush).length} terms to "${languageToPush}"!`)
     }
 
     await this.uploadTranslations(languageToPush, termsToPush)
@@ -120,27 +118,27 @@ export default abstract class BaseProvider<Config extends BaseConfigFile> {
   public abstract uploadTranslations(language: string, translations: { [key: string]: string }): Promise<boolean>
 
   public getSourceTerms() {
-    return JSON.parse(readFileSync(this.sourceFile, 'utf8'))
+    return readJsonFile(this.sourceFile)
   }
 
   public getLanguageTerms(language: string) {
     const fileLocation = injectProjectRoot(
       `${this.config.outputDirectory}/${language}.json`,
       this.config.projectRoot,
-      this.context.workspaceRoot
+      this.context.root
     )
 
     if (!existsSync(fileLocation)) {
       return {}
     }
 
-    return JSON.parse(readFileSync(fileLocation, 'utf8'))
+    return readJsonFile(fileLocation)
   }
 
   protected writeToFile(to, data) {
-    writeFileSync(
-      injectProjectRoot(to, this.config.projectRoot, this.context.workspaceRoot),
-      JSON.stringify(data, null, 2)
+    writeJsonFile(
+      injectProjectRoot(to, this.config.projectRoot, this.context.root),
+      data
     )
   }
 

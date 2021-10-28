@@ -1,8 +1,6 @@
-import { HttpFunction } from '@google-cloud/functions-framework/build/src/functions'
+import type { HttpFunction } from '@google-cloud/functions-framework/build/src/functions'
 
-const {
-  foo = 'testBar'
-} = process.env
+const { foo = 'testBar'} = process.env
 
 export const <%= className %>: HttpFunction = async (req, res) => {
   res.status(200)

@@ -1,29 +1,32 @@
-# NX - Translations
+# @nx-extend/translations
 
-Extract/upload translations from your NX projects
+<a href="https://www.npmjs.com/package/@nx-extend/translations" rel="nofollow">
+  <img src="https://badgen.net/npm/v/@nx-extend/translations" alt="@nx-extend/translations NPM package">
+</a>
 
-## Steps
-1. Create a `.translationsrc.json` inside your project
+**Nx plugin to extract, push, pull and translate and run apps translations**.
 
-Example config
-```json
-{
-  "provider": "traduora",
-  "baseUrl": "http://localhost:8090",
-  "outputDirectory": "<projectRoot>/src/translations",
-  "outputLanguages": "<projectRoot>/src/translations/locales.json",
-  "defaultLanguage": "en",
-  "extractor": "formatjs",
-  "translator": "free-deepl",
-  "translatorOptions": {
-    "formality": "less"
-  },
-  "languages": [
-    "en",
-    "de",
-    "nl",
-    "pl",
-    "fr"
-  ]
-}
+## Setup
+
+### Install
+
+```sh
+npm install -D @nx-extend/translations
+nx g @nx-extend/translations:add
 ```
+
+## Usage
+
+### Build
+
+#### Available options:
+
+| name         | type     | default | description                                          |
+| ------------ | -------- | ------- | ---------------------------------------------------- |
+
+### Serve
+
+#### Available options:
+
+| name         | type     | default | description                                          |
+| ------------ | -------- | ------- | ---------------------------------------------------- |

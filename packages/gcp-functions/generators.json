@@ -1,7 +1,6 @@
 {
-  "$schema": "http://json-schema.org/schema",
   "name": "gcp-functions",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "generators": {
     "init": {
       "factory": "./src/generators/init/init.impl",

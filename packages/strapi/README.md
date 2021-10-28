@@ -1,5 +1,32 @@
-# NX - Strapi
+# @nx-extend/strapi
 
-Generate Strapi project with `yarn/npx nx g @nx-extend/strapi:strapi my-app-name`
+<a href="https://www.npmjs.com/package/@nx-extend/strapi" rel="nofollow">
+  <img src="https://badgen.net/npm/v/@nx-extend/strapi" alt="@nx-extend/strapi NPM package">
+</a>
 
-Start Strapi develop mode `yarn/npx nx serve my-app-name`
+**Nx plugin to generate and run your [Strapi](https://strapi.io/) project**.
+
+## Setup
+
+### Install
+
+```sh
+npm install -D @nx-extend/strapi
+nx g @nx-extend/strapi:init
+```
+
+## Usage
+
+### Build
+
+#### Available options:
+
+| name         | type     | default | description                                          |
+| ------------ | -------- | ------- | ---------------------------------------------------- |
+
+### Serve
+
+#### Available options:
+
+| name         | type     | default | description                                          |
+| ------------ | -------- | ------- | ---------------------------------------------------- |

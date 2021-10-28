@@ -1,24 +1,7 @@
+const { getJestProjects } = require('@nrwl/jest')
+
 module.exports = {
   projects: [
-    '<rootDir>/packages/strapi',
-    '<rootDir>/e2e/strapi-e2e',
-    '<rootDir>/packages/traduora',
-    '<rootDir>/e2e/traduora-e2e',
-    '<rootDir>/packages/gcp',
-    '<rootDir>/e2e/gcp-e2e',
-    '<rootDir>/packages/gcp-functions',
-    '<rootDir>/e2e/gcp-functions-e2e',
-    '<rootDir>/packages/gcp-storage',
-    '<rootDir>/e2e/gcp-storage-e2e',
-    '<rootDir>/packages/core',
-    '<rootDir>/packages/core-e2e',
-    '<rootDir>/packages/gcp-deployment-manager',
-    '<rootDir>/e2e/gcp-deployment-manager-e2e',
-    '<rootDir>/packages/gcp-cloud-run',
-    '<rootDir>/e2e/gcp-cloud-run-e2e',
-    '<rootDir>/packages/gcp-secrets',
-    '<rootDir>/e2e/gcp-secrets-e2e',
-    '<rootDir>/packages/firebase-hosting',
-    '<rootDir>/e2e/firebase-hosting-e2e',
+    ...getJestProjects(),
   ],
-};
+}

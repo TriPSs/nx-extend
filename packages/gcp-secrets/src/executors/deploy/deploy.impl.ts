@@ -1,12 +1,17 @@
-import { createBuilder, BuilderContext } from '@angular-devkit/architect'
+import { ExecutorContext, logger } from '@nrwl/devkit'
 import { execCommand, buildCommand } from '@nx-extend/core'
 import { echo } from 'shelljs'
 import { yellow } from 'chalk'
 
-import { ExecutorSchema } from '../schema'
 import { isEncryptionKeySet, decryptFile } from '../../utils/encryption'
 import { getAllSecretFiles } from '../../utils/get-all-secret-files'
 import { getFileContent, getFileName, storeFile } from '../../utils/file'
+
+export interface DeploySchema {
+
+  project?: string
+
+}
 
 export interface ExistingSecret {
   name: string;
@@ -16,12 +21,11 @@ export interface ExistingSecret {
   }
 }
 
-export async function runBuilder(
-  options: ExecutorSchema,
-  context: BuilderContext
+export async function deployExecutor(
+  options: DeploySchema,
+  context: ExecutorContext
 ): Promise<{ success: boolean }> {
-  const projectMeta = await context.getProjectMetadata(context.target.project)
-  const projectSourceRoot = `${context.workspaceRoot}/${projectMeta.sourceRoot}`
+  const { sourceRoot } = context.workspace.projects[context.projectName]
 
   if (isEncryptionKeySet()) {
     try {
@@ -40,7 +44,7 @@ export async function runBuilder(
         name: secret.name.split('/secrets/').pop()
       }))
 
-      const files = getAllSecretFiles(projectSourceRoot)
+      const files = getAllSecretFiles(sourceRoot)
 
       const secretsCreated = await Promise.all(files.map(async (file) => {
         const fileName = getFileName(file)
@@ -67,14 +71,14 @@ export async function runBuilder(
         // If the secret already exists we update it
         // and optionally remove older versions
         if (secretExists) {
-          const existingLabeles = Object.keys(secretExists?.labels || {}).reduce((labels, labelKey) => {
+          const existingLabels = Object.keys(secretExists?.labels || {}).reduce((labels, labelKey) => {
             labels.push(`${labelKey}=${secretExists.labels[labelKey]}`)
 
             return labels
           }, [])
 
           // Check if we need to update the sercrets labels
-          if (JSON.stringify(existingLabeles) !== JSON.stringify(fileContent.__gcp_metadata.labels)) {
+          if (JSON.stringify(existingLabels) !== JSON.stringify(fileContent.__gcp_metadata.labels)) {
             echo(`Updating "${secretName}" it's labels`)
 
             execCommand(buildCommand([
@@ -123,7 +127,7 @@ export async function runBuilder(
 
           success = true
         } else {
-          context.logger.info(`Creating secret "${secretName}" from file "${fileName}"`)
+          logger.info(`Creating secret "${secretName}" from file "${fileName}"`)
 
           const { success: commandSuccess } = execCommand(
             buildCommand([
@@ -153,7 +157,7 @@ export async function runBuilder(
         success: secretsCreated.filter(Boolean).length === files.length
       }
     } catch (err) {
-      context.logger.error(`Error happened trying to decrypt files: ${err.message || err}`)
+      logger.error(`Error happened trying to decrypt files: ${err.message || err}`)
       console.error(err.trace)
 
       return { success: false }
@@ -163,11 +167,9 @@ export async function runBuilder(
   }
 }
 
-export const getCommandOptions = (options: ExecutorSchema): string => {
+export const getCommandOptions = (options: DeploySchema): string => {
   return buildCommand([
-    options.project
-      ? `--project=${options.project}`
-      : false
+    options.project && `--project=${options.project}`
   ])
 }
 
@@ -192,4 +194,4 @@ export const addLabelsIfNeeded = (
   }
 }
 
-export default createBuilder(runBuilder)
+export default deployExecutor

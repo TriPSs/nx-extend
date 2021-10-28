@@ -1,7 +1,9 @@
 {
+  "$schema": "http://json-schema.org/schema",
+  "type": "object",
+  "cli": "nx",
   "title": "Decrypt executor",
   "description": "Decrypt",
-  "type": "object",
   "properties": {
     "project": {
       "type": "string",

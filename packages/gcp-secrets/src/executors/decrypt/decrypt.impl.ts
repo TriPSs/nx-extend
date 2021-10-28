@@ -1,21 +1,18 @@
-import { createBuilder, BuilderContext } from '@angular-devkit/architect'
-
-import { ExecutorSchema } from '../schema'
+import { ExecutorContext, logger } from '@nrwl/devkit'
 
 import { isEncryptionKeySet, decryptFile } from '../../utils/encryption'
 import { getAllSecretFiles } from '../../utils/get-all-secret-files'
 import { getFileContent, storeFile, SecretFile, getFileName } from '../../utils/file'
 
-export async function runBuilder(
-  options: ExecutorSchema,
-  context: BuilderContext
+export async function decyrptExecutor(
+  options,
+  context: ExecutorContext
 ): Promise<{ success: boolean }> {
-  const projectMeta = await context.getProjectMetadata(context.target.project)
-  const projectSourceRoot = `${context.workspaceRoot}/${projectMeta.sourceRoot}`
+  const { sourceRoot } = context.workspace.projects[context.projectName]
 
   if (isEncryptionKeySet()) {
     try {
-      const files = getAllSecretFiles(projectSourceRoot)
+      const files = getAllSecretFiles(sourceRoot)
 
       files.map((file) => {
         const fileName = getFileName(file)
@@ -30,16 +27,16 @@ export async function runBuilder(
           // Store the encrypted file
           storeFile(file, encryptedFile)
 
-          context.logger.info(`"${fileName}" decrypted`)
+          logger.info(`"${fileName}" decrypted`)
 
         } else {
-          context.logger.info(`Skipping "${fileName}" because it's already decrypted`)
+          logger.info(`Skipping "${fileName}" because it's already decrypted`)
         }
       })
 
       return { success: true }
     } catch (err) {
-      context.logger.error(`Error happened trying to decrypt files: ${err.message || err}`)
+      logger.error(`Error happened trying to decrypt files: ${err.message || err}`)
       console.error(err.trace)
 
       return { success: false }
@@ -50,4 +47,5 @@ export async function runBuilder(
   }
 }
 
-export default createBuilder(runBuilder)
+export default decyrptExecutor
+

@@ -1,0 +1,63 @@
+{
+  "root": "packages/gcp-functions",
+  "sourceRoot": "packages/gcp-functions/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["packages/gcp-functions/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/packages/gcp-functions"],
+      "options": {
+        "jestConfig": "packages/gcp-functions/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "build": {
+      "executor": "@nrwl/node:package",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/gcp-functions",
+        "tsConfig": "packages/gcp-functions/tsconfig.lib.json",
+        "packageJson": "packages/gcp-functions/package.json",
+        "main": "packages/gcp-functions/src/index.ts",
+        "assets": [
+          "LICENSE",
+          "packages/gcp-functions/*.md",
+          {
+            "input": "packages/gcp-functions",
+            "glob": "**/files-http/**",
+            "output": "/"
+          },
+          {
+            "input": "packages/gcp-functions",
+            "glob": "**/files-runner/**",
+            "output": "/"
+          },
+          {
+            "input": "packages/gcp-functions/src",
+            "glob": "**/*.js",
+            "output": "/"
+          },
+          {
+            "input": "packages/gcp-functions",
+            "glob": "**/*.json",
+            "ignore": ["**/tsconfig*.json", "project.json"],
+            "output": "/"
+          }
+        ]
+      }
+    },
+    "version": {
+      "executor": "@jscutlery/semver:version",
+      "options": {
+        "versionTagPrefix": "${target}@"
+      }
+    }
+  },
+  "tags": []
+}

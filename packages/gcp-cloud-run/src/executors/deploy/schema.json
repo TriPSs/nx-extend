@@ -1,7 +1,9 @@
 {
+  "$schema": "http://json-schema.org/schema",
+  "type": "object",
+  "cli": "nx",
   "title": "Deploy executor",
   "description": "Deploy",
-  "type": "object",
   "properties": {
     "region": {
       "type": "string",

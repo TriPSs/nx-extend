@@ -4,91 +4,40 @@
     "defaultBase": "master"
   },
   "implicitDependencies": {
-    "workspace.json": "*",
     "package.json": {
       "dependencies": "*",
       "devDependencies": "*"
-    },
-    "tsconfig.base.json": "*",
-    "tslint.json": "*",
-    ".eslintrc.json": "*",
-    "nx.json": "*"
+    }
   },
   "tasksRunnerOptions": {
     "default": {
-      "runner": "@nrwl/workspace/tasks-runners/default",
+      "runner": "@nrwl/nx-cloud",
       "options": {
-        "cacheableOperations": ["build", "lint", "test", "e2e"]
+        "cacheableOperations": [
+          "build",
+          "lint",
+          "test",
+          "e2e"
+        ],
+        "accessToken": "ZGQ5Y2MwYjUtMjA2MS00NDEwLTgzZmQtYzE0MTUwNTMwMzFmfHJlYWQtd3JpdGU=",
+        "canTrackAnalytics": false,
+        "showUsageWarnings": true
       }
-    }
-  },
-  "projects": {
-    "core": {
-      "tags": []
-    },
-    "core-e2e": {
-      "tags": [],
-      "implicitDependencies": ["core"]
-    },
-    "firebase-hosting": {
-      "tags": []
-    },
-    "firebase-hosting-e2e": {
-      "tags": [],
-      "implicitDependencies": ["firebase-hosting"]
-    },
-    "gcp-cloud-run": {
-      "tags": []
-    },
-    "gcp-cloud-run-e2e": {
-      "tags": [],
-      "implicitDependencies": ["gcp-cloud-run"]
-    },
-    "gcp-deployment-manager": {
-      "tags": []
-    },
-    "gcp-deployment-manager-e2e": {
-      "tags": [],
-      "implicitDependencies": ["gcp-deployment-manager"]
-    },
-    "gcp-functions": {
-      "tags": []
-    },
-    "gcp-functions-e2e": {
-      "tags": [],
-      "implicitDependencies": ["gcp-functions"]
-    },
-    "gcp-secrets": {
-      "tags": []
-    },
-    "gcp-secrets-e2e": {
-      "tags": [],
-      "implicitDependencies": ["gcp-secrets"]
-    },
-    "gcp-storage": {
-      "tags": []
-    },
-    "gcp-storage-e2e": {
-      "tags": [],
-      "implicitDependencies": ["gcp-storage"]
-    },
-    "strapi": {
-      "tags": []
-    },
-    "strapi-e2e": {
-      "tags": [],
-      "implicitDependencies": ["strapi"]
-    },
-    "translations": {
-      "tags": []
-    },
-    "translations-e2e": {
-      "tags": [],
-      "implicitDependencies": ["translations"]
     }
   },
   "workspaceLayout": {
     "appsDir": "e2e",
     "libsDir": "packages"
+  },
+  "targetDependencies": {
+    "build": [
+      {
+        "target": "build",
+        "projects": "dependencies"
+      }
+    ]
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/workspace"
   }
 }

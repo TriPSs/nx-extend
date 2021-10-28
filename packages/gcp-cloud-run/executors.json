@@ -1,0 +1,16 @@
+{
+  "executors": {
+    "deploy": {
+      "implementation": "./src/executors/deploy/deploy.impl",
+      "schema": "./src/executors/deploy/schema.json",
+      "description": "Deploy executor"
+    }
+  },
+  "builders": {
+    "deploy": {
+      "implementation": "./src/executors/deploy/deploy.impl",
+      "schema": "./src/executors/deploy/schema.json",
+      "description": "Deploy executor"
+    }
+  }
+}

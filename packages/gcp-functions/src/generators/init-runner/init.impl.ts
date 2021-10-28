@@ -8,6 +8,7 @@ import {
   Tree
 } from '@nrwl/devkit'
 import * as path from 'path'
+
 import { GcpDeploymentManagerGeneratorSchema } from './schema'
 
 interface NormalizedSchema extends GcpDeploymentManagerGeneratorSchema {
@@ -63,30 +64,23 @@ export default async function (
   addProjectConfiguration(host, normalizedOptions.projectName, {
     root: normalizedOptions.projectRoot,
     projectType: 'application',
-    sourceRoot: normalizedOptions.projectRoot,
+    sourceRoot: `${normalizedOptions.projectRoot}/src`,
     targets: {
-      'build': {
-        'executor': '@nrwl/node:build',
-        'outputs': ['{options.outputPath}'],
-        'options': {
-          'outputPath': `dist/${normalizedOptions.projectRoot}`,
-          'main': `${normalizedOptions.projectRoot}/src/main.ts`,
-          'tsConfig': `${normalizedOptions.projectRoot}/tsconfig.app.json`,
-        },
-        'configurations': {
-          'production': {
-            'optimization': true,
-            'extractLicenses': true,
-            'inspect': false
-          }
+      _build: {
+        executor: '@nrwl/node:build',
+        outputs: ['{options.outputPath}'],
+        options: {
+          outputPath: `dist/${normalizedOptions.projectRoot}`,
+          main: `${normalizedOptions.projectRoot}/src/main.ts`,
+          tsConfig: `${normalizedOptions.projectRoot}/tsconfig.app.json`
         }
       },
-      'serve': {
-        'executor': '@nrwl/node:execute',
-        'options': {
-          'buildTarget': `${normalizedOptions.projectName}:build`
+      serve: {
+        executor: '@nrwl/node:execute',
+        options: {
+          buildTarget: `${normalizedOptions.projectName}:_build`
         }
-      },
+      }
     },
     tags: normalizedOptions.parsedTags
   })

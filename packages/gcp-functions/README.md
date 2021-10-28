@@ -1,43 +1,26 @@
-# NX - GCP Functions
+# @nx-extend/gcp-functions
 
-Create new function
-> This is not implemented yet
+<a href="https://www.npmjs.com/package/@nx-extend/gcp-functions" rel="nofollow">
+  <img src="https://badgen.net/npm/v/@nx-extend/gcp-functions" alt="@nx-extend/gcp-functions NPM package">
+</a>
 
-- `nx generate @nx-extend/gcp-functions:init --trigger http`
-- `nx generate @nx-extend/gcp-functions:init --trigger event --triggerValue yourEvent`
+**Nx plugin to build and deploy your [Google Cloud Functions](https://cloud.google.com/functions)**.
 
-Build your function, example schematic:
+## Setup
 
-```json
-{
-  "builder": "@nx-extend/gcp-functions:build",
-  "options": {
-    "outputPath": "dist/apps/functions/function-name",
-    "main": "apps/functions/function-name/src/function-name.function.ts",
-    "yamlConfig": "apps/functions/function-name/src/environments/production.yaml",
-    "tsConfig": "apps/functions/function-name/tsconfig.app.json"
-  },
-  "configurations": {
-    "production": {
-      "optimization": true,
-      "extractLicenses": false,
-      "inspect": false
-    }
-  }
-}
+### Install
+
+```sh
+npm install -D @nx-extend/gcp-functions
+nx g @nx-extend/gcp-functions:init
 ```
 
-Deploy your function, example schematic:
+## Usage
 
-```json
-{
-  "builder": "@nx-extend/gcp-functions:deploy",
-  "options": {
-    "functionName": "function-name",
-    "trigger": "http",
-    "region": "europe-west1",
-    "project": "your-project",
-    "envVarsFile": "apps/functions/function-name/src/environments/production.yaml"
-  }
-}
-```
+### Deploy
+
+#### Available options:
+
+| name         | type     | default | description                                          |
+| ------------ | -------- | ------- | ---------------------------------------------------- |
+
