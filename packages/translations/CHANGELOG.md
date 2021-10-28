@@ -2,6 +2,24 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [6.0.0](https://github.com/TriPSs/nx-extend/compare/translations@5.1.0...translations@6.0.0) (2021-10-28)
+
+
+* feat!: Upgrade to NX 13 and remove angular `@angular-devkit` dependency ([4380dad](https://github.com/TriPSs/nx-extend/commit/4380dadc5309df98cdbf0bb88eafe56342e0e20b))
+
+
+### Bug Fixes
+
+* **translations:** Fixed links translated with DeepL where added twice ([c72aa68](https://github.com/TriPSs/nx-extend/commit/c72aa689562ba67fe47fbe7f6b41bc3a844df0e5))
+* **translations:** Fixes extract for NX 13 ([e0e44f4](https://github.com/TriPSs/nx-extend/commit/e0e44f47093901383c64b8fef1d64bc9dab408a8))
+
+
+### BREAKING CHANGES
+
+* Removed `@angular-devkit` dependency and executors / generators implementations are updated.
+
+
+
 # [5.1.0](https://github.com/TriPSs/nx-extend/compare/translations@5.0.0...translations@5.1.0) (2021-10-14)
 
 ### Bug Fixes
