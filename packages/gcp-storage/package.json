@@ -1,6 +1,6 @@
 {
   "name": "@nx-extend/gcp-storage",
-  "version": "0.2.3",
+  "version": "1.0.0",
   "keywords": [
     "nx",
     "google cloud platform",
