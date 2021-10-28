@@ -2,6 +2,18 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [3.0.0](https://github.com/TriPSs/nx-extend/compare/gcp-cloud-run@2.0.2...gcp-cloud-run@3.0.0) (2021-10-28)
+
+
+* feat!: Upgrade to NX 13 and remove angular `@angular-devkit` dependency ([b8d4b96](https://github.com/TriPSs/nx-extend/commit/b8d4b96aaba8a3ad245dc5d4487fff39241c1a48))
+
+
+### BREAKING CHANGES
+
+* Removed `@angular-devkit` dependency and executors / generators implementations are updated.
+
+
+
 ## [2.0.2](https://github.com/TriPSs/nx-extend/compare/gcp-cloud-run@2.0.1...gcp-cloud-run@2.0.2) (2021-10-08)
 
 ### Bug Fixes
