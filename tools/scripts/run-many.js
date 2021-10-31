@@ -43,11 +43,18 @@ if (affectedProjects.length > 0) {
     }
 
   } else {
-    const command = [
+    const execCommand = [
       'npx nx run-many',
       `--target=${target}`,
       `--projects=${affectedProjects.join(',')}`,
     ].join(' ')
+
+    if (target === 'version') {
+      execCommand.push('--baseBranch="master"')
+      execCommand.push('--changelogHeader=" "')
+    }
+
+    const command = execCommand.join(' ')
 
     logger.info(`Running: ${command}`)
 
