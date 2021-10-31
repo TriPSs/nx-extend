@@ -1,14 +1,16 @@
 {
   "extends": "<%= offsetFromRoot %>tsconfig.base.json",
   "compilerOptions": {
-    "types": [
-      "node",
-      "jest",
-      "express"
-    ],
-    "allowJs": true
+    "module": "commonjs"
   },
-  "include": [
-    "**/*.ts"
+  "files": [],
+  "include": [],
+  "references": [
+    {
+      "path": "./tsconfig.app.json"
+    },
+    {
+      "path": "./tsconfig.spec.json"
+    }
   ]
 }
