@@ -1,4 +1,13 @@
  
+# [3.1.0](https://github.com/TriPSs/nx-extend/compare/gcp-cloud-run@3.0.1...gcp-cloud-run@3.1.0) (2021-11-04)
+
+
+### Features
+
+* **core:** Always log all executed commands ([5cf6365](https://github.com/TriPSs/nx-extend/commit/5cf6365a9edee096f46d30b34f9bcf1254e7c971))
+
+
+
 ## [3.0.1](https://github.com/TriPSs/nx-extend/compare/gcp-cloud-run@3.0.0...gcp-cloud-run@3.0.1) (2021-11-04)
 
 
