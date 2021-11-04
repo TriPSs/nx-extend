@@ -1,4 +1,13 @@
  
+## [2.1.1](https://github.com/TriPSs/nx-extend/compare/firebase-hosting@2.1.0...firebase-hosting@2.1.1) (2021-11-04)
+
+
+### Bug Fixes
+
+* **firebase-hosting:** Also add `--project` to `target:apply` command ([b80c9e2](https://github.com/TriPSs/nx-extend/commit/b80c9e24eba9d47f8a45f2768be58106791525b5))
+
+
+
 # [2.1.0](https://github.com/TriPSs/nx-extend/compare/firebase-hosting@2.0.0...firebase-hosting@2.1.0) (2021-11-04)
 
 
