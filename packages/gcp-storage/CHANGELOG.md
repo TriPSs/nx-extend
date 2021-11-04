@@ -1,6 +1,12 @@
-# Changelog
+ 
+## [1.0.1](https://github.com/TriPSs/nx-extend/compare/gcp-storage@1.0.0...gcp-storage@1.0.1) (2021-11-04)
 
-This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
+
+### Bug Fixes
+
+* Always return promise ([43f4293](https://github.com/TriPSs/nx-extend/commit/43f42935887efd612da2661e6d4f640d900814eb))
+
+
 
 # [1.0.0](https://github.com/TriPSs/nx-extend/compare/gcp-storage@0.2.3...gcp-storage@1.0.0) (2021-10-28)
 
