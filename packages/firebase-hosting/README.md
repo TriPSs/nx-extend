@@ -58,3 +58,4 @@ add this target to the hosting section:
 | name         | type     | default | description                                          |
 | ------------ | -------- | ------- | ---------------------------------------------------- |
 | **`--site`** | `string` | `null`  | specify the site to deploy from the `.firebase.json` |
+| **`--project`** | `string` | | Firebase Project to deploy to |
