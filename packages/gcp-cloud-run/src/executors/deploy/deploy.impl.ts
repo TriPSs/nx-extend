@@ -121,9 +121,9 @@ export function deployExecutor(
 
   console.log('\nRunning', deployCommand)
 
-  return execCommand(deployCommand, {
+  return Promise.resolve(execCommand(deployCommand, {
     cwd: distDirectory
-  })
+  }))
 }
 
 export default deployExecutor

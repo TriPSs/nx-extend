@@ -25,13 +25,13 @@ export async function uploadExecutor(
 
   logger.info(`Start upload assets from "${directoryToUpload}" to "${uploadTo}"`)
 
-  return execCommand(buildCommand([
+  return Promise.resolve(execCommand(buildCommand([
     'gsutil rsync -R',
     gzip && `-z "${gzipExtensions}"`,
 
     resolve(process.cwd(), directoryToUpload),
     uploadTo
-  ]))
+  ])))
 }
 
 export default uploadExecutor

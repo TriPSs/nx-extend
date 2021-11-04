@@ -17,10 +17,10 @@ export function deployExecutor(
     `hosting ${options.site} ${options.site}`
   ]))
 
-  return execCommand(buildCommand([
+  return Promise.resolve(execCommand(buildCommand([
     'npx firebase deploy',
     `--only=hosting:${options.site}`
-  ]))
+  ])))
 }
 
 export default deployExecutor

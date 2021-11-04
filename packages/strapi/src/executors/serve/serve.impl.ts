@@ -7,9 +7,9 @@ export async function serveExecutor(
 ): Promise<{ success: boolean }> {
   const { root } = context.workspace.projects[context.projectName]
 
-  return execCommand('npx strapi develop', {
+  return Promise.resolve(execCommand('npx strapi develop', {
     cwd: root
-  })
+  }))
 }
 
 export default serveExecutor
