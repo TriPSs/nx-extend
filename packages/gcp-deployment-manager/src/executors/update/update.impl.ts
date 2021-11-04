@@ -17,7 +17,7 @@ export async function updateExecutor(
 ): Promise<{ success: boolean }> {
   const { sourceRoot } = context.workspace.projects[context.projectName]
 
-  return execCommand(buildCommand([
+  return Promise.resolve(execCommand(buildCommand([
     'gcloud deployment-manager deployments update',
     context.projectName,
     `--config=${options.file}`,
@@ -27,7 +27,7 @@ export async function updateExecutor(
     options.deletePolicy && `--delete-policy=${options.deletePolicy}`
   ]), {
     cwd: sourceRoot
-  })
+  }))
 }
 
 export default updateExecutor

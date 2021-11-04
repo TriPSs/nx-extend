@@ -2,7 +2,6 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "target": "ES2019",
-    "module": "commonjs",
     "outDir": "<%= offsetFromRoot %>dist/out-tsc/<%= fileName %>",
     "declaration": true,
     "importHelpers": false,

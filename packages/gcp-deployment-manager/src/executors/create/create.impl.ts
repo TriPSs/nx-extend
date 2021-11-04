@@ -9,7 +9,7 @@ export async function createExecutor(
 ): Promise<{ success: boolean }> {
   const { sourceRoot } = context.workspace.projects[context.projectName]
 
-  return execCommand(buildCommand([
+  return Promise.resolve(execCommand(buildCommand([
     'gcloud deployment-manager deployments create',
     context.projectName,
     `--config=${options.file}`,
@@ -17,7 +17,7 @@ export async function createExecutor(
     options.project && `--project=${options.project}`
   ]), {
     cwd: sourceRoot
-  })
+  }))
 }
 
 export default createExecutor

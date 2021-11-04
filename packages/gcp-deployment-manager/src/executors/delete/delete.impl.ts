@@ -9,7 +9,7 @@ export async function deleteExecutor(
 ): Promise<{ success: boolean }> {
   const { sourceRoot } = context.workspace.projects[context.projectName]
 
-  return execCommand(buildCommand([
+  return Promise.resolve(execCommand(buildCommand([
     'gcloud deployment-manager deployments delete',
     context.projectName,
     '-q',
@@ -17,7 +17,7 @@ export async function deleteExecutor(
     options.project && `--project=${options.project}`
   ]), {
     cwd: sourceRoot
-  })
+  }))
 }
 
 export default deleteExecutor

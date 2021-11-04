@@ -55,7 +55,7 @@ export async function deployExecutor(
 
   const { targets } = context.workspace.projects[context.projectName]
 
-  return execCommand(buildCommand([
+  return Promise.resolve(execCommand(buildCommand([
     'gcloud functions deploy',
     functionName,
     `--trigger-${trigger}${triggerValue ? `=${triggerValue}` : ''}`,
@@ -78,7 +78,7 @@ export async function deployExecutor(
     serviceAccount && `--service-account=${serviceAccount}`,
 
     project && `--project=${project}`
-  ]))
+  ])))
 }
 
 export default deployExecutor
