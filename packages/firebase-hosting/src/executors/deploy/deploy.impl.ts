@@ -2,9 +2,8 @@
 import { execCommand, buildCommand } from '@nx-extend/core'
 
 export interface ExecutorSchema {
-
   site: string
-
+  project?: string
 }
 
 export function deployExecutor(
@@ -19,7 +18,9 @@ export function deployExecutor(
 
   return Promise.resolve(execCommand(buildCommand([
     'npx firebase deploy',
-    `--only=hosting:${options.site}`
+    `--only=hosting:${options.site}`,
+
+    options.project && `--project=${options.project}`
   ])))
 }
 

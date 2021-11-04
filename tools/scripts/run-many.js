@@ -47,7 +47,7 @@ if (affectedProjects.length > 0) {
       'npx nx run-many',
       `--target=${target}`,
       `--projects=${affectedProjects.join(',')}`,
-    ].join(' ')
+    ]
 
     if (target === 'version') {
       execCommand.push('--baseBranch="master"')
