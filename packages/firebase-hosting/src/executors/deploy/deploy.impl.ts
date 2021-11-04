@@ -7,13 +7,15 @@ export interface ExecutorSchema {
 }
 
 export function deployExecutor(
-  options: ExecutorSchema,
+  options: ExecutorSchema
   // context: ExecutorContext
 ): Promise<{ success: boolean }> {
   // Make sure the deployment target is defined
   execCommand(buildCommand([
     'npx firebase target:apply',
-    `hosting ${options.site} ${options.site}`
+    `hosting ${options.site} ${options.site}`,
+
+    options.project && `--project=${options.project}`
   ]))
 
   return Promise.resolve(execCommand(buildCommand([

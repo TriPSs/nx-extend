@@ -64,8 +64,6 @@ export function deployExecutor(
       logsDir ? `--gcs-log-dir=${logsDir}` : false
     ])
 
-    console.log('\nRunning', buildSubmitCommand)
-
     const { success } = execCommand(buildSubmitCommand, {
       cwd: distDirectory
     })
@@ -118,8 +116,6 @@ export function deployExecutor(
     // There can be a question if a repo should be created
     buildWithArtifactRegistry && autoCreateArtifactsRepo && '--quiet'
   ])
-
-  console.log('\nRunning', deployCommand)
 
   return Promise.resolve(execCommand(deployCommand, {
     cwd: distDirectory

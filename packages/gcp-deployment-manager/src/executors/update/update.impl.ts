@@ -4,11 +4,8 @@ import { buildCommand, execCommand } from '@nx-extend/core'
 import { ExecutorSchema } from '../schema'
 
 export interface Options extends ExecutorSchema {
-
   deletePolicy?: string
-
   createPolicy?: string
-
 }
 
 export async function updateExecutor(
