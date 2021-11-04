@@ -1,6 +1,17 @@
-# Changelog
+ 
+# [2.1.0](https://github.com/TriPSs/nx-extend/compare/firebase-hosting@2.0.0...firebase-hosting@2.1.0) (2021-11-04)
 
-This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
+
+### Bug Fixes
+
+* Always return promise ([43f4293](https://github.com/TriPSs/nx-extend/commit/43f42935887efd612da2661e6d4f640d900814eb))
+
+
+### Features
+
+* **firebase-hosting:** Added `project` option ([2134f2e](https://github.com/TriPSs/nx-extend/commit/2134f2e06bd37ae942593f06936545753ef435c4))
+
+
 
 # [2.0.0](https://github.com/TriPSs/nx-extend/compare/firebase-hosting@1.0.4...firebase-hosting@2.0.0) (2021-10-28)
 
