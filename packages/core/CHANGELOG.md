@@ -1,6 +1,12 @@
-# Changelog
+ 
+# [1.1.0](https://github.com/TriPSs/nx-extend/compare/core@1.0.3...core@1.1.0) (2021-11-04)
 
-This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
+
+### Features
+
+* **core:** Always log all executed commands ([5cf6365](https://github.com/TriPSs/nx-extend/commit/5cf6365a9edee096f46d30b34f9bcf1254e7c971))
+
+
 
 ## [1.0.3](https://github.com/TriPSs/nx-extend/compare/core@1.0.2...core@1.0.3) (2021-10-28)
 
