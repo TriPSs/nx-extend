@@ -3,9 +3,7 @@ import { normalizeOptions, NormalizedSchema, DefaultGeneratorOptions } from '@nx
 import { join } from 'path'
 
 export interface Options extends DefaultGeneratorOptions {
-
   project?: string
-
 }
 
 function addFiles(host: Tree, options: NormalizedSchema) {
