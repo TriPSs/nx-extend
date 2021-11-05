@@ -16,7 +16,7 @@ export async function updateExecutor(
 
   return Promise.resolve(execCommand(buildCommand([
     'gcloud deployment-manager deployments update',
-    context.projectName,
+    options.name || context.projectName,
     `--config=${options.file}`,
 
     options.project && `--project=${options.project}`,
