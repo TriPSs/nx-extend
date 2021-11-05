@@ -1,6 +1,5 @@
 import { ExecutorContext, logger } from '@nrwl/devkit'
 import { execCommand, buildCommand } from '@nx-extend/core'
-import { echo } from 'shelljs'
 import { yellow } from 'chalk'
 
 import { isEncryptionKeySet, decryptFile } from '../../utils/encryption'
@@ -8,17 +7,23 @@ import { getAllSecretFiles } from '../../utils/get-all-secret-files'
 import { getFileContent, getFileName, storeFile } from '../../utils/file'
 
 export interface DeploySchema {
-
   project?: string
-
+  secret?: string
 }
 
 export interface ExistingSecret {
-  name: string;
+  name: string
 
   labels?: {
     [key: string]: string
   }
+}
+
+export interface ExistingServiceAccounts {
+  bindings: {
+    members: string[]
+    role: string
+  }[]
 }
 
 export async function deployExecutor(
@@ -53,6 +58,11 @@ export async function deployExecutor(
 
         const secretName = fileNameParts.join('.')
 
+        // Check if we should only deploy this secret
+        if (options.secret && options.secret !== secretName) {
+          return true
+        }
+
         // Get the content of the file
         const fileContent = getFileContent(file)
         const isFileEncrypted = fileContent.__gcp_metadata.status === 'encrypted'
@@ -63,9 +73,7 @@ export async function deployExecutor(
         }
 
         // Check if the secret exists
-        const secretExists = existingSecrets.find(
-          (secret) => secret.name === secretName
-        )
+        const secretExists = existingSecrets.find((secret) => secret.name === secretName)
         let success
 
         // If the secret already exists we update it
@@ -77,9 +85,9 @@ export async function deployExecutor(
             return labels
           }, [])
 
-          // Check if we need to update the sercrets labels
+          // Check if we need to update the secrets labels
           if (JSON.stringify(existingLabels) !== JSON.stringify(fileContent.__gcp_metadata.labels)) {
-            echo(`Updating "${secretName}" it's labels`)
+            logger.info(`Updating "${secretName}" it's labels`)
 
             execCommand(buildCommand([
               `gcloud secrets update ${secretName}`,
@@ -110,7 +118,7 @@ export async function deployExecutor(
             if (['destroy', 'disable'].includes(updateBehavior)) {
               const previousVersion = parseInt(newVersion, 10) - 1
 
-              echo(`${updateBehavior === 'disable' ? 'Disabling' : 'Destroying'} previous version of secret "${secretName}"`)
+              logger.info(`${updateBehavior === 'disable' ? 'Disabling' : 'Destroying'} previous version of secret "${secretName}"`)
 
               execCommand(buildCommand([
                 `gcloud secrets versions ${updateBehavior} ${previousVersion}`,
@@ -121,7 +129,7 @@ export async function deployExecutor(
               ]))
 
             } else {
-              echo(yellow(`"${updateBehavior}" is an invalid onUpdateBehavior, valid are: "none", "disable" or "destroy"`))
+              logger.warn(yellow(`"${updateBehavior}" is an invalid onUpdateBehavior, valid are: "none", "disable" or "destroy"`))
             }
           }
 
@@ -148,6 +156,57 @@ export async function deployExecutor(
         // Store the encrypted file again
         if (isFileEncrypted) {
           storeFile(file, fileContent)
+        }
+
+        // If service accounts are defined then manage them
+        if (fileContent.__gcp_metadata?.serviceAccounts && Array.isArray(fileContent.__gcp_metadata?.serviceAccounts)) {
+          const allowedServiceAccounts = fileContent.__gcp_metadata?.serviceAccounts
+
+          const serviceAccounts = execCommand<ExistingServiceAccounts>(
+            buildCommand([
+              `gcloud secrets get-iam-policy ${secretName}`,
+              '--format=json',
+              getCommandOptions(options)
+            ]),
+            {
+              silent: true,
+              asJSON: true
+            }
+          )
+
+          let existingServiceAccounts = []
+          if (serviceAccounts?.bindings) {
+            existingServiceAccounts = serviceAccounts.bindings?.find(({ role }) => role === 'roles/secretmanager.secretAccessor')?.members ?? []
+          }
+
+          const serviceAccountsToDelete = existingServiceAccounts.filter((account) => !allowedServiceAccounts.includes(account))
+          const serviceAccountsToAdd = allowedServiceAccounts.filter((account) => !existingServiceAccounts.includes(account))
+
+          if (serviceAccountsToAdd.length > 0) {
+            logger.info(`Going to add "${serviceAccountsToAdd.join(',')}" to secret "${secretName}"`)
+
+            serviceAccountsToAdd.forEach((newMember) => {
+              execCommand(buildCommand([
+                `gcloud secrets add-iam-policy-binding ${secretName}`,
+                `--member='${newMember}'`,
+                `--role='roles/secretmanager.secretAccessor'`,
+                getCommandOptions(options)
+              ]))
+            })
+          }
+
+          if (serviceAccountsToDelete.length > 0) {
+            logger.info(`Going to remove "${serviceAccountsToDelete.join(',')}" from secret "${secretName}"`)
+
+            serviceAccountsToDelete.forEach((deleteMember) => {
+              execCommand(buildCommand([
+                `gcloud secrets remove-iam-policy-binding ${secretName}`,
+                `--member='${deleteMember}'`,
+                `--role='roles/secretmanager.secretAccessor'`,
+                getCommandOptions(options)
+              ]))
+            })
+          }
         }
 
         return success

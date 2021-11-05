@@ -4,9 +4,10 @@ import { basename } from 'path'
 export interface SecretFile {
 
   __gcp_metadata: {
-    status: 'encrypted' | 'decrypted',
+    status: 'encrypted' | 'decrypted'
     labels?: string[]
     onUpdateBehavior?: 'none' | 'delete' | 'disable'
+    serviceAccounts?: string[]
   }
 
   [key: string]: any
