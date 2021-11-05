@@ -25,7 +25,9 @@ export const execCommand = <Output = { success: boolean, output: string }>(
     asJSON: false
   }
 ): Output => {
-  console.log('\nRunning: ', command)
+  if (!options.silent) {
+    console.log('\nRunning: ', command)
+  }
 
   const result = shell.exec(command, options)
 
