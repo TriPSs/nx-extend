@@ -1,4 +1,13 @@
  
+# [1.2.0](https://github.com/TriPSs/nx-extend/compare/core@1.1.1...core@1.2.0) (2021-11-05)
+
+
+### Features
+
+* **core:** Added `normalizeOptions` function ([161cfe2](https://github.com/TriPSs/nx-extend/commit/161cfe2c845f22b328ba0bfd03be1ed82f33f9e3))
+
+
+
 ## [1.1.1](https://github.com/TriPSs/nx-extend/compare/core@1.1.0...core@1.1.1) (2021-11-05)
 
 
