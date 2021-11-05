@@ -1,4 +1,13 @@
  
+## [1.1.1](https://github.com/TriPSs/nx-extend/compare/core@1.1.0...core@1.1.1) (2021-11-05)
+
+
+### Bug Fixes
+
+* **core:** Dont log if silent mode is enabled ([57a3747](https://github.com/TriPSs/nx-extend/commit/57a37470cbfc7b1cd94e898a24c1c0e987424e8f))
+
+
+
 # [1.1.0](https://github.com/TriPSs/nx-extend/compare/core@1.0.3...core@1.1.0) (2021-11-04)
 
 
