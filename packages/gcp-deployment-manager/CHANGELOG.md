@@ -1,4 +1,13 @@
  
+## [2.3.1](https://github.com/TriPSs/nx-extend/compare/gcp-deployment-manager@2.3.0...gcp-deployment-manager@2.3.1) (2021-11-05)
+
+
+### Bug Fixes
+
+* **gcp-deployment-manager:** Re-release ([4ccf118](https://github.com/TriPSs/nx-extend/commit/4ccf118b69546eeb9db4fb885313af0598521af7))
+
+
+
 # [2.3.0](https://github.com/TriPSs/nx-extend/compare/gcp-deployment-manager@2.2.0...gcp-deployment-manager@2.3.0) (2021-11-05)
 
 
