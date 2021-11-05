@@ -185,23 +185,27 @@ export async function deployExecutor(
           if (serviceAccountsToAdd.length > 0) {
             logger.info(`Going to add "${serviceAccountsToAdd.join(',')}" to secret "${secretName}"`)
 
-            execCommand(buildCommand([
-              `gcloud secrets add-iam-policy-binding ${secretName}`,
-              `--member='${serviceAccountsToAdd.join(',')}'`,
-              `--role='roles/secretmanager.secretAccessor'`,
-              getCommandOptions(options)
-            ]))
+            serviceAccountsToAdd.forEach((newMember) => {
+              execCommand(buildCommand([
+                `gcloud secrets add-iam-policy-binding ${secretName}`,
+                `--member='${newMember}'`,
+                `--role='roles/secretmanager.secretAccessor'`,
+                getCommandOptions(options)
+              ]))
+            })
           }
 
           if (serviceAccountsToDelete.length > 0) {
             logger.info(`Going to remove "${serviceAccountsToDelete.join(',')}" from secret "${secretName}"`)
 
-            execCommand(buildCommand([
-              `gcloud secrets remove-iam-policy-binding ${secretName}`,
-              `--member='${serviceAccountsToDelete.join(',')}'`,
-              `--role='roles/secretmanager.secretAccessor'`,
-              getCommandOptions(options)
-            ]))
+            serviceAccountsToDelete.forEach((deleteMember) => {
+              execCommand(buildCommand([
+                `gcloud secrets remove-iam-policy-binding ${secretName}`,
+                `--member='${deleteMember}'`,
+                `--role='roles/secretmanager.secretAccessor'`,
+                getCommandOptions(options)
+              ]))
+            })
           }
         }
 
