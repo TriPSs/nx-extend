@@ -23,6 +23,10 @@
       "type": "string",
       "description": "A directory where the project is placed",
       "alias": "d"
+    },
+    "project": {
+      "type": "string",
+      "description": "The project of this deployment"
     }
   },
   "required": [

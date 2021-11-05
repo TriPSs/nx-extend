@@ -1,95 +1,67 @@
-import {
-  addProjectConfiguration,
-  formatFiles,
-  generateFiles,
-  getWorkspaceLayout,
-  names,
-  offsetFromRoot,
-  Tree
-} from '@nrwl/devkit'
-import * as path from 'path'
-import { GcpDeploymentManagerGeneratorSchema } from './schema'
+import { addProjectConfiguration, formatFiles, generateFiles, names, offsetFromRoot, Tree } from '@nrwl/devkit'
+import { normalizeOptions, NormalizedSchema, DefaultGeneratorOptions } from '@nx-extend/core'
+import { join } from 'path'
 
-interface NormalizedSchema extends GcpDeploymentManagerGeneratorSchema {
-  projectName: string;
-  projectRoot: string;
-  projectDirectory: string;
-  parsedTags: string[];
-}
+export interface Options extends DefaultGeneratorOptions {
 
-function normalizeOptions(
-  host: Tree,
-  options: GcpDeploymentManagerGeneratorSchema
-): NormalizedSchema {
-  const name = names(options.name).fileName
-  const projectDirectory = options.directory
-    ? `${names(options.directory).fileName}/${name}`
-    : name
-  const projectName = projectDirectory.replace(new RegExp('/', 'g'), '-')
-  const projectRoot = `${getWorkspaceLayout(host).appsDir}/${projectDirectory}`
-  const parsedTags = options.tags
-    ? options.tags.split(',').map((s) => s.trim())
-    : []
+  project?: string
 
-  return {
-    ...options,
-    projectName,
-    projectRoot,
-    projectDirectory,
-    parsedTags
-  }
 }
 
 function addFiles(host: Tree, options: NormalizedSchema) {
-  const templateOptions = {
-    ...options,
-    ...names(options.name),
-    offsetFromRoot: offsetFromRoot(options.projectRoot),
-    template: ''
-  }
   generateFiles(
     host,
-    path.join(__dirname, 'files'),
+    join(__dirname, 'files'),
     options.projectRoot,
-    templateOptions
+    {
+      ...options,
+      ...names(options.name),
+      offsetFromRoot: offsetFromRoot(options.projectRoot),
+      template: ''
+    }
   )
 }
 
 export default async function (
   host: Tree,
-  options: GcpDeploymentManagerGeneratorSchema
+  rawOptions: Options
 ) {
-  const normalizedOptions = normalizeOptions(host, options)
+  const options = normalizeOptions(host, rawOptions)
   const file = `deployment.yml`
 
-  addProjectConfiguration(host, normalizedOptions.projectName, {
-    root: normalizedOptions.projectRoot,
+  const targetOptions = {
+    file,
+    name: options.projectName,
+    project: undefined
+  }
+
+  if (rawOptions.project) {
+    targetOptions.project = rawOptions.project
+  }
+
+  addProjectConfiguration(host, options.projectName, {
+    root: options.projectRoot,
     projectType: 'application',
-    sourceRoot: `${normalizedOptions.projectRoot}/src`,
+    sourceRoot: `${options.projectRoot}/src`,
     targets: {
       create: {
         executor: '@nx-extend/gcp-deployment-manager:create',
-        options: {
-          file
-        }
+        options: targetOptions
       },
       update: {
         executor: '@nx-extend/gcp-deployment-manager:update',
-        options: {
-          file
-        }
+        options: targetOptions
       },
       delete: {
         executor: '@nx-extend/gcp-deployment-manager:delete',
-        options: {
-          file
-        }
+        options: targetOptions
       }
+      // TODO:: Create "deploy" that checks if recourse exists, if not create it else update it
     },
-    tags: normalizedOptions.parsedTags
+    tags: options.parsedTags
   })
 
-  addFiles(host, normalizedOptions)
+  addFiles(host, options)
 
   await formatFiles(host)
 }

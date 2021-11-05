@@ -17,29 +17,10 @@ nx g @nx-extend/gcp-deployment-manager:init
 
 ## Usage
 
-### Create
-
 #### Available options:
 
 | name         | type     | default | description                                          |
 | ------------ | -------- | ------- | ---------------------------------------------------- |
 | **`--project`** | `string` | | GCP project to deploy to|
 | **`--file`** | `string` | `null` | file from source to create |
-
-### Update
-
-#### Available options:
-
-| name         | type     | default | description                                          |
-| ------------ | -------- | ------- | ---------------------------------------------------- |
-| **`--project`** | `string` | | GCP project to deploy to|
-| **`--file`** | `string` | `null` | file from source to update |
-
-### Delete
-
-#### Available options:
-
-| name         | type     | default | description                                          |
-| ------------ | -------- | ------- | ---------------------------------------------------- |
-| **`--project`** | `string` | | GCP project to deploy to|
-| **`--file`** | `string` | `null` | file from source to delete |
+| **`--name`** | `string` | `null` | Name of the recourse inside Google Cloud |
