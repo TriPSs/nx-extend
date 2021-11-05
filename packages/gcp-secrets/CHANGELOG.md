@@ -1,6 +1,17 @@
-# Changelog
+ 
+# [3.1.0](https://github.com/TriPSs/nx-extend/compare/gcp-secrets@3.0.0...gcp-secrets@3.1.0) (2021-11-05)
 
-This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
+
+### Bug Fixes
+
+* **gcp-secrets:** Run the add / remove service account command for each service account ([6cff7c2](https://github.com/TriPSs/nx-extend/commit/6cff7c26ef791d0d0bd8b139f70ef66f4e1970a6))
+
+
+### Features
+
+* **gcp-secrets:** You can now manage permissions of the screts ([94b611a](https://github.com/TriPSs/nx-extend/commit/94b611a4ac04d082e395a207010e02b120b1aaed))
+
+
 
 # [3.0.0](https://github.com/TriPSs/nx-extend/compare/gcp-secrets@2.0.3...gcp-secrets@3.0.0) (2021-10-28)
 
