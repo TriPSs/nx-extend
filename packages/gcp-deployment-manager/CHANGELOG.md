@@ -1,4 +1,13 @@
  
+# [2.2.0](https://github.com/TriPSs/nx-extend/compare/gcp-deployment-manager@2.1.0...gcp-deployment-manager@2.2.0) (2021-11-05)
+
+
+### Features
+
+* **gcp-deployment-manager:** Added `name` option ([f876961](https://github.com/TriPSs/nx-extend/commit/f87696174b832df21494cdb88149fda737a0ef30))
+
+
+
 # [2.1.0](https://github.com/TriPSs/nx-extend/compare/gcp-deployment-manager@2.0.1...gcp-deployment-manager@2.1.0) (2021-11-04)
 
 
