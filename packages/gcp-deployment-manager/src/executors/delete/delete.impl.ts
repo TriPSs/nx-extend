@@ -11,7 +11,7 @@ export async function deleteExecutor(
 
   return Promise.resolve(execCommand(buildCommand([
     'gcloud deployment-manager deployments delete',
-    context.projectName,
+    options.name || context.projectName,
     '-q',
 
     options.project && `--project=${options.project}`

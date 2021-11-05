@@ -11,7 +11,7 @@ export async function createExecutor(
 
   return Promise.resolve(execCommand(buildCommand([
     'gcloud deployment-manager deployments create',
-    context.projectName,
+    options.name || context.projectName,
     `--config=${options.file}`,
 
     options.project && `--project=${options.project}`
