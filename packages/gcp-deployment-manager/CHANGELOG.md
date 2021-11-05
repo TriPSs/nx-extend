@@ -1,4 +1,13 @@
  
+# [2.3.0](https://github.com/TriPSs/nx-extend/compare/gcp-deployment-manager@2.2.0...gcp-deployment-manager@2.3.0) (2021-11-05)
+
+
+### Features
+
+* **gcp-deployment-manager:** Added `--project` option ([53a7305](https://github.com/TriPSs/nx-extend/commit/53a730544d9612b38cb2b243a9ba898c3472d841))
+
+
+
 # [2.2.0](https://github.com/TriPSs/nx-extend/compare/gcp-deployment-manager@2.1.0...gcp-deployment-manager@2.2.0) (2021-11-05)
 
 
