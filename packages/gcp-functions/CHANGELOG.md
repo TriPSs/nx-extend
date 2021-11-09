@@ -1,4 +1,13 @@
  
+## [4.1.1](https://github.com/TriPSs/nx-extend/compare/gcp-functions@4.1.0...gcp-functions@4.1.1) (2021-11-09)
+
+
+### Bug Fixes
+
+* **gcp-functions:** Always use the `gcloudCommand` variable ([a94020c](https://github.com/TriPSs/nx-extend/commit/a94020c1ce395f1e30f426f57e7cdd09a0822890))
+
+
+
 # [4.1.0](https://github.com/TriPSs/nx-extend/compare/gcp-functions@4.0.1...gcp-functions@4.1.0) (2021-11-09)
 
 
