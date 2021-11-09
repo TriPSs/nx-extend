@@ -14,7 +14,8 @@ export async function createExecutor(
     options.name || context.projectName,
     `--config=${options.file}`,
 
-    options.project && `--project=${options.project}`
+    options.project && `--project=${options.project}`,
+    options.preview && `--preview`,
   ]), {
     cwd: sourceRoot
   }))

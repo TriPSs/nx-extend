@@ -83,6 +83,18 @@
         "secure-optional",
         "secure-always"
       ]
+    },
+    "secrets": {
+      "type": "array",
+      "default": []
+    },
+    "gen": {
+      "type": "number",
+      "default": 1
+    },
+    "concurrency": {
+      "type": "number",
+      "default": 1
     }
   }
 }

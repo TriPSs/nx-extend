@@ -2,7 +2,7 @@ import {
   addProjectConfiguration,
   formatFiles,
   generateFiles,
-  getWorkspaceLayout,
+  getWorkspaceLayout, joinPathFragments,
   names,
   offsetFromRoot,
   Tree
@@ -26,7 +26,7 @@ function normalizeOptions(
     ? `${names(options.directory).fileName}/${name}`
     : name
   const projectName = projectDirectory.replace(new RegExp('/', 'g'), '-')
-  const projectRoot = `${getWorkspaceLayout(host).appsDir}/${projectDirectory}`
+  const projectRoot = joinPathFragments(getWorkspaceLayout(host).appsDir, projectDirectory)
   const parsedTags = options.tags
     ? options.tags.split(',').map((s) => s.trim())
     : []
@@ -72,7 +72,7 @@ export default async function (
       test: {
         executor: '@nrwl/jest:jest',
         options: {
-          jestConfig: `${normalizedOptions.projectRoot}jest.config.js`,
+          jestConfig: `${normalizedOptions.projectRoot}/jest.config.js`,
           passWithNoTests: true
         }
       },
@@ -96,7 +96,7 @@ export default async function (
       deploy: {
         executor: '@nx-extend/gcp-functions:deploy',
         options: {
-          functionName: normalizedOptions.name,
+          functionName: normalizedOptions.projectName,
           envVarsFile: `${normalizedOptions.projectRoot}/src/environments/production.yaml`
         }
       }
