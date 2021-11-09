@@ -1,4 +1,13 @@
  
+# [3.2.0](https://github.com/TriPSs/nx-extend/compare/gcp-secrets@3.1.0...gcp-secrets@3.2.0) (2021-11-09)
+
+
+### Features
+
+* **gcp-secrets:** Added `keysAreSecrets` option to deploy each key in file as a secret ([06792f0](https://github.com/TriPSs/nx-extend/commit/06792f0df99b710be8cab531bebc602b8e9e349b))
+
+
+
 # [3.1.0](https://github.com/TriPSs/nx-extend/compare/gcp-secrets@3.0.0...gcp-secrets@3.1.0) (2021-11-05)
 
 
