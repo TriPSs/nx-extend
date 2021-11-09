@@ -1,4 +1,18 @@
  
+# [4.1.0](https://github.com/TriPSs/nx-extend/compare/gcp-functions@4.0.1...gcp-functions@4.1.0) (2021-11-09)
+
+
+### Bug Fixes
+
+* **gcp-functions:** Fixes for paths an init generator ([1a2e785](https://github.com/TriPSs/nx-extend/commit/1a2e785c71a936930cfa87b559aad4ca1e74fbcc))
+
+
+### Features
+
+* **gcp-functions:** Added `--secrets` option and gen2 support ([02beb56](https://github.com/TriPSs/nx-extend/commit/02beb56720304dfde8b20a60ddeed2d7d553d0d4))
+
+
+
 ## [4.0.1](https://github.com/TriPSs/nx-extend/compare/gcp-functions@4.0.0...gcp-functions@4.0.1) (2021-11-04)
 
 
