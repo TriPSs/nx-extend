@@ -127,7 +127,7 @@ export async function deployExecutor(
       logger.info('Updating service with more configurations')
 
       execCommand(buildCommand([
-        `gcloud run services update`,
+        `${gcloudCommand} run services update`,
         functionName,
 
         concurrency > 0 && `--concurrency ${concurrency}`,
