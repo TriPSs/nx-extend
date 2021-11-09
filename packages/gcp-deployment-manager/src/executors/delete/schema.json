@@ -12,6 +12,10 @@
     "project": {
       "type": "string",
       "description": "Project id to deploy to"
+    },
+    "preview": {
+      "type": "boolean",
+      "default": false
     }
   }
 }

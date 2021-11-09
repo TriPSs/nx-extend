@@ -14,10 +14,24 @@
       "description": "Project id to deploy to"
     },
     "deletePolicy": {
-      "type": "string"
+      "type": "string",
+      "default": "delete",
+      "enum": [
+        "abandon",
+        "delete"
+      ]
     },
     "createPolicy": {
-      "type": "string"
+      "type": "string",
+      "default": "create-or-acquire",
+      "enum": [
+        "acquire",
+        "create-or-acquire"
+      ]
+    },
+    "preview": {
+      "type": "boolean",
+      "default": false
     }
   }
 }

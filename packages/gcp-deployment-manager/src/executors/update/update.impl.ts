@@ -20,8 +20,9 @@ export async function updateExecutor(
     `--config=${options.file}`,
 
     options.project && `--project=${options.project}`,
-    options.createPolicy && `--delete-policy=${options.deletePolicy}`,
-    options.deletePolicy && `--delete-policy=${options.deletePolicy}`
+    options.createPolicy && `--create-policy=${options.createPolicy}`,
+    options.deletePolicy && `--delete-policy=${options.deletePolicy}`,
+    options.preview && `--preview`,
   ]), {
     cwd: sourceRoot
   }))

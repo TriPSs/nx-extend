@@ -14,7 +14,8 @@ export async function deleteExecutor(
     options.name || context.projectName,
     '-q',
 
-    options.project && `--project=${options.project}`
+    options.project && `--project=${options.project}`,
+    options.preview && `--preview`,
   ]), {
     cwd: sourceRoot
   }))
