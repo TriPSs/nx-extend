@@ -1,4 +1,13 @@
  
+# [2.4.0](https://github.com/TriPSs/nx-extend/compare/gcp-deployment-manager@2.3.1...gcp-deployment-manager@2.4.0) (2021-11-09)
+
+
+### Features
+
+* **gcp-deployment-manager:** Added `--preview` option ([f835354](https://github.com/TriPSs/nx-extend/commit/f835354755b9d1b1c1e7d10915d128f738e1d80f))
+
+
+
 ## [2.3.1](https://github.com/TriPSs/nx-extend/compare/gcp-deployment-manager@2.3.0...gcp-deployment-manager@2.3.1) (2021-11-05)
 
 
