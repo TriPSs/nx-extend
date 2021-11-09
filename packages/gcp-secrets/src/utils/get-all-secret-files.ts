@@ -1,7 +1,7 @@
 import * as fs from 'fs'
 import * as path from 'path'
 
-export const getAllSecretFiles = (projectRoot) => {
+export const getAllSecretFiles = (projectRoot: string) => {
   const filesInDirectory = fs.readdirSync(projectRoot, { withFileTypes: true })
 
   const files = filesInDirectory.map((file) => {

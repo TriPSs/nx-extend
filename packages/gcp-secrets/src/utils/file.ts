@@ -1,14 +1,20 @@
 import { writeJsonFile, readJsonFile } from '@nrwl/devkit'
 import { basename } from 'path'
 
+export interface SecretMetadata {
+  status: 'encrypted' | 'decrypted'
+  labels?: string[]
+  onUpdateBehavior?: 'none' | 'delete' | 'disable'
+  serviceAccounts?: string[]
+  /**
+   * If enabled, each key will create a secret
+   */
+  keysAreSecrets?: boolean
+}
+
 export interface SecretFile {
 
-  __gcp_metadata: {
-    status: 'encrypted' | 'decrypted'
-    labels?: string[]
-    onUpdateBehavior?: 'none' | 'delete' | 'disable'
-    serviceAccounts?: string[]
-  }
+  __gcp_metadata: SecretMetadata
 
   [key: string]: any
 

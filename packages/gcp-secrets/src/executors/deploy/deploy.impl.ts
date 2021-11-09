@@ -1,10 +1,11 @@
 import { ExecutorContext, logger } from '@nrwl/devkit'
 import { execCommand, buildCommand } from '@nx-extend/core'
-import { yellow } from 'chalk'
+import { unlinkSync, writeFileSync } from 'fs'
 
 import { isEncryptionKeySet, decryptFile } from '../../utils/encryption'
 import { getAllSecretFiles } from '../../utils/get-all-secret-files'
 import { getFileContent, getFileName, storeFile } from '../../utils/file'
+import { addOrUpdateSecret } from '../../utils/add-or-update-secret'
 
 export interface DeploySchema {
   project?: string
@@ -26,6 +27,10 @@ export interface ExistingServiceAccounts {
   }[]
 }
 
+/**
+ * TODO:: Refactor to use the node sdk
+ *  https://cloud.google.com/secret-manager/docs/creating-and-accessing-secrets#secretmanager-create-secret-nodejs
+ */
 export async function deployExecutor(
   options: DeploySchema,
   context: ExecutorContext
@@ -72,141 +77,45 @@ export async function deployExecutor(
           storeFile(file, decryptFile(fileContent, true))
         }
 
-        // Check if the secret exists
-        const secretExists = existingSecrets.find((secret) => secret.name === secretName)
-        let success
+        let success = false
 
-        // If the secret already exists we update it
-        // and optionally remove older versions
-        if (secretExists) {
-          const existingLabels = Object.keys(secretExists?.labels || {}).reduce((labels, labelKey) => {
-            labels.push(`${labelKey}=${secretExists.labels[labelKey]}`)
-
-            return labels
-          }, [])
-
-          // Check if we need to update the secrets labels
-          if (JSON.stringify(existingLabels) !== JSON.stringify(fileContent.__gcp_metadata.labels)) {
-            logger.info(`Updating "${secretName}" it's labels`)
-
-            execCommand(buildCommand([
-              `gcloud secrets update ${secretName}`,
-              addLabelsIfNeeded(fileContent.__gcp_metadata.labels, false),
-              getCommandOptions(options)
-            ]), {
-              silent: true
-            })
-          }
-
-          // Get the new version of the secret
-          const newVersion = execCommand<{ name: string }>(
-            buildCommand([
-              `gcloud secrets versions add ${secretName}`,
-              `--data-file="${file}"`,
-              '--format=json',
-              getCommandOptions(options)
-            ]),
-            {
-              asJSON: true,
-              silent: true
-            }
-          ).name.split('/versions/').pop()
-
-          const updateBehavior = fileContent.__gcp_metadata.onUpdateBehavior || 'destroy'
-
-          if (updateBehavior !== 'none') {
-            if (['destroy', 'disable'].includes(updateBehavior)) {
-              const previousVersion = parseInt(newVersion, 10) - 1
-
-              logger.info(`${updateBehavior === 'disable' ? 'Disabling' : 'Destroying'} previous version of secret "${secretName}"`)
-
-              execCommand(buildCommand([
-                `gcloud secrets versions ${updateBehavior} ${previousVersion}`,
-                `--secret=${secretName}`,
-                '--quiet',
-
-                getCommandOptions(options)
-              ]))
-
-            } else {
-              logger.warn(yellow(`"${updateBehavior}" is an invalid onUpdateBehavior, valid are: "none", "disable" or "destroy"`))
-            }
-          }
-
-          success = true
-        } else {
-          logger.info(`Creating secret "${secretName}" from file "${fileName}"`)
-
-          const { success: commandSuccess } = execCommand(
-            buildCommand([
-              `gcloud secrets create ${secretName}`,
-              `--data-file="${file}"`,
-              '--replication-policy=automatic',
-              addLabelsIfNeeded(fileContent.__gcp_metadata.labels, true),
-              getCommandOptions(options)
-            ]),
-            {
-              fatal: true
-            }
+        if (!fileContent.__gcp_metadata.keysAreSecrets) {
+          // Add the file as secret
+          success = addOrUpdateSecret(
+            existingSecrets,
+            secretName,
+            fileContent.__gcp_metadata,
+            file,
+            options
           )
 
-          success = commandSuccess
+        } else {
+          Object.keys(fileContent).forEach((secretName) => {
+            success = true
+
+            // Dont create the metadata and expect success to still be true
+            if (secretName !== '__gcp_metadata' && success) {
+              const tmpSecretLocation = `${context.root}/tmp/${secretName}`
+              // Create the tmp secret file
+              writeFileSync(tmpSecretLocation, fileContent[secretName])
+
+              success = addOrUpdateSecret(
+                existingSecrets,
+                secretName,
+                fileContent.__gcp_metadata,
+                tmpSecretLocation,
+                options
+              )
+
+              // Remove the tmp file
+              unlinkSync(tmpSecretLocation)
+            }
+          })
         }
 
         // Store the encrypted file again
         if (isFileEncrypted) {
           storeFile(file, fileContent)
-        }
-
-        // If service accounts are defined then manage them
-        if (fileContent.__gcp_metadata?.serviceAccounts && Array.isArray(fileContent.__gcp_metadata?.serviceAccounts)) {
-          const allowedServiceAccounts = fileContent.__gcp_metadata?.serviceAccounts
-
-          const serviceAccounts = execCommand<ExistingServiceAccounts>(
-            buildCommand([
-              `gcloud secrets get-iam-policy ${secretName}`,
-              '--format=json',
-              getCommandOptions(options)
-            ]),
-            {
-              silent: true,
-              asJSON: true
-            }
-          )
-
-          let existingServiceAccounts = []
-          if (serviceAccounts?.bindings) {
-            existingServiceAccounts = serviceAccounts.bindings?.find(({ role }) => role === 'roles/secretmanager.secretAccessor')?.members ?? []
-          }
-
-          const serviceAccountsToDelete = existingServiceAccounts.filter((account) => !allowedServiceAccounts.includes(account))
-          const serviceAccountsToAdd = allowedServiceAccounts.filter((account) => !existingServiceAccounts.includes(account))
-
-          if (serviceAccountsToAdd.length > 0) {
-            logger.info(`Going to add "${serviceAccountsToAdd.join(',')}" to secret "${secretName}"`)
-
-            serviceAccountsToAdd.forEach((newMember) => {
-              execCommand(buildCommand([
-                `gcloud secrets add-iam-policy-binding ${secretName}`,
-                `--member='${newMember}'`,
-                `--role='roles/secretmanager.secretAccessor'`,
-                getCommandOptions(options)
-              ]))
-            })
-          }
-
-          if (serviceAccountsToDelete.length > 0) {
-            logger.info(`Going to remove "${serviceAccountsToDelete.join(',')}" from secret "${secretName}"`)
-
-            serviceAccountsToDelete.forEach((deleteMember) => {
-              execCommand(buildCommand([
-                `gcloud secrets remove-iam-policy-binding ${secretName}`,
-                `--member='${deleteMember}'`,
-                `--role='roles/secretmanager.secretAccessor'`,
-                getCommandOptions(options)
-              ]))
-            })
-          }
         }
 
         return success
