@@ -25,6 +25,7 @@ export interface DeployExecutorSchema {
   // Gen 2 options
   gen?: 1 | 2
   concurrency?: number
+  cloudSqlInstance?: string
 
   __runner?: {
     endpoint?: string
@@ -55,7 +56,8 @@ export async function deployExecutor(
     securityLevel = null,
     secrets = [],
     gen = 1,
-    concurrency = 1
+    concurrency = 1,
+    cloudSqlInstance = null,
   } = options
 
   let correctMemory = memory as string
@@ -132,6 +134,7 @@ export async function deployExecutor(
 
         concurrency > 0 && `--concurrency ${concurrency}`,
         validSecrets.length > 0 && `--set-secrets=${validSecrets.join(',')}`,
+        cloudSqlInstance && `--add-cloudsql-instances=${cloudSqlInstance}`,
 
         `--region=${region}`,
         project && `--project=${project}`
