@@ -43,7 +43,6 @@ export async function deployExecutor(
     triggerValue = null,
     triggerEvent = null,
     runtime = 'nodejs14',
-    allowUnauthenticated = true,
     envVarsFile = null,
     maxInstances = 10,
     project = null,
@@ -64,6 +63,8 @@ export async function deployExecutor(
     ingressSettings = trigger === 'http'
       ? null
       : 'internal-only',
+
+    allowUnauthenticated = trigger === 'http',
   } = options
 
   let correctMemory = memory as string
@@ -122,7 +123,7 @@ export async function deployExecutor(
     `--source=${join(context.root, targets?.build?.options?.outputPath.toString())}`,
     `--max-instances=${maxInstances}`,
 
-    trigger === 'http' && allowUnauthenticated && '--allow-unauthenticated',
+    allowUnauthenticated && '--allow-unauthenticated',
     serviceAccount && `--service-account=${serviceAccount}`,
 
     gen === 1 && validSecrets.length > 0 && `--set-secrets=${validSecrets.join(',')}`,
