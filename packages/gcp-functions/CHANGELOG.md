@@ -1,4 +1,29 @@
  
+# [5.0.0](https://github.com/TriPSs/nx-extend/compare/gcp-functions@4.1.1...gcp-functions@5.0.0) (2021-11-16)
+
+
+### Bug Fixes
+
+* **gcp-functions:** Allow unauthenticated default false for not http triggers ([95f9ee4](https://github.com/TriPSs/nx-extend/commit/95f9ee47a3e2bc13d5106ceefdee672f04e0d178))
+
+
+* fix(gcp-functions)!: Only allow unauthenticated calls when trigger is http ([9c4f1a8](https://github.com/TriPSs/nx-extend/commit/9c4f1a8c97e3e8482da927fe49086c60247a11ef))
+* fix(gcp-functions)!: Change default behavior of ingress settings for pub/sub events ([26c2c64](https://github.com/TriPSs/nx-extend/commit/26c2c64d8be641f5d419237275345b071fd4aa6e))
+
+
+### Features
+
+* **gcp-functions:** Added `cloudSqlInstance` option for gen 2 ([51b249c](https://github.com/TriPSs/nx-extend/commit/51b249c5c8a92c811ceddc931c0e933a56f9dc67))
+
+
+### BREAKING CHANGES
+
+* **gcp-functions:** Default behavior of `allowUnauthenticated` changed
+* `allowUnauthenticated` is now ignored if trigger is not http
+* When deploying an `trigger !== http` the default setting for ingress will now bwe `internal-only`
+
+
+
 ## [4.1.1](https://github.com/TriPSs/nx-extend/compare/gcp-functions@4.1.0...gcp-functions@4.1.1) (2021-11-09)
 
 
