@@ -122,7 +122,7 @@ export async function deployExecutor(
     `--source=${join(context.root, targets?.build?.options?.outputPath.toString())}`,
     `--max-instances=${maxInstances}`,
 
-    allowUnauthenticated && '--allow-unauthenticated',
+    trigger === 'http' && allowUnauthenticated && '--allow-unauthenticated',
     serviceAccount && `--service-account=${serviceAccount}`,
 
     gen === 1 && validSecrets.length > 0 && `--set-secrets=${validSecrets.join(',')}`,
