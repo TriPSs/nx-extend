@@ -51,13 +51,19 @@ export async function deployExecutor(
     serviceAccount = null,
     entryPoint = null,
     retry = false,
-    ingressSettings = null,
     egressSettings = null,
     securityLevel = null,
     secrets = [],
     gen = 1,
     concurrency = 1,
     cloudSqlInstance = null,
+  } = options
+
+  // Options with default values based of trigger type
+  const {
+    ingressSettings = trigger === 'http'
+      ? null
+      : 'internal-only',
   } = options
 
   let correctMemory = memory as string
