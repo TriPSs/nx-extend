@@ -25,6 +25,7 @@ export interface DeployExecutorSchema {
   // Gen 2 options
   gen?: 1 | 2
   concurrency?: number
+  cloudSqlInstance?: string
 
   __runner?: {
     endpoint?: string
@@ -42,7 +43,6 @@ export async function deployExecutor(
     triggerValue = null,
     triggerEvent = null,
     runtime = 'nodejs14',
-    allowUnauthenticated = true,
     envVarsFile = null,
     maxInstances = 10,
     project = null,
@@ -50,12 +50,21 @@ export async function deployExecutor(
     serviceAccount = null,
     entryPoint = null,
     retry = false,
-    ingressSettings = null,
     egressSettings = null,
     securityLevel = null,
     secrets = [],
     gen = 1,
-    concurrency = 1
+    concurrency = 1,
+    cloudSqlInstance = null,
+  } = options
+
+  // Options with default values based of trigger type
+  const {
+    ingressSettings = trigger === 'http'
+      ? null
+      : 'internal-only',
+
+    allowUnauthenticated = trigger === 'http',
   } = options
 
   let correctMemory = memory as string
@@ -132,6 +141,7 @@ export async function deployExecutor(
 
         concurrency > 0 && `--concurrency ${concurrency}`,
         validSecrets.length > 0 && `--set-secrets=${validSecrets.join(',')}`,
+        cloudSqlInstance && `--add-cloudsql-instances=${cloudSqlInstance}`,
 
         `--region=${region}`,
         project && `--project=${project}`
