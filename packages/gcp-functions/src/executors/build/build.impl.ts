@@ -15,6 +15,7 @@ import {
 } from '@nrwl/workspace/src/utilities/buildable-libs-utils'
 
 import { generatePackageJson } from '../../utils/generate-package-json'
+import { generatePackageJsonLockFile } from '../../utils/generate-package-json-lock-file'
 
 try {
   // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -23,13 +24,17 @@ try {
   // do nothing
 }
 
+export interface RawOptions extends BuildNodeBuilderOptions {
+  generateLockFile?: boolean
+}
+
 export type NodeBuildEvent = {
   outfile: string
   success: boolean
 }
 
 export async function* buildExecutor(
-  rawOptions: BuildNodeBuilderOptions,
+  rawOptions: RawOptions,
   context: ExecutorContext
 ) {
   const { sourceRoot, root } = context.workspace.projects[context.projectName]
@@ -98,6 +103,11 @@ export async function* buildExecutor(
       tap(({ outfile }) => (
         generatePackageJson(context.projectName, readCachedProjectGraph(), options, outfile, context.root)
       )),
+      tap(() => {
+        if (rawOptions.generateLockFile) {
+          generatePackageJsonLockFile(context.projectName, options, context.root)
+        }
+      }),
       tap(() => ({
         success: true
       }))
