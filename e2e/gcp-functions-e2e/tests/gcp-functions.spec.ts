@@ -37,7 +37,7 @@ describe('(e2e) gcp-functions', () => {
   }, 300000)
 
   it('should be able to build a function and generate lock file', async () => {
-    const plugin = uniq('gcp-functions')
+    const plugin = uniq('gcp-functions-lock-file')
     await runNxCommandAsync(`generate @nx-extend/gcp-functions:init ${plugin}`)
     await runNxCommandAsync(`build ${plugin} --generateLockFile`)
 
