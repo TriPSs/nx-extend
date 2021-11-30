@@ -1,4 +1,13 @@
  
+# [5.2.0](https://github.com/TriPSs/nx-extend/compare/gcp-functions@5.1.0...gcp-functions@5.2.0) (2021-11-30)
+
+
+### Features
+
+* **gcp-functions:** Build now uses `options.outputFileName` ([63fe018](https://github.com/TriPSs/nx-extend/commit/63fe0186393f61c229580d33c2abdb83eb3dbf67))
+
+
+
 # [5.1.0](https://github.com/TriPSs/nx-extend/compare/gcp-functions@5.0.0...gcp-functions@5.1.0) (2021-11-30)
 
 
