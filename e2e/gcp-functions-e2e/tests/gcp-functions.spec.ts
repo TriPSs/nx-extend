@@ -36,6 +36,20 @@ describe('(e2e) gcp-functions', () => {
     ).not.toThrow()
   }, 300000)
 
+  it('should be able to build a function and generate lock file', async () => {
+    const plugin = uniq('gcp-functions-lock-file')
+    await runNxCommandAsync(`generate @nx-extend/gcp-functions:init ${plugin}`)
+    await runNxCommandAsync(`build ${plugin} --generateLockFile`)
+
+    expect(() =>
+      checkFilesExist(
+        `dist/apps/${plugin}/main.js`,
+        `dist/apps/${plugin}/package.json`,
+        `dist/apps/${plugin}/package-lock.json`
+      )
+    ).not.toThrow()
+  }, 300000)
+
   it('should be able the runner', async () => {
     const plugin = uniq('gcp-functions-runner')
     await runNxCommandAsync(`generate @nx-extend/gcp-functions:init-runner ${plugin}`)
