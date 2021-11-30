@@ -1,4 +1,18 @@
  
+# [5.1.0](https://github.com/TriPSs/nx-extend/compare/gcp-functions@5.0.0...gcp-functions@5.1.0) (2021-11-30)
+
+
+### Bug Fixes
+
+* **gcp-functions:** Fixed alpha/beta components not being installed quietly ([09b2f84](https://github.com/TriPSs/nx-extend/commit/09b2f84eef2df8c6a7e28ad98b5b951fb9997a8a))
+
+
+### Features
+
+* **gcp-functions:** Added option to generate package json lock file ([075c88f](https://github.com/TriPSs/nx-extend/commit/075c88f6aa67c71937ef416bf11bbc309865cce8))
+
+
+
 # [5.0.0](https://github.com/TriPSs/nx-extend/compare/gcp-functions@4.1.1...gcp-functions@5.0.0) (2021-11-16)
 
 
