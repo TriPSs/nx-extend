@@ -94,16 +94,16 @@ export async function deployExecutor(
     logger.info('Using secrets, install beta components to be sure')
     gcloudCommand = 'gcloud beta'
 
-    execCommand('gcloud components install beta')
+    execCommand('gcloud components install beta --quiet')
 
   } else if (gen === 2) {
     logger.info('Using gen 2, install alpha components to be sure')
     gcloudCommand = 'gcloud alpha'
 
-    execCommand('gcloud components install alpha')
+    execCommand('gcloud components install alpha --quiet')
   }
 
-  const { success } = execCommand(buildCommand([
+  let { success } = execCommand(buildCommand([
     `${gcloudCommand} functions deploy`,
     functionName,
     gen === 2 && '--gen2',
@@ -131,11 +131,11 @@ export async function deployExecutor(
     project && `--project=${project}`
   ]))
 
-  if (gen === 2 && (concurrency > 0 || validSecrets.length > 0)) {
+  if (success && gen === 2 && (concurrency > 0 || validSecrets.length > 0)) {
     if (concurrency > 1) {
       logger.info('Updating service with more configurations')
 
-      execCommand(buildCommand([
+      const serviceUpdateCommand = execCommand(buildCommand([
         `${gcloudCommand} run services update`,
         functionName,
 
@@ -146,6 +146,8 @@ export async function deployExecutor(
         `--region=${region}`,
         project && `--project=${project}`
       ]))
+
+      success = serviceUpdateCommand.success
     }
   }
 
