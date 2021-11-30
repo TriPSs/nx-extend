@@ -4,7 +4,6 @@ import { map, tap } from 'rxjs/operators'
 import { eachValueFrom } from 'rxjs-for-await'
 import { resolve } from 'path'
 import { getNodeWebpackConfig } from '@nrwl/node/src/utils/node.config'
-import { OUT_FILENAME } from '@nrwl/node/src/utils/config'
 import { BuildNodeBuilderOptions } from '@nrwl/node/src/utils/types'
 import { normalizeBuildOptions } from '@nrwl/node/src/utils/normalize'
 import { runWebpack } from '@nrwl/node/src/utils/run-webpack'
@@ -97,7 +96,7 @@ export async function* buildExecutor(
       map((stats) => {
         return {
           success: !stats.hasErrors(),
-          outfile: resolve(context.root, options.outputPath, OUT_FILENAME)
+          outfile: resolve(context.root, options.outputPath, options.outputFileName)
         } as NodeBuildEvent
       }),
       tap(({ outfile }) => (

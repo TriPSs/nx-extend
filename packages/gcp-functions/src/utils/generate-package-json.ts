@@ -3,8 +3,6 @@ import { join } from 'path'
 import { fileExists, readJsonFile, writeJsonFile } from '@nrwl/workspace/src/utils/fileutils'
 import { createPackageJson } from '@nrwl/workspace/src/utilities/create-package-json'
 import { ProjectGraph } from '@nrwl/workspace/src/core/project-graph'
-
-import { OUT_FILENAME } from '@nrwl/node/src/utils/config'
 import { BuildNodeBuilderOptions } from '@nrwl/node/src/utils/types'
 
 export const generatePackageJson = (
@@ -15,7 +13,7 @@ export const generatePackageJson = (
   workspaceRoot: string
 ) => {
   const packageJson = createPackageJson(projectName, graph, options)
-  packageJson.main = OUT_FILENAME
+  packageJson.main = options.outputFileName
   delete packageJson.devDependencies
 
   const dependencies = {}
