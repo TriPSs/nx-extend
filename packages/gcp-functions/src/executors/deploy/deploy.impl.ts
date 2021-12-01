@@ -91,16 +91,12 @@ export async function deployExecutor(
 
   let gcloudCommand = 'gcloud'
   if (validSecrets.length > 0 && gen === 1) {
-    logger.info('Using secrets, install beta components to be sure')
+    logger.info('Using secrets, use gcloud beta')
     gcloudCommand = 'gcloud beta'
 
-    execCommand('gcloud components install beta --quiet')
-
   } else if (gen === 2) {
-    logger.info('Using gen 2, install alpha components to be sure')
+    logger.info('Using gen 2, use gcloud alpha')
     gcloudCommand = 'gcloud alpha'
-
-    execCommand('gcloud components install alpha --quiet')
   }
 
   let { success } = execCommand(buildCommand([
