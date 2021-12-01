@@ -1,4 +1,13 @@
  
+## [3.2.2](https://github.com/TriPSs/nx-extend/compare/gcp-secrets@3.2.1...gcp-secrets@3.2.2) (2021-12-01)
+
+
+### Bug Fixes
+
+* **gcp-secrets:** Fixed `keysAreSecrets` uploading encrypted secrets ([a117e32](https://github.com/TriPSs/nx-extend/commit/a117e328d30278287d459e303f7901327e688a7d))
+
+
+
 ## [3.2.1](https://github.com/TriPSs/nx-extend/compare/gcp-secrets@3.2.0...gcp-secrets@3.2.1) (2021-12-01)
 
 
