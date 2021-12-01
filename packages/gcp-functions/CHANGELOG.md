@@ -1,4 +1,18 @@
  
+# [5.3.0](https://github.com/TriPSs/nx-extend/compare/gcp-functions@5.2.0...gcp-functions@5.3.0) (2021-12-01)
+
+
+### Bug Fixes
+
+* **gcp-functions:** No longer install the needed gcloud components as on usage it will be installed ([b0c3ab0](https://github.com/TriPSs/nx-extend/commit/b0c3ab073b15668a7c8f2e003f9a75cd023c9606))
+
+
+### Features
+
+* **gcp-functions:** When generating function default set `generateLockFile` to `true` ([c336094](https://github.com/TriPSs/nx-extend/commit/c336094a2eea5702247fa5437f0a79b89af5fb64))
+
+
+
 # [5.2.0](https://github.com/TriPSs/nx-extend/compare/gcp-functions@5.1.0...gcp-functions@5.2.0) (2021-11-30)
 
 
