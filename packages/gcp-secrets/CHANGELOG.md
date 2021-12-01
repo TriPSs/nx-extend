@@ -1,4 +1,13 @@
  
+## [3.2.1](https://github.com/TriPSs/nx-extend/compare/gcp-secrets@3.2.0...gcp-secrets@3.2.1) (2021-12-01)
+
+
+### Bug Fixes
+
+* **gcp-secrets:** When deploying keys make sure the tmp directory exists ([fd1c7d2](https://github.com/TriPSs/nx-extend/commit/fd1c7d27cf6d5b4ea63d1ee196126680d8299724))
+
+
+
 # [3.2.0](https://github.com/TriPSs/nx-extend/compare/gcp-secrets@3.1.0...gcp-secrets@3.2.0) (2021-11-09)
 
 
