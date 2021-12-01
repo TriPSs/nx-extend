@@ -1,6 +1,6 @@
 import { ExecutorContext, logger } from '@nrwl/devkit'
 import { execCommand, buildCommand } from '@nx-extend/core'
-import { unlinkSync, writeFileSync } from 'fs'
+import { existsSync, unlinkSync, writeFileSync, mkdirSync } from 'fs'
 
 import { isEncryptionKeySet, decryptFile } from '../../utils/encryption'
 import { getAllSecretFiles } from '../../utils/get-all-secret-files'
@@ -90,12 +90,19 @@ export async function deployExecutor(
           )
 
         } else {
+          const tmpDirectory = `${context.root}/tmp`
+
+          // Create the tmp directory if it does not exists
+          if (!existsSync(tmpDirectory)) {
+            mkdirSync(tmpDirectory, { recursive: true })
+          }
+
           Object.keys(fileContent).forEach((secretName) => {
             success = true
 
-            // Dont create the metadata and expect success to still be true
+            // Don't create the metadata and expect success to still be true
             if (secretName !== '__gcp_metadata' && success) {
-              const tmpSecretLocation = `${context.root}/tmp/${secretName}`
+              const tmpSecretLocation = `${tmpDirectory}/${secretName}`
               // Create the tmp secret file
               writeFileSync(tmpSecretLocation, fileContent[secretName])
 
