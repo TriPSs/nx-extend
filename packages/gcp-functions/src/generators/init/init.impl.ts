@@ -79,7 +79,7 @@ export default async function (
       build: {
         executor: '@nx-extend/gcp-functions:build',
         options: {
-          generatePackageJson: true,
+          generateLockFile: true,
           outputPath: `dist/${normalizedOptions.projectRoot}`,
           main: `${normalizedOptions.projectRoot}/src/main.ts`,
           tsConfig: `${normalizedOptions.projectRoot}/tsconfig.app.json`,
