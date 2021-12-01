@@ -71,10 +71,11 @@ export async function deployExecutor(
         // Get the content of the file
         const fileContent = getFileContent(file)
         const isFileEncrypted = fileContent.__gcp_metadata.status === 'encrypted'
+        const decryptedFileContent = decryptFile(fileContent, true)
 
         // Decrypt the file if it's encrypted
         if (isFileEncrypted) {
-          storeFile(file, decryptFile(fileContent, true))
+          storeFile(file, decryptedFileContent)
         }
 
         let success = false
@@ -104,7 +105,7 @@ export async function deployExecutor(
             if (secretName !== '__gcp_metadata' && success) {
               const tmpSecretLocation = `${tmpDirectory}/${secretName}`
               // Create the tmp secret file
-              writeFileSync(tmpSecretLocation, fileContent[secretName])
+              writeFileSync(tmpSecretLocation, decryptedFileContent[secretName])
 
               success = addOrUpdateSecret(
                 existingSecrets,
