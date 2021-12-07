@@ -1,4 +1,13 @@
  
+# [3.2.0](https://github.com/TriPSs/nx-extend/compare/gcp-cloud-run@3.1.0...gcp-cloud-run@3.2.0) (2021-12-07)
+
+
+### Features
+
+* **gcp-cloud-run:** Added support for secrets ([8ea4ff8](https://github.com/TriPSs/nx-extend/commit/8ea4ff838e67c8059163eabf9b2bd38193695d61))
+
+
+
 # [3.1.0](https://github.com/TriPSs/nx-extend/compare/gcp-cloud-run@3.0.1...gcp-cloud-run@3.1.0) (2021-11-04)
 
 
