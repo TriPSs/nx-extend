@@ -1,6 +1,6 @@
 import { execCommand, buildCommand } from '@nx-extend/core'
 import { existsSync, readFileSync, writeFileSync } from 'fs'
-import { ExecutorContext, readJsonFile } from '@nrwl/devkit'
+import { ExecutorContext, logger, readJsonFile } from '@nrwl/devkit'
 import { join } from 'path'
 
 import { ExecutorSchema } from '../schema'
@@ -31,6 +31,7 @@ export function deployExecutor(
     logsDir = false,
     tagWithVersion = false,
     noTraffic = false,
+    secrets = [],
 
     revisionSuffix = false,
     buildWith = 'artifact-registry',
@@ -93,6 +94,15 @@ export function deployExecutor(
     return env
   }, [])
 
+  const validSecrets = secrets.map((secret) => {
+    if (secret.includes('=') && secret.includes(':')) {
+      return secret
+    }
+
+    logger.warn(`"${secret}" is not a valid secret! It should be in the following format "ENV_VAR_NAME=SECRET:VERSION"`)
+    return false
+  }).filter(Boolean)
+
   const deployCommand = buildCommand([
     `gcloud run deploy ${name}`,
     !buildWithArtifactRegistry && `--image=${containerName}`,
@@ -112,6 +122,7 @@ export function deployExecutor(
     cloudSqlInstance && `--add-cloudsql-instances=${cloudSqlInstance}`,
     allowUnauthenticated && '--allow-unauthenticated',
     tagWithVersion && packageVersion && `--tag=${packageVersion}`,
+    validSecrets.length > 0 && `--set-secrets=${validSecrets.join(',')}`,
 
     // There can be a question if a repo should be created
     buildWithArtifactRegistry && autoCreateArtifactsRepo && '--quiet'

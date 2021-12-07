@@ -9,6 +9,7 @@ export interface ExecutorSchema {
   envVars?: {
     [key: string]: string
   }
+  secrets?: string[]
   concurrency?: number
   maxInstances?: number
   minInstances?: number
