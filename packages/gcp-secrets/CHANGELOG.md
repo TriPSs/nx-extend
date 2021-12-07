@@ -1,4 +1,13 @@
  
+## [3.2.3](https://github.com/TriPSs/nx-extend/compare/gcp-secrets@3.2.2...gcp-secrets@3.2.3) (2021-12-07)
+
+
+### Bug Fixes
+
+* **gcp-secrets:** Fixed `keysAreSecrets` not working for json secret ([1d20502](https://github.com/TriPSs/nx-extend/commit/1d20502e2730eb24c20320e4bc0db413f02b24c3))
+
+
+
 ## [3.2.2](https://github.com/TriPSs/nx-extend/compare/gcp-secrets@3.2.1...gcp-secrets@3.2.2) (2021-12-01)
 
 
