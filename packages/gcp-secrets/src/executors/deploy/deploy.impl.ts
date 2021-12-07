@@ -105,7 +105,12 @@ export async function deployExecutor(
             if (secretName !== '__gcp_metadata' && success) {
               const tmpSecretLocation = `${tmpDirectory}/${secretName}`
               // Create the tmp secret file
-              writeFileSync(tmpSecretLocation, decryptedFileContent[secretName])
+              writeFileSync(
+                tmpSecretLocation,
+                typeof decryptedFileContent[secretName] !== 'string'
+                  ? JSON.stringify(decryptedFileContent[secretName])
+                  : decryptedFileContent[secretName]
+              )
 
               success = addOrUpdateSecret(
                 existingSecrets,
