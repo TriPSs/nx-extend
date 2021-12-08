@@ -1,6 +1,12 @@
-# Changelog
+ 
+# [6.1.0](https://github.com/TriPSs/nx-extend/compare/translations@6.0.0...translations@6.1.0) (2021-12-08)
 
-This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
+
+### Features
+
+* **translations:** Feat added SimpleLocalize as provider ([86f2e1b](https://github.com/TriPSs/nx-extend/commit/86f2e1ba0740c3861b7e2190a5ef4ef3d927b85f))
+
+
 
 # [6.0.0](https://github.com/TriPSs/nx-extend/compare/translations@5.1.0...translations@6.0.0) (2021-10-28)
 
