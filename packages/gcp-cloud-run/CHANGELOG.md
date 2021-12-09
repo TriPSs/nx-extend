@@ -1,4 +1,13 @@
  
+# [3.3.0](https://github.com/TriPSs/nx-extend/compare/gcp-cloud-run@3.2.0...gcp-cloud-run@3.3.0) (2021-12-09)
+
+
+### Features
+
+* **gcp-cloud-run:** Added option to generate repo info file ([8718b35](https://github.com/TriPSs/nx-extend/commit/8718b359424c2b8b6d635f1bf045dd4e57b0e51e))
+
+
+
 # [3.2.0](https://github.com/TriPSs/nx-extend/compare/gcp-cloud-run@3.1.0...gcp-cloud-run@3.2.0) (2021-12-07)
 
 
