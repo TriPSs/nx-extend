@@ -9,7 +9,7 @@ export function deployExecutor(
   options: ExecutorSchema,
   context: ExecutorContext
 ): Promise<{ success: boolean }> {
-  const { root, targets } = context.workspace.projects[context.projectName]
+  const { root, targets, sourceRoot } = context.workspace.projects[context.projectName]
 
   if (!targets?.build?.options?.outputPath) {
     throw new Error('No build target configured!')
@@ -35,7 +35,8 @@ export function deployExecutor(
 
     revisionSuffix = false,
     buildWith = 'artifact-registry',
-    autoCreateArtifactsRepo = true
+    autoCreateArtifactsRepo = true,
+    generateRepoInfoFile = false
   } = options
 
   const distDirectory = join(
@@ -102,6 +103,16 @@ export function deployExecutor(
     logger.warn(`"${secret}" is not a valid secret! It should be in the following format "ENV_VAR_NAME=SECRET:VERSION"`)
     return false
   }).filter(Boolean)
+
+  if (generateRepoInfoFile) {
+    logger.info('Generating repo info file')
+
+    execCommand(buildCommand([
+      'gcloud debug source gen-repo-info-file',
+      `--source-directory=${sourceRoot}`,
+      `--output-directory=${distDirectory}`
+    ]))
+  }
 
   const deployCommand = buildCommand([
     `gcloud run deploy ${name}`,
