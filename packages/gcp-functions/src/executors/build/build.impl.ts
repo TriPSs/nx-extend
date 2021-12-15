@@ -104,7 +104,7 @@ export async function* buildExecutor(
       )),
       tap(() => {
         if (rawOptions.generateLockFile) {
-          generatePackageJsonLockFile(context.projectName, options)
+          generatePackageJsonLockFile(context.root, context.projectName, options)
         }
       }),
       tap(() => ({
