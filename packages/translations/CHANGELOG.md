@@ -1,4 +1,13 @@
  
+# [6.2.0](https://github.com/TriPSs/nx-extend/compare/translations@6.1.0...translations@6.2.0) (2021-12-15)
+
+
+### Features
+
+* **translations:** Added `debug` option so it can be seen why certain libs are included ([ce38bc8](https://github.com/TriPSs/nx-extend/commit/ce38bc86de6d3ff62e9bc74d3afd6a7de6e5ad63))
+
+
+
 # [6.1.0](https://github.com/TriPSs/nx-extend/compare/translations@6.0.0...translations@6.1.0) (2021-12-08)
 
 
