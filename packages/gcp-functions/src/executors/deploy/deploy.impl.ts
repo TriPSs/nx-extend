@@ -4,7 +4,7 @@ import { join } from 'path'
 
 export interface DeployExecutorSchema {
   functionName: string
-  runtime?: 'nodejs12' | 'nodejs14'
+  runtime?: 'nodejs12' | 'nodejs14' | 'nodejs16'
   entryPoint?: string
   serviceAccount?: string
   memory?: '128MB' | '256MB' | '512MB' | '1024MB' | '2048MB' | '4096MB'
@@ -15,6 +15,7 @@ export interface DeployExecutorSchema {
   trigger?: 'http' | 'topic' | 'recourse' | 'bucket'
   triggerValue?: string
   triggerEvent?: string
+  triggerLocation?: string
   ingressSettings?: 'all' | 'internal-only' | 'internal-and-gclb'
   egressSettings?: 'all' | 'private-ranges-only'
   securityLevel?: 'secure-optional' | 'secure-always'
@@ -42,7 +43,8 @@ export async function deployExecutor(
     trigger = 'http',
     triggerValue = null,
     triggerEvent = null,
-    runtime = 'nodejs14',
+    triggerLocation = null,
+    runtime = 'nodejs16',
     envVarsFile = null,
     maxInstances = 10,
     project = null,
@@ -105,6 +107,7 @@ export async function deployExecutor(
     gen === 2 && '--gen2',
     `--trigger-${trigger}${triggerValue ? `=${triggerValue}` : ''}`,
     triggerEvent && `--trigger-event=${triggerEvent}`,
+    triggerLocation && `--trigger-location=${triggerLocation}`,
     `--runtime=${runtime}`,
     `--memory=${correctMemory}`,
     `--region=${region}`,
