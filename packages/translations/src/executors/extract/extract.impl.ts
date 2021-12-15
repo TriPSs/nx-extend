@@ -15,6 +15,8 @@ export interface ExtractSchema {
   extractor?: 'formatjs'
   libPrefix?: string
   withLibs?: boolean
+
+  debug?: boolean
 }
 
 export async function extractExectutor(
@@ -32,7 +34,7 @@ export async function extractExectutor(
   // Check if we need to extract from connected libs
   if (options.withLibs) {
     // Get all libs that are connected to this app
-    const libRoots = await getLibsRoot(context, context.projectName, options.libPrefix)
+    const libRoots = await getLibsRoot(context, context.projectName, options.libPrefix, [], [], options.debug)
 
     if (libRoots.length > 0) {
       options.sourceRoot = `{${options.sourceRoot},${libRoots.join(',')}}`
@@ -82,7 +84,7 @@ export const getConnectedLibs = (dependencies, project: string, prefix?: string)
   ))
 )
 
-export const getLibsRoot = async (context: ExecutorContext, project: string, prefix?: string, targetsDone = [], roots = []): Promise<string[]> => {
+export const getLibsRoot = async (context: ExecutorContext, project: string, prefix?: string, targetsDone = [], roots = [], debugMode = false): Promise<string[]> => {
   const projectGraph = await createProjectGraphAsync()
   const libs = getConnectedLibs(projectGraph.dependencies, project, prefix)
 
@@ -96,10 +98,13 @@ export const getLibsRoot = async (context: ExecutorContext, project: string, pre
     targetsDone.push(connectedLib.target)
 
     if (!roots.includes(libMetadata.sourceRoot)) {
+      if (debugMode) {
+        logger.debug(`Adding source root "${connectedLib.target}" because it's a dependency of "${project}"`)
+      }
       roots.push(libMetadata.sourceRoot)
     }
 
-    await getLibsRoot(context, connectedLib.target, prefix, targetsDone, roots)
+    await getLibsRoot(context, connectedLib.target, prefix, targetsDone, roots, debugMode)
   }))
 
   return roots
