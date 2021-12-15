@@ -1,4 +1,21 @@
  
+# [6.0.0](https://github.com/TriPSs/nx-extend/compare/gcp-functions@5.3.0...gcp-functions@6.0.0) (2021-12-15)
+
+
+* feat(translations)!: Change to latest node lts ([f11b4ed](https://github.com/TriPSs/nx-extend/commit/f11b4eddff860a689de5b8ec7e39817ed70e8401))
+
+
+### Features
+
+* **translations:** Add support for generating `yarn.lock` based on lock file in project root ([48caabd](https://github.com/TriPSs/nx-extend/commit/48caabd1d66e70c90ce099ab6368bf0550f168ee))
+
+
+### BREAKING CHANGES
+
+* Using latest node lts (16)
+
+
+
 # [5.3.0](https://github.com/TriPSs/nx-extend/compare/gcp-functions@5.2.0...gcp-functions@5.3.0) (2021-12-01)
 
 
