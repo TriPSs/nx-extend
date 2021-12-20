@@ -23,6 +23,10 @@ export default class DeeplTranslator {
 
   private readonly config: BaseConfigFile
 
+  private readonly formalitySupportedLangs = [
+    'de', 'fr', 'it', 'es', 'nl', 'pl', 'pt-pt', 'pt-br', 'ru'
+  ]
+
   constructor(context: ExecutorContext, config: BaseConfigFile, endpoint: string) {
     this.endpoint = endpoint
     this.context = context
@@ -108,7 +112,7 @@ export default class DeeplTranslator {
           'preserve_formatting=1',
           'tag_handling=xml',
           'ignore_tags=deepSkip',
-          this.config?.translatorOptions?.formality && `formality=${this.config.translatorOptions.formality}`
+          this.config?.translatorOptions?.formality && this.formalitySupportedLangs.includes(toLocale) && `formality=${this.config.translatorOptions.formality}`
         ].filter(Boolean)
 
         const { status, data: { translations } } = await axios.get<any>(url.join('&'))
