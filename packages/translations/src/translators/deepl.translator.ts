@@ -47,15 +47,15 @@ export default class DeeplTranslator {
         const terms = await provider.getTranslations(code)
         const toTranslate = []
 
-        Object.keys(terms)
-          .forEach((term) => {
-            const content = terms[term]
+        Object.keys(sourceTerms)
+          .forEach((sourceTerm) => {
+            const content = terms[sourceTerm]
 
             // If term is not defined use the source term
             if (!content || content.length === 0) {
               toTranslate.push({
-                key: term,
-                value: sourceTerms[term]
+                key: sourceTerm,
+                value: sourceTerms[sourceTerm]
               })
             }
           })
