@@ -1,4 +1,13 @@
  
+## [6.0.1](https://github.com/TriPSs/nx-extend/compare/gcp-functions@6.0.0...gcp-functions@6.0.1) (2021-12-21)
+
+
+### Reverts
+
+* **gcp-functions:** Disable yarn lock file again ([d9e7106](https://github.com/TriPSs/nx-extend/commit/d9e71064799ec5e7b0dd78470d98b37706b2d367))
+
+
+
 # [6.0.0](https://github.com/TriPSs/nx-extend/compare/gcp-functions@5.3.0...gcp-functions@6.0.0) (2021-12-15)
 
 
