@@ -23,6 +23,10 @@ export default class DeeplTranslator {
 
   private readonly config: BaseConfigFile
 
+  private readonly formalitySupportedLangs = [
+    'de', 'fr', 'it', 'es', 'nl', 'pl', 'pt-pt', 'pt-br', 'ru'
+  ]
+
   constructor(context: ExecutorContext, config: BaseConfigFile, endpoint: string) {
     this.endpoint = endpoint
     this.context = context
@@ -47,15 +51,15 @@ export default class DeeplTranslator {
         const terms = await provider.getTranslations(code)
         const toTranslate = []
 
-        Object.keys(terms)
-          .forEach((term) => {
-            const content = terms[term]
+        Object.keys(sourceTerms)
+          .forEach((sourceTerm) => {
+            const content = terms[sourceTerm]
 
             // If term is not defined use the source term
             if (!content || content.length === 0) {
               toTranslate.push({
-                key: term,
-                value: sourceTerms[term]
+                key: sourceTerm,
+                value: sourceTerms[sourceTerm]
               })
             }
           })
@@ -108,7 +112,7 @@ export default class DeeplTranslator {
           'preserve_formatting=1',
           'tag_handling=xml',
           'ignore_tags=deepSkip',
-          this.config?.translatorOptions?.formality && `formality=${this.config.translatorOptions.formality}`
+          this.config?.translatorOptions?.formality && this.formalitySupportedLangs.includes(toLocale) && `formality=${this.config.translatorOptions.formality}`
         ].filter(Boolean)
 
         const { status, data: { translations } } = await axios.get<any>(url.join('&'))

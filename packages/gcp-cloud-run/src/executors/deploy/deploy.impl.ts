@@ -114,8 +114,14 @@ export function deployExecutor(
     ]))
   }
 
+  let gcloudCommand = 'gcloud'
+  if (validSecrets.length > 0) {
+    logger.info('Using secrets, use gcloud beta')
+    gcloudCommand = 'gcloud beta'
+  }
+
   const deployCommand = buildCommand([
-    `gcloud run deploy ${name}`,
+    `${gcloudCommand} run deploy ${name}`,
     !buildWithArtifactRegistry && `--image=${containerName}`,
     buildWithArtifactRegistry && '--source=./',
     `--project=${project}`,
