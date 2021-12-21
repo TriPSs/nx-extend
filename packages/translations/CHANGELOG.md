@@ -1,4 +1,15 @@
  
+## [6.2.1](https://github.com/TriPSs/nx-extend/compare/translations@6.2.0...translations@6.2.1) (2021-12-21)
+
+
+### Bug Fixes
+
+* **translations:** Use API to fetch translations in `SimpleLocalize` provider ([63aa611](https://github.com/TriPSs/nx-extend/commit/63aa611e51dede4c5eaf4fd57271678f94b0c998))
+* **translations:** Use source terms to determine what needs to be translated ([01e777a](https://github.com/TriPSs/nx-extend/commit/01e777a75cbcadf0a821524be2f352b94dd3bf2a))
+* **translations:** Validate if the provided language supports formality in DeepL ([c8720bc](https://github.com/TriPSs/nx-extend/commit/c8720bcb922b69916d6423c51bd06d1ea15ae67f))
+
+
+
 # [6.2.0](https://github.com/TriPSs/nx-extend/compare/translations@6.1.0...translations@6.2.0) (2021-12-15)
 
 
