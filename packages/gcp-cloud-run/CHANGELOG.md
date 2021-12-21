@@ -1,4 +1,13 @@
  
+## [3.3.1](https://github.com/TriPSs/nx-extend/compare/gcp-cloud-run@3.3.0...gcp-cloud-run@3.3.1) (2021-12-21)
+
+
+### Bug Fixes
+
+* **gcp-cloud-run:** When deploying with secrets use `gcloud beta` ([7108961](https://github.com/TriPSs/nx-extend/commit/7108961b3048808f17dd2fcc1dd090bfa11d6b30))
+
+
+
 # [3.3.0](https://github.com/TriPSs/nx-extend/compare/gcp-cloud-run@3.2.0...gcp-cloud-run@3.3.0) (2021-12-09)
 
 
