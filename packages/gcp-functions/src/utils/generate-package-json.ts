@@ -1,6 +1,7 @@
 import * as fs from 'fs'
 import { join } from 'path'
-import { fileExists, readJsonFile, writeJsonFile } from '@nrwl/workspace/src/utils/fileutils'
+import { fileExists } from '@nrwl/workspace/src/utils/fileutils'
+import { readJsonFile, writeJsonFile } from '@nrwl/devkit'
 import { createPackageJson } from '@nrwl/workspace/src/utilities/create-package-json'
 import { ProjectGraph } from '@nrwl/workspace/src/core/project-graph'
 import { BuildNodeBuilderOptions } from '@nrwl/node/src/utils/types'
