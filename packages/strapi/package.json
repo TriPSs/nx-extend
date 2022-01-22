@@ -16,7 +16,7 @@
   "license": "MIT",
   "main": "src/index.js",
   "dependencies": {
-    "strapi-generate-new": "^3.4.5"
+    "@strapi/generate-new": "^4.0.5"
   },
   "builders": "./executors.json",
   "generators": "./generators.json"
