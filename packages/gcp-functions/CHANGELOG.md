@@ -1,4 +1,14 @@
  
+# [6.1.0](https://github.com/TriPSs/nx-extend/compare/gcp-functions@6.0.1...gcp-functions@6.1.0) (2022-01-25)
+
+
+### Features
+
+* **gcp-functions:** Added support for the `timeout` option ([ed1e6c3](https://github.com/TriPSs/nx-extend/commit/ed1e6c377e6b5c82d0242a95556ea379621df6dd))
+* **gcp-functions:** use @nrwl/devkit to interact with file  ([4092973](https://github.com/TriPSs/nx-extend/commit/4092973a871c227c3d892a9852336dc6cb9ef860))
+
+
+
 ## [6.0.1](https://github.com/TriPSs/nx-extend/compare/gcp-functions@6.0.0...gcp-functions@6.0.1) (2021-12-21)
 
 
