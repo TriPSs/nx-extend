@@ -26,6 +26,7 @@ export interface DeployExecutorSchema {
   // Gen 2 options
   gen?: 1 | 2
   concurrency?: number
+  timeout?: number
   cloudSqlInstance?: string
 
   __runner?: {
@@ -58,6 +59,7 @@ export async function deployExecutor(
     gen = 1,
     concurrency = 1,
     cloudSqlInstance = null,
+    timeout = null
   } = options
 
   // Options with default values based of trigger type
@@ -118,6 +120,7 @@ export async function deployExecutor(
     ingressSettings && `--ingress-settings=${ingressSettings}`,
     egressSettings && `--egress-settings=${egressSettings}`,
     securityLevel && `--security-level=${securityLevel}`,
+    timeout && `--timeout=${timeout}`,
 
     `--source=${join(context.root, targets?.build?.options?.outputPath.toString())}`,
     `--max-instances=${maxInstances}`,
