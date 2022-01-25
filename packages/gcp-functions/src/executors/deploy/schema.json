@@ -95,6 +95,9 @@
     "concurrency": {
       "type": "number",
       "default": 1
+    },
+    "timeout": {
+      "type": "number"
     }
   }
 }
