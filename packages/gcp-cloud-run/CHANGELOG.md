@@ -1,4 +1,13 @@
  
+# [3.4.0](https://github.com/TriPSs/nx-extend/compare/gcp-cloud-run@3.3.1...gcp-cloud-run@3.4.0) (2022-01-25)
+
+
+### Features
+
+* **gcp-run:** Added support for the `timeout` option ([86e42bf](https://github.com/TriPSs/nx-extend/commit/86e42bf9a316b1129e05fcc47b1e952c0fb6826a))
+
+
+
 ## [3.3.1](https://github.com/TriPSs/nx-extend/compare/gcp-cloud-run@3.3.0...gcp-cloud-run@3.3.1) (2021-12-21)
 
 
