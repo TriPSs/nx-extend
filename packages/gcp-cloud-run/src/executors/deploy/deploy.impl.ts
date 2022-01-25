@@ -36,7 +36,8 @@ export function deployExecutor(
     revisionSuffix = false,
     buildWith = 'artifact-registry',
     autoCreateArtifactsRepo = true,
-    generateRepoInfoFile = false
+    generateRepoInfoFile = false,
+    timeout = null
   } = options
 
   const distDirectory = join(
@@ -135,6 +136,7 @@ export function deployExecutor(
     serviceAccount && `--service-account=${serviceAccount}`,
     http2 && '--use-http2',
     noTraffic && '--no-traffic',
+    timeout && `--timeout=${timeout}`,
     setEnvVars.length > 0 && `--set-env-vars=${setEnvVars.join(',')}`,
     cloudSqlInstance && `--add-cloudsql-instances=${cloudSqlInstance}`,
     allowUnauthenticated && '--allow-unauthenticated',

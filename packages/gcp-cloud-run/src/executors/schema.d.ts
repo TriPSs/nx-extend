@@ -23,4 +23,5 @@ export interface ExecutorSchema {
   autoCreateArtifactsRepo?: boolean
   noTraffic?: boolean
   generateRepoInfoFile?: boolean
+  timeout?: number
 }
