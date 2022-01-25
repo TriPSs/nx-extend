@@ -1,11 +1,11 @@
 // import { createTreeWithEmptyWorkspace } from '@nrwl/devkit/testing'
 // import { Tree, readProjectConfiguration } from '@nrwl/devkit'
-// import * as generateStrapi from 'strapi-generate-new'
+// import { generateNewApp as generateStrapi } from '@strapi/generate-new'
 //
 // import generator from './generator'
 // import { StrapiGeneratorSchema } from './schema'
 //
-// jest.mock('strapi-generate-new')
+// jest.mock('@strapi/generate-new')
 //
 // describe('strapi generator', () => {
 //

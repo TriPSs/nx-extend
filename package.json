@@ -27,14 +27,14 @@
     "workspace-generator": "nx workspace-generator"
   },
   "dependencies": {
+    "@strapi/generate-new": "^4.0.5",
     "axios": "^0.24.0",
     "chalk": "^4.1.2",
     "crypto-js": "^4.1.1",
     "deepmerge": "^4.2.2",
     "p-map": "4.0.0",
     "rxjs-for-await": "^0.0.2",
-    "shelljs": "^0.8.4",
-    "strapi-generate-new": "^3.6.8"
+    "shelljs": "^0.8.4"
   },
   "devDependencies": {
     "@actions/core": "^1.6.0",
