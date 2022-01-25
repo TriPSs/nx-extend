@@ -1,4 +1,13 @@
  
+## [2.0.2](https://github.com/TriPSs/nx-extend/compare/strapi@2.0.1...strapi@2.0.2) (2022-01-25)
+
+
+### Bug Fixes
+
+* **strapi:** update to strapi v4 ([468268c](https://github.com/TriPSs/nx-extend/commit/468268c8829716d1264386e41ad83da520aa0a03)), closes [#32](https://github.com/TriPSs/nx-extend/issues/32) [#38](https://github.com/TriPSs/nx-extend/issues/38)
+
+
+
 ## [2.0.1](https://github.com/TriPSs/nx-extend/compare/strapi@2.0.0...strapi@2.0.1) (2021-11-04)
 
 
