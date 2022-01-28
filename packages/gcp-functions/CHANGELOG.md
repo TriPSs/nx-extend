@@ -1,4 +1,13 @@
  
+## [6.1.1](https://github.com/TriPSs/nx-extend/compare/gcp-functions@6.1.0...gcp-functions@6.1.1) (2022-01-28)
+
+
+### Bug Fixes
+
+* **gcp-functions:** Fixed issue that sql instance or secrets where not being added ([b4bc302](https://github.com/TriPSs/nx-extend/commit/b4bc302f7c8f18df0c8de9e8949d0462f39e9a63))
+
+
+
 # [6.1.0](https://github.com/TriPSs/nx-extend/compare/gcp-functions@6.0.1...gcp-functions@6.1.0) (2022-01-25)
 
 
