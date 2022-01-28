@@ -68,7 +68,7 @@ export async function deployExecutor(
       ? null
       : 'internal-only',
 
-    allowUnauthenticated = trigger === 'http',
+    allowUnauthenticated = trigger === 'http'
   } = options
 
   let correctMemory = memory as string
@@ -133,24 +133,22 @@ export async function deployExecutor(
     project && `--project=${project}`
   ]))
 
-  if (success && gen === 2 && (concurrency > 0 || validSecrets.length > 0)) {
-    if (concurrency > 1) {
-      logger.info('Updating service with more configurations')
+  if (success && gen === 2 && (concurrency > 0 || validSecrets.length > 0 || cloudSqlInstance)) {
+    logger.info('Updating service with more configurations')
 
-      const serviceUpdateCommand = execCommand(buildCommand([
-        `${gcloudCommand} run services update`,
-        functionName,
+    const serviceUpdateCommand = execCommand(buildCommand([
+      `${gcloudCommand} run services update`,
+      functionName,
 
-        concurrency > 0 && `--concurrency ${concurrency}`,
-        validSecrets.length > 0 && `--set-secrets=${validSecrets.join(',')}`,
-        cloudSqlInstance && `--add-cloudsql-instances=${cloudSqlInstance}`,
+      concurrency > 0 && `--concurrency ${concurrency}`,
+      validSecrets.length > 0 && `--set-secrets=${validSecrets.join(',')}`,
+      cloudSqlInstance && `--add-cloudsql-instances=${cloudSqlInstance}`,
 
-        `--region=${region}`,
-        project && `--project=${project}`
-      ]))
+      `--region=${region}`,
+      project && `--project=${project}`
+    ]))
 
-      success = serviceUpdateCommand.success
-    }
+    success = serviceUpdateCommand.success
   }
 
   return Promise.resolve({ success })
