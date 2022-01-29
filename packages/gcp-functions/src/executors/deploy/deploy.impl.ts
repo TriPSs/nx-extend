@@ -130,7 +130,9 @@ export async function deployExecutor(
 
     gen === 1 && validSecrets.length > 0 && `--set-secrets=${validSecrets.join(',')}`,
 
-    project && `--project=${project}`
+    project && `--project=${project}`,
+
+    '--quiet'
   ]))
 
   if (success && gen === 2 && (concurrency > 0 || validSecrets.length > 0 || cloudSqlInstance)) {
@@ -145,7 +147,9 @@ export async function deployExecutor(
       cloudSqlInstance && `--add-cloudsql-instances=${cloudSqlInstance}`,
 
       `--region=${region}`,
-      project && `--project=${project}`
+      project && `--project=${project}`,
+
+      '--quiet'
     ]))
 
     success = serviceUpdateCommand.success
