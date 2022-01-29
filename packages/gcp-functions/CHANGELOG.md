@@ -1,4 +1,13 @@
  
+## [6.1.2](https://github.com/TriPSs/nx-extend/compare/gcp-functions@6.1.1...gcp-functions@6.1.2) (2022-01-29)
+
+
+### Bug Fixes
+
+* **gcp-functions:** Always run with `--quiet` ([e4cb336](https://github.com/TriPSs/nx-extend/commit/e4cb336adec7c8d1914da565e396d3b97c20b5da))
+
+
+
 ## [6.1.1](https://github.com/TriPSs/nx-extend/compare/gcp-functions@6.1.0...gcp-functions@6.1.1) (2022-01-28)
 
 
