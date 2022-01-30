@@ -1,4 +1,13 @@
  
+## [6.1.3](https://github.com/TriPSs/nx-extend/compare/gcp-functions@6.1.2...gcp-functions@6.1.3) (2022-01-30)
+
+
+### Bug Fixes
+
+* **gcp-functions:** Fixed regex that extracts deps to also works in minified code ([d88dccb](https://github.com/TriPSs/nx-extend/commit/d88dccb50c59a332d6b8e195290b1bbd01563c9b))
+
+
+
 ## [6.1.2](https://github.com/TriPSs/nx-extend/compare/gcp-functions@6.1.1...gcp-functions@6.1.2) (2022-01-29)
 
 
