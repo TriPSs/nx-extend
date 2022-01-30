@@ -19,7 +19,7 @@ export const generatePackageJson = (
   const dependencies = {}
   const buildFile = fs.readFileSync(outFile, 'utf8')
   const re2 = /"(.*)"/gm
-  const externalDependencies = buildFile.match(/require\("(.*)"\)/gm)
+  const externalDependencies = buildFile.match(/require\("(.*?)"\)/gm)
 
   // Get the package version from the root
   if (externalDependencies) {
