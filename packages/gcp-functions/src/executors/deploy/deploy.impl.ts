@@ -28,7 +28,7 @@ export interface DeployExecutorSchema {
   concurrency?: number
   timeout?: number
   cloudSqlInstance?: string
-
+  cpu?: number
   __runner?: {
     endpoint?: string
   }
@@ -59,7 +59,8 @@ export async function deployExecutor(
     gen = 1,
     concurrency = 1,
     cloudSqlInstance = null,
-    timeout = null
+    timeout = null,
+    cpu = 1
   } = options
 
   // Options with default values based of trigger type
@@ -143,6 +144,7 @@ export async function deployExecutor(
       functionName,
 
       concurrency > 0 && `--concurrency ${concurrency}`,
+      cpu && `--cpu ${cpu}`,
       validSecrets.length > 0 && `--set-secrets=${validSecrets.join(',')}`,
       cloudSqlInstance && `--add-cloudsql-instances=${cloudSqlInstance}`,
 

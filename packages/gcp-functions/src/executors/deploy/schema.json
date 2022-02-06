@@ -92,6 +92,10 @@
       "type": "number",
       "default": 1
     },
+    "cpu": {
+      "type": "number",
+      "default": 1
+    },
     "concurrency": {
       "type": "number",
       "default": 1
