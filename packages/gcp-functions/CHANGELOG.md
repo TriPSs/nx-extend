@@ -1,4 +1,13 @@
  
+# [6.2.0](https://github.com/TriPSs/nx-extend/compare/gcp-functions@6.1.3...gcp-functions@6.2.0) (2022-02-06)
+
+
+### Features
+
+* **gcp-functions:** Added support for `cpu` option ([721e074](https://github.com/TriPSs/nx-extend/commit/721e0747886d7f472b62f51683d14c52a7435b34))
+
+
+
 ## [6.1.3](https://github.com/TriPSs/nx-extend/compare/gcp-functions@6.1.2...gcp-functions@6.1.3) (2022-01-30)
 
 
