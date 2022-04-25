@@ -1,6 +1,5 @@
 import { ExecutorContext, logger } from '@nrwl/devkit'
 import axios from 'axios'
-import * as pMap from 'p-map'
 
 import { BaseConfigFile } from '../utils/config-file'
 import BaseProvider from '../providers/base.provider'
@@ -90,53 +89,50 @@ export default class DeeplTranslator {
       throw new Error('No "DEEPL_API_KEY" defined!')
     }
 
-    return pMap(
-      messages,
-      async (message, index) => {
-        process.stdout.clearLine(-1)
-        process.stdout.cursorTo(0)
-        process.stdout.write(`[DeepL] Translating "${toLocale}" ${(((index + 1) / messages.length) * 100).toFixed(2)}%`)
+    const translatedMessages = []
+    for (const message of messages) {
+      process.stdout.clearLine(-1)
+      process.stdout.cursorTo(0)
+      process.stdout.write(`[DeepL] Translating "${toLocale}" ${(((translatedMessages.length + 1) / messages.length) * 100).toFixed(2)}%`)
 
-        const url = [
-          `${this.endpoint}/v2/translate?`,
-          `auth_key=${this.apiKey}`,
-          `text=${
-            message.value
-              .replace(/{/g, '<deepSkip>')
-              .replace(/}/g, '</deepSkip>')
-              .replace(/'<a'/g, '<deepLink')
-              .replace(/'<\/a>'/g, '</deepLink>')
-          }`,
-          `target_lang=${toLocale.split('_').shift()}`,
-          `source_lang=${this.config.defaultLanguage}`,
-          'preserve_formatting=1',
-          'tag_handling=xml',
-          'ignore_tags=deepSkip',
-          this.config?.translatorOptions?.formality && this.formalitySupportedLangs.includes(toLocale) && `formality=${this.config.translatorOptions.formality}`
-        ].filter(Boolean)
+      const url = [
+        `${this.endpoint}/v2/translate?`,
+        `auth_key=${this.apiKey}`,
+        `text=${
+          message.value
+            .replace(/{/g, '<deepSkip>')
+            .replace(/}/g, '</deepSkip>')
+            .replace(/'<a'/g, '<deepLink')
+            .replace(/'<\/a>'/g, '</deepLink>')
+        }`,
+        `target_lang=${toLocale.split('_').shift()}`,
+        `source_lang=${this.config.defaultLanguage}`,
+        'preserve_formatting=1',
+        'tag_handling=xml',
+        'ignore_tags=deepSkip',
+        this.config?.translatorOptions?.formality && this.formalitySupportedLangs.includes(toLocale) && `formality=${this.config.translatorOptions.formality}`
+      ].filter(Boolean)
 
-        const { status, data: { translations } } = await axios.get<any>(url.join('&'))
+      const { status, data: { translations } } = await axios.get<any>(url.join('&'))
 
-        if (status === 429) {
-          logger.warn('To many requests, wait and retry')
+      if (status === 429) {
+        logger.warn('To many requests, wait and retry')
 
-        } else if (status === 456) {
-          throw new Error('Rate limit!')
-        }
-
-        return {
-          key: message.key,
-          value: translations[0].text
-            .replace(/<deepSkip>/g, '{')
-            .replace(/<\/deepSkip>/g, '}')
-            .replace(/<deepLink/g, '\'<a\'')
-            .replace(/<\/deepLink>/g, '\'</a>\'')
-        }
-      }, {
-        concurrency: 1,
-        stopOnError: true
+      } else if (status === 456) {
+        throw new Error('Rate limit!')
       }
-    )
+
+      translatedMessages.push({
+        key: message.key,
+        value: translations[0].text
+          .replace(/<deepSkip>/g, '{')
+          .replace(/<\/deepSkip>/g, '}')
+          .replace(/<deepLink/g, '\'<a\'')
+          .replace(/<\/deepLink>/g, '\'</a>\'')
+      })
+    }
+
+    return translatedMessages
   }
 
 }
