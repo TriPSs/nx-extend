@@ -3,7 +3,7 @@
   "type": "object",
   "cli": "nx",
   "title": "Serve executor",
-  "description": "",
+  "description": "Runs the command 'strapi develop'",
   "properties": {
     "production": {
       "type": "boolean",
