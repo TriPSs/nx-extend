@@ -1,4 +1,8 @@
  
+## [3.2.4](https://github.com/TriPSs/nx-extend/compare/gcp-secrets@3.2.3...gcp-secrets@3.2.4) (2022-04-25)
+
+
+
 ## [3.2.3](https://github.com/TriPSs/nx-extend/compare/gcp-secrets@3.2.2...gcp-secrets@3.2.3) (2021-12-07)
 
 
