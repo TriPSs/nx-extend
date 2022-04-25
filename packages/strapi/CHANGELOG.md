@@ -1,4 +1,13 @@
  
+# [2.1.0](https://github.com/TriPSs/nx-extend/compare/strapi@2.0.2...strapi@2.1.0) (2022-04-25)
+
+
+### Features
+
+* add arguments to the strapi serve command ([3023593](https://github.com/TriPSs/nx-extend/commit/30235936cf46b9e61e5725b86bf949dbf23a7872))
+
+
+
 ## [2.0.2](https://github.com/TriPSs/nx-extend/compare/strapi@2.0.1...strapi@2.0.2) (2022-01-25)
 
 
