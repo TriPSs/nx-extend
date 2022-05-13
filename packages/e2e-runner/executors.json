@@ -1,0 +1,10 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "executors": {
+    "run": {
+      "implementation": "./src/executors/run/run.impl",
+      "schema": "./src/executors/run/schema.json",
+      "description": "run executor"
+    }
+  }
+}

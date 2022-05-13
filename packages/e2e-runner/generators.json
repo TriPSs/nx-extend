@@ -1,0 +1,6 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "name": "e2e-runner",
+  "version": "0.0.1",
+  "generators": {}
+}

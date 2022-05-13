@@ -16,6 +16,7 @@
     "baseUrl": ".",
     "paths": {
       "@nx-extend/core": ["packages/core/src/index.ts"],
+      "@nx-extend/e2e-runner": ["packages/e2e-runner/src/index.ts"],
       "@nx-extend/firebase-hosting": ["packages/firebase-hosting/src/index.ts"],
       "@nx-extend/gcp-cloud-run": ["packages/gcp-cloud-run/src/index.ts"],
       "@nx-extend/gcp-deployment-manager": [

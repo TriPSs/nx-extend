@@ -1,0 +1,56 @@
+{
+  "root": "packages/e2e-runner",
+  "sourceRoot": "packages/e2e-runner/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/e2e-runner/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/packages/e2e-runner"],
+      "options": {
+        "jestConfig": "packages/e2e-runner/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "build": {
+      "executor": "@nrwl/node:package",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/e2e-runner",
+        "tsConfig": "packages/e2e-runner/tsconfig.lib.json",
+        "packageJson": "packages/e2e-runner/package.json",
+        "main": "packages/e2e-runner/src/index.ts",
+        "assets": [
+          "packages/e2e-runner/*.md",
+          {
+            "input": "./packages/e2e-runner/src",
+            "glob": "**/!(*.ts)",
+            "output": "./src"
+          },
+          {
+            "input": "./packages/e2e-runner/src",
+            "glob": "**/*.d.ts",
+            "output": "./src"
+          },
+          {
+            "input": "./packages/e2e-runner",
+            "glob": "generators.json",
+            "output": "."
+          },
+          {
+            "input": "./packages/e2e-runner",
+            "glob": "executors.json",
+            "output": "."
+          }
+        ]
+      }
+    }
+  },
+  "tags": []
+}
