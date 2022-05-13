@@ -27,3 +27,16 @@ nx g @nx-extend/e2e-runner:add
 |------------------------|----------|---------|-----------------------------------------------------------|
 | **`--serverTarget`**   | `string` |         | target of the server to start beforing triggering cypress |
 | **`--serverCheckUrl`** | `string` |         | url to validate of the server is started                  |
+
+
+## Update the server project
+
+Update the bootstrap file with the following code at the bottom to make sure the server stops after the tests are done
+
+```typescript
+if (process.env.NX_TASK_TARGET_PROJECT === '<project name>-e2e') {
+  process.on('disconnect', async () => {
+    process.exit(0)
+  })
+}
+```

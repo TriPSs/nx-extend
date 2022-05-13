@@ -3,6 +3,7 @@
   "executors": {
     "run": {
       "implementation": "./src/executors/run/run.impl",
+      "hasher": "./src/executors/run/hasher",
       "schema": "./src/executors/run/schema.json",
       "description": "run executor"
     }
