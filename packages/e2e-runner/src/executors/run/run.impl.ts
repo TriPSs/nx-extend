@@ -7,7 +7,11 @@ import { wait } from './utils/wait'
 interface Options extends CypressExecutorOptions {
   serverTarget: string
   serverCheckUrl: string
+  serverCheckMaxTries?: number
 }
+
+let waitTries = 0
+const defaultMaxTries = 15
 
 async function* startDevServer(
   options: Options,
@@ -15,10 +19,9 @@ async function* startDevServer(
 ) {
   const [project, target, configuration] = options.serverTarget.split(':')
 
-  for await (const output of await runExecutor<{
-    success: boolean;
-    baseUrl?: string;
-  }>({ project, target, configuration },
+  let serverIsLive = false
+
+  for await (const output of await runExecutor<{ success: boolean; }>({ project, target, configuration },
     { watch: options.watch },
     context
   )) {
@@ -27,24 +30,39 @@ async function* startDevServer(
     }
 
     if (options.serverCheckUrl) {
-      while (!await isApiLive(options.serverCheckUrl)) {
+      while (!serverIsLive) {
         logger.info('Api is not live yet, waiting...')
+
         await wait(2)
+        waitTries++
+
+        if (waitTries >= (options.serverCheckMaxTries || defaultMaxTries)) {
+          break
+        }
+
+        serverIsLive = await isApiLive(options.serverCheckUrl)
       }
+
+    } else {
+      serverIsLive = true
     }
 
-    yield '' || (output.baseUrl as string)
+    yield serverIsLive
   }
 }
 
-export async function endToEndRunner(
-  options: Options,
-  context: ExecutorContext
-): Promise<{ success: boolean }> {
+export async function endToEndRunner(options: Options, context: ExecutorContext): Promise<{ success: boolean }> {
   let success
-  for await (const _ of startDevServer(options, context)) {
+
+  for await (const serverLive of startDevServer(options, context)) {
     try {
-      success = await cypressExecutor(options, context)
+      if (serverLive) {
+        success = await cypressExecutor(options, context)
+
+      } else {
+        success = false
+        break
+      }
 
       if (!options.watch) {
         break
@@ -60,7 +78,7 @@ export async function endToEndRunner(
     }
   }
 
-  return { success }
+  return success
 }
 
 export default endToEndRunner
