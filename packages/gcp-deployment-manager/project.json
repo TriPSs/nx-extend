@@ -1,31 +1,24 @@
 {
-  "root": "packages/gcp-deployment-manager",
   "sourceRoot": "packages/gcp-deployment-manager/src",
   "projectType": "library",
   "targets": {
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "options": {
-        "lintFilePatterns": [
-          "packages/gcp-deployment-manager/**/*.ts"
-        ]
+        "lintFilePatterns": ["packages/gcp-deployment-manager/**/*.ts"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": [
-        "coverage/packages/gcp-deployment-manager"
-      ],
+      "outputs": ["coverage/packages/gcp-deployment-manager"],
       "options": {
-        "jestConfig": "packages/gcp-deployment-manager/jest.config.js",
+        "jestConfig": "packages/gcp-deployment-manager/jest.config.ts",
         "passWithNoTests": true
       }
     },
     "build": {
-      "executor": "@nrwl/node:package",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/packages/gcp-deployment-manager",
         "tsConfig": "packages/gcp-deployment-manager/tsconfig.lib.json",

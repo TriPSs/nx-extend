@@ -1,5 +1,4 @@
 {
-  "root": "packages/gcp-functions",
   "sourceRoot": "packages/gcp-functions/src",
   "projectType": "library",
   "targets": {
@@ -13,12 +12,12 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/packages/gcp-functions"],
       "options": {
-        "jestConfig": "packages/gcp-functions/jest.config.js",
+        "jestConfig": "packages/gcp-functions/jest.config.ts",
         "passWithNoTests": true
       }
     },
     "build": {
-      "executor": "@nrwl/node:package",
+      "executor": "@nrwl/js:tsc",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/packages/gcp-functions",

@@ -1,31 +1,24 @@
 {
-  "root": "packages/gcp-storage",
   "sourceRoot": "packages/gcp-storage/src",
   "projectType": "library",
   "targets": {
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "options": {
-        "lintFilePatterns": [
-          "packages/gcp-storage/**/*.ts"
-        ]
+        "lintFilePatterns": ["packages/gcp-storage/**/*.ts"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": [
-        "coverage/packages/gcp-storage"
-      ],
+      "outputs": ["coverage/packages/gcp-storage"],
       "options": {
-        "jestConfig": "packages/gcp-storage/jest.config.js",
+        "jestConfig": "packages/gcp-storage/jest.config.ts",
         "passWithNoTests": true
       }
     },
     "build": {
-      "executor": "@nrwl/node:package",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/packages/gcp-storage",
         "tsConfig": "packages/gcp-storage/tsconfig.lib.json",

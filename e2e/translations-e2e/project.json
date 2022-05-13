@@ -1,6 +1,5 @@
 {
   "projectType": "application",
-  "root": "e2e/translations-e2e",
   "sourceRoot": "e2e/translations-e2e/src",
   "targets": {
     "e2e": {
@@ -12,7 +11,5 @@
     }
   },
   "tags": [],
-  "implicitDependencies": [
-    "translations"
-  ]
+  "implicitDependencies": ["translations"]
 }

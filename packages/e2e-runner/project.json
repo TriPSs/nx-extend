@@ -1,5 +1,4 @@
 {
-  "root": "packages/e2e-runner",
   "sourceRoot": "packages/e2e-runner/src",
   "projectType": "library",
   "targets": {
@@ -14,12 +13,12 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/packages/e2e-runner"],
       "options": {
-        "jestConfig": "packages/e2e-runner/jest.config.js",
+        "jestConfig": "packages/e2e-runner/jest.config.ts",
         "passWithNoTests": true
       }
     },
     "build": {
-      "executor": "@nrwl/node:package",
+      "executor": "@nrwl/js:tsc",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/packages/e2e-runner",

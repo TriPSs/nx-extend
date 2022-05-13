@@ -1,31 +1,24 @@
 {
-  "root": "packages/translations",
   "sourceRoot": "packages/translations/src",
   "projectType": "library",
   "targets": {
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "options": {
-        "lintFilePatterns": [
-          "packages/translations/**/*.ts"
-        ]
+        "lintFilePatterns": ["packages/translations/**/*.ts"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": [
-        "coverage/packages/translations"
-      ],
+      "outputs": ["coverage/packages/translations"],
       "options": {
-        "jestConfig": "packages/translations/jest.config.js",
+        "jestConfig": "packages/translations/jest.config.ts",
         "passWithNoTests": true
       }
     },
     "build": {
-      "executor": "@nrwl/node:package",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/packages/translations",
         "tsConfig": "packages/translations/tsconfig.lib.json",
