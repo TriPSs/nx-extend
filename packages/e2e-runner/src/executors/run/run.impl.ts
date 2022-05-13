@@ -5,15 +5,15 @@ import { isApiLive } from './utils/is-api-live'
 import { wait } from './utils/wait'
 
 interface Options extends CypressExecutorOptions {
-  apiServerTarget: string
-  apiLiveCheckUrl: string
+  serverTarget: string
+  serverCheckUrl: string
 }
 
 async function* startDevServer(
   options: Options,
   context: ExecutorContext
 ) {
-  const [project, target, configuration] = options.apiServerTarget.split(':')
+  const [project, target, configuration] = options.serverTarget.split(':')
 
   for await (const output of await runExecutor<{
     success: boolean;
@@ -26,8 +26,8 @@ async function* startDevServer(
       throw new Error('Could not compile application files')
     }
 
-    if (options.apiLiveCheckUrl) {
-      while (!await isApiLive(options.apiLiveCheckUrl)) {
+    if (options.serverCheckUrl) {
+      while (!await isApiLive(options.serverCheckUrl)) {
         logger.info('Api is not live yet, waiting...')
         await wait(2)
       }
