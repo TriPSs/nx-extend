@@ -1,6 +1,5 @@
 import { logger } from '@nrwl/devkit'
 import { buildCommand, execCommand } from '@nx-extend/core'
-import chalk from 'chalk'
 
 import {
   addLabelsIfNeeded,
@@ -78,7 +77,7 @@ export const addOrUpdateSecret = (
         ]))
 
       } else {
-        logger.warn(chalk.yellow(`"${updateBehavior}" is an invalid onUpdateBehavior, valid are: "none", "disable" or "destroy"`))
+        logger.warn(`"${updateBehavior}" is an invalid onUpdateBehavior, valid are: "none", "disable" or "destroy"`)
       }
     }
   } else {

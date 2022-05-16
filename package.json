@@ -29,7 +29,6 @@
   "dependencies": {
     "@strapi/generate-new": "^4.0.7",
     "axios": "^0.25.0",
-    "chalk": "^5.0.0",
     "crypto-js": "^4.1.1",
     "deepmerge": "^4.2.2",
     "rxjs-for-await": "^1.0.0",
