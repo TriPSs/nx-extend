@@ -12,7 +12,7 @@ describe('gcp-deployment-manager e2e', () => {
   })
 
   it('should be able to generate an deployment manager app', async () => {
-    const plugin = uniq('gcp-functions')
+    const plugin = uniq('gcp-deployment-manager')
 
     await runNxCommandAsync(`generate @nx-extend/gcp-deployment-manager:init ${plugin}`)
 

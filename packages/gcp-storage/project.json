@@ -24,6 +24,7 @@
         "tsConfig": "packages/gcp-storage/tsconfig.lib.json",
         "packageJson": "packages/gcp-storage/package.json",
         "main": "packages/gcp-storage/src/index.ts",
+        "buildableProjectDepsInPackageJsonType": "dependencies",
         "assets": [
           "packages/gcp-storage/*.md",
           {

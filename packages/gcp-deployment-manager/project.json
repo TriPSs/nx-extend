@@ -24,6 +24,7 @@
         "tsConfig": "packages/gcp-deployment-manager/tsconfig.lib.json",
         "packageJson": "packages/gcp-deployment-manager/package.json",
         "main": "packages/gcp-deployment-manager/src/index.ts",
+        "buildableProjectDepsInPackageJsonType": "dependencies",
         "assets": [
           "packages/gcp-deployment-manager/*.md",
           {

@@ -24,6 +24,7 @@
         "tsConfig": "packages/firebase-hosting/tsconfig.lib.json",
         "packageJson": "packages/firebase-hosting/package.json",
         "main": "packages/firebase-hosting/src/index.ts",
+        "buildableProjectDepsInPackageJsonType": "dependencies",
         "assets": [
           "packages/firebase-hosting/*.md",
           {
