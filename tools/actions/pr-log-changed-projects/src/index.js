@@ -14,7 +14,7 @@ const tagSha = execSync(`git rev-list -n 1 ${latestTag}`)
 core.info(`"${latestTag}" is the latest tag with "${tagSha}" sha`)
 core.info(`"${GITHUB_HEAD_REF}" is the current head`)
 
-core.info(`Fetching changed projects between https://github.com/PalmTreeCoding/Straetus/compare/${latestTag}...${GITHUB_HEAD_REF}`)
+core.info(`Fetching changed projects between https://github.com/tripss/nx-extend/compare/${latestTag}...${GITHUB_HEAD_REF}`)
 
 const affected = execSync(`npx nx print-affected --target=version --head=origin/${GITHUB_HEAD_REF} --base=${tagSha}`)
   .toString('utf8')

@@ -1,36 +1,30 @@
 {
-  "root": "packages/gcp-secrets",
   "sourceRoot": "packages/gcp-secrets/src",
   "projectType": "library",
   "targets": {
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "options": {
-        "lintFilePatterns": [
-          "packages/gcp-secrets/**/*.ts"
-        ]
+        "lintFilePatterns": ["packages/gcp-secrets/**/*.ts"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": [
-        "coverage/packages/gcp-secrets"
-      ],
+      "outputs": ["coverage/packages/gcp-secrets"],
       "options": {
-        "jestConfig": "packages/gcp-secrets/jest.config.js",
+        "jestConfig": "packages/gcp-secrets/jest.config.ts",
         "passWithNoTests": true
       }
     },
     "build": {
-      "executor": "@nrwl/node:package",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/packages/gcp-secrets",
         "tsConfig": "packages/gcp-secrets/tsconfig.lib.json",
         "packageJson": "packages/gcp-secrets/package.json",
         "main": "packages/gcp-secrets/src/index.ts",
+        "buildableProjectDepsInPackageJsonType": "dependencies",
         "assets": [
           "packages/gcp-secrets/*.md",
           {

@@ -1,15 +1,16 @@
-module.exports = {
+/* eslint-disable */
+export default {
   displayName: 'firebase-hosting',
   preset: '../../jest.preset.js',
   globals: {
     'ts-jest': {
-      tsconfig: '<rootDir>/tsconfig.spec.json',
-    },
+      tsconfig: '<rootDir>/tsconfig.spec.json'
+    }
   },
   transform: {
-    '^.+\\.[tj]sx?$': 'ts-jest',
+    '^.+\\.[tj]sx?$': 'ts-jest'
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   coverageDirectory: '../../coverage/packages/firebase-hosting',
-  testEnvironment: 'node',
+  testEnvironment: 'node'
 }

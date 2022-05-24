@@ -1,5 +1,4 @@
-import { readProjectConfiguration, updateProjectConfiguration, writeJson, offsetFromRoot, Tree } from '@nrwl/devkit'
-import { ProjectConfiguration } from '@nrwl/tao/src/shared/workspace'
+import { readProjectConfiguration, updateProjectConfiguration, writeJson, offsetFromRoot, Tree, ProjectConfiguration } from '@nrwl/devkit'
 
 import { Schema } from './schema'
 import { join } from 'path'

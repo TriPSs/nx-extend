@@ -2,6 +2,7 @@
   "version": 2,
   "projects": {
     "core": "packages/core",
+    "e2e-runner": "packages/e2e-runner",
     "firebase-hosting": "packages/firebase-hosting",
     "gcp-cloud-run": "packages/gcp-cloud-run",
     "gcp-deployment-manager": "packages/gcp-deployment-manager",

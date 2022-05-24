@@ -1,0 +1,16 @@
+{
+  "name": "@nx-extend/e2e-runner",
+  "version": "1.0.0-alpha.5",
+  "main": "src/index.js",
+  "generators": "./generators.json",
+  "executors": "./executors.json",
+  "homepage": "https://github.com/TriPSs/nx-extend/blob/master/packages/e2e-runner/README.md",
+  "bugs": {
+    "url": "https://github.com/tripss/nx-extend/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tripss/nx-extend"
+  },
+  "license": "MIT"
+}

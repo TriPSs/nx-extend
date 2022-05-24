@@ -1,36 +1,30 @@
 {
-  "root": "packages/gcp-cloud-run",
   "sourceRoot": "packages/gcp-cloud-run/src",
   "projectType": "library",
   "targets": {
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "options": {
-        "lintFilePatterns": [
-          "packages/gcp-cloud-run/**/*.ts"
-        ]
+        "lintFilePatterns": ["packages/gcp-cloud-run/**/*.ts"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": [
-        "coverage/packages/gcp-cloud-run"
-      ],
+      "outputs": ["coverage/packages/gcp-cloud-run"],
       "options": {
-        "jestConfig": "packages/gcp-cloud-run/jest.config.js",
+        "jestConfig": "packages/gcp-cloud-run/jest.config.ts",
         "passWithNoTests": true
       }
     },
     "build": {
-      "executor": "@nrwl/node:package",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/packages/gcp-cloud-run",
         "tsConfig": "packages/gcp-cloud-run/tsconfig.lib.json",
         "packageJson": "packages/gcp-cloud-run/package.json",
         "main": "packages/gcp-cloud-run/src/index.ts",
+        "buildableProjectDepsInPackageJsonType": "dependencies",
         "assets": [
           "packages/gcp-cloud-run/*.md",
           {

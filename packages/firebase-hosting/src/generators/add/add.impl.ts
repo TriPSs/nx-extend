@@ -3,9 +3,9 @@ import {
   updateProjectConfiguration,
   writeJsonFile,
   readJsonFile,
-  Tree
+  Tree,
+  ProjectConfiguration
 } from '@nrwl/devkit'
-import { ProjectConfiguration } from '@nrwl/tao/src/shared/workspace'
 
 import { FirebaseHostingGeneratorSchema } from './schema'
 
