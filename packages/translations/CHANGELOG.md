@@ -1,4 +1,13 @@
  
+## [6.2.3](https://github.com/TriPSs/nx-extend/compare/translations@6.2.2...translations@6.2.3) (2022-05-24)
+
+
+### Bug Fixes
+
+* Fix some typings after nx upgrade ([6f97c02](https://github.com/TriPSs/nx-extend/commit/6f97c029988ba9047c108a9e014c1703586a379b))
+
+
+
 ## [6.2.2](https://github.com/TriPSs/nx-extend/compare/translations@6.2.1...translations@6.2.2) (2022-04-25)
 
 
