@@ -1,6 +1,6 @@
 {
   "name": "@nx-extend/gcp-cloud-run",
-  "version": "3.4.0",
+  "version": "3.4.1",
   "homepage": "https://github.com/TriPSs/nx-extend/blob/master/packages/gcp-cloud-run/README.md",
   "bugs": {
     "url": "https://github.com/tripss/nx-extend/issues"

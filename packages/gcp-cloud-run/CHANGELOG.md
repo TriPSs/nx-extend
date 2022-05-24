@@ -1,4 +1,8 @@
  
+## [3.4.1](https://github.com/TriPSs/nx-extend/compare/gcp-cloud-run@3.4.0...gcp-cloud-run@3.4.1) (2022-05-24)
+
+
+
 # [3.4.0](https://github.com/TriPSs/nx-extend/compare/gcp-cloud-run@3.3.1...gcp-cloud-run@3.4.0) (2022-01-25)
 
 
