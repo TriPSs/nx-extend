@@ -1,4 +1,13 @@
  
+## [2.1.2](https://github.com/TriPSs/nx-extend/compare/firebase-hosting@2.1.1...firebase-hosting@2.1.2) (2022-05-24)
+
+
+### Bug Fixes
+
+* Fix some typings after nx upgrade ([6f97c02](https://github.com/TriPSs/nx-extend/commit/6f97c029988ba9047c108a9e014c1703586a379b))
+
+
+
 ## [2.1.1](https://github.com/TriPSs/nx-extend/compare/firebase-hosting@2.1.0...firebase-hosting@2.1.1) (2021-11-04)
 
 
