@@ -1,4 +1,13 @@
  
+## [3.2.5](https://github.com/TriPSs/nx-extend/compare/gcp-secrets@3.2.4...gcp-secrets@3.2.5) (2022-05-24)
+
+
+### Bug Fixes
+
+* Fix some typings after nx upgrade ([6f97c02](https://github.com/TriPSs/nx-extend/commit/6f97c029988ba9047c108a9e014c1703586a379b))
+
+
+
 ## [3.2.4](https://github.com/TriPSs/nx-extend/compare/gcp-secrets@3.2.3...gcp-secrets@3.2.4) (2022-04-25)
 
 
