@@ -1,4 +1,14 @@
  
+## [6.2.1](https://github.com/TriPSs/nx-extend/compare/gcp-functions@6.2.0...gcp-functions@6.2.1) (2022-05-24)
+
+
+### Bug Fixes
+
+* **gcp-functions:** Added `nodejs16` to the schema ([7b50c33](https://github.com/TriPSs/nx-extend/commit/7b50c336d980c72cebdffb7d7dbd2806a4aaa2b4)), closes [#51](https://github.com/TriPSs/nx-extend/issues/51)
+* Fix some typings after nx upgrade ([6f97c02](https://github.com/TriPSs/nx-extend/commit/6f97c029988ba9047c108a9e014c1703586a379b))
+
+
+
 # [6.2.0](https://github.com/TriPSs/nx-extend/compare/gcp-functions@6.1.3...gcp-functions@6.2.0) (2022-02-06)
 
 
