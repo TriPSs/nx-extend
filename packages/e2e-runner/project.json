@@ -50,6 +50,12 @@
           }
         ]
       }
+    },
+    "version": {
+      "executor": "@jscutlery/semver:version",
+      "options": {
+        "versionTagPrefix": "${target}@"
+      }
     }
   },
   "tags": []
