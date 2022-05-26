@@ -39,6 +39,7 @@
     "@actions/core": "^1.8.2",
     "@google-cloud/functions-framework": "^3.1.1",
     "@google-cloud/storage": "^6.0.1",
+    "@jamesives/github-pages-deploy-action": "^4.3.3",
     "@jscutlery/semver": "^2.24.0",
     "@nestjs/common": "^8.4.5",
     "@nrwl/cli": "14.1.5",

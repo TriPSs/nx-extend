@@ -26,6 +26,7 @@
       "@nx-extend/gcp-secrets": ["packages/gcp-secrets/src/index.ts"],
       "@nx-extend/gcp-storage": ["packages/gcp-storage/src/index.ts"],
       "@nx-extend/gcp-task-runner": ["packages/gcp-task-runner/src/index.ts"],
+      "@nx-extend/github-pages": ["packages/github-pages/src/index.ts"],
       "@nx-extend/strapi": ["packages/strapi/src/index.ts"],
       "@nx-extend/translations": ["packages/translations/src/index.ts"]
     }
