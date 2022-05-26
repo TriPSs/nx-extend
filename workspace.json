@@ -12,6 +12,7 @@
     "gcp-secrets": "packages/gcp-secrets",
     "gcp-secrets-e2e": "e2e/gcp-secrets-e2e",
     "gcp-storage": "packages/gcp-storage",
+    "gcp-task-runner": "packages/gcp-task-runner",
     "strapi": "packages/strapi",
     "translations": "packages/translations",
     "translations-e2e": "e2e/translations-e2e"

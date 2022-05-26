@@ -32,11 +32,13 @@
     "crypto-js": "^4.1.1",
     "deepmerge": "^4.2.2",
     "rxjs-for-await": "^1.0.0",
-    "shelljs": "^0.8.5"
+    "shelljs": "^0.8.5",
+    "tslib": "^2.3.0"
   },
   "devDependencies": {
     "@actions/core": "^1.6.0",
     "@google-cloud/functions-framework": "^2.1.1",
+    "@google-cloud/storage": "^6.0.1",
     "@jscutlery/semver": "^2.18.1",
     "@nestjs/common": "^8.2.6",
     "@nrwl/cli": "14.1.5",
