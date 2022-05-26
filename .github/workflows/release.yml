@@ -52,16 +52,6 @@ jobs:
             **/node_modules
           key: ${{ env.DEPENDENCIES_CACHE }}-${{ hashFiles('yarn.lock') }}
 
-      - name: Cache Nx
-        uses: actions/cache@v2
-        with:
-          path: node_modules/.cache/nx
-          key: ${{ env.NX_CACHE }}-${{ hashFiles('yarn.lock') }}-${{ matrix.target }}-${{ matrix.index }}-${{ github.sha }}
-          restore-keys: |
-            ${{ env.NX_CACHE }}-${{ hashFiles('yarn.lock') }}-${{ matrix.target }}-${{ matrix.index }}-
-            ${{ env.NX_CACHE }}-${{ hashFiles('yarn.lock') }}-
-            ${{ env.NX_CACHE }}-
-
       - name: GIT config
         run: |
           git config user.name "${GITHUB_ACTOR}"
