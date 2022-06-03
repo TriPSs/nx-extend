@@ -1,4 +1,5 @@
 import {
+  addDependenciesToPackageJson,
   addProjectConfiguration,
   formatFiles,
   generateFiles,
@@ -54,6 +55,17 @@ function addFiles(host: Tree, options: NormalizedSchema) {
   )
 }
 
+function addProjectDependencies(host: Tree, options: NormalizedSchema) {
+  addDependenciesToPackageJson(
+    host,
+    {},
+    {
+      '@google-cloud/functions-framework': 'latest',
+    },
+    path.join('.', 'package.json')
+  );
+}
+
 export default async function (
   host: Tree,
   options: GcpDeploymentManagerGeneratorSchema
@@ -105,6 +117,7 @@ export default async function (
   })
 
   addFiles(host, normalizedOptions)
+  addProjectDependencies(host, normalizedOptions)
 
   await formatFiles(host)
 }
