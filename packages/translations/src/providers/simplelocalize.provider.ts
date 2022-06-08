@@ -9,6 +9,8 @@ export interface SimpleLocalizeConfig extends BaseConfigFile {
   tokenFrom?: string
 }
 
+// TODO:: Add support to trigger auto translate
+// https://simplelocalize.io/docs/api/auto-translate/
 export default class SimpleLocalize extends BaseProvider<SimpleLocalizeConfig> {
 
   private readonly apiClient: AxiosInstance = axios.create({
@@ -61,6 +63,10 @@ export default class SimpleLocalize extends BaseProvider<SimpleLocalizeConfig> {
         text: translations[key]
       })
     })
+
+    // TODO:: Add support for option to delete keys that no longer exists
+    // If enabled, fetch current translations, then delete the ones that no longer exists
+    // https://simplelocalize.io/docs/api/delete-translations/
 
     await this.apiClient.post(
       '/translations',
