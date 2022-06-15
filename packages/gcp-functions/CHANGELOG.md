@@ -4,6 +4,16 @@
 
 ### Bug Fixes
 
+* Re-release all ([2696931](https://github.com/TriPSs/nx-extend/commit/26969318cadada2173710dac9ad1b52257c31760))
+* **gcp-functions:** Re-use `nrwl/node:webpack` when building ([7d62262](https://github.com/TriPSs/nx-extend/commit/7d62262352a87023465b961407e8b7d9a607c829))
+
+
+
+## [6.2.2](https://github.com/TriPSs/nx-extend/compare/gcp-functions@6.2.1...gcp-functions@6.2.2) (2022-06-15)
+
+
+### Bug Fixes
+
 * **gcp-functions:** Re-use `nrwl/node:webpack` when building ([7d62262](https://github.com/TriPSs/nx-extend/commit/7d62262352a87023465b961407e8b7d9a607c829))
 
 
