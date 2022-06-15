@@ -31,7 +31,7 @@ jobs:
 
       - name: yarn install
         if: steps.cache.outputs.cache-hit != 'true'
-        run: yarn install --pure-lockfile --prefer-offline
+        run: yarn install
 
       - name: Set correct env vars
         id: script
