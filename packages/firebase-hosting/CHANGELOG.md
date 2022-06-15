@@ -2,6 +2,15 @@
 ## [2.1.3](https://github.com/TriPSs/nx-extend/compare/firebase-hosting@2.1.2...firebase-hosting@2.1.3) (2022-06-15)
 
 
+### Bug Fixes
+
+* Re-release all ([2696931](https://github.com/TriPSs/nx-extend/commit/26969318cadada2173710dac9ad1b52257c31760))
+
+
+
+## [2.1.3](https://github.com/TriPSs/nx-extend/compare/firebase-hosting@2.1.2...firebase-hosting@2.1.3) (2022-06-15)
+
+
 
 ## [2.1.2](https://github.com/TriPSs/nx-extend/compare/firebase-hosting@2.1.1...firebase-hosting@2.1.2) (2022-05-24)
 
