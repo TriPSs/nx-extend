@@ -2,6 +2,15 @@
 ## [3.4.2](https://github.com/TriPSs/nx-extend/compare/gcp-cloud-run@3.4.1...gcp-cloud-run@3.4.2) (2022-06-15)
 
 
+### Bug Fixes
+
+* Re-release all ([2696931](https://github.com/TriPSs/nx-extend/commit/26969318cadada2173710dac9ad1b52257c31760))
+
+
+
+## [3.4.2](https://github.com/TriPSs/nx-extend/compare/gcp-cloud-run@3.4.1...gcp-cloud-run@3.4.2) (2022-06-15)
+
+
 
 ## [3.4.1](https://github.com/TriPSs/nx-extend/compare/gcp-cloud-run@3.4.0...gcp-cloud-run@3.4.1) (2022-05-24)
 
