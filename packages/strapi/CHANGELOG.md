@@ -2,6 +2,15 @@
 ## [2.1.2](https://github.com/TriPSs/nx-extend/compare/strapi@2.1.1...strapi@2.1.2) (2022-06-15)
 
 
+### Bug Fixes
+
+* Re-release all ([2696931](https://github.com/TriPSs/nx-extend/commit/26969318cadada2173710dac9ad1b52257c31760))
+
+
+
+## [2.1.2](https://github.com/TriPSs/nx-extend/compare/strapi@2.1.1...strapi@2.1.2) (2022-06-15)
+
+
 
 ## [2.1.1](https://github.com/TriPSs/nx-extend/compare/strapi@2.1.0...strapi@2.1.1) (2022-05-24)
 
