@@ -2,6 +2,20 @@
 # [6.3.0](https://github.com/TriPSs/nx-extend/compare/translations@6.2.3...translations@6.3.0) (2022-06-15)
 
 
+### Bug Fixes
+
+* Re-release all ([2696931](https://github.com/TriPSs/nx-extend/commit/26969318cadada2173710dac9ad1b52257c31760))
+
+
+### Features
+
+* **translations:** Create the project in Simplelocalize if it does not exist ([d294218](https://github.com/TriPSs/nx-extend/commit/d2942183e495a1f77a79f7c1822e74bddb59beaa))
+
+
+
+# [6.3.0](https://github.com/TriPSs/nx-extend/compare/translations@6.2.3...translations@6.3.0) (2022-06-15)
+
+
 ### Features
 
 * **translations:** Create the project in Simplelocalize if it does not exist ([d294218](https://github.com/TriPSs/nx-extend/commit/d2942183e495a1f77a79f7c1822e74bddb59beaa))
