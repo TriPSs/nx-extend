@@ -1,41 +1,21 @@
+import webpackExecutor, { NodeBuildEvent } from '@nrwl/node/src/executors/webpack/webpack.impl'
+
 import { ExecutorContext } from '@nrwl/devkit'
 import { readCachedProjectGraph } from '@nrwl/workspace/src/core/project-graph'
-import { map, tap } from 'rxjs/operators'
-import { eachValueFrom } from 'rxjs-for-await'
-import { resolve } from 'path'
-import { getNodeWebpackConfig } from '@nrwl/node/src/utils/node.config'
 import { BuildNodeBuilderOptions } from '@nrwl/node/src/utils/types'
 import { normalizeBuildOptions } from '@nrwl/node/src/utils/normalize'
-import { runWebpack } from '@nrwl/node/src/utils/run-webpack'
-import {
-  calculateProjectDependencies,
-  checkDependentProjectsHaveBeenBuilt,
-  createTmpTsConfig
-} from '@nrwl/workspace/src/utilities/buildable-libs-utils'
 
 import { generatePackageJson } from '../../utils/generate-package-json'
 import { generatePackageJsonLockFile } from '../../utils/generate-package-json-lock-file'
-
-try {
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  require('dotenv').config()
-} catch {
-  // do nothing
-}
 
 export interface RawOptions extends BuildNodeBuilderOptions {
   generateLockFile?: boolean
 }
 
-export type NodeBuildEvent = {
-  outfile: string
-  success: boolean
-}
-
-export async function* buildExecutor(
+export async function buildExecutor(
   rawOptions: RawOptions,
   context: ExecutorContext
-) {
+): Promise<NodeBuildEvent> {
   const { sourceRoot, root } = context.workspace.projects[context.projectName]
 
   if (!sourceRoot) {
@@ -53,65 +33,18 @@ export async function* buildExecutor(
     root
   )
 
-  if (!options.buildLibsFromSource) {
-    const { target, dependencies } = calculateProjectDependencies(
-      readCachedProjectGraph(),
-      context.root,
-      context.projectName,
-      context.targetName,
-      context.configurationName
-    )
-    options.tsConfig = createTmpTsConfig(
-      options.tsConfig,
-      context.root,
-      target.data.root,
-      dependencies
-    )
+  const { value } = await webpackExecutor(rawOptions, context)
+    .next()
 
-    if (
-      !checkDependentProjectsHaveBeenBuilt(
-        context.root,
-        context.projectName,
-        context.targetName,
-        dependencies
-      )
-    ) {
-      return { success: false }
+  if (value.success) {
+    generatePackageJson(context.projectName, readCachedProjectGraph(), options, value.outfile, context.root)
+
+    if (rawOptions.generateLockFile) {
+      generatePackageJsonLockFile(context.root, context.projectName, options)
     }
   }
 
-  const config = options.webpackConfig.reduce((currentConfig, plugin) => {
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
-    return require(plugin)(currentConfig, {
-      options,
-      configuration: context.configurationName
-    })
-  }, getNodeWebpackConfig(options))
-
-  return yield* eachValueFrom(
-    runWebpack(config).pipe(
-      tap((stats) => {
-        console.info(stats.toString(config.stats))
-      }),
-      map((stats) => {
-        return {
-          success: !stats.hasErrors(),
-          outfile: resolve(context.root, options.outputPath, options.outputFileName)
-        } as NodeBuildEvent
-      }),
-      tap(({ outfile }) => (
-        generatePackageJson(context.projectName, readCachedProjectGraph(), options, outfile, context.root)
-      )),
-      tap(() => {
-        if (rawOptions.generateLockFile) {
-          generatePackageJsonLockFile(context.root, context.projectName, options)
-        }
-      }),
-      tap(() => ({
-        success: true
-      }))
-    )
-  )
+  return value
 }
 
 export default buildExecutor
