@@ -33,25 +33,35 @@ export default class SimpleLocalize extends BaseProvider<SimpleLocalizeConfig> {
     await this.uploadTranslations(this.config.defaultLanguage, sourceTerms)
   }
 
-  public async getTranslations(language: string): Promise<{ [key: string]: string }> {
-    const { data } = await this.apiClient.get<any>(
-      `/translations?languageKey=${language}`,
-      {
-        headers: {
-          'X-SimpleLocalize-Token': await this.getToken()
+  public async getTranslations(language: string, isRetry = false): Promise<{ [key: string]: string }> {
+    try {
+      const { data } = await this.apiClient.get<any>(
+        `/translations?languageKey=${language}`,
+        {
+          headers: {
+            'X-SimpleLocalize-Token': await this.getToken()
+          }
         }
+      )
+
+      const translations = {}
+
+      data.data.content.forEach((term) => {
+        if (term.language === language) {
+          translations[term.key] = term.text
+        }
+      })
+
+      return translations
+    } catch (err) {
+      if (err.response.status === 429 && !isRetry) {
+        await new Promise((resolve) => setTimeout(resolve, err.response.headers['retry-after'] * 1000))
+
+        return this.getTranslations(language, true)
+      } else {
+        throw err
       }
-    )
-
-    const translations = {}
-
-    data.data.content.forEach((term) => {
-      if (term.language === language) {
-        translations[term.key] = term.text
-      }
-    })
-
-    return translations
+    }
   }
 
   public async uploadTranslations(language: string, translations: { [key: string]: string }): Promise<boolean> {

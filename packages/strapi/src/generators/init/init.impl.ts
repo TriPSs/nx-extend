@@ -69,6 +69,7 @@ export default async function (host: Tree, options: StrapiGeneratorSchema) {
     )
   } catch {
     // Sometimes an error happens installing the deps, project is still created correctly
+    // TODO:: Better handle?
   }
 
   await formatFiles(host)
