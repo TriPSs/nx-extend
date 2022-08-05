@@ -58,13 +58,18 @@ export default async function (host: Tree, options: StrapiGeneratorSchema) {
     tags: normalizedOptions.parsedTags
   })
 
-  await generateStrapi(
-    normalizedOptions.projectRoot,
-    {
-      quickstart: true,
-      run: false
-    }
-  )
+  try {
+    await generateStrapi(
+      normalizedOptions.projectRoot,
+      {
+        quickstart: true,
+        run: false,
+        typescript: true
+      }
+    )
+  } catch {
+    // Sometimes an error happens installing the deps, project is still created correctly
+  }
 
   await formatFiles(host)
 }

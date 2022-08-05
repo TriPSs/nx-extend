@@ -27,7 +27,7 @@
     "workspace-generator": "nx workspace-generator"
   },
   "dependencies": {
-    "@strapi/generate-new": "^4.1.12",
+    "@strapi/generate-new": "^4.3.2",
     "axios": "^0.27.2",
     "crypto-js": "^4.1.1",
     "deepmerge": "^4.2.2",
