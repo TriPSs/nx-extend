@@ -1,5 +1,8 @@
+import 'dotenv/config'
 import { ExecutorContext } from '@nrwl/devkit'
 import { buildCommand, execCommand } from '@nx-extend/core'
+
+import { getEnvVars } from '../../utils/get-env-vars'
 
 export interface ServeExecutorOptions {
   /** Starts your application with the autoReload enabled and skip the administration panel build process */
@@ -8,30 +11,34 @@ export interface ServeExecutorOptions {
   watchAdmin?: boolean;
   /** Starts your application with the autoReload enabled and the front-end development server. */
   browser?: string;
+  envVars?: Record<string, string>,
 }
 
 export async function serveExecutor(
   options: ServeExecutorOptions,
   context: ExecutorContext
 ): Promise<{ success: boolean }> {
-  const { root } = context.workspace.projects[context.projectName]
+  const { root, sourceRoot } = context.workspace.projects[context.projectName]
 
   const {
     build = true,
     watchAdmin = false,
     browser = null,
+    envVars = {}
   } = options
 
   const developCommand = buildCommand([
+    ...getEnvVars(envVars, process.env.NODE_ENV === 'production'),
+
     'npx strapi develop',
     !build && '--no-build',
     watchAdmin && '--watch-admin',
-    browser && `--browser=${browser}`,
+    browser && `--browser=${browser}`
   ])
 
-  return Promise.resolve(execCommand(developCommand, {
-    cwd: root
-  }))
+  return execCommand(developCommand, {
+    cwd: sourceRoot || root
+  })
 }
 
 export default serveExecutor

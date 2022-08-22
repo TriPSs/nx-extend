@@ -38,16 +38,24 @@ function normalizeOptions(host: Tree, options: StrapiGeneratorSchema): Normalize
 
 export default async function (host: Tree, options: StrapiGeneratorSchema) {
   const normalizedOptions = normalizeOptions(host, options)
+
   addProjectConfiguration(host, normalizedOptions.projectName, {
     root: normalizedOptions.projectRoot,
     projectType: 'application',
     sourceRoot: `${normalizedOptions.projectRoot}/src`,
     targets: {
       serve: {
-        executor: '@nx-extend/strapi:serve'
+        executor: '@nx-extend/strapi:serve',
+        options: {}
       },
       build: {
         executor: '@nx-extend/strapi:build',
+        outputs: [
+          '{options.outputPath}'
+        ],
+        options: {
+          outputPath: `dist/${normalizedOptions.projectRoot}`
+        },
         configurations: {
           production: {
             production: true
