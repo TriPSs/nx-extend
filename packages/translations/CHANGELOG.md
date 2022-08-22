@@ -1,4 +1,13 @@
  
+## [6.3.1](https://github.com/TriPSs/nx-extend/compare/translations@6.3.0...translations@6.3.1) (2022-08-05)
+
+
+### Bug Fixes
+
+* **translations:** Respect simplelocalize it's rate limit ([b038202](https://github.com/TriPSs/nx-extend/commit/b0382022d2835bfbe78b88d058827552602882f2))
+
+
+
 # [6.3.0](https://github.com/TriPSs/nx-extend/compare/translations@6.2.3...translations@6.3.0) (2022-06-15)
 
 

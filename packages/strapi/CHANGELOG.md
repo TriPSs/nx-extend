@@ -1,4 +1,22 @@
  
+## [2.2.1](https://github.com/TriPSs/nx-extend/compare/strapi@2.2.0...strapi@2.2.1) (2022-08-05)
+
+
+### Bug Fixes
+
+* **strapi:** Update strapi dep ([8703c7d](https://github.com/TriPSs/nx-extend/commit/8703c7de3f4ca7dadd71d6b116b79df354dd6166))
+
+
+
+# [2.2.0](https://github.com/TriPSs/nx-extend/compare/strapi@2.1.2...strapi@2.2.0) (2022-08-05)
+
+
+### Features
+
+* **strapi:** Generate typescript projects ([298c885](https://github.com/TriPSs/nx-extend/commit/298c885ba097c2bbb8a973d3180ed7faa28ac046))
+
+
+
 ## [2.1.2](https://github.com/TriPSs/nx-extend/compare/strapi@2.1.1...strapi@2.1.2) (2022-06-15)
 
 
