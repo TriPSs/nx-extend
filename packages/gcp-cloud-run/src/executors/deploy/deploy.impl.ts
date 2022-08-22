@@ -11,8 +11,12 @@ export function deployExecutor(
 ): Promise<{ success: boolean }> {
   const { root, targets, sourceRoot } = context.workspace.projects[context.projectName]
 
-  if (!targets?.build?.options?.outputPath) {
+  if (!targets?.build) {
     throw new Error('No build target configured!')
+  }
+
+  if (!targets?.build?.options?.outputPath) {
+    throw new Error('Build target has no "outputPath" configured!')
   }
 
   const {
