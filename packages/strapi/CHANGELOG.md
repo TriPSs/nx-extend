@@ -1,4 +1,18 @@
  
+# [3.0.0](https://github.com/TriPSs/nx-extend/compare/strapi@2.2.1...strapi@3.0.0) (2022-08-24)
+
+
+### Features
+
+* **strapi:** Improved `@nx-extend/strapi:build` ([80c2cc3](https://github.com/TriPSs/nx-extend/commit/80c2cc36691e4a8b4695375fd5835a239dc674b4))
+
+
+### BREAKING CHANGES
+
+* **strapi:** `outputPath` is now a required option
+
+
+
 ## [2.2.1](https://github.com/TriPSs/nx-extend/compare/strapi@2.2.0...strapi@2.2.1) (2022-08-05)
 
 
