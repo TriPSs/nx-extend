@@ -1,4 +1,13 @@
  
+## [3.4.3](https://github.com/TriPSs/nx-extend/compare/gcp-cloud-run@3.4.2...gcp-cloud-run@3.4.3) (2022-08-24)
+
+
+### Bug Fixes
+
+* **gcp-cloud-run:** Make sure the output path is set in the options ([34d0188](https://github.com/TriPSs/nx-extend/commit/34d0188673877c101f846529052dfdcd3aea8303))
+
+
+
 ## [3.4.2](https://github.com/TriPSs/nx-extend/compare/gcp-cloud-run@3.4.1...gcp-cloud-run@3.4.2) (2022-06-15)
 
 
