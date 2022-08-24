@@ -1,4 +1,13 @@
  
+## [1.0.2](https://github.com/TriPSs/nx-extend/compare/e2e-runner@1.0.1...e2e-runner@1.0.2) (2022-08-24)
+
+
+### Bug Fixes
+
+* **e2e-runner:** Remove the hasher as it no longer exists ([efd8889](https://github.com/TriPSs/nx-extend/commit/efd88899e110002760e4d39da542f18c5768354c))
+
+
+
 ## [1.0.1](https://github.com/TriPSs/nx-extend/compare/e2e-runner@1.0.0...e2e-runner@1.0.1) (2022-06-15)
 
 
