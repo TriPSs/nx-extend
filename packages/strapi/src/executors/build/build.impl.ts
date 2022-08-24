@@ -1,63 +1,60 @@
-import { ExecutorContext, logger } from '@nrwl/devkit'
-import { buildCommand, execCommand } from '@nx-extend/core'
-import { join, dirname } from 'path'
-import * as fs from 'fs'
+import { ExecutorContext } from '@nrwl/devkit'
+import { buildAdmin } from '@strapi/strapi/lib/commands/builders'
+import tsUtils from '@strapi/typescript-utils'
+import { join } from 'path'
+
+import 'dotenv/config'
+
+import { copyFolderSync } from '../../utils/copy-folder'
+import { createPackageJson } from '../../utils/create-package-json'
 
 export interface BuildExecutorSchema {
   production?: boolean
+  outputPath: string
+  envVars?: Record<string, string>
 }
-
 
 export async function buildExecutor(
   options: BuildExecutorSchema,
   context: ExecutorContext
 ): Promise<{ success: boolean }> {
-  const { root } = context.workspace.projects[context.projectName]
+  const { root, sourceRoot } = context.workspace.projects[context.projectName]
 
-  logger.info('Building strapi app')
-
-  const isProduction = options.production || process.env.NODE_ENV === 'production'
-
-  const { success } = execCommand(buildCommand([
-    isProduction && 'NODE_ENV=production',
-    'npx strapi build'
-  ]), {
-    cwd: root
-  })
-
-  if (success) {
-    logger.info('Strapi project build')
-    logger.info('Copying files to dist folder')
-
-    copyFolderSync(
-      join(context.root, root),
-      join(context.root, 'dist', root)
-    )
-
-    logger.info('Strapi build done')
+  if (!options.outputPath) {
+    throw new Error('No "outputPath" defined in options!')
   }
 
-  return { success }
-}
+  const strapiRoot = root || sourceRoot
+  const distDir = join(process.cwd(), options.outputPath)
 
-export function copyFolderSync(from, to) {
-  fs.readdirSync(from).forEach((element) => {
-    const stat = fs.lstatSync(join(from, element))
-    const toPath = join(to, element)
-
-    if (stat.isFile()) {
-      // Make sure the directory exists
-      fs.mkdirSync(dirname(toPath), { recursive: true })
-
-      fs.copyFileSync(join(from, element), toPath)
-
-    } else if (stat.isSymbolicLink()) {
-      fs.symlinkSync(fs.readlinkSync(join(from, element)), toPath)
-
-    } else if (stat.isDirectory() && element !== 'node_modules') {
-      copyFolderSync(join(from, element), toPath)
+  // Set the env vars
+  Object.keys(options.envVars || {}).forEach(function (key) {
+    if (!Object.prototype.hasOwnProperty.call(process.env, key)) {
+      process.env[key] = options.envVars[key]
     }
   })
+
+  await tsUtils.compile(strapiRoot, {
+    watch: false,
+    configOptions: {
+      options: {
+        incremental: true,
+        outDir: distDir
+      }
+    }
+  })
+
+  await buildAdmin({
+    forceBuild: true,
+    optimization: Boolean(options.production),
+    buildDestDir: distDir,
+    srcDir: strapiRoot
+  })
+
+  await createPackageJson(options.outputPath, strapiRoot, context)
+  await copyFolderSync(`${strapiRoot}/public`, `${distDir}/public`)
+
+  return { success: true }
 }
 
 export default buildExecutor
