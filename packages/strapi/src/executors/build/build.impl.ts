@@ -5,6 +5,7 @@ import { join } from 'path'
 
 import 'dotenv/config'
 
+import { copyFavicon } from '../../utils/copy-favicon'
 import { copyFolderSync } from '../../utils/copy-folder'
 import { createPackageJson } from '../../utils/create-package-json'
 
@@ -53,6 +54,8 @@ export async function buildExecutor(
 
   await createPackageJson(options.outputPath, strapiRoot, context)
   await copyFolderSync(`${strapiRoot}/public`, `${distDir}/public`)
+  await copyFavicon(`${strapiRoot}`, distDir)
+  await copyFavicon(`${strapiRoot}/public`, distDir)
 
   return { success: true }
 }
