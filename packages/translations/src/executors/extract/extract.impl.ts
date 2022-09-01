@@ -57,7 +57,9 @@ export async function extractExectutor(
         `--out-file='${templatedOutputDirectory}/${defaultLanguage}.json'`,
         '--id-interpolation-pattern=\'[sha512:contenthash:base64:6]\'',
         '--format=simple'
-      ]))
+      ]), {
+        silent: !options.debug
+      })
 
     } else {
       logger.error('Unsupported extractor!')
