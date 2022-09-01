@@ -55,7 +55,7 @@
       "description": "Prefix the lib should have to match for extraction."
     },
     "libsBlacklist": {
-      "type": "string",
+      "type": "array",
       "description": "Libs to blacklist and not extract translations for, comma separated."
     }
   },
