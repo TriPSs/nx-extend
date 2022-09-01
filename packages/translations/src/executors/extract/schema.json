@@ -53,6 +53,10 @@
     "libPrefix": {
       "type": "string",
       "description": "Prefix the lib should have to match for extraction."
+    },
+    "libsBlacklist": {
+      "type": "string",
+      "description": "Libs to blacklist and not extract translations for, comma separated."
     }
   },
   "required": []

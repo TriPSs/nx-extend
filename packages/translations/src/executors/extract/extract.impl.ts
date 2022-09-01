@@ -1,6 +1,6 @@
 import { ExecutorContext, logger } from '@nrwl/devkit'
-import { buildCommand, execCommand } from '@nx-extend/core'
 import { createProjectGraphAsync } from '@nrwl/workspace/src/core/project-graph'
+import { buildCommand, execCommand } from '@nx-extend/core'
 import { join } from 'path'
 
 import { injectProjectRoot } from '../../utils'
@@ -15,6 +15,7 @@ export interface ExtractSchema {
   extractor?: 'formatjs'
   libPrefix?: string
   withLibs?: boolean
+  libsBlacklist?: string | string[]
 
   debug?: boolean
 }
@@ -33,8 +34,12 @@ export async function extractExectutor(
 
   // Check if we need to extract from connected libs
   if (options.withLibs) {
+    const blacklist = Array.isArray(options.libsBlacklist)
+      ? options.libsBlacklist
+      : (options.libsBlacklist || '').split(',')
+
     // Get all libs that are connected to this app
-    const libRoots = await getLibsRoot(context, context.projectName, options.libPrefix, [], [], options.debug)
+    const libRoots = await getLibsRoot(context, context.projectName, blacklist, options.libPrefix, [], [], options.debug)
 
     if (libRoots.length > 0) {
       options.sourceRoot = `{${options.sourceRoot},${libRoots.join(',')}}`
@@ -77,16 +82,17 @@ export async function extractExectutor(
   }
 }
 
-export const getConnectedLibs = (dependencies, project: string, prefix?: string) => (
+export const getConnectedLibs = (dependencies, project: string, blacklist: string[], prefix?: string) => (
   dependencies[project].filter((dep) => (
     !dep.target.startsWith('npm:')
     && (!prefix || dep.target.startsWith(prefix))
+    && !blacklist.includes(dep.target)
   ))
 )
 
-export const getLibsRoot = async (context: ExecutorContext, project: string, prefix?: string, targetsDone = [], roots = [], debugMode = false): Promise<string[]> => {
+export const getLibsRoot = async (context: ExecutorContext, project: string, blacklist: string[], prefix?: string, targetsDone = [], roots = [], debugMode = false): Promise<string[]> => {
   const projectGraph = await createProjectGraphAsync()
-  const libs = getConnectedLibs(projectGraph.dependencies, project, prefix)
+  const libs = getConnectedLibs(projectGraph.dependencies, project, blacklist, prefix)
 
   await Promise.all(libs.map(async (connectedLib) => {
     if (targetsDone.includes(connectedLib.target)) {
@@ -104,7 +110,7 @@ export const getLibsRoot = async (context: ExecutorContext, project: string, pre
       roots.push(libMetadata.sourceRoot)
     }
 
-    await getLibsRoot(context, connectedLib.target, prefix, targetsDone, roots, debugMode)
+    await getLibsRoot(context, connectedLib.target, blacklist, prefix, targetsDone, roots, debugMode)
   }))
 
   return roots
