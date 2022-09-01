@@ -1,4 +1,13 @@
  
+## [3.0.1](https://github.com/TriPSs/nx-extend/compare/strapi@3.0.0...strapi@3.0.1) (2022-08-25)
+
+
+### Bug Fixes
+
+* **strapi:** Also copy the favicon ([3763a19](https://github.com/TriPSs/nx-extend/commit/3763a19c9b5f2de6b822813d78bd8d24aab99dbe))
+
+
+
 # [3.0.0](https://github.com/TriPSs/nx-extend/compare/strapi@2.2.1...strapi@3.0.0) (2022-08-24)
 
 
