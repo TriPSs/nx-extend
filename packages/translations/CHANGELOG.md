@@ -1,4 +1,18 @@
  
+# [6.4.0](https://github.com/TriPSs/nx-extend/compare/translations@6.3.1...translations@6.4.0) (2022-09-01)
+
+
+### Bug Fixes
+
+* **translations:** Fixed debug mode not being used when running the extract command ([baa184d](https://github.com/TriPSs/nx-extend/commit/baa184ddffc00647bc0c0fd4084a45fbe6b26bbf))
+
+
+### Features
+
+* **translations:** Added `libsBlacklist` option ([b9d5290](https://github.com/TriPSs/nx-extend/commit/b9d5290fde4abb9a9cd58a6490aa5017eaf17b50))
+
+
+
 ## [6.3.1](https://github.com/TriPSs/nx-extend/compare/translations@6.3.0...translations@6.3.1) (2022-08-05)
 
 
