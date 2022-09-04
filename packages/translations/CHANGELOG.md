@@ -1,4 +1,13 @@
  
+## [6.4.1](https://github.com/TriPSs/nx-extend/compare/translations@6.4.0...translations@6.4.1) (2022-09-01)
+
+
+### Bug Fixes
+
+* **translations:** Fixed `libsBlacklist` being wrong type ([56eab49](https://github.com/TriPSs/nx-extend/commit/56eab49c65e2efbb565d0940468ddb7f79fe7f2d))
+
+
+
 # [6.4.0](https://github.com/TriPSs/nx-extend/compare/translations@6.3.1...translations@6.4.0) (2022-09-01)
 
 
