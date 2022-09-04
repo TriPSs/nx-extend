@@ -1,4 +1,13 @@
  
+## [3.0.2](https://github.com/TriPSs/nx-extend/compare/strapi@3.0.1...strapi@3.0.2) (2022-09-04)
+
+
+### Bug Fixes
+
+* **strapi:** Prefer `sourceRoot` over `root` when building ([f59f37e](https://github.com/TriPSs/nx-extend/commit/f59f37ec5e8490a6c6c50cbd9b8b4e46d9dab9f7))
+
+
+
 ## [3.0.1](https://github.com/TriPSs/nx-extend/compare/strapi@3.0.0...strapi@3.0.1) (2022-08-25)
 
 
