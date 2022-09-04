@@ -25,7 +25,7 @@ export async function buildExecutor(
     throw new Error('No "outputPath" defined in options!')
   }
 
-  const strapiRoot = root || sourceRoot
+  const strapiRoot = sourceRoot || root
   const distDir = join(process.cwd(), options.outputPath)
 
   // Set the env vars
