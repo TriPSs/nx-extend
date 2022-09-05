@@ -25,19 +25,9 @@ export function buildExecutor(
 
   // First make sure the .vercel/project.json exists
   writeJsonFile('./.vercel/project.json', {
-    'projectId': options.projectId,
-    'orgId': options.orgId,
-    'settings': {
-      'createdAt': new Date().getTime(),
-      'framework': 'nextjs',
-      'devCommand': null,
-      'installCommand': 'echo \'\'',
-      'buildCommand': `nx build-next ${context.projectName} --prod`,
-      'outputDirectory': `${targets['build-next']?.options?.outputPath}/.next`,
-      'rootDirectory': null,
-      'directoryListing': false,
-      'nodeVersion': '16.x'
-    }
+    projectId: options.projectId,
+    orgId: options.orgId,
+    settings: {}
   })
 
   // Pull latest
@@ -47,6 +37,23 @@ export function buildExecutor(
 
     options.debug && '--debug'
   ]))
+
+  // Update the project json with the correct settings
+  writeJsonFile('./.vercel/project.json', {
+    projectId: options.projectId,
+    orgId: options.orgId,
+    settings: {
+      createdAt: new Date().getTime(),
+      framework: 'nextjs',
+      devCommand: null,
+      installCommand: 'echo \'\'',
+      buildCommand: `nx build-next ${context.projectName} --prod`,
+      outputDirectory: `${targets['build-next']?.options?.outputPath}/.next`,
+      rootDirectory: null,
+      directoryListing: false,
+      nodeVersion: '16.x'
+    }
+  })
 
   const { success } = execCommand(buildCommand([
     'npx vercel build',
