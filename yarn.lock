@@ -5589,16 +5589,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jscutlery/semver@npm:^2.24.0":
-  version: 2.24.0
-  resolution: "@jscutlery/semver@npm:2.24.0"
+"@jscutlery/semver@npm:^2.27.0":
+  version: 2.27.0
+  resolution: "@jscutlery/semver@npm:2.27.0"
   dependencies:
+    detect-indent: 6.1.0
     inquirer: 8.2.4
-    rxjs: 7.5.5
+    rxjs: 7.5.6
     standard-version: 9.5.0
   peerDependencies:
     "@nrwl/devkit": ^14.0.0
-  checksum: b246f6976bf38bcde623a3e1a42b67af01825298a4d1097ec18a9d678a2b6973fd0495ae6eadc4a7c2abcbb49243e772f44019ea313ec4e638c090c4e4edde87
+  checksum: 8dabf264480b02c4cc85f6d7a791dc3333c77576676259ddaccd52011a33d32db125d8816dde33a5e227f69cf912dd91b213340c05de770edb78863349447514
   languageName: node
   linkType: hard
 
@@ -12120,6 +12121,13 @@ __metadata:
   version: 1.0.0
   resolution: "detect-file@npm:1.0.0"
   checksum: 1861e4146128622e847abe0e1ed80fef01e78532665858a792267adf89032b7a9c698436137707fcc6f02956c2a6a0052d6a0cef5be3d4b76b1ff0da88e2158a
+  languageName: node
+  linkType: hard
+
+"detect-indent@npm:6.1.0":
+  version: 6.1.0
+  resolution: "detect-indent@npm:6.1.0"
+  checksum: ab953a73c72dbd4e8fc68e4ed4bfd92c97eb6c43734af3900add963fd3a9316f3bc0578b018b24198d4c31a358571eff5f0656e81a1f3b9ad5c547d58b2d093d
   languageName: node
   linkType: hard
 
@@ -19396,7 +19404,7 @@ __metadata:
     "@google-cloud/functions-framework": ^3.1.1
     "@google-cloud/storage": ^6.0.1
     "@jamesives/github-pages-deploy-action": ^4.3.3
-    "@jscutlery/semver": ^2.24.0
+    "@jscutlery/semver": ^2.27.0
     "@nestjs/common": ^8.4.5
     "@nrwl/cli": 14.5.8
     "@nrwl/devkit": 14.5.8
@@ -22530,12 +22538,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rxjs@npm:7.5.5, rxjs@npm:^7.5.5":
-  version: 7.5.5
-  resolution: "rxjs@npm:7.5.5"
+"rxjs@npm:7.5.6":
+  version: 7.5.6
+  resolution: "rxjs@npm:7.5.6"
   dependencies:
     tslib: ^2.1.0
-  checksum: e034f60805210cce756dd2f49664a8108780b117cf5d0e2281506e9e6387f7b4f1532d974a8c8b09314fa7a16dd2f6cff3462072a5789672b5dcb45c4173f3c6
+  checksum: fc05f01364a74dac57490fb3e07ea63b422af04017fae1db641a009073f902ef69f285c5daac31359620dc8d9aee7d81e42b370ca2a8573d1feae0b04329383b
   languageName: node
   linkType: hard
 
@@ -22545,6 +22553,15 @@ __metadata:
   dependencies:
     tslib: ^1.9.0
   checksum: bc334edef1bb8bbf56590b0b25734ba0deaf8825b703256a93714308ea36dff8a11d25533671adf8e104e5e8f256aa6fdfe39b2e248cdbd7a5f90c260acbbd1b
+  languageName: node
+  linkType: hard
+
+"rxjs@npm:^7.5.5":
+  version: 7.5.5
+  resolution: "rxjs@npm:7.5.5"
+  dependencies:
+    tslib: ^2.1.0
+  checksum: e034f60805210cce756dd2f49664a8108780b117cf5d0e2281506e9e6387f7b4f1532d974a8c8b09314fa7a16dd2f6cff3462072a5789672b5dcb45c4173f3c6
   languageName: node
   linkType: hard
 
