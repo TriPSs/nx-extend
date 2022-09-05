@@ -40,6 +40,14 @@ export function buildExecutor(
     }
   })
 
+  // Pull latest
+  execCommand(buildCommand([
+    'npx vercel pull --yes',
+    context.configurationName === 'production' && '--environment=production',
+
+    options.debug && '--debug'
+  ]))
+
   const { success } = execCommand(buildCommand([
     'npx vercel build',
     `--output ${targets['build-next']?.options?.outputPath}/.vercel/output`,
