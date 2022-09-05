@@ -1,0 +1,57 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/vercel/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["packages/vercel/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/packages/vercel"],
+      "options": {
+        "jestConfig": "packages/vercel/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/vercel",
+        "tsConfig": "packages/vercel/tsconfig.lib.json",
+        "packageJson": "packages/vercel/package.json",
+        "main": "packages/vercel/src/index.ts",
+        "buildableProjectDepsInPackageJsonType": "dependencies",
+        "assets": [
+          "packages/vercel/*.md",
+          {
+            "input": "./packages/vercel/src",
+            "glob": "**/*.!(ts)",
+            "output": "./src"
+          },
+          {
+            "input": "./packages/vercel",
+            "glob": "generators.json",
+            "output": "."
+          },
+          {
+            "input": "./packages/vercel",
+            "glob": "executors.json",
+            "output": "."
+          }
+        ]
+      }
+    },
+    "version": {
+      "executor": "@jscutlery/semver:version",
+      "options": {
+        "versionTagPrefix": "${target}@"
+      }
+    }
+  },
+  "tags": []
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "cli": "nx",
+  "id": "Vercel",
+  "title": "",
+  "type": "object",
+  "properties": {
+    "target": {
+      "type": "string",
+      "description": "Target to add Firebase Hosting to",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": "To what target would you like to add Vercel?"
+    }
+  },
+  "required": ["target", "site"]
+}

@@ -16,7 +16,8 @@
     "github-pages": "packages/github-pages",
     "strapi": "packages/strapi",
     "translations": "packages/translations",
-    "translations-e2e": "e2e/translations-e2e"
+    "translations-e2e": "e2e/translations-e2e",
+    "vercel": "packages/vercel"
   },
   "$schema": "./node_modules/nx/schemas/workspace-schema.json"
 }

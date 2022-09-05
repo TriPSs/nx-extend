@@ -1,0 +1,17 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "type": "object",
+  "cli": "nx",
+  "title": "Deploy executor",
+  "description": "Deploy to Firebase Hosting",
+  "properties": {
+    "projectId": {
+      "type": "string",
+      "description": "Site name in Firebase Hosting"
+    },
+    "orgId": {
+      "type": "string",
+      "description": "Site name in Firebase Hosting"
+    }
+  }
+}

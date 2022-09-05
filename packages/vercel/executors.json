@@ -1,0 +1,26 @@
+{
+  "executors": {
+    "build": {
+      "implementation": "./src/executors/build/build.impl",
+      "schema": "./src/executors/build/schema.json",
+      "description": "Build project with Vercel"
+    },
+    "deploy": {
+      "implementation": "./src/executors/deploy/deploy.impl",
+      "schema": "./src/executors/deploy/schema.json",
+      "description": "Deploy project to Vercel"
+    }
+  },
+  "builders": {
+    "build": {
+      "implementation": "./src/executors/build/build.impl",
+      "schema": "./src/executors/build/schema.json",
+      "description": "Build project with Vercel"
+    },
+    "deploy": {
+      "implementation": "./src/executors/deploy/deploy.impl",
+      "schema": "./src/executors/deploy/schema.json",
+      "description": "Deploy project to Vercel"
+    }
+  }
+}
