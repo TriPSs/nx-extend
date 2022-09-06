@@ -1,4 +1,13 @@
  
+## [3.0.3](https://github.com/TriPSs/nx-extend/compare/strapi@3.0.2...strapi@3.0.3) (2022-09-06)
+
+
+### Bug Fixes
+
+* **strapi:** Always use root ([3234a4f](https://github.com/TriPSs/nx-extend/commit/3234a4fa1dc3ce956590245cac70b723f1e8cfc6))
+
+
+
 ## [3.0.2](https://github.com/TriPSs/nx-extend/compare/strapi@3.0.1...strapi@3.0.2) (2022-09-04)
 
 
