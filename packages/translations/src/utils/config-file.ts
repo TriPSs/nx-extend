@@ -1,4 +1,4 @@
-import { ExecutorContext, writeJsonFile, readJsonFile } from '@nrwl/devkit'
+import { ExecutorContext, readJsonFile, writeJsonFile } from '@nrwl/devkit'
 import { resolve } from 'path'
 
 import { getProjectRoot } from './get-project-root'
@@ -74,7 +74,6 @@ export const getConfigFile = <Config extends BaseConfigFile>(context: ExecutorCo
 
   return configFile as Config
 }
-
 
 export const updateConfigFile = (context: ExecutorContext, update): void => {
   const fileLocation = resolve(getProjectRoot(context), '.translationsrc.json')

@@ -14,8 +14,8 @@ export const generatePackageJsonLockFile = (
   //   })
   //
   // } else {
-    execCommand('npm i --package-lock-only', {
-      cwd: options.outputPath
-    })
+  execCommand('npm i --package-lock-only', {
+    cwd: options.outputPath
+  })
   // }
 }

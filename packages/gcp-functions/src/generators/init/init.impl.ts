@@ -9,6 +9,7 @@ import {
   Tree
 } from '@nrwl/devkit'
 import * as path from 'path'
+
 import { GcpDeploymentManagerGeneratorSchema } from './schema'
 
 interface NormalizedSchema extends GcpDeploymentManagerGeneratorSchema {
@@ -60,10 +61,10 @@ function addProjectDependencies(host: Tree, options: NormalizedSchema) {
     host,
     {},
     {
-      '@google-cloud/functions-framework': 'latest',
+      '@google-cloud/functions-framework': 'latest'
     },
     path.join('.', 'package.json')
-  );
+  )
 }
 
 export default async function (

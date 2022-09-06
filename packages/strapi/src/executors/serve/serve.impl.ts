@@ -7,12 +7,12 @@ import { getEnvVars } from '../../utils/get-env-vars'
 
 export interface ServeExecutorOptions {
   /** Starts your application with the autoReload enabled and skip the administration panel build process */
-  build?: boolean;
+  build?: boolean
   /** Starts your application with the autoReload enabled and the front-end development server. It allows you to customize the administration panel. */
-  watchAdmin?: boolean;
+  watchAdmin?: boolean
   /** Starts your application with the autoReload enabled and the front-end development server. */
-  browser?: string;
-  envVars?: Record<string, string>,
+  browser?: string
+  envVars?: Record<string, string>
 }
 
 export async function serveExecutor(

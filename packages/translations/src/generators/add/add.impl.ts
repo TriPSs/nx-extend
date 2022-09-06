@@ -1,7 +1,14 @@
-import { readProjectConfiguration, updateProjectConfiguration, writeJson, offsetFromRoot, Tree, ProjectConfiguration } from '@nrwl/devkit'
+import {
+  offsetFromRoot,
+  ProjectConfiguration,
+  readProjectConfiguration,
+  Tree,
+  updateProjectConfiguration,
+  writeJson
+} from '@nrwl/devkit'
+import { join } from 'path'
 
 import { Schema } from './schema'
-import { join } from 'path'
 
 export default async function (
   host: Tree,

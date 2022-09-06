@@ -4,6 +4,10 @@
 
 ## Nx-extend adds the following capabilities to your workspace
 
+- [Firebase Hosting](./packages/firebase-hosting/README.md)
+  - `npm install --save-dev @nx-extend/firebase-hosting`
+- [E2E-Runner](./packages/e2e-runner/README.md)
+  - `npm install --save-dev @nx-extend/e2e-runner`
 - [GCP Cloud Run](./packages/gcp-cloud-run/README.md)
   - `npm install --save-dev @nx-extend/gcp-cloud-run`
 - [GCP Deployment Manager](./packages/gcp-deployment-manager/README.md)
@@ -14,12 +18,14 @@
   - `npm install --save-dev @nx-extend/gcp-secrets`
 - [GCP Storage](./packages/gcp-storage/README.md)
   - `npm install --save-dev @nx-extend/gcp-storage`
-- [Firebase Hosting](./packages/firebase-hosting/README.md)
-  - `npm install --save-dev @nx-extend/firebase-hosting`
+- [GCP Task Runner](./packages/gcp-task-runner/README.md)
+  - `npm install --save-dev @nx-extend/gcp-task-runner`
 - [Translations](./packages/translations/README.md)
   - `npm install --save-dev @nx-extend/translations`
 - [Strapi](./packages/strapi/README.md)
   - `npm install --save-dev @nx-extend/strapi`
+- [Vercel](./packages/vercel/README.md)
+  - `npm install --save-dev @nx-extend/vercel`
 
 ## [License](./LICENSE)
 

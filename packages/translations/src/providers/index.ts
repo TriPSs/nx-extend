@@ -1,11 +1,12 @@
 import { ExecutorContext, logger } from '@nrwl/devkit'
 
 import type { BaseConfigFile } from '../utils/config-file'
+
 import BaseProvider from './base.provider'
+import PoeditorProvider, { PoeditorConfig } from './poeditor.provider'
+import SimpleLocalize, { SimpleLocalizeConfig } from './simplelocalize.provider'
 import TraduoraProvider, { TraduoraConfig } from './traduora.provider'
 import TransifexProvider, { TransifexConfig } from './transifex.provider'
-import PoeditorProvider, { PoeditorConfig } from './poeditor.provider'
-import SimpleLocalize , { SimpleLocalizeConfig } from './simplelocalize.provider'
 
 export const getProvider = async (provider: string, context: ExecutorContext, configFile: BaseConfigFile): Promise<BaseProvider<any>> => {
   switch (provider) {

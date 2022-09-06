@@ -22,7 +22,7 @@ export async function updateExecutor(
     options.project && `--project=${options.project}`,
     options.createPolicy && `--create-policy=${options.createPolicy}`,
     options.deletePolicy && `--delete-policy=${options.deletePolicy}`,
-    options.preview && `--preview`,
+    options.preview && `--preview`
   ]), {
     cwd: sourceRoot
   }))
