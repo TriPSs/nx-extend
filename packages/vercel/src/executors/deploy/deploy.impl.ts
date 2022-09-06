@@ -24,6 +24,8 @@ export function deployExecutor(
 
   return Promise.resolve(execCommand(buildCommand([
     'npx vercel deploy ---prebuilt',
+    context.configurationName === 'production' && '--prod',
+
     options.debug && '--debug'
   ]), {
     cwd: targets['build-next'].options.outputPath
