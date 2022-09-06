@@ -11,6 +11,7 @@ import { createPackageJson } from '../../utils/create-package-json'
 
 export interface BuildExecutorSchema {
   production?: boolean
+  root?: string
   outputPath: string
   envVars?: Record<string, string>
 }
@@ -34,7 +35,8 @@ export async function buildExecutor(
     }
   })
 
-  await tsUtils.compile(root, {
+  const strapiRoot = options.root || root
+  await tsUtils.compile(strapiRoot, {
     watch: false,
     configOptions: {
       options: {
@@ -48,13 +50,13 @@ export async function buildExecutor(
     forceBuild: true,
     optimization: Boolean(options.production),
     buildDestDir: distDir,
-    srcDir: root
+    srcDir: strapiRoot
   })
 
-  await createPackageJson(options.outputPath, root, context)
-  await copyFolderSync(`${root}/public`, `${distDir}/public`)
-  await copyFavicon(`${root}`, distDir)
-  await copyFavicon(`${root}/public`, distDir)
+  await createPackageJson(options.outputPath, strapiRoot, context)
+  await copyFolderSync(`${strapiRoot}/public`, `${distDir}/public`)
+  await copyFavicon(`${strapiRoot}`, distDir)
+  await copyFavicon(`${strapiRoot}/public`, distDir)
 
   return { success: true }
 }

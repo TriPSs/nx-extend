@@ -13,6 +13,7 @@ export interface ServeExecutorOptions {
   /** Starts your application with the autoReload enabled and the front-end development server. */
   browser?: string
   envVars?: Record<string, string>
+  root?: string
 }
 
 export async function serveExecutor(
@@ -38,7 +39,7 @@ export async function serveExecutor(
   ])
 
   return execCommand(developCommand, {
-    cwd: root
+    cwd: options.root || root
   })
 }
 
