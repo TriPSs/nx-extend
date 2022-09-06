@@ -19,13 +19,12 @@ export async function buildExecutor(
   options: BuildExecutorSchema,
   context: ExecutorContext
 ): Promise<{ success: boolean }> {
-  const { root, sourceRoot } = context.workspace.projects[context.projectName]
+  const { root } = context.workspace.projects[context.projectName]
 
   if (!options.outputPath) {
     throw new Error('No "outputPath" defined in options!')
   }
 
-  const strapiRoot = sourceRoot || root
   const distDir = join(process.cwd(), options.outputPath)
 
   // Set the env vars
@@ -35,7 +34,7 @@ export async function buildExecutor(
     }
   })
 
-  await tsUtils.compile(strapiRoot, {
+  await tsUtils.compile(root, {
     watch: false,
     configOptions: {
       options: {
@@ -49,13 +48,13 @@ export async function buildExecutor(
     forceBuild: true,
     optimization: Boolean(options.production),
     buildDestDir: distDir,
-    srcDir: strapiRoot
+    srcDir: root
   })
 
-  await createPackageJson(options.outputPath, strapiRoot, context)
-  await copyFolderSync(`${strapiRoot}/public`, `${distDir}/public`)
-  await copyFavicon(`${strapiRoot}`, distDir)
-  await copyFavicon(`${strapiRoot}/public`, distDir)
+  await createPackageJson(options.outputPath, root, context)
+  await copyFolderSync(`${root}/public`, `${distDir}/public`)
+  await copyFavicon(`${root}`, distDir)
+  await copyFavicon(`${root}/public`, distDir)
 
   return { success: true }
 }

@@ -1,6 +1,7 @@
-import 'dotenv/config'
 import { ExecutorContext } from '@nrwl/devkit'
 import { buildCommand, execCommand } from '@nx-extend/core'
+
+import 'dotenv/config'
 
 import { getEnvVars } from '../../utils/get-env-vars'
 
@@ -18,7 +19,7 @@ export async function serveExecutor(
   options: ServeExecutorOptions,
   context: ExecutorContext
 ): Promise<{ success: boolean }> {
-  const { root, sourceRoot } = context.workspace.projects[context.projectName]
+  const { root } = context.workspace.projects[context.projectName]
 
   const {
     build = true,
@@ -37,7 +38,7 @@ export async function serveExecutor(
   ])
 
   return execCommand(developCommand, {
-    cwd: sourceRoot || root
+    cwd: root
   })
 }
 
