@@ -1,4 +1,13 @@
  
+# [1.2.0](https://github.com/TriPSs/nx-extend/compare/vercel@1.1.1...vercel@1.2.0) (2022-09-06)
+
+
+### Features
+
+* **vercel:** When deploying with `production` configuration also use that environment on Vercel ([e601cc3](https://github.com/TriPSs/nx-extend/commit/e601cc3fe136cfd9d1e82804569f43aa203cf8d1))
+
+
+
 ## [1.1.1](https://github.com/TriPSs/nx-extend/compare/vercel@1.1.0...vercel@1.1.1) (2022-09-05)
 
 
