@@ -3,15 +3,15 @@
   "type": "object",
   "cli": "nx",
   "title": "Deploy executor",
-  "description": "Deploy to Firebase Hosting",
+  "description": "Deploy to Vercel",
   "properties": {
     "projectId": {
       "type": "string",
-      "description": "Site name in Firebase Hosting"
+      "description": "Project ID in Vercel"
     },
     "orgId": {
       "type": "string",
-      "description": "Site name in Firebase Hosting"
+      "description": "Origination ID in Vercel"
     }
   }
 }
