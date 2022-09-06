@@ -4,7 +4,7 @@
   <img src="https://badgen.net/npm/v/@nx-extend/vercel" alt="@nx-extend/vercel NPM package">
 </a>
 
-**Nx plugin for deploy your app to [Cloud Storage](https://cloud.google.com/storage)**.
+**Nx plugin for deploy your app to [Vercel](https://vercel.com)**.
 
 ## Setup
 
@@ -16,10 +16,20 @@ npm install -D @nx-extend/vercel
 
 ## Usage
 
-### Upload
+### Build
 
 #### Available options:
 
-| name         | type     | default | description                                          |
-| ------------ | -------- | ------- | ---------------------------------------------------- |
-|  |  |  |  |
+| name              | type      | default | description               |
+|-------------------|-----------|---------|---------------------------|
+| **`--projectId`** | `string`  | ``      | Project ID of Vercel      |
+| **`--orgId`**     | `string`  | ``      | Organisation ID of Vercel |
+| **`--debug`**     | `boolean` | `false` | Run Vercel in debug mode  |
+
+### Deploy
+
+#### Available options:
+
+| name          | type      | default | description              |
+|---------------|-----------|---------|--------------------------|
+| **`--debug`** | `boolean` | `false` | Run Vercel in debug mode |
