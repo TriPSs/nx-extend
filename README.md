@@ -27,6 +27,12 @@
 - [Vercel](./packages/vercel/README.md)
   - `npm install --save-dev @nx-extend/vercel`
 
+
+## GitHub actions
+
+- [run-many](./actions/run-many/README.md)
+  - `uses: tripss/nx-extend/actions/run-many@master`
+
 ## [License](./LICENSE)
 
 Conventional Changelog Action is [MIT licensed](./LICENSE).

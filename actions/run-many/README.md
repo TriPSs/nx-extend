@@ -1,0 +1,2 @@
+NX-extend also provides a GitHub action to use to run your NX workspace based on tags, this makes it easy to deploy
+the correct projects or completely disable ones that are not ready to be deployed yet.
