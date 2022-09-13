@@ -2,9 +2,9 @@ import { ExecutorContext, logger, readJsonFile, writeJsonFile } from '@nrwl/devk
 import { existsSync } from 'fs'
 import { join } from 'path'
 
-import { BaseConfigFile } from '../utils/config-file'
-import { injectProjectRoot } from '../utils'
 import { getTranslator } from '../translators'
+import { injectProjectRoot } from '../utils'
+import { BaseConfigFile } from '../utils/config-file'
 
 export default abstract class BaseProvider<Config extends BaseConfigFile> {
 
@@ -118,6 +118,12 @@ export default abstract class BaseProvider<Config extends BaseConfigFile> {
   public abstract uploadTranslations(language: string, translations: { [key: string]: string }): Promise<boolean>
 
   public getSourceTerms() {
+    if (!existsSync(this.sourceFile)) {
+      logger.warn(`Source file not found at "${this.sourceFile}"!`)
+
+      return {}
+    }
+    
     return readJsonFile(this.sourceFile)
   }
 
