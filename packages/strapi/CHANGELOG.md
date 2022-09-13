@@ -1,4 +1,13 @@
  
+# [3.1.0](https://github.com/TriPSs/nx-extend/compare/strapi@3.0.3...strapi@3.1.0) (2022-09-13)
+
+
+### Features
+
+* **strapi:** Added support for the `root` option in `build` and `serve` ([874829c](https://github.com/TriPSs/nx-extend/commit/874829cb306e7d8216c475dfdac3d79bdadef7be))
+
+
+
 ## [3.0.3](https://github.com/TriPSs/nx-extend/compare/strapi@3.0.2...strapi@3.0.3) (2022-09-06)
 
 
