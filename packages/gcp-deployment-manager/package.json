@@ -1,6 +1,6 @@
 {
   "name": "@nx-extend/gcp-deployment-manager",
-  "version": "2.4.2",
+  "version": "2.4.3",
   "homepage": "https://github.com/TriPSs/nx-extend/blob/master/packages/gcp-deployment-manager/README.md",
   "bugs": {
     "url": "https://github.com/tripss/nx-extend/issues"
