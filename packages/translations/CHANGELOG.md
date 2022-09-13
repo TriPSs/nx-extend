@@ -1,4 +1,13 @@
  
+## [6.4.2](https://github.com/TriPSs/nx-extend/compare/translations@6.4.1...translations@6.4.2) (2022-09-13)
+
+
+### Bug Fixes
+
+* **translations:** Warn when source file does not exist while pulling translations ([4594b5a](https://github.com/TriPSs/nx-extend/commit/4594b5a011e2d12dca4b86f1d686debced43260b))
+
+
+
 ## [6.4.1](https://github.com/TriPSs/nx-extend/compare/translations@6.4.0...translations@6.4.1) (2022-09-01)
 
 
