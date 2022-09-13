@@ -1,4 +1,13 @@
  
+# [1.3.0](https://github.com/TriPSs/nx-extend/compare/core@1.2.2...core@1.3.0) (2022-09-13)
+
+
+### Features
+
+* **vercel:** Added support for `envVars` option ([55e8e14](https://github.com/TriPSs/nx-extend/commit/55e8e14d2f7304a6833bc49881cfd3554a051192))
+
+
+
 ## [1.2.2](https://github.com/TriPSs/nx-extend/compare/core@1.2.1...core@1.2.2) (2022-06-15)
 
 
