@@ -17,7 +17,8 @@
     "strapi": "packages/strapi",
     "translations": "packages/translations",
     "translations-e2e": "e2e/translations-e2e",
-    "vercel": "packages/vercel"
+    "vercel": "packages/vercel",
+    "actions-run-many": "actions/run-many"
   },
   "$schema": "./node_modules/nx/schemas/workspace-schema.json"
 }
