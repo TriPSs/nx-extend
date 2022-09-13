@@ -3,7 +3,7 @@ description: 'Runs the correct NX projects'
 author: 'Tycho Bokdam'
 runs:
   using: 'node16'
-  main: './dist/run-many.js'
+  main: './dist/index.js'
 
 inputs:
   tag:
