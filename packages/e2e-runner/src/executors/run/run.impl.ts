@@ -9,12 +9,14 @@ interface Options {
   targets: NxTargetOptions[]
 }
 
+let runningTargets = []
+
 export async function endToEndRunner(options: Options, context: ExecutorContext): Promise<{ success: boolean }> {
   let success: boolean
 
   const { runner, targets, ...rest } = options
 
-  const runningTargets = targets.map((targetOptions) => new NxTarget(targetOptions))
+  runningTargets = targets.map((targetOptions) => new NxTarget(targetOptions))
 
   // Start all targets
   await Promise.all(runningTargets.map((nxTarget) => nxTarget.setup()))
@@ -44,5 +46,12 @@ export async function endToEndRunner(options: Options, context: ExecutorContext)
 
   return { success }
 }
+
+process.on('SIGINT', async function () {
+  // Kill all targets
+  await Promise.all(runningTargets.map((nxTarget) => nxTarget.teardown()))
+
+  process.exit()
+})
 
 export default endToEndRunner

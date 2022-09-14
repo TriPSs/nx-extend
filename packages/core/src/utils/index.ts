@@ -1,5 +1,4 @@
 export * from './exec'
 export * from './build-command'
 export * from './normalize-options'
-export * from './get-env-vars'
 export * from './copy-file'

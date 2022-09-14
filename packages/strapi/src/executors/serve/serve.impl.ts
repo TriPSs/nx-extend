@@ -3,8 +3,6 @@ import { buildCommand, execCommand } from '@nx-extend/core'
 
 import 'dotenv/config'
 
-import { getEnvVars } from '../../utils/get-env-vars'
-
 export interface ServeExecutorOptions {
   /** Starts your application with the autoReload enabled and skip the administration panel build process */
   build?: boolean
@@ -29,17 +27,17 @@ export async function serveExecutor(
     envVars = {}
   } = options
 
-  const developCommand = buildCommand([
-    ...getEnvVars(envVars, process.env.NODE_ENV === 'production'),
-
+  return execCommand(buildCommand([
     'npx strapi develop',
     !build && '--no-build',
     watchAdmin && '--watch-admin',
     browser && `--browser=${browser}`
-  ])
-
-  return execCommand(developCommand, {
-    cwd: options.root || root
+  ]), {
+    cwd: options.root || root,
+    env: {
+      ...process.env,
+      ...envVars
+    }
   })
 }
 

@@ -19,6 +19,8 @@ export class NxTarget {
   private _processExitedPromise!: Promise<any>
   private _options: NxTargetOptions
 
+  private killed = false
+
   constructor(options: NxTargetOptions) {
     this._options = options
 
@@ -37,7 +39,10 @@ export class NxTarget {
   }
 
   public async teardown() {
+    logger.info(`Stopping target "${this._options.target}"`)
     await this._killProcess?.()
+
+    this.killed = true
   }
 
   private async _startProcess(): Promise<void> {
@@ -56,12 +61,16 @@ export class NxTarget {
       throw new Error(`${this._options.checkUrl} is already used, make sure that nothing is running on the port/url or set reuseExistingServer:true.`)
     }
 
-    logger.debug(`Starting target "${this._options.target}"`)
+    logger.info(`Starting target "${this._options.target}"`)
 
     this._killProcess = await launchProcess(this._options.target, {
       onExit: (code) => processExitedReject(new Error(`Target "${this._options.target}" was not able to start. Exit code: ${code}`)),
       env: this._options.env
     })
+
+    if (this.killed) {
+      await this._killProcess()
+    }
   }
 
   private async _waitForProcess() {
@@ -70,7 +79,7 @@ export class NxTarget {
   }
 
   private async _waitForAvailability() {
-    const cancellationToken = { canceled: false }
+    const cancellationToken = { canceled: this.killed }
 
     const error = (await Promise.race([
       waitFor(this._options, this._isAvailable, cancellationToken),
@@ -90,7 +99,7 @@ async function waitFor(options: NxTargetOptions, waitFn: () => Promise<boolean>,
   let waitTries = 0
 
   while (!serverIsLive && !cancellationToken.canceled) {
-    logger.info(`Target "${options.target}" is not live yet, waiting...`)
+    logger.debug(`Target "${options.target}" is not live yet, waiting...`)
 
     await wait(2)
     waitTries++
@@ -101,6 +110,8 @@ async function waitFor(options: NxTargetOptions, waitFn: () => Promise<boolean>,
 
     serverIsLive = await waitFn()
   }
+
+  return !serverIsLive
 }
 
 function launchProcess(targetString: string, options: {
@@ -128,8 +139,9 @@ function launchProcess(targetString: string, options: {
   spawnedProcess.once('exit', (exitCode, signal) => {
     processClosed = true
     options.onExit(exitCode, signal)
-
   })
+
+  spawnedProcess.on('data', (line) => console.error(line.toString()))
 
   return async () => {
     if (spawnedProcess.pid && !spawnedProcess.killed && !processClosed) {
