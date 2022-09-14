@@ -92,25 +92,8 @@ async function run() {
         core.setFailed('Run many command failed!')
       }
 
-      const failedProjects = runManyResult.output.split('\n')
-        .filter((line) => line.trim().length > 1)
-        .reduce((projects, line) => {
-          if (projects === undefined && line.includes('Failed tasks')) {
-            return []
-
-          } else if (projects !== undefined && line.trim().startsWith('-')) {
-            return projects.concat(line.replace('-', '').split(':').shift().trim())
-          }
-
-          return projects
-        }, undefined) || []
-
       try {
-        await generateSummary(target, runProjects.map((project) => ({
-          name: project,
-          target,
-          failed: failedProjects.includes(project)
-        })))
+        await generateSummary(target, runProjects, runManyResult.output)
 
       } catch (err) {
         logger.warn('Error generating Github summary', err)
