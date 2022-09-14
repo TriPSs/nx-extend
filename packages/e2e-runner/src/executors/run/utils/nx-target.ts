@@ -8,7 +8,7 @@ export interface NxTargetOptions {
   target: string
   checkUrl?: string
   checkMaxTries?: number
-
+  env?: { [key: string]: string }
   reuseExistingServer?: boolean
 }
 
@@ -59,7 +59,8 @@ export class NxTarget {
     logger.debug(`Starting target "${this._options.target}"`)
 
     this._killProcess = await launchProcess(this._options.target, {
-      onExit: (code) => processExitedReject(new Error(`Target "${this._options.target}" was not able to start. Exit code: ${code}`))
+      onExit: (code) => processExitedReject(new Error(`Target "${this._options.target}" was not able to start. Exit code: ${code}`)),
+      env: this._options.env
     })
   }
 
@@ -104,6 +105,7 @@ async function waitFor(options: NxTargetOptions, waitFn: () => Promise<boolean>,
 
 function launchProcess(targetString: string, options: {
   onExit: (exitCode: number | null, signal: string | null) => void
+  env?: { [key: string]: string }
 }): () => Promise<void> {
   const { project, target, configuration } = parseTargetString(targetString)
 
@@ -114,7 +116,11 @@ function launchProcess(targetString: string, options: {
       stdio: 'inherit',
       detached: true,
       shell: true,
-      cwd: process.cwd()
+      cwd: process.cwd(),
+      env: {
+        ...process.env,
+        ...options.env
+      }
     }
   )
 
