@@ -8,6 +8,7 @@ import {
   offsetFromRoot,
   Tree
 } from '@nrwl/devkit'
+import { runTasksInSerial } from '@nrwl/workspace/src/utilities/run-tasks-in-serial'
 import * as path from 'path'
 
 import { GcpDeploymentManagerGeneratorSchema } from './schema'
@@ -53,17 +54,6 @@ function addFiles(host: Tree, options: NormalizedSchema) {
       offsetFromRoot: offsetFromRoot(options.projectRoot),
       template: ''
     }
-  )
-}
-
-function addProjectDependencies(host: Tree, options: NormalizedSchema) {
-  addDependenciesToPackageJson(
-    host,
-    {},
-    {
-      '@google-cloud/functions-framework': 'latest'
-    },
-    path.join('.', 'package.json')
   )
 }
 
@@ -118,7 +108,14 @@ export default async function (
   })
 
   addFiles(host, normalizedOptions)
-  addProjectDependencies(host, normalizedOptions)
 
   await formatFiles(host)
+
+  return runTasksInSerial(addDependenciesToPackageJson(
+    host,
+    {},
+    {
+      '@google-cloud/functions-framework': 'latest'
+    }
+  ))
 }
