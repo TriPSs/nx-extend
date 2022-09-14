@@ -1,0 +1,20 @@
+{
+  "name": "@nx-extend/playwright",
+  "version": "1.0.0",
+  "keywords": [
+    "nx",
+    "playwright"
+  ],
+  "homepage": "https://github.com/TriPSs/nx-extend/blob/master/packages/playwright/README.md",
+  "bugs": {
+    "url": "https://github.com/tripss/nx-extend/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tripss/nx-extend"
+  },
+  "license": "MIT",
+  "main": "src/index.js",
+  "builders": "./executors.json",
+  "generators": "./generators.json"
+}

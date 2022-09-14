@@ -27,8 +27,10 @@
       "@nx-extend/gcp-storage": ["packages/gcp-storage/src/index.ts"],
       "@nx-extend/gcp-task-runner": ["packages/gcp-task-runner/src/index.ts"],
       "@nx-extend/github-pages": ["packages/github-pages/src/index.ts"],
+      "@nx-extend/playwright": ["packages/playwright/src/index.ts"],
       "@nx-extend/strapi": ["packages/strapi/src/index.ts"],
-      "@nx-extend/translations": ["packages/translations/src/index.ts"]
+      "@nx-extend/translations": ["packages/translations/src/index.ts"],
+      "@nx-extend/vercel": ["packages/vercel/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
