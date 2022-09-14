@@ -1,4 +1,13 @@
  
+# [2.1.0](https://github.com/TriPSs/nx-extend/compare/e2e-runner@2.0.0...e2e-runner@2.1.0) (2022-09-14)
+
+
+### Features
+
+* **e2e-runner:** Added `evn` option to targets ([86bda50](https://github.com/TriPSs/nx-extend/commit/86bda50b4e7a132e6150a191a07bfd629ef254c9))
+
+
+
 # [2.0.0](https://github.com/TriPSs/nx-extend/compare/e2e-runner@1.0.2...e2e-runner@2.0.0) (2022-09-14)
 
 
