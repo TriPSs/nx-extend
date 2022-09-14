@@ -1,84 +1,48 @@
-import { ExecutorContext, runExecutor, logger } from '@nrwl/devkit'
-import cypressExecutor, { CypressExecutorOptions } from '@nrwl/cypress/src/executors/cypress/cypress.impl'
+import { ExecutorContext } from '@nrwl/devkit'
 
-import { isApiLive } from './utils/is-api-live'
-import { wait } from './utils/wait'
+import { NxTarget, NxTargetOptions } from './utils/nx-target'
 
-interface Options extends CypressExecutorOptions {
-  serverTarget: string
-  serverCheckUrl: string
-  serverCheckMaxTries?: number
-}
-
-let waitTries = 0
-const defaultMaxTries = 15
-
-async function* startDevServer(
-  options: Options,
-  context: ExecutorContext
-) {
-  const [project, target, configuration] = options.serverTarget.split(':')
-
-  let serverIsLive = false
-
-  for await (const output of await runExecutor<{ success: boolean; }>({ project, target, configuration },
-    { watch: options.watch },
-    context
-  )) {
-    if (!output.success && !options.watch) {
-      throw new Error('Could not compile application files')
-    }
-
-    if (options.serverCheckUrl) {
-      while (!serverIsLive) {
-        logger.info('Api is not live yet, waiting...')
-
-        await wait(2)
-        waitTries++
-
-        if (waitTries >= (options.serverCheckMaxTries || defaultMaxTries)) {
-          break
-        }
-
-        serverIsLive = await isApiLive(options.serverCheckUrl)
-      }
-
-    } else {
-      serverIsLive = true
-    }
-
-    yield serverIsLive
-  }
+interface Options {
+  runner: 'cypress' | 'playwright'
+  runnerTarget?: string
+  watch?: boolean
+  targets: NxTargetOptions[]
 }
 
 export async function endToEndRunner(options: Options, context: ExecutorContext): Promise<{ success: boolean }> {
-  let success
+  let success: boolean
 
-  for await (const serverLive of startDevServer(options, context)) {
-    try {
-      if (serverLive) {
-        success = await cypressExecutor(options, context)
+  const { runner, targets, ...rest } = options
 
-      } else {
-        success = false
-        break
-      }
+  const runningTargets = targets.map((targetOptions) => new NxTarget(targetOptions))
 
-      if (!options.watch) {
-        break
-      }
-    } catch (e) {
-      logger.error(e.message)
+  // Start all targets
+  await Promise.all(runningTargets.map((nxTarget) => nxTarget.setup()))
 
-      success = false
+  try {
+    if (runner === 'cypress') {
+      // eslint-disable-next-line @typescript-eslint/no-var-requires
+      const cypressExecutor = require('@nrwl/cypress/src/executors/cypress/cypress.impl').default
+      success = (await cypressExecutor(rest, context)).success
 
-      if (!options.watch) {
-        break
-      }
+    } else if (runner === 'playwright') {
+      // eslint-disable-next-line @typescript-eslint/no-var-requires
+      const playwrightExecutor = require('@nx-extend/playwright/src/executors/test/test.impl').default
+      success = (await playwrightExecutor(rest, context)).success
+
+    } else {
+      throw new Error(`Unknown runner "${runner}"`)
     }
+  } catch (error) {
+    console.error(error)
+
+    success = false
   }
 
-  return success
+  // Kill all targets
+  await Promise.all(runningTargets.map((nxTarget) => nxTarget.teardown()))
+
+  return { success }
 }
 
 export default endToEndRunner
