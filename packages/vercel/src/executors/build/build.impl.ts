@@ -1,10 +1,11 @@
 import { readJsonFile, writeJsonFile } from '@nrwl/devkit'
-import { buildCommand, copyFile, execCommand, getEnvVars } from '@nx-extend/core'
+import { buildCommand, copyFile, execCommand } from '@nx-extend/core'
 import { join } from 'path'
 
 import type { ExecutorContext } from '@nrwl/devkit'
 
 import { addEnvVariablesToFile } from '../../utils/add-env-variables-to-file'
+import { getEnvVars } from '../../utils/get-env-vars'
 
 export interface ExecutorSchema {
   projectId: string
