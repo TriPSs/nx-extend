@@ -1,4 +1,13 @@
  
+## [6.2.5](https://github.com/TriPSs/nx-extend/compare/gcp-functions@6.2.4...gcp-functions@6.2.5) (2022-09-14)
+
+
+### Bug Fixes
+
+* **gpc-functions:** Fixed dependencies not being installed when calling `init` ([eff6c11](https://github.com/TriPSs/nx-extend/commit/eff6c11e90c96f8535d171971208eba960670c5b))
+
+
+
 ## [6.2.4](https://github.com/TriPSs/nx-extend/compare/gcp-functions@6.2.3...gcp-functions@6.2.4) (2022-09-13)
 
 
