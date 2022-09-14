@@ -1,4 +1,18 @@
  
+# [2.0.0](https://github.com/TriPSs/nx-extend/compare/e2e-runner@1.0.2...e2e-runner@2.0.0) (2022-09-14)
+
+
+### Features
+
+* **e2e-runner:** Added support for providing multiple targets to start ([9037d59](https://github.com/TriPSs/nx-extend/commit/9037d59eff40acbe882429b05e68a9cc3aeb3799))
+
+
+### BREAKING CHANGES
+
+* **e2e-runner:** `serverTarget` and `devServerTarget` are no longer supported, use `targets` to pre-start your projects
+
+
+
 ## [1.0.2](https://github.com/TriPSs/nx-extend/compare/e2e-runner@1.0.1...e2e-runner@1.0.2) (2022-08-24)
 
 
