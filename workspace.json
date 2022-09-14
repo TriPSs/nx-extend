@@ -1,6 +1,7 @@
 {
   "version": 2,
   "projects": {
+    "actions-run-many": "actions/run-many",
     "core": "packages/core",
     "e2e-runner": "packages/e2e-runner",
     "firebase-hosting": "packages/firebase-hosting",
@@ -14,6 +15,7 @@
     "gcp-storage": "packages/gcp-storage",
     "gcp-task-runner": "packages/gcp-task-runner",
     "github-pages": "packages/github-pages",
+    "playwright": "packages/playwright",
     "strapi": "packages/strapi",
     "translations": "packages/translations",
     "translations-e2e": "e2e/translations-e2e",

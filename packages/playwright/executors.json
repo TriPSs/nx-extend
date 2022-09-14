@@ -1,0 +1,26 @@
+{
+  "executors": {
+    "test": {
+      "implementation": "./src/executors/test/test.impl",
+      "schema": "./src/executors/test/schema.json",
+      "description": "Test your Playwright project"
+    },
+    "codegen": {
+      "implementation": "./src/executors/codegen/codegen.impl",
+      "schema": "./src/executors/codegen/schema.json",
+      "description": "Run codegen for your Playwright project"
+    }
+  },
+  "builders": {
+    "test": {
+      "implementation": "./src/executors/test/test.impl",
+      "schema": "./src/executors/test/schema.json",
+      "description": "Test your Playwright project"
+    },
+    "codegen": {
+      "implementation": "./src/executors/codegen/codegen.impl",
+      "schema": "./src/executors/codegen/schema.json",
+      "description": "Run codegen for your Playwright project"
+    }
+  }
+}
