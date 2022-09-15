@@ -1,6 +1,6 @@
 const core = require('@actions/core')
 const { FsTree } = require('nx/src/generators/tree')
-const { logger, getProjects } = require('@nrwl/devkit')
+const { logger, getProjects, workspaceRoot } = require('@nrwl/devkit')
 const { execCommand, buildCommand } = require('@nx-extend/core')
 
 const { generateSummary } = require('./utils/generate-summary')
@@ -8,7 +8,7 @@ const { getRestArgs } = require('./utils/get-rest-args')
 
 async function run() {
   try {
-    const nxTree = new FsTree(process.cwd(), false)
+    const nxTree = new FsTree(workspaceRoot, false)
     const allProjects = getProjects(nxTree)
 
     // Get all options
@@ -18,11 +18,11 @@ async function run() {
     const jobIndex = core.getInput('index') || 1
     const jobCount = core.getInput('count') || 1
     const parallel = core.getInput('parallel')
-    const preTargets = core.getMultilineInput('preTargets')
-    const postTargets = core.getMultilineInput('postTargets')
+    const preTargets = core.getMultilineInput('preTargets', { trimWhitespace: true })
+    const postTargets = core.getMultilineInput('postTargets', { trimWhitespace: true })
 
-    console.log(preTargets)
-    console.log(postTargets)
+    core.info(`preTargets ${JSON.stringify(preTargets)}`)
+    core.info(`postTargets ${JSON.stringify(postTargets)}`)
 
     if (tag) {
       core.info(`Running all projects with tag "${tag}"`)
