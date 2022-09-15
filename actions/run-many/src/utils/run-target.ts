@@ -54,7 +54,7 @@ export async function runTarget(projects: Map<string, ProjectConfiguration>, run
 
   if (withSummary) {
     try {
-      await generateSummary(target, runProjects, runManyResult.output)
+      await generateSummary(target, projectsWithTarget, runManyResult.output)
 
     } catch (err) {
       logger.warn(`Error generating Github summary: ${err.message || err}`)
