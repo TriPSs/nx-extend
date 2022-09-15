@@ -21,9 +21,6 @@ async function run() {
     const preTargets = core.getMultilineInput('preTargets', { trimWhitespace: true })
     const postTargets = core.getMultilineInput('postTargets', { trimWhitespace: true })
 
-    core.info(`preTargets ${JSON.stringify(preTargets)}`)
-    core.info(`postTargets ${JSON.stringify(postTargets)}`)
-
     if (tag) {
       core.info(`Running all projects with tag "${tag}"`)
     }

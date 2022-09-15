@@ -42,9 +42,6 @@ jobs:
         uses: ./actions/run-many
         with:
           target: version
-          postTargets: |
-            lint
-            build
 
       - name: nx affected:build
         uses: ./actions/run-many
