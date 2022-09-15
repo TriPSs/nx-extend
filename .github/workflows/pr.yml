@@ -40,17 +40,17 @@ jobs:
           git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
 
       - name: nx affected:version
-        uses: ./actions/run-many/action.yml
+        uses: ./actions/run-many
         with:
           target: version
 
       - name: nx affected:build
-        uses: ./actions/run-many/action.yml
+        uses: ./actions/run-many
         with:
           target: build
 
       - name: nx affected:e2e
-        uses: ./actions/run-many/action.yml
+        uses: ./actions/run-many
         with:
           target: e2e
           postTargets: |
