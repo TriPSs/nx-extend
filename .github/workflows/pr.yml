@@ -12,7 +12,7 @@ jobs:
   pr:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
@@ -30,7 +30,6 @@ jobs:
 
       - name: Derive appropriate SHAs for base and head for `nx affected` commands
         uses: nrwl/nx-set-shas@v1
-        if: ${{ inputs.set_shas == 'true' }}
         with:
           main-branch-name: master
 
@@ -43,6 +42,9 @@ jobs:
         uses: ./actions/run-many
         with:
           target: version
+          postTargets: |
+            one
+            two
 
       - name: nx affected:build
         uses: ./actions/run-many
@@ -53,6 +55,3 @@ jobs:
         uses: ./actions/run-many
         with:
           target: e2e
-          postTargets: |
-            one
-            two
