@@ -14,6 +14,7 @@ async function run() {
     // Get all options
     const tag = core.getInput('tag')
     const target = core.getInput('target')
+    const affectedTarget = core.getInput('affectedTarget')
     const jobIndex = core.getInput('index')
     const jobCount = core.getInput('count')
     const parallel = core.getInput('parallel')
@@ -25,7 +26,7 @@ async function run() {
     // Get all affected projects
     const { projects: affectedProjects } = execCommand(buildCommand([
       'npx nx print-affected',
-      `--target=${target}`,
+      `--target=${affectedTarget || target}`,
     ]), {
       asJSON: true,
       silent: !core.isDebug()

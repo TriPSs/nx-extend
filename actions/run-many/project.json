@@ -8,6 +8,15 @@
       "options": {
         "versionTagPrefix": "${target}@"
       }
+    },
+    "compile": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "npx ncc build ./src/run-many.js --out ./dist"
+        ],
+        "cwd": "actions/run-many"
+      }
     }
   },
   "tags": []
