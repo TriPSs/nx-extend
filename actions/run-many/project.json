@@ -13,9 +13,8 @@
       "executor": "nx:run-commands",
       "options": {
         "commands": [
-          "npx ncc build ./src/run-many.js --out ./dist"
-        ],
-        "cwd": "actions/run-many"
+          "npx ncc build ./actions/run-many/src/run-many.ts --out ./actions/run-many/dist"
+        ]
       }
     }
   },

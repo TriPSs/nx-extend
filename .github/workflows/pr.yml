@@ -43,8 +43,8 @@ jobs:
         with:
           target: version
           postTargets: |
-            one
-            two
+            lint
+            build
 
       - name: nx affected:build
         uses: ./actions/run-many
