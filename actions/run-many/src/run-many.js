@@ -13,11 +13,16 @@ async function run() {
 
     // Get all options
     const tag = core.getInput('tag')
-    const target = core.getInput('target')
+    const target = core.getInput('target', { required: true })
     const affectedTarget = core.getInput('affectedTarget')
-    const jobIndex = core.getInput('index')
-    const jobCount = core.getInput('count')
+    const jobIndex = core.getInput('index') || 1
+    const jobCount = core.getInput('count') || 1
     const parallel = core.getInput('parallel')
+    const preTargets = core.getMultilineInput('preTargets')
+    const postTargets = core.getMultilineInput('postTargets')
+
+    console.log(preTargets)
+    console.log(postTargets)
 
     if (tag) {
       core.info(`Running all projects with tag "${tag}"`)

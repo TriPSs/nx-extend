@@ -12,7 +12,7 @@ inputs:
 
   target:
     description: 'target'
-    required: false
+    required: true
 
   affectedTarget:
     description: 'Use this target when checking affected projects'
@@ -28,4 +28,12 @@ inputs:
 
   parallel:
     description: 'parallel'
+    required: false
+
+  preTargets:
+    description: 'Targets to run before'
+    required: false
+
+  postTargets:
+    description: 'Targets to run after'
     required: false
