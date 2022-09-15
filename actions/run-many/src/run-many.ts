@@ -14,12 +14,17 @@ async function run() {
     // Get all options
     const tag = core.getInput('tag')
     const target = core.getInput('target', { required: true })
-    const affectedTarget = core.getInput('affectedTarget')
     const jobIndex = parseInt(core.getInput('index') || '1', 10)
     const jobCount = parseInt(core.getInput('count') || '1', 10)
     const parallel = core.getInput('parallel')
     const preTargets = core.getMultilineInput('preTargets', { trimWhitespace: true })
     const postTargets = core.getMultilineInput('postTargets', { trimWhitespace: true })
+
+    core.info(`Job index ${jobIndex}`)
+    core.info(`Job count ${jobCount}`)
+
+    core.info(`Pre targets ${JSON.stringify(preTargets)}`)
+    core.info(`Post targets ${JSON.stringify(postTargets)}`)
 
     if (tag) {
       core.info(`Running all projects with tag "${tag}"`)
@@ -28,18 +33,18 @@ async function run() {
     // Get all affected projects
     const { projects: affectedProjects } = execCommand<{ projects: any }>(buildCommand([
       'npx nx print-affected',
-      `--target=${affectedTarget || target}`
+      `--target=${target}`
     ]), {
       asJSON: true,
       silent: !core.isDebug()
     })
 
     // Filter out all projects that are not allowed
-    const allowedProjects = [...projects].filter(([_, config]) => {
+    const allowedProjects = Array.from(projects).filter(([_, config]) => {
       // Check if the project has the ci=off tag
       const hasCiOffTag = (config?.tags ?? []).includes('ci=off')
 
-      // If the project does not have the target or is disabled by ci=pff don't run it
+      // If the is disabled by ci=pff don't run it
       if (hasCiOffTag) {
         return false
       }

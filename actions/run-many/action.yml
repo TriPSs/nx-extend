@@ -14,10 +14,6 @@ inputs:
     description: 'target'
     required: true
 
-  affectedTarget:
-    description: 'Use this target when checking affected projects'
-    required: false
-
   index:
     description: 'index'
     required: false
