@@ -40,13 +40,19 @@ async function run() {
     })
 
     // Filter out all projects that are not allowed
-    const allowedProjects = Array.from(projects).filter(([_, config]) => {
+    const allowedProjects = Array.from(projects).filter(([project, config]) => {
       // Check if the project has the ci=off tag
       const hasCiOffTag = (config?.tags ?? []).includes('ci=off')
+      // Check if the project has the provided target
+      const hasTarget = Object.keys(config?.targets ?? {}).includes(target)
 
       // If the is disabled by ci=pff don't run it
-      if (hasCiOffTag) {
-        core.debug(`[${config.name}]: Has the "ci=off" tag, skipping it.`)
+      if (hasCiOffTag || !hasTarget) {
+        if (hasCiOffTag) {
+          core.debug(`[${project}]: Has the "ci=off" tag, skipping it.`)
+        } else {
+          core.debug(`[${project}]: Does not have the target "${target}", skipping it.`)
+        }
 
         return false
       }
