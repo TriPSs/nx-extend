@@ -1,4 +1,13 @@
  
+## [1.3.3](https://github.com/TriPSs/nx-extend/compare/vercel@1.3.2...vercel@1.3.3) (2022-09-15)
+
+
+### Bug Fixes
+
+* **vercel:** Set `--prod` when building with prod config ([6e0133e](https://github.com/TriPSs/nx-extend/commit/6e0133e979200cf8ada9c3888efa907b29762142))
+
+
+
 ## [1.3.2](https://github.com/TriPSs/nx-extend/compare/vercel@1.3.1...vercel@1.3.2) (2022-09-15)
 
 
