@@ -9,30 +9,10 @@ env:
 
 jobs:
 
-  prepare-env:
-    runs-on: ubuntu-latest
-    outputs:
-      GITHUB_HEAD_REF: ${{ steps.GITHUB_HEAD_REF.outputs.value }}
-      GITHUB_BASE_REF: ${{ steps.GITHUB_BASE_REF.outputs.value }}
-    steps:
-      - uses: nrwl/last-successful-commit-action@v1
-        id: last_successful_commit
-        with:
-          branch: 'master'
-          workflow_id: 'release.yml'
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-
-      - id: GITHUB_HEAD_REF
-        run: echo "::set-output name=value::$(echo ${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}})"
-
-      - id: GITHUB_BASE_REF
-        run: echo "::set-output name=value::$(echo ${{ steps.last_successful_commit.outputs.commit_hash }}})"
-
   pr:
-    needs: [ prepare-env ]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
@@ -44,14 +24,14 @@ jobs:
             **/node_modules
           key: ${{ env.DEPENDENCIES_CACHE }}-${{ hashFiles('yarn.lock') }}
 
-      - name: Use Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14.x'
-
       - name: yarn install
         if: steps.cache.outputs.cache-hit != 'true'
         run: yarn install
+
+      - name: Derive appropriate SHAs for base and head for `nx affected` commands
+        uses: nrwl/nx-set-shas@v1
+        with:
+          main-branch-name: master
 
       - name: GIT config
         run: |
@@ -59,10 +39,16 @@ jobs:
           git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
 
       - name: nx affected:version
-        run: node ./tools/scripts/run-many.js version origin/${{ needs.prepare-env.outputs.GITHUB_HEAD_REF }} ${{ needs.prepare-env.outputs.GITHUB_BASE_REF }}
+        uses: ./actions/run-many
+        with:
+          target: version
 
       - name: nx affected:build
-        run: node ./tools/scripts/run-many.js build origin/${{ needs.prepare-env.outputs.GITHUB_HEAD_REF }} ${{ needs.prepare-env.outputs.GITHUB_BASE_REF }}
+        uses: ./actions/run-many
+        with:
+          target: build
 
       - name: nx affected:e2e
-        run: node ./tools/scripts/run-many.js e2e origin/${{ needs.prepare-env.outputs.GITHUB_HEAD_REF }} ${{ needs.prepare-env.outputs.GITHUB_BASE_REF }}
+        uses: ./actions/run-many
+        with:
+          target: e2e
