@@ -88,6 +88,7 @@ export function buildExecutor(
   const { success } = execCommand(buildCommand([
     'npx vercel build',
     `--output ${targets['build-next']?.options?.outputPath}/.vercel/output`,
+    context.configurationName === 'production' && '--prod',
 
     options.debug && '--debug'
   ]))
