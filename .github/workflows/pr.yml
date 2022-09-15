@@ -54,6 +54,6 @@ jobs:
         uses: ./actions/run-many/action.yml
         with:
           target: e2e
-          postTargets:
-            - one
-            - two
+          postTargets: |
+            one
+            two
