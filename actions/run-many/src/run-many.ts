@@ -20,11 +20,11 @@ async function run() {
     const preTargets = core.getMultilineInput('preTargets', { trimWhitespace: true })
     const postTargets = core.getMultilineInput('postTargets', { trimWhitespace: true })
 
-    core.info(`Job index ${jobIndex}`)
-    core.info(`Job count ${jobCount}`)
+    core.debug(`Job index ${jobIndex}`)
+    core.debug(`Job count ${jobCount}`)
 
-    core.info(`Pre targets ${JSON.stringify(preTargets)}`)
-    core.info(`Post targets ${JSON.stringify(postTargets)}`)
+    core.debug(`Pre targets ${JSON.stringify(preTargets)}`)
+    core.debug(`Post targets ${JSON.stringify(postTargets)}`)
 
     if (tag) {
       core.info(`Running all projects with tag "${tag}"`)
@@ -46,6 +46,8 @@ async function run() {
 
       // If the is disabled by ci=pff don't run it
       if (hasCiOffTag) {
+        core.debug(`[${config.name}]: Has the "ci=off" tag, skipping it.`)
+
         return false
       }
 
