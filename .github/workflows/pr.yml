@@ -10,7 +10,6 @@ env:
 jobs:
 
   pr:
-    needs: [ prepare-env ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
