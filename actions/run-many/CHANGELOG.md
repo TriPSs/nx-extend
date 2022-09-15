@@ -1,4 +1,13 @@
  
+# [1.2.0](https://github.com/TriPSs/nx-extend/compare/actions-run-many@1.1.0...actions-run-many@1.2.0) (2022-09-15)
+
+
+### Features
+
+* **run-many:** Added pre/post targets ([2f86c25](https://github.com/TriPSs/nx-extend/commit/2f86c25fa34b083013e502532c0507fb06e4475d))
+
+
+
 # [1.1.0](https://github.com/TriPSs/nx-extend/compare/actions-run-many@1.0.1...actions-run-many@1.1.0) (2022-09-15)
 
 
