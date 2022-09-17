@@ -30,7 +30,8 @@
       "@nx-extend/playwright": ["packages/playwright/src/index.ts"],
       "@nx-extend/strapi": ["packages/strapi/src/index.ts"],
       "@nx-extend/translations": ["packages/translations/src/index.ts"],
-      "@nx-extend/vercel": ["packages/vercel/src/index.ts"]
+      "@nx-extend/vercel": ["packages/vercel/src/index.ts"],
+      "@nx-extend/changelog-notify": ["packages/changelog-notify/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

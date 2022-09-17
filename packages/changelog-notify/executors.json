@@ -1,0 +1,26 @@
+{
+  "executors": {
+    "slack": {
+      "implementation": "./src/executors/slack/notify-slack.impl",
+      "schema": "./src/executors/slack/schema.json",
+      "description": "Notify Slack"
+    },
+    "google-chat": {
+      "implementation": "./src/executors/google-chat/notify-google-chat.impl",
+      "schema": "./src/executors/google-chat/schema.json",
+      "description": "Notify Google Chat"
+    }
+  },
+  "builders": {
+    "slack": {
+      "implementation": "./src/executors/slack/notify-slack.impl",
+      "schema": "./src/executors/slack/schema.json",
+      "description": "Notify Slack"
+    },
+    "google-chat": {
+      "implementation": "./src/executors/google-chat/notify-google-chat.impl",
+      "schema": "./src/executors/google-chat/schema.json",
+      "description": "Notify Google Chat"
+    }
+  }
+}
