@@ -1,11 +1,12 @@
-import { BuildNodeBuilderOptions } from '@nrwl/node/src/utils/types'
 import { execCommand } from '@nx-extend/core'
+
+import type { WebpackExecutorOptions } from '@nrwl/webpack/src/executors/webpack/schema'
 // import { existsSync } from 'fs'
 
 export const generatePackageJsonLockFile = (
   root: string,
   projectName: string,
-  options: BuildNodeBuilderOptions
+  options: WebpackExecutorOptions
 ) => {
   // If a yarn.lock file exists then use yarn to generate the lock file
   // if (existsSync(`${root}/yarn.lock`)) {

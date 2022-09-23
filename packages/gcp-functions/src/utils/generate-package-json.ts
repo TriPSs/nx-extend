@@ -1,18 +1,24 @@
+import { ExecutorContext, readJsonFile, writeJsonFile } from '@nrwl/devkit'
+import { readCachedProjectGraph } from '@nrwl/workspace/src/core/project-graph'
+import { createPackageJson } from '@nrwl/workspace/src/utilities/create-package-json'
+import { fileExists } from '@nrwl/workspace/src/utils/fileutils'
 import * as fs from 'fs'
 import { join } from 'path'
-import { fileExists } from '@nrwl/workspace/src/utils/fileutils'
-import { readJsonFile, writeJsonFile, ProjectGraph } from '@nrwl/devkit'
-import { createPackageJson } from '@nrwl/workspace/src/utilities/create-package-json'
-import { BuildNodeBuilderOptions } from '@nrwl/node/src/utils/types'
+
+import type { WebpackExecutorOptions } from '@nrwl/webpack/src/executors/webpack/schema'
 
 export const generatePackageJson = (
-  projectName: string,
-  graph: ProjectGraph,
-  options: BuildNodeBuilderOptions,
-  outFile: string,
-  workspaceRoot: string
+  context: ExecutorContext,
+  options: WebpackExecutorOptions,
+  outFile: string
 ) => {
-  const packageJson = createPackageJson(projectName, graph, options)
+  const { root } = context.workspace.projects[context.projectName]
+
+  const packageJson = createPackageJson(context.projectName, readCachedProjectGraph(), {
+    root: context.root,
+    projectRoot: root
+  })
+
   packageJson.main = options.outputFileName
   delete packageJson.devDependencies
 
@@ -23,7 +29,7 @@ export const generatePackageJson = (
 
   // Get the package version from the root
   if (externalDependencies) {
-    const workspacePackages = readJsonFile(join(workspaceRoot, 'package.json'))
+    const workspacePackages = readJsonFile(join(context.root, 'package.json'))
     const dependenciesName = externalDependencies.map((x) => x.match(re2)[0].replace(/"/gm, ''))
 
     dependenciesName.forEach((dep) => {
@@ -46,7 +52,7 @@ export const generatePackageJson = (
     })
   }
 
-  const projectPackageJson = join(options.projectRoot, 'package.json')
+  const projectPackageJson = join(root, 'package.json')
 
   const originalPackageJson = fileExists(projectPackageJson)
     ? readJsonFile(projectPackageJson)

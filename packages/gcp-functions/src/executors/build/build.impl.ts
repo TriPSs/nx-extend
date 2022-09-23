@@ -1,46 +1,33 @@
-import webpackExecutor, { NodeBuildEvent } from '@nrwl/node/src/executors/webpack/webpack.impl'
+import webpackExecutor, { WebpackExecutorEvent } from '@nrwl/webpack/src/executors/webpack/webpack.impl'
 
-import { ExecutorContext } from '@nrwl/devkit'
-import { readCachedProjectGraph } from '@nrwl/workspace/src/core/project-graph'
-import { BuildNodeBuilderOptions } from '@nrwl/node/src/utils/types'
-import { normalizeBuildOptions } from '@nrwl/node/src/utils/normalize'
+import type { ExecutorContext } from '@nrwl/devkit'
+import type { WebpackExecutorOptions } from '@nrwl/webpack/src/executors/webpack/schema'
 
 import { generatePackageJson } from '../../utils/generate-package-json'
 import { generatePackageJsonLockFile } from '../../utils/generate-package-json-lock-file'
 
-export interface RawOptions extends BuildNodeBuilderOptions {
+export interface RawOptions extends WebpackExecutorOptions {
   generateLockFile?: boolean
 }
 
 export async function buildExecutor(
   rawOptions: RawOptions,
   context: ExecutorContext
-): Promise<NodeBuildEvent> {
-  const { sourceRoot, root } = context.workspace.projects[context.projectName]
+): Promise<WebpackExecutorEvent> {
+  const options = {
+    target: 'node',
+    compiler: 'tsc',
+    ...rawOptions
+  } as WebpackExecutorOptions
 
-  if (!sourceRoot) {
-    throw new Error(`${context.projectName} does not have a sourceRoot.`)
-  }
-
-  if (!root) {
-    throw new Error(`${context.projectName} does not have a root.`)
-  }
-
-  const options = normalizeBuildOptions(
-    rawOptions,
-    context.root,
-    sourceRoot,
-    root
-  )
-
-  const { value } = await webpackExecutor(rawOptions, context)
+  const { value } = await webpackExecutor(options, context)
     .next()
 
   if (value.success) {
-    generatePackageJson(context.projectName, readCachedProjectGraph(), options, value.outfile, context.root)
+    generatePackageJson(context, options, value.outfile)
 
     if (rawOptions.generateLockFile) {
-      generatePackageJsonLockFile(context.root, context.projectName, options)
+      generatePackageJsonLockFile(context.root, context.projectName, rawOptions)
     }
   }
 
