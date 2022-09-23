@@ -1,4 +1,13 @@
  
+# [6.3.0](https://github.com/TriPSs/nx-extend/compare/gcp-functions@6.2.5...gcp-functions@6.3.0) (2022-09-23)
+
+
+### Features
+
+* **gcp-functions:** Update to newest NX ([fb6e65e](https://github.com/TriPSs/nx-extend/commit/fb6e65e29879bbb05c4fd1fde58c594dc59e2f40))
+
+
+
 ## [6.2.5](https://github.com/TriPSs/nx-extend/compare/gcp-functions@6.2.4...gcp-functions@6.2.5) (2022-09-14)
 
 
