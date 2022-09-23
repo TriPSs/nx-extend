@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@nx-extend/changelog-notify": ["packages/changelog-notify/src/index.ts"],
       "@nx-extend/core": ["packages/core/src/index.ts"],
       "@nx-extend/e2e-runner": ["packages/e2e-runner/src/index.ts"],
       "@nx-extend/firebase-hosting": ["packages/firebase-hosting/src/index.ts"],
@@ -30,8 +31,7 @@
       "@nx-extend/playwright": ["packages/playwright/src/index.ts"],
       "@nx-extend/strapi": ["packages/strapi/src/index.ts"],
       "@nx-extend/translations": ["packages/translations/src/index.ts"],
-      "@nx-extend/vercel": ["packages/vercel/src/index.ts"],
-      "@nx-extend/changelog-notify": ["packages/changelog-notify/src/index.ts"]
+      "@nx-extend/vercel": ["packages/vercel/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

@@ -2,6 +2,7 @@
   "version": 2,
   "projects": {
     "actions-run-many": "actions/run-many",
+    "changelog-notify": "packages/changelog-notify",
     "core": "packages/core",
     "e2e-runner": "packages/e2e-runner",
     "firebase-hosting": "packages/firebase-hosting",
@@ -19,8 +20,7 @@
     "strapi": "packages/strapi",
     "translations": "packages/translations",
     "translations-e2e": "e2e/translations-e2e",
-    "vercel": "packages/vercel",
-    "changelog-notify": "packages/changelog-notify"
+    "vercel": "packages/vercel"
   },
   "$schema": "./node_modules/nx/schemas/workspace-schema.json"
 }
