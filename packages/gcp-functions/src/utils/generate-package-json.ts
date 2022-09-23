@@ -19,7 +19,10 @@ export const generatePackageJson = (
     projectRoot: root
   })
 
-  packageJson.main = options.outputFileName
+  if (!packageJson.main) {
+    packageJson.main = options.outputFileName || 'main.js'
+  }
+
   delete packageJson.devDependencies
 
   const dependencies = {}
