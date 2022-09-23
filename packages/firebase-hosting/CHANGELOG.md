@@ -1,4 +1,13 @@
  
+## [2.1.4](https://github.com/TriPSs/nx-extend/compare/firebase-hosting@2.1.3...firebase-hosting@2.1.4) (2022-09-23)
+
+
+### Bug Fixes
+
+* **firebase-hosting:** Add `firebase-tools` to the dev deps ([82acd79](https://github.com/TriPSs/nx-extend/commit/82acd79811e4a8d17a4db42a5e9d0c011b0d10ab))
+
+
+
 ## [2.1.3](https://github.com/TriPSs/nx-extend/compare/firebase-hosting@2.1.2...firebase-hosting@2.1.3) (2022-06-15)
 
 
