@@ -1,15 +1,15 @@
 import { ExecutorContext, logger } from '@nrwl/devkit'
-import { execCommand, buildCommand } from '@nx-extend/core'
-import { existsSync, unlinkSync, writeFileSync, mkdirSync } from 'fs'
+import { buildCommand,execCommand } from '@nx-extend/core'
+import { existsSync, mkdirSync,unlinkSync, writeFileSync } from 'fs'
 
-import { isEncryptionKeySet, decryptFile } from '../../utils/encryption'
-import { getAllSecretFiles } from '../../utils/get-all-secret-files'
-import { getFileContent, getFileName, storeFile } from '../../utils/file'
 import { addOrUpdateSecret } from '../../utils/add-or-update-secret'
+import { decryptFile,isEncryptionKeySet } from '../../utils/encryption'
+import { getFileContent, getFileName, storeFile } from '../../utils/file'
+import { getAllSecretFiles } from '../../utils/get-all-secret-files'
+import { SharedOptions } from '../shared-options'
 
-export interface DeploySchema {
+export interface DeploySchema extends SharedOptions{
   project?: string
-  secret?: string
 }
 
 export interface ExistingSecret {
