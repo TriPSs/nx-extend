@@ -1,9 +1,9 @@
 import { logger } from '@nrwl/devkit'
-import axios, { AxiosInstance } from 'axios'
+import axios, { AxiosInstance, AxiosRequestConfig } from 'axios'
 import { existsSync } from 'fs'
 
-import BaseProvider from './base.provider'
 import { BaseConfigFile, updateConfigFile } from '../utils/config-file'
+import BaseProvider from './base.provider'
 
 export interface SimpleLocalizeConfig extends BaseConfigFile {
   tokenFrom?: string
@@ -33,35 +33,25 @@ export default class SimpleLocalize extends BaseProvider<SimpleLocalizeConfig> {
     await this.uploadTranslations(this.config.defaultLanguage, sourceTerms)
   }
 
-  public async getTranslations(language: string, isRetry = false): Promise<{ [key: string]: string }> {
-    try {
-      const { data } = await this.apiClient.get<any>(
-        `/translations?languageKey=${language}`,
-        {
-          headers: {
-            'X-SimpleLocalize-Token': await this.getToken()
-          }
+  public async getTranslations(language: string): Promise<{ [key: string]: string }> {
+    const { data } = await this.get<any>(
+      `/translations?languageKey=${language}`,
+      {
+        headers: {
+          'X-SimpleLocalize-Token': await this.getToken()
         }
-      )
-
-      const translations = {}
-
-      data.data.content.forEach((term) => {
-        if (term.language === language) {
-          translations[term.key] = term.text
-        }
-      })
-
-      return translations
-    } catch (err) {
-      if (err.response.status === 429 && !isRetry) {
-        await new Promise((resolve) => setTimeout(resolve, err.response.headers['retry-after'] * 1000))
-
-        return this.getTranslations(language, true)
-      } else {
-        throw err
       }
-    }
+    )
+
+    const translations = {}
+
+    data.content.forEach((term) => {
+      if (term.language === language) {
+        translations[term.key] = term.text
+      }
+    })
+
+    return translations
   }
 
   public async uploadTranslations(language: string, translations: { [key: string]: string }): Promise<boolean> {
@@ -80,7 +70,7 @@ export default class SimpleLocalize extends BaseProvider<SimpleLocalizeConfig> {
     // If enabled, fetch current translations, then delete the ones that no longer exists
     // https://simplelocalize.io/docs/api/delete-translations/
 
-    await this.apiClient.post(
+    await this.post(
       '/translations',
       {
         content: terms
@@ -111,7 +101,7 @@ export default class SimpleLocalize extends BaseProvider<SimpleLocalizeConfig> {
       throw new Error('No "projectName" or "projectId" provided!')
     }
 
-    const { data: { data } } = await this.apiClient.get<any>('/projects', {
+    const { data } = await this.get<any>('/projects', {
       headers: {
         Authorization: `Basic ${this.getBasicAuth()}`
       }
@@ -122,7 +112,7 @@ export default class SimpleLocalize extends BaseProvider<SimpleLocalizeConfig> {
     if (!project) {
       logger.info(`Project "${this.config.projectName}" does not exist, going to create it!`)
 
-      const { data: { data: { projectToken } } } = await this.apiClient.post<any>('/projects', {
+      const { data: { projectToken } } = await this.post<any>('/projects', {
         name: this.config.projectName
       }, {
         headers: {
@@ -154,7 +144,7 @@ export default class SimpleLocalize extends BaseProvider<SimpleLocalizeConfig> {
       throw new Error('No "languages" defined!')
     }
 
-    const { data: { data } } = await this.apiClient.get<any>('/languages', {
+    const { data } = await this.get<any>('/languages', {
       headers: {
         'X-SimpleLocalize-Token': await this.getToken()
       }
@@ -169,7 +159,7 @@ export default class SimpleLocalize extends BaseProvider<SimpleLocalizeConfig> {
       const key = nonExistingCodes.shift()
       logger.info(`Going add language "${key}" to project "${this.config.projectName}"`)
 
-      await this.apiClient.post('/languages', {
+      await this.post('/languages', {
         key,
         name: `${key}-${key.toUpperCase()}`
       }, {
@@ -194,7 +184,7 @@ export default class SimpleLocalize extends BaseProvider<SimpleLocalizeConfig> {
     if (!apiKey) {
       // If we have basic auth, then get the project token
       if (basicAuth) {
-        const { data: { data: projects } } = await this.apiClient.get<any>('/projects', {
+        const { data: projects } = await this.get('/projects', {
           headers: {
             Authorization: `Basic ${basicAuth}`
           }
@@ -221,6 +211,45 @@ export default class SimpleLocalize extends BaseProvider<SimpleLocalizeConfig> {
     }
 
     return basicAuth
+  }
+
+  private async get<Data = any>(url: string, config: AxiosRequestConfig<Data>, isRetry = false) {
+    try {
+      const response = await this.apiClient.get<Data>(
+        url,
+        config
+      )
+
+      return response.data
+    } catch (err) {
+      if (err.response.status === 429 && !isRetry) {
+        await new Promise((resolve) => setTimeout(resolve, err.response.headers['retry-after'] * 1000))
+
+        return this.get(url, config, true)
+      } else {
+        throw err
+      }
+    }
+  }
+
+  private async post<Data = any>(url: string, data: Data, config: AxiosRequestConfig<Data>, isRetry = false) {
+    try {
+      const response = await this.apiClient.post<Data>(
+        url,
+        data,
+        config
+      )
+
+      return response.data
+    } catch (err) {
+      if (err.response.status === 429 && !isRetry) {
+        await new Promise((resolve) => setTimeout(resolve, err.response.headers['retry-after'] * 1000))
+
+        return this.get(url, config, true)
+      } else {
+        throw err
+      }
+    }
   }
 
 }
