@@ -1,11 +1,12 @@
 import { ExecutorContext, logger } from '@nrwl/devkit'
 
-import { isEncryptionKeySet, decryptFile } from '../../utils/encryption'
+import { decryptFile,isEncryptionKeySet } from '../../utils/encryption'
+import { getFileContent, getFileName,SecretFile, storeFile } from '../../utils/file'
 import { getAllSecretFiles } from '../../utils/get-all-secret-files'
-import { getFileContent, storeFile, SecretFile, getFileName } from '../../utils/file'
+import { SharedOptions } from '../shared-options'
 
 export async function decyrptExecutor(
-  options,
+  options: SharedOptions,
   context: ExecutorContext
 ): Promise<{ success: boolean }> {
   const { sourceRoot } = context.workspace.projects[context.projectName]
@@ -15,7 +16,12 @@ export async function decyrptExecutor(
       const files = getAllSecretFiles(sourceRoot)
 
       files.map((file) => {
-        const fileName = getFileName(file)
+        const secretName = getFileName(file)
+
+        // Check if we should only deploy this secret
+        if (options.secret && options.secret !== secretName) {
+          return true
+        }
 
         // Get the content of the file
         const fileContent = getFileContent(file)
@@ -27,10 +33,10 @@ export async function decyrptExecutor(
           // Store the encrypted file
           storeFile(file, encryptedFile)
 
-          logger.info(`"${fileName}" decrypted`)
+          logger.info(`"${secretName}" decrypted`)
 
         } else {
-          logger.info(`Skipping "${fileName}" because it's already decrypted`)
+          logger.info(`Skipping "${secretName}" because it's already decrypted`)
         }
       })
 

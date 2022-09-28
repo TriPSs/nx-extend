@@ -66,5 +66,9 @@ export const generatePackageJson = (
     ...dependencies
   }
 
+  if (originalPackageJson.main) {
+    packageJson.main = originalPackageJson.main
+  }
+
   writeJsonFile(`${options.outputPath}/package.json`, packageJson)
 }
