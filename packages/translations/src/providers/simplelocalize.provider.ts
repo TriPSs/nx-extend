@@ -35,21 +35,12 @@ export default class SimpleLocalize extends BaseProvider<SimpleLocalizeConfig> {
   }
 
   public async getTranslations(language: string): Promise<{ [key: string]: string }> {
-    const { data } = await this.get<any>(
-      `/translations?languageKey=${language}`,
-      {
-        headers: {
-          'X-SimpleLocalize-Token': await this.getToken()
-        }
-      }
-    )
+    const { data } = await this.get<any>(`https://cdn.simplelocalize.io/${this.config.projectId}/_latest/${language}`)
 
     const translations = {}
 
-    data.content.forEach((term) => {
-      if (term.language === language) {
-        translations[term.key] = term.text
-      }
+    Object.keys(data).forEach((term) => {
+      translations[term] = data[term]
     })
 
     return translations
