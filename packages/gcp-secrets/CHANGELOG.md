@@ -1,4 +1,13 @@
  
+# [3.3.0](https://github.com/TriPSs/nx-extend/compare/gcp-secrets@3.2.6...gcp-secrets@3.3.0) (2022-09-28)
+
+
+### Features
+
+* **gcp-secrets:** Added the `secret` option to all executors to only target that secret ([83bde91](https://github.com/TriPSs/nx-extend/commit/83bde91b5d84985db92d27a30ef912060e10b6ff))
+
+
+
 ## [3.2.6](https://github.com/TriPSs/nx-extend/compare/gcp-secrets@3.2.5...gcp-secrets@3.2.6) (2022-06-15)
 
 
