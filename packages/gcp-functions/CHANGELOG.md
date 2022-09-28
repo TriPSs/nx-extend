@@ -1,4 +1,13 @@
  
+## [6.3.2](https://github.com/TriPSs/nx-extend/compare/gcp-functions@6.3.1...gcp-functions@6.3.2) (2022-09-28)
+
+
+### Bug Fixes
+
+* **gcp-functions:** Set the `main` correctly inside the generated package.json ([8f4efe5](https://github.com/TriPSs/nx-extend/commit/8f4efe57048ebfe36ac22e713ec8d6cf41b9689d))
+
+
+
 ## [6.3.1](https://github.com/TriPSs/nx-extend/compare/gcp-functions@6.3.0...gcp-functions@6.3.1) (2022-09-23)
 
 
