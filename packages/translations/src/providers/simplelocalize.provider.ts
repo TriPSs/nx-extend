@@ -7,6 +7,7 @@ import BaseProvider from './base.provider'
 
 export interface SimpleLocalizeConfig extends BaseConfigFile {
   tokenFrom?: string
+  autoTranslate?: boolean
 }
 
 // TODO:: Add support to trigger auto translate
@@ -83,6 +84,12 @@ export default class SimpleLocalize extends BaseProvider<SimpleLocalizeConfig> {
     )
 
     logger.info('Translations uploaded!')
+
+    if (this.config.autoTranslate) {
+      for (const language of this.config.languages) {
+        await this.autoTranslate(language)
+      }
+    }
 
     return true
   }
@@ -213,7 +220,25 @@ export default class SimpleLocalize extends BaseProvider<SimpleLocalizeConfig> {
     return basicAuth
   }
 
-  private async get<Data = any>(url: string, config: AxiosRequestConfig<Data>, isRetry = false) {
+  private async autoTranslate(language: string) {
+    await this.post(
+      '/jobs/auto-translate',
+      {
+        translationProvider: this.config.translator.toUpperCase(),
+        sourceProjectLanguage: this.config.defaultLanguage,
+        deeplFormality: this.config?.translatorOptions?.formality ?? undefined,
+        targetLanguage: language,
+        targetProjectLanguage: language
+      },
+      {
+        headers: {
+          'X-SimpleLocalize-Token': await this.getToken()
+        }
+      }
+    )
+  }
+
+  private async get<Data = any>(url: string, config?: AxiosRequestConfig<Data>, isRetry = false) {
     try {
       const response = await this.apiClient.get<Data>(
         url,
@@ -223,7 +248,10 @@ export default class SimpleLocalize extends BaseProvider<SimpleLocalizeConfig> {
       return response.data
     } catch (err) {
       if (err.response.status === 429 && !isRetry) {
-        await new Promise((resolve) => setTimeout(resolve, err.response.headers['retry-after'] * 1000))
+        const waitTime = err.response.headers['retry-after'] * 1000
+        logger.debug(`Hit the rate limit, waiting ${waitTime} seconds...`)
+
+        await new Promise((resolve) => setTimeout(resolve, waitTime))
 
         return this.get(url, config, true)
       } else {
@@ -243,7 +271,10 @@ export default class SimpleLocalize extends BaseProvider<SimpleLocalizeConfig> {
       return response.data
     } catch (err) {
       if (err.response.status === 429 && !isRetry) {
-        await new Promise((resolve) => setTimeout(resolve, err.response.headers['retry-after'] * 1000))
+        const waitTime = err.response.headers['retry-after'] * 1000
+        logger.debug(`Hit the rate limit, waiting ${waitTime} seconds...`)
+
+        await new Promise((resolve) => setTimeout(resolve, waitTime))
 
         return this.get(url, config, true)
       } else {
