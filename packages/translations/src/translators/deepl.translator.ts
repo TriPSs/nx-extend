@@ -1,8 +1,8 @@
 import { ExecutorContext, logger } from '@nrwl/devkit'
 import axios from 'axios'
 
-import { BaseConfigFile } from '../utils/config-file'
 import BaseProvider from '../providers/base.provider'
+import { BaseConfigFile } from '../utils/config-file'
 
 export interface Message {
 
@@ -11,6 +11,8 @@ export interface Message {
   value: string
 
 }
+
+export const DEEPL_SUPPORT_LANGUAGES = ['BG', 'CS', 'DA', 'DE', 'EL', 'EN-GB', 'EN-US', 'ES', 'ET', 'FI', 'FR', 'HU', 'ID', 'IT', 'JA', 'LT', 'LV', 'NL', 'PL', 'PT-BR', 'PT-PT', 'RO', 'RU', 'SK', 'SL', 'SV', 'TR', 'UK', 'ZH']
 
 export default class DeeplTranslator {
 

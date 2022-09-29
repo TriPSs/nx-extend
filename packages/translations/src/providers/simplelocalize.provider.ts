@@ -2,12 +2,14 @@ import { logger } from '@nrwl/devkit'
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios'
 import { existsSync } from 'fs'
 
+import { DEEPL_SUPPORT_LANGUAGES } from '../translators/deepl.translator'
 import { BaseConfigFile, updateConfigFile } from '../utils/config-file'
 import BaseProvider from './base.provider'
 
 export interface SimpleLocalizeConfig extends BaseConfigFile {
   tokenFrom?: string
   autoTranslate?: boolean
+  publishAfterPush?: boolean
 }
 
 // TODO:: Add support to trigger auto translate
@@ -32,6 +34,25 @@ export default class SimpleLocalize extends BaseProvider<SimpleLocalizeConfig> {
     const sourceTerms = this.getSourceTerms()
 
     await this.uploadTranslations(this.config.defaultLanguage, sourceTerms)
+
+    if (this.config.autoTranslate) {
+      logger.info('Auto translate is enabled, starting it')
+
+      for (const language of this.config.languages) {
+        if (language !== this.config.defaultLanguage) {
+          await this.autoTranslate(language)
+        }
+      }
+    }
+
+    if (this.config.publishAfterPush) {
+      logger.info('Publish after push is enabled, publishing latest changes')
+      await this.post('/translations/publish', null, {
+        headers: {
+          'X-SimpleLocalize-Token': await this.getToken()
+        }
+      })
+    }
   }
 
   public async getTranslations(language: string): Promise<{ [key: string]: string }> {
@@ -75,12 +96,6 @@ export default class SimpleLocalize extends BaseProvider<SimpleLocalizeConfig> {
     )
 
     logger.info('Translations uploaded!')
-
-    if (this.config.autoTranslate) {
-      for (const language of this.config.languages) {
-        await this.autoTranslate(language)
-      }
-    }
 
     return true
   }
@@ -212,21 +227,39 @@ export default class SimpleLocalize extends BaseProvider<SimpleLocalizeConfig> {
   }
 
   private async autoTranslate(language: string) {
-    await this.post(
-      '/jobs/auto-translate',
-      {
-        translationProvider: this.config.translator.toUpperCase(),
-        sourceProjectLanguage: this.config.defaultLanguage,
-        deeplFormality: this.config?.translatorOptions?.formality ?? undefined,
-        targetLanguage: language,
-        targetProjectLanguage: language
-      },
-      {
-        headers: {
-          'X-SimpleLocalize-Token': await this.getToken()
+    try {
+      let translationProvider = this.config.translator.toUpperCase()
+
+      if (translationProvider === 'DEEPL' && !DEEPL_SUPPORT_LANGUAGES.includes(language.toUpperCase())) {
+        if (this.config.translatorOptions?.fallbackToGooleTranslate) {
+          logger.warn(`Language "${language}" will use Google Translate as it's not supported by DeepL!`)
+          translationProvider = 'GOOGLE_TRANSLATE'
+
+        } else {
+          logger.warn(`Skipping auto translate for "${language}" as it's not support by DeepL!`)
+          return
         }
       }
-    )
+
+      await this.post(
+        '/jobs/auto-translate',
+        {
+          translationProvider,
+          sourceProjectLanguage: this.config.defaultLanguage,
+          deeplFormality: this.config?.translatorOptions?.formality ?? undefined,
+          targetLanguage: language.toUpperCase(),
+          targetProjectLanguage: language
+        },
+        {
+          headers: {
+            'X-SimpleLocalize-Token': await this.getToken()
+          }
+        }
+      )
+    } catch (err) {
+      logger.error(`Error starting auto translate for language "${language}"`)
+      console.error(err)
+    }
   }
 
   private async get<Data = any>(url: string, config?: AxiosRequestConfig<Data>, isRetry = false) {

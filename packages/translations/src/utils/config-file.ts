@@ -49,6 +49,7 @@ export interface BaseConfigFile {
      * "less" - for a more informal language
      */
     formality?: 'default' | 'more' | 'less'
+    fallbackToGooleTranslate?: boolean
   }
 
   languages: string[]
