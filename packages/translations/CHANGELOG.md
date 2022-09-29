@@ -1,4 +1,13 @@
  
+## [7.1.1](https://github.com/TriPSs/nx-extend/compare/translations@7.1.0...translations@7.1.1) (2022-09-29)
+
+
+### Bug Fixes
+
+* **translations:** Fixed pulling of translations not working for SimpleLocalize ([7cfa54c](https://github.com/TriPSs/nx-extend/commit/7cfa54c098afb5b8b19d0f9e44acea80552c7211))
+
+
+
 # [7.1.0](https://github.com/TriPSs/nx-extend/compare/translations@7.0.0...translations@7.1.0) (2022-09-29)
 
 
