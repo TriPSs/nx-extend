@@ -1,4 +1,13 @@
  
+## [6.3.3](https://github.com/TriPSs/nx-extend/compare/gcp-functions@6.3.2...gcp-functions@6.3.3) (2022-09-29)
+
+
+### Bug Fixes
+
+* **gcp-functions:** Update jest file of init to typescript ([091f950](https://github.com/TriPSs/nx-extend/commit/091f950e5afab79db833ab5d1ea8413eb604361b))
+
+
+
 ## [6.3.2](https://github.com/TriPSs/nx-extend/compare/gcp-functions@6.3.1...gcp-functions@6.3.2) (2022-09-28)
 
 
