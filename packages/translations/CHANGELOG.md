@@ -1,4 +1,13 @@
  
+# [7.1.0](https://github.com/TriPSs/nx-extend/compare/translations@7.0.0...translations@7.1.0) (2022-09-29)
+
+
+### Features
+
+* **translations:** Made auto translate more robust and added `publishAfterPush` option ([0ab3fd8](https://github.com/TriPSs/nx-extend/commit/0ab3fd8a499f1edbbe8441aa9c9835ddb54d9cc7))
+
+
+
 # [7.0.0](https://github.com/TriPSs/nx-extend/compare/translations@6.4.2...translations@7.0.0) (2022-09-28)
 
 
