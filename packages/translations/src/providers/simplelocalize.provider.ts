@@ -56,7 +56,7 @@ export default class SimpleLocalize extends BaseProvider<SimpleLocalizeConfig> {
   }
 
   public async getTranslations(language: string): Promise<{ [key: string]: string }> {
-    const { data } = await this.get<any>(`https://cdn.simplelocalize.io/${this.config.projectId}/_latest/${language}`)
+    const data = await this.get<any>(`https://cdn.simplelocalize.io/${this.config.projectId}/_latest/${language}`)
 
     const translations = {}
 
