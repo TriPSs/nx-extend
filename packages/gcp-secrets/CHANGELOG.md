@@ -1,4 +1,13 @@
  
+## [3.3.1](https://github.com/TriPSs/nx-extend/compare/gcp-secrets@3.3.0...gcp-secrets@3.3.1) (2022-09-29)
+
+
+### Bug Fixes
+
+* **gcp-secrets:** Fixed README and re-release ([bd04aa2](https://github.com/TriPSs/nx-extend/commit/bd04aa26e1c62f104bcd952db513d4cf843496a7))
+
+
+
 # [3.3.0](https://github.com/TriPSs/nx-extend/compare/gcp-secrets@3.2.6...gcp-secrets@3.3.0) (2022-09-28)
 
 
