@@ -23,23 +23,26 @@ Add an environment variable named `GCP_SECRETS_ENCRYPTION_KEY` that holds your k
 
 #### Available options:
 
-| name         | type     | default | description                                          |
-| ------------ | -------- | ------- | ---------------------------------------------------- |
+| name           | type     | default | description                            |
+|----------------|----------|---------|----------------------------------------|
+| **`--secret`** | `string` |         | Only decrypt the secret with this name |
 
 ### Deploy
 
 #### Available options:
 
-| name         | type     | default | description                                          |
-| ------------ | -------- | ------- | ---------------------------------------------------- |
-| **`--project`** | `string` | | GCP project to deploy to|
+| name            | type     | default | description                            |
+|-----------------|----------|---------|----------------------------------------|
+| **`--project`** | `string` |         | GCP project to deploy to               |
+| **`--secret`**  | `string` |         | Only decrypt the secret with this name |
 
 ### Encrypt
 
 #### Available options:
 
-| name         | type     | default | description                                          |
-| ------------ | -------- | ------- | ---------------------------------------------------- |
+| name           | type     | default | description                            |
+|----------------|----------|---------|----------------------------------------|
+| **`--secret`** | `string` |         | Only decrypt the secret with this name |
 
 ## Meta data explained
 
