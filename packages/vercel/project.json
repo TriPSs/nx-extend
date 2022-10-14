@@ -11,7 +11,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/packages/vercel"],
+      "outputs": ["{workspaceRoot}/coverage/packages/vercel"],
       "options": {
         "jestConfig": "packages/vercel/jest.config.ts",
         "passWithNoTests": true

@@ -11,7 +11,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/packages/gcp-functions"],
+      "outputs": ["{workspaceRoot}/coverage/packages/gcp-functions"],
       "options": {
         "jestConfig": "packages/gcp-functions/jest.config.ts",
         "passWithNoTests": true

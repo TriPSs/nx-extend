@@ -11,7 +11,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/packages/changelog-notify"],
+      "outputs": ["{workspaceRoot}/coverage/packages/changelog-notify"],
       "options": {
         "jestConfig": "packages/changelog-notify/jest.config.ts",
         "passWithNoTests": true

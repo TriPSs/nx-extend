@@ -11,7 +11,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/packages/gcp-deployment-manager"],
+      "outputs": ["{workspaceRoot}/coverage/packages/gcp-deployment-manager"],
       "options": {
         "jestConfig": "packages/gcp-deployment-manager/jest.config.ts",
         "passWithNoTests": true
