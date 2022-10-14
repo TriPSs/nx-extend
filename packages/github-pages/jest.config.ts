@@ -11,5 +11,6 @@ export default {
     '^.+\\.[tj]s$': 'ts-jest'
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
-  coverageDirectory: '../../coverage/packages/github-pages'
+  coverageDirectory: '../../coverage/packages/github-pages',
+  testEnvironment: 'node'
 }

@@ -11,5 +11,6 @@ export default {
     '^.+\\.[tj]s$': 'ts-jest'
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
-  coverageDirectory: '../../coverage/packages/gcp-task-runner'
+  coverageDirectory: '../../coverage/packages/gcp-task-runner',
+  testEnvironment: 'node'
 }
