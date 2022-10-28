@@ -12,6 +12,8 @@ async function run() {
       asString: true,
       silent: !core.isDebug()
     })
+
+    core.info(`Got head sha "${headSha}"`)
     let baseSha
 
     if (github.context.eventName === 'pull_request') {
@@ -31,7 +33,7 @@ async function run() {
         silent: !core.isDebug()
       })
 
-      core.info(`Got base sha from "${tag}"`)
+      core.info(`Got base sha "${baseSha}" from "${tag}"`)
     }
 
     core.setOutput('base', baseSha)

@@ -20119,7 +20119,7 @@ const execCommand = (command, options = {
     if (options.asString) {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        return result.toString();
+        return result.toString().trim();
     }
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
@@ -20419,6 +20419,7 @@ function run() {
                 asString: true,
                 silent: !core.isDebug()
             });
+            core.info(`Got head sha "${headSha}"`);
             let baseSha;
             if (github.context.eventName === 'pull_request') {
                 core.info(`This is a pull request, get sha from "origin/${mainBranchName}"`);
@@ -20436,7 +20437,7 @@ function run() {
                     asString: true,
                     silent: !core.isDebug()
                 });
-                core.info(`Got base sha from "${tag}"`);
+                core.info(`Got base sha "${baseSha}" from "${tag}"`);
             }
             core.setOutput('base', baseSha);
             core.exportVariable('NX_BASE', baseSha);

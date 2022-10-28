@@ -38,7 +38,7 @@ export const execCommand = <Output = { success: boolean, output: string }>(
   if (options.asString) {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    return result.toString()
+    return result.toString().trim()
   }
 
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
