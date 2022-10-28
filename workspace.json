@@ -2,6 +2,7 @@
   "version": 2,
   "projects": {
     "actions-run-many": "actions/run-many",
+    "actions-set-shas": "actions/set-shas",
     "changelog-notify": "packages/changelog-notify",
     "core": "packages/core",
     "e2e-runner": "packages/e2e-runner",
