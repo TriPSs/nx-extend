@@ -2,7 +2,6 @@ import * as core from '@actions/core'
 import * as github from '@actions/github'
 
 import { execCommand } from './utils/exec'
-import { exportVariable } from '@actions/core'
 
 async function run() {
   try {
@@ -17,7 +16,10 @@ async function run() {
 
     if (github.context.eventName === 'pull_request') {
       core.info(`This is a pull request, get sha from "origin/${mainBranchName}"`)
-      baseSha = execCommand(`git merge-base origin/${mainBranchName} HEAD`)
+      baseSha = execCommand(`git merge-base origin/${mainBranchName} HEAD`, {
+        asString: true,
+        silent: !core.isDebug()
+      })
 
     } else {
       const tag = execCommand('git describe --tags --abbrev=0', {
