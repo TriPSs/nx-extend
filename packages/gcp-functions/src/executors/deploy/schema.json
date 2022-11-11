@@ -1,4 +1,6 @@
 {
+  "version": 2,
+  "outputCapture": "direct-nodejs",
   "$schema": "http://json-schema.org/schema",
   "type": "object",
   "cli": "nx",
@@ -16,13 +18,7 @@
     "trigger": {
       "type": "string",
       "description": "Trigger type",
-      "enum": [
-        "http",
-        "bucket",
-        "topic",
-        "resource",
-        "event"
-      ]
+      "enum": ["http", "bucket", "topic", "resource", "event"]
     },
     "triggerValue": {
       "type": "string",
@@ -30,22 +26,11 @@
     },
     "runtime": {
       "type": "string",
-      "enum": [
-        "nodejs12",
-        "nodejs14",
-        "nodejs16"
-      ]
+      "enum": ["nodejs12", "nodejs14", "nodejs16"]
     },
     "memory": {
       "type": "string",
-      "enum": [
-        "128MB",
-        "256MB",
-        "512MB",
-        "1024MB",
-        "2048MB",
-        "4096MB"
-      ]
+      "enum": ["128MB", "256MB", "512MB", "1024MB", "2048MB", "4096MB"]
     },
     "allowUnauthenticated": {
       "type": "boolean"
@@ -65,25 +50,15 @@
     },
     "ingressSettings": {
       "type": "string",
-      "enum": [
-        "all",
-        "internal-only",
-        "internal-and-gclb"
-      ]
+      "enum": ["all", "internal-only", "internal-and-gclb"]
     },
     "egressSettings": {
       "type": "string",
-      "enum": [
-        "all",
-        "private-ranges-only"
-      ]
+      "enum": ["all", "private-ranges-only"]
     },
     "securityLevel": {
       "type": "string",
-      "enum": [
-        "secure-optional",
-        "secure-always"
-      ]
+      "enum": ["secure-optional", "secure-always"]
     },
     "secrets": {
       "type": "array",

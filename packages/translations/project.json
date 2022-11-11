@@ -1,4 +1,5 @@
 {
+  "name": "translations",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/translations/src",
   "projectType": "library",
@@ -11,7 +12,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/packages/translations"],
+      "outputs": ["{workspaceRoot}/coverage/packages/translations"],
       "options": {
         "jestConfig": "packages/translations/jest.config.ts",
         "passWithNoTests": true

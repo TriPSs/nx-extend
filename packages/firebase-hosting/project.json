@@ -1,4 +1,5 @@
 {
+  "name": "firebase-hosting",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/firebase-hosting/src",
   "projectType": "library",
@@ -11,7 +12,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/packages/firebase-hosting"],
+      "outputs": ["{workspaceRoot}/coverage/packages/firebase-hosting"],
       "options": {
         "jestConfig": "packages/firebase-hosting/jest.config.ts",
         "passWithNoTests": true

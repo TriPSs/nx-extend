@@ -1,4 +1,6 @@
 {
+  "version": 2,
+  "outputCapture": "direct-nodejs",
   "$schema": "http://json-schema.org/schema",
   "type": "object",
   "cli": "nx",
@@ -48,10 +50,7 @@
       "oneOf": [
         {
           "type": "string",
-          "enum": [
-            "none",
-            "all"
-          ]
+          "enum": ["none", "all"]
         },
         {
           "type": "array",
@@ -111,10 +110,7 @@
           }
         },
         "additionalProperties": false,
-        "required": [
-          "replace",
-          "with"
-        ]
+        "required": ["replace", "with"]
       },
       "default": []
     },
@@ -143,10 +139,7 @@
       "default": false
     }
   },
-  "required": [
-    "tsConfig",
-    "main"
-  ],
+  "required": ["tsConfig", "main"],
   "definitions": {
     "assetPattern": {
       "oneOf": [
@@ -174,11 +167,7 @@
             }
           },
           "additionalProperties": false,
-          "required": [
-            "glob",
-            "input",
-            "output"
-          ]
+          "required": ["glob", "input", "output"]
         },
         {
           "type": "string"

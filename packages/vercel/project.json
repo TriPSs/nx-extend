@@ -1,4 +1,5 @@
 {
+  "name": "vercel",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/vercel/src",
   "projectType": "library",
@@ -11,7 +12,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/packages/vercel"],
+      "outputs": ["{workspaceRoot}/coverage/packages/vercel"],
       "options": {
         "jestConfig": "packages/vercel/jest.config.ts",
         "passWithNoTests": true

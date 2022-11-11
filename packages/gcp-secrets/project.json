@@ -1,4 +1,5 @@
 {
+  "name": "gcp-secrets",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/gcp-secrets/src",
   "projectType": "library",
@@ -11,7 +12,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/packages/gcp-secrets"],
+      "outputs": ["{workspaceRoot}/coverage/packages/gcp-secrets"],
       "options": {
         "jestConfig": "packages/gcp-secrets/jest.config.ts",
         "passWithNoTests": true

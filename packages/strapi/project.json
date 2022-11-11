@@ -1,4 +1,5 @@
 {
+  "name": "strapi",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/strapi/src",
   "projectType": "library",
@@ -11,7 +12,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/packages/strapi"],
+      "outputs": ["{workspaceRoot}/coverage/packages/strapi"],
       "options": {
         "jestConfig": "packages/strapi/jest.config.ts",
         "passWithNoTests": true

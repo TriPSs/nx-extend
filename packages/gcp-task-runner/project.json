@@ -1,4 +1,5 @@
 {
+  "name": "gcp-task-runner",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/gcp-task-runner/src",
   "projectType": "library",
@@ -44,7 +45,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/packages/gcp-task-runner"],
+      "outputs": ["{workspaceRoot}/coverage/packages/gcp-task-runner"],
       "options": {
         "jestConfig": "packages/gcp-task-runner/jest.config.ts",
         "passWithNoTests": true

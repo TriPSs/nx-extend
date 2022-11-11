@@ -1,4 +1,5 @@
 {
+  "name": "gcp-storage",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/gcp-storage/src",
   "projectType": "library",
@@ -11,7 +12,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/packages/gcp-storage"],
+      "outputs": ["{workspaceRoot}/coverage/packages/gcp-storage"],
       "options": {
         "jestConfig": "packages/gcp-storage/jest.config.ts",
         "passWithNoTests": true
