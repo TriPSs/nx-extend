@@ -7990,6 +7990,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/yargs@npm:^17.0.13":
+  version: 17.0.13
+  resolution: "@types/yargs@npm:17.0.13"
+  dependencies:
+    "@types/yargs-parser": "*"
+  checksum: 0ab269abc2da2223cf0a8c16d578850fbe327d40fb85724b5c3f9f6cf38d03656ef699518c05d4df3bc337339ec6d0aad7df01682a9dca4783ad1ccc7336cf12
+  languageName: node
+  linkType: hard
+
 "@types/yargs@npm:^17.0.8":
   version: 17.0.12
   resolution: "@types/yargs@npm:17.0.12"
@@ -18946,6 +18955,7 @@ __metadata:
     "@types/jest": 28.1.8
     "@types/node": 18.7.18
     "@types/shelljs": ^0.8.11
+    "@types/yargs": ^17.0.13
     "@typescript-eslint/eslint-plugin": 5.11.0
     "@typescript-eslint/parser": 5.11.0
     axios: ^0.27.2
@@ -18968,6 +18978,7 @@ __metadata:
     tslib: ^2.3.1
     tslint: ~6.1.3
     typescript: 4.8.4
+    yargs: ^17.6.2
   languageName: unknown
   linkType: soft
 

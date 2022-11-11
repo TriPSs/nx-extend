@@ -34,7 +34,8 @@
     "deepmerge": "^4.2.2",
     "rxjs-for-await": "^1.0.0",
     "shelljs": "^0.8.5",
-    "tslib": "^2.3.0"
+    "tslib": "^2.3.0",
+    "yargs": "^17.6.2"
   },
   "devDependencies": {
     "@actions/core": "^1.10.0",
@@ -58,6 +59,7 @@
     "@types/jest": "28.1.8",
     "@types/node": "18.7.18",
     "@types/shelljs": "^0.8.11",
+    "@types/yargs": "^17.0.13",
     "@typescript-eslint/eslint-plugin": "5.11.0",
     "@typescript-eslint/parser": "5.11.0",
     "dotenv": "16.0.2",

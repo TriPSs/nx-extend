@@ -33,3 +33,7 @@ inputs:
   postTargets:
     description: 'Targets to run after'
     required: false
+
+  includeLibs:
+    description: 'Also include affected libs'
+    required: false
