@@ -18,7 +18,23 @@ nx g @nx-extend/e2e-runner:add
 #### Available options:
 
 > All options of @nrwl/cypress:cypress are available here if runner = cypress
-> All options of @nx-extend/playwright:test are available here if runner = playwright
+> All options of @nx-extend/playwright:test are available here if runner = playwright 
+
+
+### Target options:
+The `targets` option is used to define targets that should be started before running the tests.
+Each target can be configured with the following options.
+
+```typescript
+{
+  target: string // The target to run.
+  checkUrl?: string // The url to check if the target is "live", a target is live if this url returns a status-code in the 200 range.
+  checkMaxTries?: number // The amount of times the `checkUrl` is tried before failing, there is a two second delay between tries.
+  env?: { [key: string]: string } // Extra parameters provided to the target on startup.
+  reuseExistingServer?: boolean // Set to true to allow using a previously started target.
+  rejectUnauthorized?: boolean // Set to false to allow the use of self-signed certificates in your target.
+}
+```
 
 Example target
 
@@ -33,7 +49,8 @@ Example target
         {
           "target": "app:serve",
           "checkUrl": "http://localhost:4200/",
-          "checkMaxTries": 50
+          "checkMaxTries": 50,
+          "rejectUnauthorized": true
         },
         {
           "target": "api:serve",

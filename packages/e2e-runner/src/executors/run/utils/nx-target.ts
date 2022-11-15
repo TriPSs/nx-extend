@@ -10,10 +10,10 @@ export interface NxTargetOptions {
   checkMaxTries?: number
   env?: { [key: string]: string }
   reuseExistingServer?: boolean
+  rejectUnauthorized?: boolean
 }
 
 export class NxTarget {
-
   private _isAvailable: () => Promise<boolean>
   private _killProcess?: () => Promise<void>
   private _processExitedPromise!: Promise<any>
@@ -24,14 +24,16 @@ export class NxTarget {
   constructor(options: NxTargetOptions) {
     this._options = options
 
-    this._isAvailable = () => isApiLive(options.checkUrl)
+    this._isAvailable = () =>
+      isApiLive(options.checkUrl, {
+        rejectUnauthorized: options.rejectUnauthorized
+      })
   }
 
   public async setup() {
     try {
       await this._startProcess()
       await this._waitForProcess()
-
     } catch (error) {
       await this.teardown()
       throw error
@@ -46,10 +48,11 @@ export class NxTarget {
   }
 
   private async _startProcess(): Promise<void> {
-    let processExitedReject = (error: Error) => {
-    }
+    let processExitedReject = (error: Error) => {}
 
-    this._processExitedPromise = new Promise((_, reject) => processExitedReject = reject)
+    this._processExitedPromise = new Promise(
+      (_, reject) => (processExitedReject = reject)
+    )
 
     const isAlreadyAvailable = await this._isAvailable()
 
@@ -58,13 +61,20 @@ export class NxTarget {
         return
       }
 
-      throw new Error(`${this._options.checkUrl} is already used, make sure that nothing is running on the port/url or set reuseExistingServer:true.`)
+      throw new Error(
+        `${this._options.checkUrl} is already used, make sure that nothing is running on the port/url or set reuseExistingServer:true.`
+      )
     }
 
     logger.info(`Starting target "${this._options.target}"`)
 
     this._killProcess = await launchProcess(this._options.target, {
-      onExit: (code) => processExitedReject(new Error(`Target "${this._options.target}" was not able to start. Exit code: ${code}`)),
+      onExit: (code) =>
+        processExitedReject(
+          new Error(
+            `Target "${this._options.target}" was not able to start. Exit code: ${code}`
+          )
+        ),
       env: this._options.env
     })
 
@@ -81,20 +91,26 @@ export class NxTarget {
   private async _waitForAvailability() {
     const cancellationToken = { canceled: this.killed }
 
-    const error = (await Promise.race([
+    const error = await Promise.race([
       waitFor(this._options, this._isAvailable, cancellationToken),
       this._processExitedPromise
-    ]))
+    ])
 
     cancellationToken.canceled = true
 
     if (error) {
-      throw new Error(`Error waiting for target "${this._options.target}" to start.`)
+      throw new Error(
+        `Error waiting for target "${this._options.target}" to start.`
+      )
     }
   }
 }
 
-async function waitFor(options: NxTargetOptions, waitFn: () => Promise<boolean>, cancellationToken: { canceled: boolean }) {
+async function waitFor(
+  options: NxTargetOptions,
+  waitFn: () => Promise<boolean>,
+  cancellationToken: { canceled: boolean }
+) {
   let serverIsLive = false
   let waitTries = 0
 
@@ -114,14 +130,19 @@ async function waitFor(options: NxTargetOptions, waitFn: () => Promise<boolean>,
   return !serverIsLive
 }
 
-function launchProcess(targetString: string, options: {
-  onExit: (exitCode: number | null, signal: string | null) => void
-  env?: { [key: string]: string }
-}): () => Promise<void> {
+function launchProcess(
+  targetString: string,
+  options: {
+    onExit: (exitCode: number | null, signal: string | null) => void
+    env?: { [key: string]: string }
+  }
+): () => Promise<void> {
   const { project, target, configuration } = parseTargetString(targetString)
 
   const spawnedProcess = childProcess.spawn(
-    `npx nx ${target} ${project} ${configuration ? `--configuration=${configuration}` : ''}`,
+    `npx nx ${target} ${project} ${
+      configuration ? `--configuration=${configuration}` : ''
+    }`,
     [],
     {
       stdio: 'inherit',
