@@ -1,4 +1,8 @@
  
+## [1.0.4](https://github.com/TriPSs/nx-extend/compare/gcp-storage@1.0.3...gcp-storage@1.0.4) (2022-11-17)
+
+
+
 ## [1.0.3](https://github.com/TriPSs/nx-extend/compare/gcp-storage@1.0.2...gcp-storage@1.0.3) (2022-06-15)
 
 
