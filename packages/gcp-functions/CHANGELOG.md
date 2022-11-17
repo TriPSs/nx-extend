@@ -1,4 +1,8 @@
  
+## [6.3.4](https://github.com/TriPSs/nx-extend/compare/gcp-functions@6.3.3...gcp-functions@6.3.4) (2022-11-17)
+
+
+
 ## [6.3.3](https://github.com/TriPSs/nx-extend/compare/gcp-functions@6.3.2...gcp-functions@6.3.3) (2022-09-29)
 
 
