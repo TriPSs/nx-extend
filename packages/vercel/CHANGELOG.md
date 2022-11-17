@@ -1,4 +1,13 @@
  
+## [1.3.4](https://github.com/TriPSs/nx-extend/compare/vercel@1.3.3...vercel@1.3.4) (2022-11-17)
+
+
+### Bug Fixes
+
+* **vercel:** Also copy over `.vercelignore` ([1b391f4](https://github.com/TriPSs/nx-extend/commit/1b391f4471c2f5be8311cb344739950385832770))
+
+
+
 ## [1.3.3](https://github.com/TriPSs/nx-extend/compare/vercel@1.3.2...vercel@1.3.3) (2022-09-15)
 
 
