@@ -1,4 +1,13 @@
  
+## [3.3.2](https://github.com/TriPSs/nx-extend/compare/gcp-secrets@3.3.1...gcp-secrets@3.3.2) (2022-11-17)
+
+
+### Bug Fixes
+
+* **gcp-secrets:** Remove the file extension when encrypting/decrypting one secret ([5ceb967](https://github.com/TriPSs/nx-extend/commit/5ceb9678fe021cbf6a5fe8d5fd2093accec355fd))
+
+
+
 ## [3.3.1](https://github.com/TriPSs/nx-extend/compare/gcp-secrets@3.3.0...gcp-secrets@3.3.1) (2022-09-29)
 
 
