@@ -1,4 +1,13 @@
  
+# [2.2.0](https://github.com/TriPSs/nx-extend/compare/e2e-runner@2.1.1...e2e-runner@2.2.0) (2022-11-17)
+
+
+### Features
+
+* **e2e-runner:** add option to disable ssl-check ([8ebd4b2](https://github.com/TriPSs/nx-extend/commit/8ebd4b283d977ccf856010aacb3ab653434359c9)), closes [#82](https://github.com/TriPSs/nx-extend/issues/82)
+
+
+
 ## [2.1.1](https://github.com/TriPSs/nx-extend/compare/e2e-runner@2.1.0...e2e-runner@2.1.1) (2022-09-14)
 
 
