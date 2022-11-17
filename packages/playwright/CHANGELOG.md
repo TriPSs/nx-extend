@@ -1,4 +1,8 @@
  
+## [1.1.1](https://github.com/TriPSs/nx-extend/compare/playwright@1.1.0...playwright@1.1.1) (2022-11-17)
+
+
+
 # [1.1.0](https://github.com/TriPSs/nx-extend/compare/playwright@1.0.0...playwright@1.1.0) (2022-09-14)
 
 
