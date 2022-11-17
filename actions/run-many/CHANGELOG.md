@@ -1,4 +1,14 @@
  
+# [1.3.0](https://github.com/TriPSs/nx-extend/compare/actions-run-many@1.2.0...actions-run-many@1.3.0) (2022-11-17)
+
+
+### Features
+
+* **actions-run-many:** Also publish as script ([2be2b48](https://github.com/TriPSs/nx-extend/commit/2be2b4801f35074ab58238010a9503b5fc766566))
+* **actions-run-many:** Correctly include libs when running ([c5dfaa7](https://github.com/TriPSs/nx-extend/commit/c5dfaa762e8765122ccd83a9105eab20ee95309e))
+
+
+
 # [1.2.0](https://github.com/TriPSs/nx-extend/compare/actions-run-many@1.1.0...actions-run-many@1.2.0) (2022-09-15)
 
 
