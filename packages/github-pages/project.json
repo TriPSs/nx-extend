@@ -1,4 +1,5 @@
 {
+  "name": "github-pages",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/github-pages/src",
   "projectType": "library",
@@ -44,7 +45,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/packages/github-pages"],
+      "outputs": ["{workspaceRoot}/coverage/packages/github-pages"],
       "options": {
         "jestConfig": "packages/github-pages/jest.config.ts",
         "passWithNoTests": true

@@ -1,12 +1,11 @@
-import * as shell from 'shelljs'
-import { ShellString, ExecOptions } from 'shelljs'
 import { ChildProcess } from 'child_process'
+import * as shell from 'shelljs'
+
+import type { ExecOptions, ShellString } from 'shelljs'
 
 export interface Options extends ExecOptions {
-
   asString?: boolean
   asJSON?: boolean
-
 }
 
 export {

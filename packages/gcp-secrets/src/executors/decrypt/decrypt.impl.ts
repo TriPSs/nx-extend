@@ -16,7 +16,11 @@ export async function decyrptExecutor(
       const files = getAllSecretFiles(sourceRoot)
 
       files.map((file) => {
-        const secretName = getFileName(file)
+        const fileName = getFileName(file)
+        const fileNameParts = fileName.split('.')
+        fileNameParts.pop()
+
+        const secretName = fileNameParts.join('.')
 
         // Check if we should only deploy this secret
         if (options.secret && options.secret !== secretName) {

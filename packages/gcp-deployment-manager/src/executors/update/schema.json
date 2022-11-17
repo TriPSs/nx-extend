@@ -1,4 +1,6 @@
 {
+  "version": 2,
+  "outputCapture": "direct-nodejs",
   "$schema": "http://json-schema.org/schema",
   "type": "object",
   "cli": "nx",
@@ -16,18 +18,12 @@
     "deletePolicy": {
       "type": "string",
       "default": "delete",
-      "enum": [
-        "abandon",
-        "delete"
-      ]
+      "enum": ["abandon", "delete"]
     },
     "createPolicy": {
       "type": "string",
       "default": "create-or-acquire",
-      "enum": [
-        "acquire",
-        "create-or-acquire"
-      ]
+      "enum": ["acquire", "create-or-acquire"]
     },
     "preview": {
       "type": "boolean",

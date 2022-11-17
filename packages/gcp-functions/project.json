@@ -1,4 +1,5 @@
 {
+  "name": "gcp-functions",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/gcp-functions/src",
   "projectType": "library",
@@ -11,7 +12,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/packages/gcp-functions"],
+      "outputs": ["{workspaceRoot}/coverage/packages/gcp-functions"],
       "options": {
         "jestConfig": "packages/gcp-functions/jest.config.ts",
         "passWithNoTests": true

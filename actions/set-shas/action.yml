@@ -1,0 +1,17 @@
+name: 'Nx set SHAs'
+description: 'Derives appropriate SHAs for base and head for use in `nx affected` commands, optionally setting them as environment variables for the current job'
+
+runs:
+  using: 'node16'
+  main: './dist/index.js'
+
+inputs:
+  main-branch-name:
+    description: 'The name of the main branch in your repo, used as the target of PRs. E.g. main, master etc'
+    default: 'main'
+
+outputs:
+  base:
+    description: The value intended for use with --base or NX_BASE in all subsequent `nx affected` commands within the current workflow
+  head:
+    description: The value intended for use with --head or NX_HEAD in all subsequent `nx affected` commands within the current workflow

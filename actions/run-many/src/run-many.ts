@@ -1,68 +1,78 @@
 import * as core from '@actions/core'
-import { getProjects, logger, workspaceRoot } from '@nrwl/devkit'
+import { logger, workspaceRoot } from '@nrwl/devkit'
 import { FsTree } from 'nx/src/generators/tree'
+import { readWorkspace } from 'nx/src/generators/utils/project-configuration'
+import { hideBin } from 'yargs/helpers'
+import yargs from 'yargs/yargs'
+
+import type { ProjectConfiguration } from 'nx/src/config/workspace-json-project-json'
 
 import { buildCommand } from './utils/build-command'
 import { execCommand } from './utils/exec'
 import { runTarget } from './utils/run-target'
 
+const argv = yargs(hideBin(process.argv))
+  .options({
+    tag: { type: 'string' },
+    target: { type: 'string' },
+    parallel: { type: 'number' }
+  })
+  .parseSync()
+
 async function run() {
   try {
     const nxTree = new FsTree(workspaceRoot, false)
-    const projects = getProjects(nxTree)
+    const workspace = readWorkspace(nxTree)
 
     // Get all options
-    const tag = core.getInput('tag')
-    const target = core.getInput('target', { required: true })
+    const tag = core.getInput('tag') || argv.tag
+    const target = core.getInput('target', { required: !argv.target }) || argv.target
     const jobIndex = parseInt(core.getInput('index') || '1', 10)
     const jobCount = parseInt(core.getInput('count') || '1', 10)
-    const parallel = core.getInput('parallel')
+    const parallel = (core.getInput('parallel') || argv.parallel) as string
     const preTargets = core.getMultilineInput('preTargets', { trimWhitespace: true })
     const postTargets = core.getMultilineInput('postTargets', { trimWhitespace: true })
 
     core.debug(`Job index ${jobIndex}`)
     core.debug(`Job count ${jobCount}`)
 
-    core.debug(`Pre targets ${JSON.stringify(preTargets)}`)
-    core.debug(`Post targets ${JSON.stringify(postTargets)}`)
+    core.debug(`Pre targets ${JSON.stringify(preTargets, null, 2)}`)
+    core.debug(`Post targets ${JSON.stringify(postTargets, null, 2)}`)
 
     if (tag) {
       core.info(`Running all projects with tag "${tag}"`)
     }
 
     // Get all affected projects
-    const { projects: affectedProjects } = execCommand<{ projects: any }>(buildCommand([
+    const affectedProjects = execCommand<string>(buildCommand([
       'npx nx print-affected',
-      `--target=${target}`
+      `--target=${target}`,
+      '--select=projects'
     ]), {
-      asJSON: true,
+      asString: true,
       silent: !core.isDebug()
-    })
+    }).split(', ')
 
-    // Filter out all projects that are not allowed
-    const allowedProjects = Array.from(projects).filter(([project, config]) => {
-      // Check if the project has the ci=off tag
-      const hasCiOffTag = (config?.tags ?? []).includes('ci=off')
-      // Check if the project has the provided target
-      const hasTarget = Object.keys(config?.targets ?? {}).includes(target)
+    const projects = new Map<string, ProjectConfiguration>()
+    const projectsToRun = affectedProjects.filter((projectName) => {
+      if (!workspace.projects[projectName]) {
+        return false
+      }
 
-      // If the is disabled by ci=pff don't run it
-      if (hasCiOffTag || !hasTarget) {
-        if (hasCiOffTag) {
-          core.debug(`[${project}]: Has the "ci=off" tag, skipping it.`)
-        } else {
-          core.debug(`[${project}]: Does not have the target "${target}", skipping it.`)
-        }
+      const project = workspace.projects[projectName]
+      projects.set(projectName, project)
+
+      const tags = project.tags || []
+
+      // If the project has ci=off then don't run it
+      if (tags.includes('ci=off')) {
+        core.debug(`[${projectName}]: Has the "ci=off" tag, skipping it.`)
 
         return false
       }
 
       // If a tag is provided the project should have it
-      return !tag || (config?.tags ?? []).includes(tag)
-    }).map(([target]) => target)
-
-    const projectsToRun = affectedProjects.filter((project) => {
-      return allowedProjects.includes(project)
+      return !tag || tags.includes(tag)
     })
 
     const sliceSize = Math.max(Math.floor(projectsToRun.length / jobCount), 1)
@@ -77,7 +87,7 @@ async function run() {
       }
     }
 
-    await runTarget(projects, runProjects, target, parallel, true)
+    await runTarget(projects, runProjects, target, parallel, !argv.target)
 
     if (postTargets.length > 0) {
       for (const target of postTargets) {

@@ -98,6 +98,8 @@ export function buildExecutor(
     writeJsonFile(join(outputDirectory, vercelDirectory, 'project.json'), readJsonFile(vercelProjectJson))
     // Also copy over the env files
     copyFile(vercelEnvFileLocation, join(outputDirectory, vercelDirectory), vercelEnvFile)
+    // Also copy the .vercelignore
+    copyFile(context.root, join(outputDirectory, vercelDirectory), '.vercelignore')
   }
 
   return Promise.resolve({ success })

@@ -25,7 +25,10 @@ export const getSections = (options: NotifyChangelogOptions): Section[] => {
       }
     })
 
-  sections.push(activeSection)
+  // If we have a active section add it
+  if (activeSection) {
+    sections.push(activeSection)
+  }
 
   return sections
 }

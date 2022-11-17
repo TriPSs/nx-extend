@@ -1,4 +1,5 @@
 {
+  "name": "gcp-cloud-run",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/gcp-cloud-run/src",
   "projectType": "library",
@@ -11,7 +12,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/packages/gcp-cloud-run"],
+      "outputs": ["{workspaceRoot}/coverage/packages/gcp-cloud-run"],
       "options": {
         "jestConfig": "packages/gcp-cloud-run/jest.config.ts",
         "passWithNoTests": true

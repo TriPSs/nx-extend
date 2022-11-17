@@ -129,7 +129,7 @@ export async function deployExecutor(
     allowUnauthenticated && '--allow-unauthenticated',
     serviceAccount && `--service-account=${serviceAccount}`,
 
-    gen === 1 && validSecrets.length > 0 && `--set-secrets=${validSecrets.join(',')}`,
+    validSecrets.length > 0 && `--set-secrets=${validSecrets.join(',')}`,
 
     project && `--project=${project}`,
 
@@ -145,7 +145,6 @@ export async function deployExecutor(
 
       concurrency > 0 && `--concurrency ${concurrency}`,
       cpu && `--cpu ${cpu}`,
-      validSecrets.length > 0 && `--set-secrets=${validSecrets.join(',')}`,
       cloudSqlInstance && `--add-cloudsql-instances=${cloudSqlInstance}`,
 
       `--region=${region}`,

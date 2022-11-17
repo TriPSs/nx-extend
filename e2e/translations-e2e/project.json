@@ -1,4 +1,5 @@
 {
+  "name": "translations-e2e",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
   "sourceRoot": "e2e/translations-e2e/src",
