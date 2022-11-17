@@ -1,4 +1,8 @@
  
+## [2.4.4](https://github.com/TriPSs/nx-extend/compare/gcp-deployment-manager@2.4.3...gcp-deployment-manager@2.4.4) (2022-11-17)
+
+
+
 ## [2.4.3](https://github.com/TriPSs/nx-extend/compare/gcp-deployment-manager@2.4.2...gcp-deployment-manager@2.4.3) (2022-09-13)
 
 
