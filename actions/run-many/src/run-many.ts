@@ -1,26 +1,28 @@
 import * as core from '@actions/core'
-import { getProjects, logger, workspaceRoot } from '@nrwl/devkit'
+import { logger, workspaceRoot } from '@nrwl/devkit'
 import { FsTree } from 'nx/src/generators/tree'
+import { readWorkspace } from 'nx/src/generators/utils/project-configuration'
 import { hideBin } from 'yargs/helpers'
 import yargs from 'yargs/yargs'
 
-const argv = yargs(hideBin(process.argv))
-  .options({
-    tag: { type: 'string' },
-    target: { type: 'string' },
-    parallel: { type: 'number' },
-    includeLibs: { type: 'boolean' }
-  })
-  .parseSync()
+import type { ProjectConfiguration } from 'nx/src/config/workspace-json-project-json'
 
 import { buildCommand } from './utils/build-command'
 import { execCommand } from './utils/exec'
 import { runTarget } from './utils/run-target'
 
+const argv = yargs(hideBin(process.argv))
+  .options({
+    tag: { type: 'string' },
+    target: { type: 'string' },
+    parallel: { type: 'number' }
+  })
+  .parseSync()
+
 async function run() {
   try {
     const nxTree = new FsTree(workspaceRoot, false)
-    const projects = getProjects(nxTree)
+    const workspace = readWorkspace(nxTree)
 
     // Get all options
     const tag = core.getInput('tag') || argv.tag
@@ -30,7 +32,6 @@ async function run() {
     const parallel = (core.getInput('parallel') || argv.parallel) as string
     const preTargets = core.getMultilineInput('preTargets', { trimWhitespace: true })
     const postTargets = core.getMultilineInput('postTargets', { trimWhitespace: true })
-    // const includeLibs = Boolean(core.getInput('includeLibs')) || argv.includeLibs
 
     core.debug(`Job index ${jobIndex}`)
     core.debug(`Job count ${jobCount}`)
@@ -42,58 +43,36 @@ async function run() {
       core.info(`Running all projects with tag "${tag}"`)
     }
 
-    let affectedProjects = []
     // Get all affected projects
-    const { projects: affectedApps } = execCommand<{ projects: any }>(buildCommand([
+    const affectedProjects = execCommand<string>(buildCommand([
       'npx nx print-affected',
       `--target=${target}`,
-      '--type=app'
+      '--select=projects'
     ]), {
-      asJSON: true,
+      asString: true,
       silent: !core.isDebug()
-    })
+    }).split(', ')
 
-    affectedProjects = affectedProjects.concat(affectedApps)
+    const projects = new Map<string, ProjectConfiguration>()
+    const projectsToRun = affectedProjects.filter((projectName) => {
+      if (!workspace.projects[projectName]) {
+        return false
+      }
 
-    // if (includeLibs) {
-    //   core.info('Going to include all the libs')
-    //
-    //   const { projects: affectedLibs } = execCommand<{ projects: any }>(buildCommand([
-    //     'npx nx print-affected',
-    //     `--target=${target}`,
-    //     '--type=lib'
-    //   ]), {
-    //     asJSON: true,
-    //     silent: !core.isDebug()
-    //   })
-    //
-    //   affectedProjects = affectedProjects.concat(affectedLibs)
-    // }
+      const project = workspace.projects[projectName]
+      projects.set(projectName, project)
 
-    // Filter out all projects that are not allowed
-    const allowedProjects = Array.from(projects).filter(([project, config]) => {
-      // Check if the project has the ci=off tag
-      const hasCiOffTag = (config?.tags ?? []).includes('ci=off')
-      // Check if the project has the provided target
-      const hasTarget = Object.keys(config?.targets ?? {}).includes(target)
+      const tags = project.tags || []
 
-      // If the is disabled by ci=pff don't run it
-      if (hasCiOffTag || !hasTarget) {
-        if (hasCiOffTag) {
-          core.debug(`[${project}]: Has the "ci=off" tag, skipping it.`)
-        } else {
-          core.debug(`[${project}]: Does not have the target "${target}", skipping it.`)
-        }
+      // If the project has ci=off then don't run it
+      if (tags.includes('ci=off')) {
+        core.debug(`[${projectName}]: Has the "ci=off" tag, skipping it.`)
 
         return false
       }
 
       // If a tag is provided the project should have it
-      return !tag || (config?.tags ?? []).includes(tag)
-    }).map(([target]) => target)
-
-    const projectsToRun = affectedProjects.filter((project) => {
-      return allowedProjects.includes(project)
+      return !tag || tags.includes(tag)
     })
 
     const sliceSize = Math.max(Math.floor(projectsToRun.length / jobCount), 1)
@@ -108,7 +87,7 @@ async function run() {
       }
     }
 
-    await runTarget(projects, runProjects, target, parallel, true)
+    await runTarget(projects, runProjects, target, parallel, !argv.target)
 
     if (postTargets.length > 0) {
       for (const target of postTargets) {
