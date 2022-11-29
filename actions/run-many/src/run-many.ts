@@ -54,7 +54,7 @@ async function run() {
     }).split(', ')
 
     const projects = new Map<string, ProjectConfiguration>()
-    const projectsToRun = affectedProjects.filter((projectName) => {
+    const projectsToRun = affectedProjects.map((projectName) => projectName.trim()).filter((projectName) => {
       if (!workspace.projects[projectName]) {
         return false
       }
