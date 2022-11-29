@@ -42,7 +42,7 @@ jobs:
       ...
 
       - name: nx affected:${{ matrix.target }}
-        uses: tripss/nx-extend/actions/run-many@github-actions
+        uses: tripss/nx-extend/actions/run-many@master
         with:
           target: ${{ matrix.target }}
           index: ${{ matrix.index }}
