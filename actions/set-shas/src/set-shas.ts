@@ -23,7 +23,7 @@ async function run() {
         asString: true,
         silent: !core.isDebug()
       })
-      baseSha = execCommand(`git rev-parse ${tag}`, {
+      baseSha = execCommand(`git rev-parse ${tag}^{commit}`, {
         asString: true,
         silent: !core.isDebug()
       })
