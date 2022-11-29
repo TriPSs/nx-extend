@@ -1,4 +1,46 @@
  
+## [7.1.2](https://github.com/TriPSs/nx-extend/compare/translations@7.1.1...translations@7.1.2) (2022-11-17)
+
+
+
+## [7.1.1](https://github.com/TriPSs/nx-extend/compare/translations@7.1.0...translations@7.1.1) (2022-09-29)
+
+
+### Bug Fixes
+
+* **translations:** Fixed pulling of translations not working for SimpleLocalize ([7cfa54c](https://github.com/TriPSs/nx-extend/commit/7cfa54c098afb5b8b19d0f9e44acea80552c7211))
+
+
+
+# [7.1.0](https://github.com/TriPSs/nx-extend/compare/translations@7.0.0...translations@7.1.0) (2022-09-29)
+
+
+### Features
+
+* **translations:** Made auto translate more robust and added `publishAfterPush` option ([0ab3fd8](https://github.com/TriPSs/nx-extend/commit/0ab3fd8a499f1edbbe8441aa9c9835ddb54d9cc7))
+
+
+
+# [7.0.0](https://github.com/TriPSs/nx-extend/compare/translations@6.4.2...translations@7.0.0) (2022-09-28)
+
+
+### Bug Fixes
+
+* **translations:** Wrap all calls to SimpleLocalize around rate limit handler ([b32c42f](https://github.com/TriPSs/nx-extend/commit/b32c42f20e344ff6cc5b27469e0d98aeeb3d73c3))
+
+
+### Features
+
+* **translations:** Added auto translate support for SimpleLocalize ([88c280f](https://github.com/TriPSs/nx-extend/commit/88c280f79ac0fabf4e741e5d3cd8a4757ef9815a))
+* **translations:** Speed up SimpleLocalize translations pulling ([4199354](https://github.com/TriPSs/nx-extend/commit/4199354f9299befc94ec9597996e07470390f1bf))
+
+
+### BREAKING CHANGES
+
+* **translations:** Only published translations in the latest environment are now pulled
+
+
+
 ## [6.4.2](https://github.com/TriPSs/nx-extend/compare/translations@6.4.1...translations@6.4.2) (2022-09-13)
 
 

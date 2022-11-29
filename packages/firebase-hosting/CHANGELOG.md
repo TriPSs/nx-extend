@@ -1,4 +1,8 @@
  
+## [2.1.5](https://github.com/TriPSs/nx-extend/compare/firebase-hosting@2.1.4...firebase-hosting@2.1.5) (2022-11-17)
+
+
+
 ## [2.1.4](https://github.com/TriPSs/nx-extend/compare/firebase-hosting@2.1.3...firebase-hosting@2.1.4) (2022-09-23)
 
 

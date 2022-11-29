@@ -1,4 +1,35 @@
  
+## [6.3.4](https://github.com/TriPSs/nx-extend/compare/gcp-functions@6.3.3...gcp-functions@6.3.4) (2022-11-17)
+
+
+
+## [6.3.3](https://github.com/TriPSs/nx-extend/compare/gcp-functions@6.3.2...gcp-functions@6.3.3) (2022-09-29)
+
+
+### Bug Fixes
+
+* **gcp-functions:** Update jest file of init to typescript ([091f950](https://github.com/TriPSs/nx-extend/commit/091f950e5afab79db833ab5d1ea8413eb604361b))
+
+
+
+## [6.3.2](https://github.com/TriPSs/nx-extend/compare/gcp-functions@6.3.1...gcp-functions@6.3.2) (2022-09-28)
+
+
+### Bug Fixes
+
+* **gcp-functions:** Set the `main` correctly inside the generated package.json ([8f4efe5](https://github.com/TriPSs/nx-extend/commit/8f4efe57048ebfe36ac22e713ec8d6cf41b9689d))
+
+
+
+## [6.3.1](https://github.com/TriPSs/nx-extend/compare/gcp-functions@6.3.0...gcp-functions@6.3.1) (2022-09-23)
+
+
+### Bug Fixes
+
+* **gcp-functions:** Set the `main` correctly inside the generated package.json ([3b0c574](https://github.com/TriPSs/nx-extend/commit/3b0c574f14670b4f2332d6bc1038ade5824b85e5))
+
+
+
 # [6.3.0](https://github.com/TriPSs/nx-extend/compare/gcp-functions@6.2.5...gcp-functions@6.3.0) (2022-09-23)
 
 
