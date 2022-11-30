@@ -1,4 +1,13 @@
  
+## [2.2.1](https://github.com/TriPSs/nx-extend/compare/e2e-runner@2.2.0...e2e-runner@2.2.1) (2022-11-30)
+
+
+### Bug Fixes
+
+* **e2e-runner:** report when reusing existing server ([5bcbb22](https://github.com/TriPSs/nx-extend/commit/5bcbb22936f9f938460c772796af58f4a1554010)), closes [#86](https://github.com/TriPSs/nx-extend/issues/86)
+
+
+
 # [2.2.0](https://github.com/TriPSs/nx-extend/compare/e2e-runner@2.1.1...e2e-runner@2.2.0) (2022-11-17)
 
 
