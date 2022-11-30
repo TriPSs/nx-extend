@@ -58,6 +58,7 @@ export class NxTarget {
 
     if (isAlreadyAvailable) {
       if (this._options.reuseExistingServer) {
+        logger.info(`Reusing existing server for target "${this._options.target}"`)
         return
       }
 
@@ -111,7 +112,7 @@ async function waitFor(
   waitFn: () => Promise<boolean>,
   cancellationToken: { canceled: boolean }
 ) {
-  let serverIsLive = false
+  let serverIsLive = await waitFn()
   let waitTries = 0
 
   while (!serverIsLive && !cancellationToken.canceled) {
