@@ -1,4 +1,13 @@
  
+## [1.5.1](https://github.com/TriPSs/nx-extend/compare/actions-run-many@1.5.0...actions-run-many@1.5.1) (2022-12-08)
+
+
+### Bug Fixes
+
+* **run-many:** Added `config` to action.yml ([40b6cd3](https://github.com/TriPSs/nx-extend/commit/40b6cd36d4ef315ac9c91aa0aeecd1a589c6d426))
+
+
+
 # [1.5.0](https://github.com/TriPSs/nx-extend/compare/actions-run-many@1.4.0...actions-run-many@1.5.0) (2022-12-08)
 
 
