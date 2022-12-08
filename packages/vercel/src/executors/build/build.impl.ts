@@ -49,11 +49,14 @@ export function buildExecutor(
     settings: {}
   })
 
+  const vercelEnironment = context.configurationName === 'production'
+    ? 'production'
+    : 'preview'
+
   // Pull latest
   execCommand(buildCommand([
     'npx vercel pull --yes',
-    context.configurationName === 'production' && '--environment=production',
-    context.configurationName !== 'production' && '--environment=preview',
+    `--environment=${vercelEnironment}`,
 
     options.debug && '--debug'
   ]))
@@ -61,10 +64,6 @@ export function buildExecutor(
   const vercelDirectory = '.vercel'
   const vercelProjectJson = `./${vercelDirectory}/project.json`
   const outputDirectory = targets[buildTarget]?.options?.outputPath
-
-  const vercelEnironment = context.configurationName === 'production'
-    ? 'production'
-    : 'preview'
 
   const vercelEnvFile = `.env.${vercelEnironment}.local`
   const vercelEnvFileLocation = join(context.root, vercelDirectory)
@@ -83,7 +82,7 @@ export function buildExecutor(
       framework,
       devCommand: null,
       installCommand: 'echo \'\'',
-      buildCommand: `nx ${buildTarget} ${context.projectName}${context.configurationName === 'production' ? ' --prod' : ''}`,
+      buildCommand: `nx run ${context.projectName}:${buildTarget}:${context.configurationName}`,
       outputDirectory: getOutputDirectory(options.framework, outputDirectory),
       rootDirectory: null,
       directoryListing: false,

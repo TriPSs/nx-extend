@@ -1,8 +1,9 @@
+import * as githubCore from '@actions/core'
 import { buildCommand, execCommand } from '@nx-extend/core'
 import { existsSync } from 'fs'
 import { join } from 'path'
+import * as process from 'process'
 
-import type { BuildOptions } from '../build/build.impl'
 import type { ExecutorContext } from '@nrwl/devkit'
 
 export interface DeployOptions {
@@ -35,9 +36,17 @@ export async function deployExecutor(
     cwd: targets[buildTarget].options.outputPath
   })
 
-  // TODO:: Get url from output
-  console.log("TST", output)
-  // Production:
+  // When running in GitHub CI add the URL of the deployment as summary
+  if (process.env.CI && process.env.GITHUB_ACTIONS) {
+    const parts = output.split('\n')
+
+    const url = parts.find((part) => part.trim().startsWith('https://') && part.trim().endsWith('.vercel.app'))
+
+    if (url) {
+      githubCore.summary
+        .addLink('Vercel URL', url.trim())
+    }
+  }
 
   return { success }
 }
