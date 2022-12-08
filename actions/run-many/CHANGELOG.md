@@ -1,4 +1,18 @@
  
+# [1.4.0](https://github.com/TriPSs/nx-extend/compare/actions-run-many@1.3.0...actions-run-many@1.4.0) (2022-12-08)
+
+
+### Bug Fixes
+
+* **actions-run-many:** Fixed projects having `/n` in the name causing then not to be "affected" ([b3f7e06](https://github.com/TriPSs/nx-extend/commit/b3f7e062073adf5485a22b462abb273d5e29ba94))
+
+
+### Features
+
+* **run-many:** Log to console when Github actions run in debug mode ([5bf1795](https://github.com/TriPSs/nx-extend/commit/5bf1795137c3f2687eb2b048222d88a9429ac6cf))
+
+
+
 # [1.3.0](https://github.com/TriPSs/nx-extend/compare/actions-run-many@1.2.0...actions-run-many@1.3.0) (2022-11-17)
 
 
