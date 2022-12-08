@@ -3,13 +3,14 @@ import { logger } from '@nrwl/devkit'
 
 import type { ProjectConfiguration } from 'nx/src/config/workspace-json-project-json'
 
+import { argv } from '../run-many'
 import { buildCommand } from './build-command'
 import { execCommand } from './exec'
 import { generateSummary } from './generate-summary'
 import { getProjectsWithTarget } from './get-projects-with-target'
 import { getRestArgs } from './get-rest-args'
 
-export async function runTarget(projects: Map<string, ProjectConfiguration>, runProjects: string[], target: string, parallel?: string, withSummary?: boolean) {
+export async function runTarget(projects: Map<string, ProjectConfiguration>, runProjects: string[], target: string, config?: string, parallel?: string, withSummary?: boolean) {
   const projectsWithTarget = getProjectsWithTarget(projects, runProjects, target)
 
   if (projectsWithTarget.length === 0) {
@@ -21,13 +22,16 @@ export async function runTarget(projects: Map<string, ProjectConfiguration>, run
     'npx nx run-many',
     `--target=${target}`,
     `--projects=${projectsWithTarget.join(',')}`,
-    core.isDebug() && '--verbose',
+    config && `--configuration=${config}`,
+    (core.isDebug() || argv.verbose) && '--verbose',
     `${getRestArgs()}`
   ]
 
   switch (target) {
     case 'build':
-      runManyCommandParts.push('--prod')
+      if (!config) {
+        runManyCommandParts.push('--prod')
+      }
       break
 
     case 'deploy':
