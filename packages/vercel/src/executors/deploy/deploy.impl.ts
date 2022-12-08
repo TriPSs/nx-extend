@@ -2,9 +2,11 @@ import * as githubCore from '@actions/core'
 import { buildCommand, execCommand } from '@nx-extend/core'
 import { existsSync } from 'fs'
 import { join } from 'path'
-import * as process from 'process'
 
 import type { ExecutorContext } from '@nrwl/devkit'
+
+import { isGithubCi } from '../../utils/is-github-ci'
+import { verceToken } from '../../utils/verce-token'
 
 export interface DeployOptions {
   debug?: boolean
@@ -30,6 +32,7 @@ export async function deployExecutor(
   const { success, output } = execCommand(buildCommand([
     'npx vercel deploy --prebuilt',
     context.configurationName === 'production' && '--prod',
+    verceToken && `--token=${verceToken}`,
 
     options.debug && '--debug'
   ]), {
@@ -37,7 +40,7 @@ export async function deployExecutor(
   })
 
   // When running in GitHub CI add the URL of the deployment as summary
-  if (process.env.CI && process.env.GITHUB_ACTIONS) {
+  if (isGithubCi) {
     const parts = output.split('\n')
 
     const url = parts.find((part) => part.trim().startsWith('https://') && part.trim().endsWith('.vercel.app'))
