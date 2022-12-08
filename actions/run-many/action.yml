@@ -37,3 +37,7 @@ inputs:
   includeLibs:
     description: 'Also include affected libs'
     required: false
+
+  config:
+    description: 'With what config to run '
+    required: false
