@@ -14,6 +14,7 @@ export interface BuildOptions {
   debug?: boolean
   envVars?: Record<string, string>
   buildTarget?: string
+  buildConfig?: string
   framework?: string
   nodeVersion?: '16.x'
 }
@@ -40,6 +41,10 @@ export function buildExecutor(
 
   if (!targets[buildTarget]?.options?.outputPath) {
     throw new Error(`"${buildTarget}" target has no "outputPath" configured!`)
+  }
+
+  if (options.buildConfig && !targets[buildTarget]?.configurations[options.buildConfig]) {
+    throw new Error(`"${buildTarget}" target has no configuration "${options.buildConfig}"!`)
   }
 
   // First make sure the .vercel/project.json exists
@@ -82,7 +87,7 @@ export function buildExecutor(
       framework,
       devCommand: null,
       installCommand: 'echo \'\'',
-      buildCommand: `nx run ${context.projectName}:${buildTarget}:${context.configurationName}`,
+      buildCommand: `nx run ${context.projectName}:${buildTarget}:${options.buildConfig || context.configurationName}`,
       outputDirectory: getOutputDirectory(options.framework, outputDirectory),
       rootDirectory: null,
       directoryListing: false,

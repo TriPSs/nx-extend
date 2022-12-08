@@ -5,6 +5,7 @@ export function getRestArgs() {
       !arg.includes('--tag')
       && !arg.includes('--target')
       && !arg.includes('--parallel')
+      && !arg.includes('--config')
     ))
     .map((a) => `"${a}"`)
     .join(' ')

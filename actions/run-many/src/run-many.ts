@@ -11,11 +11,13 @@ import { buildCommand } from './utils/build-command'
 import { execCommand } from './utils/exec'
 import { runTarget } from './utils/run-target'
 
-const argv = yargs(hideBin(process.argv))
+export const argv = yargs(hideBin(process.argv))
   .options({
     tag: { type: 'string' },
+    config: { type: 'string' },
     target: { type: 'string' },
-    parallel: { type: 'number' }
+    parallel: { type: 'number' },
+    verbose: { type: 'boolean' }
   })
   .parseSync()
 
@@ -27,6 +29,7 @@ async function run() {
     // Get all options
     const tag = core.getInput('tag') || argv.tag
     const target = core.getInput('target', { required: !argv.target }) || argv.target
+    const config = core.getInput('config') || argv.config
     const jobIndex = parseInt(core.getInput('index') || '1', 10)
     const jobCount = parseInt(core.getInput('count') || '1', 10)
     const parallel = (core.getInput('parallel') || argv.parallel) as string
@@ -50,7 +53,7 @@ async function run() {
       '--select=projects'
     ]), {
       asString: true,
-      silent: !core.isDebug()
+      silent: !(core.isDebug() || argv.verbose)
     }).split(', ')
 
     const projects = new Map<string, ProjectConfiguration>()
@@ -81,18 +84,22 @@ async function run() {
       : projectsToRun.slice(sliceSize * (jobIndex - 1))
 
     if (preTargets.length > 0) {
-      for (const target of preTargets) {
-        logger.info(`Running preTarget "${target}"`)
-        await runTarget(projects, runProjects, target, parallel)
+      for (const targetParts of preTargets) {
+        logger.info(`Running preTarget "${targetParts}"`)
+
+        const [target, targetConfig] = targetParts.split(':')
+        await runTarget(projects, runProjects, target, targetConfig, parallel)
       }
     }
 
-    await runTarget(projects, runProjects, target, parallel, !argv.target)
+    await runTarget(projects, runProjects, target, config, parallel, !argv.target)
 
     if (postTargets.length > 0) {
-      for (const target of postTargets) {
-        logger.info(`Running postTarget "${target}"`)
-        await runTarget(projects, runProjects, target, parallel)
+      for (const targetParts of postTargets) {
+        logger.info(`Running postTarget "${targetParts}"`)
+
+        const [target, targetConfig] = targetParts.split(':')
+        await runTarget(projects, runProjects, target, targetConfig, parallel)
       }
     }
   } catch (err) {
