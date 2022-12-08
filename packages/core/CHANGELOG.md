@@ -1,4 +1,13 @@
  
+# [1.4.0](https://github.com/TriPSs/nx-extend/compare/core@1.3.2...core@1.4.0) (2022-12-08)
+
+
+### Features
+
+* **vercel:** Added support for different frameworks then NextJS ([da2550b](https://github.com/TriPSs/nx-extend/commit/da2550b186321baedf5d5a137d84d594f1313c36))
+
+
+
 ## [1.3.2](https://github.com/TriPSs/nx-extend/compare/core@1.3.1...core@1.3.2) (2022-11-17)
 
 
