@@ -8,12 +8,7 @@ async function run() {
     // Get all options
     const mainBranchName = core.getInput('main-branch-name')
 
-    const headSha = execCommand('git rev-parse HEAD', {
-      asString: true,
-      silent: !core.isDebug()
-    })
-
-    core.info(`Got head sha "${headSha}"`)
+    core.info(`Got head sha "${github.context.sha}"`)
     let baseSha
 
     if (github.context.eventName === 'pull_request') {
@@ -28,7 +23,7 @@ async function run() {
         asString: true,
         silent: !core.isDebug()
       })
-      baseSha = execCommand(`git rev-parse ${tag}`, {
+      baseSha = execCommand(`git rev-parse ${tag}^{commit}`, {
         asString: true,
         silent: !core.isDebug()
       })
@@ -38,8 +33,8 @@ async function run() {
 
     core.setOutput('base', baseSha)
     core.exportVariable('NX_BASE', baseSha)
-    core.setOutput('head', headSha)
-    core.exportVariable('NX_HEAD', headSha)
+    core.setOutput('head', github.context.sha)
+    core.exportVariable('NX_HEAD', github.context.sha)
 
   } catch (err) {
     core.setFailed(err)

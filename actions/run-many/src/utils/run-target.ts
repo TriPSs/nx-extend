@@ -21,6 +21,7 @@ export async function runTarget(projects: Map<string, ProjectConfiguration>, run
     'npx nx run-many',
     `--target=${target}`,
     `--projects=${projectsWithTarget.join(',')}`,
+    core.isDebug() && '--verbose',
     `${getRestArgs()}`
   ]
 

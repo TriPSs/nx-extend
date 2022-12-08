@@ -1,35 +1,54 @@
+import * as githubCore from '@actions/core'
 import { buildCommand, execCommand } from '@nx-extend/core'
 import { existsSync } from 'fs'
 import { join } from 'path'
+import * as process from 'process'
 
 import type { ExecutorContext } from '@nrwl/devkit'
 
-export interface ExecutorSchema {
+export interface DeployOptions {
   debug?: boolean
 }
 
-export function deployExecutor(
-  options: ExecutorSchema,
+export async function deployExecutor(
+  options: DeployOptions,
   context: ExecutorContext
 ): Promise<{ success: boolean }> {
   const { targets } = context.workspace.projects[context.projectName]
 
-  if (!targets['build-next']?.options?.outputPath) {
-    throw new Error('"build-next" target has no "outputPath" configured!')
+  const vercelBuildTarget = Object.keys(targets).find((target) => targets[target].executor === '@nx-extend/vercel:build')
+  const buildTarget = targets[vercelBuildTarget]?.options?.buildTarget || 'build-next'
+
+  if (!targets[buildTarget]?.options?.outputPath) {
+    throw new Error(`"${buildTarget}" target has no "outputPath" configured!`)
   }
 
-  if (!existsSync(join(targets['build-next'].options.outputPath, '.vercel/project.json'))) {
+  if (!existsSync(join(targets[buildTarget].options.outputPath, '.vercel/project.json'))) {
     throw new Error('No ".vercel/project.json" found in dist folder! ')
   }
 
-  return Promise.resolve(execCommand(buildCommand([
+  const { success, output } = execCommand(buildCommand([
     'npx vercel deploy --prebuilt',
     context.configurationName === 'production' && '--prod',
 
     options.debug && '--debug'
   ]), {
-    cwd: targets['build-next'].options.outputPath
-  }))
+    cwd: targets[buildTarget].options.outputPath
+  })
+
+  // When running in GitHub CI add the URL of the deployment as summary
+  if (process.env.CI && process.env.GITHUB_ACTIONS) {
+    const parts = output.split('\n')
+
+    const url = parts.find((part) => part.trim().startsWith('https://') && part.trim().endsWith('.vercel.app'))
+
+    if (url) {
+      githubCore.summary
+        .addLink('Vercel URL', url.trim())
+    }
+  }
+
+  return { success }
 }
 
 export default deployExecutor
