@@ -1,4 +1,13 @@
  
+# [1.5.0](https://github.com/TriPSs/nx-extend/compare/vercel@1.4.0...vercel@1.5.0) (2022-12-08)
+
+
+### Features
+
+* **vercel:** Added support to define different build config for target ([8d4e5b6](https://github.com/TriPSs/nx-extend/commit/8d4e5b68457d60411b45bc58eb10fe97ff92a6ff))
+
+
+
 # [1.4.0](https://github.com/TriPSs/nx-extend/compare/vercel@1.3.4...vercel@1.4.0) (2022-12-08)
 
 
