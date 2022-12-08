@@ -6,19 +6,25 @@ import type { ExecutorContext } from '@nrwl/devkit'
 
 import { addEnvVariablesToFile } from '../../utils/add-env-variables-to-file'
 import { getEnvVars } from '../../utils/get-env-vars'
+import { getOutputDirectory } from './utils/get-output-directory'
 
-export interface ExecutorSchema {
+export interface BuildOptions {
   projectId: string
   orgId: string
   debug?: boolean
   envVars?: Record<string, string>
+  buildTarget?: string
+  framework?: string
+  nodeVersion?: '16.x'
 }
 
 export function buildExecutor(
-  options: ExecutorSchema,
+  options: BuildOptions,
   context: ExecutorContext
 ): Promise<{ success: boolean }> {
   const { targets } = context.workspace.projects[context.projectName]
+  const framework = options.framework || 'nextjs'
+  const buildTarget = options.buildTarget || (framework === 'nextjs' ? 'build-next' : 'build')
 
   if (!options.orgId) {
     throw new Error(`"orgId" option is required!`)
@@ -28,12 +34,12 @@ export function buildExecutor(
     throw new Error(`"projectId" option is required!`)
   }
 
-  if (!targets['build-next']) {
-    throw new Error(`"${context.projectName}" is missing the original "build-next" target!`)
+  if (!targets[buildTarget]) {
+    throw new Error(`"${context.projectName}" is missing the "${buildTarget}" target!`)
   }
 
-  if (!targets['build-next']?.options?.outputPath) {
-    throw new Error('"build-next" target has no "outputPath" configured!')
+  if (!targets[buildTarget]?.options?.outputPath) {
+    throw new Error(`"${buildTarget}" target has no "outputPath" configured!`)
   }
 
   // First make sure the .vercel/project.json exists
@@ -54,7 +60,7 @@ export function buildExecutor(
 
   const vercelDirectory = '.vercel'
   const vercelProjectJson = `./${vercelDirectory}/project.json`
-  const outputDirectory = targets['build-next']?.options?.outputPath
+  const outputDirectory = targets[buildTarget]?.options?.outputPath
 
   const vercelEnironment = context.configurationName === 'production'
     ? 'production'
@@ -74,20 +80,20 @@ export function buildExecutor(
     orgId: options.orgId,
     settings: {
       createdAt: new Date().getTime(),
-      framework: 'nextjs',
+      framework,
       devCommand: null,
       installCommand: 'echo \'\'',
-      buildCommand: `nx build-next ${context.projectName}${context.configurationName === 'production' ? ' --prod' : ''}`,
-      outputDirectory: `${targets['build-next']?.options?.outputPath}/.next`,
+      buildCommand: `nx ${buildTarget} ${context.projectName}${context.configurationName === 'production' ? ' --prod' : ''}`,
+      outputDirectory: getOutputDirectory(options.framework, outputDirectory),
       rootDirectory: null,
       directoryListing: false,
-      nodeVersion: '16.x'
+      nodeVersion: options.nodeVersion || '16.x'
     }
   })
 
   const { success } = execCommand(buildCommand([
     'npx vercel build',
-    `--output ${targets['build-next']?.options?.outputPath}/.vercel/output`,
+    `--output ${targets[buildTarget].options.outputPath}/.vercel/output`,
     context.configurationName === 'production' && '--prod',
 
     options.debug && '--debug'

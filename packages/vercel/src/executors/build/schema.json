@@ -4,8 +4,8 @@
   "$schema": "http://json-schema.org/schema",
   "type": "object",
   "cli": "nx",
-  "title": "Deploy executor",
-  "description": "Deploy to Vercel",
+  "title": "Build executor",
+  "description": "Buid for Vercel",
   "properties": {
     "projectId": {
       "type": "string",
@@ -14,6 +14,23 @@
     "orgId": {
       "type": "string",
       "description": "Origination ID in Vercel"
+    },
+    "framework": {
+      "type": "string",
+      "description": "What framework to use for the build",
+      "enum": [
+        "nextjs",
+        "nuxtjs",
+        "create-react-app",
+        "docusaurus",
+        "docusaurus-2",
+        "vue",
+        "other"
+      ]
     }
-  }
+  },
+  "required": [
+    "projectId",
+    "orgId"
+  ]
 }
