@@ -1,6 +1,6 @@
 {
   "name": "@nx-extend/actions-run-many",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "homepage": "https://github.com/TriPSs/nx-extend/blob/master/actions/run-many/README.md",
   "bugs": {
     "url": "https://github.com/tripss/nx-extend/issues"

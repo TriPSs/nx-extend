@@ -1,4 +1,13 @@
  
+# [1.5.0](https://github.com/TriPSs/nx-extend/compare/actions-run-many@1.4.0...actions-run-many@1.5.0) (2022-12-08)
+
+
+### Features
+
+* **run-many:** Added support to define `config` ([04f5235](https://github.com/TriPSs/nx-extend/commit/04f52359d179748c4957888da15eb3e6f0f4df15))
+
+
+
 # [1.4.0](https://github.com/TriPSs/nx-extend/compare/actions-run-many@1.3.0...actions-run-many@1.4.0) (2022-12-08)
 
 
