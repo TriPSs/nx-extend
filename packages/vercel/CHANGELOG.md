@@ -1,4 +1,13 @@
  
+# [1.6.0](https://github.com/TriPSs/nx-extend/compare/vercel@1.5.0...vercel@1.6.0) (2022-12-08)
+
+
+### Features
+
+* **vercel:** Added support for `VERCEL_TOKEN` env variable ([8317753](https://github.com/TriPSs/nx-extend/commit/831775366d571f269a1ae2db2b2bf4aff3084ff2))
+
+
+
 # [1.5.0](https://github.com/TriPSs/nx-extend/compare/vercel@1.4.0...vercel@1.5.0) (2022-12-08)
 
 
