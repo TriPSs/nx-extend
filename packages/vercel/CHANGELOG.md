@@ -1,4 +1,14 @@
  
+# [1.4.0](https://github.com/TriPSs/nx-extend/compare/vercel@1.3.4...vercel@1.4.0) (2022-12-08)
+
+
+### Features
+
+* **vercel:** Add URL to GitHub summary ([eeb93a3](https://github.com/TriPSs/nx-extend/commit/eeb93a3de30a07ea7e3e4340b1ecd0efd63db0a8))
+* **vercel:** Added support for different frameworks then NextJS ([da2550b](https://github.com/TriPSs/nx-extend/commit/da2550b186321baedf5d5a137d84d594f1313c36))
+
+
+
 ## [1.3.4](https://github.com/TriPSs/nx-extend/compare/vercel@1.3.3...vercel@1.3.4) (2022-11-17)
 
 
