@@ -1,6 +1,6 @@
 import { writeJsonFile } from '@nrwl/devkit'
 import { readCachedProjectGraph } from '@nrwl/workspace/src/core/project-graph'
-import { createPackageJson as generatePackageJson } from '@nrwl/workspace/src/utilities/create-package-json'
+import { createPackageJson as generatePackageJson } from 'nx/src/utils/create-package-json'
 
 import type { ExecutorContext } from '@nrwl/devkit'
 
@@ -13,8 +13,7 @@ export async function createPackageJson(
     context.projectName,
     readCachedProjectGraph(),
     {
-      root: context.root,
-      projectRoot
+      root: context.root
     }
   )
 

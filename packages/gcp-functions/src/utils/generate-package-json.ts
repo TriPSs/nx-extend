@@ -1,8 +1,8 @@
 import { ExecutorContext, readJsonFile, writeJsonFile } from '@nrwl/devkit'
 import { readCachedProjectGraph } from '@nrwl/workspace/src/core/project-graph'
-import { createPackageJson } from '@nrwl/workspace/src/utilities/create-package-json'
 import { fileExists } from '@nrwl/workspace/src/utils/fileutils'
 import * as fs from 'fs'
+import { createPackageJson } from 'nx/src/utils/create-package-json'
 import { join } from 'path'
 
 import type { WebpackExecutorOptions } from '@nrwl/webpack/src/executors/webpack/schema'
@@ -15,8 +15,7 @@ export const generatePackageJson = (
   const { root } = context.workspace.projects[context.projectName]
 
   const packageJson = createPackageJson(context.projectName, readCachedProjectGraph(), {
-    root: context.root,
-    projectRoot: root
+    root: context.root
   })
 
   if (!packageJson.main) {
