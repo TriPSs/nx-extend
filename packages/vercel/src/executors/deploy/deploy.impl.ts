@@ -33,6 +33,7 @@ export async function deployExecutor(
     'npx vercel deploy --prebuilt',
     context.configurationName === 'production' && '--prod',
     verceToken && `--token=${verceToken}`,
+    options.regions && `--regions=${options.regions}`,
 
     options.debug && '--debug'
   ]), {
