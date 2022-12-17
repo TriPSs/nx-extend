@@ -28,8 +28,8 @@
   },
   "dependencies": {
     "@actions/core": "^1.10.0",
-    "@strapi/generate-new": "^4.3.9",
-    "@strapi/strapi": "^4.3.9",
+    "@strapi/generate-new": "^4.5.4",
+    "@strapi/strapi": "^4.5.4",
     "axios": "^0.27.2",
     "crypto-js": "^4.1.1",
     "deepmerge": "^4.2.2",
