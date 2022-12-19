@@ -1,4 +1,18 @@
  
+# [1.7.0](https://github.com/TriPSs/nx-extend/compare/vercel@1.6.0...vercel@1.7.0) (2022-12-19)
+
+
+### Bug Fixes
+
+* **vercel:** Added support for `regions` option ([edcdbcc](https://github.com/TriPSs/nx-extend/commit/edcdbccd5add690ce7df3b7fba15ea3626dc2922))
+
+
+### Features
+
+* **vercel:** Added support for `regions` option ([e3f92da](https://github.com/TriPSs/nx-extend/commit/e3f92dad3d5af4b8d564ac06000d7f74e256468c))
+
+
+
 # [1.6.0](https://github.com/TriPSs/nx-extend/compare/vercel@1.5.0...vercel@1.6.0) (2022-12-08)
 
 
