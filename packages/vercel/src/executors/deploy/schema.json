@@ -6,5 +6,10 @@
   "cli": "nx",
   "title": "Deploy executor",
   "description": "Deploy to Vercel",
-  "properties": {}
+  "properties": {
+    "regions": {
+      "type": "string",
+      "description": "Regions to deploy to"
+    }
+  }
 }

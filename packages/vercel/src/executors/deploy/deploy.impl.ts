@@ -10,6 +10,7 @@ import { verceToken } from '../../utils/verce-token'
 
 export interface DeployOptions {
   debug?: boolean
+  regions?: string
 }
 
 export async function deployExecutor(
