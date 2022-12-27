@@ -32,7 +32,11 @@ export async function endToEndRunner(options: Options, context: ExecutorContext)
       const playwrightExecutor = require('@nx-extend/playwright/src/executors/test/test.impl').default
       success = (await playwrightExecutor(rest, context)).success
 
-    } else {
+    }else if (runner === 'run-commands') {
+			// eslint-disable-next-line @typescript-eslint/no-var-requires
+			const runCommandsExecutor = require('@nrwl/workspace/src/executors/run-commands/run-commands.impl').default;
+			success = (await runCommandsExecutor(rest, context)).success;
+		} else {
       throw new Error(`Unknown runner "${runner}"`)
     }
   } catch (error) {
