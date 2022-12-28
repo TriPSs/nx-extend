@@ -69,7 +69,7 @@ export function buildExecutor(
     : 'preview'
 
   // Pull latest
-  execCommand(buildCommand([
+  const { success: pullSuccess } = execCommand(buildCommand([
     'npx vercel pull --yes',
     `--environment=${vercelEnironment}`,
     vercelToken && `--token=${vercelToken}`,
@@ -77,7 +77,10 @@ export function buildExecutor(
     options.debug && '--debug'
   ]))
 
-  const vercelDirectory = '.vercel'
+  if (!pullSuccess) {
+    throw new Error(`Was unable to pull!`)
+  }
+
   const vercelProjectJson = `./${vercelDirectory}/project.json`
   const outputDirectory = targets[buildTarget]?.options?.outputPath
 
