@@ -1,5 +1,6 @@
 import { readJsonFile, writeJsonFile } from '@nrwl/devkit'
 import { buildCommand, copyFile, execCommand } from '@nx-extend/core'
+import { existsSync, rmSync } from 'fs'
 import { join } from 'path'
 
 import type { ExecutorContext } from '@nrwl/devkit'
@@ -49,8 +50,15 @@ export function buildExecutor(
     throw new Error(`"${buildTarget}" target has no configuration "${options.buildConfig}"!`)
   }
 
+  const vercelDirectory = '.vercel'
+  const vercelDirectoryLocation = join(context.root, vercelDirectory)
+
+  if (existsSync(vercelDirectoryLocation)) {
+    rmSync(vercelDirectoryLocation)
+  }
+
   // First make sure the .vercel/project.json exists
-  writeJsonFile('./.vercel/project.json', {
+  writeJsonFile(`./${vercelDirectory}/project.json`, {
     projectId: options.projectId,
     orgId: options.orgId,
     settings: {}
