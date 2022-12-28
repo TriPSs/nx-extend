@@ -1,5 +1,6 @@
 import { readJsonFile, writeJsonFile } from '@nrwl/devkit'
 import { buildCommand, copyFile, execCommand } from '@nx-extend/core'
+import { existsSync, rmSync } from 'fs'
 import { join } from 'path'
 
 import type { ExecutorContext } from '@nrwl/devkit'
@@ -7,7 +8,7 @@ import type { ExecutorContext } from '@nrwl/devkit'
 import { addEnvVariablesToFile } from '../../utils/add-env-variables-to-file'
 import { enrichVercelEnvFile } from '../../utils/enrich-vercel-env-file'
 import { getEnvVars } from '../../utils/get-env-vars'
-import { verceToken } from '../../utils/verce-token'
+import { vercelToken } from '../../utils/vercel-token'
 import { getOutputDirectory } from './utils/get-output-directory'
 
 export interface BuildOptions {
@@ -49,8 +50,15 @@ export function buildExecutor(
     throw new Error(`"${buildTarget}" target has no configuration "${options.buildConfig}"!`)
   }
 
+  const vercelDirectory = '.vercel'
+  const vercelDirectoryLocation = join(context.root, vercelDirectory)
+
+  if (existsSync(vercelDirectoryLocation)) {
+    rmSync(vercelDirectoryLocation)
+  }
+
   // First make sure the .vercel/project.json exists
-  writeJsonFile('./.vercel/project.json', {
+  writeJsonFile(`./${vercelDirectory}/project.json`, {
     projectId: options.projectId,
     orgId: options.orgId,
     settings: {}
@@ -61,15 +69,18 @@ export function buildExecutor(
     : 'preview'
 
   // Pull latest
-  execCommand(buildCommand([
+  const { success: pullSuccess } = execCommand(buildCommand([
     'npx vercel pull --yes',
     `--environment=${vercelEnironment}`,
-    verceToken && `--token=${verceToken}`,
+    vercelToken && `--token=${vercelToken}`,
 
     options.debug && '--debug'
   ]))
 
-  const vercelDirectory = '.vercel'
+  if (!pullSuccess) {
+    throw new Error(`Was unable to pull!`)
+  }
+
   const vercelProjectJson = `./${vercelDirectory}/project.json`
   const outputDirectory = targets[buildTarget]?.options?.outputPath
 
@@ -93,7 +104,7 @@ export function buildExecutor(
       devCommand: null,
       installCommand: 'echo \'\'',
       buildCommand: `nx run ${context.projectName}:${buildTarget}:${options.buildConfig || context.configurationName}`,
-      outputDirectory: getOutputDirectory(options.framework, outputDirectory),
+      outputDirectory: getOutputDirectory(framework, outputDirectory),
       rootDirectory: null,
       directoryListing: false,
       nodeVersion: options.nodeVersion || '16.x'
@@ -104,7 +115,7 @@ export function buildExecutor(
     'npx vercel build',
     `--output ${targets[buildTarget].options.outputPath}/.vercel/output`,
     context.configurationName === 'production' && '--prod',
-    verceToken && `--token=${verceToken}`,
+    vercelToken && `--token=${vercelToken}`,
 
     options.debug && '--debug'
   ]))

@@ -1,10 +1,11 @@
 import {
-addDependenciesToPackageJson,
-  ProjectConfiguration,   readJsonFile,
+  addDependenciesToPackageJson,
+  ProjectConfiguration, readJsonFile,
   readProjectConfiguration,
   Tree,
   updateProjectConfiguration,
-  writeJsonFile} from '@nrwl/devkit'
+  writeJsonFile
+} from '@nrwl/devkit'
 import { runTasksInSerial } from '@nrwl/workspace/src/utilities/run-tasks-in-serial'
 
 import { FirebaseHostingGeneratorSchema } from './schema'
@@ -49,7 +50,13 @@ export function addToFirebaseJson(
       {
         target: site,
         public: app?.targets?.build?.options?.outputPath || null,
-        ignore: ['firebase.json', '**/.*', '**/node_modules/**']
+        ignore: ['firebase.json', '**/.*', '**/node_modules/**'],
+        rewrites: [
+          {
+            source: '**',
+            destination: '/index.html'
+          }
+        ]
       }
     ]
   }
