@@ -101,7 +101,7 @@ export function buildExecutor(
       devCommand: null,
       installCommand: 'echo \'\'',
       buildCommand: `nx run ${context.projectName}:${buildTarget}:${options.buildConfig || context.configurationName}`,
-      outputDirectory: getOutputDirectory(options.framework, outputDirectory),
+      outputDirectory: getOutputDirectory(framework, outputDirectory),
       rootDirectory: null,
       directoryListing: false,
       nodeVersion: options.nodeVersion || '16.x'
