@@ -1,4 +1,13 @@
  
+# [2.3.0](https://github.com/TriPSs/nx-extend/compare/e2e-runner@2.2.1...e2e-runner@2.3.0) (2022-12-28)
+
+
+### Features
+
+* add runner for run-commands ([89310ac](https://github.com/TriPSs/nx-extend/commit/89310aca0ae012eb1a8148872e8bd74d5967e6fb))
+
+
+
 ## [2.2.1](https://github.com/TriPSs/nx-extend/compare/e2e-runner@2.2.0...e2e-runner@2.2.1) (2022-11-30)
 
 
