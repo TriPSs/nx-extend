@@ -1,4 +1,19 @@
  
+# [1.8.0](https://github.com/TriPSs/nx-extend/compare/vercel@1.7.0...vercel@1.8.0) (2022-12-28)
+
+
+### Bug Fixes
+
+* **vercel:** Fixed correct output dir not being set for framework ([3a1a5fc](https://github.com/TriPSs/nx-extend/commit/3a1a5fc0ca5bd47fbab0a03af2da1f97a29dc633))
+* **vercel:** Remove existing `.vercel` directory before build ([cee166c](https://github.com/TriPSs/nx-extend/commit/cee166cfcb5f9f626256ce35e9c5af2d6d27463c))
+
+
+### Features
+
+* **vercel:** Throw error if pull failed ([bac8c04](https://github.com/TriPSs/nx-extend/commit/bac8c0486f7de1367deea6e0b69a59b808a7cdce))
+
+
+
 # [1.7.0](https://github.com/TriPSs/nx-extend/compare/vercel@1.6.0...vercel@1.7.0) (2022-12-19)
 
 
