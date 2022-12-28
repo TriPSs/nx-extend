@@ -19,6 +19,7 @@ nx g @nx-extend/e2e-runner:add
 
 > All options of @nrwl/cypress:cypress are available here if runner = cypress
 > All options of @nx-extend/playwright:test are available here if runner = playwright 
+> All options of @nrwl/workspace:run-commands are available here if runner = run-commands
 
 
 ### Target options:
@@ -44,7 +45,7 @@ Example target
   "e2e": {
     "executor": "@nx-extend/e2e-runner:run",
     "options": {
-      "runner": "playwright | cypress",
+      "runner": "playwright | cypress | run-commands",
       "targets": [
         {
           "target": "app:serve",
