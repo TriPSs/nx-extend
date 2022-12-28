@@ -6,7 +6,7 @@ import { join } from 'path'
 import type { ExecutorContext } from '@nrwl/devkit'
 
 import { isGithubCi } from '../../utils/is-github-ci'
-import { verceToken } from '../../utils/verce-token'
+import { vercelToken } from '../../utils/vercel-token'
 
 export interface DeployOptions {
   debug?: boolean
@@ -33,7 +33,7 @@ export async function deployExecutor(
   const { success, output } = execCommand(buildCommand([
     'npx vercel deploy --prebuilt',
     context.configurationName === 'production' && '--prod',
-    verceToken && `--token=${verceToken}`,
+    vercelToken && `--token=${vercelToken}`,
     options.regions && `--regions=${options.regions}`,
 
     options.debug && '--debug'
@@ -43,6 +43,7 @@ export async function deployExecutor(
 
   // When running in GitHub CI add the URL of the deployment as summary
   if (isGithubCi) {
+    // Add comment instead of summary (Look at https://github.com/mshick/add-pr-comment)
     const parts = output.split('\n')
 
     const url = parts.find((part) => part.trim().startsWith('https://') && part.trim().endsWith('.vercel.app'))

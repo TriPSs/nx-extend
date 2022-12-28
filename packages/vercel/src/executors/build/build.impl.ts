@@ -8,7 +8,7 @@ import type { ExecutorContext } from '@nrwl/devkit'
 import { addEnvVariablesToFile } from '../../utils/add-env-variables-to-file'
 import { enrichVercelEnvFile } from '../../utils/enrich-vercel-env-file'
 import { getEnvVars } from '../../utils/get-env-vars'
-import { verceToken } from '../../utils/verce-token'
+import { vercelToken } from '../../utils/vercel-token'
 import { getOutputDirectory } from './utils/get-output-directory'
 
 export interface BuildOptions {
@@ -72,7 +72,7 @@ export function buildExecutor(
   execCommand(buildCommand([
     'npx vercel pull --yes',
     `--environment=${vercelEnironment}`,
-    verceToken && `--token=${verceToken}`,
+    vercelToken && `--token=${vercelToken}`,
 
     options.debug && '--debug'
   ]))
@@ -112,7 +112,7 @@ export function buildExecutor(
     'npx vercel build',
     `--output ${targets[buildTarget].options.outputPath}/.vercel/output`,
     context.configurationName === 'production' && '--prod',
-    verceToken && `--token=${verceToken}`,
+    vercelToken && `--token=${vercelToken}`,
 
     options.debug && '--debug'
   ]))
