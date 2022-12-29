@@ -1,5 +1,6 @@
 import { ExecutorContext } from '@nrwl/devkit'
-import { buildCommand, execCommand } from '@nx-extend/core'
+import { buildCommand } from '@nx-extend/core'
+import { execSync } from 'child_process'
 import { which } from 'shelljs'
 
 export interface ExecutorOptions {
@@ -17,11 +18,14 @@ export function createExecutor(command: string) {
 
     const { sourceRoot } = context.workspace.projects[context.projectName]
 
-    return Promise.resolve(execCommand(buildCommand([
+    execSync(buildCommand([
       'terraform',
       command
     ]), {
-      cwd: sourceRoot
-    }))
+      cwd: sourceRoot,
+      stdio: 'inherit'
+    })
+
+    return Promise.resolve({ success: true })
   }
 }
