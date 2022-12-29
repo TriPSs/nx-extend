@@ -1,4 +1,13 @@
  
+## [1.8.2](https://github.com/TriPSs/nx-extend/compare/vercel@1.8.1...vercel@1.8.2) (2022-12-29)
+
+
+### Bug Fixes
+
+* **vercel:** Go back and use `rmSync` again ([9d30509](https://github.com/TriPSs/nx-extend/commit/9d30509f1d6bac8058fe9cc7ae1ac9a855f950c3))
+
+
+
 ## [1.8.1](https://github.com/TriPSs/nx-extend/compare/vercel@1.8.0...vercel@1.8.1) (2022-12-29)
 
 
