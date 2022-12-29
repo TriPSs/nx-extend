@@ -1,6 +1,6 @@
 import { readJsonFile, writeJsonFile } from '@nrwl/devkit'
 import { buildCommand, copyFile, execCommand } from '@nx-extend/core'
-import { existsSync, rmdirSync } from 'fs'
+import { existsSync, rmSync } from 'fs'
 import { join } from 'path'
 
 import type { ExecutorContext } from '@nrwl/devkit'
@@ -54,7 +54,9 @@ export function buildExecutor(
   const vercelDirectoryLocation = join(context.root, vercelDirectory)
 
   if (existsSync(vercelDirectoryLocation)) {
-    rmdirSync(vercelDirectoryLocation)
+    rmSync(vercelDirectoryLocation, {
+      recursive: true
+    })
   }
 
   // First make sure the .vercel/project.json exists
