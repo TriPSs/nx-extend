@@ -33,10 +33,11 @@ export default async function (
     sourceRoot: `${options.projectRoot}/src`,
     targets: {
       plan: {
-        executor: '@nx-extend/terraform:create',
+        executor: '@nx-extend/terraform:plan',
         options: {}
       },
-      init: {
+      // initialize instead of init as nx init creates a new nx project
+      initialize: {
         executor: '@nx-extend/terraform:init',
         options: {}
       },
