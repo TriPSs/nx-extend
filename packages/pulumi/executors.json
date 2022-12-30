@@ -1,0 +1,26 @@
+{
+  "executors": {
+    "up": {
+      "implementation": "./src/executors/up/up.impl",
+      "schema": "./src/executors/up/schema.json",
+      "description": "up executor"
+    },
+    "preview": {
+      "implementation": "./src/executors/preview/preview.impl",
+      "schema": "./src/executors/preview/schema.json",
+      "description": "preview executor"
+    }
+  },
+  "builders": {
+    "up": {
+      "implementation": "./src/executors/up/up.impl",
+      "schema": "./src/executors/up/schema.json",
+      "description": "up executor"
+    },
+    "preview": {
+      "implementation": "./src/executors/preview/preview.impl",
+      "schema": "./src/executors/preview/schema.json",
+      "description": "preview executor"
+    }
+  }
+}

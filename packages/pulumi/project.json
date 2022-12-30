@@ -1,0 +1,58 @@
+{
+  "name": "pulumi",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/pulumi/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["packages/pulumi/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/packages/pulumi"],
+      "options": {
+        "jestConfig": "packages/pulumi/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/pulumi",
+        "tsConfig": "packages/pulumi/tsconfig.lib.json",
+        "packageJson": "packages/pulumi/package.json",
+        "main": "packages/pulumi/src/index.ts",
+        "buildableProjectDepsInPackageJsonType": "dependencies",
+        "assets": [
+          "packages/pulumi/*.md",
+          {
+            "input": "./packages/pulumi/src",
+            "glob": "**/*.!(ts)",
+            "output": "./src"
+          },
+          {
+            "input": "./packages/pulumi",
+            "glob": "generators.json",
+            "output": "."
+          },
+          {
+            "input": "./packages/pulumi",
+            "glob": "executors.json",
+            "output": "."
+          }
+        ]
+      }
+    },
+    "version": {
+      "executor": "@jscutlery/semver:version",
+      "options": {
+        "versionTagPrefix": "${target}@"
+      }
+    }
+  },
+  "tags": []
+}
