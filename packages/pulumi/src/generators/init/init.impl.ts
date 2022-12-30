@@ -23,18 +23,20 @@ export interface InitOptions extends DefaultGeneratorOptions {
   login?: string
 }
 
-function addFiles(tree: Tree, options: NormalizedSchema) {
-  generateFiles(
-    tree,
-    join(__dirname, 'files'),
-    options.projectRoot,
-    {
-      ...options,
-      ...names(options.name),
-      offsetFromRoot: offsetFromRoot(options.projectRoot),
-      template: ''
-    }
-  )
+function copyFiles(tree: Tree, options: NormalizedSchema): GeneratorCallback {
+  return () => {
+    generateFiles(
+      tree,
+      join(__dirname, 'files'),
+      options.projectRoot,
+      {
+        ...options,
+        ...names(options.name),
+        offsetFromRoot: offsetFromRoot(options.projectRoot),
+        template: ''
+      }
+    )
+  }
 }
 
 function generateNewPulumiProject(tree: Tree, options: NormalizedSchema & InitOptions): GeneratorCallback {
@@ -96,6 +98,7 @@ function cleanupProject(tree: Tree, options: NormalizedSchema & InitOptions): Ge
   return () => {
     unlinkSync(join(tree.root, `${options.projectRoot}/.gitignore`))
     unlinkSync(join(tree.root, `${options.projectRoot}/package.json`))
+    unlinkSync(join(tree.root, `${options.projectRoot}/tsconfig.json`))
   }
 }
 
@@ -126,14 +129,13 @@ export default async function (
     tags: options.parsedTags
   })
 
-  addFiles(tree, options)
-
   await formatFiles(tree)
 
   return runTasksInSerial(
     generateNewPulumiProject(tree, options),
     loginToPulumi(tree, options),
     addPulumiDeps(tree, options),
-    cleanupProject(tree, options)
+    cleanupProject(tree, options),
+    copyFiles(tree, options)
   )
 }
