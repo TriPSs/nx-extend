@@ -8,6 +8,8 @@
 
 ## Setup
 
+This package expects Terraform to be already installed and available.
+
 ### Install
 
 ```sh

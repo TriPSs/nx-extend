@@ -1,6 +1,6 @@
 {
   "name": "@nx-extend/terraform",
-  "version": "0.0.0-alpha.2",
+  "version": "0.0.0-alpha.3",
   "keywords": [
     "nx",
     "terraform"
