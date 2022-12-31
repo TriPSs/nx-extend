@@ -19,6 +19,8 @@
     "github-pages": "packages/github-pages",
     "playwright": "packages/playwright",
     "strapi": "packages/strapi",
+    "terraform": "packages/terraform",
+    "pulumi": "packages/pulumi",
     "translations": "packages/translations",
     "translations-e2e": "e2e/translations-e2e",
     "vercel": "packages/vercel"

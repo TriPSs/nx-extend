@@ -1,0 +1,53 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "cli": "nx",
+  "id": "pulumi",
+  "title": "",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": "What name would you like to use?"
+    },
+    "tags": {
+      "type": "string",
+      "description": "Add tags to the project (used for linting)",
+      "alias": "t"
+    },
+    "directory": {
+      "type": "string",
+      "description": "A directory where the project is placed",
+      "alias": "d"
+    },
+    "provider": {
+      "type": "string",
+      "description": "Your cloud provider",
+      "x-prompt": {
+        "message": "Please choose your provider",
+        "type": "list",
+        "items": [
+          {
+            "label": "AWS",
+            "value": "aws"
+          },
+          {
+            "label": "Azure",
+            "value": "azure"
+          },
+          {
+            "label": "Google Cloud Platform",
+            "value": "gcp"
+          }
+        ]
+      }
+    }
+  },
+  "required": [
+    "name"
+  ]
+}

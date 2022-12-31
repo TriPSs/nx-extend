@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "outputCapture": "direct-nodejs",
+  "$schema": "http://json-schema.org/schema",
+  "type": "object",
+  "cli": "nx",
+  "title": "Plan executor",
+  "description": "Plan",
+  "properties": {
+  }
+}

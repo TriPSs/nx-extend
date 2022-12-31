@@ -1,0 +1,36 @@
+{
+  "executors": {
+    "plan": {
+      "implementation": "./src/executors/plan/plan.impl",
+      "schema": "./src/executors/plan/schema.json",
+      "description": "plan executor"
+    },
+    "apply": {
+      "implementation": "./src/executors/apply/apply.impl",
+      "schema": "./src/executors/apply/schema.json",
+      "description": "apply executor"
+    },
+    "init": {
+      "implementation": "./src/executors/init/init.impl",
+      "schema": "./src/executors/init/schema.json",
+      "description": "init executor"
+    }
+  },
+  "builders": {
+    "plan": {
+      "implementation": "./src/executors/plan/plan.impl",
+      "schema": "./src/executors/plan/schema.json",
+      "description": "plan executor"
+    },
+    "apply": {
+      "implementation": "./src/executors/apply/apply.impl",
+      "schema": "./src/executors/apply/schema.json",
+      "description": "apply executor"
+    },
+    "init": {
+      "implementation": "./src/executors/init/init.impl",
+      "schema": "./src/executors/init/schema.json",
+      "description": "init executor"
+    }
+  }
+}

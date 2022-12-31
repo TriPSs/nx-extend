@@ -1,0 +1,3 @@
+{
+  "extends": "<%= offsetFromRoot %>tsconfig.base.json"
+}

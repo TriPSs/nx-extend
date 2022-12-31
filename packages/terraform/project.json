@@ -1,0 +1,58 @@
+{
+  "name": "terraform",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/terraform/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["packages/terraform/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/packages/terraform"],
+      "options": {
+        "jestConfig": "packages/terraform/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/terraform",
+        "tsConfig": "packages/terraform/tsconfig.lib.json",
+        "packageJson": "packages/terraform/package.json",
+        "main": "packages/terraform/src/index.ts",
+        "buildableProjectDepsInPackageJsonType": "dependencies",
+        "assets": [
+          "packages/terraform/*.md",
+          {
+            "input": "./packages/terraform/src",
+            "glob": "**/*.!(ts)",
+            "output": "./src"
+          },
+          {
+            "input": "./packages/terraform",
+            "glob": "generators.json",
+            "output": "."
+          },
+          {
+            "input": "./packages/terraform",
+            "glob": "executors.json",
+            "output": "."
+          }
+        ]
+      }
+    },
+    "version": {
+      "executor": "@jscutlery/semver:version",
+      "options": {
+        "versionTagPrefix": "${target}@"
+      }
+    }
+  },
+  "tags": []
+}
