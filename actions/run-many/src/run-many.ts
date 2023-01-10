@@ -2,6 +2,7 @@ import * as core from '@actions/core'
 import { logger, workspaceRoot } from '@nrwl/devkit'
 import { FsTree } from 'nx/src/generators/tree'
 import { readWorkspace } from 'nx/src/generators/utils/project-configuration'
+import { resolve } from 'path'
 import { hideBin } from 'yargs/helpers'
 import yargs from 'yargs/yargs'
 
@@ -33,6 +34,7 @@ async function run() {
     const jobIndex = parseInt(core.getInput('index') || '1', 10)
     const jobCount = parseInt(core.getInput('count') || '1', 10)
     const parallel = (core.getInput('parallel') || argv.parallel) as string
+    const workingDirectory = core.getInput('workingDirectory') || ''
     const preTargets = core.getMultilineInput('preTargets', { trimWhitespace: true })
     const postTargets = core.getMultilineInput('postTargets', { trimWhitespace: true })
 
@@ -46,6 +48,8 @@ async function run() {
       core.info(`Running all projects with tag "${tag}"`)
     }
 
+    const cwd = resolve(process.cwd(), workingDirectory)
+
     // Get all affected projects
     const affectedProjects = execCommand<string>(buildCommand([
       'npx nx print-affected',
@@ -53,7 +57,8 @@ async function run() {
       '--select=projects'
     ]), {
       asString: true,
-      silent: !(core.isDebug() || argv.verbose)
+      silent: !(core.isDebug() || argv.verbose),
+      cwd
     }).split(', ')
 
     const projects = new Map<string, ProjectConfiguration>()
@@ -88,18 +93,18 @@ async function run() {
         logger.info(`Running preTarget "${targetParts}"`)
 
         const [target, targetConfig] = targetParts.split(':')
-        await runTarget(projects, runProjects, target, targetConfig, parallel)
+        await runTarget(cwd, projects, runProjects, target, targetConfig, parallel)
       }
     }
 
-    await runTarget(projects, runProjects, target, config, parallel, !argv.target)
+    await runTarget(cwd, projects, runProjects, target, config, parallel, !argv.target)
 
     if (postTargets.length > 0) {
       for (const targetParts of postTargets) {
         logger.info(`Running postTarget "${targetParts}"`)
 
         const [target, targetConfig] = targetParts.split(':')
-        await runTarget(projects, runProjects, target, targetConfig, parallel)
+        await runTarget(cwd, projects, runProjects, target, targetConfig, parallel)
       }
     }
   } catch (err) {

@@ -10,7 +10,7 @@ import { generateSummary } from './generate-summary'
 import { getProjectsWithTarget } from './get-projects-with-target'
 import { getRestArgs } from './get-rest-args'
 
-export async function runTarget(projects: Map<string, ProjectConfiguration>, runProjects: string[], target: string, config?: string, parallel?: string, withSummary?: boolean) {
+export async function runTarget(cwd: string, projects: Map<string, ProjectConfiguration>, runProjects: string[], target: string, config?: string, parallel?: string, withSummary?: boolean) {
   const projectsWithTarget = getProjectsWithTarget(projects, runProjects, target)
 
   if (projectsWithTarget.length === 0) {
@@ -51,7 +51,9 @@ export async function runTarget(projects: Map<string, ProjectConfiguration>, run
     runManyCommandParts.push(`--parallel=${parallel}`)
   }
 
-  const runManyResult = execCommand(buildCommand(runManyCommandParts))
+  const runManyResult = execCommand(buildCommand(runManyCommandParts), {
+    cwd
+  })
 
   if (!runManyResult.success) {
     core.setFailed('Run many command failed!')
