@@ -6,7 +6,7 @@
 /out-tsc
 
 # dependencies
-/node_modules
+node_modules
 .yarn/*
 !.yarn/patches
 !.yarn/releases
