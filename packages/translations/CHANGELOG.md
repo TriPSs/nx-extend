@@ -1,4 +1,13 @@
  
+# [7.2.0](https://github.com/TriPSs/nx-extend/compare/translations@7.1.2...translations@7.2.0) (2023-01-25)
+
+
+### Features
+
+* Updated deps ([8f9f3ca](https://github.com/TriPSs/nx-extend/commit/8f9f3ca9bfd1d51a71b6d8de1c335dc794502c17))
+
+
+
 ## [7.1.2](https://github.com/TriPSs/nx-extend/compare/translations@7.1.1...translations@7.1.2) (2022-11-17)
 
 
