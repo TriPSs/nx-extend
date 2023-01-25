@@ -1,11 +1,11 @@
 import { File, Storage } from '@google-cloud/storage'
+import { mkdirSync,promises } from 'fs'
 import { dirname, join, relative } from 'path'
-import { promises, mkdirSync } from 'fs'
-
-import type { RemoteCache } from '@nrwl/workspace/src/tasks-runner/default-tasks-runner'
-import type { Bucket, UploadResponse } from '@google-cloud/storage'
 
 import type { MessageReporter } from './message-reporter'
+import type { Bucket, UploadResponse } from '@google-cloud/storage'
+import type { RemoteCache } from '@nrwl/workspace/src/tasks-runner/default-tasks-runner'
+
 import { Logger } from './logger'
 
 export class GcpCache implements RemoteCache {
