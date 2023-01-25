@@ -39,5 +39,9 @@ inputs:
     required: false
 
   config:
-    description: 'With what config to run '
+    description: 'With what config to run'
+    required: false
+
+  workingDirectory:
+    description: 'Optionally define sub directory'
     required: false
