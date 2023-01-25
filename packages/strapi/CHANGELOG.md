@@ -1,4 +1,14 @@
  
+# [3.3.0](https://github.com/TriPSs/nx-extend/compare/strapi@3.2.0...strapi@3.3.0) (2023-01-25)
+
+
+### Features
+
+* **strapi:** Updated Strapi to latest version ([01cf893](https://github.com/TriPSs/nx-extend/commit/01cf893c2cd375dda98a92a838eb8649f8dff5e4))
+* **strapi:** Updated Strapi to latest version ([09a518b](https://github.com/TriPSs/nx-extend/commit/09a518b61e71248dc121d1b0d08afe3a132d2462))
+
+
+
 # [3.2.0](https://github.com/TriPSs/nx-extend/compare/strapi@3.1.2...strapi@3.2.0) (2022-12-19)
 
 
