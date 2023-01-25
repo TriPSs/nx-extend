@@ -1,6 +1,6 @@
 {
   "name": "@nx-extend/gcp-task-runner",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "main": "src/index.js",
   "dependencies": {
     "@google-cloud/storage": "6.5.2"
