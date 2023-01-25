@@ -1,4 +1,13 @@
  
+# [6.4.0](https://github.com/TriPSs/nx-extend/compare/gcp-functions@6.3.5...gcp-functions@6.4.0) (2023-01-25)
+
+
+### Features
+
+* **gcp-functions:** Added support for `nodejs18` ([67f50a7](https://github.com/TriPSs/nx-extend/commit/67f50a70804b97058dd6d1a2b0f6ec1f8bd6c4b2))
+
+
+
 ## [6.3.5](https://github.com/TriPSs/nx-extend/compare/gcp-functions@6.3.4...gcp-functions@6.3.5) (2022-12-19)
 
 
