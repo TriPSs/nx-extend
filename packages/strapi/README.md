@@ -31,3 +31,4 @@ nx g @nx-extend/strapi:init
 | name         | type     | default | description                                          |
 | ------------ | -------- | ------- | ---------------------------------------------------- |
 
+
