@@ -4,7 +4,7 @@ import { join } from 'path'
 
 export interface DeployExecutorSchema {
   functionName: string
-  runtime?: 'nodejs12' | 'nodejs14' | 'nodejs16'
+  runtime?: 'nodejs12' | 'nodejs14' | 'nodejs16' | 'nodejs18' | 'recommended'
   entryPoint?: string
   serviceAccount?: string
   memory?: '128MB' | '256MB' | '512MB' | '1024MB' | '2048MB' | '4096MB'
@@ -62,6 +62,11 @@ export async function deployExecutor(
     timeout = null,
     cpu = 1
   } = options
+
+  // If "recommended" option is selected set the currently recommended one of Google (https://cloud.google.com/functions/docs/concepts/nodejs-runtime)
+  if (options.runtime === 'recommended') {
+    options.runtime = 'nodejs18'
+  }
 
   // Options with default values based of trigger type
   const {
