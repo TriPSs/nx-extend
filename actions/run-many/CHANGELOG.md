@@ -1,4 +1,18 @@
  
+# [1.6.0](https://github.com/TriPSs/nx-extend/compare/actions-run-many@1.5.1...actions-run-many@1.6.0) (2023-01-25)
+
+
+### Bug Fixes
+
+* **run-many:** Added `workingDirectory` to action yml ([f730978](https://github.com/TriPSs/nx-extend/commit/f7309785a96f335362c38d83e3eda28647ce2752))
+
+
+### Features
+
+* **run-many:** Added `workingDirectory` support ([196da75](https://github.com/TriPSs/nx-extend/commit/196da75cb339a200303054cbd762b550e9b761aa))
+
+
+
 ## [1.5.1](https://github.com/TriPSs/nx-extend/compare/actions-run-many@1.5.0...actions-run-many@1.5.1) (2022-12-08)
 
 
