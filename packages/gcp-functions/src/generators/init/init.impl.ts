@@ -75,7 +75,7 @@ export default async function (
       test: {
         executor: '@nrwl/jest:jest',
         options: {
-          jestConfig: `${normalizedOptions.projectRoot}/jest.config.js`,
+          jestConfig: `${normalizedOptions.projectRoot}/jest.config.ts`,
           passWithNoTests: true
         }
       },
