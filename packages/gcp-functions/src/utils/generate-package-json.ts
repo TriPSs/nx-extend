@@ -1,7 +1,8 @@
-import { ExecutorContext, readJsonFile, writeJsonFile } from '@nrwl/devkit'
+import { createLockFile, ExecutorContext, readJsonFile, writeJsonFile } from '@nrwl/devkit'
 import { readCachedProjectGraph } from '@nrwl/workspace/src/core/project-graph'
 import { fileExists } from '@nrwl/workspace/src/utils/fileutils'
 import * as fs from 'fs'
+import { getLockFileName } from 'nx/src/lock-file/lock-file'
 import { createPackageJson } from 'nx/src/utils/create-package-json'
 import { join } from 'path'
 
@@ -10,12 +11,14 @@ import type { WebpackExecutorOptions } from '@nrwl/webpack/src/executors/webpack
 export const generatePackageJson = (
   context: ExecutorContext,
   options: WebpackExecutorOptions,
-  outFile: string
+  outFile: string,
+  generateLockFile
 ) => {
   const { root } = context.workspace.projects[context.projectName]
 
   const packageJson = createPackageJson(context.projectName, readCachedProjectGraph(), {
-    root: context.root
+    root: context.root,
+    isProduction: true
   })
 
   if (!packageJson.main) {
@@ -65,9 +68,19 @@ export const generatePackageJson = (
     ...dependencies
   }
 
+  if (!packageJson.devDependencies) {
+    packageJson.devDependencies = {}
+  }
+
   if (originalPackageJson.main) {
     packageJson.main = originalPackageJson.main
   }
 
   writeJsonFile(`${options.outputPath}/package.json`, packageJson)
+
+  if (generateLockFile) {
+    fs.writeFileSync(`${options.outputPath}/${getLockFileName()}`, createLockFile(packageJson), {
+      encoding: 'utf-8'
+    })
+  }
 }
