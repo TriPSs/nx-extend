@@ -14,6 +14,7 @@ export interface BuildExecutorSchema {
   root?: string
   outputPath: string
   envVars?: Record<string, string>
+  generateLockFile?: boolean
 }
 
 export async function buildExecutor(
@@ -53,7 +54,7 @@ export async function buildExecutor(
     srcDir: strapiRoot
   })
 
-  await createPackageJson(options.outputPath, strapiRoot, context)
+  await createPackageJson(options.outputPath, strapiRoot, context, options.generateLockFile)
   await copyFolderSync(`${strapiRoot}/public`, `${distDir}/public`)
   await copyFavicon(`${strapiRoot}`, distDir)
   await copyFavicon(`${strapiRoot}/public`, distDir)
