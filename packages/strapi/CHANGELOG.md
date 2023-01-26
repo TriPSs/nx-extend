@@ -1,4 +1,13 @@
  
+# [3.4.0](https://github.com/TriPSs/nx-extend/compare/strapi@3.3.0...strapi@3.4.0) (2023-01-26)
+
+
+### Features
+
+* Implemented NX lockfile generation ([7638951](https://github.com/TriPSs/nx-extend/commit/76389510501ee3e850fca9cf9f675d70448dbf91))
+
+
+
 # [3.3.0](https://github.com/TriPSs/nx-extend/compare/strapi@3.2.0...strapi@3.3.0) (2023-01-25)
 
 
