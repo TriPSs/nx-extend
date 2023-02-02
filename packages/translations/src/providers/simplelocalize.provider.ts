@@ -43,9 +43,7 @@ export default class SimpleLocalize extends BaseProvider<SimpleLocalizeConfig> {
           await this.autoTranslate(language)
         }
       }
-    }
-
-    if (this.config.publishAfterPush) {
+    } else if (this.config.publishAfterPush) {
       logger.info('Publish after push is enabled, publishing latest changes')
       await this.post('/translations/publish', null, {
         headers: {
@@ -248,7 +246,8 @@ export default class SimpleLocalize extends BaseProvider<SimpleLocalizeConfig> {
           sourceProjectLanguage: this.config.defaultLanguage,
           deeplFormality: this.config?.translatorOptions?.formality ?? undefined,
           targetLanguage: language.toUpperCase(),
-          targetProjectLanguage: language
+          targetProjectLanguage: language,
+          options: this.config.publishAfterPush ? ['AUTO_PUBLISH'] : []
         },
         {
           headers: {
