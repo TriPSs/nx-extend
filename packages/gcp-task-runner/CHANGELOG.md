@@ -1,4 +1,22 @@
  
+# [1.1.0](https://github.com/TriPSs/nx-extend/compare/gcp-task-runner@1.0.3...gcp-task-runner@1.1.0) (2023-01-25)
+
+
+### Features
+
+* Updated deps ([8f9f3ca](https://github.com/TriPSs/nx-extend/commit/8f9f3ca9bfd1d51a71b6d8de1c335dc794502c17))
+
+
+
+## [1.0.3](https://github.com/TriPSs/nx-extend/compare/gcp-task-runner@1.0.2...gcp-task-runner@1.0.3) (2023-01-25)
+
+
+### Bug Fixes
+
+* **gcp-task-runner:** Added missing dependency ([eefc6cd](https://github.com/TriPSs/nx-extend/commit/eefc6cd6ffc691be080135c21ecefe8c6538fbba))
+
+
+
 ## [1.0.2](https://github.com/TriPSs/nx-extend/compare/gcp-task-runner@1.0.1...gcp-task-runner@1.0.2) (2022-11-17)
 
 

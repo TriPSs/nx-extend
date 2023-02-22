@@ -1,4 +1,27 @@
  
+# [6.5.0](https://github.com/TriPSs/nx-extend/compare/gcp-functions@6.4.0...gcp-functions@6.5.0) (2023-01-26)
+
+
+### Bug Fixes
+
+* **gcp-functions:** Fixed incorrect location of jest config file ([0b08c20](https://github.com/TriPSs/nx-extend/commit/0b08c206d8c56442ec7ace046d06f45c975d059d))
+
+
+### Features
+
+* Implemented NX lockfile generation ([7638951](https://github.com/TriPSs/nx-extend/commit/76389510501ee3e850fca9cf9f675d70448dbf91))
+
+
+
+# [6.4.0](https://github.com/TriPSs/nx-extend/compare/gcp-functions@6.3.5...gcp-functions@6.4.0) (2023-01-25)
+
+
+### Features
+
+* **gcp-functions:** Added support for `nodejs18` ([67f50a7](https://github.com/TriPSs/nx-extend/commit/67f50a70804b97058dd6d1a2b0f6ec1f8bd6c4b2))
+
+
+
 ## [6.3.5](https://github.com/TriPSs/nx-extend/compare/gcp-functions@6.3.4...gcp-functions@6.3.5) (2022-12-19)
 
 
