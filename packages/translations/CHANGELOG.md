@@ -1,4 +1,13 @@
  
+## [7.2.1](https://github.com/TriPSs/nx-extend/compare/translations@7.2.0...translations@7.2.1) (2023-03-15)
+
+
+### Bug Fixes
+
+* **translations:** Fixed SimpleLocalize not pushing translations if auto translate is also enabled ([f522d0f](https://github.com/TriPSs/nx-extend/commit/f522d0f556eb855af52351bccc967e20f9030592))
+
+
+
 # [7.2.0](https://github.com/TriPSs/nx-extend/compare/translations@7.1.2...translations@7.2.0) (2023-01-25)
 
 
