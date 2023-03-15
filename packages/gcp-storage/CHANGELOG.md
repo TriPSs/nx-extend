@@ -1,4 +1,13 @@
  
+## [1.0.5](https://github.com/TriPSs/nx-extend/compare/gcp-storage@1.0.4...gcp-storage@1.0.5) (2023-03-15)
+
+
+### Bug Fixes
+
+* **gcp-storage:** Fixed incorrect schema location ([d8ae63a](https://github.com/TriPSs/nx-extend/commit/d8ae63a737003df9077f934595561d0a0317016e)), closes [#109](https://github.com/TriPSs/nx-extend/issues/109)
+
+
+
 ## [1.0.4](https://github.com/TriPSs/nx-extend/compare/gcp-storage@1.0.3...gcp-storage@1.0.4) (2022-11-17)
 
 
