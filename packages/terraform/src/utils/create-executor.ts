@@ -4,7 +4,9 @@ import { execSync } from 'child_process'
 import { which } from 'shelljs'
 
 export interface ExecutorOptions {
-  [key: string]: string|[];
+  backendConfig: { key: string, name: string }[]
+
+  [key: string]: string | unknown
 }
 
 export function createExecutor(command: string) {
@@ -17,11 +19,13 @@ export function createExecutor(command: string) {
     }
 
     const { sourceRoot } = context.workspace.projects[context.projectName]
-    const optionsToString = options.backendConfig.length ? options?.backendConfig?.map((x) => `-backend-config="${x.key}=${x.name}"`).join(" ") : ''
+    const { backendConfig = [] } = options
 
-    const buildedCommand = ['terraform', command, optionsToString ]
-
-    execSync(buildCommand(buildedCommand), {
+    execSync(buildCommand([
+      'terraform',
+      command,
+      ...backendConfig.map((config) => `-backend-config="${config.key}=${config.name}"`)
+    ]), {
       cwd: sourceRoot,
       stdio: 'inherit'
     })
