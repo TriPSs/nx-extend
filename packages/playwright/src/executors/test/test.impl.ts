@@ -7,6 +7,7 @@ export interface TestOptions {
 
   headed?: boolean
   debug?: boolean
+  ui?: boolean
 }
 
 export async function testExecutor(
@@ -15,14 +16,15 @@ export async function testExecutor(
 ): Promise<{ success: boolean }> {
   const { root } = context.workspace.projects[context.projectName]
 
-  const { url, headed, debug } = options
+  const { url, headed, debug, ui } = options
 
   return Promise.resolve(execCommand(buildCommand([
     'npx playwright test',
     url,
 
     headed && '--headed',
-    debug && '--debug'
+    debug && '--debug',
+    ui && '--ui'
 
     // TODO:: Map all other options
   ]), {
