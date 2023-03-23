@@ -1,4 +1,13 @@
  
+# [1.2.0](https://github.com/TriPSs/nx-extend/compare/playwright@1.1.1...playwright@1.2.0) (2023-03-23)
+
+
+### Features
+
+* **playwright:** Added support for `--ui` option ([e5cf55a](https://github.com/TriPSs/nx-extend/commit/e5cf55a07243eb65f1b1621741a774b1cea9d4ff)), closes [#81](https://github.com/TriPSs/nx-extend/issues/81)
+
+
+
 ## [1.1.1](https://github.com/TriPSs/nx-extend/compare/playwright@1.1.0...playwright@1.1.1) (2022-11-17)
 
 
