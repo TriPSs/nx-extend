@@ -1,0 +1,9 @@
+{
+  "upgrade": true,
+  "interactive": true,
+  "root": true,
+  "workspaces": true,
+  "packageManager": "yarn",
+  "format": ["group", "repo"],
+  "reject": ["@nrwl/*", "nx"]
+}

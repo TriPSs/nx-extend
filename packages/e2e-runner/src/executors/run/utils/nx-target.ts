@@ -146,7 +146,6 @@ function launchProcess(
     }`,
     [],
     {
-      stdio: 'inherit',
       detached: true,
       shell: true,
       cwd: process.cwd(),
@@ -157,10 +156,16 @@ function launchProcess(
     }
   )
 
+  // spawnedProcess.stdout.on('data', (a) => {
+  //   console.log('message', a.toString())
+  // })
+
   let processClosed = false
   spawnedProcess.once('exit', (exitCode, signal) => {
     processClosed = true
     options.onExit(exitCode, signal)
+
+    // TODO:: If "output=on-error" log it
   })
 
   spawnedProcess.on('data', (line) => console.error(line.toString()))

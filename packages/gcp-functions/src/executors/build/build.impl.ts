@@ -1,4 +1,3 @@
-import { createLockFile } from '@nrwl/devkit'
 import webpackExecutor, { WebpackExecutorEvent } from '@nrwl/webpack/src/executors/webpack/webpack.impl'
 
 import type { ExecutorContext } from '@nrwl/devkit'
