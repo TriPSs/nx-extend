@@ -1,4 +1,8 @@
  
+## [2.3.1](https://github.com/TriPSs/nx-extend/compare/e2e-runner@2.3.0...e2e-runner@2.3.1) (2023-03-23)
+
+
+
 # [2.3.0](https://github.com/TriPSs/nx-extend/compare/e2e-runner@2.2.1...e2e-runner@2.3.0) (2022-12-29)
 
 
