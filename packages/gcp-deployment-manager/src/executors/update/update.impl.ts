@@ -22,7 +22,9 @@ export async function updateExecutor(
     options.project && `--project=${options.project}`,
     options.createPolicy && `--create-policy=${options.createPolicy}`,
     options.deletePolicy && `--delete-policy=${options.deletePolicy}`,
-    options.preview && `--preview`
+    options.preview && `--preview`,
+
+    // TODO:: Support NX_EXTEND_GCP_DEPLOYMENT_MANAGER_ACCOUNT env
   ]), {
     cwd: sourceRoot
   }))
