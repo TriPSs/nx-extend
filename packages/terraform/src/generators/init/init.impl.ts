@@ -34,16 +34,25 @@ export default async function (
     targets: {
       plan: {
         executor: '@nx-extend/terraform:plan',
-        options: {}
+        options: {
+          "PlanFile": "defaultplan",
+          "ciMode": true
+        }
       },
       // initialize instead of init as nx init creates a new nx project
       initialize: {
         executor: '@nx-extend/terraform:init',
-        options: {}
+        options: {
+          "ciMode": true
+        }
       },
       apply: {
         executor: '@nx-extend/terraform:apply',
-        options: {}
+        options: {
+          "PlanFile": "defaultplan",
+          "ciMode": true,
+          "autoApproval": false
+        }
       }
     },
     tags: options.parsedTags

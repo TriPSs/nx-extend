@@ -4,8 +4,10 @@ import { execSync } from 'child_process'
 import { which } from 'shelljs'
 
 export interface ExecutorOptions {
-  backendConfig: { key: string, name: string }[]
-
+  backendConfig: { key: string, name: string }[],
+  autoApproval: boolean,
+  planFile: string,
+  ciMode: boolean,
   [key: string]: string | unknown
 }
 
@@ -19,15 +21,33 @@ export function createExecutor(command: string) {
     }
 
     const { sourceRoot } = context.workspace.projects[context.projectName]
-    const { backendConfig = [] } = options
+    const { backendConfig = [],planFile, ciMode, autoApproval } = options
 
+    let plan = ''
+    let env = {}
+    
+    if( command === 'apply') {
+      plan = planFile
+    }
+    if(command === 'plan'){
+       plan = `-out ${planFile}`
+    }
+    if ( ciMode ) {
+       env = {
+        "TF_IN_AUTOMATION": true,
+        "TF_INPUT": 0,
+      }
+    }
     execSync(buildCommand([
       'terraform',
       command,
-      ...backendConfig.map((config) => `-backend-config="${config.key}=${config.name}"`)
+      ...backendConfig.map((config) => `-backend-config="${config.key}=${config.name}"`),
+      plan,
+      autoApproval ? "-auto-approve": ''
     ]), {
       cwd: sourceRoot,
-      stdio: 'inherit'
+      stdio: 'inherit',
+      env: {...process.env, ...env}
     })
 
     return Promise.resolve({ success: true })
