@@ -42,7 +42,8 @@ export function createExecutor(command: string) {
       'terraform',
       command,
       ...backendConfig.map((config) => `-backend-config="${config.key}=${config.name}"`),
-      plan,
+      command === 'apply' && planFile,
+      command === 'plan' && planFile && `-out ${planFile}`
       autoApproval && '-auto-approve'
     ]), {
       cwd: sourceRoot,
