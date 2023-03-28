@@ -1,20 +1,26 @@
-import { addProjectConfiguration, formatFiles, generateFiles, names, offsetFromRoot, Tree } from '@nrwl/devkit'
-import { DefaultGeneratorOptions, NormalizedSchema, normalizeOptions } from '@nx-extend/core'
+import {
+  addProjectConfiguration,
+  formatFiles,
+  generateFiles,
+  names,
+  offsetFromRoot,
+  Tree
+} from '@nrwl/devkit'
+import {
+  DefaultGeneratorOptions,
+  NormalizedSchema,
+  normalizeOptions
+} from '@nx-extend/core'
 import { join } from 'path'
 import { which } from 'shelljs'
 
 function addFiles(host: Tree, options: NormalizedSchema) {
-  generateFiles(
-    host,
-    join(__dirname, 'files'),
-    options.projectRoot,
-    {
-      ...options,
-      ...names(options.name),
-      offsetFromRoot: offsetFromRoot(options.projectRoot),
-      template: ''
-    }
-  )
+  generateFiles(host, join(__dirname, 'files'), options.projectRoot, {
+    ...options,
+    ...names(options.name),
+    offsetFromRoot: offsetFromRoot(options.projectRoot),
+    template: ''
+  })
 }
 
 export default async function (
@@ -35,23 +41,23 @@ export default async function (
       plan: {
         executor: '@nx-extend/terraform:plan',
         options: {
-          "planFile": "defaultplan",
-          "ciMode": true
+          planFile: 'defaultplan',
+          ciMode: true
         }
       },
       // initialize instead of init as nx init creates a new nx project
       initialize: {
         executor: '@nx-extend/terraform:init',
         options: {
-          "ciMode": true
+          ciMode: true
         }
       },
       apply: {
         executor: '@nx-extend/terraform:apply',
         options: {
-          "planFile": "defaultplan",
-          "ciMode": true,
-          "autoApproval": false
+          planFile: 'defaultplan',
+          ciMode: true,
+          autoApproval: false
         }
       }
     },
