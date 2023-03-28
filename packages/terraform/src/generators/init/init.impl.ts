@@ -35,7 +35,7 @@ export default async function (
       plan: {
         executor: '@nx-extend/terraform:plan',
         options: {
-          "PlanFile": "defaultplan",
+          "planFile": "defaultplan",
           "ciMode": true
         }
       },
@@ -49,7 +49,7 @@ export default async function (
       apply: {
         executor: '@nx-extend/terraform:apply',
         options: {
-          "PlanFile": "defaultplan",
+          "planFile": "defaultplan",
           "ciMode": true,
           "autoApproval": false
         }

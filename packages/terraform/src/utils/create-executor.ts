@@ -25,7 +25,7 @@ export function createExecutor(command: string) {
 
     let plan = ''
     let env = {}
-    
+
     if( command === 'apply') {
       plan = planFile
     }
@@ -43,11 +43,11 @@ export function createExecutor(command: string) {
       command,
       ...backendConfig.map((config) => `-backend-config="${config.key}=${config.name}"`),
       plan,
-      autoApproval ? "-auto-approve": ''
+      autoApproval && '-auto-approve'
     ]), {
       cwd: sourceRoot,
       stdio: 'inherit',
-      env: {...process.env, ...env}
+      env: {...env}
     })
 
     return Promise.resolve({ success: true })
