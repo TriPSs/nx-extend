@@ -1,4 +1,8 @@
  
+## [0.0.4](https://github.com/TriPSs/nx-extend/compare/terraform@0.0.3...terraform@0.0.4) (2023-03-30)
+
+
+
 ## [0.0.3](https://github.com/TriPSs/nx-extend/compare/terraform@0.0.2...terraform@0.0.3) (2023-03-15)
 
 
