@@ -1,4 +1,8 @@
  
+## [1.4.1](https://github.com/TriPSs/nx-extend/compare/core@1.4.0...core@1.4.1) (2023-03-30)
+
+
+
 # [1.4.0](https://github.com/TriPSs/nx-extend/compare/core@1.3.2...core@1.4.0) (2022-12-08)
 
 
