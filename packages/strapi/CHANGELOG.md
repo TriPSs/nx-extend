@@ -1,4 +1,8 @@
  
+## [3.5.1](https://github.com/TriPSs/nx-extend/compare/strapi@3.5.0...strapi@3.5.1) (2023-03-30)
+
+
+
 # [3.5.0](https://github.com/TriPSs/nx-extend/compare/strapi@3.4.0...strapi@3.5.0) (2023-03-23)
 
 
