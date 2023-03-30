@@ -1,4 +1,8 @@
  
+## [1.0.2](https://github.com/TriPSs/nx-extend/compare/changelog-notify@1.0.1...changelog-notify@1.0.2) (2023-03-30)
+
+
+
 ## [1.0.1](https://github.com/TriPSs/nx-extend/compare/changelog-notify@1.0.0...changelog-notify@1.0.1) (2022-11-17)
 
 
