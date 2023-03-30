@@ -8,6 +8,7 @@ export interface ExecutorOptions {
   autoApproval: boolean
   planFile: string
   ciMode: boolean
+
   [key: string]: string | unknown
 }
 
@@ -23,21 +24,14 @@ export function createExecutor(command: string) {
     const { sourceRoot } = context.workspace.projects[context.projectName]
     const { backendConfig = [], planFile, ciMode, autoApproval } = options
 
-    let plan = ''
     let env = {}
-
-    if (command === 'apply') {
-      plan = planFile
-    }
-    if (command === 'plan') {
-      plan = `-out ${planFile}`
-    }
     if (ciMode) {
       env = {
         TF_IN_AUTOMATION: true,
         TF_INPUT: 0
       }
     }
+
     execSync(
       buildCommand([
         'terraform',
@@ -52,7 +46,10 @@ export function createExecutor(command: string) {
       {
         cwd: sourceRoot,
         stdio: 'inherit',
-        env: { ...process.env, ...env }
+        env: {
+          ...process.env,
+          ...env
+        }
       }
     )
 
