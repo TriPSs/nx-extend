@@ -1,4 +1,8 @@
  
+## [1.8.3](https://github.com/TriPSs/nx-extend/compare/vercel@1.8.2...vercel@1.8.3) (2023-03-30)
+
+
+
 ## [1.8.2](https://github.com/TriPSs/nx-extend/compare/vercel@1.8.1...vercel@1.8.2) (2022-12-29)
 
 
