@@ -1,8 +1,8 @@
-import { createLockFile, writeJsonFile } from '@nrwl/devkit'
+import { writeJsonFile } from '@nrwl/devkit'
+import { createLockFile, createPackageJson as generatePackageJson } from '@nrwl/js'
 import { readCachedProjectGraph } from '@nrwl/workspace/src/core/project-graph'
 import { writeFileSync } from 'fs'
-import { getLockFileName } from 'nx/src/lock-file/lock-file'
-import { createPackageJson as generatePackageJson } from 'nx/src/utils/create-package-json'
+import { getLockFileName } from 'nx/src/plugins/js/lock-file/lock-file'
 
 import type { ExecutorContext } from '@nrwl/devkit'
 
