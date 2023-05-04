@@ -1,6 +1,6 @@
-import { execCommand, buildCommand } from '@nx-extend/core'
+import { ExecutorContext, logger, readJsonFile } from '@nx/devkit'
+import { buildCommand,execCommand } from '@nx-extend/core'
 import { existsSync, readFileSync, writeFileSync } from 'fs'
-import { ExecutorContext, logger, readJsonFile } from '@nrwl/devkit'
 import { join } from 'path'
 
 import { ExecutorSchema } from '../schema'
@@ -9,7 +9,8 @@ export function deployExecutor(
   options: ExecutorSchema,
   context: ExecutorContext
 ): Promise<{ success: boolean }> {
-  const { root, targets, sourceRoot } = context.workspace.projects[context.projectName]
+  const { root, targets, sourceRoot } =
+    context.workspace.projects[context.projectName]
 
   if (!targets?.build) {
     throw new Error('No build target configured!')
@@ -100,23 +101,29 @@ export function deployExecutor(
     return env
   }, [])
 
-  const validSecrets = secrets.map((secret) => {
-    if (secret.includes('=') && secret.includes(':')) {
-      return secret
-    }
+  const validSecrets = secrets
+    .map((secret) => {
+      if (secret.includes('=') && secret.includes(':')) {
+        return secret
+      }
 
-    logger.warn(`"${secret}" is not a valid secret! It should be in the following format "ENV_VAR_NAME=SECRET:VERSION"`)
-    return false
-  }).filter(Boolean)
+      logger.warn(
+        `"${secret}" is not a valid secret! It should be in the following format "ENV_VAR_NAME=SECRET:VERSION"`
+      )
+      return false
+    })
+    .filter(Boolean)
 
   if (generateRepoInfoFile) {
     logger.info('Generating repo info file')
 
-    execCommand(buildCommand([
-      'gcloud debug source gen-repo-info-file',
-      `--source-directory=${sourceRoot}`,
-      `--output-directory=${distDirectory}`
-    ]))
+    execCommand(
+      buildCommand([
+        'gcloud debug source gen-repo-info-file',
+        `--source-directory=${sourceRoot}`,
+        `--output-directory=${distDirectory}`
+      ])
+    )
   }
 
   let gcloudCommand = 'gcloud'
@@ -151,9 +158,11 @@ export function deployExecutor(
     buildWithArtifactRegistry && autoCreateArtifactsRepo && '--quiet'
   ])
 
-  return Promise.resolve(execCommand(deployCommand, {
-    cwd: distDirectory
-  }))
+  return Promise.resolve(
+    execCommand(deployCommand, {
+      cwd: distDirectory
+    })
+  )
 }
 
 export default deployExecutor

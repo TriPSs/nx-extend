@@ -1,5 +1,15 @@
-import { addProjectConfiguration, formatFiles, generateFiles, names, offsetFromRoot, Tree } from '@nrwl/devkit'
-import { normalizeOptions, NormalizedSchema, DefaultGeneratorOptions } from '@nx-extend/core'
+import {
+  addProjectConfiguration,
+  formatFiles,
+  generateFiles,
+  names,
+  offsetFromRoot,
+  Tree
+} from '@nx/devkit'
+import {
+  DefaultGeneratorOptions,
+  NormalizedSchema,
+  normalizeOptions} from '@nx-extend/core'
 import { join } from 'path'
 
 export interface Options extends DefaultGeneratorOptions {
@@ -7,23 +17,15 @@ export interface Options extends DefaultGeneratorOptions {
 }
 
 function addFiles(host: Tree, options: NormalizedSchema) {
-  generateFiles(
-    host,
-    join(__dirname, 'files'),
-    options.projectRoot,
-    {
-      ...options,
-      ...names(options.name),
-      offsetFromRoot: offsetFromRoot(options.projectRoot),
-      template: ''
-    }
-  )
+  generateFiles(host, join(__dirname, 'files'), options.projectRoot, {
+    ...options,
+    ...names(options.name),
+    offsetFromRoot: offsetFromRoot(options.projectRoot),
+    template: ''
+  })
 }
 
-export default async function (
-  host: Tree,
-  rawOptions: Options
-) {
+export default async function (host: Tree, rawOptions: Options) {
   const options = normalizeOptions(host, rawOptions)
   const file = `deployment.yml`
 

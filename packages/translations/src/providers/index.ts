@@ -1,4 +1,4 @@
-import { ExecutorContext, logger } from '@nrwl/devkit'
+import { ExecutorContext, logger } from '@nx/devkit'
 
 import type { BaseConfigFile } from '../utils/config-file'
 
@@ -8,7 +8,11 @@ import SimpleLocalize, { SimpleLocalizeConfig } from './simplelocalize.provider'
 import TraduoraProvider, { TraduoraConfig } from './traduora.provider'
 import TransifexProvider, { TransifexConfig } from './transifex.provider'
 
-export const getProvider = async (provider: string, context: ExecutorContext, configFile: BaseConfigFile): Promise<BaseProvider<any>> => {
+export const getProvider = async (
+  provider: string,
+  context: ExecutorContext,
+  configFile: BaseConfigFile
+): Promise<BaseProvider<any>> => {
   switch (provider) {
     case 'traduora':
       return new TraduoraProvider(context, configFile as TraduoraConfig)

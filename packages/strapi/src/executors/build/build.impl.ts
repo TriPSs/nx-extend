@@ -1,4 +1,4 @@
-import { ExecutorContext } from '@nrwl/devkit'
+import { ExecutorContext } from '@nx/devkit'
 import { buildAdmin } from '@strapi/strapi/lib/commands/builders'
 import tsUtils from '@strapi/typescript-utils'
 import { join } from 'path'
@@ -54,7 +54,12 @@ export async function buildExecutor(
     srcDir: strapiRoot
   })
 
-  await createPackageJson(options.outputPath, strapiRoot, context, options.generateLockFile)
+  await createPackageJson(
+    options.outputPath,
+    strapiRoot,
+    context,
+    options.generateLockFile
+  )
   await copyFolderSync(`${strapiRoot}/public`, `${distDir}/public`)
   await copyFavicon(`${strapiRoot}`, distDir)
   await copyFavicon(`${strapiRoot}/public`, distDir)

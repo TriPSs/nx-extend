@@ -1,12 +1,13 @@
 import {
   addDependenciesToPackageJson,
-  ProjectConfiguration, readJsonFile,
+  ProjectConfiguration,
+  readJsonFile,
   readProjectConfiguration,
   Tree,
   updateProjectConfiguration,
   writeJsonFile
-} from '@nrwl/devkit'
-import { runTasksInSerial } from '@nrwl/workspace/src/utilities/run-tasks-in-serial'
+} from '@nx/devkit'
+import { runTasksInSerial } from '@nx/workspace/src/utilities/run-tasks-in-serial'
 
 import { FirebaseHostingGeneratorSchema } from './schema'
 
@@ -86,11 +87,13 @@ export function addToFirebaseJson(
 
   writeJsonFile(firebaseJsonLocation, firebaseJson)
 
-  return runTasksInSerial(addDependenciesToPackageJson(
-    host,
-    {},
-    {
-      'firebase-tools': '11.9.0'
-    }
-  ))
+  return runTasksInSerial(
+    addDependenciesToPackageJson(
+      host,
+      {},
+      {
+        'firebase-tools': '11.9.0'
+      }
+    )
+  )
 }

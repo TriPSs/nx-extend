@@ -3,7 +3,6 @@
   "outputCapture": "direct-nodejs",
   "$schema": "http://json-schema.org/schema",
   "type": "object",
-  "cli": "nx",
   "title": "Deploy executor",
   "description": "Deploy",
   "properties": {
@@ -18,12 +17,18 @@
     "deletePolicy": {
       "type": "string",
       "default": "delete",
-      "enum": ["abandon", "delete"]
+      "enum": [
+        "abandon",
+        "delete"
+      ]
     },
     "createPolicy": {
       "type": "string",
       "default": "create-or-acquire",
-      "enum": ["acquire", "create-or-acquire"]
+      "enum": [
+        "acquire",
+        "create-or-acquire"
+      ]
     },
     "preview": {
       "type": "boolean",

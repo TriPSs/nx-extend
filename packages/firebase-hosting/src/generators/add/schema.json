@@ -1,6 +1,5 @@
 {
   "$schema": "http://json-schema.org/schema",
-  "cli": "nx",
   "id": "FirebaseHosting",
   "title": "",
   "type": "object",
@@ -24,5 +23,8 @@
       "x-prompt": "What is the Firebase site name?"
     }
   },
-  "required": ["target", "site"]
+  "required": [
+    "target",
+    "site"
+  ]
 }

@@ -1,28 +1,31 @@
-import { logger } from '@nrwl/devkit'
+import { logger } from '@nx/devkit'
 import axios, { AxiosInstance } from 'axios'
 import * as FormData from 'form-data'
 
-import BaseProvider from './base.provider'
 import { BaseConfigFile, updateConfigFile } from '../utils/config-file'
+import BaseProvider from './base.provider'
 
 export interface TraduoraConfig extends BaseConfigFile {
-
   baseUrl: string
-
 }
 
 export default class Traduora extends BaseProvider<TraduoraConfig> {
-
   private apiClient: AxiosInstance
 
   private token = null
 
-  public async getTranslations(code: string): Promise<{ [key: string]: string }> {
-    const { data: { data: terms } } = await this.apiClient.get<any>(
+  public async getTranslations(
+    code: string
+  ): Promise<{ [key: string]: string }> {
+    const {
+      data: { data: terms }
+    } = await this.apiClient.get<any>(
       `/api/v1/projects/${this.config.projectId}/terms`
     )
 
-    const { data: { data } } = await this.apiClient.get<any>(
+    const {
+      data: { data }
+    } = await this.apiClient.get<any>(
       `/api/v1/projects/${this.config.projectId}/translations/${code}`
     )
 
@@ -37,7 +40,10 @@ export default class Traduora extends BaseProvider<TraduoraConfig> {
     return translations
   }
 
-  public async uploadTranslations(language: string, translations: { [p: string]: string }): Promise<boolean> {
+  public async uploadTranslations(
+    language: string,
+    translations: { [p: string]: string }
+  ): Promise<boolean> {
     const form = new FormData()
 
     form.append('file', Buffer.from(JSON.stringify(translations)), {
@@ -50,7 +56,7 @@ export default class Traduora extends BaseProvider<TraduoraConfig> {
       form,
       {
         headers: {
-          'Authorization': `Bearer ${await this.getToken()}`,
+          Authorization: `Bearer ${await this.getToken()}`,
           ...form.getHeaders()
         }
       }
@@ -73,7 +79,7 @@ export default class Traduora extends BaseProvider<TraduoraConfig> {
     this.apiClient = axios.create({
       baseURL: this.config.baseUrl,
       headers: {
-        'Authorization': `Bearer ${await this.getToken()}`
+        Authorization: `Bearer ${await this.getToken()}`
       }
     })
   }
@@ -87,23 +93,34 @@ export default class Traduora extends BaseProvider<TraduoraConfig> {
       throw new Error('No "projectName" or "projectId" provided!')
     }
 
-    const { data: { data } } = await this.apiClient.get<any>('/api/v1/projects')
+    const {
+      data: { data }
+    } = await this.apiClient.get<any>('/api/v1/projects')
 
-    let project = data.find((project) => project.name === this.config.projectName)
+    let project = data.find(
+      (project) => project.name === this.config.projectName
+    )
 
     if (!project) {
-      logger.info(`Project "${this.config.projectName}" does not exist, going to create it!`)
+      logger.info(
+        `Project "${this.config.projectName}" does not exist, going to create it!`
+      )
 
-      const { data: { data: { id } } } = await this.apiClient.post<any>('/api/v1/projects', {
+      const {
+        data: {
+          data: { id }
+        }
+      } = await this.apiClient.post<any>('/api/v1/projects', {
         name: this.config.projectName
       })
 
       project = {
         id
       }
-
     } else {
-      logger.info(`Found "${this.config.projectName}" project, storing id in config`)
+      logger.info(
+        `Found "${this.config.projectName}" project, storing id in config`
+      )
     }
 
     // Update the config file
@@ -122,20 +139,30 @@ export default class Traduora extends BaseProvider<TraduoraConfig> {
       throw new Error('No "languages" defined!')
     }
 
-    const { data: { data } } = await this.apiClient.get<any>(`/api/v1/projects/${this.config.projectId}/translations`)
+    const {
+      data: { data }
+    } = await this.apiClient.get<any>(
+      `/api/v1/projects/${this.config.projectId}/translations`
+    )
 
     const existingCodes = data.map(({ locale }) => locale.code)
 
-    const nonExistingCodes = [...this.config.languages]
-      .filter((code) => !existingCodes.includes(code))
+    const nonExistingCodes = [...this.config.languages].filter(
+      (code) => !existingCodes.includes(code)
+    )
 
     while (nonExistingCodes.length > 0) {
       const code = nonExistingCodes.shift()
-      logger.info(`Going add language "${code}" to project "${this.config.projectName}"`)
+      logger.info(
+        `Going add language "${code}" to project "${this.config.projectName}"`
+      )
 
-      await this.apiClient.post(`/api/v1/projects/${this.config.projectId}/translations`, {
-        code
-      })
+      await this.apiClient.post(
+        `/api/v1/projects/${this.config.projectId}/translations`,
+        {
+          code
+        }
+      )
     }
   }
 
@@ -150,11 +177,15 @@ export default class Traduora extends BaseProvider<TraduoraConfig> {
     const password = process.env.NX_EXTEND_TRADUORA_PASSWORD
 
     if (!username) {
-      throw new Error('No username provided! Add "NX_EXTEND_TRADUORA_USERNAME" to your environment variables!')
+      throw new Error(
+        'No username provided! Add "NX_EXTEND_TRADUORA_USERNAME" to your environment variables!'
+      )
     }
 
     if (!password) {
-      throw new Error('No password provided! Add "NX_EXTEND_TRADUORA_PASSWORD" to your environment variables!')
+      throw new Error(
+        'No password provided! Add "NX_EXTEND_TRADUORA_PASSWORD" to your environment variables!'
+      )
     }
 
     const { data } = await axios.post<{ access_token: string }>(
@@ -166,7 +197,6 @@ export default class Traduora extends BaseProvider<TraduoraConfig> {
       }
     )
 
-    return this.token = data.access_token
+    return (this.token = data.access_token)
   }
-
 }

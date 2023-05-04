@@ -1,4 +1,4 @@
-import { logger } from '@nrwl/devkit'
+import { logger } from '@nx/devkit'
 import axios, { AxiosInstance } from 'axios'
 import * as deepmerge from 'deepmerge'
 
@@ -6,31 +6,30 @@ import { BaseConfigFile } from '../utils/config-file'
 import BaseProvider from './base.provider'
 
 export interface TransifexConfig extends BaseConfigFile {
-
   organization: string
 
   project: string
-
 }
 
 export interface TransifexLanguage {
-
   id: string
 
   code: string
-
 }
 
 export default class Transifex extends BaseProvider<TransifexConfig> {
-
   private readonly apiClient: AxiosInstance = axios.create({
     baseURL: 'https://rest.api.transifex.com'
   })
 
   private languages: TransifexLanguage[] = []
 
-  public async getTranslations(language: string): Promise<{ [p: string]: string }> {
-    const transifexLanguage = this.languages.find(({ code }) => code === language)
+  public async getTranslations(
+    language: string
+  ): Promise<{ [p: string]: string }> {
+    const transifexLanguage = this.languages.find(
+      ({ code }) => code === language
+    )
 
     if (!transifexLanguage) {
       logger.error(`Language "${language}" does not exist in Transifex!`)
@@ -42,7 +41,7 @@ export default class Transifex extends BaseProvider<TransifexConfig> {
       {
         'filter[resource]': this.getRecourseName(true),
         'filter[language]': transifexLanguage.id,
-        'include': 'resource_string'
+        include: 'resource_string'
       }
     )
 
@@ -53,13 +52,19 @@ export default class Transifex extends BaseProvider<TransifexConfig> {
 
       return {
         ...newTranslations,
-        [sourceKey.attributes.key.split('\\.').join('.')]: translation?.attributes?.strings?.other || ''
+        [sourceKey.attributes.key.split('\\.').join('.')]:
+          translation?.attributes?.strings?.other || ''
       }
     }, {})
   }
 
-  public async uploadTranslations(language: string, translations: { [p: string]: string }): Promise<boolean> {
-    const transifexLanguage = this.languages.find(({ code }) => code === language)
+  public async uploadTranslations(
+    language: string,
+    translations: { [p: string]: string }
+  ): Promise<boolean> {
+    const transifexLanguage = this.languages.find(
+      ({ code }) => code === language
+    )
 
     if (!transifexLanguage && language === this.config.defaultLanguage) {
       logger.error(`Language "${language}" does not exist in Transifex!`)
@@ -69,54 +74,48 @@ export default class Transifex extends BaseProvider<TransifexConfig> {
     let response
     // If its the default language then upload the source terms
     if (language === this.config.defaultLanguage) {
-      response = await this.postToAPI(
-        '/resource_strings_async_uploads',
-        {
-          data: {
-            attributes: {
-              content: `${JSON.stringify(translations)}`,
-              content_encoding: 'text'
-            },
-            relationships: {
-              resource: {
-                data: {
-                  id: this.getRecourseName(true),
-                  type: 'resources'
-                }
+      response = await this.postToAPI('/resource_strings_async_uploads', {
+        data: {
+          attributes: {
+            content: `${JSON.stringify(translations)}`,
+            content_encoding: 'text'
+          },
+          relationships: {
+            resource: {
+              data: {
+                id: this.getRecourseName(true),
+                type: 'resources'
               }
-            },
-            type: 'resource_strings_async_uploads'
-          }
+            }
+          },
+          type: 'resource_strings_async_uploads'
         }
-      )
+      })
     } else {
-      response = await this.postToAPI(
-        '/resource_translations_async_uploads',
-        {
-          data: {
-            attributes: {
-              content: `${JSON.stringify(translations)}`,
-              content_encoding: 'text',
-              file_type: 'default'
-            },
-            relationships: {
-              language: {
-                data: {
-                  id: transifexLanguage.id,
-                  type: 'languages'
-                }
-              },
-              resource: {
-                data: {
-                  id: this.getRecourseName(true),
-                  type: 'resources'
-                }
+      response = await this.postToAPI('/resource_translations_async_uploads', {
+        data: {
+          attributes: {
+            content: `${JSON.stringify(translations)}`,
+            content_encoding: 'text',
+            file_type: 'default'
+          },
+          relationships: {
+            language: {
+              data: {
+                id: transifexLanguage.id,
+                type: 'languages'
               }
             },
-            type: 'resource_translations_async_uploads'
-          }
+            resource: {
+              data: {
+                id: this.getRecourseName(true),
+                type: 'resources'
+              }
+            }
+          },
+          type: 'resource_translations_async_uploads'
         }
-      )
+      })
     }
 
     let tries = 0
@@ -133,7 +132,9 @@ export default class Transifex extends BaseProvider<TransifexConfig> {
     }
 
     if (status !== 'succeeded') {
-      logger.warn(`Could not verify upload status, last know status was "${status}"`)
+      logger.warn(
+        `Could not verify upload status, last know status was "${status}"`
+      )
     }
 
     return true
@@ -189,9 +190,7 @@ export default class Transifex extends BaseProvider<TransifexConfig> {
 
     this.languages = languages.map((language) => ({
       id: language.relationships.language.data.id,
-      code: language.relationships.language.data.id
-        .split(':')
-        .pop()
+      code: language.relationships.language.data.id.split(':').pop()
     }))
   }
 
@@ -199,16 +198,12 @@ export default class Transifex extends BaseProvider<TransifexConfig> {
    * Posts to the Transifex API
    */
   private async postToAPI(uri: string, data) {
-    const { data: response } = await this.apiClient.post(
-      uri,
-      data,
-      {
-        headers: {
-          Authorization: `Bearer ${this.getToken()}`,
-          'content-type': 'application/vnd.api+json'
-        }
+    const { data: response } = await this.apiClient.post(uri, data, {
+      headers: {
+        Authorization: `Bearer ${this.getToken()}`,
+        'content-type': 'application/vnd.api+json'
       }
-    )
+    })
 
     return response
   }
@@ -217,15 +212,14 @@ export default class Transifex extends BaseProvider<TransifexConfig> {
    * Get's from the Transifex API and if there is a next link also retrieves that
    */
   private async getFromAPI(uri: string, params = {}) {
-    const { data: { links, ...response } } = await this.apiClient.get<any>(
-      uri,
-      {
-        params,
-        headers: {
-          Authorization: `Bearer ${this.getToken()}`
-        }
+    const {
+      data: { links, ...response }
+    } = await this.apiClient.get<any>(uri, {
+      params,
+      headers: {
+        Authorization: `Bearer ${this.getToken()}`
       }
-    )
+    })
 
     let finalResponse = response
 
@@ -243,7 +237,9 @@ export default class Transifex extends BaseProvider<TransifexConfig> {
     const token = process.env.TX_TOKEN || process.env.NX_TX_TOKEN
 
     if (!token) {
-      throw new Error('No token provided! Add "TX_TOKEN" to your environment variables!')
+      throw new Error(
+        'No token provided! Add "TX_TOKEN" to your environment variables!'
+      )
     }
 
     return token
@@ -254,7 +250,8 @@ export default class Transifex extends BaseProvider<TransifexConfig> {
       `o:${this.config.organization}`,
       `p:${this.config.project}`,
       withProjectName && `r:${this.config.projectName}`
-    ].filter(Boolean).join(':')
+    ]
+      .filter(Boolean)
+      .join(':')
   }
-
 }

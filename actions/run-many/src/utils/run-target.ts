@@ -1,5 +1,5 @@
 import * as core from '@actions/core'
-import { logger } from '@nrwl/devkit'
+import { logger } from '@nx/devkit'
 
 import type { ProjectConfiguration } from 'nx/src/config/workspace-json-project-json'
 
@@ -10,8 +10,20 @@ import { generateSummary } from './generate-summary'
 import { getProjectsWithTarget } from './get-projects-with-target'
 import { getRestArgs } from './get-rest-args'
 
-export async function runTarget(cwd: string, projects: Map<string, ProjectConfiguration>, runProjects: string[], target: string, config?: string, parallel?: string, withSummary?: boolean) {
-  const projectsWithTarget = getProjectsWithTarget(projects, runProjects, target)
+export async function runTarget(
+  cwd: string,
+  projects: Map<string, ProjectConfiguration>,
+  runProjects: string[],
+  target: string,
+  config?: string,
+  parallel?: string,
+  withSummary?: boolean
+) {
+  const projectsWithTarget = getProjectsWithTarget(
+    projects,
+    runProjects,
+    target
+  )
 
   if (projectsWithTarget.length === 0) {
     logger.info(`No projects to run for target "${target}"`)
@@ -62,7 +74,6 @@ export async function runTarget(cwd: string, projects: Map<string, ProjectConfig
   if (withSummary) {
     try {
       await generateSummary(target, projectsWithTarget, runManyResult.output)
-
     } catch (err) {
       logger.warn(`Error generating Github summary: ${err.message || err}`)
     }

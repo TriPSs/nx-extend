@@ -1,9 +1,9 @@
-import { readJsonFile, writeJsonFile } from '@nrwl/devkit'
+import { readJsonFile, writeJsonFile } from '@nx/devkit'
 import { buildCommand, copyFile, execCommand } from '@nx-extend/core'
 import { existsSync, rmSync } from 'fs'
 import { join } from 'path'
 
-import type { ExecutorContext } from '@nrwl/devkit'
+import type { ExecutorContext } from '@nx/devkit'
 
 import { addEnvVariablesToFile } from '../../utils/add-env-variables-to-file'
 import { enrichVercelEnvFile } from '../../utils/enrich-vercel-env-file'
@@ -28,7 +28,8 @@ export function buildExecutor(
 ): Promise<{ success: boolean }> {
   const { targets } = context.workspace.projects[context.projectName]
   const framework = options.framework || 'nextjs'
-  const buildTarget = options.buildTarget || (framework === 'nextjs' ? 'build-next' : 'build')
+  const buildTarget =
+    options.buildTarget || (framework === 'nextjs' ? 'build-next' : 'build')
 
   if (!options.orgId) {
     throw new Error(`"orgId" option is required!`)
@@ -39,15 +40,22 @@ export function buildExecutor(
   }
 
   if (!targets[buildTarget]) {
-    throw new Error(`"${context.projectName}" is missing the "${buildTarget}" target!`)
+    throw new Error(
+      `"${context.projectName}" is missing the "${buildTarget}" target!`
+    )
   }
 
   if (!targets[buildTarget]?.options?.outputPath) {
     throw new Error(`"${buildTarget}" target has no "outputPath" configured!`)
   }
 
-  if (options.buildConfig && !targets[buildTarget]?.configurations[options.buildConfig]) {
-    throw new Error(`"${buildTarget}" target has no configuration "${options.buildConfig}"!`)
+  if (
+    options.buildConfig &&
+    !targets[buildTarget]?.configurations[options.buildConfig]
+  ) {
+    throw new Error(
+      `"${buildTarget}" target has no configuration "${options.buildConfig}"!`
+    )
   }
 
   const vercelDirectory = '.vercel'
@@ -66,18 +74,19 @@ export function buildExecutor(
     settings: {}
   })
 
-  const vercelEnironment = context.configurationName === 'production'
-    ? 'production'
-    : 'preview'
+  const vercelEnironment =
+    context.configurationName === 'production' ? 'production' : 'preview'
 
   // Pull latest
-  const { success: pullSuccess } = execCommand(buildCommand([
-    'npx vercel pull --yes',
-    `--environment=${vercelEnironment}`,
-    vercelToken && `--token=${vercelToken}`,
+  const { success: pullSuccess } = execCommand(
+    buildCommand([
+      'npx vercel pull --yes',
+      `--environment=${vercelEnironment}`,
+      vercelToken && `--token=${vercelToken}`,
 
-    options.debug && '--debug'
-  ]))
+      options.debug && '--debug'
+    ])
+  )
 
   if (!pullSuccess) {
     throw new Error(`Was unable to pull!`)
@@ -104,8 +113,10 @@ export function buildExecutor(
       createdAt: new Date().getTime(),
       framework,
       devCommand: null,
-      installCommand: 'echo \'\'',
-      buildCommand: `nx run ${context.projectName}:${buildTarget}:${options.buildConfig || context.configurationName}`,
+      installCommand: "echo ''",
+      buildCommand: `nx run ${context.projectName}:${buildTarget}:${
+        options.buildConfig || context.configurationName
+      }`,
       outputDirectory: getOutputDirectory(framework, outputDirectory),
       rootDirectory: null,
       directoryListing: false,
@@ -113,22 +124,35 @@ export function buildExecutor(
     }
   })
 
-  const { success } = execCommand(buildCommand([
-    'npx vercel build',
-    `--output ${targets[buildTarget].options.outputPath}/.vercel/output`,
-    context.configurationName === 'production' && '--prod',
-    vercelToken && `--token=${vercelToken}`,
+  const { success } = execCommand(
+    buildCommand([
+      'npx vercel build',
+      `--output ${targets[buildTarget].options.outputPath}/.vercel/output`,
+      context.configurationName === 'production' && '--prod',
+      vercelToken && `--token=${vercelToken}`,
 
-    options.debug && '--debug'
-  ]))
+      options.debug && '--debug'
+    ])
+  )
 
   if (success) {
     // Write the project.json to the .vercel directory
-    writeJsonFile(join(outputDirectory, vercelDirectory, 'project.json'), readJsonFile(vercelProjectJson))
+    writeJsonFile(
+      join(outputDirectory, vercelDirectory, 'project.json'),
+      readJsonFile(vercelProjectJson)
+    )
     // Also copy over the env files
-    copyFile(vercelEnvFileLocation, join(outputDirectory, vercelDirectory), vercelEnvFile)
+    copyFile(
+      vercelEnvFileLocation,
+      join(outputDirectory, vercelDirectory),
+      vercelEnvFile
+    )
     // Also copy the .vercelignore
-    copyFile(context.root, join(outputDirectory, vercelDirectory), '.vercelignore')
+    copyFile(
+      context.root,
+      join(outputDirectory, vercelDirectory),
+      '.vercelignore'
+    )
   }
 
   return Promise.resolve({ success })

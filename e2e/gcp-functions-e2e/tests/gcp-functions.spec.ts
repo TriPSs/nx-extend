@@ -3,10 +3,9 @@ import {
   ensureNxProject,
   runNxCommandAsync,
   uniq
-} from '@nrwl/nx-plugin/testing'
+} from '@nx/plugin/testing'
 
 describe('(e2e) gcp-functions', () => {
-
   beforeEach(() => {
     ensureNxProject('@nx-extend/gcp-functions', 'dist/packages/gcp-functions')
   })
@@ -52,7 +51,9 @@ describe('(e2e) gcp-functions', () => {
 
   it('should be able the runner', async () => {
     const plugin = uniq('gcp-functions-runner')
-    await runNxCommandAsync(`generate @nx-extend/gcp-functions:init-runner ${plugin}`)
+    await runNxCommandAsync(
+      `generate @nx-extend/gcp-functions:init-runner ${plugin}`
+    )
 
     expect(() =>
       checkFilesExist(
@@ -62,5 +63,4 @@ describe('(e2e) gcp-functions', () => {
       )
     ).not.toThrow()
   }, 300000)
-
 })

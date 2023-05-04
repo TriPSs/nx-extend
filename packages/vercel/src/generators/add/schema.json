@@ -1,6 +1,5 @@
 {
   "$schema": "http://json-schema.org/schema",
-  "cli": "nx",
   "id": "Vercel",
   "title": "",
   "type": "object",
@@ -15,5 +14,8 @@
       "x-prompt": "To what target would you like to add Vercel?"
     }
   },
-  "required": ["target", "site"]
+  "required": [
+    "target",
+    "site"
+  ]
 }

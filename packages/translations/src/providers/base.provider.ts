@@ -1,4 +1,9 @@
-import { ExecutorContext, logger, readJsonFile, writeJsonFile } from '@nrwl/devkit'
+import {
+  ExecutorContext,
+  logger,
+  readJsonFile,
+  writeJsonFile
+} from '@nx/devkit'
 import { existsSync } from 'fs'
 import { join } from 'path'
 
@@ -7,7 +12,6 @@ import { injectProjectRoot } from '../utils'
 import { BaseConfigFile } from '../utils/config-file'
 
 export default abstract class BaseProvider<Config extends BaseConfigFile> {
-
   protected readonly context: ExecutorContext
 
   protected config: Config = null
@@ -19,10 +23,7 @@ export default abstract class BaseProvider<Config extends BaseConfigFile> {
     this.config = config
 
     this.sourceFile = injectProjectRoot(
-      join(
-        this.config.outputDirectory,
-        `${this.config.defaultLanguage}.json`
-      ),
+      join(this.config.outputDirectory, `${this.config.defaultLanguage}.json`),
       this.config.projectRoot,
       this.context.root
     )
@@ -42,10 +43,13 @@ export default abstract class BaseProvider<Config extends BaseConfigFile> {
       // @ts-ignore
       const languageNames = new Intl.DisplayNames(['en'], { type: 'language' })
 
-      this.writeToFile(this.config.outputLanguages, languages.map((code) => ({
-        code,
-        language: languageNames.of(code)
-      })))
+      this.writeToFile(
+        this.config.outputLanguages,
+        languages.map((code) => ({
+          code,
+          language: languageNames.of(code)
+        }))
+      )
     }
 
     // Source terms
@@ -54,7 +58,10 @@ export default abstract class BaseProvider<Config extends BaseConfigFile> {
     while (languages.length > 0) {
       const code = languages.shift()
 
-      if (this.config.skipDefaultLanguage && code === this.config.defaultLanguage) {
+      if (
+        this.config.skipDefaultLanguage &&
+        code === this.config.defaultLanguage
+      ) {
         continue
       }
 
@@ -63,17 +70,16 @@ export default abstract class BaseProvider<Config extends BaseConfigFile> {
       const terms = await this.getTranslations(code)
 
       const translations = {}
-      Object.keys(terms)
-        .forEach((term) => {
-          let content = terms[term]
+      Object.keys(terms).forEach((term) => {
+        let content = terms[term]
 
-          // If term is not defined use the source term
-          if (!content || content.length === 0) {
-            content = sourceTerms[term]
-          }
+        // If term is not defined use the source term
+        if (!content || content.length === 0) {
+          content = sourceTerms[term]
+        }
 
-          translations[term] = content
-        })
+        translations[term] = content
+      })
 
       await this.writeLocaleToFile(code, translations)
     }
@@ -87,15 +93,21 @@ export default abstract class BaseProvider<Config extends BaseConfigFile> {
     }
 
     const languageToPush = language || this.config.defaultLanguage
-    const termsToPush = languageToPush === this.config.defaultLanguage
-      ? this.getSourceTerms()
-      : this.getLanguageTerms(languageToPush)
+    const termsToPush =
+      languageToPush === this.config.defaultLanguage
+        ? this.getSourceTerms()
+        : this.getLanguageTerms(languageToPush)
 
     if (languageToPush === this.config.defaultLanguage) {
-      logger.info(`Going to upload ${Object.keys(termsToPush).length} source terms!`)
-
+      logger.info(
+        `Going to upload ${Object.keys(termsToPush).length} source terms!`
+      )
     } else {
-      logger.info(`Going to upload ${Object.keys(termsToPush).length} terms to "${languageToPush}"!`)
+      logger.info(
+        `Going to upload ${
+          Object.keys(termsToPush).length
+        } terms to "${languageToPush}"!`
+      )
     }
 
     await this.uploadTranslations(languageToPush, termsToPush)
@@ -113,9 +125,14 @@ export default abstract class BaseProvider<Config extends BaseConfigFile> {
     await translator.translateAll(this)
   }
 
-  public abstract getTranslations(language: string): Promise<{ [key: string]: string }>
+  public abstract getTranslations(
+    language: string
+  ): Promise<{ [key: string]: string }>
 
-  public abstract uploadTranslations(language: string, translations: { [key: string]: string }): Promise<boolean>
+  public abstract uploadTranslations(
+    language: string,
+    translations: { [key: string]: string }
+  ): Promise<boolean>
 
   public getSourceTerms() {
     if (!existsSync(this.sourceFile)) {
@@ -123,7 +140,7 @@ export default abstract class BaseProvider<Config extends BaseConfigFile> {
 
       return {}
     }
-    
+
     return readJsonFile(this.sourceFile)
   }
 
@@ -160,5 +177,4 @@ export default abstract class BaseProvider<Config extends BaseConfigFile> {
         }, {})
     )
   }
-
 }

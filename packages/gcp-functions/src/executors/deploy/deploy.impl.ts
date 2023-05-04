@@ -1,4 +1,4 @@
-import { ExecutorContext, logger } from '@nrwl/devkit'
+import { ExecutorContext, logger } from '@nx/devkit'
 import { buildCommand, execCommand } from '@nx-extend/core'
 import { join } from 'path'
 
@@ -70,9 +70,7 @@ export async function deployExecutor(
 
   // Options with default values based of trigger type
   const {
-    ingressSettings = trigger === 'http'
-      ? null
-      : 'internal-only',
+    ingressSettings = trigger === 'http' ? null : 'internal-only',
 
     allowUnauthenticated = trigger === 'http'
   } = options
@@ -90,73 +88,87 @@ export async function deployExecutor(
 
   const { targets } = context.workspace.projects[context.projectName]
 
-  const validSecrets = secrets.map((secret) => {
-    if (secret.includes('=') && secret.includes(':')) {
-      return secret
-    }
+  const validSecrets = secrets
+    .map((secret) => {
+      if (secret.includes('=') && secret.includes(':')) {
+        return secret
+      }
 
-    logger.warn(`"${secret}" is not a valid secret! It should be in the following format "ENV_VAR_NAME=SECRET:VERSION"`)
-    return false
-  }).filter(Boolean)
+      logger.warn(
+        `"${secret}" is not a valid secret! It should be in the following format "ENV_VAR_NAME=SECRET:VERSION"`
+      )
+      return false
+    })
+    .filter(Boolean)
 
   let gcloudCommand = 'gcloud'
   if (validSecrets.length > 0 && gen === 1) {
     logger.info('Using secrets, use gcloud beta')
     gcloudCommand = 'gcloud beta'
-
   } else if (gen === 2) {
     logger.info('Using gen 2, use gcloud alpha')
     gcloudCommand = 'gcloud alpha'
   }
 
-  let { success } = execCommand(buildCommand([
-    `${gcloudCommand} functions deploy`,
-    functionName,
-    gen === 2 && '--gen2',
-    `--trigger-${trigger}${triggerValue ? `=${triggerValue}` : ''}`,
-    triggerEvent && `--trigger-event=${triggerEvent}`,
-    triggerLocation && `--trigger-location=${triggerLocation}`,
-    `--runtime=${runtime}`,
-    `--memory=${correctMemory}`,
-    `--region=${region}`,
-
-    entryPoint && `--entry-point=${entryPoint}`,
-    envVarsFile && `--env-vars-file=${envVarsFile}`,
-    retry && `--retry`,
-    ingressSettings && `--ingress-settings=${ingressSettings}`,
-    egressSettings && `--egress-settings=${egressSettings}`,
-    securityLevel && `--security-level=${securityLevel}`,
-    timeout && `--timeout=${timeout}`,
-
-    `--source=${join(context.root, targets?.build?.options?.outputPath.toString())}`,
-    `--max-instances=${maxInstances}`,
-
-    allowUnauthenticated && '--allow-unauthenticated',
-    serviceAccount && `--service-account=${serviceAccount}`,
-
-    validSecrets.length > 0 && `--set-secrets=${validSecrets.join(',')}`,
-
-    project && `--project=${project}`,
-
-    '--quiet'
-  ]))
-
-  if (success && gen === 2 && (concurrency > 0 || validSecrets.length > 0 || cloudSqlInstance)) {
-    logger.info('Updating service with more configurations')
-
-    const serviceUpdateCommand = execCommand(buildCommand([
-      `${gcloudCommand} run services update`,
+  let { success } = execCommand(
+    buildCommand([
+      `${gcloudCommand} functions deploy`,
       functionName,
-
-      concurrency > 0 && `--concurrency ${concurrency}`,
-      cpu && `--cpu ${cpu}`,
-      cloudSqlInstance && `--add-cloudsql-instances=${cloudSqlInstance}`,
-
+      gen === 2 && '--gen2',
+      `--trigger-${trigger}${triggerValue ? `=${triggerValue}` : ''}`,
+      triggerEvent && `--trigger-event=${triggerEvent}`,
+      triggerLocation && `--trigger-location=${triggerLocation}`,
+      `--runtime=${runtime}`,
+      `--memory=${correctMemory}`,
       `--region=${region}`,
+
+      entryPoint && `--entry-point=${entryPoint}`,
+      envVarsFile && `--env-vars-file=${envVarsFile}`,
+      retry && `--retry`,
+      ingressSettings && `--ingress-settings=${ingressSettings}`,
+      egressSettings && `--egress-settings=${egressSettings}`,
+      securityLevel && `--security-level=${securityLevel}`,
+      timeout && `--timeout=${timeout}`,
+
+      `--source=${join(
+        context.root,
+        targets?.build?.options?.outputPath.toString()
+      )}`,
+      `--max-instances=${maxInstances}`,
+
+      allowUnauthenticated && '--allow-unauthenticated',
+      serviceAccount && `--service-account=${serviceAccount}`,
+
+      validSecrets.length > 0 && `--set-secrets=${validSecrets.join(',')}`,
+
       project && `--project=${project}`,
 
       '--quiet'
-    ]))
+    ])
+  )
+
+  if (
+    success &&
+    gen === 2 &&
+    (concurrency > 0 || validSecrets.length > 0 || cloudSqlInstance)
+  ) {
+    logger.info('Updating service with more configurations')
+
+    const serviceUpdateCommand = execCommand(
+      buildCommand([
+        `${gcloudCommand} run services update`,
+        functionName,
+
+        concurrency > 0 && `--concurrency ${concurrency}`,
+        cpu && `--cpu ${cpu}`,
+        cloudSqlInstance && `--add-cloudsql-instances=${cloudSqlInstance}`,
+
+        `--region=${region}`,
+        project && `--project=${project}`,
+
+        '--quiet'
+      ])
+    )
 
     success = serviceUpdateCommand.success
   }

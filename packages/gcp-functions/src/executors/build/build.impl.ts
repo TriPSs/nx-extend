@@ -1,7 +1,9 @@
-import webpackExecutor, { WebpackExecutorEvent } from '@nrwl/webpack/src/executors/webpack/webpack.impl'
+import webpackExecutor, {
+  WebpackExecutorEvent
+} from '@nx/webpack/src/executors/webpack/webpack.impl'
 
-import type { ExecutorContext } from '@nrwl/devkit'
-import type { WebpackExecutorOptions } from '@nrwl/webpack/src/executors/webpack/schema'
+import type { ExecutorContext } from '@nx/devkit'
+import type { WebpackExecutorOptions } from '@nx/webpack/src/executors/webpack/schema'
 
 import { generatePackageJson } from '../../utils/generate-package-json'
 
@@ -19,11 +21,15 @@ export async function buildExecutor(
     ...rawOptions
   } as WebpackExecutorOptions
 
-  const { value } = await webpackExecutor(options, context)
-    .next()
+  const { value } = await webpackExecutor(options, context).next()
 
   if (value.success) {
-    generatePackageJson(context, options, value.outfile, rawOptions.generateLockFile)
+    generatePackageJson(
+      context,
+      options,
+      value.outfile,
+      rawOptions.generateLockFile
+    )
   }
 
   return value

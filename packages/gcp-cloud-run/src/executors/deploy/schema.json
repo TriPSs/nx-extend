@@ -3,7 +3,6 @@
   "outputCapture": "direct-nodejs",
   "$schema": "http://json-schema.org/schema",
   "type": "object",
-  "cli": "nx",
   "title": "Deploy executor",
   "description": "Deploy",
   "properties": {

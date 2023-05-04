@@ -1,4 +1,4 @@
-import { Tree } from '@nrwl/devkit'
+import { Tree } from '@nx/devkit'
 import { buildCommand, execCommand } from '@nx-extend/core'
 
 export interface AddOptions {
@@ -7,10 +7,7 @@ export interface AddOptions {
   createProject?: boolean
 }
 
-export default async function AddVercel(
-  host: Tree,
-  options: AddOptions
-) {
+export default async function AddVercel(host: Tree, options: AddOptions) {
   execCommand('echo "TODO"')
   // execCommand(buildCommand([
   //   'npx vercel projects add <project name>',

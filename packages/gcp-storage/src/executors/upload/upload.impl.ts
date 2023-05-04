@@ -1,4 +1,4 @@
-import { ExecutorContext, logger } from '@nrwl/devkit'
+import { ExecutorContext, logger } from '@nx/devkit'
 import { buildCommand, execCommand } from '@nx-extend/core'
 import { join, resolve } from 'path'
 
@@ -23,15 +23,21 @@ export async function uploadExecutor(
 
   const uploadTo = `gs://${bucket}`
 
-  logger.info(`Start upload assets from "${directoryToUpload}" to "${uploadTo}"`)
+  logger.info(
+    `Start upload assets from "${directoryToUpload}" to "${uploadTo}"`
+  )
 
-  return Promise.resolve(execCommand(buildCommand([
-    'gsutil rsync -R',
-    gzip && `-z "${gzipExtensions}"`,
+  return Promise.resolve(
+    execCommand(
+      buildCommand([
+        'gsutil rsync -R',
+        gzip && `-z "${gzipExtensions}"`,
 
-    resolve(process.cwd(), directoryToUpload),
-    uploadTo
-  ])))
+        resolve(process.cwd(), directoryToUpload),
+        uploadTo
+      ])
+    )
+  )
 }
 
 export default uploadExecutor

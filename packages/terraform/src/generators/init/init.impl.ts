@@ -5,7 +5,7 @@ import {
   names,
   offsetFromRoot,
   Tree
-} from '@nrwl/devkit'
+} from '@nx/devkit'
 import {
   DefaultGeneratorOptions,
   NormalizedSchema,
