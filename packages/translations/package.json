@@ -22,7 +22,7 @@
   "license": "MIT",
   "main": "src/index.js",
   "dependencies": {
-    "@formatjs/cli": "^6.0.4"
+    "@formatjs/cli": "^6.1.1"
   },
   "builders": "./executors.json",
   "generators": "./generators.json"
