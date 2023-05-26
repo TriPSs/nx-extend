@@ -1,9 +1,9 @@
-import { createLockFile, ExecutorContext, readJsonFile, writeJsonFile } from '@nrwl/devkit'
+import { ExecutorContext, readJsonFile, writeJsonFile } from '@nrwl/devkit'
+import { createLockFile, createPackageJson } from '@nrwl/js'
 import { readCachedProjectGraph } from '@nrwl/workspace/src/core/project-graph'
 import { fileExists } from '@nrwl/workspace/src/utils/fileutils'
 import * as fs from 'fs'
-import { getLockFileName } from 'nx/src/lock-file/lock-file'
-import { createPackageJson } from 'nx/src/utils/create-package-json'
+import { getLockFileName } from 'nx/src/plugins/js/lock-file/lock-file'
 import { join } from 'path'
 
 import type { WebpackExecutorOptions } from '@nrwl/webpack/src/executors/webpack/schema'

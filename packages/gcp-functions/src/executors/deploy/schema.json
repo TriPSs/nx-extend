@@ -56,6 +56,9 @@
       "type": "string",
       "enum": ["all", "private-ranges-only"]
     },
+    "vpcConnector": {
+      "type": "string"
+    },
     "securityLevel": {
       "type": "string",
       "enum": ["secure-optional", "secure-always"]
