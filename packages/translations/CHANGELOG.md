@@ -1,4 +1,8 @@
  
+## [7.2.3](https://github.com/TriPSs/nx-extend/compare/translations@7.2.2...translations@7.2.3) (2023-05-26)
+
+
+
 ## [7.2.2](https://github.com/TriPSs/nx-extend/compare/translations@7.2.1...translations@7.2.2) (2023-03-30)
 
 
