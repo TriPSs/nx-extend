@@ -35,7 +35,7 @@ if (affectedProjects.length > 0) {
 
       // Try to Publish the package
       try {
-        execSync(`npm publish ./dist/packages/${project} --provenance --access public`, { stdio: 'inherit' })
+        execSync(`npm publish ./dist/packages/${project} --access public`, { stdio: 'inherit' })
 
       } catch (err) {
         core.warning(`Error publishing ${project}`, err)
