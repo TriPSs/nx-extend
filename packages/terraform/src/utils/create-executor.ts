@@ -39,9 +39,9 @@ export function createExecutor(command: string) {
         ...backendConfig.map(
           (config) => `-backend-config="${config.key}=${config.name}"`
         ),
-        command === 'apply' && planFile,
         command === 'plan' && planFile && `-out ${planFile}`,
-        autoApproval && '-auto-approve'
+        command === 'apply' && autoApproval && '-auto-approve',
+        command === 'apply' && planFile
       ]),
       {
         cwd: sourceRoot,
