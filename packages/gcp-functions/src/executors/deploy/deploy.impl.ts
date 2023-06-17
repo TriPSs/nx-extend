@@ -4,7 +4,7 @@ import { join } from 'path'
 
 export interface DeployExecutorSchema {
   functionName: string
-  runtime?: 'nodejs12' | 'nodejs14' | 'nodejs16' | 'nodejs18' | 'recommended'
+  runtime?: 'nodejs16' | 'nodejs18' | 'recommended'
   entryPoint?: string
   serviceAccount?: string
   memory?: '128MB' | '256MB' | '512MB' | '1024MB' | '2048MB' | '4096MB'

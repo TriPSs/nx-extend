@@ -26,7 +26,7 @@
     },
     "runtime": {
       "type": "string",
-      "enum": ["nodejs12", "nodejs14", "nodejs16", "nodejs18", "recommended"]
+      "enum": ["nodejs16", "nodejs18", "nodejs20", "recommended"]
     },
     "memory": {
       "type": "string",
