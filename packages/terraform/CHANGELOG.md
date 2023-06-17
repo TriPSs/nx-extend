@@ -1,4 +1,13 @@
  
+## [0.0.5](https://github.com/TriPSs/nx-extend/compare/terraform@0.0.4...terraform@0.0.5) (2023-06-17)
+
+
+### Bug Fixes
+
+* **terraform:** Fixed apply autoApprove ([65d071c](https://github.com/TriPSs/nx-extend/commit/65d071c7e4b0eeb49632477204ac70369ae0f32c))
+
+
+
 ## [0.0.4](https://github.com/TriPSs/nx-extend/compare/terraform@0.0.3...terraform@0.0.4) (2023-03-30)
 
 
