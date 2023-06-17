@@ -15,5 +15,5 @@
       "x-prompt": "To what target would you like to add Vercel?"
     }
   },
-  "required": ["target", "site"]
+  "required": ["target"]
 }

@@ -30,6 +30,15 @@ npm install -D @nx-extend/vercel
 
 #### Available options:
 
-| name          | type      | default | description              |
-|---------------|-----------|---------|--------------------------|
-| **`--debug`** | `boolean` | `false` | Run Vercel in debug mode |
+| name            | type      | default | description              |
+|-----------------|-----------|---------|--------------------------|
+| **`--debug`**   | `boolean` | `false` | Run Vercel in debug mode |
+| **`--regions`** | `string`  | ``      |                          |
+
+## How to get the project id
+
+Run the following command
+
+1. `npx vercel projects add <project name>`
+2. Go to the vercel dashboard and open the created project
+3. Go to settings -> Project ID
