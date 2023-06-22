@@ -19,7 +19,8 @@ This will add the following to the target:
 
 ```json
 {
-  ...other targets
+  ...other
+  targets
   "deploy": {
     "executor": "@nx-extend/firebase-hosting:deploy",
     "options": {
@@ -55,8 +56,7 @@ add this target to the hosting section:
 
 #### Available options:
 
-| name         | type     | default | description                                          |
-| ------------ | -------- | ------- | ---------------------------------------------------- |
-| **`--site`** | `string` | `null`  | specify the site to deploy from the `.firebase.json` |
-| **`--project`** | `string` | | Firebase Project to deploy to |
-
+| name            | type     | default | description                                          |
+|-----------------|----------|---------|------------------------------------------------------|
+| **`--site`**    | `string` | `null`  | specify the site to deploy from the `.firebase.json` |
+| **`--project`** | `string` |         | Firebase Project to deploy to                        |

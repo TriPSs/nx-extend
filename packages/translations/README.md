@@ -31,3 +31,4 @@ nx g @nx-extend/translations:add
 | name         | type     | default | description                                          |
 | ------------ | -------- | ------- | ---------------------------------------------------- |
 
+

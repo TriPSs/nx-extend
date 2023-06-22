@@ -26,4 +26,3 @@ npm install -D @nx-extend/gcp-storage
 | directory | string | `/` | What directory of the apps dist folder to upload |
 | gzip | boolean | false | Use gzip when uploading |
 | gzipExtensions | string |  | For what extensions to use gzip |
-

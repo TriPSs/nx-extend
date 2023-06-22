@@ -33,3 +33,4 @@ npm install -D @nx-extend/vercel
 | name          | type      | default | description              |
 |---------------|-----------|---------|--------------------------|
 | **`--debug`** | `boolean` | `false` | Run Vercel in debug mode |
+
