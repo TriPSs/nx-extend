@@ -2,6 +2,10 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [3.0.0](https://github.com/TriPSs/nx-extend/compare/terraform@2.0.0...terraform@3.0.0) (2023-06-22)
+
+
+
 # [2.0.0](https://github.com/TriPSs/nx-extend/compare/terraform@1.0.0...terraform@2.0.0) (2023-06-22)
 
 
