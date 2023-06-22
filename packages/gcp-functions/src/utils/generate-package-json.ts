@@ -3,12 +3,11 @@ import {
   readJsonFile,
   writeJsonFile
 } from '@nx/devkit'
-import { createLockFile } from '@nx/js'
+import { createLockFile, createPackageJson } from '@nx/js'
 import { readCachedProjectGraph } from '@nx/workspace/src/core/project-graph'
 import { fileExists } from '@nx/workspace/src/utils/fileutils'
 import * as fs from 'fs'
 import { getLockFileName } from 'nx/src/plugins/js/lock-file/lock-file'
-import { createPackageJson } from 'nx/src/plugins/js/package-json/create-package-json'
 import { join } from 'path'
 
 import type { WebpackExecutorOptions } from '@nx/webpack/src/executors/webpack/schema'

@@ -81,6 +81,9 @@
         "private-ranges-only"
       ]
     },
+    "vpcConnector": {
+      "type": "string"
+    },
     "securityLevel": {
       "type": "string",
       "enum": [

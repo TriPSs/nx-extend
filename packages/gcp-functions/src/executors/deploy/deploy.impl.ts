@@ -18,6 +18,7 @@ export interface DeployExecutorSchema {
   triggerLocation?: string
   ingressSettings?: 'all' | 'internal-only' | 'internal-and-gclb'
   egressSettings?: 'all' | 'private-ranges-only'
+  vpcConnector?: string
   securityLevel?: 'secure-optional' | 'secure-always'
   project?: string
   retry?: boolean
@@ -54,6 +55,7 @@ export async function deployExecutor(
     entryPoint = null,
     retry = false,
     egressSettings = null,
+    vpcConnector = null,
     securityLevel = null,
     secrets = [],
     gen = 1,
@@ -127,6 +129,7 @@ export async function deployExecutor(
       retry && `--retry`,
       ingressSettings && `--ingress-settings=${ingressSettings}`,
       egressSettings && `--egress-settings=${egressSettings}`,
+      vpcConnector && `--vpc-connector=${vpcConnector}`,
       securityLevel && `--security-level=${securityLevel}`,
       timeout && `--timeout=${timeout}`,
 

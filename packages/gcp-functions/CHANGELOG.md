@@ -1,4 +1,13 @@
  
+# [6.6.0](https://github.com/TriPSs/nx-extend/compare/gcp-functions@6.5.2...gcp-functions@6.6.0) (2023-05-26)
+
+
+### Features
+
+* **gcp-functions:** Added `vpcConnector` option ([48e86cd](https://github.com/TriPSs/nx-extend/commit/48e86cd80f9d9eeeba6d879b2bf67577970ae964))
+
+
+
 ## [6.5.2](https://github.com/TriPSs/nx-extend/compare/gcp-functions@6.5.1...gcp-functions@6.5.2) (2023-03-30)
 
 
