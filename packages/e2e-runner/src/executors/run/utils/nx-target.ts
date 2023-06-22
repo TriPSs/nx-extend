@@ -43,6 +43,8 @@ export class NxTarget {
       logger.error(`Unable to start "${this.options.target}": ${error.message}`)
 
       await this.teardown()
+
+      throw error
     }
   }
 
