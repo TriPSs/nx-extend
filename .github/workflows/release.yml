@@ -1,7 +1,9 @@
 name: Release
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - master
 
 env:
   NX_BRANCH: ${{ github.event.number }}
