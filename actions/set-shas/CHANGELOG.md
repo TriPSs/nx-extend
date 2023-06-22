@@ -1,4 +1,11 @@
- 
+# Changelog
+
+This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
+
+# [2.0.0](https://github.com/TriPSs/nx-extend/compare/actions-set-shas@1.0.2...actions-set-shas@2.0.0) (2023-06-22)
+
+
+
 ## [1.0.2](https://github.com/TriPSs/nx-extend/compare/actions-set-shas@1.0.1...actions-set-shas@1.0.2) (2022-12-08)
 
 
