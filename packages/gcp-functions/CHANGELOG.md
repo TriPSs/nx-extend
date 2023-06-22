@@ -1,4 +1,29 @@
- 
+# Changelog
+
+This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
+
+# [7.0.0](https://github.com/TriPSs/nx-extend/compare/gcp-functions@6.6.0...gcp-functions@7.0.0) (2023-06-22)
+
+
+### Bug Fixes
+
+* **gcp-functions:** Never use the generated package.json from webpack ([6cbced5](https://github.com/TriPSs/nx-extend/commit/6cbced571d2f2ab98870eb121c85d5f137ff268f))
+* **gcp-functions:** Stop using alpha gcloud ([9084172](https://github.com/TriPSs/nx-extend/commit/90841729c58891282a448ec7f3538e77c07fa3dc)), closes [#52](https://github.com/TriPSs/nx-extend/issues/52)
+
+
+### Features
+
+* **gcp-functions:** Added `nodejs20` ([272fe02](https://github.com/TriPSs/nx-extend/commit/272fe02c421430f15746fa7f7d2631721eeedf76))
+* Updated to NX 16 ([4896bf6](https://github.com/TriPSs/nx-extend/commit/4896bf66940e1b69e0f2e3971a7864a1da20b2ef))
+
+
+### BREAKING CHANGES
+
+* Updated to NX 16
+* **gcp-functions:** `nodejs12` and `nodejs14` support is dropped and default runtime will now be recommended (nodejs20)
+
+
+
 # [6.6.0](https://github.com/TriPSs/nx-extend/compare/gcp-functions@6.5.2...gcp-functions@6.6.0) (2023-05-26)
 
 
