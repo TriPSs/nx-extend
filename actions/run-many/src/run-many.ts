@@ -1,7 +1,7 @@
 import * as core from '@actions/core'
 import { logger, workspaceRoot } from '@nx/devkit'
 import { FsTree } from 'nx/src/generators/tree'
-import { readWorkspace } from 'nx/src/generators/utils/project-configuration'
+import { getProjects } from 'nx/src/generators/utils/project-configuration'
 import { resolve } from 'path'
 import { hideBin } from 'yargs/helpers'
 import yargs from 'yargs/yargs'
@@ -25,7 +25,7 @@ export const argv = yargs(hideBin(process.argv))
 async function run() {
   try {
     const nxTree = new FsTree(workspaceRoot, false)
-    const workspace = readWorkspace(nxTree)
+    const projects = getProjects(nxTree)
 
     // Get all options
     const tag = core.getInput('tag') || argv.tag
@@ -69,15 +69,14 @@ async function run() {
       }
     ).split(', ')
 
-    const projects = new Map<string, ProjectConfiguration>()
     const projectsToRun = affectedProjects
       .map((projectName) => projectName.trim())
       .filter((projectName) => {
-        if (!workspace.projects[projectName]) {
+        if (!projects[projectName]) {
           return false
         }
 
-        const project = workspace.projects[projectName]
+        const project = projects[projectName]
         projects.set(projectName, project)
 
         const tags = project.tags || []
