@@ -2,6 +2,20 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [9.1.0](https://github.com/TriPSs/nx-extend/compare/gcp-functions@9.0.0...gcp-functions@9.1.0) (2023-06-22)
+
+
+### Bug Fixes
+
+* **gcp-functions:** Don't default set CPU ([1db4248](https://github.com/TriPSs/nx-extend/commit/1db424860bbc1851f8a3234ec0904a708ece1994))
+
+
+### Features
+
+* Added `publish` target ([6f1844f](https://github.com/TriPSs/nx-extend/commit/6f1844f792b704d63fca2663363ca0f65fe6451c))
+
+
+
 # [9.0.0](https://github.com/TriPSs/nx-extend/compare/gcp-functions@8.0.0...gcp-functions@9.0.0) (2023-06-22)
 
 
