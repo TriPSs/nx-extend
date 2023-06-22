@@ -2,6 +2,10 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [2.0.0](https://github.com/TriPSs/nx-extend/compare/pulumi@1.0.0...pulumi@2.0.0) (2023-06-22)
+
+
+
 # [1.0.0](https://github.com/TriPSs/nx-extend/compare/pulumi@0.1.2...pulumi@1.0.0) (2023-06-22)
 
 
