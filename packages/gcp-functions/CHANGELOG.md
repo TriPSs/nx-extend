@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [9.1.2](https://github.com/TriPSs/nx-extend/compare/gcp-functions@9.1.1...gcp-functions@9.1.2) (2023-06-22)
+
+
+### Bug Fixes
+
+* **gcp-functions:** Force release ([c14b2b0](https://github.com/TriPSs/nx-extend/commit/c14b2b0a82060367999024aa66ba5a182ef56ac5))
+
+
+
 ## [9.1.1](https://github.com/TriPSs/nx-extend/compare/gcp-functions@9.1.0...gcp-functions@9.1.1) (2023-06-22)
 
 
