@@ -61,7 +61,7 @@ export async function deployExecutor(
     concurrency = 1,
     cloudSqlInstance = null,
     timeout = null,
-    cpu = 1
+    cpu
   } = options
 
   let runtime = options.runtime || 'nodejs20'
