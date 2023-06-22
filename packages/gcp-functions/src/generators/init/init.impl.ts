@@ -115,7 +115,7 @@ export default async function (
       host,
       {},
       {
-        '@google-cloud/functions-framework': 'latest'
+        '@google-cloud/functions-framework': '^3.2.0'
       }
     )
   )
