@@ -23,8 +23,14 @@ export async function endToEndRunner(
 
   runningTargets = targets.map((targetOptions) => new NxTarget(targetOptions, options))
 
-  // Start all targets
-  await Promise.all(runningTargets.map((nxTarget) => nxTarget.setup()))
+  try {
+    // Start all targets
+    await Promise.all(runningTargets.map((nxTarget) => nxTarget.setup()))
+  } catch {
+    await Promise.all(runningTargets.map((nxTarget) => nxTarget.teardown()))
+
+    return { success: false }
+  }
 
   try {
     if (runner === 'cypress') {

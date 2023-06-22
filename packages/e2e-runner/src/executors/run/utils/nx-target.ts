@@ -40,14 +40,19 @@ export class NxTarget {
       await this.startProcess()
       await this.waitForProcess()
     } catch (error) {
+      logger.error(`Unable to start "${this.options.target}": ${error.message}`)
+
       await this.teardown()
-      throw error
     }
   }
 
   public async teardown() {
-    logger.info(`Stopping target "${this._options.target}"`)
-    await this._killProcess?.()
+    if (this.killed) {
+      return
+    }
+
+    logger.info(`Stopping target "${this.options.target}"`)
+    await this.killProcess?.()
 
     this.killed = true
   }
