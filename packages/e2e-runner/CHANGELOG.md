@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [5.1.0](https://github.com/TriPSs/nx-extend/compare/e2e-runner@5.0.0...e2e-runner@5.1.0) (2023-06-22)
+
+
+### Features
+
+* Added `publish` target ([6f1844f](https://github.com/TriPSs/nx-extend/commit/6f1844f792b704d63fca2663363ca0f65fe6451c))
+
+
+
 # [5.0.0](https://github.com/TriPSs/nx-extend/compare/e2e-runner@4.0.0...e2e-runner@5.0.0) (2023-06-22)
 
 
