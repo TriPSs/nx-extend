@@ -13,9 +13,6 @@ jobs:
 
   prepare-env:
     runs-on: ubuntu-latest
-    outputs:
-      GITHUB_HEAD_REF: ${{ steps.script.outputs.headRef }}
-      GITHUB_BASE_REF: ${{ steps.script.outputs.tagHash }}
     steps:
       - uses: actions/checkout@v2
         with:
@@ -77,4 +74,4 @@ jobs:
           target: publish
 
       - name: Push GIT
-        run: git push --follow-tags origin ${{ needs.prepare-env.outputs.GITHUB_HEAD_REF }}
+        run: git push --follow-tags

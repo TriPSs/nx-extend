@@ -29,8 +29,7 @@ async function run() {
 
     // Get all options
     const tag = core.getInput('tag') || argv.tag
-    const target =
-      core.getInput('target', { required: !argv.target }) || argv.target
+    const target = core.getInput('target', { required: !argv.target }) || argv.target
     const config = core.getInput('config') || argv.config
     const jobIndex = parseInt(core.getInput('index') || '1', 10)
     const jobCount = parseInt(core.getInput('count') || '1', 10)
