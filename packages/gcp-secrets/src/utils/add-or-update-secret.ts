@@ -1,4 +1,4 @@
-import { logger } from '@nrwl/devkit'
+import { logger } from '@nx/devkit'
 import { buildCommand, execCommand } from '@nx-extend/core'
 
 import {
@@ -18,7 +18,9 @@ export const addOrUpdateSecret = (
   options: DeploySchema
 ) => {
   // Check if the secret exists
-  const secretExists = existingSecrets.find((secret) => secret.name === secretName)
+  const secretExists = existingSecrets.find(
+    (secret) => secret.name === secretName
+  )
 
   let execCommandResult = {
     success: false
@@ -27,23 +29,29 @@ export const addOrUpdateSecret = (
   // If the secret already exists we update it
   // and optionally remove older versions
   if (secretExists) {
-    const existingLabels = Object.keys(secretExists?.labels || {}).reduce((labels, labelKey) => {
-      labels.push(`${labelKey}=${secretExists.labels[labelKey]}`)
+    const existingLabels = Object.keys(secretExists?.labels || {}).reduce(
+      (labels, labelKey) => {
+        labels.push(`${labelKey}=${secretExists.labels[labelKey]}`)
 
-      return labels
-    }, [])
+        return labels
+      },
+      []
+    )
 
     // Check if we need to update the secrets labels
     if (JSON.stringify(existingLabels) !== JSON.stringify(metadata.labels)) {
       logger.info(`Updating "${secretName}" it's labels`)
 
-      execCommand(buildCommand([
-        `gcloud secrets update ${secretName}`,
-        addLabelsIfNeeded(metadata.labels, false),
-        getCommandOptions(options)
-      ]), {
-        silent: true
-      })
+      execCommand(
+        buildCommand([
+          `gcloud secrets update ${secretName}`,
+          addLabelsIfNeeded(metadata.labels, false),
+          getCommandOptions(options)
+        ]),
+        {
+          silent: true
+        }
+      )
     }
 
     // Get the new version of the secret
@@ -58,7 +66,9 @@ export const addOrUpdateSecret = (
         asJSON: true,
         silent: true
       }
-    ).name.split('/versions/').pop()
+    )
+      .name.split('/versions/')
+      .pop()
 
     const updateBehavior = metadata.onUpdateBehavior || 'destroy'
 
@@ -66,18 +76,25 @@ export const addOrUpdateSecret = (
       if (['destroy', 'disable'].includes(updateBehavior)) {
         const previousVersion = parseInt(newVersion, 10) - 1
 
-        logger.info(`${updateBehavior === 'disable' ? 'Disabling' : 'Destroying'} previous version of secret "${secretName}"`)
+        logger.info(
+          `${
+            updateBehavior === 'disable' ? 'Disabling' : 'Destroying'
+          } previous version of secret "${secretName}"`
+        )
 
-        execCommandResult = execCommand(buildCommand([
-          `gcloud secrets versions ${updateBehavior} ${previousVersion}`,
-          `--secret=${secretName}`,
-          '--quiet',
+        execCommandResult = execCommand(
+          buildCommand([
+            `gcloud secrets versions ${updateBehavior} ${previousVersion}`,
+            `--secret=${secretName}`,
+            '--quiet',
 
-          getCommandOptions(options)
-        ]))
-
+            getCommandOptions(options)
+          ])
+        )
       } else {
-        logger.warn(`"${updateBehavior}" is an invalid onUpdateBehavior, valid are: "none", "disable" or "destroy"`)
+        logger.warn(
+          `"${updateBehavior}" is an invalid onUpdateBehavior, valid are: "none", "disable" or "destroy"`
+        )
       }
     }
   } else {
@@ -98,7 +115,11 @@ export const addOrUpdateSecret = (
   }
 
   // If service accounts are defined then manage them
-  if (execCommandResult.success && metadata?.serviceAccounts && Array.isArray(metadata?.serviceAccounts)) {
+  if (
+    execCommandResult.success &&
+    metadata?.serviceAccounts &&
+    Array.isArray(metadata?.serviceAccounts)
+  ) {
     const allowedServiceAccounts = metadata?.serviceAccounts
 
     // Get existing service accounts
@@ -116,37 +137,56 @@ export const addOrUpdateSecret = (
 
     let existingServiceAccounts = []
     if (serviceAccounts?.bindings) {
-      existingServiceAccounts = serviceAccounts.bindings?.find(({ role }) => role === 'roles/secretmanager.secretAccessor')?.members ?? []
+      existingServiceAccounts =
+        serviceAccounts.bindings?.find(
+          ({ role }) => role === 'roles/secretmanager.secretAccessor'
+        )?.members ?? []
     }
 
     // Check what service accounts to delete
-    const serviceAccountsToDelete = existingServiceAccounts.filter((account) => !allowedServiceAccounts.includes(account))
+    const serviceAccountsToDelete = existingServiceAccounts.filter(
+      (account) => !allowedServiceAccounts.includes(account)
+    )
     // Check what service accounts to add
-    const serviceAccountsToAdd = allowedServiceAccounts.filter((account) => !existingServiceAccounts.includes(account))
+    const serviceAccountsToAdd = allowedServiceAccounts.filter(
+      (account) => !existingServiceAccounts.includes(account)
+    )
 
     if (serviceAccountsToAdd.length > 0) {
-      logger.info(`Going to add "${serviceAccountsToAdd.join(',')}" to secret "${secretName}"`)
+      logger.info(
+        `Going to add "${serviceAccountsToAdd.join(
+          ','
+        )}" to secret "${secretName}"`
+      )
 
       serviceAccountsToAdd.forEach((newMember) => {
-        execCommand(buildCommand([
-          `gcloud secrets add-iam-policy-binding ${secretName}`,
-          `--member='${newMember}'`,
-          `--role='roles/secretmanager.secretAccessor'`,
-          getCommandOptions(options)
-        ]))
+        execCommand(
+          buildCommand([
+            `gcloud secrets add-iam-policy-binding ${secretName}`,
+            `--member='${newMember}'`,
+            `--role='roles/secretmanager.secretAccessor'`,
+            getCommandOptions(options)
+          ])
+        )
       })
     }
 
     if (serviceAccountsToDelete.length > 0) {
-      logger.info(`Going to remove "${serviceAccountsToDelete.join(',')}" from secret "${secretName}"`)
+      logger.info(
+        `Going to remove "${serviceAccountsToDelete.join(
+          ','
+        )}" from secret "${secretName}"`
+      )
 
       serviceAccountsToDelete.forEach((deleteMember) => {
-        execCommand(buildCommand([
-          `gcloud secrets remove-iam-policy-binding ${secretName}`,
-          `--member='${deleteMember}'`,
-          `--role='roles/secretmanager.secretAccessor'`,
-          getCommandOptions(options)
-        ]))
+        execCommand(
+          buildCommand([
+            `gcloud secrets remove-iam-policy-binding ${secretName}`,
+            `--member='${deleteMember}'`,
+            `--role='roles/secretmanager.secretAccessor'`,
+            getCommandOptions(options)
+          ])
+        )
       })
     }
   }

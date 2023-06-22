@@ -1,14 +1,14 @@
-import { ExecutorContext, logger } from '@nrwl/devkit'
-import { buildCommand,execCommand } from '@nx-extend/core'
-import { existsSync, mkdirSync,unlinkSync, writeFileSync } from 'fs'
+import { ExecutorContext, logger } from '@nx/devkit'
+import { buildCommand, execCommand } from '@nx-extend/core'
+import { existsSync, mkdirSync, unlinkSync, writeFileSync } from 'fs'
 
 import { addOrUpdateSecret } from '../../utils/add-or-update-secret'
-import { decryptFile,isEncryptionKeySet } from '../../utils/encryption'
+import { decryptFile, isEncryptionKeySet } from '../../utils/encryption'
 import { getFileContent, getFileName, storeFile } from '../../utils/file'
 import { getAllSecretFiles } from '../../utils/get-all-secret-files'
 import { SharedOptions } from '../shared-options'
 
-export interface DeploySchema extends SharedOptions{
+export interface DeploySchema extends SharedOptions {
   project?: string
 }
 
@@ -56,89 +56,93 @@ export async function deployExecutor(
 
       const files = getAllSecretFiles(sourceRoot)
 
-      const secretsCreated = await Promise.all(files.map(async (file) => {
-        const fileName = getFileName(file)
-        const fileNameParts = fileName.split('.')
-        fileNameParts.pop()
+      const secretsCreated = await Promise.all(
+        files.map(async (file) => {
+          const fileName = getFileName(file)
+          const fileNameParts = fileName.split('.')
+          fileNameParts.pop()
 
-        const secretName = fileNameParts.join('.')
+          const secretName = fileNameParts.join('.')
 
-        // Check if we should only deploy this secret
-        if (options.secret && options.secret !== secretName) {
-          return true
-        }
-
-        // Get the content of the file
-        const fileContent = getFileContent(file)
-        const isFileEncrypted = fileContent.__gcp_metadata.status === 'encrypted'
-        const decryptedFileContent = decryptFile(fileContent, true)
-
-        // Decrypt the file if it's encrypted
-        if (isFileEncrypted) {
-          storeFile(file, decryptedFileContent)
-        }
-
-        let success = false
-
-        if (!fileContent.__gcp_metadata.keysAreSecrets) {
-          // Add the file as secret
-          success = addOrUpdateSecret(
-            existingSecrets,
-            secretName,
-            fileContent.__gcp_metadata,
-            file,
-            options
-          )
-
-        } else {
-          const tmpDirectory = `${context.root}/tmp`
-
-          // Create the tmp directory if it does not exists
-          if (!existsSync(tmpDirectory)) {
-            mkdirSync(tmpDirectory, { recursive: true })
+          // Check if we should only deploy this secret
+          if (options.secret && options.secret !== secretName) {
+            return true
           }
 
-          Object.keys(fileContent).forEach((secretName) => {
-            success = true
+          // Get the content of the file
+          const fileContent = getFileContent(file)
+          const isFileEncrypted =
+            fileContent.__gcp_metadata.status === 'encrypted'
+          const decryptedFileContent = decryptFile(fileContent, true)
 
-            // Don't create the metadata and expect success to still be true
-            if (secretName !== '__gcp_metadata' && success) {
-              const tmpSecretLocation = `${tmpDirectory}/${secretName}`
-              // Create the tmp secret file
-              writeFileSync(
-                tmpSecretLocation,
-                typeof decryptedFileContent[secretName] !== 'string'
-                  ? JSON.stringify(decryptedFileContent[secretName])
-                  : decryptedFileContent[secretName]
-              )
+          // Decrypt the file if it's encrypted
+          if (isFileEncrypted) {
+            storeFile(file, decryptedFileContent)
+          }
 
-              success = addOrUpdateSecret(
-                existingSecrets,
-                secretName,
-                fileContent.__gcp_metadata,
-                tmpSecretLocation,
-                options
-              )
+          let success = false
 
-              // Remove the tmp file
-              unlinkSync(tmpSecretLocation)
+          if (!fileContent.__gcp_metadata.keysAreSecrets) {
+            // Add the file as secret
+            success = addOrUpdateSecret(
+              existingSecrets,
+              secretName,
+              fileContent.__gcp_metadata,
+              file,
+              options
+            )
+          } else {
+            const tmpDirectory = `${context.root}/tmp`
+
+            // Create the tmp directory if it does not exists
+            if (!existsSync(tmpDirectory)) {
+              mkdirSync(tmpDirectory, { recursive: true })
             }
-          })
-        }
 
-        // Store the encrypted file again
-        if (isFileEncrypted) {
-          storeFile(file, fileContent)
-        }
+            Object.keys(fileContent).forEach((secretName) => {
+              success = true
 
-        return success
-      }))
+              // Don't create the metadata and expect success to still be true
+              if (secretName !== '__gcp_metadata' && success) {
+                const tmpSecretLocation = `${tmpDirectory}/${secretName}`
+                // Create the tmp secret file
+                writeFileSync(
+                  tmpSecretLocation,
+                  typeof decryptedFileContent[secretName] !== 'string'
+                    ? JSON.stringify(decryptedFileContent[secretName])
+                    : decryptedFileContent[secretName]
+                )
+
+                success = addOrUpdateSecret(
+                  existingSecrets,
+                  secretName,
+                  fileContent.__gcp_metadata,
+                  tmpSecretLocation,
+                  options
+                )
+
+                // Remove the tmp file
+                unlinkSync(tmpSecretLocation)
+              }
+            })
+          }
+
+          // Store the encrypted file again
+          if (isFileEncrypted) {
+            storeFile(file, fileContent)
+          }
+
+          return success
+        })
+      )
 
       return {
         success: secretsCreated.filter(Boolean).length === files.length
       }
     } catch (err) {
-      logger.error(`Error happened trying to decrypt files: ${err.message || err}`)
+      logger.error(
+        `Error happened trying to decrypt files: ${err.message || err}`
+      )
       console.error(err.trace)
 
       return { success: false }
@@ -149,9 +153,7 @@ export async function deployExecutor(
 }
 
 export const getCommandOptions = (options: DeploySchema): string => {
-  return buildCommand([
-    options.project && `--project=${options.project}`
-  ])
+  return buildCommand([options.project && `--project=${options.project}`])
 }
 
 export const addLabelsIfNeeded = (
@@ -161,7 +163,6 @@ export const addLabelsIfNeeded = (
   if (labels.length > 0) {
     if (isCreating) {
       return buildCommand([`--labels=${labels.join(',')}`])
-
     } else {
       return buildCommand([
         '--clear-labels',
@@ -169,9 +170,7 @@ export const addLabelsIfNeeded = (
       ])
     }
   } else {
-    return buildCommand([
-      '--clear-labels'
-    ])
+    return buildCommand(['--clear-labels'])
   }
 }
 

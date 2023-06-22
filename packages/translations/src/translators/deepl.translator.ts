@@ -1,21 +1,48 @@
-import { ExecutorContext, logger } from '@nrwl/devkit'
+import { ExecutorContext, logger } from '@nx/devkit'
 import axios from 'axios'
 
 import BaseProvider from '../providers/base.provider'
 import { BaseConfigFile } from '../utils/config-file'
 
 export interface Message {
-
   key: string
 
   value: string
-
 }
 
-export const DEEPL_SUPPORT_LANGUAGES = ['BG', 'CS', 'DA', 'DE', 'EL', 'EN-GB', 'EN-US', 'ES', 'ET', 'FI', 'FR', 'HU', 'ID', 'IT', 'JA', 'LT', 'LV', 'NL', 'PL', 'PT-BR', 'PT-PT', 'RO', 'RU', 'SK', 'SL', 'SV', 'TR', 'UK', 'ZH']
+export const DEEPL_SUPPORT_LANGUAGES = [
+  'BG',
+  'CS',
+  'DA',
+  'DE',
+  'EL',
+  'EN-GB',
+  'EN-US',
+  'ES',
+  'ET',
+  'FI',
+  'FR',
+  'HU',
+  'ID',
+  'IT',
+  'JA',
+  'LT',
+  'LV',
+  'NL',
+  'PL',
+  'PT-BR',
+  'PT-PT',
+  'RO',
+  'RU',
+  'SK',
+  'SL',
+  'SV',
+  'TR',
+  'UK',
+  'ZH'
+]
 
 export default class DeeplTranslator {
-
   private readonly apiKey = process.env.DEEPL_API_KEY
 
   private readonly endpoint: string
@@ -25,16 +52,30 @@ export default class DeeplTranslator {
   private readonly config: BaseConfigFile
 
   private readonly formalitySupportedLangs = [
-    'de', 'fr', 'it', 'es', 'nl', 'pl', 'pt-pt', 'pt-br', 'ru'
+    'de',
+    'fr',
+    'it',
+    'es',
+    'nl',
+    'pl',
+    'pt-pt',
+    'pt-br',
+    'ru'
   ]
 
-  constructor(context: ExecutorContext, config: BaseConfigFile, endpoint: string) {
+  constructor(
+    context: ExecutorContext,
+    config: BaseConfigFile,
+    endpoint: string
+  ) {
     this.endpoint = endpoint
     this.context = context
     this.config = config
   }
 
-  public async translateAll<Provider extends BaseProvider<BaseConfigFile>>(provider: Provider) {
+  public async translateAll<Provider extends BaseProvider<BaseConfigFile>>(
+    provider: Provider
+  ) {
     if (!this.apiKey) {
       throw new Error('No "DEEPL_API_KEY" defined!')
     }
@@ -52,18 +93,17 @@ export default class DeeplTranslator {
         const terms = await provider.getTranslations(code)
         const toTranslate = []
 
-        Object.keys(sourceTerms)
-          .forEach((sourceTerm) => {
-            const content = terms[sourceTerm]
+        Object.keys(sourceTerms).forEach((sourceTerm) => {
+          const content = terms[sourceTerm]
 
-            // If term is not defined use the source term
-            if (!content || content.length === 0) {
-              toTranslate.push({
-                key: sourceTerm,
-                value: sourceTerms[sourceTerm]
-              })
-            }
-          })
+          // If term is not defined use the source term
+          if (!content || content.length === 0) {
+            toTranslate.push({
+              key: sourceTerm,
+              value: sourceTerms[sourceTerm]
+            })
+          }
+        })
 
         console.log('\r\n')
         const translatorTerms = await this.translate(toTranslate, code)
@@ -78,7 +118,10 @@ export default class DeeplTranslator {
         const existingTerms = provider.getLanguageTerms(code)
 
         // Merge translated terms with existing
-        provider.writeLocaleToFile(code, Object.assign(existingTerms, translatedTerms))
+        provider.writeLocaleToFile(
+          code,
+          Object.assign(existingTerms, translatedTerms)
+        )
 
         // Upload the translations to the provider
         await provider.uploadTranslations(code, translatedTerms)
@@ -95,31 +138,38 @@ export default class DeeplTranslator {
     for (const message of messages) {
       process.stdout.clearLine(-1)
       process.stdout.cursorTo(0)
-      process.stdout.write(`[DeepL] Translating "${toLocale}" ${(((translatedMessages.length + 1) / messages.length) * 100).toFixed(2)}%`)
+      process.stdout.write(
+        `[DeepL] Translating "${toLocale}" ${(
+          ((translatedMessages.length + 1) / messages.length) *
+          100
+        ).toFixed(2)}%`
+      )
 
       const url = [
         `${this.endpoint}/v2/translate?`,
         `auth_key=${this.apiKey}`,
-        `text=${
-          message.value
-            .replace(/{/g, '<deepSkip>')
-            .replace(/}/g, '</deepSkip>')
-            .replace(/'<a'/g, '<deepLink')
-            .replace(/'<\/a>'/g, '</deepLink>')
-        }`,
+        `text=${message.value
+          .replace(/{/g, '<deepSkip>')
+          .replace(/}/g, '</deepSkip>')
+          .replace(/'<a'/g, '<deepLink')
+          .replace(/'<\/a>'/g, '</deepLink>')}`,
         `target_lang=${toLocale.split('_').shift()}`,
         `source_lang=${this.config.defaultLanguage}`,
         'preserve_formatting=1',
         'tag_handling=xml',
         'ignore_tags=deepSkip',
-        this.config?.translatorOptions?.formality && this.formalitySupportedLangs.includes(toLocale) && `formality=${this.config.translatorOptions.formality}`
+        this.config?.translatorOptions?.formality &&
+          this.formalitySupportedLangs.includes(toLocale) &&
+          `formality=${this.config.translatorOptions.formality}`
       ].filter(Boolean)
 
-      const { status, data: { translations } } = await axios.get<any>(url.join('&'))
+      const {
+        status,
+        data: { translations }
+      } = await axios.get<any>(url.join('&'))
 
       if (status === 429) {
         logger.warn('To many requests, wait and retry')
-
       } else if (status === 456) {
         throw new Error('Rate limit!')
       }
@@ -129,12 +179,11 @@ export default class DeeplTranslator {
         value: translations[0].text
           .replace(/<deepSkip>/g, '{')
           .replace(/<\/deepSkip>/g, '}')
-          .replace(/<deepLink/g, '\'<a\'')
-          .replace(/<\/deepLink>/g, '\'</a>\'')
+          .replace(/<deepLink/g, "'<a'")
+          .replace(/<\/deepLink>/g, "'</a>'")
       })
     }
 
     return translatedMessages
   }
-
 }

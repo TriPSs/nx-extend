@@ -1,10 +1,12 @@
-import { ExecutorContext, logger } from '@nrwl/devkit'
+import { ExecutorContext, logger } from '@nx/devkit'
 
-import DeeplTranslator from './deepl.translator'
 import { BaseConfigFile } from '../utils/config-file'
+import DeeplTranslator from './deepl.translator'
 
-export const getTranslator = (context: ExecutorContext, config: BaseConfigFile): DeeplTranslator => {
-
+export const getTranslator = (
+  context: ExecutorContext,
+  config: BaseConfigFile
+): DeeplTranslator => {
   switch (config.translator) {
     case 'free-deepl':
       return new DeeplTranslator(context, config, 'https://api-free.deepl.com')

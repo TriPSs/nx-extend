@@ -1,15 +1,14 @@
 import { File, Storage } from '@google-cloud/storage'
-import { mkdirSync,promises } from 'fs'
+import { mkdirSync, promises } from 'fs'
 import { dirname, join, relative } from 'path'
 
 import type { MessageReporter } from './message-reporter'
 import type { Bucket, UploadResponse } from '@google-cloud/storage'
-import type { RemoteCache } from '@nrwl/workspace/src/tasks-runner/default-tasks-runner'
+import type { RemoteCache } from '@nx/workspace/src/tasks-runner/default-tasks-runner'
 
 import { Logger } from './logger'
 
 export class GcpCache implements RemoteCache {
-
   private readonly bucket: Bucket
 
   private readonly logger = new Logger()
@@ -23,7 +22,10 @@ export class GcpCache implements RemoteCache {
     this.messages = messages
   }
 
-  public async retrieve(hash: string, cacheDirectory: string): Promise<boolean> {
+  public async retrieve(
+    hash: string,
+    cacheDirectory: string
+  ): Promise<boolean> {
     if (this.messages.error) {
       return false
     }
@@ -43,7 +45,9 @@ export class GcpCache implements RemoteCache {
       const [files] = await this.bucket.getFiles({ prefix: `${hash}/` })
 
       // Download all the files
-      await Promise.all(files.map((file) => this.downloadFile(cacheDirectory, file)))
+      await Promise.all(
+        files.map((file) => this.downloadFile(cacheDirectory, file))
+      )
 
       await this.downloadFile(cacheDirectory, commitFile) // commit file after we're sure all content is downloaded
 
@@ -84,7 +88,10 @@ export class GcpCache implements RemoteCache {
     await file.download({ destination })
   }
 
-  private async createAndUploadFiles(hash: string, cacheDirectory: string): Promise<boolean> {
+  private async createAndUploadFiles(
+    hash: string,
+    cacheDirectory: string
+  ): Promise<boolean> {
     try {
       this.logger.debug(`Storage Cache: Uploading ${hash}`)
 
@@ -97,7 +104,6 @@ export class GcpCache implements RemoteCache {
       await this.bucket.upload(join(cacheDirectory, `${hash}.commit`))
 
       this.logger.debug(`Storage Cache: Stored ${hash}`)
-
     } catch (err) {
       this.messages.error = err
 
@@ -114,7 +120,6 @@ export class GcpCache implements RemoteCache {
 
       if (stats.isDirectory()) {
         await this.uploadDirectory(cacheDirectory, full)
-
       } else if (stats.isFile()) {
         const destination = relative(cacheDirectory, full)
         this.uploadQueue.push(this.bucket.upload(full, { destination }))

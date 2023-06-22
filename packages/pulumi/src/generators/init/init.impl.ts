@@ -8,9 +8,15 @@ import {
   offsetFromRoot,
   readJsonFile,
   Tree
-} from '@nrwl/devkit'
-import { runTasksInSerial } from '@nrwl/workspace/src/utilities/run-tasks-in-serial'
-import { buildCommand, DefaultGeneratorOptions, execCommand, NormalizedSchema, normalizeOptions } from '@nx-extend/core'
+} from '@nx/devkit'
+import { runTasksInSerial } from '@nx/workspace/src/utilities/run-tasks-in-serial'
+import {
+  buildCommand,
+  DefaultGeneratorOptions,
+  execCommand,
+  NormalizedSchema,
+  normalizeOptions
+} from '@nx-extend/core'
 import { unlinkSync } from 'fs'
 import { join } from 'path'
 import { which } from 'shelljs'
@@ -25,33 +31,34 @@ export interface InitOptions extends DefaultGeneratorOptions {
 
 function copyFiles(tree: Tree, options: NormalizedSchema): GeneratorCallback {
   return () => {
-    generateFiles(
-      tree,
-      join(__dirname, 'files'),
-      options.projectRoot,
-      {
-        ...options,
-        ...names(options.name),
-        offsetFromRoot: offsetFromRoot(options.projectRoot),
-        template: ''
-      }
-    )
+    generateFiles(tree, join(__dirname, 'files'), options.projectRoot, {
+      ...options,
+      ...names(options.name),
+      offsetFromRoot: offsetFromRoot(options.projectRoot),
+      template: ''
+    })
   }
 }
 
-function generateNewPulumiProject(tree: Tree, options: NormalizedSchema & InitOptions): GeneratorCallback {
+function generateNewPulumiProject(
+  tree: Tree,
+  options: NormalizedSchema & InitOptions
+): GeneratorCallback {
   return () => {
     const template = getCloudTemplateName(options.provider)
 
-    const { success } = execCommand(buildCommand([
-      `pulumi new ${template}`,
-      `--name=${options.projectName}`,
-      `--dir=${options.projectRoot}`,
-      options.secretsProvider && `--secrets-provider=${options.secretsProvider}`,
-      '--generate-only',
-      '--yes',
-      '--force'
-    ]))
+    const { success } = execCommand(
+      buildCommand([
+        `pulumi new ${template}`,
+        `--name=${options.projectName}`,
+        `--dir=${options.projectRoot}`,
+        options.secretsProvider &&
+          `--secrets-provider=${options.secretsProvider}`,
+        '--generate-only',
+        '--yes',
+        '--force'
+      ])
+    )
 
     if (!success) {
       throw new Error('Unable to create new Pulumi project!')
@@ -59,20 +66,24 @@ function generateNewPulumiProject(tree: Tree, options: NormalizedSchema & InitOp
   }
 }
 
-function loginToPulumi(tree: Tree, options: NormalizedSchema & InitOptions): GeneratorCallback {
+function loginToPulumi(
+  tree: Tree,
+  options: NormalizedSchema & InitOptions
+): GeneratorCallback {
   return () => {
     if (!options.login) {
       return
     }
 
     if (options.login.startsWith('file://')) {
-      options.login = `file://${tree.root}/${options.projectRoot}/${options.login.replace('file://', '')}`
+      options.login = `file://${tree.root}/${
+        options.projectRoot
+      }/${options.login.replace('file://', '')}`
     }
 
-    const { success } = execCommand(buildCommand([
-      'pulumi login',
-      options.login
-    ]))
+    const { success } = execCommand(
+      buildCommand(['pulumi login', options.login])
+    )
 
     if (!success) {
       throw new Error('Unable to login!')
@@ -80,21 +91,23 @@ function loginToPulumi(tree: Tree, options: NormalizedSchema & InitOptions): Gen
   }
 }
 
-function addPulumiDeps(tree: Tree, options: NormalizedSchema & InitOptions): GeneratorCallback {
+function addPulumiDeps(
+  tree: Tree,
+  options: NormalizedSchema & InitOptions
+): GeneratorCallback {
   return () => {
     const packageJson = readJsonFile(`${options.projectRoot}/package.json`)
 
     if (packageJson) {
-      addDependenciesToPackageJson(
-        tree,
-        {},
-        packageJson.dependencies || {}
-      )()
+      addDependenciesToPackageJson(tree, {}, packageJson.dependencies || {})()
     }
   }
 }
 
-function cleanupProject(tree: Tree, options: NormalizedSchema & InitOptions): GeneratorCallback {
+function cleanupProject(
+  tree: Tree,
+  options: NormalizedSchema & InitOptions
+): GeneratorCallback {
   return () => {
     unlinkSync(join(tree.root, `${options.projectRoot}/.gitignore`))
     unlinkSync(join(tree.root, `${options.projectRoot}/package.json`))
@@ -102,15 +115,13 @@ function cleanupProject(tree: Tree, options: NormalizedSchema & InitOptions): Ge
   }
 }
 
-export default async function (
-  tree: Tree,
-  rawOptions: InitOptions
-) {
+export default async function (tree: Tree, rawOptions: InitOptions) {
   if (!which('pulumi')) {
     throw new Error('pulumi is not installed!')
   }
 
-  const options = normalizeOptions(tree, rawOptions) as NormalizedSchema & InitOptions
+  const options = normalizeOptions(tree, rawOptions) as NormalizedSchema &
+    InitOptions
 
   addProjectConfiguration(tree, options.projectName, {
     root: options.projectRoot,

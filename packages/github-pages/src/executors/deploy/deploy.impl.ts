@@ -1,11 +1,8 @@
-import { ExecutorContext } from '@nrwl/devkit'
 import run from '@jamesives/github-pages-deploy-action'
 import { TestFlag } from '@jamesives/github-pages-deploy-action/lib/constants'
+import { ExecutorContext } from '@nx/devkit'
 
-const {
-  GITHUB_WORKSPACE = '',
-  GH_PAGES_ACCESS_TOKEN
-} = process.env
+const { GITHUB_WORKSPACE = '', GH_PAGES_ACCESS_TOKEN } = process.env
 
 export interface ExecutorSchema {
   branch?: string
@@ -25,9 +22,7 @@ export async function deployExecutor(
     throw new Error('No build target configured!')
   }
 
-  const {
-    branch = 'gh-pages'
-  } = options
+  const { branch = 'gh-pages' } = options
 
   try {
     await run({

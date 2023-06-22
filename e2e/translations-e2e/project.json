@@ -5,11 +5,12 @@
   "sourceRoot": "e2e/translations-e2e/src",
   "targets": {
     "e2e": {
-      "executor": "@nrwl/nx-plugin:e2e",
+      "executor": "@nx/jest:jest",
       "options": {
-        "target": "translations:build",
-        "jestConfig": "e2e/translations-e2e/jest.config.js"
-      }
+        "jestConfig": "e2e/translations-e2e/jest.config.js",
+        "runInBand": true
+      },
+      "dependsOn": ["translations:build"]
     }
   },
   "tags": [],

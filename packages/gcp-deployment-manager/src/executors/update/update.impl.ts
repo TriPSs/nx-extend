@@ -1,4 +1,4 @@
-import { ExecutorContext } from '@nrwl/devkit'
+import { ExecutorContext } from '@nx/devkit'
 import { buildCommand, execCommand } from '@nx-extend/core'
 
 import { ExecutorSchema } from '../schema'
@@ -14,20 +14,25 @@ export async function updateExecutor(
 ): Promise<{ success: boolean }> {
   const { sourceRoot } = context.workspace.projects[context.projectName]
 
-  return Promise.resolve(execCommand(buildCommand([
-    'gcloud deployment-manager deployments update',
-    options.name || context.projectName,
-    `--config=${options.file}`,
+  return Promise.resolve(
+    execCommand(
+      buildCommand([
+        'gcloud deployment-manager deployments update',
+        options.name || context.projectName,
+        `--config=${options.file}`,
 
-    options.project && `--project=${options.project}`,
-    options.createPolicy && `--create-policy=${options.createPolicy}`,
-    options.deletePolicy && `--delete-policy=${options.deletePolicy}`,
-    options.preview && `--preview`,
+        options.project && `--project=${options.project}`,
+        options.createPolicy && `--create-policy=${options.createPolicy}`,
+        options.deletePolicy && `--delete-policy=${options.deletePolicy}`,
+        options.preview && `--preview`
 
-    // TODO:: Support NX_EXTEND_GCP_DEPLOYMENT_MANAGER_ACCOUNT env
-  ]), {
-    cwd: sourceRoot
-  }))
+        // TODO:: Support NX_EXTEND_GCP_DEPLOYMENT_MANAGER_ACCOUNT env
+      ]),
+      {
+        cwd: sourceRoot
+      }
+    )
+  )
 }
 
 export default updateExecutor

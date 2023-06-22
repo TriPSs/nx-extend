@@ -1,5 +1,5 @@
-import { ExecutorContext, logger } from '@nrwl/devkit'
-import { createProjectGraphAsync } from '@nrwl/workspace/src/core/project-graph'
+import { ExecutorContext, logger } from '@nx/devkit'
+import { createProjectGraphAsync } from '@nx/workspace/src/core/project-graph'
 import { buildCommand, execCommand } from '@nx-extend/core'
 import { join } from 'path'
 
@@ -39,28 +39,46 @@ export async function extractExectutor(
       : (options.libsBlacklist || '').split(',')
 
     // Get all libs that are connected to this app
-    const libRoots = await getLibsRoot(context, context.projectName, blacklist, options.libPrefix, [], [], options.debug)
+    const libRoots = await getLibsRoot(
+      context,
+      context.projectName,
+      blacklist,
+      options.libPrefix,
+      [],
+      [],
+      options.debug
+    )
 
     if (libRoots.length > 0) {
       options.sourceRoot = `{${options.sourceRoot},${libRoots.join(',')}}`
     }
   }
 
-  const templatedSourceDirectory = injectProjectRoot(options.sourceRoot, root, context.root)
-  const templatedOutputDirectory = injectProjectRoot(outputDirectory, root, context.root)
+  const templatedSourceDirectory = injectProjectRoot(
+    options.sourceRoot,
+    root,
+    context.root
+  )
+  const templatedOutputDirectory = injectProjectRoot(
+    outputDirectory,
+    root,
+    context.root
+  )
 
   try {
     if (extractor === 'formatjs') {
-      execCommand(buildCommand([
-        'npx formatjs extract',
-        `'${join(templatedSourceDirectory, options.pattern)}'`,
-        `--out-file='${templatedOutputDirectory}/${defaultLanguage}.json'`,
-        '--id-interpolation-pattern=\'[sha512:contenthash:base64:6]\'',
-        '--format=simple'
-      ]), {
-        silent: !options.debug
-      })
-
+      execCommand(
+        buildCommand([
+          'npx formatjs extract',
+          `'${join(templatedSourceDirectory, options.pattern)}'`,
+          `--out-file='${templatedOutputDirectory}/${defaultLanguage}.json'`,
+          "--id-interpolation-pattern='[sha512:contenthash:base64:6]'",
+          '--format=simple'
+        ]),
+        {
+          silent: !options.debug
+        }
+      )
     } else {
       logger.error('Unsupported extractor!')
 
@@ -84,36 +102,66 @@ export async function extractExectutor(
   }
 }
 
-export const getConnectedLibs = (dependencies, project: string, blacklist: string[], prefix?: string) => (
-  dependencies[project].filter((dep) => (
-    !dep.target.startsWith('npm:')
-    && (!prefix || dep.target.startsWith(prefix))
-    && !blacklist.includes(dep.target)
-  ))
-)
+export const getConnectedLibs = (
+  dependencies,
+  project: string,
+  blacklist: string[],
+  prefix?: string
+) =>
+  dependencies[project].filter(
+    (dep) =>
+      !dep.target.startsWith('npm:') &&
+      (!prefix || dep.target.startsWith(prefix)) &&
+      !blacklist.includes(dep.target)
+  )
 
-export const getLibsRoot = async (context: ExecutorContext, project: string, blacklist: string[], prefix?: string, targetsDone = [], roots = [], debugMode = false): Promise<string[]> => {
+export const getLibsRoot = async (
+  context: ExecutorContext,
+  project: string,
+  blacklist: string[],
+  prefix?: string,
+  targetsDone = [],
+  roots = [],
+  debugMode = false
+): Promise<string[]> => {
   const projectGraph = await createProjectGraphAsync()
-  const libs = getConnectedLibs(projectGraph.dependencies, project, blacklist, prefix)
+  const libs = getConnectedLibs(
+    projectGraph.dependencies,
+    project,
+    blacklist,
+    prefix
+  )
 
-  await Promise.all(libs.map(async (connectedLib) => {
-    if (targetsDone.includes(connectedLib.target)) {
-      // If the target is already done then skip it
-      return
-    }
-
-    const libMetadata = context.workspace.projects[connectedLib.target]
-    targetsDone.push(connectedLib.target)
-
-    if (!roots.includes(libMetadata.sourceRoot)) {
-      if (debugMode) {
-        logger.debug(`Adding source root "${connectedLib.target}" because it's a dependency of "${project}"`)
+  await Promise.all(
+    libs.map(async (connectedLib) => {
+      if (targetsDone.includes(connectedLib.target)) {
+        // If the target is already done then skip it
+        return
       }
-      roots.push(libMetadata.sourceRoot)
-    }
 
-    await getLibsRoot(context, connectedLib.target, blacklist, prefix, targetsDone, roots, debugMode)
-  }))
+      const libMetadata = context.workspace.projects[connectedLib.target]
+      targetsDone.push(connectedLib.target)
+
+      if (!roots.includes(libMetadata.sourceRoot)) {
+        if (debugMode) {
+          logger.debug(
+            `Adding source root "${connectedLib.target}" because it's a dependency of "${project}"`
+          )
+        }
+        roots.push(libMetadata.sourceRoot)
+      }
+
+      await getLibsRoot(
+        context,
+        connectedLib.target,
+        blacklist,
+        prefix,
+        targetsDone,
+        roots,
+        debugMode
+      )
+    })
+  )
 
   return roots
 }

@@ -4,7 +4,7 @@ import {
   getWorkspaceLayout,
   names,
   Tree
-} from '@nrwl/devkit'
+} from '@nx/devkit'
 import { generateNewApp as generateStrapi } from '@strapi/generate-new'
 
 import { StrapiGeneratorSchema } from './schema'
@@ -16,7 +16,10 @@ interface NormalizedSchema extends StrapiGeneratorSchema {
   parsedTags: string[]
 }
 
-function normalizeOptions(host: Tree, options: StrapiGeneratorSchema): NormalizedSchema {
+function normalizeOptions(
+  host: Tree,
+  options: StrapiGeneratorSchema
+): NormalizedSchema {
   const name = names(options.name).fileName
   const projectDirectory = options.directory
     ? `${names(options.directory).fileName}/${name}`
@@ -50,9 +53,7 @@ export default async function (host: Tree, options: StrapiGeneratorSchema) {
       },
       build: {
         executor: '@nx-extend/strapi:build',
-        outputs: [
-          '{options.outputPath}'
-        ],
+        outputs: ['{options.outputPath}'],
         options: {
           outputPath: `dist/${normalizedOptions.projectRoot}`
         },
@@ -67,14 +68,11 @@ export default async function (host: Tree, options: StrapiGeneratorSchema) {
   })
 
   try {
-    await generateStrapi(
-      normalizedOptions.projectRoot,
-      {
-        quickstart: true,
-        run: false,
-        typescript: true
-      }
-    )
+    await generateStrapi(normalizedOptions.projectRoot, {
+      quickstart: true,
+      run: false,
+      typescript: true
+    })
   } catch {
     // Sometimes an error happens installing the deps, project is still created correctly
     // TODO:: Better handle?

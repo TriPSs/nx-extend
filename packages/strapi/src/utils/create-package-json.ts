@@ -1,10 +1,11 @@
-import { writeJsonFile } from '@nrwl/devkit'
-import { createLockFile, createPackageJson as generatePackageJson } from '@nrwl/js'
-import { readCachedProjectGraph } from '@nrwl/workspace/src/core/project-graph'
+import { writeJsonFile } from '@nx/devkit'
+import { createLockFile } from '@nx/js'
+import { readCachedProjectGraph } from '@nx/workspace/src/core/project-graph'
 import { writeFileSync } from 'fs'
 import { getLockFileName } from 'nx/src/plugins/js/lock-file/lock-file'
+import { createPackageJson as generatePackageJson } from 'nx/src/plugins/js/package-json/create-package-json'
 
-import type { ExecutorContext } from '@nrwl/devkit'
+import type { ExecutorContext } from '@nx/devkit'
 
 export async function createPackageJson(
   outputPath: string,
@@ -34,8 +35,12 @@ export async function createPackageJson(
   writeJsonFile(`${outputPath}/package.json`, packageJson)
 
   if (generateLockFile) {
-    writeFileSync(`${outputPath}/${getLockFileName()}`, createLockFile(packageJson), {
-      encoding: 'utf-8'
-    })
+    writeFileSync(
+      `${outputPath}/${getLockFileName()}`,
+      createLockFile(packageJson),
+      {
+        encoding: 'utf-8'
+      }
+    )
   }
 }

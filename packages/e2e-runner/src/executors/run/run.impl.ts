@@ -1,7 +1,7 @@
-import { ExecutorContext } from '@nrwl/devkit'
+import { ExecutorContext } from '@nx/devkit'
+import { RunCommandsOptions } from 'nx/src/executors/run-commands/run-commands.impl'
 
 import { NxTarget, NxTargetOptions } from './utils/nx-target'
-import {RunCommandsOptions} from '@nrwl/workspace/src/executors/run-commands/run-commands.impl';
 
 interface Options {
   runner: 'cypress' | 'playwright' | 'run-commands'
@@ -12,7 +12,10 @@ interface Options {
 
 let runningTargets = []
 
-export async function endToEndRunner(options: Options, context: ExecutorContext): Promise<{ success: boolean }> {
+export async function endToEndRunner(
+  options: Options,
+  context: ExecutorContext
+): Promise<{ success: boolean }> {
   let success: boolean
 
   const { runner, targets, ...rest } = options
@@ -25,19 +28,21 @@ export async function endToEndRunner(options: Options, context: ExecutorContext)
   try {
     if (runner === 'cypress') {
       // eslint-disable-next-line @typescript-eslint/no-var-requires
-      const cypressExecutor = require('@nrwl/cypress/src/executors/cypress/cypress.impl').default
+      const cypressExecutor =
+        require('@nrwl/cypress/src/executors/cypress/cypress.impl').default
       success = (await cypressExecutor(rest, context)).success
-
     } else if (runner === 'playwright') {
       // eslint-disable-next-line @typescript-eslint/no-var-requires
-      const playwrightExecutor = require('@nx-extend/playwright/src/executors/test/test.impl').default
+      const playwrightExecutor =
+        require('@nx-extend/playwright/src/executors/test/test.impl').default
       success = (await playwrightExecutor(rest, context)).success
-
-    }else if (runner === 'run-commands') {
-			// eslint-disable-next-line @typescript-eslint/no-var-requires
-			const runCommandsExecutor = require('@nrwl/workspace/src/executors/run-commands/run-commands.impl').default;
-			success = (await runCommandsExecutor(rest as RunCommandsOptions, context)).success;
-		} else {
+    } else if (runner === 'run-commands') {
+      // eslint-disable-next-line @typescript-eslint/no-var-requires
+      const runCommandsExecutor =
+        require('@nx/workspace/src/executors/run-commands/run-commands.impl').default
+      success = (await runCommandsExecutor(rest as RunCommandsOptions, context))
+        .success
+    } else {
       throw new Error(`Unknown runner "${runner}"`)
     }
   } catch (error) {

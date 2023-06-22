@@ -1,4 +1,4 @@
-import defaultTaskRunner from '@nrwl/workspace/tasks-runners/default'
+import defaultTaskRunner from '@nx/workspace/tasks-runners/default'
 
 import { GcpCache } from './gcp-cache'
 import { Logger } from './logger'

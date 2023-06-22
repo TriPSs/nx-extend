@@ -1,4 +1,4 @@
-import { ExecutorContext, readJsonFile, writeJsonFile } from '@nrwl/devkit'
+import { ExecutorContext, readJsonFile, writeJsonFile } from '@nx/devkit'
 import { resolve } from 'path'
 
 import { getProjectRoot } from './get-project-root'
@@ -6,7 +6,6 @@ import { getProjectRoot } from './get-project-root'
 export type Extractors = 'formatjs'
 
 export interface BaseConfigFile {
-
   projectRoot: string
 
   extends?: string
@@ -53,10 +52,11 @@ export interface BaseConfigFile {
   }
 
   languages: string[]
-
 }
 
-export const getConfigFile = <Config extends BaseConfigFile>(context: ExecutorContext): Config => {
+export const getConfigFile = <Config extends BaseConfigFile>(
+  context: ExecutorContext
+): Config => {
   let configFile = readJsonFile<Config>(
     resolve(getProjectRoot(context), '.translationsrc.json')
   )

@@ -1,15 +1,14 @@
-import { logger } from '@nrwl/devkit'
+import { logger } from '@nx/devkit'
 import axios, { AxiosInstance } from 'axios'
 import * as FormData from 'form-data'
 import { existsSync } from 'fs'
 
-import BaseProvider from './base.provider'
 import { BaseConfigFile, updateConfigFile } from '../utils/config-file'
+import BaseProvider from './base.provider'
 
 export type PoeditorConfig = BaseConfigFile
 
 export default class Poeditor extends BaseProvider<PoeditorConfig> {
-
   private readonly apiClient: AxiosInstance = axios.create({
     baseURL: 'https://api.poeditor.com/v2'
   })
@@ -37,18 +36,16 @@ export default class Poeditor extends BaseProvider<PoeditorConfig> {
     form.append('id', this.config.projectId)
     form.append('data', JSON.stringify(terms))
 
-    await this.apiClient.post(
-      '/projects/sync',
-      form,
-      {
-        headers: form.getHeaders()
-      }
-    )
+    await this.apiClient.post('/projects/sync', form, {
+      headers: form.getHeaders()
+    })
 
     await this.uploadTranslations(this.config.defaultLanguage, sourceTerms)
   }
 
-  public async getTranslations(language: string): Promise<{ [key: string]: string }> {
+  public async getTranslations(
+    language: string
+  ): Promise<{ [key: string]: string }> {
     const form = new FormData()
     form.append('api_token', this.getToken())
     form.append('id', this.config.projectId)
@@ -56,13 +53,9 @@ export default class Poeditor extends BaseProvider<PoeditorConfig> {
 
     const translations: { [key: string]: string } = {}
 
-    const { data } = await this.apiClient.post<any>(
-      '/terms/list',
-      form,
-      {
-        headers: form.getHeaders()
-      }
-    )
+    const { data } = await this.apiClient.post<any>('/terms/list', form, {
+      headers: form.getHeaders()
+    })
 
     data.result.terms.forEach(({ term, translation }) => {
       translations[term] = translation.content
@@ -71,8 +64,13 @@ export default class Poeditor extends BaseProvider<PoeditorConfig> {
     return translations
   }
 
-  public async uploadTranslations(language: string, translations: { [key: string]: string }): Promise<boolean> {
-    logger.info(`Adding translations to "${this.config.defaultLanguage}" language`)
+  public async uploadTranslations(
+    language: string,
+    translations: { [key: string]: string }
+  ): Promise<boolean> {
+    logger.info(
+      `Adding translations to "${this.config.defaultLanguage}" language`
+    )
 
     const data = []
     Object.keys(translations).forEach((key) => {
@@ -90,13 +88,9 @@ export default class Poeditor extends BaseProvider<PoeditorConfig> {
     form.append('language', language)
     form.append('data', JSON.stringify(data))
 
-    await this.apiClient.post(
-      '/translations/add',
-      form,
-      {
-        headers: form.getHeaders()
-      }
-    )
+    await this.apiClient.post('/translations/add', form, {
+      headers: form.getHeaders()
+    })
 
     logger.info('Translations uploaded!')
 
@@ -120,30 +114,32 @@ export default class Poeditor extends BaseProvider<PoeditorConfig> {
     let form = new FormData()
     form.append('api_token', this.getToken())
 
-    const { data: { result: { projects } } } = await this.apiClient.post<any>(
-      '/projects/list',
-      form,
-      {
-        headers: form.getHeaders()
+    const {
+      data: {
+        result: { projects }
       }
+    } = await this.apiClient.post<any>('/projects/list', form, {
+      headers: form.getHeaders()
+    })
+
+    let project = projects.find(
+      (project) => project.name === this.config.projectName
     )
 
-    let project = projects.find((project) => project.name === this.config.projectName)
-
     if (!project) {
-      logger.info(`Project "${this.config.projectName}" does not exist, going to create it!`)
+      logger.info(
+        `Project "${this.config.projectName}" does not exist, going to create it!`
+      )
 
       form = new FormData()
       form.append('api_token', this.getToken())
       form.append('name', this.config.projectName)
 
-      const { data: { result } } = await this.apiClient.post<any>(
-        '/projects/add',
-        form,
-        {
-          headers: form.getHeaders()
-        }
-      )
+      const {
+        data: { result }
+      } = await this.apiClient.post<any>('/projects/add', form, {
+        headers: form.getHeaders()
+      })
 
       project = result.project
 
@@ -152,16 +148,13 @@ export default class Poeditor extends BaseProvider<PoeditorConfig> {
       form.append('id', project.id)
       form.append('reference_language', this.config.defaultLanguage)
 
-      await this.apiClient.post(
-        '/projects/add',
-        form,
-        {
-          headers: form.getHeaders()
-        }
-      )
-
+      await this.apiClient.post('/projects/add', form, {
+        headers: form.getHeaders()
+      })
     } else {
-      logger.info(`Found "${this.config.projectName}" project, storing id in config`)
+      logger.info(
+        `Found "${this.config.projectName}" project, storing id in config`
+      )
     }
 
     // Update the config file
@@ -184,34 +177,37 @@ export default class Poeditor extends BaseProvider<PoeditorConfig> {
     form.append('api_token', this.getToken())
     form.append('id', this.config.projectId)
 
-    const { data: { result: { languages } } } = await this.apiClient.post<any>(
-      '/languages/list',
-      form,
-      {
-        headers: form.getHeaders()
+    const {
+      data: {
+        result: { languages }
       }
-    )
+    } = await this.apiClient.post<any>('/languages/list', form, {
+      headers: form.getHeaders()
+    })
 
     const existingCodes = languages.map((language) => language.code)
-    const nonExistingCodes = [...this.config.languages]
-      .filter((code) => !existingCodes.includes(code))
+    const nonExistingCodes = [...this.config.languages].filter(
+      (code) => !existingCodes.includes(code)
+    )
 
     while (nonExistingCodes.length > 0) {
       const code = nonExistingCodes.shift()
-      logger.info(`Going add language "${code}" to project "${this.config.projectName}"`)
+      logger.info(
+        `Going add language "${code}" to project "${this.config.projectName}"`
+      )
 
       const form = new FormData()
       form.append('api_token', this.getToken())
       form.append('id', this.config.projectId)
       form.append('language', code)
 
-      const { data: { response: { status } } } = await this.apiClient.post<any>(
-        '/languages/add',
-        form,
-        {
-          headers: form.getHeaders()
+      const {
+        data: {
+          response: { status }
         }
-      )
+      } = await this.apiClient.post<any>('/languages/add', form, {
+        headers: form.getHeaders()
+      })
 
       if (status !== 'success') {
         throw new Error(`Could not create language with code "${code}"`)
@@ -223,10 +219,11 @@ export default class Poeditor extends BaseProvider<PoeditorConfig> {
     const apiKey = process.env.NX_EXTEND_POEDITOR_KEY
 
     if (!apiKey) {
-      throw new Error('No API key defined, please set "NX_EXTEND_POEDITOR_KEY"!')
+      throw new Error(
+        'No API key defined, please set "NX_EXTEND_POEDITOR_KEY"!'
+      )
     }
 
     return apiKey
   }
-
 }

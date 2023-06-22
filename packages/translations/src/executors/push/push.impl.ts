@@ -1,4 +1,4 @@
-import { ExecutorContext, logger } from '@nrwl/devkit'
+import { ExecutorContext, logger } from '@nx/devkit'
 
 import { getProvider } from '../../providers'
 import { getConfigFile } from '../../utils/config-file'

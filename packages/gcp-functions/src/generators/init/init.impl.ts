@@ -3,12 +3,13 @@ import {
   addProjectConfiguration,
   formatFiles,
   generateFiles,
-  getWorkspaceLayout, joinPathFragments,
+  getWorkspaceLayout,
+  joinPathFragments,
   names,
   offsetFromRoot,
   Tree
-} from '@nrwl/devkit'
-import { runTasksInSerial } from '@nrwl/workspace/src/utilities/run-tasks-in-serial'
+} from '@nx/devkit'
+import { runTasksInSerial } from '@nx/workspace/src/utilities/run-tasks-in-serial'
 import * as path from 'path'
 
 import { GcpDeploymentManagerGeneratorSchema } from './schema'
@@ -29,7 +30,10 @@ function normalizeOptions(
     ? `${names(options.directory).fileName}/${name}`
     : name
   const projectName = projectDirectory.replace(new RegExp('/', 'g'), '-')
-  const projectRoot = joinPathFragments(getWorkspaceLayout(host).appsDir, projectDirectory)
+  const projectRoot = joinPathFragments(
+    getWorkspaceLayout(host).appsDir,
+    projectDirectory
+  )
   const parsedTags = options.tags
     ? options.tags.split(',').map((s) => s.trim())
     : []
@@ -44,17 +48,12 @@ function normalizeOptions(
 }
 
 function addFiles(host: Tree, options: NormalizedSchema) {
-  generateFiles(
-    host,
-    path.join(__dirname, 'files-http'),
-    options.projectRoot,
-    {
-      ...options,
-      ...names(options.name),
-      offsetFromRoot: offsetFromRoot(options.projectRoot),
-      template: ''
-    }
-  )
+  generateFiles(host, path.join(__dirname, 'files-http'), options.projectRoot, {
+    ...options,
+    ...names(options.name),
+    offsetFromRoot: offsetFromRoot(options.projectRoot),
+    template: ''
+  })
 }
 
 export default async function (
@@ -73,7 +72,7 @@ export default async function (
         options: {}
       },
       test: {
-        executor: '@nrwl/jest:jest',
+        executor: '@nx/jest:jest',
         options: {
           jestConfig: `${normalizedOptions.projectRoot}/jest.config.ts`,
           passWithNoTests: true
@@ -111,11 +110,13 @@ export default async function (
 
   await formatFiles(host)
 
-  return runTasksInSerial(addDependenciesToPackageJson(
-    host,
-    {},
-    {
-      '@google-cloud/functions-framework': 'latest'
-    }
-  ))
+  return runTasksInSerial(
+    addDependenciesToPackageJson(
+      host,
+      {},
+      {
+        '@google-cloud/functions-framework': 'latest'
+      }
+    )
+  )
 }

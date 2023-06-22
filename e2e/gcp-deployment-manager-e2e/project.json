@@ -5,11 +5,12 @@
   "sourceRoot": "e2e/gcp-deployment-manager-e2e/src",
   "targets": {
     "e2e": {
-      "executor": "@nrwl/nx-plugin:e2e",
+      "executor": "@nx/jest:jest",
       "options": {
-        "target": "gcp-deployment-manager:build",
-        "jestConfig": "e2e/gcp-deployment-manager-e2e/jest.config.js"
-      }
+        "jestConfig": "e2e/gcp-deployment-manager-e2e/jest.config.js",
+        "runInBand": true
+      },
+      "dependsOn": ["gcp-deployment-manager:build"]
     }
   },
   "tags": [],

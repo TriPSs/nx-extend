@@ -5,15 +5,12 @@ import {
   Tree,
   updateProjectConfiguration,
   writeJson
-} from '@nrwl/devkit'
+} from '@nx/devkit'
 import { join } from 'path'
 
 import { Schema } from './schema'
 
-export default async function (
-  host: Tree,
-  options: Schema
-) {
+export default async function (host: Tree, options: Schema) {
   const app = readProjectConfiguration(host, options.target)
 
   createAppConfigFile(host, app, options.target)
@@ -35,7 +32,7 @@ export default async function (
         executor: '@nx-extend/translations:push',
         options: {}
       },
-      'translate': {
+      translate: {
         executor: '@nx-extend/translations:translate',
         options: {}
       }
@@ -43,7 +40,11 @@ export default async function (
   })
 }
 
-export function createAppConfigFile(host: Tree, app: ProjectConfiguration, target: string) {
+export function createAppConfigFile(
+  host: Tree,
+  app: ProjectConfiguration,
+  target: string
+) {
   const configFileLocation = '.translationsrc.json'
 
   writeJson(host, join(app.root, configFileLocation), {
@@ -60,9 +61,7 @@ export function createAppConfigFile(host: Tree, app: ProjectConfiguration, targe
       defaultLanguage: 'en',
       translator: 'none',
       translatorOptions: {},
-      languages: [
-        'en'
-      ]
+      languages: ['en']
     })
   }
 }

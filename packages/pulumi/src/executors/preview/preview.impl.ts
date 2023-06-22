@@ -1,4 +1,4 @@
-import { ExecutorContext } from '@nrwl/devkit'
+import { ExecutorContext } from '@nx/devkit'
 import { buildCommand } from '@nx-extend/core'
 import { execSync } from 'child_process'
 import { which } from 'shelljs'
@@ -17,14 +17,17 @@ export default async function creatExecutor(
 
   const { sourceRoot } = context.workspace.projects[context.projectName]
 
-  execSync(buildCommand([
-    'PULUMI_EXPERIMENTAL=true',
-    'pulumi preview --diff',
-    options.stack && `--stack=${options.stack}`
-  ]), {
-    cwd: sourceRoot,
-    stdio: 'inherit'
-  })
+  execSync(
+    buildCommand([
+      'PULUMI_EXPERIMENTAL=true',
+      'pulumi preview --diff',
+      options.stack && `--stack=${options.stack}`
+    ]),
+    {
+      cwd: sourceRoot,
+      stdio: 'inherit'
+    }
+  )
 
   return Promise.resolve({ success: true })
 }

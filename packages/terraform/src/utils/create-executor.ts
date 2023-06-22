@@ -1,4 +1,4 @@
-import { ExecutorContext } from '@nrwl/devkit'
+import { ExecutorContext } from '@nx/devkit'
 import { buildCommand } from '@nx-extend/core'
 import { execSync } from 'child_process'
 import { which } from 'shelljs'

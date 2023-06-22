@@ -3,21 +3,23 @@ import {
   addProjectConfiguration,
   formatFiles,
   generateFiles,
-  names, offsetFromRoot,
+  names,
+  offsetFromRoot,
   Tree
-} from '@nrwl/devkit'
-import { runTasksInSerial } from '@nrwl/workspace/src/utilities/run-tasks-in-serial'
-import { DefaultGeneratorOptions, NormalizedSchema, normalizeOptions } from '@nx-extend/core'
+} from '@nx/devkit'
+import { runTasksInSerial } from '@nx/workspace/src/utilities/run-tasks-in-serial'
+import {
+  DefaultGeneratorOptions,
+  NormalizedSchema,
+  normalizeOptions
+} from '@nx-extend/core'
 import { join } from 'path'
 
 export interface Options extends DefaultGeneratorOptions {
   project?: string
 }
 
-export default async function (
-  host: Tree,
-  rawOptions: Options
-) {
+export default async function (host: Tree, rawOptions: Options) {
   const options = normalizeOptions(host, rawOptions)
 
   addProjectConfiguration(host, options.projectName, {
@@ -41,26 +43,23 @@ export default async function (
 
   await formatFiles(host)
 
-  return runTasksInSerial(addDependenciesToPackageJson(
-    host,
-    {},
-    {
-      '@playwright/test': '^1.25.0',
-      'playwright': '^1.25.0'
-    }
-  ))
+  return runTasksInSerial(
+    addDependenciesToPackageJson(
+      host,
+      {},
+      {
+        '@playwright/test': '^1.25.0',
+        playwright: '^1.25.0'
+      }
+    )
+  )
 }
 
 function addFiles(host: Tree, options: NormalizedSchema) {
-  generateFiles(
-    host,
-    join(__dirname, 'files'),
-    options.projectRoot,
-    {
-      ...options,
-      ...names(options.name),
-      offsetFromRoot: offsetFromRoot(options.projectRoot),
-      template: ''
-    }
-  )
+  generateFiles(host, join(__dirname, 'files'), options.projectRoot, {
+    ...options,
+    ...names(options.name),
+    offsetFromRoot: offsetFromRoot(options.projectRoot),
+    template: ''
+  })
 }

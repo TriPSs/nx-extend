@@ -1,4 +1,4 @@
-import { logger, parseTargetString } from '@nrwl/devkit'
+import { logger, parseTargetString } from '@nx/devkit'
 import * as childProcess from 'child_process'
 
 import { isApiLive } from './is-api-live'
@@ -58,7 +58,9 @@ export class NxTarget {
 
     if (isAlreadyAvailable) {
       if (this._options.reuseExistingServer) {
-        logger.info(`Reusing existing server for target "${this._options.target}"`)
+        logger.info(
+          `Reusing existing server for target "${this._options.target}"`
+        )
         return
       }
 

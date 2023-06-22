@@ -1,7 +1,12 @@
-import { ExecutorContext, logger } from '@nrwl/devkit'
+import { ExecutorContext, logger } from '@nx/devkit'
 
 import { encryptFile, isEncryptionKeySet } from '../../utils/encryption'
-import { getFileContent, getFileName, SecretFile, storeFile } from '../../utils/file'
+import {
+  getFileContent,
+  getFileName,
+  SecretFile,
+  storeFile
+} from '../../utils/file'
 import { getAllSecretFiles } from '../../utils/get-all-secret-files'
 import { SharedOptions } from '../shared-options'
 
@@ -38,7 +43,6 @@ export async function encryptExecutor(
           storeFile(file, encryptedFile)
 
           logger.info(`"${secretName}" encrypted`)
-
         } else {
           logger.info(`Skipping "${secretName}" because it's already encrypted`)
         }
@@ -46,12 +50,13 @@ export async function encryptExecutor(
 
       return { success: true }
     } catch (err) {
-      logger.error(`Error happened trying to encrypt files: ${err.message || err}`)
+      logger.error(
+        `Error happened trying to encrypt files: ${err.message || err}`
+      )
       console.error(err.trace)
 
       return { success: false }
     }
-
   } else {
     return { success: true }
   }

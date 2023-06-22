@@ -1,4 +1,4 @@
-import { output } from '@nrwl/workspace'
+import { output } from '@nx/workspace'
 
 export class Logger {
   public debug(message: string): void {
@@ -31,5 +31,4 @@ export class Logger {
       title: message
     })
   }
-
 }

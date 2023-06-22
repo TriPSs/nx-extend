@@ -1,4 +1,4 @@
-import { writeJsonFile, readJsonFile } from '@nrwl/devkit'
+import { readJsonFile,writeJsonFile } from '@nx/devkit'
 import { basename } from 'path'
 
 export interface SecretMetadata {
@@ -13,11 +13,9 @@ export interface SecretMetadata {
 }
 
 export interface SecretFile {
-
   __gcp_metadata: SecretMetadata
 
   [key: string]: any
-
 }
 
 export const getFileContent = (file: string): SecretFile => {

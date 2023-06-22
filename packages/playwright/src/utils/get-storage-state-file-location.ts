@@ -1,4 +1,4 @@
-import { workspaceRoot } from '@nrwl/devkit'
+import { workspaceRoot } from '@nx/devkit'
 import { join, relative } from 'path'
 
 export const getStorageStateFileLocation = (name: string) => {

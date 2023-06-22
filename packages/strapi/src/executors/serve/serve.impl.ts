@@ -1,4 +1,4 @@
-import { ExecutorContext } from '@nrwl/devkit'
+import { ExecutorContext } from '@nx/devkit'
 import { buildCommand, execCommand } from '@nx-extend/core'
 
 import 'dotenv/config'
@@ -27,18 +27,21 @@ export async function serveExecutor(
     envVars = {}
   } = options
 
-  return execCommand(buildCommand([
-    'npx strapi develop',
-    !build && '--no-build',
-    watchAdmin && '--watch-admin',
-    browser && `--browser=${browser}`
-  ]), {
-    cwd: options.root || root,
-    env: {
-      ...process.env,
-      ...envVars
+  return execCommand(
+    buildCommand([
+      'npx strapi develop',
+      !build && '--no-build',
+      watchAdmin && '--watch-admin',
+      browser && `--browser=${browser}`
+    ]),
+    {
+      cwd: options.root || root,
+      env: {
+        ...process.env,
+        ...envVars
+      }
     }
-  })
+  )
 }
 
 export default serveExecutor

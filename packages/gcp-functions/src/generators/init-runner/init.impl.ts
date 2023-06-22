@@ -6,7 +6,7 @@ import {
   names,
   offsetFromRoot,
   Tree
-} from '@nrwl/devkit'
+} from '@nx/devkit'
 import * as path from 'path'
 
 import { GcpDeploymentManagerGeneratorSchema } from './schema'
@@ -67,7 +67,7 @@ export default async function (
     sourceRoot: `${normalizedOptions.projectRoot}/src`,
     targets: {
       _build: {
-        executor: '@nrwl/node:build',
+        executor: '@nx/node:build',
         outputs: ['{options.outputPath}'],
         options: {
           outputPath: `dist/${normalizedOptions.projectRoot}`,
@@ -76,7 +76,7 @@ export default async function (
         }
       },
       serve: {
-        executor: '@nrwl/node:execute',
+        executor: '@nx/node:execute',
         options: {
           buildTarget: `${normalizedOptions.projectName}:_build`
         }

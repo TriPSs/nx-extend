@@ -1,25 +1,33 @@
-import { ExecutorContext, readJsonFile, writeJsonFile } from '@nrwl/devkit'
-import { createLockFile, createPackageJson } from '@nrwl/js'
-import { readCachedProjectGraph } from '@nrwl/workspace/src/core/project-graph'
-import { fileExists } from '@nrwl/workspace/src/utils/fileutils'
+import {
+  ExecutorContext,
+  readJsonFile,
+  writeJsonFile
+} from '@nx/devkit'
+import { createLockFile, createPackageJson } from '@nx/js'
+import { readCachedProjectGraph } from '@nx/workspace/src/core/project-graph'
+import { fileExists } from '@nx/workspace/src/utils/fileutils'
 import * as fs from 'fs'
 import { getLockFileName } from 'nx/src/plugins/js/lock-file/lock-file'
 import { join } from 'path'
 
-import type { WebpackExecutorOptions } from '@nrwl/webpack/src/executors/webpack/schema'
+import type { WebpackExecutorOptions } from '@nx/webpack/src/executors/webpack/schema'
 
 export const generatePackageJson = (
   context: ExecutorContext,
   options: WebpackExecutorOptions,
   outFile: string,
-  generateLockFile
+  generateLockFile?: boolean
 ) => {
   const { root } = context.workspace.projects[context.projectName]
 
-  const packageJson = createPackageJson(context.projectName, readCachedProjectGraph(), {
-    root: context.root,
-    isProduction: true
-  })
+  const packageJson = createPackageJson(
+    context.projectName,
+    readCachedProjectGraph(),
+    {
+      root: context.root,
+      isProduction: true
+    }
+  )
 
   if (!packageJson.main) {
     packageJson.main = options.outputFileName || 'main.js'
@@ -35,7 +43,9 @@ export const generatePackageJson = (
   // Get the package version from the root
   if (externalDependencies) {
     const workspacePackages = readJsonFile(join(context.root, 'package.json'))
-    const dependenciesName = externalDependencies.map((x) => x.match(re2)[0].replace(/"/gm, ''))
+    const dependenciesName = externalDependencies.map((x) =>
+      x.match(re2)[0].replace(/"/gm, '')
+    )
 
     dependenciesName.forEach((dep) => {
       let depName = dep
@@ -79,8 +89,12 @@ export const generatePackageJson = (
   writeJsonFile(`${options.outputPath}/package.json`, packageJson)
 
   if (generateLockFile) {
-    fs.writeFileSync(`${options.outputPath}/${getLockFileName()}`, createLockFile(packageJson), {
-      encoding: 'utf-8'
-    })
+    fs.writeFileSync(
+      `${options.outputPath}/${getLockFileName()}`,
+      createLockFile(packageJson),
+      {
+        encoding: 'utf-8'
+      }
+    )
   }
 }

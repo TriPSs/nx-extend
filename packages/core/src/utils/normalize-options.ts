@@ -1,4 +1,4 @@
-import { getWorkspaceLayout, joinPathFragments, names, Tree } from '@nrwl/devkit'
+import { getWorkspaceLayout, joinPathFragments, names, Tree } from '@nx/devkit'
 
 export interface DefaultGeneratorOptions {
   name: string
@@ -13,12 +13,18 @@ export interface NormalizedSchema extends DefaultGeneratorOptions {
   parsedTags: string[]
 }
 
-export const normalizeOptions = (host: Tree, options: DefaultGeneratorOptions): NormalizedSchema => {
+export const normalizeOptions = (
+  host: Tree,
+  options: DefaultGeneratorOptions
+): NormalizedSchema => {
   const projectDirectory = options.directory
     ? `${names(options.directory).fileName}/${names(options.name).fileName}`
     : names(options.name).fileName
 
-  const projectRoot = joinPathFragments(getWorkspaceLayout(host).appsDir, projectDirectory)
+  const projectRoot = joinPathFragments(
+    getWorkspaceLayout(host).appsDir,
+    projectDirectory
+  )
 
   return {
     ...options,
