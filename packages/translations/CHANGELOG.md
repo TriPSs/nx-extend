@@ -1,4 +1,21 @@
- 
+# Changelog
+
+This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
+
+# [8.0.0](https://github.com/TriPSs/nx-extend/compare/translations@7.2.3...translations@8.0.0) (2023-06-22)
+
+
+### Features
+
+* Updated to NX 16 ([4896bf6](https://github.com/TriPSs/nx-extend/commit/4896bf66940e1b69e0f2e3971a7864a1da20b2ef))
+
+
+### BREAKING CHANGES
+
+* Updated to NX 16
+
+
+
 ## [7.2.3](https://github.com/TriPSs/nx-extend/compare/translations@7.2.2...translations@7.2.3) (2023-05-26)
 
 
