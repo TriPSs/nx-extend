@@ -2,25 +2,6 @@ name: Release
 
 on:
   workflow_dispatch:
-    inputs:
-      environment:
-        description: Environment
-        required: true
-        default: prod
-        type: choice
-        options:
-          - prod
-          - alpha
-
-      releaseAs:
-        description: Release as (Required if env = alpha)
-        required: false
-        type: choice
-        options:
-          - premajor
-          - preminor
-          - prepatch
-          - prerelease
 
 env:
   NX_BRANCH: ${{ github.event.number }}
@@ -74,13 +55,8 @@ jobs:
           git config user.name "${GITHUB_ACTOR}"
           git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
 
-      - name: nx workspace:version
-        if: ${{ inputs.environment == 'prod' }}
-        run: yarn nx run workspace:version
-
-      - name: nx workspace:version (Alpha)
-        if: ${{ inputs.environment == 'alpha' }}
-        run: yarn nx run workspace:version --releaseAs=${{inputs.releaseAs}} --preid=alpha
+      - name: nx affected:version
+        run: node ./tools/scripts/run-many.js version origin/${{ needs.prepare-env.outputs.GITHUB_HEAD_REF }} ${{ needs.prepare-env.outputs.GITHUB_BASE_REF }}
 
       - name: nx affected:build
         run: node ./tools/scripts/run-many.js build origin/${{ needs.prepare-env.outputs.GITHUB_HEAD_REF }} ${{ needs.prepare-env.outputs.GITHUB_BASE_REF }}
