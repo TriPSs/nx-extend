@@ -5,11 +5,12 @@
   "sourceRoot": "e2e/gcp-functions-e2e/src",
   "targets": {
     "e2e": {
-      "executor": "@nx/plugin:e2e",
+      "executor": "@nx/jest:jest",
       "options": {
-        "target": "gcp-functions:build",
-        "jestConfig": "e2e/gcp-functions-e2e/jest.config.js"
-      }
+        "jestConfig": "e2e/gcp-functions-e2e/jest.config.js",
+        "runInBand": true
+      },
+      "dependsOn": ["gcp-functions:build"]
     }
   },
   "tags": [],
