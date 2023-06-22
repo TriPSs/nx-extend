@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [3.1.0](https://github.com/TriPSs/nx-extend/compare/terraform@3.0.0...terraform@3.1.0) (2023-06-22)
+
+
+### Features
+
+* Added `publish` target ([6f1844f](https://github.com/TriPSs/nx-extend/commit/6f1844f792b704d63fca2663363ca0f65fe6451c))
+
+
+
 # [3.0.0](https://github.com/TriPSs/nx-extend/compare/terraform@2.0.0...terraform@3.0.0) (2023-06-22)
 
 
