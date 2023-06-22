@@ -74,4 +74,5 @@ jobs:
           target: publish
 
       - name: Push GIT
+        if: always()
         run: git push --follow-tags
