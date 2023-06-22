@@ -1,6 +1,4 @@
-import webpackExecutor, {
-  WebpackExecutorEvent
-} from '@nx/webpack/src/executors/webpack/webpack.impl'
+import webpackExecutor, { WebpackExecutorEvent } from '@nx/webpack/src/executors/webpack/webpack.impl'
 
 import type { ExecutorContext } from '@nx/devkit'
 import type { WebpackExecutorOptions } from '@nx/webpack/src/executors/webpack/schema'

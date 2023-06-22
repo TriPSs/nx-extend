@@ -16,7 +16,7 @@ export const generatePackageJson = (
   context: ExecutorContext,
   options: WebpackExecutorOptions,
   outFile: string,
-  generateLockFile
+  generateLockFile?: boolean
 ) => {
   const { root } = context.workspace.projects[context.projectName]
 
