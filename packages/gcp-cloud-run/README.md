@@ -20,14 +20,13 @@ npm install -D @nx-extend/gcp-cloud-run
 
 #### Available options:
 
-| name         | type     | default | description                                          |
-| ------------ | -------- | ------- | ---------------------------------------------------- |
-| **`--site`** | `string` | `null`  | specify the site to deploy from the `.firebase.json` |
-| **`--region`** | `string` | |  region to deploy to|
-| **`--project`** | `string` | | GCP project to deploy to|
-| **`--name`** | `string` | `project.prefix` | name of the cloud run instance |
-| **`--allowUnauthenticated`** | `boolean` | `true` | allow unauthenticated requests |
-| **`--concurrency`** | `number` | 250 | amount of concurrent requests for instance |
-| **`--maxInstances`** | `number` | 10 | maximum amount of instances |
-| **`--minInstances`** | `number` | 0 | minimum amount of instances |
-
+| name                         | type      | default          | description                                          |
+|------------------------------|-----------|------------------|------------------------------------------------------|
+| **`--site`**                 | `string`  | `null`           | specify the site to deploy from the `.firebase.json` |
+| **`--region`**               | `string`  |                  | region to deploy to                                  |
+| **`--project`**              | `string`  |                  | GCP project to deploy to                             |
+| **`--name`**                 | `string`  | `project.prefix` | name of the cloud run instance                       |
+| **`--allowUnauthenticated`** | `boolean` | `true`           | allow unauthenticated requests                       |
+| **`--concurrency`**          | `number`  | 250              | amount of concurrent requests for instance           |
+| **`--maxInstances`**         | `number`  | 10               | maximum amount of instances                          |
+| **`--minInstances`**         | `number`  | 0                | minimum amount of instances                          |

@@ -37,3 +37,4 @@ Update your `nx.json` with the following
 ### Authenticate
 
 The task runner uses `@google-cloud/storage` which in turn is capable of using the env variable `GOOGLE_APPLICATION_CREDENTIALS`.
+
