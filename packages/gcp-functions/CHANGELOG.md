@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [9.1.3](https://github.com/TriPSs/nx-extend/compare/gcp-functions@9.1.2...gcp-functions@9.1.3) (2023-06-22)
+
+
+### Bug Fixes
+
+* **gcp-functions:** Improved regex that determines external deps ([35147a0](https://github.com/TriPSs/nx-extend/commit/35147a0acdd9084058c0b02b2131bea4aa19d4e6))
+
+
+
 ## [9.1.2](https://github.com/TriPSs/nx-extend/compare/gcp-functions@9.1.1...gcp-functions@9.1.2) (2023-06-22)
 
 
