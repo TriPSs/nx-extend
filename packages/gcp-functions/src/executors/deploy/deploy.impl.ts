@@ -46,7 +46,6 @@ export async function deployExecutor(
     triggerValue = null,
     triggerEvent = null,
     triggerLocation = null,
-    runtime = 'recommended',
     envVarsFile = null,
     maxInstances = 10,
     project = null,
@@ -65,9 +64,10 @@ export async function deployExecutor(
     cpu = 1
   } = options
 
+  let runtime = options.runtime || 'nodejs20'
   // If "recommended" option is selected set the currently recommended one of Google (https://cloud.google.com/functions/docs/concepts/nodejs-runtime)
-  if (options.runtime === 'recommended') {
-    options.runtime = 'nodejs20'
+  if (runtime === 'recommended') {
+    runtime = 'nodejs20'
   }
 
   // Options with default values based of trigger type
