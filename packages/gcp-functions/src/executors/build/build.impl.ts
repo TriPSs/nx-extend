@@ -16,7 +16,8 @@ export async function buildExecutor(
   const options = {
     target: 'node',
     compiler: 'tsc',
-    ...rawOptions
+    ...rawOptions,
+    generatePackageJson: false
   } as WebpackExecutorOptions
 
   const { value } = await webpackExecutor(options, context).next()
