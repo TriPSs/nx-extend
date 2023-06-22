@@ -104,12 +104,9 @@ export async function deployExecutor(
     .filter(Boolean)
 
   let gcloudCommand = 'gcloud'
-  if (validSecrets.length > 0 && gen === 1) {
+  if (validSecrets.length > 0) {
     logger.info('Using secrets, use gcloud beta')
     gcloudCommand = 'gcloud beta'
-  } else if (gen === 2) {
-    logger.info('Using gen 2, use gcloud alpha')
-    gcloudCommand = 'gcloud alpha'
   }
 
   let { success } = execCommand(
