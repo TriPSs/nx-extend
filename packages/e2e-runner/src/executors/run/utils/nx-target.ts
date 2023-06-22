@@ -1,6 +1,8 @@
 import { logger, parseTargetString } from '@nx/devkit'
 import * as childProcess from 'child_process'
 
+import type { RunOptions } from '../run.impl'
+
 import { isApiLive } from './is-api-live'
 import { wait } from './wait'
 
@@ -14,26 +16,29 @@ export interface NxTargetOptions {
 }
 
 export class NxTarget {
-  private _isAvailable: () => Promise<boolean>
-  private _killProcess?: () => Promise<void>
-  private _processExitedPromise!: Promise<any>
-  private _options: NxTargetOptions
+
+  private killProcess?: () => Promise<void>
+  private processExitedPromise!: Promise<any>
+
+  private readonly isAvailable: () => Promise<boolean>
+  private readonly options: NxTargetOptions
+  private readonly runOptions: RunOptions
 
   private killed = false
 
-  constructor(options: NxTargetOptions) {
-    this._options = options
+  constructor(options: NxTargetOptions, runOptions: RunOptions) {
+    this.options = options
+    this.runOptions = runOptions
 
-    this._isAvailable = () =>
-      isApiLive(options.checkUrl, {
-        rejectUnauthorized: options.rejectUnauthorized
-      })
+    this.isAvailable = () => isApiLive(options.checkUrl, {
+      rejectUnauthorized: options.rejectUnauthorized
+    })
   }
 
   public async setup() {
     try {
-      await this._startProcess()
-      await this._waitForProcess()
+      await this.startProcess()
+      await this.waitForProcess()
     } catch (error) {
       await this.teardown()
       throw error
@@ -47,63 +52,62 @@ export class NxTarget {
     this.killed = true
   }
 
-  private async _startProcess(): Promise<void> {
+  private async startProcess(): Promise<void> {
     let processExitedReject = (error: Error) => {}
 
-    this._processExitedPromise = new Promise(
+    this.processExitedPromise = new Promise(
       (_, reject) => (processExitedReject = reject)
     )
 
-    const isAlreadyAvailable = await this._isAvailable()
+    const isAlreadyAvailable = await this.isAvailable()
 
     if (isAlreadyAvailable) {
-      if (this._options.reuseExistingServer) {
-        logger.info(
-          `Reusing existing server for target "${this._options.target}"`
-        )
+      if (this.options.reuseExistingServer) {
+        logger.info(`Reusing existing server for target "${this.options.target}"`)
         return
       }
 
       throw new Error(
-        `${this._options.checkUrl} is already used, make sure that nothing is running on the port/url or set reuseExistingServer:true.`
+        `${this.options.checkUrl} is already used, make sure that nothing is running on the port/url or set reuseExistingServer:true.`
       )
     }
 
-    logger.info(`Starting target "${this._options.target}"`)
+    logger.info(`Starting target "${this.options.target}"`)
 
-    this._killProcess = await launchProcess(this._options.target, {
+    this.killProcess = await launchProcess(this.options.target, {
       onExit: (code) =>
         processExitedReject(
           new Error(
-            `Target "${this._options.target}" was not able to start. Exit code: ${code}`
+            `Target "${this.options.target}" was not able to start. Exit code: ${code}`
           )
         ),
-      env: this._options.env
+      env: this.options.env,
+      verbose: this.runOptions.debug
     })
 
     if (this.killed) {
-      await this._killProcess()
+      await this.killProcess()
     }
   }
 
-  private async _waitForProcess() {
+  private async waitForProcess() {
     await this._waitForAvailability()
-    logger.info(`Target "${this._options.target}" is live`)
+    logger.info(`Target "${this.options.target}" is live`)
   }
 
   private async _waitForAvailability() {
     const cancellationToken = { canceled: this.killed }
 
     const error = await Promise.race([
-      waitFor(this._options, this._isAvailable, cancellationToken),
-      this._processExitedPromise
+      waitFor(this.options, this.isAvailable, cancellationToken),
+      this.processExitedPromise
     ])
 
     cancellationToken.canceled = true
 
     if (error) {
       throw new Error(
-        `Error waiting for target "${this._options.target}" to start.`
+        `Error waiting for target "${this.options.target}" to start.`
       )
     }
   }
@@ -138,6 +142,7 @@ function launchProcess(
   options: {
     onExit: (exitCode: number | null, signal: string | null) => void
     env?: { [key: string]: string }
+    verbose?: boolean
   }
 ): () => Promise<void> {
   const { project, target, configuration } = parseTargetString(targetString)
@@ -158,9 +163,11 @@ function launchProcess(
     }
   )
 
-  // spawnedProcess.stdout.on('data', (a) => {
-  //   console.log('message', a.toString())
-  // })
+  if (options.verbose) {
+    spawnedProcess.stdout.on('data', (data) => {
+      logger.info(`${targetString}: ${data.toString()}`)
+    })
+  }
 
   let processClosed = false
   spawnedProcess.once('exit', (exitCode, signal) => {
