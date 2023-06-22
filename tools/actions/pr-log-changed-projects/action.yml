@@ -1,6 +1,0 @@
-name: 'Log changed projects'
-description: 'Logs all changed projects'
-author: 'Tycho Bokdam'
-runs:
-  using: 'node12'
-  main: 'src/index.js'

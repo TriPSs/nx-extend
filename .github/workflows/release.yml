@@ -33,10 +33,6 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
         run: yarn install
 
-      - name: Set correct env vars
-        id: script
-        uses: ./tools/actions/set-master-vars
-
   release:
     needs: [ prepare-env ]
     runs-on: ubuntu-latest
@@ -52,23 +48,33 @@ jobs:
             **/node_modules
           key: ${{ env.DEPENDENCIES_CACHE }}-${{ hashFiles('yarn.lock') }}
 
-      - name: GIT config
+      - name: GIT/NPM config
         run: |
           git config user.name "${GITHUB_ACTOR}"
           git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
-
-      - name: nx affected:version
-        run: node ./tools/scripts/run-many.js version origin/${{ needs.prepare-env.outputs.GITHUB_HEAD_REF }} ${{ needs.prepare-env.outputs.GITHUB_BASE_REF }}
-
-      - name: nx affected:build
-        run: node ./tools/scripts/run-many.js build origin/${{ needs.prepare-env.outputs.GITHUB_HEAD_REF }} ${{ needs.prepare-env.outputs.GITHUB_BASE_REF }}
-
-      - name: nx affected:publish
-        run: |
           echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
-          node ./tools/scripts/run-many.js publish origin/${{ needs.prepare-env.outputs.GITHUB_HEAD_REF }} ${{ needs.prepare-env.outputs.GITHUB_BASE_REF }}
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Derive appropriate SHAs for base and head for `nx affected` commands
+        uses: tripss/nx-extend/actions/set-shas@improvements
+        with:
+          main-branch-name: master
+
+      - name: nx affected:version
+        uses: ./actions/run-many
+        with:
+          target: version
+
+      - name: nx affected:build
+        uses: ./actions/run-many
+        with:
+          target: build
+
+      - name: nx affected:publish
+        uses: ./actions/run-many
+        with:
+          target: publish
 
       - name: Push GIT
         run: git push --follow-tags origin ${{ needs.prepare-env.outputs.GITHUB_HEAD_REF }}

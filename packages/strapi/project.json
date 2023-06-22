@@ -52,6 +52,12 @@
       "options": {
         "versionTagPrefix": "${target}@"
       }
+    },
+    "publish": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npm publish ./dist/packages/strapi --access public"
+      }
     }
   },
   "tags": []
