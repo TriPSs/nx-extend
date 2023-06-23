@@ -1,14 +1,7 @@
-import { NestFactory } from '@nestjs/core'
-import { Logger } from '@nestjs/common'
-import { ExpressAdapter } from '@nestjs/platform-express'
-import { RunnerModule } from './__runner.module'
+import { bootstrapRunner } from '@nx-extend/gcp-functions/runner'
 
-async function bootstrap() {
-  const app = await NestFactory.create(RunnerModule, new ExpressAdapter())
-
-  await app.listen(8080, '0.0.0.0').then(() => {
-    Logger.log(`Functions running on http://localhost:8080}`)
-  })
-}
-
-bootstrap()
+/* eslint-disable @nx/enforce-module-boundaries */
+bootstrapRunner(new Map([
+    ['nx function project name', import('path to main of of project')]
+  ])
+)

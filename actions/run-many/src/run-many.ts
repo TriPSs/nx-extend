@@ -6,8 +6,6 @@ import { resolve } from 'path'
 import { hideBin } from 'yargs/helpers'
 import yargs from 'yargs/yargs'
 
-import type { ProjectConfiguration } from 'nx/src/config/workspace-json-project-json'
-
 import { buildCommand } from './utils/build-command'
 import { execCommand } from './utils/exec'
 import { runTarget } from './utils/run-target'
