@@ -165,6 +165,8 @@ function launchProcess(
       cwd: process.cwd(),
       env: {
         ...process.env,
+        // Make sure NODE_ENV is set to test
+        NODE_ENV: 'test',
         ...options.env
       }
     }
