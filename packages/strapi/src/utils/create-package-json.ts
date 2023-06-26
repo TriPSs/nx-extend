@@ -1,9 +1,8 @@
-import { writeJsonFile } from '@nx/devkit'
-import { createLockFile } from '@nx/js'
+import { readJsonFile, writeJsonFile } from '@nx/devkit'
+import { createLockFile, createPackageJson as generatePackageJson } from '@nx/js'
 import { readCachedProjectGraph } from '@nx/workspace/src/core/project-graph'
-import { writeFileSync } from 'fs'
+import { existsSync,writeFileSync } from 'fs'
 import { getLockFileName } from 'nx/src/plugins/js/lock-file/lock-file'
-import { createPackageJson as generatePackageJson } from 'nx/src/plugins/js/package-json/create-package-json'
 
 import type { ExecutorContext } from '@nx/devkit'
 
@@ -13,6 +12,16 @@ export async function createPackageJson(
   context: ExecutorContext,
   generateLockFile: boolean
 ) {
+  const { root } = context.workspace.projects[context.projectName]
+
+  let existingDeps = {}
+  // User can define its own root (Same CMS multiple apps)
+  if (root !== projectRoot && existsSync(`${projectRoot}/package.json`)) {
+    const { dependencies = {} } = readJsonFile(`${projectRoot}/package.json`)
+
+    existingDeps = dependencies
+  }
+
   const packageJson = generatePackageJson(
     context.projectName,
     readCachedProjectGraph(),
@@ -30,6 +39,16 @@ export async function createPackageJson(
 
   if (!packageJson.devDependencies) {
     packageJson.devDependencies = {}
+  }
+
+  if (!packageJson.dependencies) {
+    packageJson.dependencies = {}
+  }
+
+  // Merge existing deps with new deps
+  packageJson.dependencies = {
+    ...packageJson.dependencies,
+    ...existingDeps
   }
 
   writeJsonFile(`${outputPath}/package.json`, packageJson)
