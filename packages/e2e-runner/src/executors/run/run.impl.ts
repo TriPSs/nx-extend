@@ -35,7 +35,7 @@ export async function endToEndRunner(
   try {
     if (runner === 'cypress') {
       // eslint-disable-next-line @typescript-eslint/no-var-requires
-      const cypressExecutor = require('@nrwl/cypress/src/executors/cypress/cypress.impl').default
+      const cypressExecutor = require('@nx/cypress/src/executors/cypress/cypress.impl').default
 
       success = (await cypressExecutor(rest, context)).success
     } else if (runner === 'playwright') {

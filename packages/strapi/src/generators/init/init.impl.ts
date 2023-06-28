@@ -1,42 +1,48 @@
 import {
   addProjectConfiguration,
   formatFiles,
-  getWorkspaceLayout,
-  names,
-  Tree
+  Tree, workspaceRoot
 } from '@nx/devkit'
-import { generateNewApp as generateStrapi } from '@strapi/generate-new'
+import { NormalizedSchema, normalizeOptions } from '@nx-extend/core'
+import generateNew from '@strapi/generate-new/dist/generate-new'
+import hasYarn from '@strapi/generate-new/dist/utils/has-yarn'
+import machineID from '@strapi/generate-new/dist/utils/machine-id'
+import * as path from 'path'
 
-import { StrapiGeneratorSchema } from './schema'
+import type { StrapiGeneratorSchema } from './schema'
 
-interface NormalizedSchema extends StrapiGeneratorSchema {
-  projectName: string
-  projectRoot: string
-  projectDirectory: string
-  parsedTags: string[]
-}
+import packageJson from '../../../package.json'
 
-function normalizeOptions(
-  host: Tree,
-  options: StrapiGeneratorSchema
-): NormalizedSchema {
-  const name = names(options.name).fileName
-  const projectDirectory = options.directory
-    ? `${names(options.directory).fileName}/${name}`
-    : name
-  const projectName = projectDirectory.replace(new RegExp('/', 'g'), '-')
-  const projectRoot = `${getWorkspaceLayout(host).appsDir}/${projectDirectory}`
-  const parsedTags = options.tags
-    ? options.tags.split(',').map((s) => s.trim())
-    : []
-
-  return {
-    ...options,
-    projectName,
-    projectRoot,
-    projectDirectory,
-    parsedTags
-  }
+// Base off https://github.com/strapi/strapi/blob/main/packages/generators/app/src/index.ts#L19
+function generateStrapi(options: NormalizedSchema) {
+  return generateNew({
+    rootPath: options.projectRoot,
+    name: options.projectName,
+    // disable quickstart run app after creation
+    runQuickstartApp: false,
+    // use pacakge version as strapiVersion (all packages have the same version);
+    strapiVersion: packageJson.dependencies['@strapi/strapi'],
+    debug: false,
+    quick: false,
+    packageJsonStrapi: {
+      template: undefined,
+      starter: undefined
+    },
+    uuid: (process.env.STRAPI_UUID_PREFIX || '') + crypto.randomUUID(),
+    docker: process.env.DOCKER === 'true',
+    deviceId: machineID(),
+    tmpPath: path.resolve(workspaceRoot, 'tmp', options.projectName),
+    // use yarn if available and --use-npm isn't true
+    useYarn: hasYarn(),
+    installDependencies: false,
+    strapiDependencies: [
+      '@strapi/strapi',
+      '@strapi/plugin-users-permissions',
+      '@strapi/plugin-i18n'
+    ],
+    additionalsDependencies: {},
+    useTypescript: true
+  })
 }
 
 export default async function (host: Tree, options: StrapiGeneratorSchema) {
@@ -67,16 +73,7 @@ export default async function (host: Tree, options: StrapiGeneratorSchema) {
     tags: normalizedOptions.parsedTags
   })
 
-  try {
-    await generateStrapi(normalizedOptions.projectRoot, {
-      quickstart: true,
-      run: false,
-      typescript: true
-    })
-  } catch {
-    // Sometimes an error happens installing the deps, project is still created correctly
-    // TODO:: Better handle?
-  }
+  await generateStrapi(normalizedOptions)
 
   await formatFiles(host)
 }

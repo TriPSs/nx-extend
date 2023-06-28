@@ -12,5 +12,10 @@
   "license": "MIT",
   "main": "src/index.js",
   "builders": "./executors.json",
-  "generators": "./generators.json"
+  "generators": "./generators.json",
+  "devDependencies": {
+    "@nestjs/common": "^10.0.3",
+    "@nestjs/core": "^10.0.3",
+    "@nestjs/platform-express": "^10.0.3"
+  }
 }
