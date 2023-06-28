@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [6.0.1](https://github.com/TriPSs/nx-extend/compare/e2e-runner@6.0.0...e2e-runner@6.0.1) (2023-06-28)
+
+
+### Bug Fixes
+
+* **e2e-runner:** Force release ([e783489](https://github.com/TriPSs/nx-extend/commit/e78348964111499821fca5e7f035aeb19fd0fe73))
+
+
+
 # [6.0.0](https://github.com/TriPSs/nx-extend/compare/e2e-runner@5.1.0...e2e-runner@6.0.0) (2023-06-28)
 
 
