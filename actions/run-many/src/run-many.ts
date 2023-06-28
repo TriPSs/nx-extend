@@ -69,11 +69,11 @@ async function run() {
     const projectsToRun = affectedProjects
       .map((projectName) => projectName.trim())
       .filter((projectName) => {
-        if (!projects[projectName]) {
+        if (!projects.has(projectName)) {
           return false
         }
 
-        const project = projects[projectName]
+        const project = projects.get(projectName)
         projects.set(projectName, project)
 
         const tags = project.tags || []
