@@ -16,8 +16,7 @@ export const argv = yargs(hideBin(process.argv))
     config: { type: 'string' },
     target: { type: 'string' },
     parallel: { type: 'number' },
-    verbose: { type: 'boolean' },
-    dry: { type: 'boolean' }
+    verbose: { type: 'boolean' }
   })
   .parseSync()
 
@@ -33,7 +32,6 @@ async function run() {
     const jobIndex = parseInt(core.getInput('index') || '1', 10)
     const jobCount = parseInt(core.getInput('count') || '1', 10)
     const parallel = (core.getInput('parallel') || argv.parallel) as string
-    const dry = core.getBooleanInput('dry') || argv.dry
     const workingDirectory = core.getInput('workingDirectory') || ''
     const preTargets = core.getMultilineInput('preTargets', {
       trimWhitespace: true
@@ -68,8 +66,6 @@ async function run() {
       }
     ).split(', ')
 
-    const affectedProjectNames = []
-    const affectedProjectTags = new Set<string>()
     const projectsToRun = affectedProjects
       .map((projectName) => projectName.trim())
       .filter((projectName) => {
@@ -80,10 +76,7 @@ async function run() {
         const project = projects[projectName]
         projects.set(projectName, project)
 
-        affectedProjectNames.push(projectName)
-
         const tags = project.tags || []
-        tags.forEach((tag) => affectedProjectTags.add(tag))
 
         // If the project has ci=off then don't run it
         if (tags.includes('ci=off')) {
@@ -95,26 +88,6 @@ async function run() {
         // If a tag is provided the project should have it
         return !tag || tags.includes(tag)
       })
-
-    // If we are in dry more just log it
-    if (dry) {
-      core.info(`Following projects are affected:`)
-
-      affectedProjectNames.forEach((project) => {
-        core.info(`- ${project}`)
-      })
-
-      core.info(`Following tags are affected:`)
-      const affectedTags = Array.from(affectedProjectTags)
-      affectedTags.forEach((tag) => {
-        core.info(`- ${tag}`)
-      })
-
-      core.setOutput('affectedProjects', affectedProjectNames)
-      core.setOutput('affectedTags', affectedTags)
-
-      return
-    }
 
     const sliceSize = Math.max(Math.floor(projectsToRun.length / jobCount), 1)
     const runProjects =
