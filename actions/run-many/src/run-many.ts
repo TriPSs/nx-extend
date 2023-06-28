@@ -28,12 +28,12 @@ async function run() {
 
     // Get all options
     const tag = core.getInput('tag') || argv.tag
-    const target = core.getInput('target', { required: !argv.target }) || argv.target
+    const dry = core.getBooleanInput('dry') || argv.dry
+    const target = core.getInput('target', { required: !argv.target && !dry }) || argv.target
     const config = core.getInput('config') || argv.config
     const jobIndex = parseInt(core.getInput('index') || '1', 10)
     const jobCount = parseInt(core.getInput('count') || '1', 10)
     const parallel = (core.getInput('parallel') || argv.parallel) as string
-    const dry = core.getBooleanInput('dry') || argv.dry
     const workingDirectory = core.getInput('workingDirectory') || ''
     const preTargets = core.getMultilineInput('preTargets', {
       trimWhitespace: true
@@ -58,7 +58,7 @@ async function run() {
     const affectedProjects = execCommand<string>(
       buildCommand([
         'npx nx print-affected',
-        `--target=${target}`,
+        !dry && `--target=${target}`,
         '--select=projects'
       ]),
       {
