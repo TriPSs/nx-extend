@@ -8,7 +8,7 @@ import { execCommand } from './utils/exec'
 
 async function run() {
   try {
-    console.log('workspaceRoot',workspaceRoot)
+    core.info(`workspaceRoot ${workspaceRoot}`)
     const nxTree = new FsTree(workspaceRoot, false)
     const projects = getProjects(nxTree)
 
