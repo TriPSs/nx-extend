@@ -60,9 +60,13 @@ async function run() {
         continue
       }
 
-      const maxJobCount = amountOfProjectsWithTarget.length >= maxJobs
-        ? maxJobs
-        : 1
+      let maxJobCount = 1
+      for (let i = maxJobs; i > 0; i--) {
+        // Each job needs to at-least run 2 projects
+        if ((amountOfProjectsWithTarget.length / i) >= 2) {
+          maxJobCount = i
+        }
+      }
 
       for (let i = 0; i < maxJobCount; i++) {
         matrixInclude.push({
