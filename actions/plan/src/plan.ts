@@ -4,7 +4,6 @@ import { FsTree } from 'nx/src/generators/tree'
 import { getProjects } from 'nx/src/generators/utils/project-configuration'
 import { resolve } from 'path'
 
-import { buildCommand } from './utils/build-command'
 import { execCommand } from './utils/exec'
 
 async function run() {
@@ -19,10 +18,7 @@ async function run() {
 
     // Get all affected projects
     const affectedProjects = execCommand<string>(
-      buildCommand([
-        'npx nx print-affected',
-        '--select=projects'
-      ]),
+      'npx nx print-affected --select=projects',
       {
         asString: true,
         silent: !core.isDebug(),
