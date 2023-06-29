@@ -1,5 +1,4 @@
 import * as core from '@actions/core'
-import { workspaceRoot } from '@nx/devkit'
 import { FsTree } from 'nx/src/generators/tree'
 import { getProjects } from 'nx/src/generators/utils/project-configuration'
 import { resolve } from 'path'
@@ -22,11 +21,11 @@ export const argv = yargs(hideBin(process.argv))
 
 async function run() {
   try {
-    const nxTree = new FsTree(workspaceRoot, false)
+    const nxTree = new FsTree(process.cwd(), false)
     const projects = getProjects(nxTree)
 
     // Get all options
-    const tag = core.getInput('tag') || argv.tag
+    const withTag = core.getMultilineInput('tag', { trimWhitespace: true }) || (argv.tag ? [argv.tag] : [])
     const target = core.getInput('target', { required: !argv.target }) || argv.target
     const config = core.getInput('config') || argv.config
     const jobIndex = parseInt(core.getInput('index') || '1', 10)
@@ -46,8 +45,8 @@ async function run() {
     core.debug(`Pre targets ${JSON.stringify(preTargets, null, 2)}`)
     core.debug(`Post targets ${JSON.stringify(postTargets, null, 2)}`)
 
-    if (tag) {
-      core.info(`Running all projects with tag "${tag}"`)
+    if (withTag.length > 0) {
+      core.info(`Running all projects with one of the following tags "${withTag.join(', ')}"`)
     }
 
     const cwd = resolve(process.cwd(), workingDirectory)
@@ -84,7 +83,7 @@ async function run() {
         }
 
         // If a tag is provided the project should have it
-        return !tag || tags.includes(tag)
+        return (!withTag || withTag.length === 0) || tags.some((tag) => withTag.includes(tag))
       })
 
     const sliceSize = Math.max(Math.floor(projectsToRun.length / jobCount), 1)
