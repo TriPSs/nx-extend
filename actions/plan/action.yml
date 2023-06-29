@@ -1,0 +1,11 @@
+name: 'Plan run many'
+description: 'Plans a matrix to run the correct NX projects'
+author: 'Tycho Bokdam'
+runs:
+  using: 'node16'
+  main: './dist/index.js'
+
+inputs:
+  targets:
+    description: 'For what targets do we need to plan'
+    required: true
