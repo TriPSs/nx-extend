@@ -1,5 +1,5 @@
 import * as core from '@actions/core'
-import { logger, workspaceRoot } from '@nx/devkit'
+import { workspaceRoot } from '@nx/devkit'
 import { FsTree } from 'nx/src/generators/tree'
 import { getProjects } from 'nx/src/generators/utils/project-configuration'
 import { resolve } from 'path'
@@ -74,8 +74,6 @@ async function run() {
         }
 
         const project = projects.get(projectName)
-        projects.set(projectName, project)
-
         const tags = project.tags || []
 
         // If the project has ci=off then don't run it
@@ -97,7 +95,7 @@ async function run() {
 
     if (preTargets.length > 0) {
       for (const targetParts of preTargets) {
-        logger.info(`Running preTarget "${targetParts}"`)
+        core.info(`Running preTarget "${targetParts}"`)
 
         const [target, targetConfig] = targetParts.split(':')
         await runTarget(
@@ -123,7 +121,7 @@ async function run() {
 
     if (postTargets.length > 0) {
       for (const targetParts of postTargets) {
-        logger.info(`Running postTarget "${targetParts}"`)
+        core.info(`Running postTarget "${targetParts}"`)
 
         const [target, targetConfig] = targetParts.split(':')
         await runTarget(
