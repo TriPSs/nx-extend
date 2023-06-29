@@ -3234,12 +3234,8 @@ function run() {
                     matrixInclude.push({
                         target,
                         tag,
-                        preTargets: preTargets.length > 0
-                            ? `|\n${preTargets.join('\n')}`
-                            : '',
-                        postTargets: postTargets.length > 0
-                            ? `|\n${postTargets.join('\n')}`
-                            : '',
+                        preTargets: preTargets.join('\n'),
+                        postTargets: postTargets.join('\n'),
                         index: i + 1,
                         count: maxJobs
                     });
