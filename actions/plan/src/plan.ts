@@ -65,6 +65,7 @@ async function run() {
         // Each job needs to at-least run 2 projects
         if ((amountOfProjectsWithTarget.length / i) >= 2) {
           maxJobCount = i
+          break
         }
       }
 
