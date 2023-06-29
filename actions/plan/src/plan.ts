@@ -39,6 +39,7 @@ async function run() {
 
       const requiresOnOfTheseTags = core.getMultilineInput(`${target}Tag`, { trimWhitespace: true })
       const maxJobs = parseInt(core.getInput(`${target}MaxJobs`), 10) || 1
+      const parallel = core.getInput(`${target}Parallel`)
       const preTargets = core.getMultilineInput(`${target}PreTargets`) || []
       const postTargets = core.getMultilineInput(`${target}PostTargets`) || []
 
@@ -81,7 +82,8 @@ async function run() {
           preTargets: preTargets.join('\n'),
           postTargets: postTargets.join('\n'),
           index: i + 1,
-          count: maxJobCount
+          count: maxJobCount,
+          parallel
         })
       }
     }
