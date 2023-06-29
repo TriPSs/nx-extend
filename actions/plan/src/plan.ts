@@ -3,7 +3,7 @@ import * as core from '@actions/core'
 async function run() {
   try {
     // Get all options
-    const targets = core.getInput('keys', { required: true })
+    const targets = core.getInput('targets', { required: true })
       .split(',')
       .map((key) => key.trim())
 
@@ -17,6 +17,7 @@ async function run() {
       const preTargets = core.getMultilineInput(`${target}PreTargets`) || []
       const postTargets = core.getMultilineInput(`${target}PostTargets`) || []
 
+      // TODO:: Validate that the projects actually changed
       for (let i = 0; i < maxJobs; i++) {
         matrixInclude.push({
           target,
@@ -29,9 +30,11 @@ async function run() {
       }
     }
 
+    core.info(`Created following plan: \n${JSON.stringify(matrixInclude, null, 2)}`)
     core.setOutput('matrix', {
       include: matrixInclude
     })
+    core.setOutput('hasPlan', matrixInclude.length > 0)
   } catch (err) {
     core.setFailed(err)
   }
