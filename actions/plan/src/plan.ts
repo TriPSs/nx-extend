@@ -1,5 +1,4 @@
 import * as core from '@actions/core'
-import { workspaceRoot } from '@nx/devkit'
 import { FsTree } from 'nx/src/generators/tree'
 import { getProjects } from 'nx/src/generators/utils/project-configuration'
 import { resolve } from 'path'
@@ -8,8 +7,7 @@ import { execCommand } from './utils/exec'
 
 async function run() {
   try {
-    core.info(`workspaceRoot ${workspaceRoot}`)
-    const nxTree = new FsTree(workspaceRoot, false)
+    const nxTree = new FsTree(process.cwd(), false)
     const projects = getProjects(nxTree)
 
     const workingDirectory = core.getInput('workingDirectory') || ''
