@@ -4,6 +4,7 @@ import { getProjects } from 'nx/src/generators/utils/project-configuration'
 import { resolve } from 'path'
 
 import { execCommand } from './utils/exec'
+import { hasOneOfRequiredTags } from './utils/has-one-of-required-tags'
 
 async function run() {
   try {
@@ -11,9 +12,7 @@ async function run() {
     const projects = getProjects(nxTree)
 
     const workingDirectory = core.getInput('workingDirectory') || ''
-    const targets = core.getInput('targets', { required: true })
-      .split(',')
-      .map((key) => key.trim())
+    const targets = core.getMultilineInput('targets', { required: true, trimWhitespace: true })
 
     // Get all affected projects
     const affectedProjects = execCommand<string>(
@@ -38,7 +37,7 @@ async function run() {
     for (const target of targets) {
       core.debug(`Getting info for target "${target}"`)
 
-      const tag = core.getInput(`${target}Tag`)
+      const requiresOnOfTheseTags = core.getMultilineInput(`${target}Tag`, { trimWhitespace: true })
       const maxJobs = parseInt(core.getInput(`${target}MaxJobs`), 10) || 1
       const preTargets = core.getMultilineInput(`${target}PreTargets`) || []
       const postTargets = core.getMultilineInput(`${target}PostTargets`) || []
@@ -48,7 +47,7 @@ async function run() {
           const { targets, tags } = projects.get(projectName)
 
           if (Object.keys(targets).includes(target)) {
-            return !tag || (tags || []).includes(tag)
+            return hasOneOfRequiredTags(tags, requiresOnOfTheseTags)
           }
 
           return false
@@ -56,7 +55,12 @@ async function run() {
         .filter(Boolean)
 
       if (amountOfProjectsWithTarget.length === 0) {
-        core.debug(`No projects changed with target "${target}"${tag ? ` and tag "${tag}"` : ''}`)
+        let debugMessage = `No projects changed with target "${target}"`
+        if (requiresOnOfTheseTags.length > 0) {
+          debugMessage += ` and one of the following tags "${requiresOnOfTheseTags.join(', ')}"`
+        }
+
+        core.debug(debugMessage)
         continue
       }
 
@@ -72,7 +76,8 @@ async function run() {
       for (let i = 0; i < maxJobCount; i++) {
         matrixInclude.push({
           target,
-          tag,
+          tag: requiresOnOfTheseTags
+            .join('\n'),
           preTargets: preTargets.join('\n'),
           postTargets: postTargets.join('\n'),
           index: i + 1,

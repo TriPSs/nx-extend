@@ -43,7 +43,10 @@ jobs:
         id: plan
         uses: tripss/nx-extend/actions/plan@improvements
         with:
-          targets: test,build,e2e
+          targets: |
+            test
+            build
+            e2e
 
           testMaxJobs: 1
           testTag: tests=enabled
@@ -52,7 +55,8 @@ jobs:
           buildPreTargets: |
             pull-translations
 
-          e2eTag: service=app-e2e
+          e2eTag: |
+            service=app-e2e
           e2eMaxJobs: 2
 
   distributed-task:
