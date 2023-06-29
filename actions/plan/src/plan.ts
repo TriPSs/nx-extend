@@ -22,8 +22,12 @@ async function run() {
         matrixInclude.push({
           target,
           tag,
-          preTargets,
-          postTargets,
+          preTargets: preTargets.length > 0
+            ? `|\n${preTargets.join('\n')}`
+            : '',
+          postTargets: postTargets.length > 0
+            ? `|\n${postTargets.join('\n')}`
+            : '',
           index: i + 1,
           count: maxJobs
         })
