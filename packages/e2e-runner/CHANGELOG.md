@@ -2,6 +2,40 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [6.0.1](https://github.com/TriPSs/nx-extend/compare/e2e-runner@6.0.0...e2e-runner@6.0.1) (2023-06-28)
+
+
+### Bug Fixes
+
+* **e2e-runner:** Force release ([e783489](https://github.com/TriPSs/nx-extend/commit/e78348964111499821fca5e7f035aeb19fd0fe73))
+
+
+
+# [6.0.0](https://github.com/TriPSs/nx-extend/compare/e2e-runner@5.1.0...e2e-runner@6.0.0) (2023-06-28)
+
+
+### Bug Fixes
+
+* **e2e-runner:** Force patch ([a08ca49](https://github.com/TriPSs/nx-extend/commit/a08ca49ef39b7e47368c37272efc63c31bbbbc57))
+* **e2e-runner:** Force patch ([7549417](https://github.com/TriPSs/nx-extend/commit/754941715b989f43a16c5b517549155a96862da5))
+* **e2e-runner:** Set `NODE_ENV` to `test` when starting target ([89e9dbd](https://github.com/TriPSs/nx-extend/commit/89e9dbdd81b79ea8217710751488a5ec5229fe41))
+* **e2e-runner:** Use cypress from `[@nx](https://github.com/nx)` instead of `[@nrwl](https://github.com/nrwl)` ([3844ecc](https://github.com/TriPSs/nx-extend/commit/3844ecc4fe906e42307b8e3d1fe35ce2c0630f13))
+* **e2e-runner:** When target fails to start teardown everything ([62f1397](https://github.com/TriPSs/nx-extend/commit/62f13971dd887cf1c8a7845a95861a0a5da55cc2))
+* **e2e-runner:** When target fails to start teardown everything ([56dc158](https://github.com/TriPSs/nx-extend/commit/56dc158a9b7b833d3138a5a7c9c65f8cf7653907))
+
+
+### Features
+
+* **e2e-runner:** Do empty release ([75b0616](https://github.com/TriPSs/nx-extend/commit/75b06161bf1c0041bbb2a4e4ab0af3a8ad13f70e))
+* **e2e-runner:** Log stdout data when `debug` is `true` ([450d173](https://github.com/TriPSs/nx-extend/commit/450d1736f29022613a3cad2c9082a910c90760de))
+
+
+### BREAKING CHANGES
+
+* **e2e-runner:** No breaking change
+
+
+
 # [5.1.0](https://github.com/TriPSs/nx-extend/compare/e2e-runner@5.0.0...e2e-runner@5.1.0) (2023-06-22)
 
 

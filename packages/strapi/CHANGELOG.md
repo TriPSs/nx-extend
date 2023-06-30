@@ -2,6 +2,16 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [6.1.1](https://github.com/TriPSs/nx-extend/compare/strapi@6.1.0...strapi@6.1.1) (2023-06-28)
+
+
+### Bug Fixes
+
+* **strapi:** Correctly generate Strapi project ([e2c0107](https://github.com/TriPSs/nx-extend/commit/e2c01078f8fd9a503988c2e49815e1378dd3c782)), closes [#110](https://github.com/TriPSs/nx-extend/issues/110)
+* **strapi:** If defined root is different then project root copy dependencies from project root package.json ([85c72d6](https://github.com/TriPSs/nx-extend/commit/85c72d606120a017cae4d7ff79220c950be0ad34))
+
+
+
 # [6.1.0](https://github.com/TriPSs/nx-extend/compare/strapi@6.0.0...strapi@6.1.0) (2023-06-22)
 
 
