@@ -1,4 +1,5 @@
 import { logger, parseTargetString } from '@nx/devkit'
+import { isCI } from '@nx-extend/core'
 import * as childProcess from 'child_process'
 
 import type { RunOptions } from '../run.impl'
@@ -89,7 +90,7 @@ export class NxTarget {
           )
         ),
       env: this.options.env,
-      verbose: this.runOptions.debug
+      verbose: this.runOptions.debug || isCI()
     })
 
     if (this.killed) {
@@ -175,6 +176,10 @@ function launchProcess(
   if (options.verbose) {
     spawnedProcess.stdout.on('data', (data) => {
       logger.info(`${targetString}: ${data.toString()}`)
+    })
+
+    spawnedProcess.stderr.on('data', (data) => {
+      logger.error(`${targetString}: ${data.toString()}`)
     })
   }
 
