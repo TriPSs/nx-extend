@@ -1,5 +1,4 @@
 import * as core from '@actions/core'
-import { logger } from '@nx/devkit'
 
 import type { ProjectConfiguration } from 'nx/src/config/workspace-json-project-json'
 
@@ -26,7 +25,7 @@ export async function runTarget(
   )
 
   if (projectsWithTarget.length === 0) {
-    logger.info(`No projects to run for target "${target}"`)
+    core.info(`No projects to run for target "${target}"`)
     return
   }
 
@@ -75,7 +74,7 @@ export async function runTarget(
     try {
       await generateSummary(target, projectsWithTarget, runManyResult.output)
     } catch (err) {
-      logger.warn(`Error generating Github summary: ${err.message || err}`)
+      core.warning(`Error generating Github summary: ${err.message || err}`)
     }
   }
 }
