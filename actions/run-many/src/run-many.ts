@@ -52,20 +52,17 @@ async function run() {
     const cwd = resolve(process.cwd(), workingDirectory)
 
     // Get all affected projects
-    const affectedProjects = execCommand<string>(
+    const projectsToRun = execCommand<string>(
       buildCommand([
-        'npx nx print-affected',
-        `--target=${target}`,
-        '--select=projects'
+        'npx nx show projects --affected',
+        `-t ${target}`
       ]),
       {
         asString: true,
         silent: !(core.isDebug() || argv.verbose),
         cwd
       }
-    ).split(', ')
-
-    const projectsToRun = affectedProjects
+    ).split('\n')
       .map((projectName) => projectName.trim())
       .filter((projectName) => {
         if (!projects.has(projectName)) {
@@ -84,7 +81,9 @@ async function run() {
 
         // If a tag is provided the project should have it
         return (!withTag || withTag.length === 0) || tags.some((tag) => withTag.includes(tag))
-      })
+      }).sort((projectNameA, projectNameB) => (
+        projectNameA.localeCompare(projectNameB)
+      ))
 
     const sliceSize = Math.max(Math.floor(projectsToRun.length / jobCount), 1)
     const runProjects =
