@@ -2,6 +2,25 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [3.2.0](https://github.com/TriPSs/nx-extend/compare/actions-run-many@3.1.0...actions-run-many@3.2.0) (2023-07-01)
+
+
+### Bug Fixes
+
+* **actions-run-many:** Correctly get projects ([614b989](https://github.com/TriPSs/nx-extend/commit/614b9893cd1d299629a62144f457a13505972df4))
+
+
+### Features
+
+* **actions-run-many:** Support multiple tags ([c19e0b1](https://github.com/TriPSs/nx-extend/commit/c19e0b1de9bc2160689470457f4786089e480a88))
+
+
+### Reverts
+
+* Revert "feat(actions-run-many): When running in dry more output affected" ([41b3e2e](https://github.com/TriPSs/nx-extend/commit/41b3e2e39a08a1d7f6bf88710e93d3f9eb0f2a16))
+
+
+
 # [3.1.0](https://github.com/TriPSs/nx-extend/compare/actions-run-many@3.0.1...actions-run-many@3.1.0) (2023-06-28)
 
 
