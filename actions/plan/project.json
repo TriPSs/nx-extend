@@ -1,0 +1,23 @@
+{
+  "name": "actions-plan",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/core/src",
+  "projectType": "library",
+  "targets": {
+    "version": {
+      "executor": "@jscutlery/semver:version",
+      "options": {
+        "versionTagPrefix": "${target}@"
+      }
+    },
+    "compile": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "npx ncc build ./actions/plan/src/plan.ts --out ./actions/plan/dist"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

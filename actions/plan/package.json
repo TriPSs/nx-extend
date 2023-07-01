@@ -1,0 +1,17 @@
+{
+  "name": "@nx-extend/actions-plan",
+  "version": "1.0.0",
+  "homepage": "https://github.com/TriPSs/nx-extend/blob/master/actions/plan/README.md",
+  "bugs": {
+    "url": "https://github.com/tripss/nx-extend/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tripss/nx-extend"
+  },
+  "bin": {
+    "nx-plan": "./dist/index.js"
+  },
+  "license": "MIT",
+  "main": "dist/index.js"
+}
