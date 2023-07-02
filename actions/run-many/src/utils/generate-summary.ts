@@ -23,7 +23,7 @@ export async function generateSummary(target, runProjects, output) {
   const summary = core.summary
     .addHeading(`nx affected:${target}`, 2)
     .addTable([
-      [{ data: 'Target', header: true }, { data: 'Result', header: true }],
+      [{ data: 'Project', header: true }, { data: 'Result', header: true }],
 
       ...runProjects.reduce((table, project) => {
         table.push([
