@@ -54,7 +54,7 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Derive appropriate SHAs for base and head for `nx affected` commands
-        uses: tripss/nx-extend/actions/set-shas@improvements
+        uses: ./actions/set-shas
         with:
           main-branch-name: master
 
