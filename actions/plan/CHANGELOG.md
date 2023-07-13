@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [0.2.0](https://github.com/TriPSs/nx-extend/compare/actions-plan@0.1.0...actions-plan@0.2.0) (2023-07-13)
+
+
+### Features
+
+* **actions:** Use new affected command ([3af25dc](https://github.com/TriPSs/nx-extend/commit/3af25dccf3a8b0e69b76c65618c7219cf2e8cf04))
+
+
+
 # 0.1.0 (2023-07-01)
 
 
