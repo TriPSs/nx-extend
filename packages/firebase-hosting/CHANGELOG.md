@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [5.2.0](https://github.com/TriPSs/nx-extend/compare/firebase-hosting@5.1.0...firebase-hosting@5.2.0) (2023-07-13)
+
+
+### Features
+
+* **firebase-hosting:** Added support for `message` and `identifier` option ([77da899](https://github.com/TriPSs/nx-extend/commit/77da899c7913f4c1e4f158fb15dcd00bc5d0468a))
+
+
+
 # [5.1.0](https://github.com/TriPSs/nx-extend/compare/firebase-hosting@5.0.0...firebase-hosting@5.1.0) (2023-06-22)
 
 
