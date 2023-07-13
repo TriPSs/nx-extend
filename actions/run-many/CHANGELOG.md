@@ -2,6 +2,20 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [3.3.0](https://github.com/TriPSs/nx-extend/compare/actions-run-many@3.2.0...actions-run-many@3.3.0) (2023-07-13)
+
+
+### Bug Fixes
+
+* **actions-run-many:** Corrected table column of summary ([35811cd](https://github.com/TriPSs/nx-extend/commit/35811cde7aa5715b5cc27e22e0f8f674ed83ce00))
+
+
+### Features
+
+* **actions:** Use new affected command ([3af25dc](https://github.com/TriPSs/nx-extend/commit/3af25dccf3a8b0e69b76c65618c7219cf2e8cf04))
+
+
+
 # [3.2.0](https://github.com/TriPSs/nx-extend/compare/actions-run-many@3.1.0...actions-run-many@3.2.0) (2023-07-01)
 
 
