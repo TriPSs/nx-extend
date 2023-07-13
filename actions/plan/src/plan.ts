@@ -16,13 +16,13 @@ async function run() {
 
     // Get all affected projects
     const affectedProjects = execCommand<string>(
-      'npx nx print-affected --select=projects',
+      'npx nx show projects --affected',
       {
         asString: true,
         silent: !core.isDebug(),
         cwd: resolve(process.cwd(), workingDirectory)
       }
-    ).split(', ')
+    ).split('\n')
       .map((projectName) => projectName.trim())
       .filter((projectName) => {
         if (!projects.has(projectName)) {

@@ -9,6 +9,10 @@
     "site": {
       "type": "string",
       "description": "Site name in Firebase Hosting"
+    },
+    "identifier": {
+      "type": "string",
+      "description": "Identifier name in Firebase Hosting"
     }
   }
 }

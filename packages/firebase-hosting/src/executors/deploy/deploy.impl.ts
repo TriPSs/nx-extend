@@ -1,9 +1,10 @@
-// import { ExecutorContext } from '@nx/devkit'
-import { buildCommand,execCommand } from '@nx-extend/core'
+import { buildCommand, execCommand } from '@nx-extend/core'
 
 export interface ExecutorSchema {
   site: string
+  identifier?: string
   project?: string
+  message?: string
 }
 
 export function deployExecutor(
@@ -14,7 +15,7 @@ export function deployExecutor(
   execCommand(
     buildCommand([
       'npx firebase target:apply',
-      `hosting ${options.site} ${options.site}`,
+      `hosting ${options.site} ${options.identifier || options.site}`,
 
       options.project && `--project=${options.project}`
     ])
@@ -26,7 +27,8 @@ export function deployExecutor(
         'npx firebase deploy',
         `--only=hosting:${options.site}`,
 
-        options.project && `--project=${options.project}`
+        options.project && `--project=${options.project}`,
+        options.message && `-m "${options.message}"`
       ])
     )
   )
