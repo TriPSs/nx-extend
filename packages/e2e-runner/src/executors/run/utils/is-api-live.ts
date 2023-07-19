@@ -17,9 +17,9 @@ export const isApiLive = async (
 
   return axios
     .get(url, axiosConfig)
-    .then((response) => {
-      return response.status >= 200 && response.status < 300
-    })
+    .then((response) => (
+      response.status >= 200 && response.status < 300
+    ))
     .catch(() => {
       return false
     })
