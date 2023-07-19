@@ -1,8 +1,8 @@
 import {
   ExecutorContext,
+  logger,
   readJsonFile,
-  writeJsonFile
-} from '@nx/devkit'
+  writeJsonFile} from '@nx/devkit'
 import { createLockFile, createPackageJson } from '@nx/js'
 import { readCachedProjectGraph } from '@nx/workspace/src/core/project-graph'
 import { fileExists } from '@nx/workspace/src/utils/fileutils'
@@ -47,6 +47,7 @@ export const generatePackageJson = (
       x.match(re2)[0].replace(/"/gm, '')
     )
 
+    console.log('\n')
     dependenciesName.forEach((dep) => {
       let depName = dep
 
@@ -62,7 +63,7 @@ export const generatePackageJson = (
       if (packageIsDefined) {
         dependencies[depName] = workspacePackages.dependencies[depName]
       } else {
-        console.warn(`Could not add "${dep}", is it added to the package.json?`)
+        logger.warn(`Could not add "${dep}", is it added to the package.json?`)
       }
     })
   }
