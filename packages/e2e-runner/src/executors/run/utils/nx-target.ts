@@ -163,6 +163,7 @@ function launchProcess(
       detached: true,
       shell: true,
       cwd: process.cwd(),
+      stdio: USE_VERBOSE_LOGGING ? 'inherit' : undefined,
       env: {
         ...process.env,
         // Make sure NODE_ENV is set to test
@@ -172,25 +173,11 @@ function launchProcess(
     }
   )
 
-  if (USE_VERBOSE_LOGGING) {
-    spawnedProcess.stdout.on('data', (data) => {
-      logger.debug(`[${targetString}]: ${data.toString()}`)
-    })
-
-    spawnedProcess.stderr.on('data', (data) => {
-      logger.error(`[${targetString}]: ${data.toString()}`)
-    })
-  }
-
   let processClosed = false
   spawnedProcess.once('exit', (exitCode, signal) => {
     processClosed = true
     options.onExit(exitCode, signal)
-
-    // TODO:: If "output=on-error" log it
   })
-
-  spawnedProcess.on('data', (line) => console.error(line.toString()))
 
   return async () => {
     if (spawnedProcess.pid && !spawnedProcess.killed && !processClosed) {
