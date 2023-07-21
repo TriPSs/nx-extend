@@ -2,6 +2,20 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [9.3.0](https://github.com/TriPSs/nx-extend/compare/gcp-functions@9.2.0...gcp-functions@9.3.0) (2023-07-21)
+
+
+### Bug Fixes
+
+* **gcp-functions:** Improve logging when package is not added to functions package.json ([1ebb13e](https://github.com/TriPSs/nx-extend/commit/1ebb13ebdaa91d8290128812840bc5c84fcb2bf6))
+
+
+### Features
+
+* **gcp-functions:** Added support for bucket events to runner ([bdd8328](https://github.com/TriPSs/nx-extend/commit/bdd8328c670f9370da3779dae9c2d77e9489b117))
+
+
+
 # [9.2.0](https://github.com/TriPSs/nx-extend/compare/gcp-functions@9.1.3...gcp-functions@9.2.0) (2023-06-28)
 
 
