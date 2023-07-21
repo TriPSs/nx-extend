@@ -2,6 +2,20 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [6.2.0](https://github.com/TriPSs/nx-extend/compare/e2e-runner@6.1.0...e2e-runner@6.2.0) (2023-07-21)
+
+
+### Bug Fixes
+
+* **e2e-runner:** Inherit `stdio` instead of listening our-self ([6fae7c7](https://github.com/TriPSs/nx-extend/commit/6fae7c75ad8f4dfd6e9f57a56daabfdec9bfc8b5))
+
+
+### Features
+
+* **e2e-runner:** Use verbose logging in CI and when `--verbose` is used ([67c8bbe](https://github.com/TriPSs/nx-extend/commit/67c8bbeb4f258b543ed49ce84af700ba40a890b2))
+
+
+
 # [6.1.0](https://github.com/TriPSs/nx-extend/compare/e2e-runner@6.0.1...e2e-runner@6.1.0) (2023-07-01)
 
 
