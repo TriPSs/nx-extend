@@ -35,9 +35,13 @@ export async function bootstrapRunner(basicFunctionsMap: RunnerFunctionsMap, opt
     }
 
     const options: DeployExecutorSchema = project.targets['deploy'].options
+    let endpoint = `/${options.triggerValue || options.functionName || projectName}`
+    if (options.trigger === 'bucket') {
+      endpoint = `/${options.functionName || projectName}`
+    }
 
     nxEndpoints.push({
-      endpoint: `/${options.functionName || projectName}`,
+      endpoint,
       trigger: options.trigger || 'http',
       func: (await module)[options.entryPoint] as HttpFunction
     })

@@ -55,6 +55,9 @@ export function createController(gcpFunctions: NxEndpoints) {
 
         } else if (endpoint.trigger === 'topic') {
           return this.simulatePubSubEvent(req, res, endpoint.func)
+
+        } else if (endpoint.trigger === 'bucket') {
+          return endpoint.func(req.body, res)
         }
 
         this.logger.warn(`"${req.path}" unsupported trigger!`)
