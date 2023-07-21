@@ -8,10 +8,14 @@ export interface RunOptions {
   runnerTarget?: string
   watch?: boolean
   targets: NxTargetOptions[]
-  debug?: boolean
 }
 
 let runningTargets = []
+
+async function killTargets() {
+  // Kill all targets
+  await Promise.all(runningTargets.map((nxTarget) => nxTarget.teardown()))
+}
 
 export async function endToEndRunner(
   options: RunOptions,
@@ -27,7 +31,7 @@ export async function endToEndRunner(
     // Start all targets
     await Promise.all(runningTargets.map((nxTarget) => nxTarget.setup()))
   } catch {
-    await Promise.all(runningTargets.map((nxTarget) => nxTarget.teardown()))
+    await killTargets()
 
     return { success: false }
   }
@@ -47,8 +51,7 @@ export async function endToEndRunner(
       // eslint-disable-next-line @typescript-eslint/no-var-requires
       const runCommandsExecutor = require('@nx/workspace/src/executors/run-commands/run-commands.impl').default
 
-      success = (await runCommandsExecutor(rest as RunCommandsOptions, context))
-        .success
+      success = (await runCommandsExecutor(rest as RunCommandsOptions, context)).success
     } else {
       throw new Error(`Unknown runner "${runner}"`)
     }
@@ -59,16 +62,14 @@ export async function endToEndRunner(
   }
 
   // Kill all targets
-  await Promise.all(runningTargets.map((nxTarget) => nxTarget.teardown()))
+  await killTargets()
 
   return { success }
 }
 
-process.on('SIGINT', async function () {
-  // Kill all targets
-  await Promise.all(runningTargets.map((nxTarget) => nxTarget.teardown()))
-
-  process.exit()
-})
+process.on('exit', () => killTargets())
+process.on('SIGINT', () => killTargets())
+process.on('SIGTERM', () => killTargets())
+process.on('SIGHUP', () => killTargets())
 
 export default endToEndRunner

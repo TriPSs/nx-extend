@@ -26,10 +26,19 @@
   - `npm install --save-dev @nx-extend/strapi`
 - [Vercel](./packages/vercel/README.md)
   - `npm install --save-dev @nx-extend/vercel`
-
+- [Playwright](./packages/playwright/README.md)
+  - `npm install --save-dev @nx-extend/playwright`
+- [Terraform](./packages/terraform/README.md)
+  - `npm install --save-dev @nx-extend/terraform`
+- [Pulumi](./packages/Pulumi/README.md)
+  - `npm install --save-dev @nx-extend/Pulumi`
 
 ## GitHub actions
 
+- [set-shas](./actions/set-shas/README.md)
+  - `uses: tripss/nx-extend/actions/set-shas@master`
+- [plan](./actions/plan/README.md)
+  - `uses: tripss/nx-extend/actions/plan@master`
 - [run-many](./actions/run-many/README.md)
   - `uses: tripss/nx-extend/actions/run-many@master`
 

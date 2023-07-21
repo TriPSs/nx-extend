@@ -1,5 +1,5 @@
 import { logger, parseTargetString } from '@nx/devkit'
-import { isCI } from '@nx-extend/core'
+import { USE_VERBOSE_LOGGING } from '@nx-extend/core'
 import * as childProcess from 'child_process'
 
 import type { RunOptions } from '../run.impl'
@@ -89,8 +89,7 @@ export class NxTarget {
             `Target "${this.options.target}" was not able to start. Exit code: ${code}`
           )
         ),
-      env: this.options.env,
-      verbose: this.runOptions.debug || isCI()
+      env: this.options.env
     })
 
     if (this.killed) {
@@ -99,11 +98,12 @@ export class NxTarget {
   }
 
   private async waitForProcess() {
-    await this._waitForAvailability()
+    await this.waitForAvailability()
+
     logger.info(`Target "${this.options.target}" is live`)
   }
 
-  private async _waitForAvailability() {
+  private async waitForAvailability() {
     const cancellationToken = { canceled: this.killed }
 
     const error = await Promise.race([
@@ -150,7 +150,6 @@ function launchProcess(
   options: {
     onExit: (exitCode: number | null, signal: string | null) => void
     env?: { [key: string]: string }
-    verbose?: boolean
   }
 ): () => Promise<void> {
   const { project, target, configuration } = parseTargetString(targetString)
@@ -164,6 +163,7 @@ function launchProcess(
       detached: true,
       shell: true,
       cwd: process.cwd(),
+      stdio: USE_VERBOSE_LOGGING ? 'inherit' : undefined,
       env: {
         ...process.env,
         // Make sure NODE_ENV is set to test
@@ -173,25 +173,11 @@ function launchProcess(
     }
   )
 
-  if (options.verbose) {
-    spawnedProcess.stdout.on('data', (data) => {
-      logger.info(`${targetString}: ${data.toString()}`)
-    })
-
-    spawnedProcess.stderr.on('data', (data) => {
-      logger.error(`${targetString}: ${data.toString()}`)
-    })
-  }
-
   let processClosed = false
   spawnedProcess.once('exit', (exitCode, signal) => {
     processClosed = true
     options.onExit(exitCode, signal)
-
-    // TODO:: If "output=on-error" log it
   })
-
-  spawnedProcess.on('data', (line) => console.error(line.toString()))
 
   return async () => {
     if (spawnedProcess.pid && !spawnedProcess.killed && !processClosed) {
