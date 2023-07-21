@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [4.3.0](https://github.com/TriPSs/nx-extend/compare/core@4.2.0...core@4.3.0) (2023-07-21)
+
+
+### Features
+
+* **e2e-runner:** Use verbose logging in CI and when `--verbose` is used ([67c8bbe](https://github.com/TriPSs/nx-extend/commit/67c8bbeb4f258b543ed49ce84af700ba40a890b2))
+
+
+
 # [4.2.0](https://github.com/TriPSs/nx-extend/compare/core@4.1.0...core@4.2.0) (2023-07-01)
 
 
