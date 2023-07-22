@@ -34,3 +34,17 @@ npm install -D @nx-extend/vercel
 |---------------|-----------|---------|--------------------------|
 | **`--debug`** | `boolean` | `false` | Run Vercel in debug mode |
 
+## How to create a Vercel project through the CLI
+
+To create a new Vercel project run the following commands:
+
+```bash
+# Make sure you are in the right org
+npx vercel teams list
+# If needed, switch to correct team
+npx vercel teams switch <team-id>
+# Create the project
+npx vercel project add <my-project>
+# Go to the Vercel dashboard, <my-project> > settings > Project ID
+```
+

@@ -1,4 +1,5 @@
 import * as githubCore from '@actions/core'
+import { setOutput } from '@actions/core'
 import { buildCommand, execCommand } from '@nx-extend/core'
 import { existsSync } from 'fs'
 import { join } from 'path'
@@ -22,18 +23,13 @@ export async function deployExecutor(
   const vercelBuildTarget = Object.keys(targets).find(
     (target) => targets[target].executor === '@nx-extend/vercel:build'
   )
-  const buildTarget =
-    targets[vercelBuildTarget]?.options?.buildTarget || 'build-next'
+  const buildTarget = targets[vercelBuildTarget]?.options?.buildTarget || 'build-next'
 
   if (!targets[buildTarget]?.options?.outputPath) {
     throw new Error(`"${buildTarget}" target has no "outputPath" configured!`)
   }
 
-  if (
-    !existsSync(
-      join(targets[buildTarget].options.outputPath, '.vercel/project.json')
-    )
-  ) {
+  if (!existsSync(join(targets[buildTarget].options.outputPath, '.vercel/project.json'))) {
     throw new Error('No ".vercel/project.json" found in dist folder! ')
   }
 
@@ -63,7 +59,11 @@ export async function deployExecutor(
     )
 
     if (url) {
-      githubCore.summary.addLink('Vercel URL', url.trim())
+      await githubCore.summary
+        .addLink('Vercel URL', url.trim())
+        .write()
+
+      await githubCore.setOutput('url', url)
     }
   }
 
