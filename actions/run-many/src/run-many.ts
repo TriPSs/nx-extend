@@ -7,6 +7,7 @@ import yargs from 'yargs/yargs'
 
 import { buildCommand } from './utils/build-command'
 import { execCommand } from './utils/exec'
+import { hasOneOfRequiredTags } from './utils/has-one-of-required-tags'
 import { runTarget } from './utils/run-target'
 
 export const argv = yargs(hideBin(process.argv))
@@ -25,7 +26,7 @@ async function run() {
     const projects = getProjects(nxTree)
 
     // Get all options
-    const withTag = core.getMultilineInput('tag', { trimWhitespace: true }) || (argv.tag ? [argv.tag] : [])
+    const tagConditions = core.getMultilineInput('tag', { trimWhitespace: true }) || (argv.tag ? [argv.tag] : [])
     const target = core.getInput('target', { required: !argv.target }) || argv.target
     const config = core.getInput('config') || argv.config
     const jobIndex = parseInt(core.getInput('index') || '1', 10)
@@ -45,8 +46,8 @@ async function run() {
     core.debug(`Pre targets ${JSON.stringify(preTargets, null, 2)}`)
     core.debug(`Post targets ${JSON.stringify(postTargets, null, 2)}`)
 
-    if (withTag.length > 0) {
-      core.info(`Running all projects with one of the following tags "${withTag.join(', ')}"`)
+    if (tagConditions.length > 0) {
+      core.info(`Running all projects with one of the following tags "${tagConditions.join(', ')}"`)
     }
 
     const cwd = resolve(process.cwd(), workingDirectory)
@@ -79,8 +80,12 @@ async function run() {
           return false
         }
 
+        if (!tagConditions || tagConditions.length === 0) {
+          return true
+        }
+
         // If a tag is provided the project should have it
-        return (!withTag || withTag.length === 0) || tags.some((tag) => withTag.includes(tag))
+        return (!tagConditions || tagConditions.length === 0) || hasOneOfRequiredTags(tags, tagConditions)
       }).sort((projectNameA, projectNameB) => (
         projectNameA.localeCompare(projectNameB)
       ))
