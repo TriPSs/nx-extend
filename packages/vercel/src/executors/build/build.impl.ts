@@ -28,8 +28,7 @@ export function buildExecutor(
 ): Promise<{ success: boolean }> {
   const { targets } = context.workspace.projects[context.projectName]
   const framework = options.framework || 'nextjs'
-  const buildTarget =
-    options.buildTarget || (framework === 'nextjs' ? 'build-next' : 'build')
+  const buildTarget = options.buildTarget || (framework === 'nextjs' ? 'build-next' : 'build')
 
   if (!options.orgId) {
     throw new Error(`"orgId" option is required!`)
@@ -49,10 +48,7 @@ export function buildExecutor(
     throw new Error(`"${buildTarget}" target has no "outputPath" configured!`)
   }
 
-  if (
-    options.buildConfig &&
-    !targets[buildTarget]?.configurations[options.buildConfig]
-  ) {
+  if (options.buildConfig && !targets[buildTarget]?.configurations[options.buildConfig]) {
     throw new Error(
       `"${buildTarget}" target has no configuration "${options.buildConfig}"!`
     )
@@ -74,19 +70,16 @@ export function buildExecutor(
     settings: {}
   })
 
-  const vercelEnironment =
-    context.configurationName === 'production' ? 'production' : 'preview'
+  const vercelEnironment = context.configurationName === 'production' ? 'production' : 'preview'
 
   // Pull latest
-  const { success: pullSuccess } = execCommand(
-    buildCommand([
-      'npx vercel pull --yes',
-      `--environment=${vercelEnironment}`,
-      vercelToken && `--token=${vercelToken}`,
+  const { success: pullSuccess } = execCommand(buildCommand([
+    'npx vercel pull --yes',
+    `--environment=${vercelEnironment}`,
+    vercelToken && `--token=${vercelToken}`,
 
-      options.debug && '--debug'
-    ])
-  )
+    options.debug && '--debug'
+  ]))
 
   if (!pullSuccess) {
     throw new Error(`Was unable to pull!`)
@@ -124,16 +117,14 @@ export function buildExecutor(
     }
   })
 
-  const { success } = execCommand(
-    buildCommand([
-      'npx vercel build',
-      `--output ${targets[buildTarget].options.outputPath}/.vercel/output`,
-      context.configurationName === 'production' && '--prod',
-      vercelToken && `--token=${vercelToken}`,
+  const { success } = execCommand(buildCommand([
+    'npx vercel build',
+    `--output ${targets[buildTarget].options.outputPath}/.vercel/output`,
+    context.configurationName === 'production' && '--prod',
+    vercelToken && `--token=${vercelToken}`,
 
-      options.debug && '--debug'
-    ])
-  )
+    options.debug && '--debug'
+  ]))
 
   if (success) {
     // Write the project.json to the .vercel directory
