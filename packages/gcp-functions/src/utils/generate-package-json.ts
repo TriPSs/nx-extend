@@ -2,7 +2,8 @@ import {
   ExecutorContext,
   logger,
   readJsonFile,
-  writeJsonFile} from '@nx/devkit'
+  writeJsonFile
+} from '@nx/devkit'
 import { createLockFile, createPackageJson } from '@nx/js'
 import { readCachedProjectGraph } from '@nx/workspace/src/core/project-graph'
 import { fileExists } from '@nx/workspace/src/utils/fileutils'
@@ -54,9 +55,20 @@ export const generatePackageJson = (
       let packageIsDefined = depName in workspacePackages.dependencies
 
       if (!packageIsDefined) {
-        if (depName.includes('/')) {
-          depName = depName.split('/').shift()
+        while (depName.includes('/')) {
+          const depNameParts = depName.split('/')
+          // Remove the last part
+          depNameParts.pop()
+
+          depName = depNameParts.join('/')
+
+          // Check if it exists now
           packageIsDefined = depName in workspacePackages.dependencies
+
+          if (packageIsDefined) {
+            // Break the loop if it exists
+            break
+          }
         }
       }
 
