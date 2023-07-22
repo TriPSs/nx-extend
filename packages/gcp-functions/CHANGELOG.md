@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [9.3.1](https://github.com/TriPSs/nx-extend/compare/gcp-functions@9.3.0...gcp-functions@9.3.1) (2023-07-22)
+
+
+### Bug Fixes
+
+* **gcp-functions:** Fixed packages from orgs not always added correctly if used like `@org/package/deeper` ([264da22](https://github.com/TriPSs/nx-extend/commit/264da22831883eb82b743458fe8d76f56b3061a5))
+
+
+
 # [9.3.0](https://github.com/TriPSs/nx-extend/compare/gcp-functions@9.2.0...gcp-functions@9.3.0) (2023-07-21)
 
 
