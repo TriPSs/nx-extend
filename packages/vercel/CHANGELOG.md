@@ -2,6 +2,20 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [4.2.0](https://github.com/TriPSs/nx-extend/compare/vercel@4.1.0...vercel@4.2.0) (2023-07-22)
+
+
+### Bug Fixes
+
+* **vercel:** Fixed deployment url not being written to summary ([c7814c6](https://github.com/TriPSs/nx-extend/commit/c7814c687b856264c77b4fdd64be0ebe61ec038a))
+
+
+### Features
+
+* **vercel:** When running in Github set url as output ([138fa4e](https://github.com/TriPSs/nx-extend/commit/138fa4e7fd442ca12e7801310e1d6cb07a082685))
+
+
+
 # [4.1.0](https://github.com/TriPSs/nx-extend/compare/vercel@4.0.0...vercel@4.1.0) (2023-06-22)
 
 
