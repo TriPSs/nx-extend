@@ -1,4 +1,5 @@
 import * as githubCore from '@actions/core'
+import { setOutput } from '@actions/core'
 import { buildCommand, execCommand } from '@nx-extend/core'
 import { existsSync } from 'fs'
 import { join } from 'path'
@@ -61,6 +62,8 @@ export async function deployExecutor(
       await githubCore.summary
         .addLink('Vercel URL', url.trim())
         .write()
+
+      await githubCore.setOutput('url', url)
     }
   }
 
