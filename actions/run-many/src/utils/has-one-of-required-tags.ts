@@ -1,3 +1,5 @@
+import * as core from '@actions/core'
+
 function hasTagMatchingCondition(condition: string, tags: string[]): boolean {
   if (condition.includes('=')) {
     // If it includes a "," it's a AND condition
@@ -33,7 +35,18 @@ function hasTagMatchingCondition(condition: string, tags: string[]): boolean {
   }
 }
 
-export function hasOneOfRequiredTags(tags?: string[], requiresOnOfTheseTagConditions?: string[]): boolean {
+function cleanLogConditions(conditions: string[]) {
+  return conditions.map((condition) => {
+    if (condition.includes(',')) {
+      return condition.split(',').map((subCondition) => subCondition.trim())
+        .join(' AND ')
+    }
+
+    return condition
+  }).join(' OR ')
+}
+
+export function hasOneOfRequiredTags(projectName: string, tags?: string[], requiresOnOfTheseTagConditions?: string[]): boolean {
   if (!requiresOnOfTheseTagConditions || requiresOnOfTheseTagConditions.length === 0) {
     return true
   }
@@ -42,5 +55,11 @@ export function hasOneOfRequiredTags(tags?: string[], requiresOnOfTheseTagCondit
     return false
   }
 
-  return requiresOnOfTheseTagConditions.some((condition) => hasTagMatchingCondition(condition, tags))
+  const hasMatch = requiresOnOfTheseTagConditions.some((condition) => hasTagMatchingCondition(condition, tags))
+
+  if (!hasMatch) {
+    core.debug(`[${projectName}]: Does not match any of the provided condition "${cleanLogConditions(requiresOnOfTheseTagConditions)}"`)
+  }
+
+  return hasMatch
 }

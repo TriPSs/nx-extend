@@ -48,7 +48,7 @@ async function run() {
           const { targets, tags } = projects.get(projectName)
 
           if (Object.keys(targets).includes(target)) {
-            return hasOneOfRequiredTags(tags, tagConditions)
+            return hasOneOfRequiredTags(projectName,tags, tagConditions)
           }
 
           return false

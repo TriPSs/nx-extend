@@ -85,7 +85,7 @@ async function run() {
         }
 
         // If a tag is provided the project should have it
-        return (!tagConditions || tagConditions.length === 0) || hasOneOfRequiredTags(tags, tagConditions)
+        return (!tagConditions || tagConditions.length === 0) || hasOneOfRequiredTags(projectName, tags, tagConditions)
       }).sort((projectNameA, projectNameB) => (
         projectNameA.localeCompare(projectNameB)
       ))
