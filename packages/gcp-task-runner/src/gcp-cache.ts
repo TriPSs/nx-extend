@@ -25,14 +25,14 @@ export class GcpCache implements RemoteCache {
     }
 
     try {
-      this.logger.debug(`Downloading ${hash}`)
-
       const commitFile = this.bucket.file(this.getCommitFileName(hash))
       if (!(await commitFile.exists())[0]) {
         this.logger.debug(`Cache miss ${hash}`)
 
         return false
       }
+
+      this.logger.debug(`Downloading ${hash}`)
 
       const tarFile = this.bucket.file(this.getTarFileName(hash))
       await this.downloadFile(cacheDirectory, tarFile)
