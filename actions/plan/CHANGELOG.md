@@ -2,6 +2,16 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [0.3.0](https://github.com/TriPSs/nx-extend/compare/actions-plan@0.2.0...actions-plan@0.3.0) (2023-07-27)
+
+
+### Features
+
+* **actions:** Added support for `AND` condition in tag ([3fdf7c6](https://github.com/TriPSs/nx-extend/commit/3fdf7c645c378ba3398335d696fd225545f08444))
+* **actions:** Added support to run tags with conditions ([cb0e023](https://github.com/TriPSs/nx-extend/commit/cb0e023f052e3e88d548272d7d6b75bb453adc44))
+
+
+
 # [0.2.0](https://github.com/TriPSs/nx-extend/compare/actions-plan@0.1.0...actions-plan@0.2.0) (2023-07-13)
 
 
