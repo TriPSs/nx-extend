@@ -37,7 +37,7 @@ async function run() {
     for (const target of targets) {
       core.debug(`Getting info for target "${target}"`)
 
-      const requiresOnOfTheseTags = core.getMultilineInput(`${target}Tag`, { trimWhitespace: true })
+      const tagConditions = core.getMultilineInput(`${target}Tag`, { trimWhitespace: true })
       const maxJobs = parseInt(core.getInput(`${target}MaxJobs`), 10) || 1
       const parallel = core.getInput(`${target}Parallel`)
       const preTargets = core.getMultilineInput(`${target}PreTargets`) || []
@@ -48,7 +48,7 @@ async function run() {
           const { targets, tags } = projects.get(projectName)
 
           if (Object.keys(targets).includes(target)) {
-            return hasOneOfRequiredTags(tags, requiresOnOfTheseTags)
+            return hasOneOfRequiredTags(projectName,tags, tagConditions)
           }
 
           return false
@@ -57,8 +57,8 @@ async function run() {
 
       if (amountOfProjectsWithTarget.length === 0) {
         let debugMessage = `No projects changed with target "${target}"`
-        if (requiresOnOfTheseTags.length > 0) {
-          debugMessage += ` and one of the following tags "${requiresOnOfTheseTags.join(', ')}"`
+        if (tagConditions.length > 0) {
+          debugMessage += ` and matching one of the following conditions "${tagConditions.join(', ')}"`
         }
 
         core.debug(debugMessage)
@@ -77,7 +77,7 @@ async function run() {
       for (let i = 0; i < maxJobCount; i++) {
         matrixInclude.push({
           target,
-          tag: requiresOnOfTheseTags
+          tag: tagConditions
             .join('\n'),
           preTargets: preTargets.join('\n'),
           postTargets: postTargets.join('\n'),

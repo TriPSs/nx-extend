@@ -17,6 +17,14 @@
           "npx ncc build ./actions/plan/src/plan.ts --out ./actions/plan/dist"
         ]
       }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/actions/plan"],
+      "options": {
+        "jestConfig": "actions/plan/jest.config.ts",
+        "passWithNoTests": true
+      }
     }
   },
   "tags": []

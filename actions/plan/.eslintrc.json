@@ -1,5 +1,7 @@
 {
-  "extends": "../../.eslintrc.json",
+  "extends": [
+    "../../.eslintrc.json"
+  ],
   "ignorePatterns": [
     "!**/*"
   ],
@@ -14,7 +16,7 @@
       ],
       "parserOptions": {
         "project": [
-          "actions/plan/tsconfig.json"
+          "actions/plan/tsconfig.*?.json"
         ]
       },
       "rules": {}
