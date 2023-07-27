@@ -2,6 +2,17 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [3.4.0](https://github.com/TriPSs/nx-extend/compare/actions-run-many@3.3.0...actions-run-many@3.4.0) (2023-07-27)
+
+
+### Features
+
+* **actions-run-many:** Always log with `--output-style=stream` for better readability ([7c3c445](https://github.com/TriPSs/nx-extend/commit/7c3c445635053747b3d8cce36c465273437c1a1d))
+* **actions:** Added support for `AND` condition in tag ([3fdf7c6](https://github.com/TriPSs/nx-extend/commit/3fdf7c645c378ba3398335d696fd225545f08444))
+* **actions:** Added support to run tags with conditions ([cb0e023](https://github.com/TriPSs/nx-extend/commit/cb0e023f052e3e88d548272d7d6b75bb453adc44))
+
+
+
 # [3.3.0](https://github.com/TriPSs/nx-extend/compare/actions-run-many@3.2.0...actions-run-many@3.3.0) (2023-07-13)
 
 
