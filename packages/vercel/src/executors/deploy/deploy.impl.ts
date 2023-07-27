@@ -1,16 +1,15 @@
 import * as githubCore from '@actions/core'
-import { setOutput } from '@actions/core'
-import { buildCommand, execCommand } from '@nx-extend/core'
+import { buildCommand, execCommand, isCI, USE_VERBOSE_LOGGING } from '@nx-extend/core'
 import { existsSync } from 'fs'
 import { join } from 'path'
 
 import type { ExecutorContext } from '@nx/devkit'
 
-import { isGithubCi } from '../../utils/is-github-ci'
+import { getOutputDirectoryFromBuildTarget } from '../../utils/get-output-directory-from-build-target'
 import { vercelToken } from '../../utils/vercel-token'
 
 export interface DeployOptions {
-  debug?: boolean
+  buildTarget?: string
   regions?: string
 }
 
@@ -20,35 +19,46 @@ export async function deployExecutor(
 ): Promise<{ success: boolean }> {
   const { targets } = context.workspace.projects[context.projectName]
 
-  const vercelBuildTarget = Object.keys(targets).find(
-    (target) => targets[target].executor === '@nx-extend/vercel:build'
-  )
-  const buildTarget = targets[vercelBuildTarget]?.options?.buildTarget || 'build-next'
+  let outputDirectory = ''
 
-  if (!targets[buildTarget]?.options?.outputPath) {
-    throw new Error(`"${buildTarget}" target has no "outputPath" configured!`)
+  if (options.buildTarget) {
+    outputDirectory = getOutputDirectoryFromBuildTarget(context, options.buildTarget)
+  } else {
+    const projectVercelBuildTarget = Object.keys(targets).find((target) => (
+      targets[target].executor === '@nx-extend/vercel:build'
+    ))
+
+    if (projectVercelBuildTarget) {
+      let projectBuildTarget = targets[projectVercelBuildTarget]?.options?.buildTarget || 'build-next'
+      if (!projectBuildTarget.includes(':')) {
+        projectBuildTarget = `${context.projectName}:${projectBuildTarget}`
+      }
+
+      outputDirectory = getOutputDirectoryFromBuildTarget(context, projectBuildTarget)
+    }
   }
 
-  if (!existsSync(join(targets[buildTarget].options.outputPath, '.vercel/project.json'))) {
+  if (!outputDirectory) {
+    throw new Error(`Could not find the builds output path!`)
+  }
+
+  if (!existsSync(join(outputDirectory, '.vercel/project.json'))) {
     throw new Error('No ".vercel/project.json" found in dist folder! ')
   }
 
-  const { success, output } = execCommand(
-    buildCommand([
-      'npx vercel deploy --prebuilt',
-      context.configurationName === 'production' && '--prod',
-      vercelToken && `--token=${vercelToken}`,
-      options.regions && `--regions=${options.regions}`,
+  const { success, output } = execCommand(buildCommand([
+    'npx vercel deploy --prebuilt',
+    context.configurationName === 'production' && '--prod',
+    vercelToken && `--token=${vercelToken}`,
+    options.regions && `--regions=${options.regions}`,
 
-      options.debug && '--debug'
-    ]),
-    {
-      cwd: targets[buildTarget].options.outputPath
-    }
-  )
+    USE_VERBOSE_LOGGING && '--debug'
+  ]), {
+    cwd: outputDirectory
+  })
 
   // When running in GitHub CI add the URL of the deployment as summary
-  if (isGithubCi) {
+  if (isCI()) {
     // Add comment instead of summary (Look at https://github.com/mshick/add-pr-comment)
     const parts = output.split('\n')
 

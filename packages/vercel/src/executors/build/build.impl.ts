@@ -1,5 +1,7 @@
-import { readJsonFile, writeJsonFile } from '@nx/devkit'
-import { buildCommand, copyFile, execCommand } from '@nx-extend/core'
+import { parseTargetString, readJsonFile, writeJsonFile } from '@nx/devkit'
+import { targetToTargetString } from '@nx/devkit/src/executors/parse-target-string'
+import { readCachedProjectGraph } from '@nx/workspace/src/core/project-graph'
+import { buildCommand, copyFile, execCommand, USE_VERBOSE_LOGGING } from '@nx-extend/core'
 import { existsSync, rmSync } from 'fs'
 import { join } from 'path'
 
@@ -8,17 +10,17 @@ import type { ExecutorContext } from '@nx/devkit'
 import { addEnvVariablesToFile } from '../../utils/add-env-variables-to-file'
 import { enrichVercelEnvFile } from '../../utils/enrich-vercel-env-file'
 import { getEnvVars } from '../../utils/get-env-vars'
+import { getOutputDirectoryFromBuildTarget } from '../../utils/get-output-directory-from-build-target'
 import { vercelToken } from '../../utils/vercel-token'
 import { getOutputDirectory } from './utils/get-output-directory'
 
 export interface BuildOptions {
   projectId: string
   orgId: string
-  debug?: boolean
   envVars?: Record<string, string>
   buildTarget?: string
-  buildConfig?: string
   framework?: string
+  outputPath?: string
   nodeVersion?: '16.x'
 }
 
@@ -26,9 +28,14 @@ export function buildExecutor(
   options: BuildOptions,
   context: ExecutorContext
 ): Promise<{ success: boolean }> {
-  const { targets } = context.workspace.projects[context.projectName]
   const framework = options.framework || 'nextjs'
-  const buildTarget = options.buildTarget || (framework === 'nextjs' ? 'build-next' : 'build')
+  let buildTarget = options.buildTarget || (framework === 'nextjs' ? 'build-next' : 'build')
+
+  if (!buildTarget.includes(':')) {
+    buildTarget = `${context.projectName}:${buildTarget}`
+  }
+
+  const targetString = parseTargetString(buildTarget, readCachedProjectGraph())
 
   if (!options.orgId) {
     throw new Error(`"orgId" option is required!`)
@@ -38,20 +45,13 @@ export function buildExecutor(
     throw new Error(`"projectId" option is required!`)
   }
 
-  if (!targets[buildTarget]) {
-    throw new Error(
-      `"${context.projectName}" is missing the "${buildTarget}" target!`
-    )
+  if (!targetString) {
+    throw new Error(`Invalid build target "${buildTarget}"!`)
   }
 
-  if (!targets[buildTarget]?.options?.outputPath) {
+  const outputDirectory = options.outputPath || getOutputDirectoryFromBuildTarget(context, buildTarget)
+  if (!outputDirectory) {
     throw new Error(`"${buildTarget}" target has no "outputPath" configured!`)
-  }
-
-  if (options.buildConfig && !targets[buildTarget]?.configurations[options.buildConfig]) {
-    throw new Error(
-      `"${buildTarget}" target has no configuration "${options.buildConfig}"!`
-    )
   }
 
   const vercelDirectory = '.vercel'
@@ -70,15 +70,15 @@ export function buildExecutor(
     settings: {}
   })
 
-  const vercelEnironment = context.configurationName === 'production' ? 'production' : 'preview'
+  const vercelEnvironment = context.configurationName === 'production' ? 'production' : 'preview'
 
   // Pull latest
   const { success: pullSuccess } = execCommand(buildCommand([
     'npx vercel pull --yes',
-    `--environment=${vercelEnironment}`,
+    `--environment=${vercelEnvironment}`,
     vercelToken && `--token=${vercelToken}`,
 
-    options.debug && '--debug'
+    USE_VERBOSE_LOGGING && '--debug'
   ]))
 
   if (!pullSuccess) {
@@ -86,9 +86,7 @@ export function buildExecutor(
   }
 
   const vercelProjectJson = `./${vercelDirectory}/project.json`
-  const outputDirectory = targets[buildTarget]?.options?.outputPath
-
-  const vercelEnvFile = `.env.${vercelEnironment}.local`
+  const vercelEnvFile = `.env.${vercelEnvironment}.local`
   const vercelEnvFileLocation = join(context.root, vercelDirectory)
 
   const envVars = getEnvVars(options.envVars, true)
@@ -106,10 +104,8 @@ export function buildExecutor(
       createdAt: new Date().getTime(),
       framework,
       devCommand: null,
-      installCommand: "echo ''",
-      buildCommand: `nx run ${context.projectName}:${buildTarget}:${
-        options.buildConfig || context.configurationName
-      }`,
+      installCommand: 'echo ""',
+      buildCommand: `nx run ${targetToTargetString(targetString)}`,
       outputDirectory: getOutputDirectory(framework, outputDirectory),
       rootDirectory: null,
       directoryListing: false,
@@ -119,11 +115,11 @@ export function buildExecutor(
 
   const { success } = execCommand(buildCommand([
     'npx vercel build',
-    `--output ${targets[buildTarget].options.outputPath}/.vercel/output`,
+    `--output ${outputDirectory}/.vercel/output`,
     context.configurationName === 'production' && '--prod',
     vercelToken && `--token=${vercelToken}`,
 
-    options.debug && '--debug'
+    USE_VERBOSE_LOGGING && '--debug'
   ]))
 
   if (success) {
