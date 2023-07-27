@@ -34,4 +34,15 @@ describe('hasOneOfRequiredTags', () => {
       expect(hasOneOfRequiredTags(projectTags, ['non-existing-key!=firebase'])).toEqual(false)
     })
   })
+
+  describe('and condition', () => {
+    it('should match', () => {
+      expect(hasOneOfRequiredTags(projectTags, ['resource=vercel,resource=fake'])).toEqual(true)
+      expect(hasOneOfRequiredTags(projectTags, ['resource=vercel,resource!=not-exist'])).toEqual(true)
+    })
+
+    it('should not match', () => {
+      expect(hasOneOfRequiredTags(projectTags, ['resource=vercel,resource=not-exist'])).toEqual(false)
+    })
+  })
 })

@@ -1,15 +1,24 @@
-function doesTagMatchOneOfTheConditions(conditions: string[], tag: string) {
-  return conditions.some((condition) => {
-    if (condition.includes('=') && tag.includes('=')) {
-      let matcher = (conditionValue, tagValue) => conditionValue.trim() === tagValue.trim()
-      let splitOn = '='
+function hasTagMatchingCondition(condition: string, tags: string[]): boolean {
+  if (condition.includes('=')) {
+    // If it includes a "," it's a AND condition
+    if (condition.includes(',')) {
+      const subConditions = condition.split(',').map((subCondition) => subCondition.trim())
 
-      if (condition.includes('!=')) {
-        matcher = (conditionValue, tagValue) => conditionValue.trim() !== tagValue.trim()
-        splitOn = '!='
-      }
+      // It should match all the conditions
+      return subConditions.every((subCondition) => hasTagMatchingCondition(subCondition, tags))
+    }
 
-      const [conditionKey, conditionValue] = condition.split(splitOn)
+    let matcher = (conditionValue: string, tagValue: string): boolean => conditionValue.trim() === tagValue.trim()
+    let splitOn = '='
+
+    if (condition.includes('!=')) {
+      matcher = (conditionValue: string, tagValue: string): boolean => conditionValue.trim() !== tagValue.trim()
+      splitOn = '!='
+    }
+
+    const [conditionKey, conditionValue] = condition.split(splitOn)
+
+    return tags.some((tag) => {
       const [key, value] = tag.split('=')
 
       if (conditionKey !== key) {
@@ -17,10 +26,11 @@ function doesTagMatchOneOfTheConditions(conditions: string[], tag: string) {
       }
 
       return matcher(conditionValue, value)
-    } else {
-      return condition === tag
-    }
-  })
+    })
+
+  } else {
+    return tags.some((tag) => tag === condition)
+  }
 }
 
 export function hasOneOfRequiredTags(tags?: string[], requiresOnOfTheseTagConditions?: string[]): boolean {
@@ -32,5 +42,5 @@ export function hasOneOfRequiredTags(tags?: string[], requiresOnOfTheseTagCondit
     return false
   }
 
-  return tags.some((tag) => doesTagMatchOneOfTheConditions(requiresOnOfTheseTagConditions, tag))
+  return requiresOnOfTheseTagConditions.some((condition) => hasTagMatchingCondition(condition, tags))
 }
