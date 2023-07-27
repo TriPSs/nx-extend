@@ -83,7 +83,7 @@ export class GcpCache implements RemoteCache {
     } catch (err) {
       this.messages.error = err
 
-      this.logger.warn(`Failed to create and upload`, err)
+      this.logger.error(`Storage Cache: Failed to create and upload ${hash}`, err)
 
       return false
     }
