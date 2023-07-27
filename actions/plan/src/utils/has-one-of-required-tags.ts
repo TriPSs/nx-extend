@@ -7,28 +7,38 @@ function hasTagMatchingCondition(condition: string, tags: string[]): boolean {
       const subConditions = condition.split(',').map((subCondition) => subCondition.trim())
 
       // It should match all the conditions
-      return subConditions.every((subCondition) => hasTagMatchingCondition(subCondition, tags))
+      return subConditions.every((subCondition) => {
+        return hasTagMatchingCondition(subCondition, tags)
+      })
     }
-
-    let matcher = (conditionValue: string, tagValue: string): boolean => conditionValue.trim() === tagValue.trim()
-    let splitOn = '='
 
     if (condition.includes('!=')) {
-      matcher = (conditionValue: string, tagValue: string): boolean => conditionValue.trim() !== tagValue.trim()
-      splitOn = '!='
-    }
+      const [conditionKey, conditionValue] = condition.split('!=')
 
-    const [conditionKey, conditionValue] = condition.split(splitOn)
+      const useTags = tags.filter((tag) => tag.startsWith(`${conditionKey}=`))
 
-    return tags.some((tag) => {
-      const [key, value] = tag.split('=')
-
-      if (conditionKey !== key) {
-        return false
+      // If the project does not have any tags with the condition key it's allowed
+      if (useTags.length === 0) {
+        return true
       }
 
-      return matcher(conditionValue, value)
-    })
+      return useTags.some((tag) => {
+        return tag.split('=').pop().trim() !== conditionValue.trim()
+      }, [])
+
+    } else {
+      const [conditionKey, conditionValue] = condition.split('=')
+
+      return tags.some((tag) => {
+        const [key, value] = tag.split('=')
+
+        if (conditionKey !== key) {
+          return false
+        }
+
+        return conditionValue.trim() === value.trim()
+      })
+    }
 
   } else {
     return tags.some((tag) => tag === condition)
