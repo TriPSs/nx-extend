@@ -7,7 +7,7 @@ export class Logger {
     }
 
     output.log({
-      title: 'GCP-NX',
+      title: 'GCP Task runner',
       bodyLines: message.split('\n') ?? []
     })
   }
@@ -28,7 +28,17 @@ export class Logger {
 
   public success(message: string): void {
     output.success({
-      title: message
+      title: 'GCP Task runner',
+      bodyLines: message.split('\n')
     })
+  }
+
+  public note(message: string): void {
+    output.addNewline()
+    output.note({
+      title: 'GCP Task runner',
+      bodyLines: message.split('\n')
+    })
+    output.addNewline()
   }
 }

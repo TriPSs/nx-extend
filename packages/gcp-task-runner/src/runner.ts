@@ -12,6 +12,12 @@ export const tasksRunner = (
   // Create the logger
   const logger = new Logger()
 
+  if (options.skipNxCache) {
+    logger.note('Using local cache')
+
+    return defaultTaskRunner(tasks, options, context)
+  }
+
   try {
     const messages = new MessageReporter(logger)
     const remoteCache = new GcpCache(options.bucket, messages)

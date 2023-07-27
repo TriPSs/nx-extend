@@ -6116,6 +6116,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/tar@npm:^6.1.5":
+  version: 6.1.5
+  resolution: "@types/tar@npm:6.1.5"
+  dependencies:
+    "@types/node": "*"
+    minipass: ^4.0.0
+  checksum: 1efa71c8d72f2b02d16ffecb65c4a96be9dacce000c4207532a686477386524dd99b6e26904319354be3ac9ac4d41296a0cb9cf87d05f8f21ae31c68fe446348
+  languageName: node
+  linkType: hard
+
 "@types/through@npm:*":
   version: 0.0.30
   resolution: "@types/through@npm:0.0.30"
@@ -16820,6 +16830,7 @@ __metadata:
     "@types/jest": 29.5.2
     "@types/node": 18.15.11
     "@types/shelljs": ^0.8.12
+    "@types/tar": ^6.1.5
     "@types/yargs": ^17.0.24
     "@typescript-eslint/eslint-plugin": 5.60.0
     "@typescript-eslint/parser": 5.60.0
@@ -16839,6 +16850,7 @@ __metadata:
     prettier: 2.8.8
     rxjs-for-await: ^1.0.0
     shelljs: ^0.8.5
+    tar: ^6.1.15
     ts-jest: 29.1.0
     ts-node: 10.9.1
     tslib: ^2.5.3
@@ -21073,7 +21085,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tar@npm:^6.1.11, tar@npm:^6.1.2":
+"tar@npm:^6.1.11, tar@npm:^6.1.15, tar@npm:^6.1.2":
   version: 6.1.15
   resolution: "tar@npm:6.1.15"
   dependencies:
