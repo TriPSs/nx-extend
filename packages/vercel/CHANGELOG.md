@@ -2,6 +2,20 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [5.0.0](https://github.com/TriPSs/nx-extend/compare/vercel@4.2.1...vercel@5.0.0) (2023-07-28)
+
+
+### Features
+
+* **vercel:** Improve `buildTarget` logic ([36b903f](https://github.com/TriPSs/nx-extend/commit/36b903f0fc41559ad516ab1a7d091b332cb714de))
+
+
+### BREAKING CHANGES
+
+* **vercel:** The logic update could break your build / deploy, add `buildTarget` option now with the project name and optional config
+
+
+
 ## [4.2.1](https://github.com/TriPSs/nx-extend/compare/vercel@4.2.0...vercel@4.2.1) (2023-07-27)
 
 
