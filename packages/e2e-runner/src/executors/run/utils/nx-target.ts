@@ -1,4 +1,5 @@
 import { logger, parseTargetString } from '@nx/devkit'
+import { readCachedProjectGraph } from '@nx/workspace/src/core/project-graph'
 import { USE_VERBOSE_LOGGING } from '@nx-extend/core'
 import * as childProcess from 'child_process'
 
@@ -82,13 +83,10 @@ export class NxTarget {
 
     logger.info(`Starting target "${this.options.target}"`)
 
-    this.killProcess = await launchProcess(this.options.target, {
-      onExit: (code) =>
-        processExitedReject(
-          new Error(
-            `Target "${this.options.target}" was not able to start. Exit code: ${code}`
-          )
-        ),
+    this.killProcess = launchProcess(this.options.target, {
+      onExit: (code) => (
+        processExitedReject(new Error(`Target "${this.options.target}" was not able to start. Exit code: ${code}`))
+      ),
       env: this.options.env
     })
 
@@ -152,7 +150,7 @@ function launchProcess(
     env?: { [key: string]: string }
   }
 ): () => Promise<void> {
-  const { project, target, configuration } = parseTargetString(targetString)
+  const { project, target, configuration } = parseTargetString(targetString, readCachedProjectGraph())
 
   const spawnedProcess = childProcess.spawn(
     `npx nx ${target} ${project} ${
