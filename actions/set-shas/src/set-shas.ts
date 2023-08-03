@@ -18,6 +18,8 @@ async function run() {
         silent: !core.isDebug()
       })
 
+      core.info(`Got base sha "${baseSha}" from "origin/${mainBranchName}"`)
+
     } else {
       const tag = execCommand('git describe --tags --abbrev=0', {
         asString: true,

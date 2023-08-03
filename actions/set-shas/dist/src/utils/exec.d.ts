@@ -5,7 +5,7 @@ export interface Options extends ExecOptions {
     asJSON?: boolean;
 }
 export { ShellString, ChildProcess };
-export declare type Result<Output> = Output extends string ? string : Output;
+export type Result<Output> = Output extends string ? string : Output;
 export declare const execCommand: <Output = {
     success: boolean;
     output: string;
