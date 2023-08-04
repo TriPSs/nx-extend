@@ -12,11 +12,12 @@ async function run() {
     const projects = getProjects(nxTree)
 
     const workingDirectory = core.getInput('workingDirectory') || ''
+    const affectedOnly = core.getBooleanInput('affectedOnly')
     const targets = core.getMultilineInput('targets', { required: true, trimWhitespace: true })
 
     // Get all affected projects
     const affectedProjects = execCommand<string>(
-      'npx nx show projects --affected',
+      `npx nx show projects ${affectedOnly ? '' : '--affected'}`,
       {
         asString: true,
         silent: !core.isDebug(),
@@ -48,7 +49,7 @@ async function run() {
           const { targets, tags } = projects.get(projectName)
 
           if (Object.keys(targets).includes(target)) {
-            return hasOneOfRequiredTags(projectName,tags, tagConditions)
+            return hasOneOfRequiredTags(projectName, tags, tagConditions)
           }
 
           return false
