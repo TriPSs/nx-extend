@@ -16,7 +16,8 @@ export const argv = yargs(hideBin(process.argv))
     config: { type: 'string' },
     target: { type: 'string' },
     parallel: { type: 'number' },
-    verbose: { type: 'boolean' }
+    verbose: { type: 'boolean' },
+    affectedOnly: { type: 'boolean' }
   })
   .parseSync()
 
@@ -28,6 +29,7 @@ async function run() {
     // Get all options
     const tagConditions = core.getMultilineInput('tag', { trimWhitespace: true }) || (argv.tag ? [argv.tag] : [])
     const target = core.getInput('target', { required: !argv.target }) || argv.target
+    const affectedOnly = core.getBooleanInput('affectedOnly') || argv.affectedOnly
     const config = core.getInput('config') || argv.config
     const jobIndex = parseInt(core.getInput('index') || '1', 10)
     const jobCount = parseInt(core.getInput('count') || '1', 10)
@@ -55,7 +57,8 @@ async function run() {
     // Get all affected projects
     const projectsToRun = execCommand<string>(
       buildCommand([
-        'npx nx show projects --affected',
+        'npx nx show projects',
+        affectedOnly && '--affected',
         `-t ${target}`
       ]),
       {

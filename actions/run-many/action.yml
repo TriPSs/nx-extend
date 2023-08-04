@@ -45,3 +45,8 @@ inputs:
   workingDirectory:
     description: 'Optionally define sub directory'
     required: false
+
+  affectedOnly:
+    description: 'Only run for affected projects'
+    required: true
+    default: 'true'
