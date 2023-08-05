@@ -18,14 +18,14 @@ async function run() {
     // Get all the project names
     const projectsNamesToPlanFor = affectedOnly
       ? JSON.parse(execCommand<string>(
-        `npx nx show projects ${affectedOnly ? '--affected' : ''} --json`,
+        'npx nx show projects --affected --json',
         {
           asString: true,
           silent: !core.isDebug(),
           cwd: resolve(process.cwd(), workingDirectory)
         }
       )).map((projectName: string) => projectName.trim())
-      : Object.keys(projects)
+      : projects.keys()
 
     // Make sure to still log the project names
     if (!affectedOnly) {

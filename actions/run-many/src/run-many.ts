@@ -66,7 +66,7 @@ async function run() {
           cwd
         }
       ))
-      : Object.keys(projects)
+      : projects.keys()
 
     // Make sure to still log the project names
     if (!affectedOnly) {
