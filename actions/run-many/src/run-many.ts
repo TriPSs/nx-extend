@@ -27,9 +27,9 @@ async function run() {
     const projects = getProjects(nxTree)
 
     // Get all options
-    const tagConditions = core.getMultilineInput('tag', { trimWhitespace: true }) || (argv.tag ? [argv.tag] : [])
+    const tagConditions = (argv.tag ? [argv.tag] : core.getMultilineInput('tag', { trimWhitespace: true }))
     const target = core.getInput('target', { required: !argv.target }) || argv.target
-    const affectedOnly = core.getBooleanInput('affectedOnly') || argv.affectedOnly
+    const affectedOnly = argv.affectedOnly !== undefined ? argv.affectedOnly : core.getBooleanInput('affectedOnly')
     const config = core.getInput('config') || argv.config
     const jobIndex = parseInt(core.getInput('index') || '1', 10)
     const jobCount = parseInt(core.getInput('count') || '1', 10)
@@ -66,7 +66,7 @@ async function run() {
           cwd
         }
       ))
-      : projects.keys()
+      : Array.from(projects.keys())
 
     // Make sure to still log the project names
     if (!affectedOnly) {

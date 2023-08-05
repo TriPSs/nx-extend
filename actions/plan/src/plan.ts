@@ -25,7 +25,7 @@ async function run() {
           cwd: resolve(process.cwd(), workingDirectory)
         }
       )).map((projectName: string) => projectName.trim())
-      : projects.keys()
+      : Array.from(projects.keys())
 
     // Make sure to still log the project names
     if (!affectedOnly) {
