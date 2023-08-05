@@ -45,7 +45,7 @@ function hasTagMatchingCondition(condition: string, tags: string[]): boolean {
   }
 }
 
-function cleanLogConditions(conditions: string[]) {
+export function cleanLogConditions(conditions: string[]) {
   return conditions.map((condition) => {
     if (condition.includes(',')) {
       return condition.split(',').map((subCondition) => subCondition.trim())

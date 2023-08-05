@@ -4,7 +4,7 @@ import { getProjects } from 'nx/src/generators/utils/project-configuration'
 import { resolve } from 'path'
 
 import { execCommand } from './utils/exec'
-import { hasOneOfRequiredTags } from './utils/has-one-of-required-tags'
+import { cleanLogConditions, hasOneOfRequiredTags } from './utils/has-one-of-required-tags'
 
 async function run() {
   try {
@@ -36,13 +36,18 @@ async function run() {
     const matrixInclude = []
 
     for (const target of targets) {
-      core.debug(`Getting info for target "${target}"`)
-
       const tagConditions = core.getMultilineInput(`${target}Tag`, { trimWhitespace: true })
       const maxJobs = parseInt(core.getInput(`${target}MaxJobs`), 10) || 1
       const parallel = core.getInput(`${target}Parallel`)
       const preTargets = core.getMultilineInput(`${target}PreTargets`) || []
       const postTargets = core.getMultilineInput(`${target}PostTargets`) || []
+
+      core.info(`Got following info for target "${target}"`)
+      core.info(`- ${target}Tag: ${cleanLogConditions(tagConditions)}`)
+      core.info(`- ${target}MaxJobs: ${maxJobs}`)
+      core.info(`- ${target}Parallel: ${parallel}`)
+      core.info(`- ${target}PreTargets: ${preTargets.join(' AND ')}`)
+      core.info(`- ${target}PostTargets: ${postTargets.join(' AND ')}`)
 
       const amountOfProjectsWithTarget = affectedProjects
         .map((projectName) => {
