@@ -42,7 +42,7 @@ async function run() {
       const preTargets = core.getMultilineInput(`${target}PreTargets`) || []
       const postTargets = core.getMultilineInput(`${target}PostTargets`) || []
 
-      core.info(`Got following info for target "${target}"`)
+      core.startGroup(`Target "${target}"`)
       core.info(`- ${target}Tag: ${cleanLogConditions(tagConditions)}`)
       core.info(`- ${target}MaxJobs: ${maxJobs}`)
       core.info(`- ${target}Parallel: ${parallel}`)
@@ -71,6 +71,8 @@ async function run() {
         continue
       }
 
+      core.info(`Found ${amountOfProjectsWithTarget.length} projects that match the required conditions`)
+
       let maxJobCount = 1
       for (let i = maxJobs; i > 0; i--) {
         // Each job needs to at-least run 2 projects
@@ -92,8 +94,11 @@ async function run() {
           parallel
         })
       }
+
+      core.endGroup()
     }
 
+    core.info('\n')
     core.info(`Created following plan: \n${JSON.stringify(matrixInclude, null, 2)}`)
     core.setOutput('matrix', {
       include: matrixInclude
