@@ -17,7 +17,7 @@ async function run() {
 
     // Get all affected projects
     const affectedProjects = execCommand<string>(
-      `npx nx show projects ${affectedOnly ? '' : '--affected'}`,
+      `npx nx show projects ${affectedOnly ? '--affected' : ''}`,
       {
         asString: true,
         silent: !core.isDebug(),
