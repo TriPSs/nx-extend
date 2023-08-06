@@ -2,6 +2,21 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [0.4.0](https://github.com/TriPSs/nx-extend/compare/actions-plan@0.3.0...actions-plan@0.4.0) (2023-08-06)
+
+
+### Bug Fixes
+
+* **action-plan:** Added support to disable the `--affected` ([294028b](https://github.com/TriPSs/nx-extend/commit/294028b5d325297cc0c1255f4586d32c9ad9189c))
+* **actions-plan:** Fixed `--affected` not being applied ([9d4d09f](https://github.com/TriPSs/nx-extend/commit/9d4d09f6bbf6b57cb0645f45b94610588010a4f0))
+
+
+### Features
+
+* **actions-plan:** Log all found info for each target ([7c84b42](https://github.com/TriPSs/nx-extend/commit/7c84b426d89fc623cb82b20451083eecf9acffb3))
+
+
+
 # [0.3.0](https://github.com/TriPSs/nx-extend/compare/actions-plan@0.2.0...actions-plan@0.3.0) (2023-07-27)
 
 
