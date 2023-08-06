@@ -2,6 +2,10 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [6.1.3](https://github.com/TriPSs/nx-extend/compare/strapi@6.1.2...strapi@6.1.3) (2023-08-06)
+
+
+
 ## [6.1.2](https://github.com/TriPSs/nx-extend/compare/strapi@6.1.1...strapi@6.1.2) (2023-07-12)
 
 
