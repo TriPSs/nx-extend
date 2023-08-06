@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [3.1.1](https://github.com/TriPSs/nx-extend/compare/pulumi@3.1.0...pulumi@3.1.1) (2023-08-06)
+
+
+### Bug Fixes
+
+* **pulumi:** Fixed init generator ([ae88bec](https://github.com/TriPSs/nx-extend/commit/ae88beccb9fc3e677bde7a7241db0f90fce88742))
+
+
+
 # [3.1.0](https://github.com/TriPSs/nx-extend/compare/pulumi@3.0.0...pulumi@3.1.0) (2023-06-22)
 
 
