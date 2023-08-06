@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [4.1.2](https://github.com/TriPSs/nx-extend/compare/gcp-task-runner@4.1.1...gcp-task-runner@4.1.2) (2023-08-06)
+
+
+### Bug Fixes
+
+* **gcp-task-runner:** Load dotenv ([7dcfd6a](https://github.com/TriPSs/nx-extend/commit/7dcfd6a1702533f74ad36fcf8788b1021f0be0a3))
+
+
+
 ## [4.1.1](https://github.com/TriPSs/nx-extend/compare/gcp-task-runner@4.1.0...gcp-task-runner@4.1.1) (2023-07-28)
 
 
