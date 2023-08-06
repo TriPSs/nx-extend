@@ -9,3 +9,8 @@ inputs:
   targets:
     description: 'For what targets do we need to plan'
     required: true
+
+  affectedOnly:
+    description: 'Only plan for affected projects'
+    required: true
+    default: 'true'

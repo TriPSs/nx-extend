@@ -5,5 +5,5 @@
   "workspaces": true,
   "packageManager": "yarn",
   "format": ["group", "repo"],
-  "reject": ["@nrwl/*", "nx"]
+  "reject": ["@nx/*", "nx"]
 }

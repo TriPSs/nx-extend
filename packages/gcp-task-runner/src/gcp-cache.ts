@@ -6,6 +6,8 @@ import type { MessageReporter } from './message-reporter'
 import type { Bucket } from '@google-cloud/storage'
 import type { RemoteCache } from '@nx/workspace/src/tasks-runner/default-tasks-runner'
 
+import 'dotenv/config'
+
 import { Logger } from './logger'
 
 export class GcpCache implements RemoteCache {
@@ -83,7 +85,7 @@ export class GcpCache implements RemoteCache {
     } catch (err) {
       this.messages.error = err
 
-      this.logger.warn(`Failed to create and upload`, err)
+      this.logger.error(`Storage Cache: Failed to create and upload ${hash}`, err)
 
       return false
     }
@@ -99,11 +101,11 @@ export class GcpCache implements RemoteCache {
     }
   }
 
-  private async createTarFile(tgzFilePath: string, hash: string, cacheDirectory: string): Promise<void> {
+  private async createTarFile(tarFilePath: string, hash: string, cacheDirectory: string): Promise<void> {
     try {
       await create({
         gzip: true,
-        file: tgzFilePath,
+        file: tarFilePath,
         cwd: cacheDirectory
       }, [hash])
     } catch (err) {

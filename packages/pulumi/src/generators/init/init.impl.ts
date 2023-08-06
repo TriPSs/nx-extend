@@ -1,15 +1,14 @@
 import {
   addDependenciesToPackageJson,
   addProjectConfiguration,
-  formatFiles,
   generateFiles,
   GeneratorCallback,
   names,
   offsetFromRoot,
   readJsonFile,
+  runTasksInSerial,
   Tree
 } from '@nx/devkit'
-import { runTasksInSerial } from '@nx/workspace/src/utilities/run-tasks-in-serial'
 import {
   buildCommand,
   DefaultGeneratorOptions,
@@ -17,7 +16,7 @@ import {
   NormalizedSchema,
   normalizeOptions
 } from '@nx-extend/core'
-import { unlinkSync } from 'fs'
+import { readFileSync, unlinkSync } from 'fs'
 import { join } from 'path'
 import { which } from 'shelljs'
 
@@ -47,18 +46,15 @@ function generateNewPulumiProject(
   return () => {
     const template = getCloudTemplateName(options.provider)
 
-    const { success } = execCommand(
-      buildCommand([
-        `pulumi new ${template}`,
-        `--name=${options.projectName}`,
-        `--dir=${options.projectRoot}`,
-        options.secretsProvider &&
-          `--secrets-provider=${options.secretsProvider}`,
-        '--generate-only',
-        '--yes',
-        '--force'
-      ])
-    )
+    const { success } = execCommand(buildCommand([
+      `pulumi new ${template}`,
+      `--name=${options.projectName}`,
+      `--dir=${options.projectRoot}`,
+      options.secretsProvider && `--secrets-provider=${options.secretsProvider}`,
+      '--generate-only',
+      '--yes',
+      '--force'
+    ]))
 
     if (!success) {
       throw new Error('Unable to create new Pulumi project!')
@@ -109,6 +105,10 @@ function cleanupProject(
   options: NormalizedSchema & InitOptions
 ): GeneratorCallback {
   return () => {
+    const indexTsLocation = join(tree.root, `${options.projectRoot}/index.ts`)
+    tree.write(`${options.projectRoot}/pulumi.ts`, readFileSync(indexTsLocation).toString())
+
+    // Remove the unneeded files
     unlinkSync(join(tree.root, `${options.projectRoot}/.gitignore`))
     unlinkSync(join(tree.root, `${options.projectRoot}/package.json`))
     unlinkSync(join(tree.root, `${options.projectRoot}/tsconfig.json`))
@@ -120,8 +120,7 @@ export default async function (tree: Tree, rawOptions: InitOptions) {
     throw new Error('pulumi is not installed!')
   }
 
-  const options = normalizeOptions(tree, rawOptions) as NormalizedSchema &
-    InitOptions
+  const options = normalizeOptions(tree, rawOptions) as NormalizedSchema & InitOptions
 
   addProjectConfiguration(tree, options.projectName, {
     root: options.projectRoot,
@@ -140,13 +139,11 @@ export default async function (tree: Tree, rawOptions: InitOptions) {
     tags: options.parsedTags
   })
 
-  await formatFiles(tree)
-
-  return runTasksInSerial(
+  await runTasksInSerial(
     generateNewPulumiProject(tree, options),
     loginToPulumi(tree, options),
     addPulumiDeps(tree, options),
     cleanupProject(tree, options),
     copyFiles(tree, options)
-  )
+  )()
 }

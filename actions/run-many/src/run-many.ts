@@ -16,7 +16,8 @@ export const argv = yargs(hideBin(process.argv))
     config: { type: 'string' },
     target: { type: 'string' },
     parallel: { type: 'number' },
-    verbose: { type: 'boolean' }
+    verbose: { type: 'boolean' },
+    affectedOnly: { type: 'boolean' }
   })
   .parseSync()
 
@@ -26,8 +27,9 @@ async function run() {
     const projects = getProjects(nxTree)
 
     // Get all options
-    const tagConditions = core.getMultilineInput('tag', { trimWhitespace: true }) || (argv.tag ? [argv.tag] : [])
+    const tagConditions = (argv.tag ? [argv.tag] : core.getMultilineInput('tag', { trimWhitespace: true }))
     const target = core.getInput('target', { required: !argv.target }) || argv.target
+    const affectedOnly = argv.affectedOnly !== undefined ? argv.affectedOnly : core.getBooleanInput('affectedOnly')
     const config = core.getInput('config') || argv.config
     const jobIndex = parseInt(core.getInput('index') || '1', 10)
     const jobCount = parseInt(core.getInput('count') || '1', 10)
@@ -52,43 +54,50 @@ async function run() {
 
     const cwd = resolve(process.cwd(), workingDirectory)
 
-    // Get all affected projects
-    const projectsToRun = execCommand<string>(
-      buildCommand([
-        'npx nx show projects --affected',
-        `-t ${target}`
-      ]),
-      {
-        asString: true,
-        silent: !(core.isDebug() || argv.verbose),
-        cwd
-      }
-    ).split('\n')
-      .map((projectName) => projectName.trim())
-      .filter((projectName) => {
-        if (!projects.has(projectName)) {
-          return false
+    const projectsNamesToRun = affectedOnly
+      ? JSON.parse(execCommand<string>(
+        buildCommand([
+          'npx nx show projects --affected --json',
+          `-t ${target}`
+        ]),
+        {
+          asString: true,
+          silent: !(core.isDebug() || argv.verbose),
+          cwd
         }
-
-        const project = projects.get(projectName)
-        const tags = project.tags || []
-
-        // If the project has ci=off then don't run it
-        if (tags.includes('ci=off')) {
-          core.debug(`[${projectName}]: Has the "ci=off" tag, skipping it.`)
-
-          return false
-        }
-
-        if (!tagConditions || tagConditions.length === 0) {
-          return true
-        }
-
-        // If a tag is provided the project should have it
-        return (!tagConditions || tagConditions.length === 0) || hasOneOfRequiredTags(projectName, tags, tagConditions)
-      }).sort((projectNameA, projectNameB) => (
-        projectNameA.localeCompare(projectNameB)
       ))
+      : Array.from(projects.keys())
+
+    // Make sure to still log the project names
+    if (!affectedOnly) {
+      core.debug(JSON.stringify(projectsNamesToRun))
+    }
+
+    // Get all affected projects
+    const projectsToRun = projectsNamesToRun.filter((projectName: string) => {
+      if (!projects.has(projectName)) {
+        return false
+      }
+
+      const project = projects.get(projectName)
+      const tags = project.tags || []
+
+      // If the project has ci=off then don't run it
+      if (tags.includes('ci=off')) {
+        core.debug(`[${projectName}]: Has the "ci=off" tag, skipping it.`)
+
+        return false
+      }
+
+      if (!tagConditions || tagConditions.length === 0) {
+        return true
+      }
+
+      // If a tag is provided the project should have it
+      return (!tagConditions || tagConditions.length === 0) || hasOneOfRequiredTags(projectName, tags, tagConditions)
+    }).sort((projectNameA: string, projectNameB: string) => (
+      projectNameA.localeCompare(projectNameB)
+    ))
 
     const sliceSize = Math.max(Math.floor(projectsToRun.length / jobCount), 1)
     const runProjects =

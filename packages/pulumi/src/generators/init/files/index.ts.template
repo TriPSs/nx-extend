@@ -11,4 +11,4 @@ register({
   paths: config.paths
 })
 
-// import
+import './pulumi'
