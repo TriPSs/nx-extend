@@ -2,6 +2,10 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [6.2.1](https://github.com/TriPSs/nx-extend/compare/e2e-runner@6.2.0...e2e-runner@6.2.1) (2023-08-06)
+
+
+
 # [6.2.0](https://github.com/TriPSs/nx-extend/compare/e2e-runner@6.1.0...e2e-runner@6.2.0) (2023-07-21)
 
 
