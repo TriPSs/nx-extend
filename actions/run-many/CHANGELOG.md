@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [3.4.1](https://github.com/TriPSs/nx-extend/compare/actions-run-many@3.4.0...actions-run-many@3.4.1) (2023-08-06)
+
+
+### Bug Fixes
+
+* **action-run-many:** Added support to disable the `--affected` ([44cefc2](https://github.com/TriPSs/nx-extend/commit/44cefc2262f25abdd1f63586f9e5798b1710cb1f))
+
+
+
 # [3.4.0](https://github.com/TriPSs/nx-extend/compare/actions-run-many@3.3.0...actions-run-many@3.4.0) (2023-07-27)
 
 
