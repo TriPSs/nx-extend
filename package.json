@@ -34,7 +34,6 @@
   "dependencies": {
     "@actions/core": "^1.10.0",
     "@nx/devkit": "16.3.2",
-    "@nx/playwright": "^16.7.0-beta.1",
     "@nx/workspace": "16.3.2",
     "@types/tar": "^6.1.5",
     "axios": "^1.4.0",
