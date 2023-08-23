@@ -4,7 +4,9 @@ import { execSync } from 'child_process'
 import { which } from 'shelljs'
 
 export interface UpOptions {
-  stack?: string
+  stack?: string,
+  skipPreview?: boolean,
+  yes?: boolean
 }
 
 export default async function creatExecutor(
@@ -18,7 +20,12 @@ export default async function creatExecutor(
   const { sourceRoot } = context.workspace.projects[context.projectName]
 
   execSync(
-    buildCommand(['pulumi up', options.stack && `--stack=${options.stack}`]),
+    buildCommand([
+      'pulumi up', 
+      options.stack && `--stack=${options.stack}`,
+      options.skipPreview && '--skip-preview',
+      options.yes && '--yes'
+    ]),
     {
       cwd: sourceRoot,
       stdio: 'inherit'
