@@ -18,7 +18,12 @@ export default async function creatExecutor(
   const { sourceRoot } = context.workspace.projects[context.projectName]
 
   execSync(
-    buildCommand(['pulumi up', options.stack && `--stack=${options.stack}`]),
+    buildCommand([
+      'pulumi up', 
+      options.stack && `--stack=${options.stack}`,
+      options.skipPreview && '--skip-preview',
+      options.yes && '--yes'
+    ]),
     {
       cwd: sourceRoot,
       stdio: 'inherit'
