@@ -6,7 +6,10 @@ import { which } from 'shelljs'
 export interface UpOptions {
   stack?: string,
   skipPreview?: boolean,
-  yes?: boolean
+  yes?: boolean,
+  suppressOutputs?: boolean,
+  debug?: boolean,
+  json?: boolean
 }
 
 export default async function creatExecutor(
@@ -24,7 +27,10 @@ export default async function creatExecutor(
       'pulumi up', 
       options.stack && `--stack=${options.stack}`,
       options.skipPreview && '--skip-preview',
-      options.yes && '--yes'
+      options.yes && '--yes',
+      options.suppressOutputs && '--suppress-outputs',
+      options.debug && '--debug',
+      options.json && '--json'
     ]),
     {
       cwd: sourceRoot,
