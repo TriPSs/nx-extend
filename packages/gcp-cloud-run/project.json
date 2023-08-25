@@ -56,7 +56,7 @@
     "publish": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "npm publish ./dist/packages/gcp-cloud-run --access public"
+        "command": "npm publish ./dist/packages/gcp-cloud-run --access public || true"
       }
     }
   },

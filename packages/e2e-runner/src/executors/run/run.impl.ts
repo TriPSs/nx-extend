@@ -4,7 +4,7 @@ import { RunCommandsOptions } from 'nx/src/executors/run-commands/run-commands.i
 import { NxTarget, NxTargetOptions } from './utils/nx-target'
 
 export interface RunOptions {
-  runner: 'cypress' | 'playwright' | 'run-commands'
+  runner: 'cypress' | 'playwright' | '@nx/playwright' | 'run-commands'
   runnerTarget?: string
   watch?: boolean
   targets: NxTargetOptions[]
@@ -45,6 +45,11 @@ export async function endToEndRunner(
     } else if (runner === 'playwright') {
       // eslint-disable-next-line @typescript-eslint/no-var-requires
       const playwrightExecutor = require('@nx-extend/playwright/src/executors/test/test.impl').default
+
+      success = (await playwrightExecutor(rest, context)).success
+    } else if (runner === '@nx/playwright') {
+      // eslint-disable-next-line @typescript-eslint/no-var-requires
+      const playwrightExecutor = require('@nx/playwright/src/executors/playwright/playwright').default
 
       success = (await playwrightExecutor(rest, context)).success
     } else if (runner === 'run-commands') {
