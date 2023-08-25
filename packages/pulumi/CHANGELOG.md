@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [3.2.0](https://github.com/TriPSs/nx-extend/compare/pulumi@3.1.3...pulumi@3.2.0) (2023-08-25)
+
+
+### Features
+
+* **pulumi:** Add support for suppress-outputs, debug, and json command-line arguments ([9b70248](https://github.com/TriPSs/nx-extend/commit/9b702485a55149221cd1334e7453cc9839668df6))
+
+
+
 ## [3.1.3](https://github.com/TriPSs/nx-extend/compare/pulumi@3.1.2...pulumi@3.1.3) (2023-08-23)
 
 
