@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [3.0.1](https://github.com/TriPSs/nx-extend/compare/actions-set-shas@3.0.0...actions-set-shas@3.0.1) (2023-08-06)
+
+
+### Bug Fixes
+
+* **action-set-shas:** Also log the base sha in PRs ([a797cd7](https://github.com/TriPSs/nx-extend/commit/a797cd778b9e0c0e6b0028a1863c0f7696caa8c2))
+
+
+
 # [3.0.0](https://github.com/TriPSs/nx-extend/compare/actions-set-shas@2.0.0...actions-set-shas@3.0.0) (2023-06-22)
 
 

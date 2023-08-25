@@ -2,6 +2,59 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [3.4.1](https://github.com/TriPSs/nx-extend/compare/actions-run-many@3.4.0...actions-run-many@3.4.1) (2023-08-06)
+
+
+### Bug Fixes
+
+* **action-run-many:** Added support to disable the `--affected` ([44cefc2](https://github.com/TriPSs/nx-extend/commit/44cefc2262f25abdd1f63586f9e5798b1710cb1f))
+
+
+
+# [3.4.0](https://github.com/TriPSs/nx-extend/compare/actions-run-many@3.3.0...actions-run-many@3.4.0) (2023-07-27)
+
+
+### Features
+
+* **actions-run-many:** Always log with `--output-style=stream` for better readability ([7c3c445](https://github.com/TriPSs/nx-extend/commit/7c3c445635053747b3d8cce36c465273437c1a1d))
+* **actions:** Added support for `AND` condition in tag ([3fdf7c6](https://github.com/TriPSs/nx-extend/commit/3fdf7c645c378ba3398335d696fd225545f08444))
+* **actions:** Added support to run tags with conditions ([cb0e023](https://github.com/TriPSs/nx-extend/commit/cb0e023f052e3e88d548272d7d6b75bb453adc44))
+
+
+
+# [3.3.0](https://github.com/TriPSs/nx-extend/compare/actions-run-many@3.2.0...actions-run-many@3.3.0) (2023-07-13)
+
+
+### Bug Fixes
+
+* **actions-run-many:** Corrected table column of summary ([35811cd](https://github.com/TriPSs/nx-extend/commit/35811cde7aa5715b5cc27e22e0f8f674ed83ce00))
+
+
+### Features
+
+* **actions:** Use new affected command ([3af25dc](https://github.com/TriPSs/nx-extend/commit/3af25dccf3a8b0e69b76c65618c7219cf2e8cf04))
+
+
+
+# [3.2.0](https://github.com/TriPSs/nx-extend/compare/actions-run-many@3.1.0...actions-run-many@3.2.0) (2023-07-01)
+
+
+### Bug Fixes
+
+* **actions-run-many:** Correctly get projects ([614b989](https://github.com/TriPSs/nx-extend/commit/614b9893cd1d299629a62144f457a13505972df4))
+
+
+### Features
+
+* **actions-run-many:** Support multiple tags ([c19e0b1](https://github.com/TriPSs/nx-extend/commit/c19e0b1de9bc2160689470457f4786089e480a88))
+
+
+### Reverts
+
+* Revert "feat(actions-run-many): When running in dry more output affected" ([41b3e2e](https://github.com/TriPSs/nx-extend/commit/41b3e2e39a08a1d7f6bf88710e93d3f9eb0f2a16))
+
+
+
 # [3.1.0](https://github.com/TriPSs/nx-extend/compare/actions-run-many@3.0.1...actions-run-many@3.1.0) (2023-06-28)
 
 

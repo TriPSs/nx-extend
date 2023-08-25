@@ -7,6 +7,7 @@ import { NormalizedSchema, normalizeOptions } from '@nx-extend/core'
 import generateNew from '@strapi/generate-new/dist/generate-new'
 import hasYarn from '@strapi/generate-new/dist/utils/has-yarn'
 import machineID from '@strapi/generate-new/dist/utils/machine-id'
+import * as crypto from 'crypto'
 import * as path from 'path'
 
 import type { StrapiGeneratorSchema } from './schema'

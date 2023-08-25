@@ -1,6 +1,6 @@
 {
   "name": "@nx-extend/actions-plan",
-  "version": "1.0.0",
+  "version": "0.4.0",
   "homepage": "https://github.com/TriPSs/nx-extend/blob/master/actions/plan/README.md",
   "bugs": {
     "url": "https://github.com/tripss/nx-extend/issues"
