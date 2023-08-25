@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [6.3.0](https://github.com/TriPSs/nx-extend/compare/e2e-runner@6.2.1...e2e-runner@6.3.0) (2023-08-25)
+
+
+### Features
+
+* **e2e-runner:** Added support for `@nx/playwright` ([f689d1e](https://github.com/TriPSs/nx-extend/commit/f689d1e594709b28b23e2b8f33429c959d7f60f2))
+
+
+
 ## [6.2.1](https://github.com/TriPSs/nx-extend/compare/e2e-runner@6.2.0...e2e-runner@6.2.1) (2023-08-06)
 
 
