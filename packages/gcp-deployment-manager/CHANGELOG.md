@@ -2,6 +2,10 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [5.1.1](https://github.com/TriPSs/nx-extend/compare/gcp-deployment-manager@5.1.0...gcp-deployment-manager@5.1.1) (2023-08-25)
+
+
+
 # [5.1.0](https://github.com/TriPSs/nx-extend/compare/gcp-deployment-manager@5.0.0...gcp-deployment-manager@5.1.0) (2023-06-22)
 
 
