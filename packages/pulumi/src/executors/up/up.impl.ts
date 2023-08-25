@@ -1,12 +1,14 @@
 import { ExecutorContext } from '@nx/devkit'
-import { buildCommand } from '@nx-extend/core'
+import { buildCommand, USE_VERBOSE_LOGGING } from '@nx-extend/core'
 import { execSync } from 'child_process'
 import { which } from 'shelljs'
 
 export interface UpOptions {
   stack?: string,
-  skipPreview?: boolean,
+  skipPreview?: boolean
   yes?: boolean
+  suppressOutputs?: boolean
+  json?: boolean
 }
 
 export default async function creatExecutor(
@@ -21,10 +23,13 @@ export default async function creatExecutor(
 
   execSync(
     buildCommand([
-      'pulumi up', 
+      'pulumi up',
       options.stack && `--stack=${options.stack}`,
       options.skipPreview && '--skip-preview',
-      options.yes && '--yes'
+      options.yes && '--yes',
+      options.suppressOutputs && '--suppress-outputs',
+      USE_VERBOSE_LOGGING && '--debug',
+      options.json && '--json'
     ]),
     {
       cwd: sourceRoot,
