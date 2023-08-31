@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { getProjects, Tree, updateProjectConfiguration } from '@nx/devkit'
+import { addDependenciesToPackageJson, getProjects, removeDependenciesFromPackageJson, Tree, updateProjectConfiguration } from '@nx/devkit'
 import { existsSync } from 'fs'
 import { join } from 'path'
 
 export default function update(host: Tree) {
   const projects = getProjects(host)
-  const deps = {}
+  let hadProject = false
 
   for (const [name, config] of projects.entries()) {
     let updated = false
@@ -16,6 +16,7 @@ export default function update(host: Tree) {
         && config.targets[target].options?.runner === 'playwright'
       ) {
         updated = true
+        hadProject = true
 
         let playwrightConfig = undefined
 
@@ -39,5 +40,11 @@ export default function update(host: Tree) {
     if (updated) {
       updateProjectConfiguration(host, name, config)
     }
+  }
+
+  if (hadProject) {
+    return addDependenciesToPackageJson(host, {}, {
+      '@nx/playwright': '16.7.4'
+    })
   }
 }
