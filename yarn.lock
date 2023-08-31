@@ -3922,6 +3922,8 @@ __metadata:
 "@nx-extend/e2e-runner@workspace:packages/e2e-runner":
   version: 0.0.0-use.local
   resolution: "@nx-extend/e2e-runner@workspace:packages/e2e-runner"
+  dependencies:
+    "@nx/devkit": 16.7.4
   languageName: unknown
   linkType: soft
 
