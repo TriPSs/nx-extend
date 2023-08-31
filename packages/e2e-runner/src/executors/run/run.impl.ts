@@ -56,7 +56,7 @@ export async function endToEndRunner(
       success = (await playwrightExecutor(rest, context)).success
     } else if (runner === 'run-commands') {
       // eslint-disable-next-line @typescript-eslint/no-var-requires
-      const runCommandsExecutor = require('@nx/workspace/src/executors/run-commands/run-commands.impl').default
+      const runCommandsExecutor = require('nx/src/executors/run-commands/run-commands.impl').default
 
       success = (await runCommandsExecutor(rest as RunCommandsOptions, context)).success
     } else {
