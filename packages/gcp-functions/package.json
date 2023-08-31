@@ -1,6 +1,6 @@
 {
   "name": "@nx-extend/gcp-functions",
-  "version": "9.3.3",
+  "version": "9.3.4",
   "homepage": "https://github.com/TriPSs/nx-extend/blob/master/packages/gcp-functions/README.md",
   "bugs": {
     "url": "https://github.com/tripss/nx-extend/issues"
