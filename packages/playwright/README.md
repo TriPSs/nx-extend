@@ -1,3 +1,6 @@
+> [!IMPORTANT]  
+> This package is no longer maintained in favor of @nx/playwright
+
 # @nx-extend/playwright
 
 <a href="https://www.npmjs.com/package/@nx-extend/playwright" rel="nofollow">

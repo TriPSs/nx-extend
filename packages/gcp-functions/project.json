@@ -51,7 +51,8 @@
             "ignore": ["**/tsconfig*.json", "project.json"],
             "output": "/"
           }
-        ]
+        ],
+        "updateBuildableProjectDepsInPackageJson": true
       }
     },
     "version": {

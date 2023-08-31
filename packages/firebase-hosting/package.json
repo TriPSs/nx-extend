@@ -12,7 +12,7 @@
   "license": "MIT",
   "main": "src/index.js",
   "dependencies": {
-    "firebase-tools": "^12.4.6"
+    "firebase-tools": "^12.5.2"
   },
   "builders": "./executors.json",
   "generators": "./generators.json"

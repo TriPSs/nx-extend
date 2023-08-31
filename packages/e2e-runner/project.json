@@ -6,14 +6,21 @@
   "targets": {
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
+      "outputs": [
+        "{options.outputFile}"
+      ],
       "options": {
-        "lintFilePatterns": ["packages/e2e-runner/**/*.ts"]
+        "lintFilePatterns": [
+          "packages/e2e-runner/**/*.ts",
+          "packages/e2e-runner/migrations.json"
+        ]
       }
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/packages/e2e-runner"],
+      "outputs": [
+        "{workspaceRoot}/coverage/packages/e2e-runner"
+      ],
       "options": {
         "jestConfig": "packages/e2e-runner/jest.config.ts",
         "passWithNoTests": true
@@ -21,7 +28,9 @@
     },
     "build": {
       "executor": "@nx/js:tsc",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "dist/packages/e2e-runner",
         "tsConfig": "packages/e2e-runner/tsconfig.lib.json",
@@ -49,8 +58,14 @@
             "input": "./packages/e2e-runner",
             "glob": "executors.json",
             "output": "."
+          },
+          {
+            "input": "./packages/e2e-runner",
+            "glob": "migrations.json",
+            "output": "."
           }
-        ]
+        ],
+        "updateBuildableProjectDepsInPackageJson": true
       }
     },
     "version": {
