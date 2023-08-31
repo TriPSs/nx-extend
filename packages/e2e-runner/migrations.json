@@ -1,0 +1,9 @@
+{
+  "generators": {
+    "update-7.0.0": {
+      "version": "7.0.0",
+      "description": "Migrate from runner playwright to @nx/playwright",
+      "implementation": "./src/migrations/update-7.0.0/update-7.0.0"
+    }
+  }
+}

@@ -10,29 +10,63 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "lib": ["es2017", "dom"],
+    "lib": [
+      "es2017",
+      "dom"
+    ],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@nx-extend/changelog-notify": ["packages/changelog-notify/src/index.ts"],
-      "@nx-extend/core": ["packages/core/src/index.ts"],
-      "@nx-extend/e2e-runner": ["packages/e2e-runner/src/index.ts"],
-      "@nx-extend/firebase-hosting": ["packages/firebase-hosting/src/index.ts"],
-      "@nx-extend/gcp-cloud-run": ["packages/gcp-cloud-run/src/index.ts"],
+      "@nx-extend/changelog-notify": [
+        "packages/changelog-notify/src/index.ts"
+      ],
+      "@nx-extend/core": [
+        "packages/core/src/index.ts"
+      ],
+      "@nx-extend/e2e-runner": [
+        "packages/e2e-runner/src/index.ts"
+      ],
+      "@nx-extend/firebase-hosting": [
+        "packages/firebase-hosting/src/index.ts"
+      ],
+      "@nx-extend/gcp-cloud-run": [
+        "packages/gcp-cloud-run/src/index.ts"
+      ],
       "@nx-extend/gcp-deployment-manager": [
         "packages/gcp-deployment-manager/src/index.ts"
       ],
-      "@nx-extend/gcp-functions": ["packages/gcp-functions/src/index.ts"],
-      "@nx-extend/gcp-secrets": ["packages/gcp-secrets/src/index.ts"],
-      "@nx-extend/gcp-storage": ["packages/gcp-storage/src/index.ts"],
-      "@nx-extend/gcp-task-runner": ["packages/gcp-task-runner/src/index.ts"],
-      "@nx-extend/github-pages": ["packages/github-pages/src/index.ts"],
-      "@nx-extend/playwright": ["packages/playwright/src/index.ts"],
-      "@nx-extend/strapi": ["packages/strapi/src/index.ts"],
-      "@nx-extend/translations": ["packages/translations/src/index.ts"],
-      "@nx-extend/vercel": ["packages/vercel/src/index.ts"]
+      "@nx-extend/gcp-functions": [
+        "packages/gcp-functions/src/index.ts"
+      ],
+      "@nx-extend/gcp-secrets": [
+        "packages/gcp-secrets/src/index.ts"
+      ],
+      "@nx-extend/gcp-storage": [
+        "packages/gcp-storage/src/index.ts"
+      ],
+      "@nx-extend/gcp-task-runner": [
+        "packages/gcp-task-runner/src/index.ts"
+      ],
+      "@nx-extend/github-pages": [
+        "packages/github-pages/src/index.ts"
+      ],
+      "@nx-extend/playwright": [
+        "packages/playwright/src/index.ts"
+      ],
+      "@nx-extend/strapi": [
+        "packages/strapi/src/index.ts"
+      ],
+      "@nx-extend/translations": [
+        "packages/translations/src/index.ts"
+      ],
+      "@nx-extend/vercel": [
+        "packages/vercel/src/index.ts"
+      ]
     }
   },
-  "exclude": ["node_modules", "tmp"]
+  "exclude": [
+    "node_modules",
+    "tmp"
+  ]
 }

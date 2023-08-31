@@ -12,5 +12,11 @@
     "type": "git",
     "url": "git+https://github.com/tripss/nx-extend"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "nx-migrations": {
+    "migrations": "./migrations.json"
+  },
+  "dependencies": {
+    "@nx/devkit": "16.7.4"
+  }
 }
