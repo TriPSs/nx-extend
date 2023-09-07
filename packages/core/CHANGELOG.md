@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [4.4.0](https://github.com/TriPSs/nx-extend/compare/core@4.3.2...core@4.4.0) (2023-09-07)
+
+
+### Features
+
+* **core:** Group migrations together ([81a34dd](https://github.com/TriPSs/nx-extend/commit/81a34ddc834791c2d6b49a63a22977a67d8483e7))
+
+
+
 ## [4.3.2](https://github.com/TriPSs/nx-extend/compare/core@4.3.1...core@4.3.2) (2023-08-31)
 
 
