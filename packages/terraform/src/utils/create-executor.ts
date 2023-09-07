@@ -22,7 +22,7 @@ export function createExecutor(command: string) {
     }
 
     const { sourceRoot } = context.workspace.projects[context.projectName]
-    const { backendConfig = [], planFile, ciMode, autoApproval } = options
+    const { backendConfig = [], planFile, ciMode, autoApproval, formatWrite } = options
 
     let env = {}
     if (ciMode) {
@@ -41,7 +41,10 @@ export function createExecutor(command: string) {
         ),
         command === 'plan' && planFile && `-out ${planFile}`,
         command === 'apply' && autoApproval && '-auto-approve',
-        command === 'apply' && planFile
+        command === 'apply' && planFile,
+        command === 'fmt' && '--recursive',
+        command === 'fmt' && !formatWrite && '--check --list',
+        command ==== 'fmt' && formatWrite && '--write --diff'
       ]),
       {
         cwd: sourceRoot,

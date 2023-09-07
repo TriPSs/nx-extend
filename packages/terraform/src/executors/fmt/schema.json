@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "outputCapture": "direct-nodejs",
+  "$schema": "http://json-schema.org/schema",
+  "type": "object",
+  "title": "Format executor",
+  "description": "Format",
+  "properties": {
+    "write": {
+      "type": "boolean",
+      "title": "Write to file",
+      "description": "Write to file",
+      "default": false
+    }
+  }
+}
