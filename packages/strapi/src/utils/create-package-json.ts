@@ -1,4 +1,4 @@
-import { readJsonFile, writeJsonFile } from '@nx/devkit'
+import { detectPackageManager, readJsonFile, writeJsonFile } from '@nx/devkit'
 import { createLockFile, createPackageJson as generatePackageJson } from '@nx/js'
 import { readCachedProjectGraph } from '@nx/workspace/src/core/project-graph'
 import { existsSync,writeFileSync } from 'fs'
@@ -55,8 +55,8 @@ export async function createPackageJson(
 
   if (generateLockFile) {
     writeFileSync(
-      `${outputPath}/${getLockFileName()}`,
-      createLockFile(packageJson),
+      `${outputPath}/${getLockFileName(detectPackageManager())}`,
+      createLockFile(packageJson, readCachedProjectGraph()),
       {
         encoding: 'utf-8'
       }

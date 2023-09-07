@@ -1,5 +1,6 @@
 import {
-  ExecutorContext,
+  detectPackageManager,
+  ExecutorContext, getPackageManagerCommand,
   logger,
   readJsonFile,
   writeJsonFile
@@ -103,8 +104,8 @@ export const generatePackageJson = (
 
   if (generateLockFile) {
     fs.writeFileSync(
-      `${options.outputPath}/${getLockFileName()}`,
-      createLockFile(packageJson),
+      `${options.outputPath}/${getLockFileName(detectPackageManager())}`,
+      createLockFile(packageJson, readCachedProjectGraph()),
       {
         encoding: 'utf-8'
       }
