@@ -44,7 +44,7 @@ export function createExecutor(command: string) {
         command === 'apply' && planFile,
         command === 'fmt' && '--recursive',
         command === 'fmt' && !formatWrite && '--check --list',
-        command ==== 'fmt' && formatWrite && '--write --diff'
+        command === 'fmt' && formatWrite && '--write --diff'
       ]),
       {
         cwd: sourceRoot,
