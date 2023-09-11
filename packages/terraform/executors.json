@@ -1,5 +1,10 @@
 {
   "executors": {
+    "fmt": {
+      "implementation": "./src/executors/fmt/fmt.impl",
+      "schema": "./src/executors/fmt/schema.json",
+      "description": "fmt executor"
+    },
     "plan": {
       "implementation": "./src/executors/plan/plan.impl",
       "schema": "./src/executors/plan/schema.json",
@@ -17,6 +22,11 @@
     }
   },
   "builders": {
+    "fmt": {
+      "implementation": "./src/executors/fmt/fmt.impl",
+      "schema": "./src/executors/fmt/schema.json",
+      "description": "fmt executor"
+    },
     "plan": {
       "implementation": "./src/executors/plan/plan.impl",
       "schema": "./src/executors/plan/schema.json",
