@@ -2,6 +2,20 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [3.2.0](https://github.com/TriPSs/nx-extend/compare/terraform@3.1.2...terraform@3.2.0) (2023-09-11)
+
+
+### Bug Fixes
+
+* **terraform:** strict equality check for fmt command string ([132a329](https://github.com/TriPSs/nx-extend/commit/132a32956f40d60746bf6573b58bcd4d0ace1fc2))
+
+
+### Features
+
+* **terraform:** add fmt executor ([0b0d35d](https://github.com/TriPSs/nx-extend/commit/0b0d35dd1f8e709c357af27d88dcbfb3752ef2bc))
+
+
+
 ## [3.1.2](https://github.com/TriPSs/nx-extend/compare/terraform@3.1.1...terraform@3.1.2) (2023-08-31)
 
 
