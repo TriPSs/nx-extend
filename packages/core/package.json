@@ -3,24 +3,6 @@
   "version": "4.4.0",
   "main": "src/index.js",
   "nx-migrations": {
-    "migrations": "./migrations.json",
-    "packageGroup": [
-      "@nx-extend/changelog-notify",
-      "@nx-extend/e2e-runner",
-      "@nx-extend/firebase-hosting",
-      "@nx-extend/gcp-cloud-run",
-      "@nx-extend/gcp-deployment-manager",
-      "@nx-extend/gcp-functions",
-      "@nx-extend/gcp-secrets",
-      "@nx-extend/gcp-storage",
-      "@nx-extend/gcp-task-runner",
-      "@nx-extend/github-pages",
-      "@nx-extend/playwright",
-      "@nx-extend/pulumi",
-      "@nx-extend/strapi",
-      "@nx-extend/terraform",
-      "@nx-extend/translations",
-      "@nx-extend/vercel"
-    ]
+    "migrations": "./migrations.json"
   }
 }
