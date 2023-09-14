@@ -1,5 +1,5 @@
 import { ExecutorContext } from '@nx/devkit'
-import { buildCommand, USE_VERBOSE_LOGGING } from '@nx-extend/core'
+import { buildCommand, USE_VERBOSE_LOGGING_MINIMAL } from '@nx-extend/core'
 import { execSync } from 'child_process'
 import { which } from 'shelljs'
 
@@ -28,7 +28,7 @@ export default async function creatExecutor(
       options.skipPreview && '--skip-preview',
       options.yes && '--yes',
       options.suppressOutputs && '--suppress-outputs',
-      USE_VERBOSE_LOGGING && '--debug',
+      USE_VERBOSE_LOGGING_MINIMAL && '--debug',
       options.json && '--json'
     ]),
     {
