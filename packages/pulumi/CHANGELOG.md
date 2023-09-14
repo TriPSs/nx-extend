@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [3.2.2](https://github.com/TriPSs/nx-extend/compare/pulumi@3.2.1...pulumi@3.2.2) (2023-09-14)
+
+
+### Bug Fixes
+
+* eslint does not support typescript ([24b4fba](https://github.com/TriPSs/nx-extend/commit/24b4fbaa0432edf93d960292d3f1c440dfa351f7))
+
+
+
 ## [3.2.1](https://github.com/TriPSs/nx-extend/compare/pulumi@3.2.0...pulumi@3.2.1) (2023-08-31)
 
 
