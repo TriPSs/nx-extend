@@ -11,7 +11,7 @@ export interface UpOptions {
   json?: boolean
 }
 
-export default async function creatExecutor(
+export default async function createExecutor(
   options: UpOptions,
   context: ExecutorContext
 ): Promise<{ success: boolean }> {
