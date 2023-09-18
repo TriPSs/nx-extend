@@ -2,6 +2,17 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [3.2.4](https://github.com/TriPSs/nx-extend/compare/pulumi@3.2.3...pulumi@3.2.4) (2023-09-18)
+
+
+### Bug Fixes
+
+* eslint breaking import order ([5c507d4](https://github.com/TriPSs/nx-extend/commit/5c507d4f2e68e9c49ac5c21acae05c91faead640)), closes [#157](https://github.com/TriPSs/nx-extend/issues/157)
+* eslint breaking import order ([#158](https://github.com/TriPSs/nx-extend/issues/158)) ([1f88e4d](https://github.com/TriPSs/nx-extend/commit/1f88e4d7d471065c3274a36453887189ce39ca0a)), closes [#157](https://github.com/TriPSs/nx-extend/issues/157)
+* typo ([34b5437](https://github.com/TriPSs/nx-extend/commit/34b5437c336f17ccd39a8998a31bbb82660a8c37))
+
+
+
 ## [3.2.3](https://github.com/TriPSs/nx-extend/compare/pulumi@3.2.2...pulumi@3.2.3) (2023-09-14)
 
 
