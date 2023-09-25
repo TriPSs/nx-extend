@@ -2,6 +2,22 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [3.3.0](https://github.com/TriPSs/nx-extend/compare/pulumi@3.2.3...pulumi@3.3.0) (2023-09-25)
+
+
+### Bug Fixes
+
+* eslint breaking import order ([5c507d4](https://github.com/TriPSs/nx-extend/commit/5c507d4f2e68e9c49ac5c21acae05c91faead640)), closes [#157](https://github.com/TriPSs/nx-extend/issues/157)
+* eslint breaking import order ([#158](https://github.com/TriPSs/nx-extend/issues/158)) ([1f88e4d](https://github.com/TriPSs/nx-extend/commit/1f88e4d7d471065c3274a36453887189ce39ca0a)), closes [#157](https://github.com/TriPSs/nx-extend/issues/157)
+* typo ([34b5437](https://github.com/TriPSs/nx-extend/commit/34b5437c336f17ccd39a8998a31bbb82660a8c37))
+
+
+### Features
+
+* add helper for strong-typed stack references ([cd427c1](https://github.com/TriPSs/nx-extend/commit/cd427c13503a5847faae141406685497c60c3d23))
+
+
+
 ## [3.2.4](https://github.com/TriPSs/nx-extend/compare/pulumi@3.2.3...pulumi@3.2.4) (2023-09-18)
 
 
