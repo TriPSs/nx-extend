@@ -4,7 +4,9 @@ import { execSync } from 'child_process'
 import { which } from 'shelljs'
 
 export interface RefreshOptions {
-  stack?: string
+  stack?: string,
+  skipPreview?: boolean,
+  yes?: boolean,
 }
 
 export default async function createExecutor(
@@ -21,7 +23,9 @@ export default async function createExecutor(
     buildCommand([
       'PULUMI_EXPERIMENTAL=true',
       'pulumi refresh',
-      options.stack && `--stack=${options.stack}`
+      options.stack && `--stack=${options.stack}`,
+      options.skipPreview && '--skip-preview',
+      options.yes && '--yes'
     ]),
     {
       cwd: sourceRoot,
