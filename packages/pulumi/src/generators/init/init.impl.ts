@@ -1,4 +1,11 @@
 import {
+  buildCommand,
+  DefaultGeneratorOptions,
+  execCommand,
+  NormalizedSchema,
+  normalizeOptions
+} from '@nx-extend/core'
+import {
   addDependenciesToPackageJson,
   addProjectConfiguration,
   generateFiles,
@@ -9,13 +16,6 @@ import {
   runTasksInSerial,
   Tree
 } from '@nx/devkit'
-import {
-  buildCommand,
-  DefaultGeneratorOptions,
-  execCommand,
-  NormalizedSchema,
-  normalizeOptions
-} from '@nx-extend/core'
 import { readFileSync, unlinkSync } from 'fs'
 import { join } from 'path'
 import { which } from 'shelljs'
@@ -133,6 +133,10 @@ export default async function (tree: Tree, rawOptions: InitOptions) {
       },
       preview: {
         executor: '@nx-extend/pulumi:preview',
+        options: {}
+      },
+      refresh: {
+        executor: '@nx-extend/pulumi:refresh',
         options: {}
       }
     },
