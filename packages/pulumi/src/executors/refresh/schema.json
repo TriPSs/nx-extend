@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "outputCapture": "direct-nodejs",
+  "$schema": "http://json-schema.org/schema",
+  "type": "object",
+  "title": "Refresh executor",
+  "description": "Refresh",
+  "properties": {}
+}

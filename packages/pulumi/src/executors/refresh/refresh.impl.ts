@@ -3,12 +3,12 @@ import { ExecutorContext } from '@nx/devkit'
 import { execSync } from 'child_process'
 import { which } from 'shelljs'
 
-export interface UpOptions {
+export interface RefreshOptions {
   stack?: string
 }
 
 export default async function createExecutor(
-  options: UpOptions,
+  options: RefreshOptions,
   context: ExecutorContext
 ): Promise<{ success: boolean }> {
   if (!which('pulumi')) {
@@ -18,7 +18,11 @@ export default async function createExecutor(
   const { sourceRoot } = context.workspace.projects[context.projectName]
 
   execSync(
-    buildCommand(['pulumi up', options.stack && `--stack=${options.stack}`]),
+    buildCommand([
+      'PULUMI_EXPERIMENTAL=true',
+      'pulumi refresh',
+      options.stack && `--stack=${options.stack}`
+    ]),
     {
       cwd: sourceRoot,
       stdio: 'inherit'
