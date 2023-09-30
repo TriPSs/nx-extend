@@ -2,6 +2,72 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [3.3.0](https://github.com/TriPSs/nx-extend/compare/pulumi@3.2.3...pulumi@3.3.0) (2023-09-25)
+
+
+### Bug Fixes
+
+* eslint breaking import order ([5c507d4](https://github.com/TriPSs/nx-extend/commit/5c507d4f2e68e9c49ac5c21acae05c91faead640)), closes [#157](https://github.com/TriPSs/nx-extend/issues/157)
+* eslint breaking import order ([#158](https://github.com/TriPSs/nx-extend/issues/158)) ([1f88e4d](https://github.com/TriPSs/nx-extend/commit/1f88e4d7d471065c3274a36453887189ce39ca0a)), closes [#157](https://github.com/TriPSs/nx-extend/issues/157)
+* typo ([34b5437](https://github.com/TriPSs/nx-extend/commit/34b5437c336f17ccd39a8998a31bbb82660a8c37))
+
+
+### Features
+
+* add helper for strong-typed stack references ([cd427c1](https://github.com/TriPSs/nx-extend/commit/cd427c13503a5847faae141406685497c60c3d23))
+
+
+
+## [3.2.4](https://github.com/TriPSs/nx-extend/compare/pulumi@3.2.3...pulumi@3.2.4) (2023-09-18)
+
+
+### Bug Fixes
+
+* eslint breaking import order ([5c507d4](https://github.com/TriPSs/nx-extend/commit/5c507d4f2e68e9c49ac5c21acae05c91faead640)), closes [#157](https://github.com/TriPSs/nx-extend/issues/157)
+* eslint breaking import order ([#158](https://github.com/TriPSs/nx-extend/issues/158)) ([1f88e4d](https://github.com/TriPSs/nx-extend/commit/1f88e4d7d471065c3274a36453887189ce39ca0a)), closes [#157](https://github.com/TriPSs/nx-extend/issues/157)
+* typo ([34b5437](https://github.com/TriPSs/nx-extend/commit/34b5437c336f17ccd39a8998a31bbb82660a8c37))
+
+
+
+## [3.2.3](https://github.com/TriPSs/nx-extend/compare/pulumi@3.2.2...pulumi@3.2.3) (2023-09-14)
+
+
+### Bug Fixes
+
+* **pulumi:** Use minimal logging ([c32c883](https://github.com/TriPSs/nx-extend/commit/c32c883bf75cbf72e13439662087eebc954b2495)), closes [#154](https://github.com/TriPSs/nx-extend/issues/154)
+
+
+
+## [3.2.2](https://github.com/TriPSs/nx-extend/compare/pulumi@3.2.1...pulumi@3.2.2) (2023-09-14)
+
+
+### Bug Fixes
+
+* eslint does not support typescript ([24b4fba](https://github.com/TriPSs/nx-extend/commit/24b4fbaa0432edf93d960292d3f1c440dfa351f7))
+
+
+
+## [3.2.1](https://github.com/TriPSs/nx-extend/compare/pulumi@3.2.0...pulumi@3.2.1) (2023-08-31)
+
+
+
+# [3.2.0](https://github.com/TriPSs/nx-extend/compare/pulumi@3.1.3...pulumi@3.2.0) (2023-08-25)
+
+
+### Features
+
+* **pulumi:** Add support for suppress-outputs, debug, and json command-line arguments ([9b70248](https://github.com/TriPSs/nx-extend/commit/9b702485a55149221cd1334e7453cc9839668df6))
+
+
+
+## [3.1.3](https://github.com/TriPSs/nx-extend/compare/pulumi@3.1.2...pulumi@3.1.3) (2023-08-23)
+
+
+
+## [3.1.2](https://github.com/TriPSs/nx-extend/compare/pulumi@3.1.1...pulumi@3.1.2) (2023-08-23)
+
+
+
 ## [3.1.1](https://github.com/TriPSs/nx-extend/compare/pulumi@3.1.0...pulumi@3.1.1) (2023-08-06)
 
 

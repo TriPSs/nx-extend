@@ -2,6 +2,34 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [7.0.0](https://github.com/TriPSs/nx-extend/compare/e2e-runner@6.3.0...e2e-runner@7.0.0) (2023-08-31)
+
+
+### Bug Fixes
+
+* **e2e-runner:** Use correct path for `run-commands` ([d239992](https://github.com/TriPSs/nx-extend/commit/d2399921f4f26719b643f5c3b03e287412be87ce)), closes [#147](https://github.com/TriPSs/nx-extend/issues/147)
+
+
+### Features
+
+* **e2e-runner:** Added migration from runner `playwright` -> `@nx/playwright` ([32770e0](https://github.com/TriPSs/nx-extend/commit/32770e02bc3e342e260a495724029a25cd2eb176))
+
+
+### BREAKING CHANGES
+
+* **e2e-runner:** This package is no longer maintained in favor of `@nx/playwright`
+
+
+
+# [6.3.0](https://github.com/TriPSs/nx-extend/compare/e2e-runner@6.2.1...e2e-runner@6.3.0) (2023-08-25)
+
+
+### Features
+
+* **e2e-runner:** Added support for `@nx/playwright` ([f689d1e](https://github.com/TriPSs/nx-extend/commit/f689d1e594709b28b23e2b8f33429c959d7f60f2))
+
+
+
 ## [6.2.1](https://github.com/TriPSs/nx-extend/compare/e2e-runner@6.2.0...e2e-runner@6.2.1) (2023-08-06)
 
 

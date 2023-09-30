@@ -1,10 +1,14 @@
-import { buildCommand } from '@nx-extend/core'
+import { buildCommand, USE_VERBOSE_LOGGING_MINIMAL } from '@nx-extend/core'
 import { ExecutorContext } from '@nx/devkit'
 import { execSync } from 'child_process'
 import { which } from 'shelljs'
 
 export interface UpOptions {
-  stack?: string
+  stack?: string,
+  skipPreview?: boolean
+  yes?: boolean
+  suppressOutputs?: boolean
+  json?: boolean
 }
 
 export default async function createExecutor(
@@ -18,7 +22,15 @@ export default async function createExecutor(
   const { sourceRoot } = context.workspace.projects[context.projectName]
 
   execSync(
-    buildCommand(['pulumi up', options.stack && `--stack=${options.stack}`]),
+    buildCommand([
+      'pulumi up',
+      options.stack && `--stack=${options.stack}`,
+      options.skipPreview && '--skip-preview',
+      options.yes && '--yes',
+      options.suppressOutputs && '--suppress-outputs',
+      USE_VERBOSE_LOGGING_MINIMAL && '--debug',
+      options.json && '--json'
+    ]),
     {
       cwd: sourceRoot,
       stdio: 'inherit'

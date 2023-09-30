@@ -43,7 +43,8 @@
             "glob": "executors.json",
             "output": "."
           }
-        ]
+        ],
+        "updateBuildableProjectDepsInPackageJson": true
       }
     },
     "version": {
@@ -55,7 +56,7 @@
     "publish": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "npm publish ./dist/packages/core --access public"
+        "command": "npm publish ./dist/packages/core --access public || true"
       }
     }
   },

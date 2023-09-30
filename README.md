@@ -30,7 +30,7 @@
   - `npm install --save-dev @nx-extend/playwright`
 - [Terraform](./packages/terraform/README.md)
   - `npm install --save-dev @nx-extend/terraform`
-- [Pulumi](./packages/Pulumi/README.md)
+- [Pulumi](./packages/pulumi/README.md)
   - `npm install --save-dev @nx-extend/Pulumi`
 
 ## GitHub actions

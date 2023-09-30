@@ -2,6 +2,33 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [4.4.1](https://github.com/TriPSs/nx-extend/compare/core@4.4.0...core@4.4.1) (2023-09-14)
+
+
+### Bug Fixes
+
+* **core:** Remove package group as it did not have expected effect ([1506697](https://github.com/TriPSs/nx-extend/commit/15066972ca4f9f3bad7d1bde0ea26276f85b1bf0))
+* **pulumi:** Use minimal logging ([c32c883](https://github.com/TriPSs/nx-extend/commit/c32c883bf75cbf72e13439662087eebc954b2495)), closes [#154](https://github.com/TriPSs/nx-extend/issues/154)
+
+
+
+# [4.4.0](https://github.com/TriPSs/nx-extend/compare/core@4.3.2...core@4.4.0) (2023-09-07)
+
+
+### Features
+
+* **core:** Group migrations together ([81a34dd](https://github.com/TriPSs/nx-extend/commit/81a34ddc834791c2d6b49a63a22977a67d8483e7))
+
+
+
+## [4.3.2](https://github.com/TriPSs/nx-extend/compare/core@4.3.1...core@4.3.2) (2023-08-31)
+
+
+
+## [4.3.1](https://github.com/TriPSs/nx-extend/compare/core@4.3.0...core@4.3.1) (2023-08-25)
+
+
+
 # [4.3.0](https://github.com/TriPSs/nx-extend/compare/core@4.2.0...core@4.3.0) (2023-07-21)
 
 

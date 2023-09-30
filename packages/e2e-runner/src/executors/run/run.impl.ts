@@ -1,10 +1,10 @@
-import { ExecutorContext } from '@nx/devkit'
+import { ExecutorContext, logger } from '@nx/devkit'
 import { RunCommandsOptions } from 'nx/src/executors/run-commands/run-commands.impl'
 
 import { NxTarget, NxTargetOptions } from './utils/nx-target'
 
 export interface RunOptions {
-  runner: 'cypress' | 'playwright' | 'run-commands'
+  runner: 'cypress' | 'playwright' | '@nx/playwright' | 'run-commands'
   runnerTarget?: string
   watch?: boolean
   targets: NxTargetOptions[]
@@ -43,13 +43,20 @@ export async function endToEndRunner(
 
       success = (await cypressExecutor(rest, context)).success
     } else if (runner === 'playwright') {
+      logger.warn('Runner "playwright" is no longer maintained in favor of @nx/playwright!')
+
       // eslint-disable-next-line @typescript-eslint/no-var-requires
       const playwrightExecutor = require('@nx-extend/playwright/src/executors/test/test.impl').default
 
       success = (await playwrightExecutor(rest, context)).success
+    } else if (runner === '@nx/playwright') {
+      // eslint-disable-next-line @typescript-eslint/no-var-requires
+      const playwrightExecutor = require('@nx/playwright').playwrightExecutor
+
+      success = (await playwrightExecutor(rest, context)).success
     } else if (runner === 'run-commands') {
       // eslint-disable-next-line @typescript-eslint/no-var-requires
-      const runCommandsExecutor = require('@nx/workspace/src/executors/run-commands/run-commands.impl').default
+      const runCommandsExecutor = require('nx/src/executors/run-commands/run-commands.impl').default
 
       success = (await runCommandsExecutor(rest as RunCommandsOptions, context)).success
     } else {

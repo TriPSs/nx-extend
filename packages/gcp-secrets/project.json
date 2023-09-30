@@ -44,7 +44,8 @@
             "glob": "executors.json",
             "output": "."
           }
-        ]
+        ],
+        "updateBuildableProjectDepsInPackageJson": true
       }
     },
     "version": {
@@ -56,7 +57,7 @@
     "publish": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "npm publish ./dist/packages/gcp-secrets --access public"
+        "command": "npm publish ./dist/packages/gcp-secrets --access public || true"
       }
     }
   },

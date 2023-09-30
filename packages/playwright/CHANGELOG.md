@@ -2,6 +2,24 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [5.0.0](https://github.com/TriPSs/nx-extend/compare/playwright@4.1.1...playwright@5.0.0) (2023-08-31)
+
+
+### Code Refactoring
+
+* **playwright:** Mark package as no longer maintained ([1f2bb47](https://github.com/TriPSs/nx-extend/commit/1f2bb47a29ec819b05c34f044e6e97123869c64a))
+
+
+### BREAKING CHANGES
+
+* **playwright:** This package is no longer maintained in favor of `@nx/playwright`
+
+
+
+## [4.1.1](https://github.com/TriPSs/nx-extend/compare/playwright@4.1.0...playwright@4.1.1) (2023-08-25)
+
+
+
 # [4.1.0](https://github.com/TriPSs/nx-extend/compare/playwright@4.0.0...playwright@4.1.0) (2023-06-22)
 
 

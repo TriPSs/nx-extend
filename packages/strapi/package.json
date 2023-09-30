@@ -1,6 +1,6 @@
 {
   "name": "@nx-extend/strapi",
-  "version": "6.1.3",
+  "version": "6.1.7",
   "keywords": [
     "nx",
     "strapi"
@@ -16,8 +16,8 @@
   "license": "MIT",
   "main": "src/index.js",
   "dependencies": {
-    "@strapi/generate-new": "^4.12.1",
-    "@strapi/strapi": "^4.12.1"
+    "@strapi/generate-new": "^4.13.4",
+    "@strapi/strapi": "^4.13.4"
   },
   "builders": "./executors.json",
   "generators": "./generators.json"
