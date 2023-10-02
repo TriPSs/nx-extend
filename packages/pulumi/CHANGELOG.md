@@ -2,6 +2,22 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [3.4.0](https://github.com/TriPSs/nx-extend/compare/pulumi@3.3.0...pulumi@3.4.0) (2023-10-02)
+
+
+### Bug Fixes
+
+* add target ([70b59d8](https://github.com/TriPSs/nx-extend/commit/70b59d8fbb33006ecca86eb90e63192f85a88ad0))
+* compile issues ([2168ba2](https://github.com/TriPSs/nx-extend/commit/2168ba2bad576669dbec169cfd9fa51f8837c6d5))
+* issue making it impossible to use stack references ([#162](https://github.com/TriPSs/nx-extend/issues/162)) ([13f3b71](https://github.com/TriPSs/nx-extend/commit/13f3b71af45d4bc15530ad5bc873525b082fdfcb))
+
+
+### Features
+
+* refresh executor ([6407609](https://github.com/TriPSs/nx-extend/commit/640760984a777c730c8bfcdd391af2f3eb100766))
+
+
+
 # [3.3.0](https://github.com/TriPSs/nx-extend/compare/pulumi@3.2.3...pulumi@3.3.0) (2023-09-25)
 
 
