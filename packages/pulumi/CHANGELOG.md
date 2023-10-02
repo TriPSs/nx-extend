@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [3.4.1](https://github.com/TriPSs/nx-extend/compare/pulumi@3.4.0...pulumi@3.4.1) (2023-10-02)
+
+
+### Bug Fixes
+
+* **pulumi:** Foce release ([cbd5e01](https://github.com/TriPSs/nx-extend/commit/cbd5e01f355ac736a6f296ba6871bfe41440a469))
+
+
+
 # [3.4.0](https://github.com/TriPSs/nx-extend/compare/pulumi@3.3.0...pulumi@3.4.0) (2023-10-02)
 
 
