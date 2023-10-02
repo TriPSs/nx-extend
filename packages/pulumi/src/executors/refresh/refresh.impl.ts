@@ -1,18 +1,16 @@
-import { buildCommand, USE_VERBOSE_LOGGING_MINIMAL } from '@nx-extend/core'
+import { buildCommand } from '@nx-extend/core'
 import { ExecutorContext } from '@nx/devkit'
 import { execSync } from 'child_process'
 import { which } from 'shelljs'
 
-export interface UpOptions {
+export interface RefreshOptions {
   stack?: string,
-  skipPreview?: boolean
-  yes?: boolean
-  suppressOutputs?: boolean
-  json?: boolean
+  skipPreview?: boolean,
+  yes?: boolean,
 }
 
 export default async function createExecutor(
-  options: UpOptions,
+  options: RefreshOptions,
   context: ExecutorContext
 ): Promise<{ success: boolean }> {
   if (!which('pulumi')) {
@@ -23,13 +21,11 @@ export default async function createExecutor(
 
   execSync(
     buildCommand([
-      'pulumi up',
+      'PULUMI_EXPERIMENTAL=true',
+      'pulumi refresh',
       options.stack && `--stack=${options.stack}`,
       options.skipPreview && '--skip-preview',
-      options.yes && '--yes',
-      options.suppressOutputs && '--suppress-outputs',
-      USE_VERBOSE_LOGGING_MINIMAL && '--debug',
-      options.json && '--json'
+      options.yes && '--yes'
     ]),
     {
       cwd: sourceRoot,
