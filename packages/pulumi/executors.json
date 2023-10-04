@@ -9,6 +9,11 @@
       "implementation": "./src/executors/preview/preview.impl",
       "schema": "./src/executors/preview/schema.json",
       "description": "preview executor"
+    },
+    "refresh": {
+      "implementation": "./src/executors/refresh/refresh.impl",
+      "schema": "./src/executors/refresh/schema.json",
+      "description": "refresh executor"
     }
   },
   "builders": {
