@@ -1,4 +1,4 @@
-import { parseTargetString, readJsonFile, writeJsonFile } from '@nx/devkit'
+import { parseTargetString, readJsonFile, workspaceRoot, writeJsonFile } from '@nx/devkit'
 import { targetToTargetString } from '@nx/devkit/src/executors/parse-target-string'
 import { readCachedProjectGraph } from '@nx/workspace/src/core/project-graph'
 import { buildCommand, copyFile, execCommand, USE_VERBOSE_LOGGING } from '@nx-extend/core'
@@ -22,6 +22,7 @@ export interface BuildOptions {
   framework?: string
   outputPath?: string
   nodeVersion?: '16.x'
+  config: string
 }
 
 export function buildExecutor(
@@ -117,6 +118,7 @@ export function buildExecutor(
     'npx vercel build',
     `--output ${outputDirectory}/.vercel/output`,
     context.configurationName === 'production' && '--prod',
+    options.config && `--local-config=${join(workspaceRoot, options.config)}`,
     vercelToken && `--token=${vercelToken}`,
 
     USE_VERBOSE_LOGGING && '--debug'
