@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [6.1.3](https://github.com/TriPSs/nx-extend/compare/gcp-secrets@6.1.2...gcp-secrets@6.1.3) (2023-10-05)
+
+
+### Bug Fixes
+
+* **gcp-secrets:** Load dotenv ([1550608](https://github.com/TriPSs/nx-extend/commit/1550608a2f348c767cc2e78b1f71e2883a8399d9))
+
+
+
 ## [6.1.2](https://github.com/TriPSs/nx-extend/compare/gcp-secrets@6.1.1...gcp-secrets@6.1.2) (2023-08-31)
 
 
