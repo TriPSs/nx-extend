@@ -2,6 +2,8 @@ import { ExecutorContext, logger } from '@nx/devkit'
 import { buildCommand, execCommand } from '@nx-extend/core'
 import { existsSync, mkdirSync, unlinkSync, writeFileSync } from 'fs'
 
+import 'dotenv/config'
+
 import { addOrUpdateSecret } from '../../utils/add-or-update-secret'
 import { decryptFile, isEncryptionKeySet } from '../../utils/encryption'
 import { getFileContent, getFileName, storeFile } from '../../utils/file'
