@@ -1,5 +1,5 @@
 import { ExecutorContext } from '@nx/devkit'
-import { buildAdmin } from '@strapi/strapi/lib/commands/builders'
+import { buildAdmin } from '@strapi/strapi/dist/commands/builders'
 import tsUtils from '@strapi/typescript-utils'
 import { join } from 'path'
 
