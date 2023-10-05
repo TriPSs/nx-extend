@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [5.1.0](https://github.com/TriPSs/nx-extend/compare/vercel@5.0.2...vercel@5.1.0) (2023-10-04)
+
+
+### Features
+
+* **vercel:** Added `config` option to build executor ([e2721da](https://github.com/TriPSs/nx-extend/commit/e2721daa2061474b6692033d944f82da04d25881))
+
+
+
 ## [5.0.2](https://github.com/TriPSs/nx-extend/compare/vercel@5.0.1...vercel@5.0.2) (2023-08-31)
 
 
