@@ -1,6 +1,6 @@
 import {
   detectPackageManager,
-  ExecutorContext, getPackageManagerCommand,
+  ExecutorContext,
   logger,
   readJsonFile,
   writeJsonFile

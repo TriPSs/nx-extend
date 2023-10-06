@@ -1,7 +1,7 @@
 import { parseTargetString, readJsonFile, workspaceRoot, writeJsonFile } from '@nx/devkit'
 import { targetToTargetString } from '@nx/devkit/src/executors/parse-target-string'
 import { readCachedProjectGraph } from '@nx/workspace/src/core/project-graph'
-import { buildCommand, copyFile, execCommand, USE_VERBOSE_LOGGING } from '@nx-extend/core'
+import { buildCommand, copyFile, execPackageManagerCommand, USE_VERBOSE_LOGGING } from '@nx-extend/core'
 import { existsSync, rmSync } from 'fs'
 import { join } from 'path'
 
@@ -74,8 +74,8 @@ export function buildExecutor(
   const vercelEnvironment = context.configurationName === 'production' ? 'production' : 'preview'
 
   // Pull latest
-  const { success: pullSuccess } = execCommand(buildCommand([
-    'npx vercel pull --yes',
+  const { success: pullSuccess } = execPackageManagerCommand(buildCommand([
+    'vercel pull --yes',
     `--environment=${vercelEnvironment}`,
     vercelToken && `--token=${vercelToken}`,
 
@@ -114,8 +114,8 @@ export function buildExecutor(
     }
   })
 
-  const { success } = execCommand(buildCommand([
-    'npx vercel build',
+  const { success } = execPackageManagerCommand(buildCommand([
+    'vercel build',
     `--output ${outputDirectory}/.vercel/output`,
     context.configurationName === 'production' && '--prod',
     options.config && `--local-config=${join(workspaceRoot, options.config)}`,

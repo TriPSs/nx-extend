@@ -1,6 +1,6 @@
 import { ExecutorContext, logger } from '@nx/devkit'
 import { createProjectGraphAsync } from '@nx/workspace/src/core/project-graph'
-import { buildCommand, execCommand } from '@nx-extend/core'
+import { buildCommand, execPackageManagerCommand } from '@nx-extend/core'
 import { join } from 'path'
 
 import { injectProjectRoot } from '../../utils'
@@ -67,9 +67,9 @@ export async function extractExectutor(
 
   try {
     if (extractor === 'formatjs') {
-      execCommand(
+      execPackageManagerCommand(
         buildCommand([
-          'npx formatjs extract',
+          'formatjs extract',
           `'${join(templatedSourceDirectory, options.pattern)}'`,
           `--out-file='${templatedOutputDirectory}/${defaultLanguage}.json'`,
           "--id-interpolation-pattern='[sha512:contenthash:base64:6]'",

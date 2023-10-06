@@ -1,4 +1,4 @@
-import { buildCommand, execCommand } from '@nx-extend/core'
+import { buildCommand, execPackageManagerCommand } from '@nx-extend/core'
 
 import type { ExecutorContext } from '@nx/devkit'
 
@@ -16,18 +16,15 @@ export async function codegenExecutor(
   const { url, loadStorage } = options
 
   return Promise.resolve(
-    execCommand(
-      buildCommand([
-        'npx playwright codegen',
-        url,
-        loadStorage && `--load-storage ${options.loadStorage}`
+    execPackageManagerCommand(buildCommand([
+      'playwright codegen',
+      url,
+      loadStorage && `--load-storage ${options.loadStorage}`
 
-        // TODO:: Map all other options
-      ]),
-      {
-        cwd: root
-      }
-    )
+      // TODO:: Map all other options
+    ]), {
+      cwd: root
+    })
   )
 }
 
