@@ -3323,9 +3323,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@google-cloud/storage@npm:7.1.0, @google-cloud/storage@npm:^7.1.0":
-  version: 7.1.0
-  resolution: "@google-cloud/storage@npm:7.1.0"
+"@google-cloud/storage@npm:7.2.0, @google-cloud/storage@npm:^7.2.0":
+  version: 7.2.0
+  resolution: "@google-cloud/storage@npm:7.2.0"
   dependencies:
     "@google-cloud/paginator": ^5.0.0
     "@google-cloud/projectify": ^4.0.0
@@ -3335,7 +3335,7 @@ __metadata:
     compressible: ^2.0.12
     duplexify: ^4.0.0
     ent: ^2.2.0
-    fast-xml-parser: ^4.2.2
+    fast-xml-parser: ^4.3.0
     gaxios: ^6.0.2
     google-auth-library: ^9.0.0
     mime: ^3.0.0
@@ -3344,7 +3344,7 @@ __metadata:
     retry-request: ^6.0.0
     teeny-request: ^9.0.0
     uuid: ^8.0.0
-  checksum: dca9d6ffc87bdded326574152011371bbcc29dbb455b2444c57e3aa02889c40789a5b46806e1ef83286a09ca828fb5d96f5480e5ed7645cd69ab7d87b692f713
+  checksum: 8f18be25551f8f4f564171d00ac6ec1e27583d49624ab6c5af0283303f73d1b7887531af5cf5022041fb9070efbdc9c49ab92e5b94f8e46cd83bfe22e02e2fdf
   languageName: node
   linkType: hard
 
@@ -4383,7 +4383,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nx-extend/gcp-task-runner@workspace:packages/gcp-task-runner"
   dependencies:
-    "@google-cloud/storage": 7.1.0
+    "@google-cloud/storage": 7.2.0
   languageName: unknown
   linkType: soft
 
@@ -12805,14 +12805,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fast-xml-parser@npm:^4.2.2":
-  version: 4.2.7
-  resolution: "fast-xml-parser@npm:4.2.7"
+"fast-xml-parser@npm:^4.3.0":
+  version: 4.3.2
+  resolution: "fast-xml-parser@npm:4.3.2"
   dependencies:
     strnum: ^1.0.5
   bin:
     fxparser: src/cli/cli.js
-  checksum: d8b0c9e04756f6c43fa0399428f30149acadae21350e42e26e8fe98e24e6afa6b9b00aa554453795036b00e9fee974a1b556fe2ba18be391d51a9bf1ab790e7c
+  checksum: d507ce2efa5fd13d0a5ba28bd76dd68f2fc30ad8748357c37b70f360d19417866d79e35a688af067d5bceaaa796033fa985206aef9692f7a421e1326b6e73309
   languageName: node
   linkType: hard
 
@@ -18859,7 +18859,7 @@ __metadata:
   dependencies:
     "@actions/core": ^1.10.1
     "@google-cloud/functions-framework": ^3.3.0
-    "@google-cloud/storage": ^7.1.0
+    "@google-cloud/storage": ^7.2.0
     "@jamesives/github-pages-deploy-action": ^4.4.3
     "@jscutlery/semver": ^3.1.0
     "@nx/devkit": 16.8.1

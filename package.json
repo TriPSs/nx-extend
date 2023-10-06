@@ -47,7 +47,7 @@
   },
   "devDependencies": {
     "@google-cloud/functions-framework": "^3.3.0",
-    "@google-cloud/storage": "^7.1.0",
+    "@google-cloud/storage": "^7.2.0",
     "@jamesives/github-pages-deploy-action": "^4.4.3",
     "@jscutlery/semver": "^3.1.0",
     "@nx/eslint-plugin": "16.8.1",
