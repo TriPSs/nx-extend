@@ -1,6 +1,6 @@
 import { ExecutorContext, logger } from '@nx/devkit'
 import { createProjectGraphAsync } from '@nx/workspace/src/core/project-graph'
-import { buildCommand, execPackageManagerCommand } from '@nx-extend/core'
+import { buildCommand, execPackageManagerCommand, USE_VERBOSE_LOGGING } from '@nx-extend/core'
 import { join } from 'path'
 
 import { injectProjectRoot } from '../../utils'
@@ -72,11 +72,11 @@ export async function extractExectutor(
           'formatjs extract',
           `'${join(templatedSourceDirectory, options.pattern)}'`,
           `--out-file='${templatedOutputDirectory}/${defaultLanguage}.json'`,
-          "--id-interpolation-pattern='[sha512:contenthash:base64:6]'",
+          '--id-interpolation-pattern=\'[sha512:contenthash:base64:6]\'',
           '--format=simple'
         ]),
         {
-          silent: !options.debug
+          silent: !options.debug || USE_VERBOSE_LOGGING
         }
       )
     } else {
@@ -108,11 +108,10 @@ export const getConnectedLibs = (
   blacklist: string[],
   prefix?: string
 ) =>
-  dependencies[project].filter(
-    (dep) =>
-      !dep.target.startsWith('npm:') &&
-      (!prefix || dep.target.startsWith(prefix)) &&
-      !blacklist.includes(dep.target)
+  dependencies[project].filter((dep) =>
+    !dep.target.startsWith('npm:')
+    && (!prefix || dep.target.startsWith(prefix))
+    && !blacklist.includes(dep.target)
   )
 
 export const getLibsRoot = async (

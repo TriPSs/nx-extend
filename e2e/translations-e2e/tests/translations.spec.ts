@@ -1,22 +1,24 @@
 import {
-  ensureNxProject,
   runNxCommandAsync,
   readJson,
   updateFile
 } from '@nx/plugin/testing'
+import { ensureNxProject } from '../../utils/workspace'
 
 describe('translations e2e', () => {
-  beforeEach(() => {
-    ensureNxProject('@nx-extend/translations', 'dist/packages/translations')
+  beforeAll(() => {
+    ensureNxProject([
+      '@nx-extend/core:dist/packages/core',
+      '@nx-extend/translations:dist/packages/translations'
+    ])
   })
 
+  const appName = 'translations'
   it('should be able to add', async () => {
-    await runNxCommandAsync(
-      'generate @nx/react:app test-app --style=css --no-interactive'
-    )
-    await runNxCommandAsync('generate @nx-extend/translations:add test-app')
+    await runNxCommandAsync(`generate @nx/react:app ${appName} --no-interactive --e2eTestRunner=none`)
+    await runNxCommandAsync(`generate @nx-extend/translations:add ${appName}`)
 
-    expect(readJson('apps/test-app/project.json').targets).toEqual(
+    expect(readJson(`${appName}/project.json`).targets).toEqual(
       expect.objectContaining({
         'extract-translations': {
           executor: '@nx-extend/translations:extract',
@@ -37,9 +39,9 @@ describe('translations e2e', () => {
       })
     )
 
-    expect(readJson('apps/test-app/.translationsrc.json')).toEqual({
-      extends: '../../.translationsrc.json',
-      projectName: 'test-app'
+    expect(readJson(`${appName}/.translationsrc.json`)).toEqual({
+      extends: '../.translationsrc.json',
+      projectName: appName
     })
 
     expect(readJson('.translationsrc.json')).toEqual({
@@ -54,17 +56,19 @@ describe('translations e2e', () => {
   }, 300000)
 
   it('should be able to extract translations', async () => {
-    await runNxCommandAsync(
-      'generate @nx/react:app test-app --style=css --no-interactive'
-    )
-    await runNxCommandAsync('generate @nx-extend/translations:add test-app')
-
     updateFile(
-      'apps/test-app/src/app/app.tsx',
+      `${appName}/src/app/app.tsx`,
       `
-    import { FormattedMessage } from 'react-intl'
+    import { FormattedMessage, useIntl } from 'react-intl'
 
     export function App() {
+      const intl = useIntl()
+
+      console.log(intl.formatMessage({
+        id: 'message-id-2',
+        defaultMessage: 'Message 2'
+      }))
+
       return (
         <div>
           <FormattedMessage
@@ -75,13 +79,13 @@ describe('translations e2e', () => {
     }
 
     export default App
-    `
-    )
+    `)
 
-    await runNxCommandAsync('extract-translations test-app')
+    await runNxCommandAsync(`extract-translations ${appName}`)
 
-    expect(readJson('apps/test-app/src/translations/en.json')).toEqual({
-      'message-id': 'Message'
+    expect(readJson(`${appName}/src/translations/en.json`)).toEqual({
+      'message-id': 'Message',
+      'message-id-2': 'Message 2'
     })
   }, 300000)
 })
