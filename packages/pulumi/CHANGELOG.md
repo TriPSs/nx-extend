@@ -2,6 +2,20 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [4.0.0](https://github.com/TriPSs/nx-extend/compare/pulumi@3.4.2...pulumi@4.0.0) (2023-10-31)
+
+
+### Features
+
+* Update to NX 17 ([c21accb](https://github.com/TriPSs/nx-extend/commit/c21accbed588d43cb5a53b4ce5d061722e7740f2))
+
+
+### BREAKING CHANGES
+
+* Updated to NX 17
+
+
+
 ## [3.4.2](https://github.com/TriPSs/nx-extend/compare/pulumi@3.4.1...pulumi@3.4.2) (2023-10-02)
 
 
