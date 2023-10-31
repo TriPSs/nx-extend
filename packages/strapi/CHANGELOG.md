@@ -2,6 +2,16 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [7.0.1](https://github.com/TriPSs/nx-extend/compare/strapi@7.0.0...strapi@7.0.1) (2023-10-31)
+
+
+### Bug Fixes
+
+* **strapi:** Fixed build crashing ([347b18e](https://github.com/TriPSs/nx-extend/commit/347b18e3480d32759a98b3ab598651c771c1e759))
+* **strapi:** Fixed build crashing ([#174](https://github.com/TriPSs/nx-extend/issues/174)) ([66edb2a](https://github.com/TriPSs/nx-extend/commit/66edb2ad17a0981e789787abe17408eb72887a4d))
+
+
+
 # [7.0.0](https://github.com/TriPSs/nx-extend/compare/strapi@6.1.8...strapi@7.0.0) (2023-10-31)
 
 
