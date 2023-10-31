@@ -15,3 +15,28 @@ npm install -D @nx-extend/changelog-notify
 ```
 
 ## Usage
+
+```json
+{
+  "version": {
+    "executor": "@jscutlery/semver:version",
+    "options": {
+      ...options
+    },
+    "configurations": {
+      "production": {
+        "postTargets": [
+          "<this project name>:send-release-to-chat"
+        ]
+      }
+    }
+  },
+  "send-release-to-chat": {
+    "executor": "@nx-extend/changelog-notify:google-chat",
+    "options": {
+      "tag": "${tag}",
+      "notes": "${notes}"
+    }
+  }
+}
+```

@@ -1,4 +1,4 @@
-import { buildCommand, execCommand } from '@nx-extend/core'
+import { buildCommand, execPackageManagerCommand } from '@nx-extend/core'
 
 export interface ExecutorSchema {
   site: string
@@ -12,26 +12,21 @@ export function deployExecutor(
   // context: ExecutorContext
 ): Promise<{ success: boolean }> {
   // Make sure the deployment target is defined
-  execCommand(
-    buildCommand([
-      'npx firebase target:apply',
-      `hosting ${options.site} ${options.identifier || options.site}`,
+  execPackageManagerCommand(buildCommand([
+    'firebase target:apply',
+    `hosting ${options.site} ${options.identifier || options.site}`,
 
-      options.project && `--project=${options.project}`
+    options.project && `--project=${options.project}`
+  ]))
+
+  return Promise.resolve(execPackageManagerCommand(buildCommand([
+      'firebase deploy',
+      `--only=hosting:${options.site}`,
+
+      options.project && `--project=${options.project}`,
+      options.message && `-m "${options.message}"`
     ])
-  )
-
-  return Promise.resolve(
-    execCommand(
-      buildCommand([
-        'npx firebase deploy',
-        `--only=hosting:${options.site}`,
-
-        options.project && `--project=${options.project}`,
-        options.message && `-m "${options.message}"`
-      ])
-    )
-  )
+  ))
 }
 
 export default deployExecutor

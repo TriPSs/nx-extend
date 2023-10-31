@@ -1,6 +1,6 @@
 import { logger, parseTargetString } from '@nx/devkit'
 import { readCachedProjectGraph } from '@nx/workspace/src/core/project-graph'
-import { USE_VERBOSE_LOGGING } from '@nx-extend/core'
+import { getPackageManagerExecCommand, USE_VERBOSE_LOGGING } from '@nx-extend/core'
 import * as childProcess from 'child_process'
 
 import type { RunOptions } from '../run.impl'
@@ -153,7 +153,7 @@ function launchProcess(
   const { project, target, configuration } = parseTargetString(targetString, readCachedProjectGraph())
 
   const spawnedProcess = childProcess.spawn(
-    `npx nx ${target} ${project} ${
+    `${getPackageManagerExecCommand()} nx ${target} ${project} ${
       configuration ? `--configuration=${configuration}` : ''
     }`,
     [],

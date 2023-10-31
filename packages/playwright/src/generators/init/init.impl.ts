@@ -5,9 +5,9 @@ import {
   generateFiles,
   names,
   offsetFromRoot,
+  runTasksInSerial,
   Tree
 } from '@nx/devkit'
-import { runTasksInSerial } from '@nx/workspace/src/utilities/run-tasks-in-serial'
 import {
   DefaultGeneratorOptions,
   NormalizedSchema,

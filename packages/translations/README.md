@@ -4,7 +4,7 @@
   <img src="https://badgen.net/npm/v/@nx-extend/translations" alt="@nx-extend/translations NPM package">
 </a>
 
-**Nx plugin to extract, push, pull and translate and run apps translations**.
+**Nx plugin to extract, push, pull and translate your [FormatJS](https://formatjs.io/) projects**.
 
 ## Setup
 

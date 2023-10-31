@@ -7,11 +7,13 @@ import {
   joinPathFragments,
   names,
   offsetFromRoot,
+  runTasksInSerial,
   Tree
 } from '@nx/devkit'
-import { runTasksInSerial } from '@nx/workspace/src/utilities/run-tasks-in-serial'
+import { initGenerator as jsInitGenerator } from '@nx/js'
 import * as path from 'path'
 
+import { devDependencies } from '../../../package.json'
 import { GcpDeploymentManagerGeneratorSchema } from './schema'
 
 interface NormalizedSchema extends GcpDeploymentManagerGeneratorSchema {
@@ -107,15 +109,18 @@ export default async function (
   })
 
   addFiles(host, normalizedOptions)
-
   await formatFiles(host)
+
+  await jsInitGenerator(host, {
+    skipFormat: true
+  })
 
   return runTasksInSerial(
     addDependenciesToPackageJson(
       host,
       {},
       {
-        '@google-cloud/functions-framework': '^3.2.0'
+        '@google-cloud/functions-framework': devDependencies['@google-cloud/functions-framework']
       }
     )
   )

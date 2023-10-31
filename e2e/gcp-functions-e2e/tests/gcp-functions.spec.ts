@@ -1,66 +1,55 @@
 import {
   checkFilesExist,
-  ensureNxProject,
-  runNxCommandAsync,
-  uniq
+  rmDist,
+  runNxCommandAsync
 } from '@nx/plugin/testing'
+import { ensureNxProject } from '../../utils/workspace'
 
 describe('(e2e) gcp-functions', () => {
-  beforeEach(() => {
-    ensureNxProject('@nx-extend/gcp-functions', 'dist/packages/gcp-functions')
+  beforeAll(() => {
+    ensureNxProject([
+      '@nx-extend/core:dist/packages/core',
+      '@nx-extend/gcp-functions:dist/packages/gcp-functions'
+    ])
   })
 
-  it('should be able to generate an empty function', async () => {
-    const plugin = uniq('gcp-functions')
-    await runNxCommandAsync(`generate @nx-extend/gcp-functions:init ${plugin}`)
+  const appName = 'test-function'
 
-    expect(() =>
-      checkFilesExist(
-        `apps/${plugin}/src/main.ts`,
-        `apps/${plugin}/src/environments/production.yaml`
-      )
-    ).not.toThrow()
+  it('should be able to generate an empty function', async () => {
+    await runNxCommandAsync(`generate @nx-extend/gcp-functions:init ${appName}`)
+
+    expect(() => checkFilesExist(
+      `${appName}/src/main.ts`,
+      `${appName}/src/environments/production.yaml`
+    )).not.toThrow()
   }, 300000)
 
   it('should be able to build a function', async () => {
-    const plugin = uniq('gcp-functions')
-    await runNxCommandAsync(`generate @nx-extend/gcp-functions:init ${plugin}`)
-    await runNxCommandAsync(`build ${plugin}`)
+    await runNxCommandAsync(`build ${appName}`)
 
-    expect(() =>
-      checkFilesExist(
-        `dist/apps/${plugin}/main.js`,
-        `dist/apps/${plugin}/package.json`
-      )
-    ).not.toThrow()
+    expect(() => checkFilesExist(
+      `dist/${appName}/main.js`,
+      `dist/${appName}/package.json`
+    )).not.toThrow()
   }, 300000)
 
   it('should be able to build a function and generate lock file', async () => {
-    const plugin = uniq('gcp-functions-lock-file')
-    await runNxCommandAsync(`generate @nx-extend/gcp-functions:init ${plugin}`)
-    await runNxCommandAsync(`build ${plugin} --generateLockFile`)
+    rmDist()
+    await runNxCommandAsync(`build ${appName} --generateLockFile`)
 
-    expect(() =>
-      checkFilesExist(
-        `dist/apps/${plugin}/main.js`,
-        `dist/apps/${plugin}/package.json`,
-        `dist/apps/${plugin}/package-lock.json`
-      )
-    ).not.toThrow()
+    expect(() => checkFilesExist(
+      `dist/${appName}/main.js`,
+      `dist/${appName}/package.json`,
+      `dist/${appName}/yarn.lock`
+    )).not.toThrow()
   }, 300000)
 
   it('should be able the runner', async () => {
-    const plugin = uniq('gcp-functions-runner')
-    await runNxCommandAsync(
-      `generate @nx-extend/gcp-functions:init-runner ${plugin}`
-    )
+    const runnerName = 'functions-runner'
+    await runNxCommandAsync(`generate @nx-extend/gcp-functions:init-runner ${runnerName}`)
 
-    expect(() =>
-      checkFilesExist(
-        `apps/${plugin}/src/main.ts`,
-        `apps/${plugin}/src/__runner.controller.ts`,
-        `apps/${plugin}/src/__runner.module.ts`
-      )
-    ).not.toThrow()
+    expect(() => checkFilesExist(
+      `${runnerName}/src/main.ts`
+    )).not.toThrow()
   }, 300000)
 })

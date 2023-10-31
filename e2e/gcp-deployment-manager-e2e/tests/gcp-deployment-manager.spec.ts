@@ -1,27 +1,24 @@
 import {
   checkFilesExist,
-  ensureNxProject,
-  runNxCommandAsync,
-  uniq
+  runNxCommandAsync
 } from '@nx/plugin/testing'
+import { ensureNxProject } from '../../utils/workspace'
 
 describe('gcp-deployment-manager e2e', () => {
-  beforeEach(() => {
-    ensureNxProject(
-      '@nx-extend/gcp-deployment-manager',
-      'dist/packages/gcp-deployment-manager'
-    )
+  beforeAll(() => {
+    ensureNxProject([
+      '@nx-extend/core:dist/packages/core',
+      '@nx-extend/gcp-deployment-manager:dist/packages/gcp-deployment-manager'
+    ])
   })
 
+  const appName = 'deployment-manager'
+
   it('should be able to generate an deployment manager app', async () => {
-    const plugin = uniq('gcp-deployment-manager')
+    await runNxCommandAsync(`generate @nx-extend/gcp-deployment-manager:init ${appName}`)
 
-    await runNxCommandAsync(
-      `generate @nx-extend/gcp-deployment-manager:init ${plugin}`
-    )
-
-    expect(() =>
-      checkFilesExist(`apps/${plugin}/src/deployment.yml`)
-    ).not.toThrow()
+    expect(() => checkFilesExist(
+      `${appName}/src/deployment.yml`
+    )).not.toThrow()
   }, 300000)
 })

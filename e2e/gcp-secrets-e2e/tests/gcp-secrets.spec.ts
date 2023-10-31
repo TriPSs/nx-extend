@@ -1,25 +1,27 @@
 import {
   checkFilesExist,
-  ensureNxProject,
   runNxCommandAsync,
   uniq
 } from '@nx/plugin/testing'
 
+import { ensureNxProject } from '../../utils/workspace'
+
 describe('gcp-secrets e2e', () => {
-  beforeEach(() => {
-    ensureNxProject('@nx-extend/gcp-secrets', 'dist/packages/gcp-secrets')
+  beforeAll(() => {
+    ensureNxProject([
+      '@nx-extend/core:dist/packages/core',
+      '@nx-extend/gcp-secrets:dist/packages/gcp-secrets'
+    ])
   })
 
+  const appName = uniq('gcp-secrets')
+
   it('should be able to generate an secrets app', async () => {
-    const plugin = uniq('gcp-functions')
+    await runNxCommandAsync(`generate @nx-extend/gcp-secrets:init ${appName}`)
 
-    await runNxCommandAsync(`generate @nx-extend/gcp-secrets:init ${plugin}`)
-
-    expect(() =>
-      checkFilesExist(
-        `apps/${plugin}/src/secret-one.json`,
-        `apps/${plugin}/src/secret-two.json`
-      )
-    ).not.toThrow()
+    expect(() => checkFilesExist(
+      `${appName}/src/secret-one.json`,
+      `${appName}/src/secret-two.json`
+    )).not.toThrow()
   }, 300000)
 })

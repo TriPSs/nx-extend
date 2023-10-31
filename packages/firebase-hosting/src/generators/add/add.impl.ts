@@ -3,11 +3,11 @@ import {
   ProjectConfiguration,
   readJsonFile,
   readProjectConfiguration,
+  runTasksInSerial,
   Tree,
   updateProjectConfiguration,
   writeJsonFile
 } from '@nx/devkit'
-import { runTasksInSerial } from '@nx/workspace/src/utilities/run-tasks-in-serial'
 
 import { FirebaseHostingGeneratorSchema } from './schema'
 

@@ -1,4 +1,4 @@
-import { buildCommand, execCommand } from '@nx-extend/core'
+import { buildCommand, execPackageManagerCommand } from '@nx-extend/core'
 
 import type { ExecutorContext } from '@nx/devkit'
 
@@ -19,21 +19,18 @@ export async function testExecutor(
   const { url, headed, debug, ui } = options
 
   return Promise.resolve(
-    execCommand(
-      buildCommand([
-        'npx playwright test',
-        url,
+    execPackageManagerCommand(buildCommand([
+      'npx playwright test',
+      url,
 
-        headed && '--headed',
-        debug && '--debug',
-        ui && '--ui'
+      headed && '--headed',
+      debug && '--debug',
+      ui && '--ui'
 
-        // TODO:: Map all other options
-      ]),
-      {
-        cwd: root
-      }
-    )
+      // TODO:: Map all other options
+    ]), {
+      cwd: root
+    })
   )
 }
 

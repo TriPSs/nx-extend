@@ -45,7 +45,7 @@ Example target
   "e2e": {
     "executor": "@nx-extend/e2e-runner:run",
     "options": {
-      "runner": "playwright | cypress | run-commands",
+      "runner": "playwright | cypress | run-commands | @nx/playwright",
       "targets": [
         {
           "target": "app:serve",
