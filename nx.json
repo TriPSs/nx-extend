@@ -18,11 +18,8 @@
   "targetDefaults": {
     "build": {
       "dependsOn": ["^build"],
-      "inputs": ["production", "^production", "{workspaceRoot}/force-release"],
+      "inputs": ["production", "^production"],
       "cache": true
-    },
-    "version": {
-      "inputs": ["default", "^production", "{workspaceRoot}/force-release"]
     },
     "test": {
       "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"],
@@ -37,7 +34,7 @@
   },
   "namedInputs": {
     "default": ["{projectRoot}/**/*", "sharedGlobals"],
-    "sharedGlobals": [],
+    "sharedGlobals": ["{workspaceRoot}/force-release"],
     "production": ["default", "!{projectRoot}/src/test-setup.[jt]s"]
   },
   "nxCloudAccessToken": "ZGQ5Y2MwYjUtMjA2MS00NDEwLTgzZmQtYzE0MTUwNTMwMzFmfHJlYWQtd3JpdGU=",

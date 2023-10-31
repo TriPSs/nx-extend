@@ -21,7 +21,6 @@ nx g @nx-extend/gcp-functions:init
 
 #### Available options:
 
-| name         | type     | default | description                                          |
-| ------------ | -------- | ------- | ---------------------------------------------------- |
-
+| name | type | default | description |
+|------|------|---------|-------------|
 

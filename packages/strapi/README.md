@@ -39,3 +39,4 @@ nx g @nx-extend/strapi:init
 | **`--watchAdmin`** | `string` | `false`      | Starts your application with the autoReload enabled and the front-end development server. It allows you to customize the administration panel |
 | **`--root`**       | `string` | Project root | Root of the Strapi project to use                                                                                                             |
 | **`--envVars`**    | `object` |              | Define env variables to set before building (can be used in project.json)                                                                     |
+

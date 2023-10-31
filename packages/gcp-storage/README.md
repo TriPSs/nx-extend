@@ -20,9 +20,9 @@ npm install -D @nx-extend/gcp-storage
 
 #### Available options:
 
-| name         | type     | default | description                                          |
-| ------------ | -------- | ------- | ---------------------------------------------------- |
-| bucket | string |  | What bucket to upload to |
-| directory | string | `/` | What directory of the apps dist folder to upload |
-| gzip | boolean | false | Use gzip when uploading |
-| gzipExtensions | string |  | For what extensions to use gzip |
+| name           | type    | default | description                                      |
+|----------------|---------|---------|--------------------------------------------------|
+| bucket         | string  |         | What bucket to upload to                         |
+| directory      | string  | `/`     | What directory of the apps dist folder to upload |
+| gzip           | boolean | false   | Use gzip when uploading                          |
+| gzipExtensions | string  |         | For what extensions to use gzip                  |

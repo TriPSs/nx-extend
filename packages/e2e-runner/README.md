@@ -63,5 +63,3 @@ Example target
   }
 }
 ```
-
-

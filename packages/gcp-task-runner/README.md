@@ -17,6 +17,7 @@ npm install -D @nx-extend/gcp-task-runner
 ## Usage
 
 ### Enable task runner
+
 Update your `nx.json` with the following
 
 ```json
@@ -33,8 +34,6 @@ Update your `nx.json` with the following
 }
 ```
 
-
 ### Authenticate
 
 The task runner uses `@google-cloud/storage` which in turn is capable of using the env variable `GOOGLE_APPLICATION_CREDENTIALS`.
-

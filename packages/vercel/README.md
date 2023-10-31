@@ -47,4 +47,3 @@ npx vercel teams switch <team-id>
 npx vercel project add <my-project>
 # Go to the Vercel dashboard, <my-project> > settings > Project ID
 ```
-
