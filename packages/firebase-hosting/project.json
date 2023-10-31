@@ -56,7 +56,7 @@
     "version": {
       "executor": "@jscutlery/semver:version",
       "options": {
-        "versionTagPrefix": "${target}@"
+        "tagPrefix": "${target}@"
       }
     },
     "publish": {
