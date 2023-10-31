@@ -30,3 +30,4 @@ npm install -D @nx-extend/gcp-cloud-run
 | **`--concurrency`**          | `number`  | 250              | amount of concurrent requests for instance           |
 | **`--maxInstances`**         | `number`  | 10               | maximum amount of instances                          |
 | **`--minInstances`**         | `number`  | 0                | minimum amount of instances                          |
+

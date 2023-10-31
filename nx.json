@@ -34,7 +34,7 @@
   },
   "namedInputs": {
     "default": ["{projectRoot}/**/*", "sharedGlobals"],
-    "sharedGlobals": [],
+    "sharedGlobals": ["{workspaceRoot}/force-release"],
     "production": ["default", "!{projectRoot}/src/test-setup.[jt]s"]
   },
   "nxCloudAccessToken": "ZGQ5Y2MwYjUtMjA2MS00NDEwLTgzZmQtYzE0MTUwNTMwMzFmfHJlYWQtd3JpdGU=",

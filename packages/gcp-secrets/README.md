@@ -46,9 +46,8 @@ Add an environment variable named `GCP_SECRETS_ENCRYPTION_KEY` that holds your k
 
 ## Meta data explained
 
-| Attribute         | default     |  description                                          |
-| ------------ | -------- | ------- |
-| status |  | Status of the file, `encrypted` or `decrypted` |
-| labels | `[]` | Array of labels to add to the secrets |
+| Attribute        | default   | description                                                 |
+|------------------|-----------|-------------------------------------------------------------|
+| status           |           | Status of the file, `encrypted` or `decrypted`              |
+| labels           | `[]`      | Array of labels to add to the secrets                       |
 | onUpdateBehavior | `destroy` | What to do when updating, `destory`, `delete`, or `disable` |
-

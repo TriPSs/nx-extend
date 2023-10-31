@@ -25,3 +25,4 @@ nx g @nx-extend/gcp-deployment-manager:init
 | **`--project`** | `string` |         | GCP project to deploy to                 |
 | **`--file`**    | `string` | `null`  | file from source to create               |
 | **`--name`**    | `string` | `null`  | Name of the resource inside Google Cloud |
+

@@ -23,4 +23,3 @@ nx g @nx-extend/terraform:init
 
 | name | type | default | description |
 |------|------|---------|-------------|
-

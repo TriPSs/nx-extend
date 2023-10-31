@@ -21,14 +21,12 @@ nx g @nx-extend/translations:add
 
 #### Available options:
 
-| name         | type     | default | description                                          |
-| ------------ | -------- | ------- | ---------------------------------------------------- |
+| name | type | default | description |
+|------|------|---------|-------------|
 
 ### Serve
 
 #### Available options:
 
-| name         | type     | default | description                                          |
-| ------------ | -------- | ------- | ---------------------------------------------------- |
-
-
+| name | type | default | description |
+|------|------|---------|-------------|

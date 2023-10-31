@@ -23,4 +23,3 @@ nx g @nx-extend/pulumi:init
 
 | name | type | default | description |
 |------|------|---------|-------------|
-
