@@ -18,8 +18,11 @@
   "targetDefaults": {
     "build": {
       "dependsOn": ["^build"],
-      "inputs": ["production", "^production"],
+      "inputs": ["production", "^production", "{workspaceRoot}/force-release"],
       "cache": true
+    },
+    "version": {
+      "inputs": ["default", "^production", "{workspaceRoot}/force-release"]
     },
     "test": {
       "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"],
