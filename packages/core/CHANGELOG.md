@@ -2,6 +2,21 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [5.0.0](https://github.com/TriPSs/nx-extend/compare/core@4.4.1...core@5.0.0) (2023-10-31)
+
+
+### Features
+
+* Update to NX 17 ([c21accb](https://github.com/TriPSs/nx-extend/commit/c21accbed588d43cb5a53b4ce5d061722e7740f2))
+* Use package manager instead of npx when running commands ([f649413](https://github.com/TriPSs/nx-extend/commit/f649413c682f493a00c59c9ee09ed1ff45df1d77))
+
+
+### BREAKING CHANGES
+
+* Updated to NX 17
+
+
+
 ## [4.4.1](https://github.com/TriPSs/nx-extend/compare/core@4.4.0...core@4.4.1) (2023-09-14)
 
 
