@@ -9,7 +9,7 @@ export function getPackageManagerExecCommand() {
 
 export function execPackageManagerCommand(command: string, options?: Options) {
   return execCommand(buildCommand([
-    getPackageManagerExecCommand(),
+    process.env.NX_EXTEND_COMMAND_USE_NPX ? 'npx' : getPackageManagerExecCommand(),
     command
   ]), options)
 }
