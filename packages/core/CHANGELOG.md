@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [5.1.0](https://github.com/TriPSs/nx-extend/compare/core@5.0.0...core@5.1.0) (2023-11-09)
+
+
+### Features
+
+* Added option to force nx-extend commands to use `npx` instead of package manager ([e5b166a](https://github.com/TriPSs/nx-extend/commit/e5b166acd40516f3e7eeae008ac6e2ef4a313f69))
+
+
+
 # [5.0.0](https://github.com/TriPSs/nx-extend/compare/core@4.4.1...core@5.0.0) (2023-10-31)
 
 
