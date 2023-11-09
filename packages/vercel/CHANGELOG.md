@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [6.0.1](https://github.com/TriPSs/nx-extend/compare/vercel@6.0.0...vercel@6.0.1) (2023-11-09)
+
+
+### Bug Fixes
+
+* **vercel:** Add missing vercel dep (needed when package manger is used to execute) ([e761326](https://github.com/TriPSs/nx-extend/commit/e761326b266c2ebcad5de72719f50d1bc3e362db))
+
+
+
 # [6.0.0](https://github.com/TriPSs/nx-extend/compare/vercel@5.1.0...vercel@6.0.0) (2023-10-31)
 
 
