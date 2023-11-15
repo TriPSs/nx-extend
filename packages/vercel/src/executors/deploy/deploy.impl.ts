@@ -1,5 +1,5 @@
 import * as githubCore from '@actions/core'
-import { buildCommand, execCommand, execPackageManagerCommand, isCI, USE_VERBOSE_LOGGING } from '@nx-extend/core'
+import { buildCommand, execCommand, isCI, USE_VERBOSE_LOGGING } from '@nx-extend/core'
 import { existsSync } from 'fs'
 import { join } from 'path'
 
@@ -46,8 +46,8 @@ export async function deployExecutor(
     throw new Error('No ".vercel/project.json" found in dist folder! ')
   }
 
-  const { success, output } = execPackageManagerCommand(buildCommand([
-    'vercel deploy --prebuilt',
+  const { success, output } = execCommand(buildCommand([
+    'npx vercel deploy --prebuilt',
     context.configurationName === 'production' && '--prod',
     vercelToken && `--token=${vercelToken}`,
     options.regions && `--regions=${options.regions}`,
