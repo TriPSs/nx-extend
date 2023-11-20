@@ -2,7 +2,6 @@ import { execSync } from 'child_process'
 import { dirname } from 'path'
 import { cleanup, patchPackageJsonForPlugin, tmpProjPath } from '@nx/plugin/testing'
 import { mkdirSync } from 'fs'
-import { logger } from '@nx/devkit'
 
 function runNxNewCommand(localTmpDir: string) {
   return execSync(
@@ -44,13 +43,9 @@ export function ensureNxProject(patchPlugins: string[] = []): void {
     env: process.env
   })
 
-  try {
-    execSync('yarn install', {
-      cwd: tmpProjectPath,
-      stdio: 'inherit',
-      env: process.env
-    })
-  } catch (err) {
-    logger.warn(`Yarn install threw error: ${err.message}`)
-  }
+  execSync('yarn install', {
+    cwd: tmpProjectPath,
+    stdio: 'inherit',
+    env: process.env
+  })
 }
