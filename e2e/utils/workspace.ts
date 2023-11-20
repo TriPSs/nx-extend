@@ -1,6 +1,6 @@
 import { execSync } from 'child_process'
 import { dirname } from 'path'
-import { cleanup, patchPackageJsonForPlugin, tmpProjPath } from '@nx/plugin/testing'
+import { cleanup, patchPackageJsonForPlugin, runPackageManagerInstall, tmpProjPath } from '@nx/plugin/testing'
 import { mkdirSync } from 'fs'
 
 function runNxNewCommand(localTmpDir: string) {
@@ -43,9 +43,5 @@ export function ensureNxProject(patchPlugins: string[] = []): void {
     env: process.env
   })
 
-  execSync('yarn install', {
-    cwd: tmpProjectPath,
-    stdio: 'inherit',
-    env: process.env
-  })
+  console.log(runPackageManagerInstall(false))
 }
