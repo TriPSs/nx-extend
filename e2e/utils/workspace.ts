@@ -43,7 +43,14 @@ export function ensureNxProject(patchPlugins: string[] = []): void {
     env: process.env
   })
 
-  execSync('yarn install', {
+  // This fixes lock file changes in CI
+  execSync('yarn install --mode=update-lockfile', {
+    cwd: tmpProjectPath,
+    stdio: 'inherit',
+    env: process.env
+  })
+
+  execSync('yarn install --immutable', {
     cwd: tmpProjectPath,
     stdio: 'inherit',
     env: process.env
