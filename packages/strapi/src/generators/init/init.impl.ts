@@ -1,6 +1,9 @@
 import {
   addProjectConfiguration,
   formatFiles,
+  generateFiles,
+  names,
+  offsetFromRoot,
   Tree, workspaceRoot
 } from '@nx/devkit'
 import { NormalizedSchema, normalizeOptions } from '@nx-extend/core'
@@ -21,7 +24,7 @@ function generateStrapi(options: NormalizedSchema) {
     name: options.projectName,
     // disable quickstart run app after creation
     runQuickstartApp: false,
-    // use pacakge version as strapiVersion (all packages have the same version);
+    // use package.json version as strapiVersion (all packages have the same version);
     strapiVersion: packageJson.dependencies['@strapi/strapi'],
     debug: false,
     quick: false,
@@ -46,6 +49,15 @@ function generateStrapi(options: NormalizedSchema) {
   })
 }
 
+function addFiles(host: Tree, options: NormalizedSchema) {
+  generateFiles(host, path.join(__dirname, 'files'), options.projectRoot, {
+    ...options,
+    ...names(options.name),
+    offsetFromRoot: offsetFromRoot(options.projectRoot),
+    template: ''
+  })
+}
+
 export default async function (host: Tree, options: StrapiGeneratorSchema) {
   const normalizedOptions = normalizeOptions(host, options)
 
@@ -62,7 +74,8 @@ export default async function (host: Tree, options: StrapiGeneratorSchema) {
         executor: '@nx-extend/strapi:build',
         outputs: ['{options.outputPath}'],
         options: {
-          outputPath: `dist/${normalizedOptions.projectRoot}`
+          outputPath: `dist/${normalizedOptions.projectRoot}`,
+          tsConfig: `${normalizedOptions.projectRoot}/tsConfig.json`
         },
         configurations: {
           production: {
@@ -76,5 +89,6 @@ export default async function (host: Tree, options: StrapiGeneratorSchema) {
 
   await generateStrapi(normalizedOptions)
 
+  addFiles(host, normalizedOptions)
   await formatFiles(host)
 }

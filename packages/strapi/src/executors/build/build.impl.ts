@@ -1,5 +1,6 @@
-import { ExecutorContext } from '@nx/devkit'
-import buildAdmin from '@strapi/strapi/dist/commands/builders/admin'
+import { ExecutorContext, workspaceRoot } from '@nx/devkit'
+// @ts-expect-error it is there but there are no interfaces
+import { build as nodeBuild } from '@strapi/admin/cli'
 import tsUtils from '@strapi/typescript-utils'
 import { join } from 'path'
 
@@ -8,10 +9,13 @@ import 'dotenv/config'
 import { copyFavicon } from '../../utils/copy-favicon'
 import { copyFolderSync } from '../../utils/copy-folder'
 import { createPackageJson } from '../../utils/create-package-json'
+import { createStrapiLogger } from './utils/create-strapi-logger'
+import { loadTsConfig } from './utils/load-ts-config'
 
 export interface BuildExecutorSchema {
   production?: boolean
   root?: string
+  tsConfig: string
   outputPath: string
   envVars?: Record<string, string>
   generateLockFile?: boolean
@@ -27,6 +31,10 @@ export async function buildExecutor(
     throw new Error('No "outputPath" defined in options!')
   }
 
+  if (!options.tsConfig) {
+    throw new Error('No "tsConfig" defined in options!')
+  }
+
   const distDir = join(process.cwd(), options.outputPath)
 
   // Set the env vars
@@ -36,7 +44,10 @@ export async function buildExecutor(
     }
   })
 
-  const strapiRoot = options.root || root
+  const strapiRoot = join(workspaceRoot, options.root || root)
+  const tsConfig = loadTsConfig(workspaceRoot, options.tsConfig)
+
+  // nodeBuild somehow only compiles the admin panel
   await tsUtils.compile(strapiRoot, {
     watch: false,
     configOptions: {
@@ -47,11 +58,12 @@ export async function buildExecutor(
     }
   })
 
-  await buildAdmin({
-    forceBuild: true,
-    optimization: Boolean(options.production),
-    buildDestDir: distDir,
-    srcDir: strapiRoot
+  await nodeBuild({
+    ignorePrompts: true,
+    minify: Boolean(options.production),
+    cwd: strapiRoot,
+    logger: createStrapiLogger(),
+    tsConfig
   })
 
   await createPackageJson(
@@ -60,6 +72,7 @@ export async function buildExecutor(
     context,
     options.generateLockFile
   )
+
   await copyFolderSync(`${strapiRoot}/public`, `${distDir}/public`)
   await copyFavicon(`${strapiRoot}`, distDir)
   await copyFavicon(`${strapiRoot}/public`, distDir)
