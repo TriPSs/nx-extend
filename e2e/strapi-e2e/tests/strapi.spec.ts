@@ -6,12 +6,10 @@ import {
 import { ensureNxProject } from '../../utils/workspace'
 
 describe('(e2e) strapi', () => {
-  beforeAll(() => {
-    ensureNxProject([
-      '@nx-extend/core:dist/packages/core',
-      '@nx-extend/strapi:dist/packages/strapi'
-    ])
-  })
+  beforeAll(() => ensureNxProject([
+    '@nx-extend/core:dist/packages/core',
+    '@nx-extend/strapi:dist/packages/strapi'
+  ]))
 
   const appName = 'test-strapi'
 
@@ -19,20 +17,21 @@ describe('(e2e) strapi', () => {
     await runNxCommandAsync(`generate @nx-extend/strapi:init ${appName}`)
 
     expect(() => checkFilesExist(
-      `${appName}/src/main.ts`
+      `${appName}/src/index.ts`
     )).not.toThrow()
   }, 300000)
 
-  it('should be able to build a function', async () => {
+  it('should be able to build', async () => {
+    rmDist()
     await runNxCommandAsync(`build ${appName}`)
 
-    // TODO
-  }, 300000)
-
-  it('should be able to build a function and generate lock file', async () => {
-    rmDist()
-    await runNxCommandAsync(`build ${appName} --prod`)
-
-    // TODO
+    expect(() => checkFilesExist(
+      `dist/${appName}/package.json`,
+      `dist/${appName}/config/admin.js`,
+      `dist/${appName}/config/api.js`,
+      `dist/${appName}/config/database.js`,
+      `dist/${appName}/src/index.js`,
+      `dist/${appName}/build/index.html`
+    )).not.toThrow()
   }, 300000)
 })

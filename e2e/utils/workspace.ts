@@ -38,10 +38,16 @@ export function ensureNxProject(patchPlugins: string[] = []): void {
     stdio: 'inherit',
     env: process.env
   })
-  execSync('yarn', {
+
+  execSync('yarn set version berry', {
+    cwd: tmpProjectPath,
+    stdio: 'inherit',
+    env: process.env
+  })
+
+  execSync('yarn install', {
     cwd: tmpProjectPath,
     stdio: 'inherit',
     env: process.env
   })
 }
-

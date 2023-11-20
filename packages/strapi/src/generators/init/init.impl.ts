@@ -27,7 +27,7 @@ function generateStrapi(options: NormalizedSchema) {
     // use package.json version as strapiVersion (all packages have the same version);
     strapiVersion: packageJson.dependencies['@strapi/strapi'],
     debug: false,
-    quick: false,
+    quick: true,
     packageJsonStrapi: {
       template: undefined,
       starter: undefined
