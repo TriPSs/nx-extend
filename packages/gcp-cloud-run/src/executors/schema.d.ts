@@ -1,5 +1,6 @@
 export interface ExecutorSchema {
   name?: string
+  buildTarget?: string
   dockerFile: string
   project: string
   tag?: string
