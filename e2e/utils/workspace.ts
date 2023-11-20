@@ -31,13 +31,13 @@ export function ensureNxProject(patchPlugins: string[] = []): void {
     patchPackageJsonForPlugin(npmPackageName, pluginDistPath)
   }
 
-  execSync('yarn set version berry', {
+  execSync('rm -f yarn.lock && touch yarn.lock', {
     cwd: tmpProjectPath,
     stdio: 'inherit',
     env: process.env
   })
 
-  execSync('rm -f yarn.lock && touch yarn.lock', {
+  execSync('yarn set version berry', {
     cwd: tmpProjectPath,
     stdio: 'inherit',
     env: process.env
