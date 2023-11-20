@@ -5,9 +5,7 @@ import { mkdirSync } from 'fs'
 
 function runNxNewCommand(localTmpDir: string) {
   return execSync(
-    `node ${require.resolve(
-      'nx'
-    )} new proj --nx-workspace-root=${localTmpDir} --no-interactive --skip-install --collection=@nx/workspace --npmScope=proj --preset=apps`,
+    `npx nx new proj --nx-workspace-root=${localTmpDir} --no-interactive --skip-install --collection=@nx/workspace --npmScope=proj --preset=apps`,
     {
       cwd: localTmpDir
     }
