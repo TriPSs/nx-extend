@@ -37,7 +37,7 @@ export function ensureNxProject(patchPlugins: string[] = []): void {
     env: process.env
   })
 
-  execSync('rm yarn.lock && touch yarn.lock', {
+  execSync('rm -f yarn.lock && touch yarn.lock', {
     cwd: tmpProjectPath,
     stdio: 'inherit',
     env: process.env
