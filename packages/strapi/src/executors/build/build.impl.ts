@@ -1,6 +1,5 @@
-import { ExecutorContext } from '@nx/devkit'
-import buildAdmin from '@strapi/strapi/dist/commands/builders/admin'
-import tsUtils from '@strapi/typescript-utils'
+import { ExecutorContext, workspaceRoot } from '@nx/devkit'
+import { buildCommand, execPackageManagerCommand } from '@nx-extend/core'
 import { join } from 'path'
 
 import 'dotenv/config'
@@ -12,6 +11,7 @@ import { createPackageJson } from '../../utils/create-package-json'
 export interface BuildExecutorSchema {
   production?: boolean
   root?: string
+  tsConfig: string
   outputPath: string
   envVars?: Record<string, string>
   generateLockFile?: boolean
@@ -20,7 +20,9 @@ export interface BuildExecutorSchema {
 export async function buildExecutor(
   options: BuildExecutorSchema,
   context: ExecutorContext
-): Promise<{ success: boolean }> {
+): Promise<{
+  success: boolean
+}> {
   const { root } = context.workspace.projects[context.projectName]
 
   if (!options.outputPath) {
@@ -36,23 +38,7 @@ export async function buildExecutor(
     }
   })
 
-  const strapiRoot = options.root || root
-  await tsUtils.compile(strapiRoot, {
-    watch: false,
-    configOptions: {
-      options: {
-        incremental: true,
-        outDir: distDir
-      }
-    }
-  })
-
-  await buildAdmin({
-    forceBuild: true,
-    optimization: Boolean(options.production),
-    buildDestDir: distDir,
-    srcDir: strapiRoot
-  })
+  const strapiRoot = join(workspaceRoot, options.root || root)
 
   await createPackageJson(
     options.outputPath,
@@ -60,6 +46,17 @@ export async function buildExecutor(
     context,
     options.generateLockFile
   )
+
+  execPackageManagerCommand(buildCommand([
+    'strapi build',
+    '--ignore-prompts',
+    Boolean(options.production) && '--minify'
+  ]), {
+    cwd: options.root || root,
+    env: process.env
+  })
+
+  await copyFolderSync(`${strapiRoot}/dist`, `${distDir}`)
   await copyFolderSync(`${strapiRoot}/public`, `${distDir}/public`)
   await copyFavicon(`${strapiRoot}`, distDir)
   await copyFavicon(`${strapiRoot}/public`, distDir)
