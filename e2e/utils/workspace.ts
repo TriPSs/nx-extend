@@ -31,7 +31,7 @@ export function ensureNxProject(patchPlugins: string[] = []): void {
     patchPackageJsonForPlugin(npmPackageName, pluginDistPath)
   }
 
-  execSync('rm -f yarn.lock && touch yarn.lock', {
+  execSync('rm -f yarn.lock package-lock.json && touch yarn.lock', {
     cwd: tmpProjectPath,
     stdio: 'inherit',
     env: process.env

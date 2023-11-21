@@ -6,12 +6,11 @@ import {
 import { ensureNxProject } from '../../utils/workspace'
 
 describe('translations e2e', () => {
-  beforeAll(() => {
-    ensureNxProject([
-      '@nx-extend/core:dist/packages/core',
-      '@nx-extend/translations:dist/packages/translations'
-    ])
-  })
+
+  beforeAll(() => ensureNxProject([
+    '@nx-extend/core:dist/packages/core',
+    '@nx-extend/translations:dist/packages/translations'
+  ]))
 
   const appName = 'translations'
   it('should be able to add', async () => {
@@ -81,7 +80,11 @@ describe('translations e2e', () => {
     export default App
     `)
 
-    await runNxCommandAsync(`extract-translations ${appName}`)
+    await runNxCommandAsync(`extract-translations ${appName}`, {
+      env: {
+        NX_EXTEND_COMMAND_USE_NPX: 'true'
+      }
+    })
 
     expect(readJson(`${appName}/src/translations/en.json`)).toEqual({
       'message-id': 'Message',

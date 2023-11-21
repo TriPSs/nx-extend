@@ -8,7 +8,13 @@
   "properties": {
     "provider": {
       "type": "string",
-      "description": "What provider to use, for example: traduora"
+      "description": "What provider to use, for example: traduora",
+      "enum": [
+        "traduora",
+        "transifex",
+        "poeditor",
+        "simplelocalize"
+      ]
     },
     "sourceRoot": {
       "type": "string",
@@ -44,7 +50,10 @@
     "extractor": {
       "type": "string",
       "description": "Extractor to use",
-      "default": "formatjs"
+      "default": "formatjs",
+      "enum": [
+        "formatjs"
+      ]
     },
     "withLibs": {
       "type": "boolean",

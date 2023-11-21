@@ -67,18 +67,15 @@ export async function extractExectutor(
 
   try {
     if (extractor === 'formatjs') {
-      execPackageManagerCommand(
-        buildCommand([
-          'formatjs extract',
-          `'${join(templatedSourceDirectory, options.pattern)}'`,
-          `--out-file='${templatedOutputDirectory}/${defaultLanguage}.json'`,
-          '--id-interpolation-pattern=\'[sha512:contenthash:base64:6]\'',
-          '--format=simple'
-        ]),
-        {
-          silent: !options.debug || USE_VERBOSE_LOGGING
-        }
-      )
+      execPackageManagerCommand(buildCommand([
+        'formatjs extract',
+        `'${join(templatedSourceDirectory, options.pattern)}'`,
+        `--out-file='${templatedOutputDirectory}/${defaultLanguage}.json'`,
+        '--id-interpolation-pattern=\'[sha512:contenthash:base64:6]\'',
+        '--format=simple'
+      ]), {
+        silent: !options.debug && !USE_VERBOSE_LOGGING
+      })
     } else {
       logger.error('Unsupported extractor!')
 
