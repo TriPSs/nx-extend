@@ -9,7 +9,7 @@ env:
 
 jobs:
 
-  pr:
+  prepare-env:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -18,15 +18,40 @@ jobs:
 
       - name: Cache node modules
         id: cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: |
             **/node_modules
-          key: ${{ env.DEPENDENCIES_CACHE }}-${{ hashFiles('yarn.lock') }}
+          key: cache-node-modules-${{ hashFiles('yarn.lock') }}
 
       - name: yarn install
         if: steps.cache.outputs.cache-hit != 'true'
         run: yarn install
+
+  pr:
+    needs: prepare-env
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        target: [ 'build', 'e2e' ]
+    steps:
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: 20.x
+
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Cache node modules
+        id: cache
+        uses: actions/cache@v3
+        with:
+          path: |
+            **/node_modules
+          key: cache-node-modules-${{ hashFiles('yarn.lock') }}
 
       - name: Derive appropriate SHAs for base and head for `nx affected` commands
         uses: ./actions/set-shas
@@ -39,16 +64,13 @@ jobs:
           git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
 
       - name: nx affected:version
+        if: matrix.target == 'build'
         uses: ./actions/run-many
         with:
           target: version
 
-      - name: nx affected:build
+      - name: nx affected:${{ matrix.target }}
         uses: ./actions/run-many
         with:
-          target: build
-
-      - name: nx affected:e2e
-        uses: ./actions/run-many
-        with:
-          target: e2e
+          target: ${{ matrix.target }}
+          parallel: 1

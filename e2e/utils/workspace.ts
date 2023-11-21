@@ -5,9 +5,7 @@ import { mkdirSync } from 'fs'
 
 function runNxNewCommand(localTmpDir: string) {
   return execSync(
-    `node ${require.resolve(
-      'nx'
-    )} new proj --nx-workspace-root=${localTmpDir} --no-interactive --skip-install --collection=@nx/workspace --npmScope=proj --preset=apps`,
+    `npx nx new proj --nx-workspace-root=${localTmpDir} --no-interactive --skip-install --collection=@nx/workspace --npmScope=proj --preset=apps`,
     {
       cwd: localTmpDir
     }
@@ -33,15 +31,28 @@ export function ensureNxProject(patchPlugins: string[] = []): void {
     patchPackageJsonForPlugin(npmPackageName, pluginDistPath)
   }
 
-  execSync('touch yarn.lock', {
+  execSync('rm -f yarn.lock package-lock.json && touch yarn.lock', {
     cwd: tmpProjectPath,
     stdio: 'inherit',
     env: process.env
   })
-  execSync('yarn', {
+
+  execSync('yarn set version berry', {
+    cwd: tmpProjectPath,
+    stdio: 'inherit',
+    env: process.env
+  })
+
+  // This fixes lock file changes in CI
+  execSync('yarn install --mode=update-lockfile', {
+    cwd: tmpProjectPath,
+    stdio: 'inherit',
+    env: process.env
+  })
+
+  execSync('yarn install --immutable', {
     cwd: tmpProjectPath,
     stdio: 'inherit',
     env: process.env
   })
 }
-

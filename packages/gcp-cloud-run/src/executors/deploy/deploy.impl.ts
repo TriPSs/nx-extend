@@ -1,5 +1,5 @@
 import { ExecutorContext, logger, readJsonFile } from '@nx/devkit'
-import { buildCommand,execCommand } from '@nx-extend/core'
+import { buildCommand, execCommand, getOutputDirectoryFromBuildTarget } from '@nx-extend/core'
 import { existsSync, readFileSync, writeFileSync } from 'fs'
 import { join } from 'path'
 
@@ -9,14 +9,12 @@ export function deployExecutor(
   options: ExecutorSchema,
   context: ExecutorContext
 ): Promise<{ success: boolean }> {
-  const { root, targets, sourceRoot } =
-    context.workspace.projects[context.projectName]
+  const { root, sourceRoot } = context.workspace.projects[context.projectName]
 
-  if (!targets?.build) {
-    throw new Error('No build target configured!')
-  }
+  const buildTarget = options.buildTarget || `${context.projectName}:build`
+  const outputDirectory = getOutputDirectoryFromBuildTarget(context, buildTarget)
 
-  if (!targets?.build?.options?.outputPath) {
+  if (!outputDirectory) {
     throw new Error('Build target has no "outputPath" configured!')
   }
 
@@ -45,10 +43,7 @@ export function deployExecutor(
     timeout = null
   } = options
 
-  const distDirectory = join(
-    context.root,
-    targets?.build?.options?.outputPath.toString()
-  )
+  const distDirectory = join(context.root, outputDirectory)
 
   const buildWithArtifactRegistry = buildWith === 'artifact-registry'
   const containerName = `gcr.io/${options.project}/${name}`
