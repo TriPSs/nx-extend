@@ -2,6 +2,44 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# 0.1.0 (2023-10-31)
+
+
+### Bug Fixes
+
+* **action-run-many:** Added support to disable the `--affected` ([44cefc2](https://github.com/TriPSs/nx-extend/commit/44cefc2262f25abdd1f63586f9e5798b1710cb1f))
+* **actions-run-many:** Corrected table column of summary ([35811cd](https://github.com/TriPSs/nx-extend/commit/35811cde7aa5715b5cc27e22e0f8f674ed83ce00))
+* **actions-run-many:** Correctly get projects ([614b989](https://github.com/TriPSs/nx-extend/commit/614b9893cd1d299629a62144f457a13505972df4))
+* **actions-run-many:** Fixed projects having `/n` in the name causing then not to be "affected" ([b3f7e06](https://github.com/TriPSs/nx-extend/commit/b3f7e062073adf5485a22b462abb273d5e29ba94))
+* Fix `readWorkspace` being undefined ([0b66879](https://github.com/TriPSs/nx-extend/commit/0b66879c009a7935c3f13e0006b18c0e0266d611))
+* **run-many:** Added `config` to action.yml ([40b6cd3](https://github.com/TriPSs/nx-extend/commit/40b6cd36d4ef315ac9c91aa0aeecd1a589c6d426))
+* **run-many:** Added `workingDirectory` to action yml ([f730978](https://github.com/TriPSs/nx-extend/commit/f7309785a96f335362c38d83e3eda28647ce2752))
+
+
+### Features
+
+* **actions-run-many:** Also publish as script ([2be2b48](https://github.com/TriPSs/nx-extend/commit/2be2b4801f35074ab58238010a9503b5fc766566))
+* **actions-run-many:** Always log with `--output-style=stream` for better readability ([7c3c445](https://github.com/TriPSs/nx-extend/commit/7c3c445635053747b3d8cce36c465273437c1a1d))
+* **actions-run-many:** Correctly include libs when running ([c5dfaa7](https://github.com/TriPSs/nx-extend/commit/c5dfaa762e8765122ccd83a9105eab20ee95309e))
+* **actions-run-many:** Support multiple tags ([c19e0b1](https://github.com/TriPSs/nx-extend/commit/c19e0b1de9bc2160689470457f4786089e480a88))
+* **actions:** Added support for `AND` condition in tag ([3fdf7c6](https://github.com/TriPSs/nx-extend/commit/3fdf7c645c378ba3398335d696fd225545f08444))
+* **actions:** Added support to run tags with conditions ([cb0e023](https://github.com/TriPSs/nx-extend/commit/cb0e023f052e3e88d548272d7d6b75bb453adc44))
+* **actions:** Use new affected command ([3af25dc](https://github.com/TriPSs/nx-extend/commit/3af25dccf3a8b0e69b76c65618c7219cf2e8cf04))
+* **gcp-functions:** Improved function runner ([125ba6b](https://github.com/TriPSs/nx-extend/commit/125ba6b0fea207c5d92c3f09058c65b0ff73fe20))
+* **run-many:** Added `workingDirectory` support ([196da75](https://github.com/TriPSs/nx-extend/commit/196da75cb339a200303054cbd762b550e9b761aa))
+* **run-many:** Added pre/post targets ([2f86c25](https://github.com/TriPSs/nx-extend/commit/2f86c25fa34b083013e502532c0507fb06e4475d))
+* **run-many:** Added run many GitHub action ([1e38611](https://github.com/TriPSs/nx-extend/commit/1e386110e69a41b18c4af3c30740edebc5908a60))
+* **run-many:** Added support to define `config` ([04f5235](https://github.com/TriPSs/nx-extend/commit/04f52359d179748c4957888da15eb3e6f0f4df15))
+* **run-many:** Allow for defining different target to determine affected ([97b9c8c](https://github.com/TriPSs/nx-extend/commit/97b9c8c0da0eba205eb3081a9e162d5dfa5df8e7))
+* **run-many:** Log to console when Github actions run in debug mode ([5bf1795](https://github.com/TriPSs/nx-extend/commit/5bf1795137c3f2687eb2b048222d88a9429ac6cf))
+
+
+### Reverts
+
+* Revert "feat(actions-run-many): When running in dry more output affected" ([41b3e2e](https://github.com/TriPSs/nx-extend/commit/41b3e2e39a08a1d7f6bf88710e93d3f9eb0f2a16))
+
+
+
 ## [3.4.1](https://github.com/TriPSs/nx-extend/compare/actions-run-many@3.4.0...actions-run-many@3.4.1) (2023-08-06)
 
 

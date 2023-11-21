@@ -2,6 +2,20 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [6.0.0](https://github.com/TriPSs/nx-extend/compare/gcp-deployment-manager@5.1.2...gcp-deployment-manager@6.0.0) (2023-10-31)
+
+
+### Features
+
+* Update to NX 17 ([c21accb](https://github.com/TriPSs/nx-extend/commit/c21accbed588d43cb5a53b4ce5d061722e7740f2))
+
+
+### BREAKING CHANGES
+
+* Updated to NX 17
+
+
+
 ## [5.1.2](https://github.com/TriPSs/nx-extend/compare/gcp-deployment-manager@5.1.1...gcp-deployment-manager@5.1.2) (2023-08-31)
 
 

@@ -2,6 +2,34 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [10.0.0](https://github.com/TriPSs/nx-extend/compare/gcp-functions@9.3.7...gcp-functions@10.0.0) (2023-10-31)
+
+
+### Bug Fixes
+
+* **gcp-functions:** Correctly init typescript if workspace does not have it ([0bdc4e7](https://github.com/TriPSs/nx-extend/commit/0bdc4e78f4b9ed87cfa0d88ed476c7dc4d475019))
+
+
+* Force release with breaking change (#173) ([4517a65](https://github.com/TriPSs/nx-extend/commit/4517a65729e2aee542bedf3c728675e1c3141a6b)), closes [#173](https://github.com/TriPSs/nx-extend/issues/173)
+
+
+### Features
+
+* Update to NX 17 ([c21accb](https://github.com/TriPSs/nx-extend/commit/c21accbed588d43cb5a53b4ce5d061722e7740f2))
+* Use package manager instead of npx when running commands ([f649413](https://github.com/TriPSs/nx-extend/commit/f649413c682f493a00c59c9ee09ed1ff45df1d77))
+
+
+### BREAKING CHANGES
+
+* Updated to NX 17
+* Updated to NX 17
+
+
+
+## [9.3.7](https://github.com/TriPSs/nx-extend/compare/gcp-functions@9.3.6...gcp-functions@9.3.7) (2023-10-05)
+
+
+
 ## [9.3.6](https://github.com/TriPSs/nx-extend/compare/gcp-functions@9.3.5...gcp-functions@9.3.6) (2023-09-14)
 
 

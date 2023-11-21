@@ -2,6 +2,45 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [7.0.1](https://github.com/TriPSs/nx-extend/compare/strapi@7.0.0...strapi@7.0.1) (2023-10-31)
+
+
+### Bug Fixes
+
+* **strapi:** Fixed build crashing ([347b18e](https://github.com/TriPSs/nx-extend/commit/347b18e3480d32759a98b3ab598651c771c1e759))
+* **strapi:** Fixed build crashing ([#174](https://github.com/TriPSs/nx-extend/issues/174)) ([66edb2a](https://github.com/TriPSs/nx-extend/commit/66edb2ad17a0981e789787abe17408eb72887a4d))
+
+
+
+# [7.0.0](https://github.com/TriPSs/nx-extend/compare/strapi@6.1.8...strapi@7.0.0) (2023-10-31)
+
+
+### chore
+
+* Updated deps + NX ([5b07fa8](https://github.com/TriPSs/nx-extend/commit/5b07fa8fd4d2aeb0599ea71a0a1f2bb25287618e))
+
+
+* Force release with breaking change (#173) ([4517a65](https://github.com/TriPSs/nx-extend/commit/4517a65729e2aee542bedf3c728675e1c3141a6b)), closes [#173](https://github.com/TriPSs/nx-extend/issues/173)
+
+
+### Features
+
+* Update to NX 17 ([c21accb](https://github.com/TriPSs/nx-extend/commit/c21accbed588d43cb5a53b4ce5d061722e7740f2))
+* Use package manager instead of npx when running commands ([f649413](https://github.com/TriPSs/nx-extend/commit/f649413c682f493a00c59c9ee09ed1ff45df1d77))
+
+
+### BREAKING CHANGES
+
+* Updated to NX 17
+* Updated to NX 17
+* Updated to NX 17
+
+
+
+## [6.1.8](https://github.com/TriPSs/nx-extend/compare/strapi@6.1.7...strapi@6.1.8) (2023-10-05)
+
+
+
 ## [6.1.7](https://github.com/TriPSs/nx-extend/compare/strapi@6.1.6...strapi@6.1.7) (2023-09-14)
 
 

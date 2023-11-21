@@ -2,6 +2,33 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [7.0.0](https://github.com/TriPSs/nx-extend/compare/gcp-secrets@6.1.3...gcp-secrets@7.0.0) (2023-10-31)
+
+
+* Force release with breaking change (#173) ([4517a65](https://github.com/TriPSs/nx-extend/commit/4517a65729e2aee542bedf3c728675e1c3141a6b)), closes [#173](https://github.com/TriPSs/nx-extend/issues/173)
+
+
+### Features
+
+* Update to NX 17 ([c21accb](https://github.com/TriPSs/nx-extend/commit/c21accbed588d43cb5a53b4ce5d061722e7740f2))
+
+
+### BREAKING CHANGES
+
+* Updated to NX 17
+* Updated to NX 17
+
+
+
+## [6.1.3](https://github.com/TriPSs/nx-extend/compare/gcp-secrets@6.1.2...gcp-secrets@6.1.3) (2023-10-05)
+
+
+### Bug Fixes
+
+* **gcp-secrets:** Load dotenv ([1550608](https://github.com/TriPSs/nx-extend/commit/1550608a2f348c767cc2e78b1f71e2883a8399d9))
+
+
+
 ## [6.1.2](https://github.com/TriPSs/nx-extend/compare/gcp-secrets@6.1.1...gcp-secrets@6.1.2) (2023-08-31)
 
 

@@ -2,6 +2,26 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [5.0.0](https://github.com/TriPSs/nx-extend/compare/gcp-task-runner@4.1.5...gcp-task-runner@5.0.0) (2023-10-31)
+
+
+### chore
+
+* Updated deps + NX ([5b07fa8](https://github.com/TriPSs/nx-extend/commit/5b07fa8fd4d2aeb0599ea71a0a1f2bb25287618e))
+
+
+### Features
+
+* Update to NX 17 ([c21accb](https://github.com/TriPSs/nx-extend/commit/c21accbed588d43cb5a53b4ce5d061722e7740f2))
+
+
+### BREAKING CHANGES
+
+* Updated to NX 17
+* Updated to NX 17
+
+
+
 ## [4.1.5](https://github.com/TriPSs/nx-extend/compare/gcp-task-runner@4.1.4...gcp-task-runner@4.1.5) (2023-09-14)
 
 
