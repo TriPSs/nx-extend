@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [6.0.2](https://github.com/TriPSs/nx-extend/compare/vercel@6.0.1...vercel@6.0.2) (2023-11-21)
+
+
+### Reverts
+
+* **vercel:** Always use `npx` as this caused more issues than expected for yarn projects ([ec8f3bb](https://github.com/TriPSs/nx-extend/commit/ec8f3bb1b9f821dd96fe6a2698de00e35419b0f8))
+
+
+
 ## [6.0.1](https://github.com/TriPSs/nx-extend/compare/vercel@6.0.0...vercel@6.0.1) (2023-11-09)
 
 

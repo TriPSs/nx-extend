@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [7.1.0](https://github.com/TriPSs/nx-extend/compare/gcp-cloud-run@7.0.0...gcp-cloud-run@7.1.0) (2023-11-21)
+
+
+### Features
+
+* **gcp-cloud-run:** Added `buildTarget` option to overwrite default build target ([cc09406](https://github.com/TriPSs/nx-extend/commit/cc0940606be3cc37340da582204673ddf568ad6e))
+
+
+
 # [7.0.0](https://github.com/TriPSs/nx-extend/compare/gcp-cloud-run@6.1.2...gcp-cloud-run@7.0.0) (2023-10-31)
 
 

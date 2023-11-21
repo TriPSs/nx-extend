@@ -2,6 +2,22 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [8.0.0](https://github.com/TriPSs/nx-extend/compare/strapi@7.0.1...strapi@8.0.0) (2023-11-21)
+
+
+### Features
+
+* **strapi:** Implement new Strapi build ([0cbf730](https://github.com/TriPSs/nx-extend/commit/0cbf73019833eaeddb4647ea27121570efb71b54))
+
+
+### BREAKING CHANGES
+
+* **strapi:** The build implementation changed causing the `src/admin/webpack.config.js` to be updated with `withNx`.
+See [webpack.config.js.template](./packages/strapi/src/generators/init/files/src/admin/webpack.config.js.template).
+Also the `tsConfig` option is now required.
+
+
+
 ## [7.0.1](https://github.com/TriPSs/nx-extend/compare/strapi@7.0.0...strapi@7.0.1) (2023-10-31)
 
 
