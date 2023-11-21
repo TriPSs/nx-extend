@@ -1,16 +1,22 @@
 import { parseTargetString, workspaceRoot } from '@nx/devkit'
 import { readCachedProjectGraph } from '@nx/workspace/src/core/project-graph'
+import path from 'node:path'
 import { FsTree } from 'nx/src/generators/tree'
 import { getProjects } from 'nx/src/generators/utils/project-configuration'
 
 export function withNx(config: any, webpack: any) {
+  const nxProject = process.env.NX_TASK_TARGET_PROJECT
+
+  if (!nxProject) {
+    throw new Error('Not running with NX?')
+  }
+
   const nxTree = new FsTree(workspaceRoot, false)
   const projects = getProjects(nxTree)
-
-  const project = projects.get(process.env.NX_TASK_TARGET_PROJECT)
+  const project = projects.get(nxProject)
 
   if (!project) {
-    throw new Error('Project not found!')
+    throw new Error(`Project "${nxProject}" not found!`)
   }
 
   const target = project.targets[process.env.NX_TASK_TARGET_TARGET]
@@ -40,8 +46,17 @@ export function withNx(config: any, webpack: any) {
 
     const root = options.root || project.root
 
-    config.entry.main = [workspaceRoot + `/${root}/.strapi/client/app.js`]
-    config.output.path = workspaceRoot + `/${outputPath}/build`
+    // Sanity safety check
+    if (config?.entry?.main && Array.isArray(config.entry.main)) {
+      config.entry.main = config.entry.main.map((entry) => (
+        path.resolve(workspaceRoot, root, entry)
+      ))
+    }
+
+    // Overwrite the output path to be the one defined in project options
+    if (config?.output?.path) {
+      config.output.path = path.resolve(workspaceRoot, outputPath, 'build')
+    }
   }
 
   return config
