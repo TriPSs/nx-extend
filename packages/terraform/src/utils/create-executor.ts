@@ -40,6 +40,7 @@ export function createExecutor(command: string) {
           (config) => `-backend-config="${config.key}=${config.name}"`
         ),
         command === 'plan' && planFile && `-out ${planFile}`,
+        command === 'destroy' && autoApproval && '-auto-approve',
         command === 'apply' && autoApproval && '-auto-approve',
         command === 'apply' && planFile,
         command === 'fmt' && '--recursive',
