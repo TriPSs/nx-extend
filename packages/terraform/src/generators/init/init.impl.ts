@@ -59,6 +59,13 @@ export default async function (
           ciMode: true,
           autoApproval: false
         }
+      },
+      destroy: {
+        executor: '@nx-extend/terraform:destroy',
+        options: {
+          ciMode: true,
+          autoApproval: false
+        }
       }
     },
     tags: options.parsedTags

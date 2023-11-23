@@ -19,6 +19,11 @@
       "implementation": "./src/executors/init/init.impl",
       "schema": "./src/executors/init/schema.json",
       "description": "init executor"
+    },
+    "destroy": {
+      "implementation": "./src/executors/destroy/destroy.impl",
+      "schema": "./src/executors/destroy/schema.json",
+      "description": "destroy executor"
     }
   },
   "builders": {
@@ -41,6 +46,11 @@
       "implementation": "./src/executors/init/init.impl",
       "schema": "./src/executors/init/schema.json",
       "description": "init executor"
+    },
+    "destroy": {
+      "implementation": "./src/executors/destroy/destroy.impl",
+      "schema": "./src/executors/destroy/schema.json",
+      "description": "destroy executor"
     }
   }
 }
