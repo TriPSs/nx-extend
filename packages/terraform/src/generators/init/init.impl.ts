@@ -63,7 +63,6 @@ export default async function (
       destroy: {
         executor: '@nx-extend/terraform:destroy',
         options: {
-          planFile: 'defaultplan',
           ciMode: true,
           autoApproval: false
         }
