@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [7.0.1](https://github.com/TriPSs/nx-extend/compare/gcp-secrets@7.0.0...gcp-secrets@7.0.1) (2023-11-29)
+
+
+### Bug Fixes
+
+* **gcp-secrets:** Use verbose logging and run commands with `--quiet` option ([36dca38](https://github.com/TriPSs/nx-extend/commit/36dca386354e20bdc284f3e3e580775195e9b27f))
+
+
+
 # [7.0.0](https://github.com/TriPSs/nx-extend/compare/gcp-secrets@6.1.3...gcp-secrets@7.0.0) (2023-10-31)
 
 
