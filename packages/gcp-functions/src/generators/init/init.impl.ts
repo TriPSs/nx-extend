@@ -101,7 +101,8 @@ export default async function (
         executor: '@nx-extend/gcp-functions:deploy',
         options: {
           functionName: normalizedOptions.projectName,
-          envVarsFile: `${normalizedOptions.projectRoot}/src/environments/production.yaml`
+          envVarsFile: `${normalizedOptions.projectRoot}/src/environments/production.yaml`,
+          entryPoint: names(normalizedOptions.name).className
         }
       }
     },

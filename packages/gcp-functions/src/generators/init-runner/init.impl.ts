@@ -72,11 +72,14 @@ export default async function (
         options: {
           outputPath: `dist/${normalizedOptions.projectRoot}`,
           main: `${normalizedOptions.projectRoot}/src/main.ts`,
-          tsConfig: `${normalizedOptions.projectRoot}/tsconfig.app.json`
+          tsConfig: `${normalizedOptions.projectRoot}/tsconfig.app.json`,
+          compiler: 'tsc',
+          target: 'node',
+          namedChunks: true
         }
       },
       serve: {
-        executor: '@nx/node:execute',
+        executor: '@nx/js:node',
         options: {
           buildTarget: `${normalizedOptions.projectName}:_build`
         }
