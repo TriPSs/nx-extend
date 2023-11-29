@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [10.0.2](https://github.com/TriPSs/nx-extend/compare/gcp-functions@10.0.1...gcp-functions@10.0.2) (2023-11-29)
+
+
+### Bug Fixes
+
+* **gcp-functions:** Small fixes when generating project/runner ([ae76129](https://github.com/TriPSs/nx-extend/commit/ae761293edd48e8de1c80f2a9be5cd168ba0ec3a))
+
+
+
 ## [10.0.1](https://github.com/TriPSs/nx-extend/compare/gcp-functions@10.0.0...gcp-functions@10.0.1) (2023-11-21)
 
 
