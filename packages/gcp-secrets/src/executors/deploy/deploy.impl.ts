@@ -1,5 +1,5 @@
 import { ExecutorContext, logger } from '@nx/devkit'
-import { buildCommand, execCommand } from '@nx-extend/core'
+import { buildCommand, execCommand, USE_VERBOSE_LOGGING } from '@nx-extend/core'
 import { existsSync, mkdirSync, unlinkSync, writeFileSync } from 'fs'
 
 import 'dotenv/config'
@@ -48,7 +48,7 @@ export async function deployExecutor(
           getCommandOptions(options)
         ]),
         {
-          silent: true,
+          silent: !USE_VERBOSE_LOGGING,
           asJSON: true
         }
       ).map((secret) => ({
@@ -73,8 +73,7 @@ export async function deployExecutor(
 
           // Get the content of the file
           const fileContent = getFileContent(file)
-          const isFileEncrypted =
-            fileContent.__gcp_metadata.status === 'encrypted'
+          const isFileEncrypted = fileContent.__gcp_metadata.status === 'encrypted'
           const decryptedFileContent = decryptFile(fileContent, true)
 
           // Decrypt the file if it's encrypted
@@ -142,9 +141,7 @@ export async function deployExecutor(
         success: secretsCreated.filter(Boolean).length === files.length
       }
     } catch (err) {
-      logger.error(
-        `Error happened trying to decrypt files: ${err.message || err}`
-      )
+      logger.error(`Error happened trying to deploy files: ${err.message || err}`)
       console.error(err.trace)
 
       return { success: false }
@@ -155,7 +152,10 @@ export async function deployExecutor(
 }
 
 export const getCommandOptions = (options: DeploySchema): string => {
-  return buildCommand([options.project && `--project=${options.project}`])
+  return buildCommand([
+    options.project && `--project=${options.project}`,
+    '--quiet'
+  ])
 }
 
 export const addLabelsIfNeeded = (

@@ -42,16 +42,13 @@ export const addOrUpdateSecret = (
     if (JSON.stringify(existingLabels) !== JSON.stringify(metadata.labels)) {
       logger.info(`Updating "${secretName}" it's labels`)
 
-      execCommand(
-        buildCommand([
-          `gcloud secrets update ${secretName}`,
-          addLabelsIfNeeded(metadata.labels, false),
-          getCommandOptions(options)
-        ]),
-        {
-          silent: true
-        }
-      )
+      execCommand(buildCommand([
+        `gcloud secrets update ${secretName}`,
+        addLabelsIfNeeded(metadata.labels, false),
+        getCommandOptions(options)
+      ]), {
+        silent: true
+      })
     }
 
     // Get the new version of the secret
