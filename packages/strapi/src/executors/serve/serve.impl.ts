@@ -29,6 +29,7 @@ export async function serveExecutor(
 
   return execPackageManagerCommand(buildCommand([
     'strapi develop',
+    '--ignore-prompts',
     !build && '--no-build',
     watchAdmin && '--watch-admin',
     browser && `--browser=${browser}`
