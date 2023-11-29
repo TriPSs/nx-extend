@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [8.0.2](https://github.com/TriPSs/nx-extend/compare/strapi@8.0.1...strapi@8.0.2) (2023-11-29)
+
+
+### Bug Fixes
+
+* **strapi:** Ignore all prompts when serving ([d48db66](https://github.com/TriPSs/nx-extend/commit/d48db66616e82b6a5c9014935e4a6ee90485c0ae))
+
+
+
 ## [8.0.1](https://github.com/TriPSs/nx-extend/compare/strapi@8.0.0...strapi@8.0.1) (2023-11-21)
 
 
