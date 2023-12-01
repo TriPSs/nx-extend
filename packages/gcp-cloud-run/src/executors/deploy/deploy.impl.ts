@@ -43,7 +43,8 @@ export function deployExecutor(
     timeout = null,
 
     cpu,
-    cpuBoost
+    cpuBoost,
+    ingress
   } = options
 
   const distDirectory = join(context.root, outputDirectory)
@@ -112,6 +113,14 @@ export function deployExecutor(
     })
     .filter(Boolean)
 
+  const ingressOpts = ["all", "internal", "internal-and-cloud-load-balancing"];
+  const validIngress = (typeof ingress === "string") && ingressOpts.includes(ingress);
+  if (!validIngress) {
+      logger.warn(
+        `"${ingress}" is not a valid ingress option! Only the following few options are supported: ${ingressOpts}`
+      )
+  }
+
   if (generateRepoInfoFile) {
     logger.info('Generating repo info file')
 
@@ -155,7 +164,9 @@ export function deployExecutor(
     typeof cpuBoost === 'boolean' && !cpuBoost && '--no-cpu-boost',
 
     // There can be a question if a repo should be created
-    buildWithArtifactRegistry && autoCreateArtifactsRepo && '--quiet'
+    buildWithArtifactRegistry && autoCreateArtifactsRepo && '--quiet',
+    
+    validIngress && `--ingress=${ingress}`
   ])
 
   return Promise.resolve(
