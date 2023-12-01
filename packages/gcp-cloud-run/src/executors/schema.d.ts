@@ -27,4 +27,5 @@ export interface ExecutorSchema {
   timeout?: number
   cpu?: number
   cpuBoost?: boolean
+  ingress?: string
 }
