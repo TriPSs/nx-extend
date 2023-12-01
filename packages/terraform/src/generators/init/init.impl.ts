@@ -58,6 +58,12 @@ export default async function (
           ciMode: true
         }
       },
+      fmt: {
+        executor: '@nx-extend/terraform:fmt',
+        options: {
+          ciMode: true
+        }
+      },
       apply: {
         executor: '@nx-extend/terraform:apply',
         options: {
