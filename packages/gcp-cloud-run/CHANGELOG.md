@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [7.2.0](https://github.com/TriPSs/nx-extend/compare/gcp-cloud-run@7.1.0...gcp-cloud-run@7.2.0) (2023-12-01)
+
+
+### Features
+
+* **gcp-cloud-run:** Added `cpu` and `cpuBoost` options ([3611eab](https://github.com/TriPSs/nx-extend/commit/3611eabf947bdc7aee4d82ddafc3d642f5de4c3b))
+
+
+
 # [7.1.0](https://github.com/TriPSs/nx-extend/compare/gcp-cloud-run@7.0.0...gcp-cloud-run@7.1.0) (2023-11-21)
 
 
