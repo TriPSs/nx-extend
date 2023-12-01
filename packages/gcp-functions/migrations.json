@@ -1,0 +1,9 @@
+{
+  "generators": {
+    "change-executor-name": {
+      "version": "11.0.0",
+      "description": "Gen 2 functions are now default.",
+      "implementation": "./src/migrations/change-function-gen/change-function-gen"
+    }
+  }
+}
