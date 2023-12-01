@@ -19,6 +19,29 @@ nx g @nx-extend/terraform:init
 
 ## Usage
 
+### Setup
+```sh
+nx g @nx-extend/terraform:init
+```
+
+#### Available options:
+
+| name              | type     | required | default | description                                                      |
+|-------------------|----------|----------|---------|------------------------------------------------------------------|
+| **`--name`**      | `string` | `true`   |         | Terraform project name                                           |
+| **`--directory`** | `string` | `false`  |         | A directory where the project is placed, based on the sourceRoot |
+| **`--tags`**      | `string` | `false`  | `empty` | Comma separated list for tags                                    |
+
+### Terraform execution
+
+```sh
+nx run <terraform-project-name>:initialize
+nx run <terraform-project-name>:providers
+nx run <terraform-project-name>:plan
+nx run <terraform-project-name>:apply
+nx run <terraform-project-name>:destroy
+```
+
 #### Available options:
 
 | name | type | default | description |

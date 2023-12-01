@@ -24,6 +24,11 @@
       "implementation": "./src/executors/destroy/destroy.impl",
       "schema": "./src/executors/destroy/schema.json",
       "description": "destroy executor"
+    },
+    "providers": {
+      "implementation": "./src/executors/providers/providers.impl",
+      "schema": "./src/executors/providers/schema.json",
+      "description": "providers executor"
     }
   },
   "builders": {
@@ -51,6 +56,11 @@
       "implementation": "./src/executors/destroy/destroy.impl",
       "schema": "./src/executors/destroy/schema.json",
       "description": "destroy executor"
+    },
+    "providers": {
+      "implementation": "./src/executors/providers/providers.impl",
+      "schema": "./src/executors/providers/schema.json",
+      "description": "providers executor"
     }
   }
 }
