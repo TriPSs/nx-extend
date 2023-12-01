@@ -57,11 +57,11 @@ export async function deployExecutor(
     vpcConnector = null,
     securityLevel = null,
     secrets = [],
-    gen = 1,
+    gen = 2,
     concurrency = 1,
     cloudSqlInstance = null,
     timeout = null,
-    cpu
+    cpu,
   } = options
 
   let runtime = options.runtime || 'nodejs20'

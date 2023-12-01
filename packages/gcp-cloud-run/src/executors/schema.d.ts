@@ -25,4 +25,6 @@ export interface ExecutorSchema {
   noTraffic?: boolean
   generateRepoInfoFile?: boolean
   timeout?: number
+  cpu?: number
+  cpuBoost?: boolean
 }

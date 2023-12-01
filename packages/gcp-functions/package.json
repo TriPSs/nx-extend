@@ -15,8 +15,14 @@
   "generators": "./generators.json",
   "devDependencies": {
     "@google-cloud/functions-framework": "^3.3.0",
-    "@nestjs/common": "^10.2.8",
-    "@nestjs/core": "^10.2.8",
-    "@nestjs/platform-express": "^10.2.8"
+    "@nestjs/common": "^10.2.10",
+    "@nestjs/core": "^10.2.10",
+    "@nestjs/platform-express": "^10.2.10"
+  },
+  "nx-migrations": {
+    "migrations": "./migrations.json"
+  },
+  "dependencies": {
+    "@nx/devkit": "17.0.2"
   }
 }

@@ -7,7 +7,10 @@
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "options": {
-        "lintFilePatterns": ["packages/gcp-functions/**/*.ts"]
+        "lintFilePatterns": [
+          "packages/gcp-functions/**/*.ts",
+          "packages/gcp-functions/migrations.json"
+        ]
       }
     },
     "test": {
@@ -50,6 +53,11 @@
             "glob": "**/*.json",
             "ignore": ["**/tsconfig*.json", "project.json"],
             "output": "/"
+          },
+          {
+            "input": "./packages/gcp-functions",
+            "glob": "migrations.json",
+            "output": "."
           }
         ],
         "updateBuildableProjectDepsInPackageJson": true
