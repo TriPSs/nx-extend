@@ -3,6 +3,6 @@
   "version": "5.0.1",
   "main": "src/index.js",
   "dependencies": {
-    "@google-cloud/storage": "7.6.0"
+    "@google-cloud/storage": "7.7.0"
   }
 }
