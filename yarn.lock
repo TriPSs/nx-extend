@@ -4521,6 +4521,7 @@ __metadata:
     "@nestjs/common": "npm:^10.2.10"
     "@nestjs/core": "npm:^10.2.10"
     "@nestjs/platform-express": "npm:^10.2.10"
+    "@nx/devkit": "npm:17.0.2"
   languageName: unknown
   linkType: soft
 
