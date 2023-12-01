@@ -40,7 +40,10 @@ export function deployExecutor(
     buildWith = 'artifact-registry',
     autoCreateArtifactsRepo = true,
     generateRepoInfoFile = false,
-    timeout = null
+    timeout = null,
+
+    cpu,
+    cpuBoost
   } = options
 
   const distDirectory = join(context.root, outputDirectory)
@@ -112,13 +115,11 @@ export function deployExecutor(
   if (generateRepoInfoFile) {
     logger.info('Generating repo info file')
 
-    execCommand(
-      buildCommand([
-        'gcloud debug source gen-repo-info-file',
-        `--source-directory=${sourceRoot}`,
-        `--output-directory=${distDirectory}`
-      ])
-    )
+    execCommand(buildCommand([
+      'gcloud debug source gen-repo-info-file',
+      `--source-directory=${sourceRoot}`,
+      `--output-directory=${distDirectory}`
+    ]))
   }
 
   let gcloudCommand = 'gcloud'
@@ -148,6 +149,10 @@ export function deployExecutor(
     allowUnauthenticated && '--allow-unauthenticated',
     tagWithVersion && packageVersion && `--tag=${packageVersion}`,
     validSecrets.length > 0 && `--set-secrets=${validSecrets.join(',')}`,
+
+    cpu && `--cpu=${cpu}`,
+    typeof cpuBoost === 'boolean' && cpuBoost && '--cpu-boost',
+    typeof cpuBoost === 'boolean' && !cpuBoost && '--no-cpu-boost',
 
     // There can be a question if a repo should be created
     buildWithArtifactRegistry && autoCreateArtifactsRepo && '--quiet'
