@@ -2,6 +2,20 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [11.0.0](https://github.com/TriPSs/nx-extend/compare/gcp-functions@10.0.2...gcp-functions@11.0.0) (2023-12-01)
+
+
+### Features
+
+* **gcp-functions:** Default deploy using gen 2 ([b419776](https://github.com/TriPSs/nx-extend/commit/b419776b0b45caebd84a95a7e36041ceb33eb07d))
+
+
+### BREAKING CHANGES
+
+* **gcp-functions:** `gen` is now default set to `2` instead of `1`(migration available with `nx migrate @nx-extend/gcp-functions`
+
+
+
 ## [10.0.2](https://github.com/TriPSs/nx-extend/compare/gcp-functions@10.0.1...gcp-functions@10.0.2) (2023-11-29)
 
 
