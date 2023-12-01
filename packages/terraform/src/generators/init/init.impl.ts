@@ -52,6 +52,12 @@ export default async function (
           ciMode: true
         }
       },
+      providers: {
+        executor: '@nx-extend/terraform:providers',
+        options: {
+          ciMode: true
+        }
+      },
       apply: {
         executor: '@nx-extend/terraform:apply',
         options: {
