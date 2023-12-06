@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [7.2.2](https://github.com/TriPSs/nx-extend/compare/gcp-cloud-run@7.2.1...gcp-cloud-run@7.2.2) (2023-12-06)
+
+
+### Bug Fixes
+
+* **gcp-cloud-run:** Return error if invalid ingress option is defined ([3960ba6](https://github.com/TriPSs/nx-extend/commit/3960ba6208876aecf21ce40058a145ee51ff298e))
+
+
+
 ## [7.2.1](https://github.com/TriPSs/nx-extend/compare/gcp-cloud-run@7.2.0...gcp-cloud-run@7.2.1) (2023-12-01)
 
 
