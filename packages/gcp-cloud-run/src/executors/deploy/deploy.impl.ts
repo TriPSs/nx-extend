@@ -5,7 +5,7 @@ import { join } from 'path'
 
 import { ExecutorSchema } from '../schema'
 
-export function deployExecutor(
+export async function deployExecutor(
   options: ExecutorSchema,
   context: ExecutorContext
 ): Promise<{ success: boolean }> {
@@ -106,19 +106,16 @@ export function deployExecutor(
         return secret
       }
 
-      logger.warn(
-        `"${secret}" is not a valid secret! It should be in the following format "ENV_VAR_NAME=SECRET:VERSION"`
-      )
+      logger.warn(`"${secret}" is not a valid secret! It should be in the following format "ENV_VAR_NAME=SECRET:VERSION"`)
       return false
     })
     .filter(Boolean)
 
-  const ingressOpts = ["all", "internal", "internal-and-cloud-load-balancing"];
-  const validIngress = (typeof ingress === "string") && ingressOpts.includes(ingress);
-  if (!validIngress) {
-      logger.warn(
-        `"${ingress}" is not a valid ingress option! Only the following few options are supported: ${ingressOpts}`
-      )
+  const ingressOpts = ['all', 'internal', 'internal-and-cloud-load-balancing']
+  if (ingress && !ingressOpts.includes(ingress)) {
+    logger.error(`"${ingress}" is not a valid ingress option! Only the following few options are supported: ${ingressOpts}`)
+
+    return { success: false }
   }
 
   if (generateRepoInfoFile) {
@@ -165,15 +162,13 @@ export function deployExecutor(
 
     // There can be a question if a repo should be created
     buildWithArtifactRegistry && autoCreateArtifactsRepo && '--quiet',
-    
-    validIngress && `--ingress=${ingress}`
+
+    ingress && `--ingress=${ingress}`
   ])
 
-  return Promise.resolve(
-    execCommand(deployCommand, {
-      cwd: distDirectory
-    })
-  )
+  return execCommand(deployCommand, {
+    cwd: distDirectory
+  })
 }
 
 export default deployExecutor
