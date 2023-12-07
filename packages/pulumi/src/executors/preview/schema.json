@@ -6,7 +6,7 @@
   "title": "Preview executor",
   "description": "Preview",
   "properties": {
-    "cwd": {
+    "root": {
       "type": "string",
       "description": "The working directory to run Pulumi commands from, if specified."
     }
