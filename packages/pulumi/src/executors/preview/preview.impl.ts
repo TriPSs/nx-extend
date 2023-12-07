@@ -2,6 +2,7 @@ import { ExecutorContext, workspaceRoot } from '@nx/devkit'
 import { buildCommand } from '@nx-extend/core'
 import { execSync } from 'child_process'
 import { which } from 'shelljs'
+import { join } from 'path'
 
 export interface PreviewOptions {
   stack?: string
