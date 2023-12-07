@@ -1,10 +1,12 @@
-import { ExecutorContext } from '@nx/devkit'
+import { ExecutorContext, workspaceRoot } from '@nx/devkit'
 import { buildCommand } from '@nx-extend/core'
 import { execSync } from 'child_process'
 import { which } from 'shelljs'
+import { join } from 'path'
 
 export interface PreviewOptions {
   stack?: string
+  root?: string
 }
 
 export default async function creatExecutor(
@@ -24,7 +26,7 @@ export default async function creatExecutor(
       options.stack && `--stack=${options.stack}`
     ]),
     {
-      cwd: sourceRoot,
+      cwd: join(workspaceRoot, options.root ?? sourceRoot),
       stdio: 'inherit'
     }
   )

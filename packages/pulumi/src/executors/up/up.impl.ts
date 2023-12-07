@@ -1,7 +1,8 @@
 import { buildCommand, USE_VERBOSE_LOGGING_MINIMAL } from '@nx-extend/core'
-import { ExecutorContext } from '@nx/devkit'
+import { ExecutorContext, workspaceRoot } from '@nx/devkit'
 import { execSync } from 'child_process'
 import { which } from 'shelljs'
+import { join } from 'path'
 
 export interface UpOptions {
   stack?: string,
@@ -9,6 +10,7 @@ export interface UpOptions {
   yes?: boolean
   suppressOutputs?: boolean
   json?: boolean
+  root?: string
 }
 
 export default async function createExecutor(
@@ -32,7 +34,7 @@ export default async function createExecutor(
       options.json && '--json'
     ]),
     {
-      cwd: sourceRoot,
+      cwd: join(workspaceRoot, options.root ?? sourceRoot),
       stdio: 'inherit'
     }
   )
