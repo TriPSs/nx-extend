@@ -5,7 +5,7 @@ import { which } from 'shelljs'
 
 export interface PreviewOptions {
   stack?: string
-  cwd?: string
+  root?: string
 }
 
 export default async function creatExecutor(
