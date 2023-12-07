@@ -2,6 +2,7 @@ import { buildCommand, USE_VERBOSE_LOGGING_MINIMAL } from '@nx-extend/core'
 import { ExecutorContext, workspaceRoot } from '@nx/devkit'
 import { execSync } from 'child_process'
 import { which } from 'shelljs'
+import { join } from 'path'
 
 export interface UpOptions {
   stack?: string,
