@@ -6,7 +6,7 @@
   "title": "Apply executor",
   "description": "Apply",
   "properties": {
-    "cwd": {
+    "root": {
       "type": "string",
       "description": "The working directory to run Pulumi commands from, if specified."
     }
