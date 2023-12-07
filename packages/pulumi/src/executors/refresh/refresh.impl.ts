@@ -7,6 +7,7 @@ export interface RefreshOptions {
   stack?: string,
   skipPreview?: boolean,
   yes?: boolean,
+  cwd?: string,
 }
 
 export default async function createExecutor(
@@ -28,7 +29,7 @@ export default async function createExecutor(
       options.yes && '--yes'
     ]),
     {
-      cwd: sourceRoot,
+      cwd: options.cwd ?? sourceRoot,
       stdio: 'inherit'
     }
   )
