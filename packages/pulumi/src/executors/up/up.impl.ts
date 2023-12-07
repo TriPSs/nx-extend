@@ -9,6 +9,7 @@ export interface UpOptions {
   yes?: boolean
   suppressOutputs?: boolean
   json?: boolean
+  cwd?: string
 }
 
 export default async function createExecutor(
@@ -32,7 +33,7 @@ export default async function createExecutor(
       options.json && '--json'
     ]),
     {
-      cwd: sourceRoot,
+      cwd: options.cwd ?? sourceRoot,
       stdio: 'inherit'
     }
   )
