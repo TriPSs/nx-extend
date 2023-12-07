@@ -5,6 +5,7 @@ import { which } from 'shelljs'
 
 export interface PreviewOptions {
   stack?: string
+  cwd?: string
 }
 
 export default async function creatExecutor(
@@ -24,7 +25,7 @@ export default async function creatExecutor(
       options.stack && `--stack=${options.stack}`
     ]),
     {
-      cwd: sourceRoot,
+      cwd: options.cwd ?? sourceRoot,
       stdio: 'inherit'
     }
   )
