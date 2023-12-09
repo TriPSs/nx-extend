@@ -37,7 +37,7 @@ jobs:
         target: [ 'build', 'e2e' , 'test']
     steps:
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
           node-version: 20.x
 
