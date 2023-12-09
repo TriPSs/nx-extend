@@ -2,6 +2,10 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [6.0.3](https://github.com/TriPSs/nx-extend/compare/vercel@6.0.2...vercel@6.0.3) (2023-12-09)
+
+
+
 ## [6.0.2](https://github.com/TriPSs/nx-extend/compare/vercel@6.0.1...vercel@6.0.2) (2023-11-21)
 
 
