@@ -4349,24 +4349,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nrwl/devkit@npm:16.7.4":
-  version: 16.7.4
-  resolution: "@nrwl/devkit@npm:16.7.4"
-  dependencies:
-    "@nx/devkit": "npm:16.7.4"
-  checksum: 842c5b5eeb50401129ba498e1701384670e14da3b687f9a64233f572f60d83efac4141429df71e436e8a7b573c48d77097ba510264209cb51e4573803ca10b77
-  languageName: node
-  linkType: hard
-
-"@nrwl/devkit@npm:17.0.2":
-  version: 17.0.2
-  resolution: "@nrwl/devkit@npm:17.0.2"
-  dependencies:
-    "@nx/devkit": "npm:17.0.2"
-  checksum: 0af1b3bc320b7fae95ad9d5dd202639c4095dc2bb29c2c137ce6e92fb39f7c7435032e2a3154b2383e04c0b0d4147b6d21c73afb7cbb87861e5faafc7975b38d
-  languageName: node
-  linkType: hard
-
 "@nrwl/devkit@npm:17.2.0":
   version: 17.2.0
   resolution: "@nrwl/devkit@npm:17.2.0"
@@ -4498,7 +4480,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nx-extend/e2e-runner@workspace:packages/e2e-runner"
   dependencies:
-    "@nx/devkit": "npm:16.7.4"
+    "@nx/devkit": "npm:17.2.0"
   languageName: unknown
   linkType: soft
 
@@ -4530,7 +4512,7 @@ __metadata:
     "@nestjs/common": "npm:^10.2.10"
     "@nestjs/core": "npm:^10.2.10"
     "@nestjs/platform-express": "npm:^10.2.10"
-    "@nx/devkit": "npm:17.0.2"
+    "@nx/devkit": "npm:17.2.0"
   languageName: unknown
   linkType: soft
 
@@ -4600,40 +4582,6 @@ __metadata:
   resolution: "@nx-extend/vercel@workspace:packages/vercel"
   languageName: unknown
   linkType: soft
-
-"@nx/devkit@npm:16.7.4":
-  version: 16.7.4
-  resolution: "@nx/devkit@npm:16.7.4"
-  dependencies:
-    "@nrwl/devkit": "npm:16.7.4"
-    ejs: "npm:^3.1.7"
-    enquirer: "npm:~2.3.6"
-    ignore: "npm:^5.0.4"
-    semver: "npm:7.5.3"
-    tmp: "npm:~0.2.1"
-    tslib: "npm:^2.3.0"
-  peerDependencies:
-    nx: ">= 15 <= 17"
-  checksum: 06a3d8c7723adaf249dc8be69ac63f0c0ffb5d1ef118fc0ed24529da180f05054e4a1ea94d5b1a0ca7af764d3f6013b9cb47c1686b8bc3c545c65c0aea4fee43
-  languageName: node
-  linkType: hard
-
-"@nx/devkit@npm:17.0.2":
-  version: 17.0.2
-  resolution: "@nx/devkit@npm:17.0.2"
-  dependencies:
-    "@nrwl/devkit": "npm:17.0.2"
-    ejs: "npm:^3.1.7"
-    enquirer: "npm:~2.3.6"
-    ignore: "npm:^5.0.4"
-    semver: "npm:7.5.3"
-    tmp: "npm:~0.2.1"
-    tslib: "npm:^2.3.0"
-  peerDependencies:
-    nx: ">= 16 <= 18"
-  checksum: 3676a1fce787c4bd75943d9d773fe8921712e4020050fea8aad1c75d1c24a71d5d4803fc8ce8b5e1848b436fd7a33de82d85629021e72407a4743f5509f7b3be
-  languageName: node
-  linkType: hard
 
 "@nx/devkit@npm:17.2.0":
   version: 17.2.0

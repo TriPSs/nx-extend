@@ -17,6 +17,6 @@
     "migrations": "./migrations.json"
   },
   "dependencies": {
-    "@nx/devkit": "16.7.4"
+    "@nx/devkit": "17.2.0"
   }
 }

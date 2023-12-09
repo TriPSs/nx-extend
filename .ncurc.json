@@ -4,6 +4,5 @@
   "root": true,
   "workspaces": true,
   "packageManager": "yarn",
-  "format": ["group", "repo"],
-  "reject": ["@nx/*", "nx"]
+  "format": ["group", "repo"]
 }
