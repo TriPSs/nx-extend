@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [11.1.0](https://github.com/TriPSs/nx-extend/compare/gcp-functions@11.0.0...gcp-functions@11.1.0) (2023-12-09)
+
+
+### Features
+
+* **gcp-functions:** Implemented default webpack config ([01045e0](https://github.com/TriPSs/nx-extend/commit/01045e01e88895e76b781061060b0bffadfd8921))
+
+
+
 # [11.0.0](https://github.com/TriPSs/nx-extend/compare/gcp-functions@10.0.2...gcp-functions@11.0.0) (2023-12-01)
 
 
