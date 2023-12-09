@@ -14,8 +14,7 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/packages/gcp-cloud-run"],
       "options": {
-        "jestConfig": "packages/gcp-cloud-run/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "packages/gcp-cloud-run/jest.config.ts"
       }
     },
     "build": {

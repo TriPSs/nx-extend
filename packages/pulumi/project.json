@@ -14,8 +14,7 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/packages/pulumi"],
       "options": {
-        "jestConfig": "packages/pulumi/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "packages/pulumi/jest.config.ts"
       }
     },
     "build": {

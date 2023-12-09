@@ -14,8 +14,7 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/packages/playwright"],
       "options": {
-        "jestConfig": "packages/playwright/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "packages/playwright/jest.config.ts"
       }
     },
     "build": {

@@ -14,8 +14,7 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/packages/vercel"],
       "options": {
-        "jestConfig": "packages/vercel/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "packages/vercel/jest.config.ts"
       }
     },
     "build": {

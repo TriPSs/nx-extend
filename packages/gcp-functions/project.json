@@ -17,8 +17,7 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/packages/gcp-functions"],
       "options": {
-        "jestConfig": "packages/gcp-functions/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "packages/gcp-functions/jest.config.ts"
       }
     },
     "build": {
@@ -46,7 +45,7 @@
           {
             "input": "packages/gcp-functions/src",
             "glob": "**/*.js",
-            "output": "/"
+            "output": "/src"
           },
           {
             "input": "packages/gcp-functions",

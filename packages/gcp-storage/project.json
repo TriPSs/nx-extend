@@ -14,8 +14,7 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/packages/gcp-storage"],
       "options": {
-        "jestConfig": "packages/gcp-storage/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "packages/gcp-storage/jest.config.ts"
       }
     },
     "build": {

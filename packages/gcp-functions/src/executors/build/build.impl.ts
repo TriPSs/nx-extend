@@ -1,4 +1,5 @@
 import webpackExecutor, { WebpackExecutorEvent } from '@nx/webpack/src/executors/webpack/webpack.impl'
+import { join } from 'path'
 
 import type { ExecutorContext } from '@nx/devkit'
 import type { WebpackExecutorOptions } from '@nx/webpack/src/executors/webpack/schema'
@@ -16,6 +17,12 @@ export async function buildExecutor(
   const options = {
     target: 'node',
     compiler: 'tsc',
+
+    // TODO:: Remove once the issues with the defaults are fixed
+    // https://github.com/nrwl/nx/pull/20678
+    webpackConfig: join(__dirname, 'webpack.config.js'),
+    isolatedConfig: true,
+
     ...rawOptions,
     generatePackageJson: false
   } as WebpackExecutorOptions
