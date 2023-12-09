@@ -2,6 +2,10 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [6.0.1](https://github.com/TriPSs/nx-extend/compare/playwright@6.0.0...playwright@6.0.1) (2023-12-09)
+
+
+
 # [6.0.0](https://github.com/TriPSs/nx-extend/compare/playwright@5.0.0...playwright@6.0.0) (2023-10-31)
 
 

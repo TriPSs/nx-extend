@@ -2,6 +2,19 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [4.1.1](https://github.com/TriPSs/nx-extend/compare/pulumi@4.1.0...pulumi@4.1.1) (2023-12-09)
+
+
+
+# [4.1.0](https://github.com/TriPSs/nx-extend/compare/pulumi@4.0.0...pulumi@4.1.0) (2023-12-07)
+
+
+### Features
+
+* **pulumi:** Added `root` option ([#190](https://github.com/TriPSs/nx-extend/issues/190)) ([75435d3](https://github.com/TriPSs/nx-extend/commit/75435d3714a0c1d92fb2ff182b12a8ee4e03ff2c))
+
+
+
 # [4.0.0](https://github.com/TriPSs/nx-extend/compare/pulumi@3.4.2...pulumi@4.0.0) (2023-10-31)
 
 

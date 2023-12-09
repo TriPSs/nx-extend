@@ -1,6 +1,6 @@
 {
   "name": "@nx-extend/core",
-  "version": "5.2.0",
+  "version": "5.2.1",
   "main": "src/index.js",
   "nx-migrations": {
     "migrations": "./migrations.json"

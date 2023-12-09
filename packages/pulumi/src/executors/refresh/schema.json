@@ -5,5 +5,10 @@
   "type": "object",
   "title": "Refresh executor",
   "description": "Refresh",
-  "properties": {}
+  "properties": {
+    "root": {
+      "type": "string",
+      "description": "The working directory to run Pulumi commands from, if specified."
+    }
+  }
 }

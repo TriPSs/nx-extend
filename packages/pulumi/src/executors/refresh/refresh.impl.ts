@@ -1,12 +1,14 @@
 import { buildCommand } from '@nx-extend/core'
-import { ExecutorContext } from '@nx/devkit'
+import { ExecutorContext, workspaceRoot } from '@nx/devkit'
 import { execSync } from 'child_process'
 import { which } from 'shelljs'
+import { join } from 'path'
 
 export interface RefreshOptions {
   stack?: string,
   skipPreview?: boolean,
   yes?: boolean,
+  root?: string,
 }
 
 export default async function createExecutor(
@@ -28,7 +30,7 @@ export default async function createExecutor(
       options.yes && '--yes'
     ]),
     {
-      cwd: sourceRoot,
+      cwd: join(workspaceRoot, options.root ?? sourceRoot),
       stdio: 'inherit'
     }
   )
