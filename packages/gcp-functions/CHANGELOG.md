@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [11.1.1](https://github.com/TriPSs/nx-extend/compare/gcp-functions@11.1.0...gcp-functions@11.1.1) (2023-12-09)
+
+
+### Bug Fixes
+
+* **gcp-functions:** Fixed schema still having `gen` default set to `1` ([2f753b8](https://github.com/TriPSs/nx-extend/commit/2f753b84f22451eb23e507607d26a29484a10f41))
+
+
+
 # [11.1.0](https://github.com/TriPSs/nx-extend/compare/gcp-functions@11.0.0...gcp-functions@11.1.0) (2023-12-09)
 
 
