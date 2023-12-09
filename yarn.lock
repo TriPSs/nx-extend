@@ -4513,6 +4513,7 @@ __metadata:
     "@nestjs/core": "npm:^10.2.10"
     "@nestjs/platform-express": "npm:^10.2.10"
     "@nx/devkit": "npm:17.2.0"
+    "@nx/webpack": "npm:17.2.0"
   languageName: unknown
   linkType: soft
 
