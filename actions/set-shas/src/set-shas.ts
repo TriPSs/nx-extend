@@ -25,10 +25,21 @@ async function run() {
         asString: true,
         silent: !core.isDebug()
       })
-      baseSha = execCommand(`git rev-parse ${tag}^{commit}`, {
-        asString: true,
-        silent: !core.isDebug()
-      })
+
+      if (!tag) {
+        core.warning(`No tags found, get base sha from origin!`)
+
+        baseSha = execCommand(`git rev-parse origin/${mainBranchName}~1`, {
+          asString: true,
+          silent: !core.isDebug()
+        })
+
+      } else {
+        baseSha = execCommand(`git rev-parse ${tag}^{commit}`, {
+          asString: true,
+          silent: !core.isDebug()
+        })
+      }
 
       core.info(`Got base sha "${baseSha}" from "${tag}"`)
     }
