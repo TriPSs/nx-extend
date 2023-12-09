@@ -45,7 +45,7 @@
           {
             "input": "packages/gcp-functions/src",
             "glob": "**/*.js",
-            "output": "/"
+            "output": "/src"
           },
           {
             "input": "packages/gcp-functions",
