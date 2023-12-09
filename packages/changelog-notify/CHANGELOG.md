@@ -2,6 +2,10 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [5.0.1](https://github.com/TriPSs/nx-extend/compare/changelog-notify@5.0.0...changelog-notify@5.0.1) (2023-12-09)
+
+
+
 # [5.0.0](https://github.com/TriPSs/nx-extend/compare/changelog-notify@4.1.2...changelog-notify@5.0.0) (2023-10-31)
 
 
