@@ -2,6 +2,10 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [6.0.3](https://github.com/TriPSs/nx-extend/compare/firebase-hosting@6.0.2...firebase-hosting@6.0.3) (2023-12-09)
+
+
+
 ## [6.0.2](https://github.com/TriPSs/nx-extend/compare/firebase-hosting@6.0.1...firebase-hosting@6.0.2) (2023-12-01)
 
 
