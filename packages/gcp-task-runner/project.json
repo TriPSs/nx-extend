@@ -48,8 +48,7 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/packages/gcp-task-runner"],
       "options": {
-        "jestConfig": "packages/gcp-task-runner/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "packages/gcp-task-runner/jest.config.ts"
       }
     },
     "version": {

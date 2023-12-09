@@ -14,8 +14,7 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/packages/terraform"],
       "options": {
-        "jestConfig": "packages/terraform/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "packages/terraform/jest.config.ts"
       }
     },
     "build": {

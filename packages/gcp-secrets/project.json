@@ -14,8 +14,7 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/packages/gcp-secrets"],
       "options": {
-        "jestConfig": "packages/gcp-secrets/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "packages/gcp-secrets/jest.config.ts"
       }
     },
     "build": {

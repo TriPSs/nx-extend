@@ -14,8 +14,7 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/packages/firebase-hosting"],
       "options": {
-        "jestConfig": "packages/firebase-hosting/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "packages/firebase-hosting/jest.config.ts"
       }
     },
     "build": {

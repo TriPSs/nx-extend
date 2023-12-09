@@ -14,8 +14,7 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/packages/changelog-notify"],
       "options": {
-        "jestConfig": "packages/changelog-notify/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "packages/changelog-notify/jest.config.ts"
       }
     },
     "build": {
