@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [7.2.4](https://github.com/TriPSs/nx-extend/compare/gcp-cloud-run@7.2.3...gcp-cloud-run@7.2.4) (2023-12-10)
+
+
+### Bug Fixes
+
+* **gcp-cloud-run:** No longer use `gcloud beta` when deploying with secrets ([a5b189e](https://github.com/TriPSs/nx-extend/commit/a5b189e3d9d5abf36d943388816f9798f97e4cb3))
+
+
+
 ## [7.2.3](https://github.com/TriPSs/nx-extend/compare/gcp-cloud-run@7.2.2...gcp-cloud-run@7.2.3) (2023-12-09)
 
 
