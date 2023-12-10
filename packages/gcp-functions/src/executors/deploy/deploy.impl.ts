@@ -61,7 +61,7 @@ export async function deployExecutor(
     concurrency = 1,
     cloudSqlInstance = null,
     timeout = null,
-    cpu,
+    cpu
   } = options
 
   let runtime = options.runtime || 'nodejs20'
@@ -103,15 +103,9 @@ export async function deployExecutor(
     })
     .filter(Boolean)
 
-  let gcloudCommand = 'gcloud'
-  if (validSecrets.length > 0) {
-    logger.info('Using secrets, use gcloud beta')
-    gcloudCommand = 'gcloud beta'
-  }
-
   let { success } = execCommand(
     buildCommand([
-      `${gcloudCommand} functions deploy`,
+      `gcloud functions deploy`,
       functionName,
       gen === 2 && '--gen2',
       `--trigger-${trigger}${triggerValue ? `=${triggerValue}` : ''}`,
@@ -156,7 +150,7 @@ export async function deployExecutor(
 
     const serviceUpdateCommand = execCommand(
       buildCommand([
-        `${gcloudCommand} run services update`,
+        'gcloud run services update',
         functionName,
 
         concurrency > 0 && `--concurrency ${concurrency}`,

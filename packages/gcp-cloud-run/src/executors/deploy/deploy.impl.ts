@@ -128,14 +128,8 @@ export async function deployExecutor(
     ]))
   }
 
-  let gcloudCommand = 'gcloud'
-  if (validSecrets.length > 0) {
-    logger.info('Using secrets, use gcloud beta')
-    gcloudCommand = 'gcloud beta'
-  }
-
   const deployCommand = buildCommand([
-    `${gcloudCommand} run deploy ${name}`,
+    `gcloud run deploy ${name}`,
     !buildWithArtifactRegistry && `--image=${containerName}`,
     buildWithArtifactRegistry && '--source=./',
     `--project=${project}`,
