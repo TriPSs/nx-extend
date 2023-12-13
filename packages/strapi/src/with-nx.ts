@@ -1,8 +1,6 @@
 import { parseTargetString, workspaceRoot } from '@nx/devkit'
 import { readCachedProjectGraph } from '@nx/workspace/src/core/project-graph'
 import path from 'node:path'
-import { FsTree } from 'nx/src/generators/tree'
-import { getProjects } from 'nx/src/generators/utils/project-configuration'
 
 export function withNx(config: any, webpack: any) {
   const nxProject = process.env.NX_TASK_TARGET_PROJECT
@@ -10,15 +8,14 @@ export function withNx(config: any, webpack: any) {
   if (!nxProject) {
     throw new Error('Not running with NX?')
   }
+  const projectGraph = readCachedProjectGraph()
+  const projectNode = projectGraph.nodes[nxProject]
 
-  const nxTree = new FsTree(workspaceRoot, false)
-  const projects = getProjects(nxTree)
-  const project = projects.get(nxProject)
-
-  if (!project) {
+  if (!projectNode) {
     throw new Error(`Project "${nxProject}" not found!`)
   }
 
+  const project = projectNode.data
   const target = project.targets[process.env.NX_TASK_TARGET_TARGET]
 
   const isServing = target.executor === '@nx-extend/strapi:serve'
@@ -37,7 +34,7 @@ export function withNx(config: any, webpack: any) {
 
     if (!outputPath && options.buildTarget) {
       const buildTarget = parseTargetString(options.buildTarget, readCachedProjectGraph())
-      outputPath = projects.get(buildTarget.project).targets[buildTarget.target].options.outputPath
+      outputPath = projectGraph.nodes[buildTarget.project].data.targets[buildTarget.target].options.outputPath
     }
 
     if (!outputPath) {
