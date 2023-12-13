@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [8.0.5](https://github.com/TriPSs/nx-extend/compare/strapi@8.0.4...strapi@8.0.5) (2023-12-13)
+
+
+### Bug Fixes
+
+* **strapi:** Use cached project graph for `withNx` ([afc270f](https://github.com/TriPSs/nx-extend/commit/afc270f515a5a2897d28ec257b050bfb3358b2fa))
+
+
+
 ## [8.0.4](https://github.com/TriPSs/nx-extend/compare/strapi@8.0.3...strapi@8.0.4) (2023-12-09)
 
 
