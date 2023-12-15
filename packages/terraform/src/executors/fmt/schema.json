@@ -6,7 +6,7 @@
   "title": "Format executor",
   "description": "Format",
   "properties": {
-    "write": {
+    "formatWrite": {
       "type": "boolean",
       "title": "Write to file",
       "description": "Write to file",
