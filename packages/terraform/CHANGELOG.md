@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [4.2.0](https://github.com/TriPSs/nx-extend/compare/terraform@4.1.0...terraform@4.2.0) (2023-12-15)
+
+
+### Features
+
+* Added lock option to providers target. ([5c839fd](https://github.com/TriPSs/nx-extend/commit/5c839fdeef0fed92b46654a14755ea6f12842be7))
+
+
+
 # [4.1.0](https://github.com/TriPSs/nx-extend/compare/terraform@4.0.4...terraform@4.1.0) (2023-12-15)
 
 
