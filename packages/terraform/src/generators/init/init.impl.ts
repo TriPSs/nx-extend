@@ -49,7 +49,9 @@ export default async function (
       initialize: {
         executor: '@nx-extend/terraform:init',
         options: {
-          ciMode: true
+          ciMode: true,
+          upgrade: false,
+          migrateState: false
         }
       },
       providers: {
@@ -61,7 +63,8 @@ export default async function (
       fmt: {
         executor: '@nx-extend/terraform:fmt',
         options: {
-          ciMode: true
+          ciMode: true,
+          formatWrite: false
         }
       },
       apply: {

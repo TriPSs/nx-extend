@@ -3,7 +3,20 @@
   "outputCapture": "direct-nodejs",
   "$schema": "http://json-schema.org/schema",
   "type": "object",
-  "title": "Plan executor",
-  "description": "Plan",
-  "properties": {}
+  "title": "Init executor",
+  "description": "Init",
+  "properties": {
+    "upgrade": {
+      "type": "boolean",
+      "title": "Install the latest module and provider versions.",
+      "description": "Install the latest module and provider versions allowed within configured constraints, overriding the default behavior of selecting exactly the version recorded in the dependency lockfile.",
+      "default": false
+    },
+    "migrate-state": {
+      "type": "boolean",
+      "title": "Reconfigure a backend, and attempt to migrate any existing state.",
+      "description": "Reconfigure a backend, and attempt to migrate any existing state.",
+      "default": false
+    }
+  }
 }
