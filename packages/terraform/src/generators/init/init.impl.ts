@@ -57,7 +57,8 @@ export default async function (
       providers: {
         executor: '@nx-extend/terraform:providers',
         options: {
-          ciMode: true
+          ciMode: true,
+          lock: true
         }
       },
       fmt: {
