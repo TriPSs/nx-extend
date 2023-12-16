@@ -1,0 +1,64 @@
+{
+  "name": "react-email",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/react-email/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["packages/react-email/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/packages/react-email"],
+      "options": {
+        "jestConfig": "packages/react-email/jest.config.ts"
+      }
+    },
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/react-email",
+        "tsConfig": "packages/react-email/tsconfig.lib.json",
+        "packageJson": "packages/react-email/package.json",
+        "main": "packages/react-email/src/index.ts",
+        "buildableProjectDepsInPackageJsonType": "dependencies",
+        "assets": [
+          "packages/react-email/*.md",
+          {
+            "input": "./packages/react-email/src",
+            "glob": "**/*.!(ts)",
+            "output": "./src"
+          },
+          {
+            "input": "./packages/react-email",
+            "glob": "generators.json",
+            "output": "."
+          },
+          {
+            "input": "./packages/react-email",
+            "glob": "executors.json",
+            "output": "."
+          }
+        ],
+        "updateBuildableProjectDepsInPackageJson": true
+      }
+    },
+    "version": {
+      "executor": "@jscutlery/semver:version",
+      "options": {
+        "tagPrefix": "${target}@"
+      }
+    },
+    "publish": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npm publish ./dist/packages/react-email --access public || true"
+      }
+    }
+  },
+  "tags": []
+}

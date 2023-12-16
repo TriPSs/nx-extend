@@ -4555,6 +4555,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@nx-extend/react-email@workspace:packages/react-email":
+  version: 0.0.0-use.local
+  resolution: "@nx-extend/react-email@workspace:packages/react-email"
+  languageName: unknown
+  linkType: soft
+
 "@nx-extend/strapi@workspace:packages/strapi":
   version: 0.0.0-use.local
   resolution: "@nx-extend/strapi@workspace:packages/strapi"
