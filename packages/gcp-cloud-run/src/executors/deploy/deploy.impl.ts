@@ -123,7 +123,7 @@ export async function deployExecutor(
 
     execCommand(buildCommand([
       'gcloud debug source gen-repo-info-file',
-      `--source-directory=${sourceRoot}`,
+      `--source-directory=${sourceRoot || './'}`,
       `--output-directory=${distDirectory}`
     ]))
   }
