@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "outputCapture": "direct-nodejs",
+  "type": "object",
+  "title": "Serve executor",
+  "description": "Runs react email",
+  "properties": {
+    "port": {
+      "type": "string"
+    }
+  },
+  "required": []
+}

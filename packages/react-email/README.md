@@ -12,4 +12,23 @@
 
 ```sh
 npm install -D @nx-extend/react-email
+nx g @nx-extend/react-email:init
 ```
+
+## Usage
+
+### Serve
+
+#### Available options:
+
+| name | type | default | description |
+|------|------|---------|-------------|
+
+### Export
+
+#### Available options:
+
+| name               | type     | default | description                        |
+|--------------------|----------|---------|------------------------------------|
+| **`--outputPath`** | `string` |         | Output path to output the build to |
+
