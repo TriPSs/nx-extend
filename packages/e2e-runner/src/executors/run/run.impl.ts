@@ -25,7 +25,7 @@ export async function endToEndRunner(
 
   const { runner, targets, ...rest } = options
 
-  runningTargets = targets.map((targetOptions) => new NxTarget(targetOptions, options))
+  runningTargets = targets.map((targetOptions) => new NxTarget(targetOptions))
 
   try {
     // Start all targets
