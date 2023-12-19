@@ -1,0 +1,19 @@
+{
+  "name": "react-email-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "e2e/react-email-e2e/src",
+  "targets": {
+    "e2e": {
+      "executor": "@nx/jest:jest",
+      "options": {
+        "jestConfig": "e2e/react-email-e2e/jest.config.js",
+        "runInBand": true,
+        "passWithNoTests": false
+      },
+      "dependsOn": ["react-email:build"]
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["react-email"]
+}

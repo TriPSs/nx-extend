@@ -1,7 +1,26 @@
 {
   "executors": {
-
+    "serve": {
+      "implementation": "./src/executors/serve/serve.impl",
+      "schema": "./src/executors/serve/schema.json",
+      "description": "Start react email in dev mode."
+    },
+    "export": {
+      "implementation": "./src/executors/export/export.impl",
+      "schema": "./src/executors/export/schema.json",
+      "description": "export react email"
+    }
   },
   "builders": {
+    "serve": {
+      "implementation": "./src/executors/serve/serve.impl",
+      "schema": "./src/executors/serve/schema.json",
+      "description": "Start react email in dev mode."
+    },
+    "export": {
+      "implementation": "./src/executors/export/export.impl",
+      "schema": "./src/executors/export/schema.json",
+      "description": "export react email"
+    }
   }
 }

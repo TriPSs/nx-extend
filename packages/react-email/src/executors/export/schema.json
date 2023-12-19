@@ -1,0 +1,21 @@
+{
+  "version": 2,
+  "outputCapture": "direct-nodejs",
+  "type": "object",
+  "title": "Export executor",
+  "description": "Export react email",
+  "properties": {
+    "outputPath": {
+      "type": "string"
+    },
+    "pretty": {
+      "type": "boolean",
+      "default": false
+    },
+    "plainText": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "required": ["outputPath"]
+}

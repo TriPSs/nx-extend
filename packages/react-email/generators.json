@@ -3,6 +3,10 @@
   "name": "react-email",
   "version": "0.0.1",
   "generators": {
-
+    "init": {
+      "factory": "./src/generators/init/init.impl",
+      "schema": "./src/generators/init/schema.json",
+      "description": "react email generator"
+    }
   }
 }
