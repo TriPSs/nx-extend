@@ -3,8 +3,6 @@ import { readCachedProjectGraph } from '@nx/workspace/src/core/project-graph'
 import { getPackageManagerExecCommand, USE_VERBOSE_LOGGING } from '@nx-extend/core'
 import * as childProcess from 'child_process'
 
-import type { RunOptions } from '../run.impl'
-
 import { isApiLive } from './is-api-live'
 import { wait } from './wait'
 
@@ -24,13 +22,11 @@ export class NxTarget {
 
   private readonly isAvailable: () => Promise<boolean>
   private readonly options: NxTargetOptions
-  private readonly runOptions: RunOptions
 
   private killed = false
 
-  constructor(options: NxTargetOptions, runOptions: RunOptions) {
-    this.options = options
-    this.runOptions = runOptions
+  constructor(options: NxTargetOptions) {
+    this.options = this.processOptions(options)
 
     this.isAvailable = () => isApiLive(options.checkUrl, {
       rejectUnauthorized: options.rejectUnauthorized
@@ -59,6 +55,24 @@ export class NxTarget {
     await this.killProcess?.()
 
     this.killed = true
+  }
+
+  private processOptions(options: NxTargetOptions): NxTargetOptions {
+    if (options.checkUrl.includes('$')) {
+      const variables = options.checkUrl.match(/\$[A-Z_-]+/g)
+
+      if (variables && variables.length > 0) {
+        for (const variable of variables) {
+          const envVariable = variable.replace('$', '')
+
+          if (envVariable in process.env) {
+            options.checkUrl = options.checkUrl.replace(variable, process.env[envVariable])
+          }
+        }
+      }
+    }
+
+    return options
   }
 
   private async startProcess(): Promise<void> {

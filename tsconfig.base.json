@@ -62,6 +62,9 @@
       ],
       "@nx-extend/vercel": [
         "packages/vercel/src/index.ts"
+      ],
+      "@nx-extend/react-email": [
+        "packages/react-email/src/index.ts"
       ]
     }
   },
