@@ -13,6 +13,7 @@ export interface NxTargetOptions {
   env?: { [key: string]: string }
   reuseExistingServer?: boolean
   rejectUnauthorized?: boolean
+  logging?: boolean
 }
 
 export class NxTarget {
@@ -101,7 +102,8 @@ export class NxTarget {
       onExit: (code) => (
         processExitedReject(new Error(`Target "${this.options.target}" was not able to start. Exit code: ${code}`))
       ),
-      env: this.options.env
+      env: this.options.env,
+      logging: this.options.logging
     })
 
     if (this.killed) {
@@ -162,9 +164,12 @@ function launchProcess(
   options: {
     onExit: (exitCode: number | null, signal: string | null) => void
     env?: { [key: string]: string }
+    logging?: boolean
   }
 ): () => Promise<void> {
   const { project, target, configuration } = parseTargetString(targetString, readCachedProjectGraph())
+
+  const shouldLog = options.logging ?? USE_VERBOSE_LOGGING
 
   const spawnedProcess = childProcess.spawn(
     `${getPackageManagerExecCommand()} nx ${target} ${project} ${
@@ -175,7 +180,7 @@ function launchProcess(
       detached: true,
       shell: true,
       cwd: process.cwd(),
-      stdio: USE_VERBOSE_LOGGING ? 'inherit' : undefined,
+      stdio: shouldLog ? 'inherit' : undefined,
       env: {
         ...process.env,
         // Make sure NODE_ENV is set to test

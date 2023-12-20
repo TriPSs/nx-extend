@@ -34,6 +34,7 @@ Each target can be configured with the following options.
   env?: { [key: string]: string } // Extra parameters provided to the target on startup.
   reuseExistingServer?: boolean // Set to true to allow using a previously started target.
   rejectUnauthorized?: boolean // Set to false to allow the use of self-signed certificates in your target.
+  logging?: boolean // Set to true to forwards the logs of the target, set to false to hide the logs of the target. When undefined, the logs are only forwarded with the `--verbose` flag.
 }
 ```
 
@@ -56,7 +57,8 @@ Example target
         {
           "target": "api:serve",
           "checkUrl": "http://localhost:9000/health",
-          "checkMaxTries": 50
+          "checkMaxTries": 50,
+          "logging": false
         }
       ]
     }
