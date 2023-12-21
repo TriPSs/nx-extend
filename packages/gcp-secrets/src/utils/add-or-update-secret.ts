@@ -73,21 +73,23 @@ export const addOrUpdateSecret = (
       if (['destroy', 'disable'].includes(updateBehavior)) {
         const previousVersion = parseInt(newVersion, 10) - 1
 
-        logger.info(
-          `${
-            updateBehavior === 'disable' ? 'Disabling' : 'Destroying'
-          } previous version of secret "${secretName}"`
-        )
+        if (previousVersion > 0) {
+          logger.info(
+            `${
+              updateBehavior === 'disable' ? 'Disabling' : 'Destroying'
+            } previous version of secret "${secretName}"`
+          )
 
-        execCommandResult = execCommand(
-          buildCommand([
-            `gcloud secrets versions ${updateBehavior} ${previousVersion}`,
-            `--secret=${secretName}`,
-            '--quiet',
+          execCommandResult = execCommand(
+            buildCommand([
+              `gcloud secrets versions ${updateBehavior} ${previousVersion}`,
+              `--secret=${secretName}`,
+              '--quiet',
 
-            getCommandOptions(options)
-          ])
-        )
+              getCommandOptions(options)
+            ])
+          )
+        }
       } else {
         logger.warn(
           `"${updateBehavior}" is an invalid onUpdateBehavior, valid are: "none", "disable" or "destroy"`
