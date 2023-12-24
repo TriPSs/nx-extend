@@ -20,7 +20,7 @@ function getStrippedEnvironmentVariables() {
 }
 
 export async function runNxCommandAsync(command: string, options: { env?: object } = {}): Promise<void> {
-  execSync(`yarn nx ${command}`, {
+  execSync(`npx nx ${command}`, {
     cwd: tmpProjPath(),
     stdio: 'inherit',
     env: {
