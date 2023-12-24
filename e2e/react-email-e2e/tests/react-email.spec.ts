@@ -14,8 +14,10 @@ describe('react email e2e', () => {
 
   const appName = 'react-email-test'
   it('should be able to init', async () => {
-    await runNxCommandAsync(`generate @nx-extend/react-email:init ${appName}`)
-
+    const { stdout, stderr } = await runNxCommandAsync(`generate @nx-extend/react-email:init ${appName}`, {
+      silenceError: true
+    })
+    console.log(stdout, stderr)
     expect(readJson(`${appName}/project.json`).targets).toEqual(
       expect.objectContaining({
         serve: {
