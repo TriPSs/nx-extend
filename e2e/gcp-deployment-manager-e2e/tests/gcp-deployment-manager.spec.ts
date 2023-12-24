@@ -1,7 +1,4 @@
-import {
-  checkFilesExist,
-  runNxCommandAsync
-} from '@nx/plugin/testing'
+import { checkFilesExist, runNxCommandAsync } from '@nx/plugin/testing'
 import { ensureNxProject } from '../../utils/workspace'
 
 describe('gcp-deployment-manager e2e', () => {

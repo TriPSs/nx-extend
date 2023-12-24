@@ -1,9 +1,6 @@
-import {
-  runNxCommandAsync,
-  readJson,
-  updateFile, readFile
-} from '@nx/plugin/testing'
+import { readJson, readFile } from '@nx/plugin/testing'
 import { ensureNxProject } from '../../utils/workspace'
+import { runNxCommandAsync } from '../../utils/run-nx-command-async'
 
 describe('react email e2e', () => {
 
@@ -14,10 +11,8 @@ describe('react email e2e', () => {
 
   const appName = 'react-email-test'
   it('should be able to init', async () => {
-    const { stdout, stderr } = await runNxCommandAsync(`generate @nx-extend/react-email:init ${appName}`, {
-      silenceError: true
-    })
-    console.log(stdout, stderr)
+    await runNxCommandAsync(`generate @nx-extend/react-email:init ${appName}`)
+
     expect(readJson(`${appName}/project.json`).targets).toEqual(
       expect.objectContaining({
         serve: {

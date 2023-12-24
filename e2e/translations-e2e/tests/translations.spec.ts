@@ -1,9 +1,6 @@
-import {
-  runNxCommandAsync,
-  readJson,
-  updateFile
-} from '@nx/plugin/testing'
+import { readJson, updateFile } from '@nx/plugin/testing'
 import { ensureNxProject } from '../../utils/workspace'
+import { runNxCommandAsync } from '../../utils/run-nx-command-async'
 
 describe('translations e2e', () => {
 

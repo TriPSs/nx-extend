@@ -1,9 +1,6 @@
-import {
-  checkFilesExist,
-  rmDist,
-  runNxCommandAsync
-} from '@nx/plugin/testing'
+import { checkFilesExist, rmDist } from '@nx/plugin/testing'
 import { ensureNxProject } from '../../utils/workspace'
+import { runNxCommandAsync } from '../../utils/run-nx-command-async'
 
 describe('(e2e) gcp-functions', () => {
   beforeAll(() => {
