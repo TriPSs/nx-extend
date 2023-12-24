@@ -37,11 +37,11 @@ describe('react email e2e', () => {
         }
       })
     )
-  }, 300000)
+  })
 
   it('should be able to export', async () => {
     await runNxCommandAsync(`export ${appName}`)
 
     expect(readFile(`dist/${appName}/index.html`)).toMatchSnapshot()
-  }, 300000)
+  })
 })

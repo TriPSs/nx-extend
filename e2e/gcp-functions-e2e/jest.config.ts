@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   displayName: 'gcp-functions-e2e',
   preset: '../../jest.preset.js',
   globals: {},

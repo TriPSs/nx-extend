@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   displayName: 'react-email-e2e',
   preset: '../../jest.preset.js',
   globals: {},

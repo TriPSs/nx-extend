@@ -20,5 +20,5 @@ describe('gcp-deployment-manager e2e', () => {
     expect(() => checkFilesExist(
       `${appName}/src/deployment.yml`
     )).not.toThrow()
-  }, 300000)
+  })
 })

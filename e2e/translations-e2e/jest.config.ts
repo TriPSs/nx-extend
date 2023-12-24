@@ -1,5 +1,5 @@
-module.exports = {
-  displayName: 'strapi-e2e',
+export default {
+  displayName: 'translations-e2e',
   preset: '../../jest.preset.js',
   globals: {},
   transform: {
@@ -11,5 +11,5 @@ module.exports = {
     ]
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
-  coverageDirectory: '../../coverage/e2e/strapi-e2e'
+  coverageDirectory: '../../coverage/e2e/translations-e2e'
 }

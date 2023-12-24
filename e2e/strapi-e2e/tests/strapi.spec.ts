@@ -19,7 +19,7 @@ describe('(e2e) strapi', () => {
     expect(() => checkFilesExist(
       `${appName}/src/index.ts`
     )).not.toThrow()
-  }, 300000)
+  })
 
   it('should be able to build', async () => {
     rmDist()
@@ -33,5 +33,5 @@ describe('(e2e) strapi', () => {
       `dist/${appName}/src/index.js`,
       `dist/${appName}/build/index.html`
     )).not.toThrow()
-  }, 300000)
+  })
 })

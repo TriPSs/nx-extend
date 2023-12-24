@@ -23,5 +23,5 @@ describe('gcp-secrets e2e', () => {
       `${appName}/src/secret-one.json`,
       `${appName}/src/secret-two.json`
     )).not.toThrow()
-  }, 300000)
+  })
 })
