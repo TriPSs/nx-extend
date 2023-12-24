@@ -7,7 +7,7 @@
     "e2e": {
       "executor": "@nx/jest:jest",
       "options": {
-        "jestConfig": "e2e/gcp-secrets-e2e/jest.config.js",
+        "jestConfig": "e2e/gcp-secrets-e2e/jest.config.ts",
         "runInBand": true,
         "passWithNoTests": false
       },

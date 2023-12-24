@@ -1,9 +1,6 @@
-import {
-  checkFilesExist,
-  rmDist,
-  runNxCommandAsync
-} from '@nx/plugin/testing'
+import { checkFilesExist, rmDist } from '@nx/plugin/testing'
 import { ensureNxProject } from '../../utils/workspace'
+import { runNxCommandAsync } from '../../utils/run-nx-command-async'
 
 describe('(e2e) gcp-functions', () => {
   beforeAll(() => {
@@ -22,7 +19,7 @@ describe('(e2e) gcp-functions', () => {
       `${appName}/src/main.ts`,
       `${appName}/src/environments/production.yaml`
     )).not.toThrow()
-  }, 300000)
+  })
 
   it('should be able to build a function', async () => {
     await runNxCommandAsync(`build ${appName}`)
@@ -31,7 +28,7 @@ describe('(e2e) gcp-functions', () => {
       `dist/${appName}/main.js`,
       `dist/${appName}/package.json`
     )).not.toThrow()
-  }, 300000)
+  })
 
   it('should be able to build a function and generate lock file', async () => {
     rmDist()
@@ -42,7 +39,7 @@ describe('(e2e) gcp-functions', () => {
       `dist/${appName}/package.json`,
       `dist/${appName}/yarn.lock`
     )).not.toThrow()
-  }, 300000)
+  })
 
   it('should be able the runner', async () => {
     const runnerName = 'functions-runner'
@@ -51,5 +48,5 @@ describe('(e2e) gcp-functions', () => {
     expect(() => checkFilesExist(
       `${runnerName}/src/main.ts`
     )).not.toThrow()
-  }, 300000)
+  })
 })

@@ -1,9 +1,5 @@
-import {
-  checkFilesExist,
-  runNxCommandAsync,
-  uniq
-} from '@nx/plugin/testing'
-
+import { checkFilesExist, uniq } from '@nx/plugin/testing'
+import { runNxCommandAsync } from '../../utils/run-nx-command-async'
 import { ensureNxProject } from '../../utils/workspace'
 
 describe('gcp-secrets e2e', () => {
@@ -23,5 +19,5 @@ describe('gcp-secrets e2e', () => {
       `${appName}/src/secret-one.json`,
       `${appName}/src/secret-two.json`
     )).not.toThrow()
-  }, 300000)
+  })
 })

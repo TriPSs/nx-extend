@@ -55,4 +55,10 @@ export function ensureNxProject(patchPlugins: string[] = []): void {
     stdio: 'inherit',
     env: process.env
   })
+
+  execSync('echo "enableHardenedMode: false" >> .yarnrc.yml', {
+    cwd: tmpProjectPath,
+    stdio: 'inherit',
+    env: process.env
+  })
 }

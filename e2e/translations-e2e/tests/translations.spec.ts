@@ -1,9 +1,6 @@
-import {
-  runNxCommandAsync,
-  readJson,
-  updateFile
-} from '@nx/plugin/testing'
+import { readJson, updateFile } from '@nx/plugin/testing'
 import { ensureNxProject } from '../../utils/workspace'
+import { runNxCommandAsync } from '../../utils/run-nx-command-async'
 
 describe('translations e2e', () => {
 
@@ -52,7 +49,7 @@ describe('translations e2e', () => {
       translatorOptions: {},
       languages: ['en']
     })
-  }, 300000)
+  })
 
   it('should be able to extract translations', async () => {
     updateFile(
@@ -90,5 +87,5 @@ describe('translations e2e', () => {
       'message-id': 'Message',
       'message-id-2': 'Message 2'
     })
-  }, 300000)
+  })
 })

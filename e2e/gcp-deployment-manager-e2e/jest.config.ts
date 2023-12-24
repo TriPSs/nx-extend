@@ -1,5 +1,5 @@
-module.exports = {
-  displayName: 'gcp-secrets-e2e',
+export default {
+  displayName: 'gcp-deployment-manager-e2e',
   preset: '../../jest.preset.js',
   globals: {},
   transform: {
@@ -11,5 +11,5 @@ module.exports = {
     ]
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
-  coverageDirectory: '../../coverage/e2e/gcp-secrets-e2e'
+  coverageDirectory: '../../coverage/e2e/gcp-deployment-manager-e2e'
 }

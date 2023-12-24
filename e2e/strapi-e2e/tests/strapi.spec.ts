@@ -1,9 +1,6 @@
-import {
-  checkFilesExist,
-  rmDist,
-  runNxCommandAsync
-} from '@nx/plugin/testing'
+import { checkFilesExist, rmDist } from '@nx/plugin/testing'
 import { ensureNxProject } from '../../utils/workspace'
+import { runNxCommandAsync } from '../../utils/run-nx-command-async'
 
 describe('(e2e) strapi', () => {
   beforeAll(() => ensureNxProject([
@@ -19,7 +16,7 @@ describe('(e2e) strapi', () => {
     expect(() => checkFilesExist(
       `${appName}/src/index.ts`
     )).not.toThrow()
-  }, 300000)
+  })
 
   it('should be able to build', async () => {
     rmDist()
@@ -33,5 +30,5 @@ describe('(e2e) strapi', () => {
       `dist/${appName}/src/index.js`,
       `dist/${appName}/build/index.html`
     )).not.toThrow()
-  }, 300000)
+  })
 })
