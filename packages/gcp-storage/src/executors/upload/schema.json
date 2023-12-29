@@ -12,8 +12,7 @@
     },
     "directory": {
       "type": "string",
-      "description": "Folder from the outputPath to upload",
-      "default": ""
+      "description": "Directory to upload"
     },
     "gzip": {
       "type": "boolean",
@@ -25,5 +24,8 @@
       "description": "What extensions to gzip",
       "default": "js,css,html"
     }
-  }
+  },
+  "directory": [
+    "name"
+  ]
 }
