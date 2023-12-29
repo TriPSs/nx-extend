@@ -2,7 +2,7 @@
   "executors": {
     "upload": {
       "implementation": "./src/executors/upload/upload.impl",
-      "schema": "./src/executors/executors/schema.json",
+      "schema": "./src/executors/upload/schema.json",
       "description": "Upload to GCP storage"
     }
   },

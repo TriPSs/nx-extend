@@ -13,30 +13,26 @@ export async function uploadExecutor(
   options: UploadExecutorSchema,
   context: ExecutorContext
 ): Promise<{ success: boolean }> {
-  const { targets } = context.workspace.projects[context.projectName]
   const { directory, gzip = false, gzipExtensions, bucket } = options
 
-  const directoryToUpload = join(
-    join(context.root, targets?.build?.options?.outputPath.toString()),
-    directory
-  )
+  if (!directory) {
+    throw new Error('"directory" is required!')
+  }
+
+  const directoryToUpload = join(context.root, directory)
 
   const uploadTo = `gs://${bucket}`
 
-  logger.info(
-    `Start upload assets from "${directoryToUpload}" to "${uploadTo}"`
-  )
+  logger.info(`Start upload assets from "${directoryToUpload}" to "${uploadTo}"`)
 
   return Promise.resolve(
-    execCommand(
-      buildCommand([
-        'gsutil rsync -R',
-        gzip && `-z "${gzipExtensions}"`,
+    execCommand(buildCommand([
+      'gsutil rsync -R',
+      gzip && `-z "${gzipExtensions}"`,
 
-        resolve(process.cwd(), directoryToUpload),
-        uploadTo
-      ])
-    )
+      resolve(process.cwd(), directoryToUpload),
+      uploadTo
+    ]))
   )
 }
 
