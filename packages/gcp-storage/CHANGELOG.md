@@ -2,6 +2,20 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [6.0.0](https://github.com/TriPSs/nx-extend/compare/gcp-storage@5.0.1...gcp-storage@6.0.0) (2023-12-29)
+
+
+### Features
+
+* **gcp-storage:** Use `directory` option as definition on what to upload ([402d282](https://github.com/TriPSs/nx-extend/commit/402d2828caa25358b32fc9532d9babff159c917c))
+
+
+### BREAKING CHANGES
+
+* **gcp-storage:** `directory` is now required and needs to be the full path to the directory
+
+
+
 ## [5.0.1](https://github.com/TriPSs/nx-extend/compare/gcp-storage@5.0.0...gcp-storage@5.0.1) (2023-12-09)
 
 
