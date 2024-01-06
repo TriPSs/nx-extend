@@ -118,6 +118,7 @@ export async function deployExecutor(
     return { success: false }
   }
 
+  // @TODO(mkdior) - cd deprecated, should we remove?
   if (generateRepoInfoFile) {
     logger.info('Generating repo info file')
 
