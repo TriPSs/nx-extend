@@ -23,7 +23,6 @@ export interface ExecutorSchema {
   buildWith?: 'artifact-registry'
   autoCreateArtifactsRepo?: boolean
   noTraffic?: boolean
-  generateRepoInfoFile?: boolean
   timeout?: number
   cpu?: number
   cpuBoost?: boolean

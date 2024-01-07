@@ -39,7 +39,6 @@ export async function deployExecutor(
     revisionSuffix = false,
     buildWith = 'artifact-registry',
     autoCreateArtifactsRepo = true,
-    generateRepoInfoFile = false,
     timeout = null,
 
     cpu,
@@ -116,17 +115,6 @@ export async function deployExecutor(
     logger.error(`"${ingress}" is not a valid ingress option! Only the following few options are supported: ${ingressOpts}`)
 
     return { success: false }
-  }
-
-  // @TODO(mkdior) - cd deprecated, should we remove?
-  if (generateRepoInfoFile) {
-    logger.info('Generating repo info file')
-
-    execCommand(buildCommand([
-      'gcloud debug source gen-repo-info-file',
-      `--source-directory=${sourceRoot || './'}`,
-      `--output-directory=${distDirectory}`
-    ]))
   }
 
   const deployCommand = buildCommand([
