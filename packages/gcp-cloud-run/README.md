@@ -24,7 +24,7 @@ npm install -D @nx-extend/gcp-cloud-run
 |----------------------------------|----------------------|------------------|-------------------------------------------------------------------------|
 | **`--region`**                   | `string`             | -                | Region to deploy cloud run revision to.
 | **`--project`**                  | `string`             | -                | GCP project to deploy cloud run revision to.
-| **`--name`**                     | `string`             | `project.prefix` | Name of the cloud run revision.
+| **`--name`**                     | `string`             | `project name` | Name of the cloud run revision.
 | **`--concurrency`**              | `number`             | 250              | Maximum number of concurrent requests allowed per container instance.
 | **`--maxInstances`**             | `number`             | 10               | Maximum number of container instances to run.
 | **`--minInstances`**             | `number`             | 0                | Minimum number of container instances to run.
