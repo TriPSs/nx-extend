@@ -22,7 +22,6 @@ npm install -D @nx-extend/gcp-cloud-run
 
 | name                             | type                 | default          | description                                                             |
 |----------------------------------|----------------------|------------------|-------------------------------------------------------------------------|
-| **`--site`**                     | `string`             | `null`           | Specify the site to deploy from the `.firebase.json`.
 | **`--region`**                   | `string`             | -                | Region to deploy cloud run revision to.
 | **`--project`**                  | `string`             | -                | GCP project to deploy cloud run revision to.
 | **`--name`**                     | `string`             | `project.prefix` | Name of the cloud run revision.
