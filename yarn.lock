@@ -2302,6 +2302,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/runtime@npm:^7.23.5":
+  version: 7.23.8
+  resolution: "@babel/runtime@npm:7.23.8"
+  dependencies:
+    regenerator-runtime: "npm:^0.14.0"
+  checksum: ec8f1967a36164da6cac868533ffdff97badd76d23d7d820cc84f0818864accef972f22f9c6a710185db1e3810e353fc18c3da721e5bb3ee8bc61bdbabce03ff
+  languageName: node
+  linkType: hard
+
 "@babel/template@npm:^7.22.15":
   version: 7.22.15
   resolution: "@babel/template@npm:7.22.15"
@@ -4795,6 +4804,18 @@ __metadata:
   dependencies:
     "@react-email/components": "npm:^0.0.12"
     react-email: "npm:^1.10.0"
+  languageName: unknown
+  linkType: soft
+
+"@nx-extend/shadcn-ui@workspace:packages/shadcn-ui":
+  version: 0.0.0-use.local
+  resolution: "@nx-extend/shadcn-ui@workspace:packages/shadcn-ui"
+  dependencies:
+    class-variance-authority: "npm:^0.7.0"
+    clsx: "npm:^2.1.0"
+    lucide-react: "npm:^0.312.0"
+    tailwind-merge: "npm:^2.2.0"
+    tailwindcss-animate: "npm:^1.0.7"
   languageName: unknown
   linkType: soft
 
@@ -10753,6 +10774,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"class-variance-authority@npm:^0.7.0":
+  version: 0.7.0
+  resolution: "class-variance-authority@npm:0.7.0"
+  dependencies:
+    clsx: "npm:2.0.0"
+  checksum: 06646e82953e577fb8834100d763f1e5ecb808b8a1fba6244e94b20603865b134ff2296e30432449793baaeb02282cce617afba6981afe18b6846f1f8e9485ca
+  languageName: node
+  linkType: hard
+
 "clean-css@npm:^5.2.2":
   version: 5.3.2
   resolution: "clean-css@npm:5.3.2"
@@ -10906,6 +10936,20 @@ __metadata:
     util: "npm:^0.12.4"
     uuid: "npm:^8.3.2"
   checksum: 5881e619438c2880b8e90932029b49ffe140e8b94f4be4861758e7305a5af87afeb7fe11f4569dc2f201c3cd6195aa4b2fabd3504a8480271fc9d82a40f21579
+  languageName: node
+  linkType: hard
+
+"clsx@npm:2.0.0":
+  version: 2.0.0
+  resolution: "clsx@npm:2.0.0"
+  checksum: 943766d1b02fee3538c871e56638d87f973fbc2d6291ce221215ea436fdecb9be97ad323f411839c2d52c45640c449b1a53fbfe7e8b3d529b4e263308b630c9a
+  languageName: node
+  linkType: hard
+
+"clsx@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "clsx@npm:2.1.0"
+  checksum: 2e0ce7c3b6803d74fc8147c408f88e79245583202ac14abd9691e2aebb9f312de44270b79154320d10bb7804a9197869635d1291741084826cff20820f31542b
   languageName: node
   linkType: hard
 
@@ -19017,6 +19061,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"lucide-react@npm:^0.312.0":
+  version: 0.312.0
+  resolution: "lucide-react@npm:0.312.0"
+  peerDependencies:
+    react: ^16.5.1 || ^17.0.0 || ^18.0.0
+  checksum: 39f6d6c7460064ed8cac503018c1f8410cd55666b4cb56928456c99c80b39cf54c0cac3c1a5abe02dd7e9b32c9e7473351d1f138ba6e80204956b51a28f5f0f0
+  languageName: node
+  linkType: hard
+
 "luxon@npm:^1.26.0":
   version: 1.28.1
   resolution: "luxon@npm:1.28.1"
@@ -24710,6 +24763,24 @@ __metadata:
     "@pkgr/utils": "npm:^2.3.1"
     tslib: "npm:^2.5.0"
   checksum: fb6798a2db2650ca3a2435ad32d4fc14842da807993a1a350b64d267e0e770aa7f26492b119aa7500892d3d07a5af1eec7bfbd6e23a619451558be0f226a6094
+  languageName: node
+  linkType: hard
+
+"tailwind-merge@npm:^2.2.0":
+  version: 2.2.0
+  resolution: "tailwind-merge@npm:2.2.0"
+  dependencies:
+    "@babel/runtime": "npm:^7.23.5"
+  checksum: ec2a249da3c7afc2df935f93dd896843c719a701bd692cf051eafb2b2350989da158e7af9cc976227e49c833501a91b06c42b80aa6721457eec2187a999c9be7
+  languageName: node
+  linkType: hard
+
+"tailwindcss-animate@npm:^1.0.7":
+  version: 1.0.7
+  resolution: "tailwindcss-animate@npm:1.0.7"
+  peerDependencies:
+    tailwindcss: "*"
+  checksum: ef176fbb0bf9dca84178b35b6a9615cd756358ea80be9c575456d12ecd7f3c431e9e571915c7df72959dc798a730959e9a4739d59eab55d8cc6db390870ff0d2
   languageName: node
   linkType: hard
 
