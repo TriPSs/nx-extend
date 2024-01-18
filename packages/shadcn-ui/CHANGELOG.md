@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [0.2.0](https://github.com/TriPSs/nx-extend/compare/shadcn-ui@0.1.1...shadcn-ui@0.2.0) (2024-01-18)
+
+
+### Features
+
+* **shadcn-ui:** Update tailwind config to export build function ([1e4b055](https://github.com/TriPSs/nx-extend/commit/1e4b055f93d7afda833d499d095102b309ae439a))
+
+
+
 ## [0.1.1](https://github.com/TriPSs/nx-extend/compare/shadcn-ui@0.1.0...shadcn-ui@0.1.1) (2024-01-18)
 
 
