@@ -16,7 +16,7 @@ describe('shadcn/ui e2e', () => {
     await runNxCommandAsync(`generate @nx-extend/shadcn-ui:init ${uiLibName} ${utilsLibName}`)
 
     expect(() => checkFilesExist(
-      `${utilsLibName}/src/tailwind.config.js`,
+      `${utilsLibName}/src/tailwind.config.ts`,
       `${utilsLibName}/src/global.css`,
       `${utilsLibName}/src/cn.ts`,
       `${utilsLibName}/src/index.ts`,
