@@ -16,6 +16,7 @@ nx g @nx-extend/shadcn-ui:init
 ```
 
 After installation update your APPs `tailwind.config.ts` to this:
+
 ```ts
 import { buildConfig } from '../libs/<lib directory>/src/tailwind.config'
 
@@ -39,3 +40,9 @@ export const links: LinksFunction = () => [
 ```sh
 nx add <ui lib name> button
 ```
+
+## Updating the theme
+
+The generated `global.css` uses the default shadcn/ui theme.
+Using the shadcn/ui theme editor, you can effortlessly apply a different theme.
+Explore available themes here: https://ui.shadcn.com/themes
