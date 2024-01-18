@@ -2,6 +2,10 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.1.1](https://github.com/TriPSs/nx-extend/compare/react-email@0.1.0...react-email@0.1.1) (2024-01-18)
+
+
+
 # [0.1.0](https://github.com/TriPSs/nx-extend/compare/react-email@0.0.1...react-email@0.1.0) (2023-12-19)
 
 
