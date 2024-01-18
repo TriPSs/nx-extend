@@ -15,6 +15,23 @@ npm install -D @nx-extend/shadcn-ui
 nx g @nx-extend/shadcn-ui:init
 ```
 
+After installation update your APPs `tailwind.config.ts` to this:
+```ts
+import { buildConfig } from '../libs/<lib directory>/src/tailwind.config'
+
+export default buildConfig(__dirname)
+```
+
+If you are using Remix you can import `global.css` directly like:
+
+```tsx
+import stylesheet from '@<scope>/<utils lib name>/global.css'
+
+export const links: LinksFunction = () => [
+  { rel: 'stylesheet', href: stylesheet }
+]
+```
+
 ## Usage
 
 ### Add
