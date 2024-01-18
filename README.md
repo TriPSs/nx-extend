@@ -32,6 +32,10 @@
   - `npm install --save-dev @nx-extend/terraform`
 - [Pulumi](./packages/pulumi/README.md)
   - `npm install --save-dev @nx-extend/Pulumi`
+- [react.email](./packages/react-email/README.md)
+  - `npm install --save-dev @nx-extend/react-email`
+- [Shadcn/ui](./packages/shadcn-ui/README.md)
+  - `npm install --save-dev @nx-extend/shadcn-ui`
 
 ## GitHub actions
 
