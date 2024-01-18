@@ -2,6 +2,10 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [11.0.3](https://github.com/TriPSs/nx-extend/compare/translations@11.0.2...translations@11.0.3) (2024-01-18)
+
+
+
 ## [11.0.2](https://github.com/TriPSs/nx-extend/compare/translations@11.0.1...translations@11.0.2) (2023-12-09)
 
 
