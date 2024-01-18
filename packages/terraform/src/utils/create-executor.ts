@@ -8,6 +8,10 @@ export interface ExecutorOptions {
   autoApproval: boolean
   planFile: string
   ciMode: boolean
+  formatWrite: boolean
+  upgrade: boolean
+  migrateState: boolean
+  lock: boolean
 
   [key: string]: string | unknown
 }
@@ -22,7 +26,7 @@ export function createExecutor(command: string) {
     }
 
     const { sourceRoot } = context.workspace.projects[context.projectName]
-    const { backendConfig = [], planFile, ciMode, autoApproval, formatWrite } = options
+    const { backendConfig = [], planFile, ciMode, autoApproval, formatWrite, upgrade, migrateState, lock } = options
 
     let env = {}
     if (ciMode) {
@@ -45,7 +49,9 @@ export function createExecutor(command: string) {
         command === 'apply' && planFile,
         command === 'fmt' && '--recursive',
         command === 'fmt' && !formatWrite && '--check --list',
-        command === 'fmt' && formatWrite && '--write --diff'
+        command === 'init' && upgrade && '-upgrade',
+        command === 'init' && migrateState && '-migrate-state',
+        command === 'providers' && lock && 'lock',
       ]),
       {
         cwd: sourceRoot,

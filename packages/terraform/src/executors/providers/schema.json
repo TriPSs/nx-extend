@@ -5,5 +5,12 @@
   "type": "object",
   "title": "Providers executor",
   "description": "Providers",
-  "properties": {}
+  "properties": {
+    "lock": {
+      "type": "boolean",
+      "title": "Write out dependency locks for the configured providers.",
+      "description": "Write out dependency locks for the configured providers.",
+      "default": false
+    }
+  }
 }

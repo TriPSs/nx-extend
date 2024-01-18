@@ -2,6 +2,28 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [11.1.3](https://github.com/TriPSs/nx-extend/compare/gcp-functions@11.1.2...gcp-functions@11.1.3) (2023-12-24)
+
+
+
+## [11.1.2](https://github.com/TriPSs/nx-extend/compare/gcp-functions@11.1.1...gcp-functions@11.1.2) (2023-12-10)
+
+
+### Bug Fixes
+
+* **gcp-functions:** No longer use `gcloud beta` when deploying with secrets ([5ffdeaf](https://github.com/TriPSs/nx-extend/commit/5ffdeaf48a44485fc19fd3f23a3154ceac258b3f))
+
+
+
+## [11.1.1](https://github.com/TriPSs/nx-extend/compare/gcp-functions@11.1.0...gcp-functions@11.1.1) (2023-12-09)
+
+
+### Bug Fixes
+
+* **gcp-functions:** Fixed schema still having `gen` default set to `1` ([2f753b8](https://github.com/TriPSs/nx-extend/commit/2f753b84f22451eb23e507607d26a29484a10f41))
+
+
+
 # [11.1.0](https://github.com/TriPSs/nx-extend/compare/gcp-functions@11.0.0...gcp-functions@11.1.0) (2023-12-09)
 
 

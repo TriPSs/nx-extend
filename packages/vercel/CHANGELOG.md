@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [6.0.4](https://github.com/TriPSs/nx-extend/compare/vercel@6.0.3...vercel@6.0.4) (2024-01-18)
+
+
+### Bug Fixes
+
+* **vercel:** Added `remix` as framework option ([2aebc32](https://github.com/TriPSs/nx-extend/commit/2aebc32c2b44988f0a64cb51d7a7fc9d9dcc8ef6))
+
+
+
 ## [6.0.3](https://github.com/TriPSs/nx-extend/compare/vercel@6.0.2...vercel@6.0.3) (2023-12-09)
 
 

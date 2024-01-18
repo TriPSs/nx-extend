@@ -2,6 +2,24 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [8.2.0](https://github.com/TriPSs/nx-extend/compare/e2e-runner@8.1.0...e2e-runner@8.2.0) (2023-12-20)
+
+
+### Features
+
+* **e2e-runner:** enable or disable target logging via options ([662f22f](https://github.com/TriPSs/nx-extend/commit/662f22f13173bf13df8b9b655d0e7178dbd8f98a)), closes [#202](https://github.com/TriPSs/nx-extend/issues/202)
+
+
+
+# [8.1.0](https://github.com/TriPSs/nx-extend/compare/e2e-runner@8.0.1...e2e-runner@8.1.0) (2023-12-19)
+
+
+### Features
+
+* **e2e-runner:** Support injecting env variables into `checkUrl` ([321e745](https://github.com/TriPSs/nx-extend/commit/321e7453da3b3b3ca9f4233359e0617a4cfb162c)), closes [#88](https://github.com/TriPSs/nx-extend/issues/88)
+
+
+
 ## [8.0.1](https://github.com/TriPSs/nx-extend/compare/e2e-runner@8.0.0...e2e-runner@8.0.1) (2023-12-09)
 
 

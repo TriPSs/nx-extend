@@ -2,6 +2,28 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [7.2.6](https://github.com/TriPSs/nx-extend/compare/gcp-cloud-run@7.2.5...gcp-cloud-run@7.2.6) (2024-01-07)
+
+
+
+## [7.2.5](https://github.com/TriPSs/nx-extend/compare/gcp-cloud-run@7.2.4...gcp-cloud-run@7.2.5) (2023-12-19)
+
+
+### Bug Fixes
+
+* **gcp-cloud-run:** Fixed source directory undefined when generating repo info file ([f7f630c](https://github.com/TriPSs/nx-extend/commit/f7f630c49b3d035b54e24220e1f54f5595039894))
+
+
+
+## [7.2.4](https://github.com/TriPSs/nx-extend/compare/gcp-cloud-run@7.2.3...gcp-cloud-run@7.2.4) (2023-12-10)
+
+
+### Bug Fixes
+
+* **gcp-cloud-run:** No longer use `gcloud beta` when deploying with secrets ([a5b189e](https://github.com/TriPSs/nx-extend/commit/a5b189e3d9d5abf36d943388816f9798f97e4cb3))
+
+
+
 ## [7.2.3](https://github.com/TriPSs/nx-extend/compare/gcp-cloud-run@7.2.2...gcp-cloud-run@7.2.3) (2023-12-09)
 
 
