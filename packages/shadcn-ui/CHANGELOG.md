@@ -2,6 +2,16 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.1.1](https://github.com/TriPSs/nx-extend/compare/shadcn-ui@0.1.0...shadcn-ui@0.1.1) (2024-01-18)
+
+
+### Bug Fixes
+
+* **shadcn-ui:** Create react libs instead of node ([b9922b3](https://github.com/TriPSs/nx-extend/commit/b9922b32fc69c38485424390a2b8cc4fbb38062a))
+* **shadcn-ui:** Fixed tailwind config missing require ([e284cdf](https://github.com/TriPSs/nx-extend/commit/e284cdf248c64890d012c49e1ea3d6494902bdc4))
+
+
+
 # 0.1.0 (2024-01-18)
 
 
