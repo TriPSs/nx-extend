@@ -7,7 +7,9 @@ import {
   Tree, updateProjectConfiguration, writeJson
 } from '@nx/devkit'
 import { determineProjectNameAndRootOptions } from '@nx/devkit/src/generators/project-name-and-root-utils'
-import { addTsConfigPath, libraryGenerator } from '@nx/js'
+import { Linter } from '@nx/eslint'
+import { addTsConfigPath } from '@nx/js'
+import { libraryGenerator } from '@nx/react'
 import { join } from 'path'
 
 import type { ShadecnUiSchema } from './schema'
@@ -41,7 +43,9 @@ function getLibRoot(host: Tree, fileName: string) {
 export default async function (tree: Tree, options: ShadecnUiSchema) {
   await libraryGenerator(tree, {
     name: options.uiName,
-    skipFormat: true
+    skipFormat: true,
+    style: 'css',
+    linter: Linter.EsLint
   })
 
   const uiLibOptions = await determineProjectNameAndRootOptions(tree, {
@@ -56,7 +60,9 @@ export default async function (tree: Tree, options: ShadecnUiSchema) {
 
   await libraryGenerator(tree, {
     name: options.utilsName,
-    skipFormat: true
+    skipFormat: true,
+    style: 'css',
+    linter: Linter.EsLint
   })
 
   const utilsLibOptions = await determineProjectNameAndRootOptions(tree, {
