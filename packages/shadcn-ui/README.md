@@ -37,5 +37,5 @@ export const links: LinksFunction = () => [
 ### Add
 
 ```sh
-nx g @nx-extend/shadcn-ui:add button
+nx add <ui lib name> button
 ```
