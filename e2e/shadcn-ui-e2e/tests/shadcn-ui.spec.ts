@@ -19,8 +19,17 @@ describe('shadcn/ui e2e', () => {
       `${utilsLibName}/src/tailwind.config.js`,
       `${utilsLibName}/src/global.css`,
       `${utilsLibName}/src/cn.ts`,
+      `${utilsLibName}/src/index.ts`,
       'components.json'
     )).not.toThrow()
   })
+
+  // it('should be able add a button', async () => {
+  //   await runNxCommandAsync(`add ${uiLibName} button`)
+  //
+  //   expect(() => checkFilesExist(
+  //     `${uiLibName}/src/button.tsx`,
+  //   )).not.toThrow()
+  // })
 
 })

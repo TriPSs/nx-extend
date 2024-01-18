@@ -1,6 +1,16 @@
 {
   "executors": {
+    "add": {
+      "implementation": "./src/executors/add/add.impl",
+      "schema": "./src/executors/add/schema.json",
+      "description": "add executor"
+    }
   },
   "builders": {
+    "add": {
+      "implementation": "./src/executors/add/add.impl",
+      "schema": "./src/executors/add/schema.json",
+      "description": "add executor"
+    }
   }
 }

@@ -2,9 +2,9 @@ import {
   addDependenciesToPackageJson,
   generateFiles,
   getWorkspaceLayout,
-  joinPathFragments,
+  joinPathFragments, readProjectConfiguration,
   runTasksInSerial,
-  Tree, writeJson
+  Tree, updateProjectConfiguration, writeJson
 } from '@nx/devkit'
 import { determineProjectNameAndRootOptions } from '@nx/devkit/src/generators/project-name-and-root-utils'
 import { addTsConfigPath, libraryGenerator } from '@nx/js'
@@ -16,6 +16,7 @@ import { devDependencies } from '../../../package.json'
 
 function cleanupLib(tree: Tree, libDirectory: string) {
   // Remove the unneeded files
+  tree.delete(`${libDirectory}/package.json`)
   tree.delete(`${libDirectory}/src/index.ts`)
   const libFiles = tree.children(`${libDirectory}/src/lib`)
 
@@ -83,6 +84,15 @@ export default async function (tree: Tree, options: ShadecnUiSchema) {
     'aliases': {
       'components': uiLibOptions.importPath,
       'utils': utilsLibOptions.importPath
+    }
+  })
+
+  updateProjectConfiguration(tree, uiLibOptions.projectName, {
+    ...readProjectConfiguration(tree, uiLibOptions.projectName),
+    targets: {
+      add: {
+        executor: '@nx-extend/shadcn-ui:add'
+      }
     }
   })
 
