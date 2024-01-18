@@ -24,6 +24,7 @@
         "docusaurus",
         "docusaurus-2",
         "vue",
+        "remix",
         "other"
       ]
     }
