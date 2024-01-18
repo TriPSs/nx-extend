@@ -3,6 +3,7 @@
  */
 const { join } = require('path');
 
+const { createGlobPatternsForDependencies } = require('@nx/react/tailwind');
 const defaultTheme = require('tailwindcss/defaultTheme');
 const TailwindAnimate = require('tailwindcss-animate');
 
