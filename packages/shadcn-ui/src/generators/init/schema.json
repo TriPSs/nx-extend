@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "type": "object",
+  "id": "Strapi",
+  "title": "",
+  "properties": {
+    "uiName": {
+      "type": "string",
+      "description": "",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": "What name would you like to use for the ui lib?"
+    },
+    "utilsName": {
+      "type": "string",
+      "description": "",
+      "$default": {
+        "$source": "argv",
+        "index": 1
+      },
+      "x-prompt": "What name would you like to use for the utils lib?"
+    }
+  },
+  "required": [
+    "uiName",
+    "utilsName"
+  ]
+}

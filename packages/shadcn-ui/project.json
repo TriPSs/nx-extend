@@ -1,0 +1,64 @@
+{
+  "name": "shadcn-ui",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/shadcn-ui/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["packages/shadcn-ui/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/packages/shadcn-ui"],
+      "options": {
+        "jestConfig": "packages/shadcn-ui/jest.config.ts"
+      }
+    },
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/shadcn-ui",
+        "tsConfig": "packages/shadcn-ui/tsconfig.lib.json",
+        "packageJson": "packages/shadcn-ui/package.json",
+        "main": "packages/shadcn-ui/src/index.ts",
+        "buildableProjectDepsInPackageJsonType": "dependencies",
+        "assets": [
+          "packages/shadcn-ui/*.md",
+          {
+            "input": "./packages/shadcn-ui/src",
+            "glob": "**/*.!(ts)",
+            "output": "./src"
+          },
+          {
+            "input": "./packages/shadcn-ui",
+            "glob": "generators.json",
+            "output": "."
+          },
+          {
+            "input": "./packages/shadcn-ui",
+            "glob": "executors.json",
+            "output": "."
+          }
+        ],
+        "updateBuildableProjectDepsInPackageJson": true
+      }
+    },
+    "version": {
+      "executor": "@jscutlery/semver:version",
+      "options": {
+        "tagPrefix": "${target}@"
+      }
+    },
+    "publish": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npm publish ./dist/packages/shadcn-ui --access public || true"
+      }
+    }
+  },
+  "tags": []
+}
