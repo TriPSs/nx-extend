@@ -2,7 +2,7 @@ name: 'Nx set SHAs'
 description: 'Derives appropriate SHAs for base and head for use in `nx affected` commands, optionally setting them as environment variables for the current job'
 
 runs:
-  using: 'node16'
+  using: 'node20'
   main: './dist/index.js'
 
 inputs:
