@@ -1,9 +1,10 @@
 import {
+  addDependenciesToPackageJson,
   addProjectConfiguration,
   formatFiles,
   generateFiles,
   names,
-  offsetFromRoot,
+  offsetFromRoot, runTasksInSerial,
   Tree, workspaceRoot
 } from '@nx/devkit'
 import { NormalizedSchema, normalizeOptions } from '@nx-extend/core'
@@ -91,4 +92,17 @@ export default async function (host: Tree, options: StrapiGeneratorSchema) {
 
   addFiles(host, normalizedOptions)
   await formatFiles(host)
+
+  return runTasksInSerial(
+    addDependenciesToPackageJson(
+      host,
+      {
+        react: '^18.0.0',
+        'react-dom': '^18.0.0',
+        'react-router-dom': '5.3.4',
+        'styled-components': '5.3.3'
+      },
+      {}
+    )
+  )
 }
