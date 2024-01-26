@@ -2,7 +2,7 @@ name: 'Run Many'
 description: 'Runs the correct NX projects'
 author: 'Tycho Bokdam'
 runs:
-  using: 'node16'
+  using: 'node20'
   main: './dist/index.js'
 
 inputs:
