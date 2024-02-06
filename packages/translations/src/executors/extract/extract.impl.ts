@@ -1,6 +1,6 @@
 import { ExecutorContext, logger } from '@nx/devkit'
 import { createProjectGraphAsync } from '@nx/workspace/src/core/project-graph'
-import { buildCommand, execPackageManagerCommand, USE_VERBOSE_LOGGING } from '@nx-extend/core'
+import { buildCommand, execCommand, USE_VERBOSE_LOGGING } from '@nx-extend/core'
 import { join } from 'path'
 
 import { injectProjectRoot } from '../../utils'
@@ -20,7 +20,7 @@ export interface ExtractSchema {
   debug?: boolean
 }
 
-export async function extractExectutor(
+export async function extractExecutor(
   options: ExtractSchema,
   context: ExecutorContext
 ): Promise<{ success: boolean }> {
@@ -31,6 +31,14 @@ export async function extractExectutor(
     defaultLanguage = options.defaultLanguage,
     extractor = options.extractor
   } = await getConfigFile(context)
+
+  if (extractor && extractor !== 'formatjs') {
+    logger.error('Unsupported extractor!')
+
+    return {
+      success: false
+    }
+  }
 
   // Check if we need to extract from connected libs
   if (options.withLibs) {
@@ -66,23 +74,15 @@ export async function extractExectutor(
   )
 
   try {
-    if (extractor === 'formatjs') {
-      execPackageManagerCommand(buildCommand([
-        'formatjs extract',
-        `'${join(templatedSourceDirectory, options.pattern)}'`,
-        `--out-file='${templatedOutputDirectory}/${defaultLanguage}.json'`,
-        '--id-interpolation-pattern=\'[sha512:contenthash:base64:6]\'',
-        '--format=simple'
-      ]), {
-        silent: !options.debug && !USE_VERBOSE_LOGGING
-      })
-    } else {
-      logger.error('Unsupported extractor!')
-
-      return {
-        success: false
-      }
-    }
+    execCommand(buildCommand([
+      'npx formatjs extract',
+      `'${join(templatedSourceDirectory, options.pattern)}'`,
+      `--out-file='${templatedOutputDirectory}/${defaultLanguage}.json'`,
+      '--id-interpolation-pattern=\'[sha512:contenthash:base64:6]\'',
+      '--format=simple'
+    ]), {
+      silent: !options.debug && !USE_VERBOSE_LOGGING
+    })
 
     logger.info('Translations extracted')
 
@@ -140,10 +140,9 @@ export const getLibsRoot = async (
 
       if (!roots.includes(libMetadata.sourceRoot)) {
         if (debugMode) {
-          logger.debug(
-            `Adding source root "${connectedLib.target}" because it's a dependency of "${project}"`
-          )
+          logger.debug(`Adding source root "${connectedLib.target}" because it's a dependency of "${project}"`)
         }
+
         roots.push(libMetadata.sourceRoot)
       }
 
@@ -162,4 +161,4 @@ export const getLibsRoot = async (
   return roots
 }
 
-export default extractExectutor
+export default extractExecutor
