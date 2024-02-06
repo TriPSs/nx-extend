@@ -49,9 +49,7 @@
     },
     "version": {
       "executor": "@jscutlery/semver:version",
-      "options": {
-        "tagPrefix": "${target}@"
-      }
+      "options": {}
     },
     "publish": {
       "executor": "nx:run-commands",
