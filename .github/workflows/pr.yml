@@ -9,7 +9,7 @@ env:
 
 jobs:
 
-  prepare-env:
+  setup:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -28,18 +28,35 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
         run: yarn install
 
+      - name: Plan
+        id: plan
+        uses: ./actions/plan
+        with:
+          targets: |
+            test
+            build
+            e2e
+
+          testMaxJobs: 1
+
+          buildMaxJobs: 2
+
+          e2eMaxJobs: 2
+
   pr:
-    needs: prepare-env
+    name: Distributed ${{ matrix.target }} ${{ matrix.index }}/${{ matrix.count }}
+    needs:
+      - setup
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
-      matrix:
-        target: [ 'build', 'e2e' , 'test']
+      matrix: ${{ fromJSON(needs.setup.outputs.matrix) }}
+
     steps:
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Set up Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20.x
+          node-version: 20.10
 
       - uses: actions/checkout@v4
         with:
@@ -73,4 +90,7 @@ jobs:
         uses: ./actions/run-many
         with:
           target: ${{ matrix.target }}
-          parallel: 1
+          index: ${{ matrix.index }}
+          count: ${{ matrix.count }}
+          tag: ${{ matrix.tag }}
+          parallel: ${{ matrix.parallel }}
