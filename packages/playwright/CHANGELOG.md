@@ -2,6 +2,20 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [7.0.0](https://github.com/TriPSs/nx-extend/compare/playwright@6.0.1...playwright@7.0.0) (2024-02-08)
+
+
+### Features
+
+* Updated Nx ([db61114](https://github.com/TriPSs/nx-extend/commit/db61114abc4991ae0e66ade0660b2baee76263f0))
+
+
+### BREAKING CHANGES
+
+* Updated Nx to version 18
+
+
+
 ## [6.0.1](https://github.com/TriPSs/nx-extend/compare/playwright@6.0.0...playwright@6.0.1) (2023-12-09)
 
 
