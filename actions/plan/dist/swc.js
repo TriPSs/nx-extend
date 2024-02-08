@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createSwcOptions = exports.targetMapping = exports.create = void 0;
+const ts_internals_1 = require("../ts-internals");
 function create(createOptions) {
     const { swc, service: { config, projectLocalResolveHelper }, transpilerConfigLocalResolveHelper, nodeModuleEmitKind, } = createOptions;
     // Load swc compiler
@@ -35,9 +36,7 @@ function create(createOptions) {
     const { nonTsxOptions, tsxOptions } = createSwcOptions(config.options, nodeModuleEmitKind, swcInstance, swcDepName);
     const transpile = (input, transpileOptions) => {
         const { fileName } = transpileOptions;
-        const swcOptions = fileName.endsWith('.tsx') || fileName.endsWith('.jsx')
-            ? tsxOptions
-            : nonTsxOptions;
+        const swcOptions = fileName.endsWith('.tsx') || fileName.endsWith('.jsx') ? tsxOptions : nonTsxOptions;
         const { code, map } = swcInstance.transformSync(input, {
             ...swcOptions,
             filename: fileName,
@@ -61,7 +60,7 @@ exports.targetMapping.set(/* ts.ScriptTarget.ES2019 */ 6, 'es2019');
 exports.targetMapping.set(/* ts.ScriptTarget.ES2020 */ 7, 'es2020');
 exports.targetMapping.set(/* ts.ScriptTarget.ES2021 */ 8, 'es2021');
 exports.targetMapping.set(/* ts.ScriptTarget.ES2022 */ 9, 'es2022');
-exports.targetMapping.set(/* ts.ScriptTarget.ESNext */ 99, 'es2022');
+exports.targetMapping.set(/* ts.ScriptTarget.ESNext */ 99, 'esnext');
 /**
  * @internal
  * We use this list to downgrade to a prior target when we probe swc to detect if it supports a particular target
@@ -77,6 +76,7 @@ const swcTargets = [
     'es2020',
     'es2021',
     'es2022',
+    'esnext',
 ];
 const ModuleKind = {
     None: 0,
@@ -100,7 +100,7 @@ const JsxEmit = {
  */
 function createSwcOptions(compilerOptions, nodeModuleEmitKind, swcInstance, swcDepName) {
     var _a;
-    const { esModuleInterop, sourceMap, importHelpers, experimentalDecorators, emitDecoratorMetadata, target, module, jsx, jsxFactory, jsxFragmentFactory, strict, alwaysStrict, noImplicitUseStrict, } = compilerOptions;
+    const { esModuleInterop, sourceMap, importHelpers, experimentalDecorators, emitDecoratorMetadata, target, module, jsx, jsxFactory, jsxFragmentFactory, strict, alwaysStrict, noImplicitUseStrict, jsxImportSource, } = compilerOptions;
     let swcTarget = (_a = exports.targetMapping.get(target)) !== null && _a !== void 0 ? _a : 'es3';
     // Downgrade to lower target if swc does not support the selected target.
     // Perhaps project has an older version of swc.
@@ -145,10 +145,9 @@ function createSwcOptions(compilerOptions, nodeModuleEmitKind, swcInstance, swcD
         noImplicitUseStrict === true
         ? false
         : true;
-    const jsxRuntime = jsx === JsxEmit.ReactJSX || jsx === JsxEmit.ReactJSXDev
-        ? 'automatic'
-        : undefined;
+    const jsxRuntime = jsx === JsxEmit.ReactJSX || jsx === JsxEmit.ReactJSXDev ? 'automatic' : undefined;
     const jsxDevelopment = jsx === JsxEmit.ReactJSXDev ? true : undefined;
+    const useDefineForClassFields = (0, ts_internals_1.getUseDefineForClassFields)(compilerOptions);
     const nonTsxOptions = createVariant(false);
     const tsxOptions = createVariant(true);
     return { nonTsxOptions, tsxOptions };
@@ -158,11 +157,15 @@ function createSwcOptions(compilerOptions, nodeModuleEmitKind, swcInstance, swcD
             // isModule: true,
             module: moduleType
                 ? {
-                    noInterop: !esModuleInterop,
                     type: moduleType,
-                    strictMode,
-                    // For NodeNext and Node12, emit as CJS but do not transform dynamic imports
-                    ignoreDynamic: nodeModuleEmitKind === 'nodecjs',
+                    ...(moduleType === 'amd' || moduleType === 'commonjs' || moduleType === 'umd'
+                        ? {
+                            noInterop: !esModuleInterop,
+                            strictMode,
+                            // For NodeNext and Node12, emit as CJS but do not transform dynamic imports
+                            ignoreDynamic: nodeModuleEmitKind === 'nodecjs',
+                        }
+                        : {}),
                 }
                 : undefined,
             swcrc: false,
@@ -186,11 +189,14 @@ function createSwcOptions(compilerOptions, nodeModuleEmitKind, swcInstance, swcD
                         pragma: jsxFactory,
                         pragmaFrag: jsxFragmentFactory,
                         runtime: jsxRuntime,
+                        importSource: jsxImportSource,
                     },
+                    useDefineForClassFields,
                 },
                 keepClassNames,
                 experimental: {
-                    keepImportAssertions: true,
+                    keepImportAttributes: true,
+                    emitAssertForImportAttributes: true,
                 },
             },
         };
