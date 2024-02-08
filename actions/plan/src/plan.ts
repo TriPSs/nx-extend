@@ -15,6 +15,8 @@ async function run() {
     const affectedOnly = core.getBooleanInput('affectedOnly')
     const targets = core.getMultilineInput('targets', { required: true, trimWhitespace: true })
 
+    const cwd = resolve(process.cwd(), workingDirectory)
+
     // Get all the project names
     const projectsNamesToPlanFor = affectedOnly
       ? JSON.parse(execCommand<string>(
@@ -22,7 +24,7 @@ async function run() {
         {
           asString: true,
           silent: !core.isDebug(),
-          cwd: resolve(process.cwd(), workingDirectory)
+          cwd
         }
       )).map((projectName: string) => projectName.trim())
       : Array.from(projects.keys())
