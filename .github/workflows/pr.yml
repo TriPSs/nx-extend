@@ -28,6 +28,11 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
         run: yarn install
 
+      - name: Derive appropriate SHAs for base and head for `nx affected` commands
+        uses: ./actions/set-shas
+        with:
+          main-branch-name: master
+
       - name: Plan
         id: plan
         uses: ./actions/plan
