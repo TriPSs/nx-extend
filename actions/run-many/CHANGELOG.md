@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [3.5.4](https://github.com/TriPSs/nx-extend/compare/actions-run-many@3.5.3...actions-run-many@3.5.4) (2024-02-08)
+
+
+### Bug Fixes
+
+* **actions:** Use `FsTree` with verbose `true` in debug mode ([56753d9](https://github.com/TriPSs/nx-extend/commit/56753d92ede41f2a0d79dca3ccc1cee9bb050eb9))
+
+
+
 ## [0.2.1](https://github.com/TriPSs/nx-extend/compare/actions-run-many-0.2.0...actions-run-many-0.2.1) (2024-02-08)
 
 
