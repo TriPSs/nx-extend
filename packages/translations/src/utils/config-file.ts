@@ -52,25 +52,37 @@ export interface BaseConfigFile {
   }
 
   languages: string[]
+
+  /**
+   * Used by the plugin
+   */
+  disableExtract?: boolean
+  disablePush?: boolean
+  disablePull?: boolean
+  disableTranslate?: boolean
 }
 
 export const getConfigFile = <Config extends BaseConfigFile>(
   context: ExecutorContext
 ): Config => {
-  let configFile = readJsonFile<Config>(
-    resolve(getProjectRoot(context), '.translationsrc.json')
-  )
+  return getConfigFileInRoot(getProjectRoot(context))
+}
+
+export const getConfigFileInRoot = <Config extends BaseConfigFile>(
+  projectRoot: string
+): Config => {
+  let configFile = readJsonFile<Config>(resolve(projectRoot, '.translationsrc.json'))
 
   if (configFile.extends) {
     configFile = Object.assign(
-      readJsonFile(resolve(getProjectRoot(context), configFile.extends)),
+      readJsonFile(resolve(projectRoot, configFile.extends)),
       configFile
     )
   }
 
   // Add project root to the config
   configFile = Object.assign(configFile, {
-    projectRoot: getProjectRoot(context)
+    projectRoot
   })
 
   return configFile as Config

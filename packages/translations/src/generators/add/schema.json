@@ -1,5 +1,5 @@
 {
-  "$schema": "http://json-schema.org/schema",
+  "$schema": "https://json-schema.org/schema",
   "id": "translations",
   "title": "",
   "type": "object",
@@ -12,6 +12,10 @@
         "index": 0
       },
       "x-prompt": "To what app would you like to add translations?"
+    },
+    "addPlugin": {
+      "type": "boolean",
+      "default": false
     }
   },
   "required": [

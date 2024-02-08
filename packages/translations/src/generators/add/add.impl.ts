@@ -1,43 +1,54 @@
 import {
   offsetFromRoot,
-  ProjectConfiguration,
+  ProjectConfiguration, readNxJson,
   readProjectConfiguration,
-  Tree,
+  Tree, updateNxJson,
   updateProjectConfiguration,
   writeJson
 } from '@nx/devkit'
 import { join } from 'path'
 
-import { Schema } from './schema'
+export interface AddSchema {
+  target: string
 
-export default async function (host: Tree, options: Schema) {
+  addPlugin?: boolean
+}
+
+export default async function (host: Tree, options: AddSchema) {
   const app = readProjectConfiguration(host, options.target)
 
   createAppConfigFile(host, app, options.target)
 
-  updateProjectConfiguration(host, options.target, {
-    ...app,
-    targets: {
-      ...app.targets,
+  options.addPlugin ??= process.env.NX_ADD_PLUGINS !== 'false'
+  if (options.addPlugin) {
+    addPlugin(host)
+  }
 
-      'extract-translations': {
-        executor: '@nx-extend/translations:extract',
-        options: {}
-      },
-      'pull-translations': {
-        executor: '@nx-extend/translations:pull',
-        options: {}
-      },
-      'push-translations': {
-        executor: '@nx-extend/translations:push',
-        options: {}
-      },
-      translate: {
-        executor: '@nx-extend/translations:translate',
-        options: {}
+  if (!options.addPlugin) {
+    updateProjectConfiguration(host, options.target, {
+      ...app,
+      targets: {
+        ...app.targets,
+
+        'extract-translations': {
+          executor: '@nx-extend/translations:extract',
+          options: {}
+        },
+        'pull-translations': {
+          executor: '@nx-extend/translations:pull',
+          options: {}
+        },
+        'push-translations': {
+          executor: '@nx-extend/translations:push',
+          options: {}
+        },
+        translate: {
+          executor: '@nx-extend/translations:translate',
+          options: {}
+        }
       }
-    }
-  })
+    })
+  }
 }
 
 export function createAppConfigFile(
@@ -64,4 +75,23 @@ export function createAppConfigFile(
       languages: ['en']
     })
   }
+}
+
+export function addPlugin(tree: Tree) {
+  const nxJson = readNxJson(tree)
+  nxJson.plugins ??= []
+
+  for (const plugin of nxJson.plugins) {
+    if (
+      typeof plugin === 'string'
+        ? plugin === '@nx-extend/translations/plugin'
+        : plugin.plugin === '@nx-extend/translations/plugin'
+    ) {
+      return
+    }
+  }
+
+  nxJson.plugins.push('@nx-extend/translations/plugin')
+
+  updateNxJson(tree, nxJson)
 }
