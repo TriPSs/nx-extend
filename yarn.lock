@@ -10097,6 +10097,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@vercel/ncc@npm:^0.38.1":
+  version: 0.38.1
+  resolution: "@vercel/ncc@npm:0.38.1"
+  dependencies:
+    node-gyp: "npm:latest"
+  bin:
+    ncc: dist/ncc/cli.js
+  checksum: 2ed9dff34ba2e7c2ba7113ed075effd023549d5041d355a367f5bf749b20916f68d2adad6737f7a2d03f0d92237f948ce8dfbc9429bdf3febc18d4fa5159d9b4
+  languageName: node
+  linkType: hard
+
 "@vitejs/plugin-react-swc@npm:3.5.0":
   version: 3.5.0
   resolution: "@vitejs/plugin-react-swc@npm:3.5.0"
@@ -21897,6 +21908,7 @@ __metadata:
     "@types/yargs": "npm:^17.0.32"
     "@typescript-eslint/eslint-plugin": "npm:6.21.0"
     "@typescript-eslint/parser": "npm:6.21.0"
+    "@vercel/ncc": "npm:^0.38.1"
     axios: "npm:^1.6.7"
     crypto-js: "npm:^4.2.0"
     deepmerge: "npm:^4.3.1"

@@ -64,6 +64,7 @@
     "@types/yargs": "^17.0.32",
     "@typescript-eslint/eslint-plugin": "6.21.0",
     "@typescript-eslint/parser": "6.21.0",
+    "@vercel/ncc": "^0.38.1",
     "dotenv": "16.4.1",
     "eslint": "8.56.0",
     "eslint-config-prettier": "9.1.0",
