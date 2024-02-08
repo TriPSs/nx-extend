@@ -2,6 +2,10 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [3.5.2](https://github.com/TriPSs/nx-extend/compare/actions-run-many@3.5.1...actions-run-many@3.5.2) (2024-02-08)
+
+
+
 ## [3.5.1](https://github.com/TriPSs/nx-extend/compare/actions-run-many@3.5.0...actions-run-many@3.5.1) (2024-02-08)
 
 
