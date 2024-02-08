@@ -8,7 +8,7 @@ import { cleanLogConditions, hasOneOfRequiredTags } from './utils/has-one-of-req
 
 async function run() {
   try {
-    const nxTree = new FsTree(process.cwd(), false)
+    const nxTree = new FsTree(process.cwd(), core.isDebug())
     const projects = getProjects(nxTree)
 
     const workingDirectory = core.getInput('workingDirectory') || ''
