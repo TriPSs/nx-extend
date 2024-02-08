@@ -29,7 +29,7 @@
           "git add . && git commit --amend"
         ]
       }
-    }
+    },
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/actions/plan"],
