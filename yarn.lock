@@ -5207,72 +5207,72 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@next/env@npm:14.0.5-canary.46":
-  version: 14.0.5-canary.46
-  resolution: "@next/env@npm:14.0.5-canary.46"
-  checksum: f199212d53ffbc5ff1e97846d37e600e7a0b308c9d8967b776107870af5f4b03193cc6d9227abc20b512723ce0a799f572f6e3e16ba7152027ea3a90bdda7bfa
+"@next/env@npm:14.1.0":
+  version: 14.1.0
+  resolution: "@next/env@npm:14.1.0"
+  checksum: 8651faab7827026fe9df32f32f3dc743ca93707fabe6ec8e75ee60bd94781afee8093514e2108d2b2f03198d0a74fc6152d9e73ea01125e89402f068a8516915
   languageName: node
   linkType: hard
 
-"@next/swc-darwin-arm64@npm:14.0.5-canary.46":
-  version: 14.0.5-canary.46
-  resolution: "@next/swc-darwin-arm64@npm:14.0.5-canary.46"
+"@next/swc-darwin-arm64@npm:14.1.0":
+  version: 14.1.0
+  resolution: "@next/swc-darwin-arm64@npm:14.1.0"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@next/swc-darwin-x64@npm:14.0.5-canary.46":
-  version: 14.0.5-canary.46
-  resolution: "@next/swc-darwin-x64@npm:14.0.5-canary.46"
+"@next/swc-darwin-x64@npm:14.1.0":
+  version: 14.1.0
+  resolution: "@next/swc-darwin-x64@npm:14.1.0"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@next/swc-linux-arm64-gnu@npm:14.0.5-canary.46":
-  version: 14.0.5-canary.46
-  resolution: "@next/swc-linux-arm64-gnu@npm:14.0.5-canary.46"
+"@next/swc-linux-arm64-gnu@npm:14.1.0":
+  version: 14.1.0
+  resolution: "@next/swc-linux-arm64-gnu@npm:14.1.0"
   conditions: os=linux & cpu=arm64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@next/swc-linux-arm64-musl@npm:14.0.5-canary.46":
-  version: 14.0.5-canary.46
-  resolution: "@next/swc-linux-arm64-musl@npm:14.0.5-canary.46"
+"@next/swc-linux-arm64-musl@npm:14.1.0":
+  version: 14.1.0
+  resolution: "@next/swc-linux-arm64-musl@npm:14.1.0"
   conditions: os=linux & cpu=arm64 & libc=musl
   languageName: node
   linkType: hard
 
-"@next/swc-linux-x64-gnu@npm:14.0.5-canary.46":
-  version: 14.0.5-canary.46
-  resolution: "@next/swc-linux-x64-gnu@npm:14.0.5-canary.46"
+"@next/swc-linux-x64-gnu@npm:14.1.0":
+  version: 14.1.0
+  resolution: "@next/swc-linux-x64-gnu@npm:14.1.0"
   conditions: os=linux & cpu=x64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@next/swc-linux-x64-musl@npm:14.0.5-canary.46":
-  version: 14.0.5-canary.46
-  resolution: "@next/swc-linux-x64-musl@npm:14.0.5-canary.46"
+"@next/swc-linux-x64-musl@npm:14.1.0":
+  version: 14.1.0
+  resolution: "@next/swc-linux-x64-musl@npm:14.1.0"
   conditions: os=linux & cpu=x64 & libc=musl
   languageName: node
   linkType: hard
 
-"@next/swc-win32-arm64-msvc@npm:14.0.5-canary.46":
-  version: 14.0.5-canary.46
-  resolution: "@next/swc-win32-arm64-msvc@npm:14.0.5-canary.46"
+"@next/swc-win32-arm64-msvc@npm:14.1.0":
+  version: 14.1.0
+  resolution: "@next/swc-win32-arm64-msvc@npm:14.1.0"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"@next/swc-win32-ia32-msvc@npm:14.0.5-canary.46":
-  version: 14.0.5-canary.46
-  resolution: "@next/swc-win32-ia32-msvc@npm:14.0.5-canary.46"
+"@next/swc-win32-ia32-msvc@npm:14.1.0":
+  version: 14.1.0
+  resolution: "@next/swc-win32-ia32-msvc@npm:14.1.0"
   conditions: os=win32 & cpu=ia32
   languageName: node
   linkType: hard
 
-"@next/swc-win32-x64-msvc@npm:14.0.5-canary.46":
-  version: 14.0.5-canary.46
-  resolution: "@next/swc-win32-x64-msvc@npm:14.0.5-canary.46"
+"@next/swc-win32-x64-msvc@npm:14.1.0":
+  version: 14.1.0
+  resolution: "@next/swc-win32-x64-msvc@npm:14.1.0"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
@@ -5571,8 +5571,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nx-extend/react-email@workspace:packages/react-email"
   dependencies:
-    "@react-email/components": "npm:^0.0.14"
-    react-email: "npm:^2.0.0"
+    "@react-email/components": "npm:0.0.15-canary.1"
+    react-email: "npm:2.1.0-canary.0"
   languageName: unknown
   linkType: soft
 
@@ -7298,6 +7298,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@react-email/code-block@npm:0.0.3-canary.1":
+  version: 0.0.3-canary.1
+  resolution: "@react-email/code-block@npm:0.0.3-canary.1"
+  dependencies:
+    prismjs: "npm:1.29.0"
+  peerDependencies:
+    react: 18.2.0
+  checksum: 52e20f469023de3b54fd26e25b29527a9e487aefb1c5a33edaac1c523ac391af90c5e0f907fecb85359625e78fe97cf2dd6653934983dcb85714b5c98a7ad706
+  languageName: node
+  linkType: hard
+
 "@react-email/code-inline@npm:0.0.1":
   version: 0.0.1
   resolution: "@react-email/code-inline@npm:0.0.1"
@@ -7316,7 +7327,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-email/components@npm:0.0.14, @react-email/components@npm:^0.0.14":
+"@react-email/components@npm:0.0.14":
   version: 0.0.14
   resolution: "@react-email/components@npm:0.0.14"
   dependencies:
@@ -7342,6 +7353,35 @@ __metadata:
   peerDependencies:
     react: 18.2.0
   checksum: 406054360a105f39d1a61e106e6e87678bdc4443f115f53d86c1b0eb1e2838c6cd17dda398b4fc39bdd94baada3005a981b44fbc7a88ff4167a40b4758477cde
+  languageName: node
+  linkType: hard
+
+"@react-email/components@npm:0.0.15-canary.1":
+  version: 0.0.15-canary.1
+  resolution: "@react-email/components@npm:0.0.15-canary.1"
+  dependencies:
+    "@react-email/body": "npm:0.0.7"
+    "@react-email/button": "npm:0.0.13"
+    "@react-email/code-block": "npm:0.0.3-canary.1"
+    "@react-email/code-inline": "npm:0.0.1"
+    "@react-email/column": "npm:0.0.9"
+    "@react-email/container": "npm:0.0.11"
+    "@react-email/font": "npm:0.0.5"
+    "@react-email/head": "npm:0.0.7"
+    "@react-email/heading": "npm:0.0.11"
+    "@react-email/hr": "npm:0.0.7"
+    "@react-email/html": "npm:0.0.7"
+    "@react-email/img": "npm:0.0.7"
+    "@react-email/link": "npm:0.0.7"
+    "@react-email/preview": "npm:0.0.8"
+    "@react-email/render": "npm:0.0.12"
+    "@react-email/row": "npm:0.0.7"
+    "@react-email/section": "npm:0.0.11"
+    "@react-email/tailwind": "npm:0.0.14"
+    "@react-email/text": "npm:0.0.7"
+  peerDependencies:
+    react: 18.2.0
+  checksum: 444357f0e2e7b459a1e931da29f2a0146dc5be7984471456f9703924e6094725d4b0f3dc33602e1ebaec1138e70adf57ae495b7f36a7179e95c61dabc985ee7e
   languageName: node
   linkType: hard
 
@@ -11840,17 +11880,24 @@ __metadata:
   languageName: node
   linkType: hard
 
-"caniuse-lite@npm:^1.0.30001406, caniuse-lite@npm:^1.0.30001580":
-  version: 1.0.30001580
-  resolution: "caniuse-lite@npm:1.0.30001580"
-  checksum: b626d25d792c766383a47c9efe1384f7d3c3b23e0ee70bf121e8b3a628806a96a21def16a44e58b75f4a5e23b5e008f51c2cc1e8be477b8c8d9493dcc170dd0e
-  languageName: node
-  linkType: hard
-
 "caniuse-lite@npm:^1.0.30001517":
   version: 1.0.30001525
   resolution: "caniuse-lite@npm:1.0.30001525"
   checksum: a373f03a31d6be94ca3382748361b2aa59f6b42245f544f93b3c547379121674c863b28a9a3d272cac568a553b2e2e29349535c7f6a0b30870c169172a088066
+  languageName: node
+  linkType: hard
+
+"caniuse-lite@npm:^1.0.30001579":
+  version: 1.0.30001585
+  resolution: "caniuse-lite@npm:1.0.30001585"
+  checksum: 877e234c13f8db9bde20265f8c0702d1a5d3d0f0b0f726f431c951cf92d4c2b73db6e7b2c8bdf964e49e817037f27691564f56c5e2d557b001097bc8d526d2a1
+  languageName: node
+  linkType: hard
+
+"caniuse-lite@npm:^1.0.30001580":
+  version: 1.0.30001580
+  resolution: "caniuse-lite@npm:1.0.30001580"
+  checksum: b626d25d792c766383a47c9efe1384f7d3c3b23e0ee70bf121e8b3a628806a96a21def16a44e58b75f4a5e23b5e008f51c2cc1e8be477b8c8d9493dcc170dd0e
   languageName: node
   linkType: hard
 
@@ -21376,23 +21423,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"next@npm:14.0.5-canary.46":
-  version: 14.0.5-canary.46
-  resolution: "next@npm:14.0.5-canary.46"
+"next@npm:14.1.0":
+  version: 14.1.0
+  resolution: "next@npm:14.1.0"
   dependencies:
-    "@next/env": "npm:14.0.5-canary.46"
-    "@next/swc-darwin-arm64": "npm:14.0.5-canary.46"
-    "@next/swc-darwin-x64": "npm:14.0.5-canary.46"
-    "@next/swc-linux-arm64-gnu": "npm:14.0.5-canary.46"
-    "@next/swc-linux-arm64-musl": "npm:14.0.5-canary.46"
-    "@next/swc-linux-x64-gnu": "npm:14.0.5-canary.46"
-    "@next/swc-linux-x64-musl": "npm:14.0.5-canary.46"
-    "@next/swc-win32-arm64-msvc": "npm:14.0.5-canary.46"
-    "@next/swc-win32-ia32-msvc": "npm:14.0.5-canary.46"
-    "@next/swc-win32-x64-msvc": "npm:14.0.5-canary.46"
+    "@next/env": "npm:14.1.0"
+    "@next/swc-darwin-arm64": "npm:14.1.0"
+    "@next/swc-darwin-x64": "npm:14.1.0"
+    "@next/swc-linux-arm64-gnu": "npm:14.1.0"
+    "@next/swc-linux-arm64-musl": "npm:14.1.0"
+    "@next/swc-linux-x64-gnu": "npm:14.1.0"
+    "@next/swc-linux-x64-musl": "npm:14.1.0"
+    "@next/swc-win32-arm64-msvc": "npm:14.1.0"
+    "@next/swc-win32-ia32-msvc": "npm:14.1.0"
+    "@next/swc-win32-x64-msvc": "npm:14.1.0"
     "@swc/helpers": "npm:0.5.2"
     busboy: "npm:1.6.0"
-    caniuse-lite: "npm:^1.0.30001406"
+    caniuse-lite: "npm:^1.0.30001579"
     graceful-fs: "npm:^4.2.11"
     postcss: "npm:8.4.31"
     styled-jsx: "npm:5.1.1"
@@ -21427,7 +21474,7 @@ __metadata:
       optional: true
   bin:
     next: dist/bin/next
-  checksum: 60a9c03b997b0a934a397954f4ef15a691526f11768d3fe79c226e174dbbfe4e8d78582cc0a314a2bbe5210632038c4965b729783af30fdfd089ff654c191079
+  checksum: 1db512c5c82f7ea423a2651a28950d398f49f03df6213630aefdf083d5260edeeed8d995b90c3c8742c0a2346025e748d28078a6261d316fcdade4c5c788e986
   languageName: node
   linkType: hard
 
@@ -24018,9 +24065,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-email@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "react-email@npm:2.0.0"
+"react-email@npm:2.1.0-canary.0":
+  version: 2.1.0-canary.0
+  resolution: "react-email@npm:2.1.0-canary.0"
   dependencies:
     "@radix-ui/colors": "npm:1.0.1"
     "@radix-ui/react-collapsible": "npm:1.0.3"
@@ -24047,7 +24094,7 @@ __metadata:
     glob: "npm:10.3.4"
     log-symbols: "npm:4.1.0"
     mime-types: "npm:2.1.35"
-    next: "npm:14.0.5-canary.46"
+    next: "npm:14.1.0"
     normalize-path: "npm:3.0.0"
     ora: "npm:5.4.1"
     postcss: "npm:8.4.32"
@@ -24066,7 +24113,7 @@ __metadata:
     typescript: "npm:5.1.6"
   bin:
     email: cli/index.js
-  checksum: 6d6ca7bc377d664d2918127a1866a1717d9f15aedc8850e20db54270796130e5bd2d5a5d47f508255ea41fba9fd59c054734df08bb856291cfffcea868e9c379
+  checksum: ca2a0d7f3d6fc8f01d78f57080144b732f2a44a0acbc92b7c23ae78e6f73a8f6201bf600fb20cc14e945933591918ae8378cdd8551d2734a16f7a1586c136c4e
   languageName: node
   linkType: hard
 
