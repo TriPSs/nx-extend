@@ -27,7 +27,7 @@
       "options": {
         "commands": [
           "git add ./actions/run-many/dist -f",
-          "git commit -m 'chore(run-many): Add dist'"
+          "git commit -m 'chore(actions-run-many): Add dist'"
         ],
         "parallel": false
       }
