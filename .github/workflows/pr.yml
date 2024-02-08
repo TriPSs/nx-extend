@@ -53,6 +53,7 @@ jobs:
     needs:
       - setup
     runs-on: ubuntu-latest
+    if: needs.setup.outputs.hasPlan == 'true'
     strategy:
       fail-fast: false
       matrix: ${{ fromJSON(needs.setup.outputs.matrix) }}
