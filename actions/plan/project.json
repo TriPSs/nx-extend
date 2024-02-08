@@ -4,7 +4,7 @@
   "sourceRoot": "packages/core/src",
   "projectType": "library",
   "targets": {
-    "version": {
+    "versionAction": {
       "executor": "@jscutlery/semver:version",
       "options": {
         "versionTagPrefix": "${target}@"
@@ -18,6 +18,18 @@
         ]
       }
     },
+    "publish": {
+      "executor": "nx:run-commands",
+      "dependsOn": [
+        "compile",
+        "versionAction"
+      ],
+      "options": {
+        "commands": [
+          "git add . && git commit --amend"
+        ]
+      }
+    }
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/actions/plan"],
