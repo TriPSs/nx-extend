@@ -2,6 +2,20 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [1.0.0](https://github.com/TriPSs/nx-extend/compare/shadcn-ui@0.2.2...shadcn-ui@1.0.0) (2024-02-08)
+
+
+### Features
+
+* Updated Nx ([db61114](https://github.com/TriPSs/nx-extend/commit/db61114abc4991ae0e66ade0660b2baee76263f0))
+
+
+### BREAKING CHANGES
+
+* Updated Nx to version 18
+
+
+
 ## [0.2.2](https://github.com/TriPSs/nx-extend/compare/shadcn-ui@0.2.1...shadcn-ui@0.2.2) (2024-01-18)
 
 
