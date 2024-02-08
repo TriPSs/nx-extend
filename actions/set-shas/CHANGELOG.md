@@ -2,6 +2,10 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [3.1.2](https://github.com/TriPSs/nx-extend/compare/actions-set-shas@3.1.1...actions-set-shas@3.1.2) (2024-02-08)
+
+
+
 ## [3.1.1](https://github.com/TriPSs/nx-extend/compare/actions-set-shas@3.1.0...actions-set-shas@3.1.1) (2024-02-08)
 
 
