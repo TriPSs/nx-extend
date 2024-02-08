@@ -48,7 +48,7 @@ jobs:
 
           e2eMaxJobs: 2
 
-  pr:
+  distributed-task:
     name: Distributed ${{ matrix.target }} ${{ matrix.index }}/${{ matrix.count }}
     needs:
       - setup
@@ -99,3 +99,24 @@ jobs:
           count: ${{ matrix.count }}
           tag: ${{ matrix.tag }}
           parallel: ${{ matrix.parallel }}
+
+  # So we can add branch protection that this one is required
+  distributed-check:
+    name: Distributed check
+    runs-on: ubuntu-latest
+    needs:
+      - distributed-task
+    if: |
+      !cancelled()
+    steps:
+      - name: Check
+        if: |
+          !contains(needs.*.result, 'failure') &&
+          !contains(needs.*.result, 'cancelled')
+        run: echo "Ok"
+
+      - name: Fail
+        if: |
+          contains(needs.*.result, 'failure') ||
+          contains(needs.*.result, 'cancelled')
+        run: exit 1
