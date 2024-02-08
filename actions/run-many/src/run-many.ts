@@ -23,7 +23,7 @@ export const argv = yargs(hideBin(process.argv))
 
 async function run() {
   try {
-    const nxTree = new FsTree(process.cwd(), false)
+    const nxTree = new FsTree(process.cwd(), (core.isDebug() || argv.verbose))
     const projects = getProjects(nxTree)
 
     // Get all options
