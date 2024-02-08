@@ -4,8 +4,12 @@
   "sourceRoot": "packages/core/src",
   "projectType": "library",
   "targets": {
-    "versionAction": {
+    "version": {
       "executor": "@jscutlery/semver:version",
+      "dependsOn": [
+        "compile",
+        "commit"
+      ],
       "options": {
         "versionTagPrefix": "${target}@"
       }
@@ -18,16 +22,14 @@
         ]
       }
     },
-    "publish": {
+    "commit": {
       "executor": "nx:run-commands",
-      "dependsOn": [
-        "compile",
-        "versionAction"
-      ],
       "options": {
         "commands": [
-          "git add . && git commit --amend"
-        ]
+          "git add ./actions/run-many/dist -f",
+          "git commit -m 'chore(run-many): Add dist'"
+        ],
+        "parallel": false
       }
     }
   },
