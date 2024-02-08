@@ -2,6 +2,21 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [12.0.0](https://github.com/TriPSs/nx-extend/compare/translations@11.0.3...translations@12.0.0) (2024-02-08)
+
+
+### Features
+
+* **translations:** Added Nx plugins support ([9b81031](https://github.com/TriPSs/nx-extend/commit/9b81031d0bf1eb1d04b19068ab7596ed75061ed4))
+* Updated Nx ([db61114](https://github.com/TriPSs/nx-extend/commit/db61114abc4991ae0e66ade0660b2baee76263f0))
+
+
+### BREAKING CHANGES
+
+* Updated Nx to version 18
+
+
+
 ## [11.0.3](https://github.com/TriPSs/nx-extend/compare/translations@11.0.2...translations@11.0.3) (2024-01-18)
 
 
