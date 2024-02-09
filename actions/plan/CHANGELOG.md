@@ -2,6 +2,60 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.5.4](https://github.com/TriPSs/nx-extend/compare/actions-plan@0.5.3...actions-plan@0.5.4) (2024-02-08)
+
+
+### Bug Fixes
+
+* **actions:** Use `FsTree` with verbose `true` in debug mode ([56753d9](https://github.com/TriPSs/nx-extend/commit/56753d92ede41f2a0d79dca3ccc1cee9bb050eb9))
+
+
+
+## [0.2.1](https://github.com/TriPSs/nx-extend/compare/actions-plan-0.2.0...actions-plan-0.2.1) (2024-02-08)
+
+
+### Bug Fixes
+
+* **actions:** Re-compile with new Nx ([3afa6a9](https://github.com/TriPSs/nx-extend/commit/3afa6a982dc5410131f4f669d83c7d40b2878d5b))
+* **actions:** Use `FsTree` with verbose `true` in debug mode ([56753d9](https://github.com/TriPSs/nx-extend/commit/56753d92ede41f2a0d79dca3ccc1cee9bb050eb9))
+
+
+
+## [0.5.3](https://github.com/TriPSs/nx-extend/compare/actions-plan@0.5.2...actions-plan@0.5.3) (2024-02-08)
+
+
+
+## [0.5.2](https://github.com/TriPSs/nx-extend/compare/actions-plan@0.5.1...actions-plan@0.5.2) (2024-02-08)
+
+
+
+## [0.5.1](https://github.com/TriPSs/nx-extend/compare/actions-plan@0.5.0...actions-plan@0.5.1) (2024-02-08)
+
+
+### Bug Fixes
+
+* **actions:** Re-compile with new Nx ([3afa6a9](https://github.com/TriPSs/nx-extend/commit/3afa6a982dc5410131f4f669d83c7d40b2878d5b))
+
+
+
+# [0.5.0](https://github.com/TriPSs/nx-extend/compare/actions-plan@0.4.0...actions-plan@0.5.0) (2024-02-08)
+
+
+### Features
+
+* **actions:** Update to `node20` ([3677e3b](https://github.com/TriPSs/nx-extend/commit/3677e3b1633e41b590d773eabbfdc81bd5c69ad7))
+
+
+
+# [0.2.0](https://github.com/TriPSs/nx-extend/compare/actions-plan-0.1.1...actions-plan-0.2.0) (2024-01-26)
+
+
+### Features
+
+* **actions:** Update to `node20` ([3677e3b](https://github.com/TriPSs/nx-extend/commit/3677e3b1633e41b590d773eabbfdc81bd5c69ad7))
+
+
+
 ## [0.1.1](https://github.com/TriPSs/nx-extend/compare/actions-plan-0.1.0...actions-plan-0.1.1) (2023-12-09)
 
 

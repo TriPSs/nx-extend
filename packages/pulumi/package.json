@@ -1,6 +1,6 @@
 {
   "name": "@nx-extend/pulumi",
-  "version": "4.1.1",
+  "version": "5.0.1",
   "keywords": [
     "nx",
     "pulumi"

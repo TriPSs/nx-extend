@@ -2,6 +2,37 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [1.0.0](https://github.com/TriPSs/nx-extend/compare/shadcn-ui@0.2.2...shadcn-ui@1.0.0) (2024-02-08)
+
+
+### Features
+
+* Updated Nx ([db61114](https://github.com/TriPSs/nx-extend/commit/db61114abc4991ae0e66ade0660b2baee76263f0))
+
+
+### BREAKING CHANGES
+
+* Updated Nx to version 18
+
+
+
+## [0.2.2](https://github.com/TriPSs/nx-extend/compare/shadcn-ui@0.2.1...shadcn-ui@0.2.2) (2024-01-18)
+
+
+
+## [0.2.1](https://github.com/TriPSs/nx-extend/compare/shadcn-ui@0.2.0...shadcn-ui@0.2.1) (2024-01-18)
+
+
+
+# [0.2.0](https://github.com/TriPSs/nx-extend/compare/shadcn-ui@0.1.1...shadcn-ui@0.2.0) (2024-01-18)
+
+
+### Features
+
+* **shadcn-ui:** Update tailwind config to export build function ([1e4b055](https://github.com/TriPSs/nx-extend/commit/1e4b055f93d7afda833d499d095102b309ae439a))
+
+
+
 ## [0.1.1](https://github.com/TriPSs/nx-extend/compare/shadcn-ui@0.1.0...shadcn-ui@0.1.1) (2024-01-18)
 
 

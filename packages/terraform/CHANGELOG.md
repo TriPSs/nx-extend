@@ -2,6 +2,20 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [5.0.0](https://github.com/TriPSs/nx-extend/compare/terraform@4.2.0...terraform@5.0.0) (2024-02-08)
+
+
+### Features
+
+* Updated Nx ([db61114](https://github.com/TriPSs/nx-extend/commit/db61114abc4991ae0e66ade0660b2baee76263f0))
+
+
+### BREAKING CHANGES
+
+* Updated Nx to version 18
+
+
+
 # [4.2.0](https://github.com/TriPSs/nx-extend/compare/terraform@4.1.0...terraform@4.2.0) (2023-12-15)
 
 

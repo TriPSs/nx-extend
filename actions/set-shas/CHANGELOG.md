@@ -2,6 +2,46 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [3.1.3](https://github.com/TriPSs/nx-extend/compare/actions-set-shas@3.1.2...actions-set-shas@3.1.3) (2024-02-08)
+
+
+
+## [3.1.2](https://github.com/TriPSs/nx-extend/compare/actions-set-shas@3.1.1...actions-set-shas@3.1.2) (2024-02-08)
+
+
+
+## [3.1.1](https://github.com/TriPSs/nx-extend/compare/actions-set-shas@3.1.0...actions-set-shas@3.1.1) (2024-02-08)
+
+
+### Bug Fixes
+
+* **actions:** Re-compile with new Nx ([3afa6a9](https://github.com/TriPSs/nx-extend/commit/3afa6a982dc5410131f4f669d83c7d40b2878d5b))
+
+
+
+# [3.1.0](https://github.com/TriPSs/nx-extend/compare/actions-set-shas@3.0.1...actions-set-shas@3.1.0) (2024-02-08)
+
+
+### Bug Fixes
+
+* **set-shas:** Fixed incorrect base sha if no tags exist ([9086868](https://github.com/TriPSs/nx-extend/commit/9086868cfa99070a9c02f4d8c2c879be30ed9e6e))
+
+
+### Features
+
+* **actions:** Update to `node20` ([3677e3b](https://github.com/TriPSs/nx-extend/commit/3677e3b1633e41b590d773eabbfdc81bd5c69ad7))
+
+
+
+# [0.2.0](https://github.com/TriPSs/nx-extend/compare/actions-set-shas-0.1.1...actions-set-shas-0.2.0) (2024-01-26)
+
+
+### Features
+
+* **actions:** Update to `node20` ([3677e3b](https://github.com/TriPSs/nx-extend/commit/3677e3b1633e41b590d773eabbfdc81bd5c69ad7))
+
+
+
 ## [0.1.1](https://github.com/TriPSs/nx-extend/compare/actions-set-shas-0.1.0...actions-set-shas-0.1.1) (2023-12-09)
 
 

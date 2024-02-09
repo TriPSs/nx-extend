@@ -2,6 +2,20 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [6.0.0](https://github.com/TriPSs/nx-extend/compare/core@5.2.1...core@6.0.0) (2024-02-08)
+
+
+### Features
+
+* Updated Nx ([db61114](https://github.com/TriPSs/nx-extend/commit/db61114abc4991ae0e66ade0660b2baee76263f0))
+
+
+### BREAKING CHANGES
+
+* Updated Nx to version 18
+
+
+
 ## [5.2.1](https://github.com/TriPSs/nx-extend/compare/core@5.2.0...core@5.2.1) (2023-12-09)
 
 
