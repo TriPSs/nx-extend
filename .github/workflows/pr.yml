@@ -11,6 +11,9 @@ jobs:
 
   setup:
     runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.plan.outputs.matrix }}
+      hasPlan: ${{ steps.plan.outputs.hasPlan }}
     steps:
       - uses: actions/checkout@v4
         with:
