@@ -1,6 +1,6 @@
 import * as core from '@actions/core'
 
-import type { ProjectConfiguration } from 'nx/src/config/workspace-json-project-json'
+import type { ProjectGraphProjectNode } from 'nx/src/config/project-graph'
 
 import { argv } from '../run-many'
 import { buildCommand } from './build-command'
@@ -11,7 +11,7 @@ import { getRestArgs } from './get-rest-args'
 
 export async function runTarget(
   cwd: string,
-  projects: Map<string, ProjectConfiguration>,
+  projects: Record<string, ProjectGraphProjectNode>,
   runProjects: string[],
   target: string,
   config?: string,

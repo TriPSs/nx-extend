@@ -1,6 +1,5 @@
 import * as core from '@actions/core'
-import { FsTree } from 'nx/src/generators/tree'
-import { getProjects } from 'nx/src/generators/utils/project-configuration'
+import { readCachedProjectGraph } from 'nx/src/project-graph/project-graph'
 import { resolve } from 'path'
 import { hideBin } from 'yargs/helpers'
 import yargs from 'yargs/yargs'
@@ -23,9 +22,6 @@ export const argv = yargs(hideBin(process.argv))
 
 async function run() {
   try {
-    const nxTree = new FsTree(process.cwd(), (core.isDebug() || argv.verbose))
-    const projects = getProjects(nxTree)
-
     // Get all options
     const tagConditions = (argv.tag ? [argv.tag] : core.getMultilineInput('tag', { trimWhitespace: true }))
     const target = core.getInput('target', { required: !argv.target }) || argv.target
@@ -54,32 +50,34 @@ async function run() {
 
     const cwd = resolve(process.cwd(), workingDirectory)
 
-    const projectsNamesToRun = affectedOnly
-      ? JSON.parse(execCommand<string>(
-        buildCommand([
-          'npx nx show projects --affected --json',
-          `-t ${target}`
-        ]),
-        {
-          asString: true,
-          silent: !(core.isDebug() || argv.verbose),
-          cwd
-        }
-      ))
-      : Array.from(projects.keys())
+    const projectsNamesToRun = JSON.parse(execCommand<string>(
+      buildCommand([
+        'npx nx show projects --json',
+        affectedOnly && '--affected',
+        `-t ${target}`
+      ]),
+      {
+        asString: true,
+        silent: !(core.isDebug() || argv.verbose),
+        cwd
+      }
+    ))
 
     // Make sure to still log the project names
     if (!affectedOnly) {
       core.debug(JSON.stringify(projectsNamesToRun))
     }
 
+    const projectGraph = readCachedProjectGraph()
+
     // Get all affected projects
     const projectsToRun = projectsNamesToRun.filter((projectName: string) => {
-      if (!projects.has(projectName)) {
+      const project = projectGraph.nodes?.[projectName]?.data
+
+      if (!project) {
         return false
       }
 
-      const project = projects.get(projectName)
       const tags = project.tags || []
 
       // If the project has ci=off then don't run it
@@ -112,7 +110,7 @@ async function run() {
         const [target, targetConfig] = targetParts.split(':')
         await runTarget(
           cwd,
-          projects,
+          projectGraph.nodes,
           runProjects,
           target,
           targetConfig,
@@ -123,7 +121,7 @@ async function run() {
 
     await runTarget(
       cwd,
-      projects,
+      projectGraph.nodes,
       runProjects,
       target,
       config,
@@ -138,7 +136,7 @@ async function run() {
         const [target, targetConfig] = targetParts.split(':')
         await runTarget(
           cwd,
-          projects,
+          projectGraph.nodes,
           runProjects,
           target,
           targetConfig,

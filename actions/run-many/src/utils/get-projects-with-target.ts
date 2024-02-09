@@ -1,10 +1,10 @@
-import type { ProjectConfiguration } from 'nx/src/config/workspace-json-project-json'
+import type { ProjectGraphProjectNode } from 'nx/src/config/project-graph'
 
-export function getProjectsWithTarget(projects: Map<string, ProjectConfiguration>, runProjects: string[], target: string): string[] {
+export function getProjectsWithTarget(projects: Record<string, ProjectGraphProjectNode>, runProjects: string[], target: string): string[] {
   // Filter out all projects that are not allowed
-  return Array.from(projects).filter(([project, config]) => {
+  return Object.keys(projects).filter((project) => {
     // Check if the project has the provided target
-    return Object.keys(config?.targets ?? {}).includes(target)
+    return Object.keys(projects[project].data?.targets ?? {}).includes(target)
       && runProjects.includes(project)
-  }).map(([project]) => project)
+  }).map((project) => project)
 }

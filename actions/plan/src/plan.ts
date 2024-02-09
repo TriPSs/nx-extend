@@ -1,16 +1,13 @@
 import * as core from '@actions/core'
-import { FsTree } from 'nx/src/generators/tree'
-import { getProjects } from 'nx/src/generators/utils/project-configuration'
+import { readCachedProjectGraph } from 'nx/src/project-graph/project-graph'
 import { resolve } from 'path'
 
+import { buildCommand } from './utils/build-command'
 import { execCommand } from './utils/exec'
 import { cleanLogConditions, hasOneOfRequiredTags } from './utils/has-one-of-required-tags'
 
 async function run() {
   try {
-    const nxTree = new FsTree(process.cwd(), core.isDebug())
-    const projects = getProjects(nxTree)
-
     const workingDirectory = core.getInput('workingDirectory') || ''
     const affectedOnly = core.getBooleanInput('affectedOnly')
     const targets = core.getMultilineInput('targets', { required: true, trimWhitespace: true })
@@ -18,29 +15,34 @@ async function run() {
     const cwd = resolve(process.cwd(), workingDirectory)
 
     // Get all the project names
-    const projectsNamesToPlanFor = affectedOnly
-      ? JSON.parse(execCommand<string>(
-        'npx nx show projects --affected --json',
-        {
-          asString: true,
-          silent: !core.isDebug(),
-          cwd
-        }
-      )).map((projectName: string) => projectName.trim())
-      : Array.from(projects.keys())
+    const projectsNamesToPlanFor = JSON.parse(execCommand<string>(
+      buildCommand([
+        'npx nx show projects --json',
+        affectedOnly && '--affected'
+      ]),
+      {
+        asString: true,
+        silent: !core.isDebug(),
+        cwd
+      }
+    ))
 
     // Make sure to still log the project names
     if (!affectedOnly) {
       core.debug(JSON.stringify(projectsNamesToPlanFor))
     }
 
+    const projectGraph = readCachedProjectGraph()
+
     // Get all affected projects
     const enabledProjects = projectsNamesToPlanFor.filter((projectName: string) => {
-      if (!projects.has(projectName)) {
+      const project = projectGraph.nodes?.[projectName]?.data
+
+      if (!project) {
         return false
       }
 
-      return !(projects.get(projectName).tags || []).includes('ci=off')
+      return !(project.tags || []).includes('ci=off')
     })
 
     const matrixInclude = []
@@ -60,7 +62,7 @@ async function run() {
       core.info(`- ${target}PostTargets: ${postTargets.join(' AND ')}`)
 
       const amountOfProjectsWithTarget = enabledProjects.map((projectName: string) => {
-        const { targets, tags } = projects.get(projectName)
+        const { targets, tags } = projectGraph.nodes[projectName].data
 
         if (Object.keys(targets).includes(target)) {
           return hasOneOfRequiredTags(projectName, tags, tagConditions)
