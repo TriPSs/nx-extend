@@ -1,2 +1,2 @@
-import type { ProjectConfiguration } from 'nx/src/config/workspace-json-project-json';
-export declare function getProjectsWithTarget(projects: Map<string, ProjectConfiguration>, runProjects: string[], target: string): string[];
+import type { ProjectGraphProjectNode } from 'nx/src/config/project-graph';
+export declare function getProjectsWithTarget(projects: Record<string, ProjectGraphProjectNode>, runProjects: string[], target: string): string[];
