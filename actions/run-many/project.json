@@ -26,8 +26,8 @@
       "executor": "nx:run-commands",
       "options": {
         "commands": [
-          "git add ./actions/run-many/dist -f",
-          "git commit -m 'chore(actions-run-many): Add dist'"
+          "git add ./actions/run-many/dist -f || true",
+          "git commit -m 'chore(actions-run-many): Add dist' || true"
         ],
         "parallel": false
       }
