@@ -24,7 +24,7 @@ export default async function createExecutor(
   execSync(
     buildCommand([
       'PULUMI_EXPERIMENTAL=true',
-      'pulumi refresh',
+      'pulumi refresh --suppress-progress',
       options.stack && `--stack=${options.stack}`,
       options.skipPreview && '--skip-preview',
       options.yes && '--yes'

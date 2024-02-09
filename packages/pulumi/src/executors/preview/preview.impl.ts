@@ -22,7 +22,7 @@ export default async function creatExecutor(
   execSync(
     buildCommand([
       'PULUMI_EXPERIMENTAL=true',
-      'pulumi preview --diff',
+      'pulumi preview --diff --suppress-progress',
       options.stack && `--stack=${options.stack}`
     ]),
     {
