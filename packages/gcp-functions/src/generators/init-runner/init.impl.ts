@@ -67,12 +67,13 @@ export default async function (
     sourceRoot: `${normalizedOptions.projectRoot}/src`,
     targets: {
       _build: {
-        executor: '@nx/node:build',
+        executor: '@nx/webpack:webpack',
         outputs: ['{options.outputPath}'],
         options: {
           outputPath: `dist/${normalizedOptions.projectRoot}`,
           main: `${normalizedOptions.projectRoot}/src/main.ts`,
           tsConfig: `${normalizedOptions.projectRoot}/tsconfig.app.json`,
+          webpackConfig: `${normalizedOptions.projectRoot}/webpack.config.js`,
           compiler: 'tsc',
           target: 'node',
           namedChunks: true

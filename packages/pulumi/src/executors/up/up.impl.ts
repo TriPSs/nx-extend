@@ -1,8 +1,8 @@
-import { buildCommand, USE_VERBOSE_LOGGING_MINIMAL } from '@nx-extend/core'
 import { ExecutorContext, workspaceRoot } from '@nx/devkit'
+import { buildCommand, USE_VERBOSE_LOGGING_MINIMAL } from '@nx-extend/core'
 import { execSync } from 'child_process'
-import { which } from 'shelljs'
 import { join } from 'path'
+import { which } from 'shelljs'
 
 export interface UpOptions {
   stack?: string,
