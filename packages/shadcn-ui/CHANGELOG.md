@@ -2,6 +2,10 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [1.0.1](https://github.com/TriPSs/nx-extend/compare/shadcn-ui@1.0.0...shadcn-ui@1.0.1) (2024-03-06)
+
+
+
 # [1.0.0](https://github.com/TriPSs/nx-extend/compare/shadcn-ui@0.2.2...shadcn-ui@1.0.0) (2024-02-08)
 
 
