@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [5.1.0](https://github.com/TriPSs/nx-extend/compare/terraform@5.0.0...terraform@5.1.0) (2024-03-06)
+
+
+### Features
+
+* **terraform:** add varfile option in terraform plan executor ([78b9859](https://github.com/TriPSs/nx-extend/commit/78b9859ed928c5163ace32c86070fa15f23aa304))
+
+
+
 # [5.0.0](https://github.com/TriPSs/nx-extend/compare/terraform@4.2.0...terraform@5.0.0) (2024-02-08)
 
 
