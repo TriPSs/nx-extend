@@ -82,6 +82,18 @@ export default async function (
           ciMode: true,
           autoApproval: false
         }
+      },
+      validate: {
+        executor: '@nx-extend/terraform:validate',
+        options: {
+          ciMode: true
+        }
+      },
+      test: {
+        executor: '@nx-extend/terraform:test',
+        options: {
+          ciMode: true
+        }
       }
     },
     tags: options.parsedTags
