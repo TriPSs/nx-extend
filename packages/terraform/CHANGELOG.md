@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [5.2.0](https://github.com/TriPSs/nx-extend/compare/terraform@5.1.0...terraform@5.2.0) (2024-03-11)
+
+
+### Features
+
+* **terraform:** add support for validate and test terraform commands ([87d15c5](https://github.com/TriPSs/nx-extend/commit/87d15c5b840588e9e87cc65ed4272e62a1ad86dc))
+
+
+
 # [5.1.0](https://github.com/TriPSs/nx-extend/compare/terraform@5.0.0...terraform@5.1.0) (2024-03-06)
 
 
