@@ -54,6 +54,8 @@ export function createExecutor(command: string) {
         command === 'init' && upgrade && '-upgrade',
         command === 'init' && migrateState && '-migrate-state',
         command === 'providers' && lock && 'lock',
+        command === 'validate',
+        command === 'test' && varFile && `--var-file ${varFile}`,
       ]),
       {
         cwd: sourceRoot,

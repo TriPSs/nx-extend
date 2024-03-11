@@ -40,6 +40,8 @@ nx run <terraform-project-name>:providers
 nx run <terraform-project-name>:plan
 nx run <terraform-project-name>:apply
 nx run <terraform-project-name>:destroy
+nx run <terraform-project-name>:validate
+nx run <terraform-project-name>:test
 ```
 
 #### Available options:
