@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [5.2.1](https://github.com/TriPSs/nx-extend/compare/terraform@5.2.0...terraform@5.2.1) (2024-03-12)
+
+
+### Bug Fixes
+
+* **terraform:** fix terraform validate executor schema and command ([39953d1](https://github.com/TriPSs/nx-extend/commit/39953d162031426590923472329fb8cf5ce5bf44))
+
+
+
 # [5.2.0](https://github.com/TriPSs/nx-extend/compare/terraform@5.1.0...terraform@5.2.0) (2024-03-11)
 
 
