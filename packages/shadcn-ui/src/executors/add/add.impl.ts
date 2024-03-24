@@ -1,5 +1,5 @@
 import { ExecutorContext } from '@nx/devkit'
-import { buildCommand, execCommand } from '@nx-extend/core'
+import { buildCommand, execPackageManagerCommand } from '@nx-extend/core'
 
 export interface ExecutorSchema {
   component: string
@@ -12,8 +12,8 @@ export async function addExecutor(
 ): Promise<{ success: boolean }> {
   const { root } = context.workspace.projects[context.projectName]
 
-  return execCommand(buildCommand([
-    'npx shadcn-ui@latest add',
+  return execPackageManagerCommand(buildCommand([
+    'shadcn-ui@latest add',
     options.component,
     options.overwrite && '--overwrite',
     '--path=src',
