@@ -3,13 +3,13 @@ import { detectPackageManager, getPackageManagerCommand } from 'nx/src/utils/pac
 import { buildCommand } from './build-command'
 import { execCommand, Options } from './exec'
 
-export function getPackageManagerExecCommand() {
-  return getPackageManagerCommand(detectPackageManager()).exec
+export function getPackageManagerDlxCommand() {
+  return getPackageManagerCommand(detectPackageManager()).dlx
 }
 
 export function execPackageManagerCommand(command: string, options?: Options) {
   return execCommand(buildCommand([
-    process.env.NX_EXTEND_COMMAND_USE_NPX ? 'npx' : getPackageManagerExecCommand(),
+    process.env.NX_EXTEND_COMMAND_USE_NPX ? 'npx' : getPackageManagerDlxCommand(),
     command
   ]), options)
 }

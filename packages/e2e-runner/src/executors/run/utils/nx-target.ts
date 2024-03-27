@@ -1,6 +1,6 @@
 import { logger, parseTargetString } from '@nx/devkit'
 import { readCachedProjectGraph } from '@nx/workspace/src/core/project-graph'
-import { getPackageManagerExecCommand, USE_VERBOSE_LOGGING } from '@nx-extend/core'
+import { getPackageManagerDlxCommand, USE_VERBOSE_LOGGING } from '@nx-extend/core'
 import * as childProcess from 'child_process'
 
 import { isApiLive } from './is-api-live'
@@ -172,7 +172,7 @@ function launchProcess(
   const shouldLog = options.logging ?? USE_VERBOSE_LOGGING
 
   const spawnedProcess = childProcess.spawn(
-    `${getPackageManagerExecCommand()} nx ${target} ${project} ${
+    `${getPackageManagerDlxCommand()} nx ${target} ${project} ${
       configuration ? `--configuration=${configuration}` : ''
     }`,
     [],
