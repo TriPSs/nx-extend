@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [12.1.0](https://github.com/TriPSs/nx-extend/compare/gcp-functions@12.0.2...gcp-functions@12.1.0) (2024-04-11)
+
+
+### Features
+
+* **gcp-functions:** allow keeping optional peerDeps and devDeps ([4faab1b](https://github.com/TriPSs/nx-extend/commit/4faab1b3066b36c9ffe061a0c17a20b1a502c315))
+
+
+
 ## [12.0.2](https://github.com/TriPSs/nx-extend/compare/gcp-functions@12.0.1...gcp-functions@12.0.2) (2024-03-06)
 
 
