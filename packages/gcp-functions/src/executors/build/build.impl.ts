@@ -8,6 +8,7 @@ import { generatePackageJson } from '../../utils/generate-package-json'
 
 export interface RawOptions extends WebpackExecutorOptions {
   generateLockFile?: boolean
+  omitOptionalDependencies?: boolean
 }
 
 export async function buildExecutor(
@@ -34,6 +35,7 @@ export async function buildExecutor(
       context,
       options,
       value.outfile,
+      rawOptions.omitOptionalDependencies,
       rawOptions.generateLockFile
     )
   }

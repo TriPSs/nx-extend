@@ -90,6 +90,11 @@
       "default": false,
       "x-deprecated": "The recommended method to detect circular dependencies in project code is to use a either a lint rule or other external tooling."
     },
+    "omitOptionalDependencies": {
+      "type": "boolean",
+      "description": "If omitOptionalDependencies flag is set, it will remove devDependencies and optional peerDependencies",
+      "default": true
+    },
     "maxWorkers": {
       "type": "number",
       "description": "Number of workers to use for type checking. (defaults to # of CPUS - 2)"

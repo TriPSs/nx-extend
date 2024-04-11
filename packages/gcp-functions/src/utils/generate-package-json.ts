@@ -18,7 +18,8 @@ export const generatePackageJson = (
   context: ExecutorContext,
   options: WebpackExecutorOptions,
   outFile: string,
-  generateLockFile?: boolean
+  omitOptionalDependencies = true,
+  generateLockFile?: boolean,
 ) => {
   const { root } = context.workspace.projects[context.projectName]
 
@@ -27,7 +28,7 @@ export const generatePackageJson = (
     readCachedProjectGraph(),
     {
       root: context.root,
-      isProduction: true
+      isProduction: omitOptionalDependencies
     }
   )
 
@@ -35,7 +36,9 @@ export const generatePackageJson = (
     packageJson.main = options.outputFileName || 'main.js'
   }
 
-  delete packageJson.devDependencies
+  if (omitOptionalDependencies) {
+    delete packageJson.devDependencies
+  }
 
   const dependencies = {}
   const buildFile = fs.readFileSync(outFile, 'utf8')
