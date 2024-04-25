@@ -29,6 +29,16 @@
       "implementation": "./src/executors/providers/providers.impl",
       "schema": "./src/executors/providers/schema.json",
       "description": "providers executor"
+    },
+    "validate": {
+      "implementation": "./src/executors/validate/validate.impl",
+      "schema": "./src/executors/validate/schema.json",
+      "description": "validate executor"
+    },
+    "test": {
+      "implementation": "./src/executors/test/test.impl",
+      "schema": "./src/executors/test/schema.json",
+      "description": "test executor"
     }
   },
   "builders": {
@@ -61,6 +71,16 @@
       "implementation": "./src/executors/providers/providers.impl",
       "schema": "./src/executors/providers/schema.json",
       "description": "providers executor"
+    },
+    "validate": {
+      "implementation": "./src/executors/validate/validate.impl",
+      "schema": "./src/executors/validate/schema.json",
+      "description": "validate executor"
+    },
+    "test": {
+      "implementation": "./src/executors/test/test.impl",
+      "schema": "./src/executors/test/schema.json",
+      "description": "test executor"
     }
   }
 }

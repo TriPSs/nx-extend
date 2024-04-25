@@ -2,6 +2,24 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [6.0.2](https://github.com/TriPSs/nx-extend/compare/core@6.0.1...core@6.0.2) (2024-04-25)
+
+
+### Bug Fixes
+
+* add license ([3eb36b7](https://github.com/TriPSs/nx-extend/commit/3eb36b7f3555964fe444d323b09a77c582eb3766))
+
+
+
+## [6.0.1](https://github.com/TriPSs/nx-extend/compare/core@6.0.0...core@6.0.1) (2024-03-27)
+
+
+### Bug Fixes
+
+* do not hardcode npx in shadcn-ui:add executor (fixes [#245](https://github.com/TriPSs/nx-extend/issues/245)) ([c6be2b6](https://github.com/TriPSs/nx-extend/commit/c6be2b6ebc68c9951845c1d36916651e2ec6f08d))
+
+
+
 # [6.0.0](https://github.com/TriPSs/nx-extend/compare/core@5.2.1...core@6.0.0) (2024-02-08)
 
 

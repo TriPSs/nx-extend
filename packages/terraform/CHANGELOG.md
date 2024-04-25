@@ -2,6 +2,33 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [5.2.1](https://github.com/TriPSs/nx-extend/compare/terraform@5.2.0...terraform@5.2.1) (2024-03-12)
+
+
+### Bug Fixes
+
+* **terraform:** fix terraform validate executor schema and command ([39953d1](https://github.com/TriPSs/nx-extend/commit/39953d162031426590923472329fb8cf5ce5bf44))
+
+
+
+# [5.2.0](https://github.com/TriPSs/nx-extend/compare/terraform@5.1.0...terraform@5.2.0) (2024-03-11)
+
+
+### Features
+
+* **terraform:** add support for validate and test terraform commands ([87d15c5](https://github.com/TriPSs/nx-extend/commit/87d15c5b840588e9e87cc65ed4272e62a1ad86dc))
+
+
+
+# [5.1.0](https://github.com/TriPSs/nx-extend/compare/terraform@5.0.0...terraform@5.1.0) (2024-03-06)
+
+
+### Features
+
+* **terraform:** add varfile option in terraform plan executor ([78b9859](https://github.com/TriPSs/nx-extend/commit/78b9859ed928c5163ace32c86070fa15f23aa304))
+
+
+
 # [5.0.0](https://github.com/TriPSs/nx-extend/compare/terraform@4.2.0...terraform@5.0.0) (2024-02-08)
 
 

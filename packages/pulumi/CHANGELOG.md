@@ -2,6 +2,28 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [5.0.4](https://github.com/TriPSs/nx-extend/compare/pulumi@5.0.3...pulumi@5.0.4) (2024-03-06)
+
+
+
+## [5.0.3](https://github.com/TriPSs/nx-extend/compare/pulumi@5.0.2...pulumi@5.0.3) (2024-02-09)
+
+
+### Bug Fixes
+
+* **pulumi:** Release ([7ab95f3](https://github.com/TriPSs/nx-extend/commit/7ab95f33ab3bbcd54e1dfe9d5fc89d5e62937c6d))
+
+
+
+## [5.0.2](https://github.com/TriPSs/nx-extend/compare/pulumi@5.0.1...pulumi@5.0.2) (2024-02-09)
+
+
+### Bug Fixes
+
+* **pulumi:** Release ([132f991](https://github.com/TriPSs/nx-extend/commit/132f991d325e394821b3230c43c63345766e2c9a))
+
+
+
 ## [5.0.1](https://github.com/TriPSs/nx-extend/compare/pulumi@5.0.0...pulumi@5.0.1) (2024-02-09)
 
 
