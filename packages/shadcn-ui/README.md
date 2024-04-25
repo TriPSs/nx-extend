@@ -41,6 +41,12 @@ export const links: LinksFunction = () => [
 nx add <ui lib name> button
 ```
 
+### All all components
+
+```sh
+nx add <ui lib name>
+```
+
 ## Updating the theme
 
 The generated `global.css` uses the default shadcn/ui theme.
