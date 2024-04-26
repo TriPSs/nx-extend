@@ -14,7 +14,7 @@ export async function serveExecutor(
   const { sourceRoot, root } = context.workspace.projects[context.projectName]
 
   return execPackageManagerCommand(buildCommand([
-    'email dev',
+    'react-email dev',
     `--dir=${sourceRoot || root}`,
     options.port && `--port=${options.port}`
   ]), {

@@ -20,7 +20,7 @@ export async function exportExecutor(
   }
 
   return execPackageManagerCommand(buildCommand([
-    'email export',
+    'react-email export',
     `--dir=${sourceRoot || root}`,
     `--outDir=${options.outputPath}`,
     options.pretty && `--pretty`,
