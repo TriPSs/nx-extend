@@ -2,6 +2,10 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [6.0.1](https://github.com/TriPSs/nx-extend/compare/gcp-task-runner@6.0.0...gcp-task-runner@6.0.1) (2024-04-26)
+
+
+
 # [6.0.0](https://github.com/TriPSs/nx-extend/compare/gcp-task-runner@5.0.3...gcp-task-runner@6.0.0) (2024-02-08)
 
 
