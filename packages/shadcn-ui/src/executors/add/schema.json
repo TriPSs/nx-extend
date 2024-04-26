@@ -13,10 +13,7 @@
         "$source": "argv",
         "index": 0
       },
-      "x-prompt": "What component would you like to add?"
+      "x-prompt": "What component would you like to add? (Keep empty to add all)"
     }
-  },
-  "required": [
-    "component"
-  ]
+  }
 }
