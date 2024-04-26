@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [1.0.2](https://github.com/TriPSs/nx-extend/compare/react-email@1.0.1...react-email@1.0.2) (2024-04-26)
+
+
+### Bug Fixes
+
+* **react-email:** Fixed issues caused by `yarn dlx` ([c1669a0](https://github.com/TriPSs/nx-extend/commit/c1669a0c5b081fa0507ec40f0aa8f1dfc47d79c6))
+
+
+
 ## [1.0.1](https://github.com/TriPSs/nx-extend/compare/react-email@1.0.0...react-email@1.0.1) (2024-03-06)
 
 
