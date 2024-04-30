@@ -6,6 +6,10 @@
   "title": "Refresh executor",
   "description": "Refresh",
   "properties": {
+    "stack": {
+      "type": "string",
+      "description": "The target stack to use, if specified."
+    },
     "root": {
       "type": "string",
       "description": "The working directory to run Pulumi commands from, if specified."
