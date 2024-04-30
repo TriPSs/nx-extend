@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [5.0.5](https://github.com/TriPSs/nx-extend/compare/pulumi@5.0.4...pulumi@5.0.5) (2024-04-30)
+
+
+### Bug Fixes
+
+* add missing stack property ([73c5618](https://github.com/TriPSs/nx-extend/commit/73c561815ccf50d326125308eb95aab461b7b4fd))
+
+
+
 ## [5.0.4](https://github.com/TriPSs/nx-extend/compare/pulumi@5.0.3...pulumi@5.0.4) (2024-03-06)
 
 
