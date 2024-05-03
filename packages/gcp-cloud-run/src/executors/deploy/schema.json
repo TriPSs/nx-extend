@@ -13,6 +13,47 @@
     "project": {
       "type": "string",
       "description": "Project id to deploy to"
+    },
+    "concurrency": {
+      "type": "number",
+      "default": 250
+    },
+    "maxInstances": {
+      "type": "number",
+      "default": 10
+    },
+    "minInstances": {
+      "type": "number",
+      "default": 0
+    },
+    "timeout": {
+      "type": "number"
+    },
+    "executionEnvironment": {
+      "type": "string",
+      "enum": [
+        "gen1",
+        "gen2"
+      ]
+    },
+    "vpcConnector": {
+      "type": "string"
+    },
+    "vpcEgress": {
+      "type": "string",
+      "enum": [
+        "all-traffic",
+        "private-ranges-only"
+      ]
+    },
+    "ingress": {
+      "type": "string",
+      "default": "all",
+      "enum": [
+        "all",
+        "internal",
+        "internal-and-cloud-load-balancing"
+      ]
     }
   }
 }

@@ -1,15 +1,45 @@
-import { ExecutorContext, logger, readJsonFile } from '@nx/devkit'
+import { ExecutorContext, readJsonFile } from '@nx/devkit'
 import { buildCommand, execCommand, getOutputDirectoryFromBuildTarget } from '@nx-extend/core'
 import { existsSync, readFileSync, writeFileSync } from 'fs'
 import { join } from 'path'
 
-import { ExecutorSchema } from '../schema'
+import { ContainerFlags, getContainerFlags } from './utils/get-container-flags'
+
+export interface ExecutorSchema extends ContainerFlags {
+  name?: string
+
+  buildTarget?: string
+  dockerFile: string
+  project: string
+  tag?: string
+  region: string
+  allowUnauthenticated?: boolean
+  concurrency?: number
+  maxInstances?: number
+  minInstances?: number
+  cloudSqlInstance?: string
+  logsDir?: string
+  serviceAccount?: string
+  tagWithVersion?: string
+  revisionSuffix?: string
+  buildWith?: 'artifact-registry'
+  autoCreateArtifactsRepo?: boolean
+  noTraffic?: boolean
+  timeout?: number
+  cpuBoost?: boolean
+  ingress?: string
+  executionEnvironment?: 'gen1' | 'gen2'
+  vpcConnector?: string
+  vpcEgress?: 'all-traffic' | 'private-ranges-only'
+
+  sidecars?: ContainerFlags[]
+}
 
 export async function deployExecutor(
   options: ExecutorSchema,
   context: ExecutorContext
 ): Promise<{ success: boolean }> {
-  const { root, sourceRoot } = context.workspace.projects[context.projectName]
+  const { root } = context.workspace.projects[context.projectName]
 
   const buildTarget = options.buildTarget || `${context.projectName}:build`
   const outputDirectory = getOutputDirectoryFromBuildTarget(context, buildTarget)
@@ -23,35 +53,31 @@ export async function deployExecutor(
     project,
     name = context.projectName,
     allowUnauthenticated = true,
-    envVars = {},
-    concurrency = 250,
-    maxInstances = 10,
-    minInstances = 0,
-    memory = '128Mi',
-    cloudSqlInstance = null,
-    http2 = false,
-    serviceAccount = null,
-    logsDir = false,
+    concurrency,
+    maxInstances,
+    minInstances,
+    cloudSqlInstance,
+    serviceAccount,
     tagWithVersion = false,
     noTraffic = false,
-    secrets = [],
+
+    executionEnvironment,
+    vpcConnector,
+    vpcEgress,
 
     revisionSuffix = false,
-    buildWith = 'artifact-registry',
     autoCreateArtifactsRepo = true,
-    timeout = null,
+    timeout,
 
-    cpu,
     cpuBoost,
-    ingress
+    ingress,
+
+    sidecars = []
   } = options
 
   const distDirectory = join(context.root, outputDirectory)
 
-  const buildWithArtifactRegistry = buildWith === 'artifact-registry'
-  const containerName = `gcr.io/${options.project}/${name}`
-
-  // If the user provided a dockerfile then write it to the dist directory
+  // If the user provided a Dockerfile, then write it to the dist directory
   if (options.dockerFile) {
     const dockerFile = readFileSync(
       join(context.root, options.dockerFile),
@@ -60,23 +86,6 @@ export async function deployExecutor(
 
     // Add the docker file to the dist folder
     writeFileSync(join(distDirectory, 'Dockerfile'), dockerFile)
-  }
-
-  if (!buildWithArtifactRegistry) {
-    const buildSubmitCommand = buildCommand([
-      'gcloud builds submit',
-      `--tag=${containerName}`,
-      `--project=${options.project}`,
-      logsDir ? `--gcs-log-dir=${logsDir}` : false
-    ])
-
-    const { success } = execCommand(buildSubmitCommand, {
-      cwd: distDirectory
-    })
-
-    if (!success) {
-      throw new Error('Failed building container!')
-    }
   }
 
   let packageVersion = null
@@ -93,60 +102,36 @@ export async function deployExecutor(
     }
   }
 
-  const setEnvVars = Object.keys(envVars).reduce((env, envVar) => {
-    env.push(`${envVar}=${envVars[envVar]}`)
-
-    return env
-  }, [])
-
-  const validSecrets = secrets
-    .map((secret) => {
-      if (secret.includes('=') && secret.includes(':')) {
-        return secret
-      }
-
-      logger.warn(`"${secret}" is not a valid secret! It should be in the following format "ENV_VAR_NAME=SECRET:VERSION"`)
-      return false
-    })
-    .filter(Boolean)
-
-  const ingressOpts = ['all', 'internal', 'internal-and-cloud-load-balancing']
-  if (ingress && !ingressOpts.includes(ingress)) {
-    logger.error(`"${ingress}" is not a valid ingress option! Only the following few options are supported: ${ingressOpts}`)
-
-    return { success: false }
-  }
-
   const deployCommand = buildCommand([
     `gcloud run deploy ${name}`,
-    !buildWithArtifactRegistry && `--image=${containerName}`,
-    buildWithArtifactRegistry && '--source=./',
     `--project=${project}`,
     '--platform=managed',
-    `--memory=${memory}`,
     `--region=${region}`,
     `--min-instances=${minInstances}`,
     `--max-instances=${maxInstances}`,
     `--concurrency=${concurrency}`,
+    executionEnvironment && `--execution-environment=${executionEnvironment}`,
+    vpcConnector && `--vpc-connector=${vpcConnector}`,
+    vpcEgress && `--vpc-egress=${vpcEgress}`,
+    ingress && `--ingress=${ingress}`,
     revisionSuffix && `--revision-suffix=${revisionSuffix}`,
     serviceAccount && `--service-account=${serviceAccount}`,
-    http2 && '--use-http2',
-    noTraffic && '--no-traffic',
     timeout && `--timeout=${timeout}`,
-    setEnvVars.length > 0 && `--set-env-vars=${setEnvVars.join(',')}`,
     cloudSqlInstance && `--add-cloudsql-instances=${cloudSqlInstance}`,
-    allowUnauthenticated && '--allow-unauthenticated',
     tagWithVersion && packageVersion && `--tag=${packageVersion}`,
-    validSecrets.length > 0 && `--set-secrets=${validSecrets.join(',')}`,
-
-    cpu && `--cpu=${cpu}`,
     typeof cpuBoost === 'boolean' && cpuBoost && '--cpu-boost',
     typeof cpuBoost === 'boolean' && !cpuBoost && '--no-cpu-boost',
+    noTraffic && '--no-traffic',
+    allowUnauthenticated && '--allow-unauthenticated',
+
+    // Add the primary container
+    ...getContainerFlags(options, sidecars.length > 0),
+
+    // Add all sidecars
+    ...sidecars.flatMap((sidecarOptions) => getContainerFlags(sidecarOptions, true)),
 
     // There can be a question if a repo should be created
-    buildWithArtifactRegistry && autoCreateArtifactsRepo && '--quiet',
-
-    ingress && `--ingress=${ingress}`
+    autoCreateArtifactsRepo && '--quiet'
   ])
 
   return execCommand(deployCommand, {
