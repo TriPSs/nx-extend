@@ -23,21 +23,18 @@ export default async function createExecutor(
 
   const { sourceRoot } = context.workspace.projects[context.projectName]
 
-  execSync(
-    buildCommand([
-      'pulumi up --suppress-progress',
-      options.stack && `--stack=${options.stack}`,
-      options.skipPreview && '--skip-preview',
-      options.yes && '--yes',
-      options.suppressOutputs && '--suppress-outputs',
-      USE_VERBOSE_LOGGING_MINIMAL && '--debug',
-      options.json && '--json'
-    ]),
-    {
-      cwd: join(workspaceRoot, options.root ?? sourceRoot),
-      stdio: 'inherit'
-    }
-  )
+  execSync(buildCommand([
+    'pulumi up --suppress-progress',
+    options.stack && `--stack=${options.stack}`,
+    options.skipPreview && '--skip-preview',
+    options.yes && '--yes',
+    options.suppressOutputs && '--suppress-outputs',
+    USE_VERBOSE_LOGGING_MINIMAL && '--debug',
+    options.json && '--json'
+  ]), {
+    cwd: join(workspaceRoot, options.root ?? sourceRoot),
+    stdio: 'inherit'
+  })
 
-  return Promise.resolve({ success: true })
+  return { success: true }
 }
