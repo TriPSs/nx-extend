@@ -54,6 +54,14 @@
         "internal",
         "internal-and-cloud-load-balancing"
       ]
+    },
+    "volumeName": {
+      "type": "string",
+      "description": "Should be in format 'VOLUME_NAME,type=VOLUME_TYPE,<specific type options>'"
+    },
+    "volumeMount": {
+      "type": "string",
+      "description": "Should be in format 'VOLUME_NAME,mount-path=MOUNT_PATH'"
     }
   }
 }

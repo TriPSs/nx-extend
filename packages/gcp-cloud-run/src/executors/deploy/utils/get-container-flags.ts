@@ -29,14 +29,15 @@ export interface ContainerFlags {
   // removeLabels?: string[] // List of label keys to remove.
   labels?: string[] // List of label KEY=VALUE pairs to add.
   // updateLabels?: Record<string, string> // List of label KEY=VALUE pairs to update.
+  volumeMount?: string // VOLUME_NAME,mount-path=MOUNT_PATH
 }
 
 export function getContainerFlags(options: ContainerFlags, containerRequired: boolean): string[] {
   if (containerRequired && !options.container) {
-    throw new Error('Option "container" is not set!')
+    throw new Error('Option "container" is not set! This is required when using sidecars.')
   }
 
-  const setEnvVars = Object.keys(options.envVars).reduce((env, envVar) => {
+  const setEnvVars = Object.keys(options.envVars || {}).reduce((env, envVar) => {
     env.push(`${envVar}=${options.envVars[envVar]}`)
 
     return env
@@ -76,7 +77,8 @@ export function getContainerFlags(options: ContainerFlags, containerRequired: bo
     // options.clearSecrets && `--clear-secrets=${options.clearSecrets}`,
     // options.clearLabels && `--clear-labels=${options.clearLabels}`,
     // options.removeLabels && `--remove-labels=${options.removeLabels}`,
-    options.labels && `--clear-labels --labels=${options.labels.join(',')}`
-    // options.updateLabels && `--update-labels=${options.updateLabels}`
+    options.labels && `--clear-labels --labels=${options.labels.join(',')}`,
+    // options.updateLabels && `--update-labels=${options.updateLabels}`,
+    options.volumeMount && `--add-volume-mount=volume=${options.volumeMount}`,
   ]
 }

@@ -1,4 +1,4 @@
-import { ExecutorContext, readJsonFile } from '@nx/devkit'
+import { ExecutorContext, logger, readJsonFile } from '@nx/devkit'
 import { buildCommand, execCommand, getOutputDirectoryFromBuildTarget } from '@nx-extend/core'
 import { existsSync, readFileSync, writeFileSync } from 'fs'
 import { join } from 'path'
@@ -23,7 +23,6 @@ export interface ExecutorSchema extends ContainerFlags {
   tagWithVersion?: string
   revisionSuffix?: string
   buildWith?: 'artifact-registry'
-  autoCreateArtifactsRepo?: boolean
   noTraffic?: boolean
   timeout?: number
   cpuBoost?: boolean
@@ -31,6 +30,10 @@ export interface ExecutorSchema extends ContainerFlags {
   executionEnvironment?: 'gen1' | 'gen2'
   vpcConnector?: string
   vpcEgress?: 'all-traffic' | 'private-ranges-only'
+
+  // VOLUME_NAME,type=cloud-storage,bucket=BUCKET_NAME
+  // VOLUME_NAME,type=in-memory,size=SIZE_LIMIT
+  volumeName?: string
 
   sidecars?: ContainerFlags[]
 }
@@ -66,11 +69,12 @@ export async function deployExecutor(
     vpcEgress,
 
     revisionSuffix = false,
-    autoCreateArtifactsRepo = true,
     timeout,
 
     cpuBoost,
     ingress,
+    // VOLUME_NAME,type=VOLUME_TYPE,size=SIZE_LIMIT'
+    volumeName,
 
     sidecars = []
   } = options
@@ -102,8 +106,15 @@ export async function deployExecutor(
     }
   }
 
+  let gcloudDeploy = 'gcloud run deploy'
+  if (options.volumeName) {
+    logger.warn('Volumes are still in beta, using "gcloud beta" to deploy.\n')
+
+    gcloudDeploy = 'gcloud beta run deploy'
+  }
+
   const deployCommand = buildCommand([
-    `gcloud run deploy ${name}`,
+    `${gcloudDeploy} ${name}`,
     `--project=${project}`,
     '--platform=managed',
     `--region=${region}`,
@@ -123,6 +134,7 @@ export async function deployExecutor(
     typeof cpuBoost === 'boolean' && !cpuBoost && '--no-cpu-boost',
     noTraffic && '--no-traffic',
     allowUnauthenticated && '--allow-unauthenticated',
+    volumeName && `--add-volume=name=${volumeName}`,
 
     // Add the primary container
     ...getContainerFlags(options, sidecars.length > 0),
@@ -130,8 +142,7 @@ export async function deployExecutor(
     // Add all sidecars
     ...sidecars.flatMap((sidecarOptions) => getContainerFlags(sidecarOptions, true)),
 
-    // There can be a question if a repo should be created
-    autoCreateArtifactsRepo && '--quiet'
+    '--quiet'
   ])
 
   return execCommand(deployCommand, {
