@@ -36,6 +36,9 @@ export interface ExecutorSchema extends ContainerFlags {
   volumeName?: string
 
   sidecars?: ContainerFlags[]
+
+  // Global options
+  dryRun?: boolean
 }
 
 export async function deployExecutor(
@@ -147,7 +150,7 @@ export async function deployExecutor(
 
   return execCommand(deployCommand, {
     cwd: distDirectory
-  })
+  }, options.dryRun)
 }
 
 export default deployExecutor
