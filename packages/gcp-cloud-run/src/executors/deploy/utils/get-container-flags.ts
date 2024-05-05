@@ -65,7 +65,8 @@ export function getContainerFlags(options: ContainerFlags, containerRequired: bo
     `--memory=${options.memory || '128Mi'}`,
 
     options.port && `--port=${options.port}`,
-    options.http2 ? '--use-http2' : '--use-no-http2',
+    options.http2 && '--use-http2',
+    typeof options.http2 === 'boolean' && !options.http2 && '--no-use-http2',
     options.clearEnvVars && `--clear-env-vars=${options.clearEnvVars}`,
     options.envVarsFile && `--env-vars-file=${options.envVarsFile}`,
     setEnvVars && `--set-env-vars=${setEnvVars.join(',')}`,

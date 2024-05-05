@@ -120,6 +120,7 @@ export async function deployExecutor(
     `${gcloudDeploy} ${name}`,
     `--project=${project}`,
     '--platform=managed',
+    '--quiet',
     `--region=${region}`,
     `--min-instances=${minInstances}`,
     `--max-instances=${maxInstances}`,
@@ -144,8 +145,6 @@ export async function deployExecutor(
 
     // Add all sidecars
     ...sidecars.flatMap((sidecarOptions) => getContainerFlags(sidecarOptions, true)),
-
-    '--quiet'
   ])
 
   return execCommand(deployCommand, {
