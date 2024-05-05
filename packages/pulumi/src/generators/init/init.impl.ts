@@ -1,11 +1,4 @@
 import {
-  buildCommand,
-  DefaultGeneratorOptions,
-  execCommand,
-  NormalizedSchema,
-  normalizeOptions
-} from '@nx-extend/core'
-import {
   addDependenciesToPackageJson,
   addProjectConfiguration,
   generateFiles,
@@ -16,6 +9,13 @@ import {
   runTasksInSerial,
   Tree
 } from '@nx/devkit'
+import {
+  buildCommand,
+  DefaultGeneratorOptions,
+  execCommand,
+  NormalizedSchema,
+  normalizeOptions
+} from '@nx-extend/core'
 import { readFileSync, unlinkSync } from 'fs'
 import { join } from 'path'
 import { which } from 'shelljs'
