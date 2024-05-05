@@ -1,6 +1,6 @@
-import * as shell from 'shelljs'
-import { ShellString, ExecOptions } from 'shelljs'
 import { ChildProcess } from 'child_process'
+import * as shell from 'shelljs'
+import { ExecOptions, ShellString } from 'shelljs'
 
 export interface Options extends ExecOptions {
 
@@ -19,14 +19,22 @@ export type Result<Output> = Output extends string
   : Output
 
 export const execCommand = <Output = { success: boolean, output: string }>(
-  command,
+  command: string,
   options: Options = {
     asString: false,
     asJSON: false
-  }
+  },
+  isDryRun = false
 ): Output => {
-  if (!options.silent) {
-    console.log('\nRunning: ', command)
+  if (!options.silent || isDryRun) {
+    console.log('\nRunning:')
+    console.log(command)
+
+    if (isDryRun) {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      return { success: true }
+    }
   }
 
   const result = shell.exec(command, options)
