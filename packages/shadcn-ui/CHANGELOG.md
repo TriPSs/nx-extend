@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [1.1.0](https://github.com/TriPSs/nx-extend/compare/shadcn-ui@1.0.2...shadcn-ui@1.1.0) (2024-05-05)
+
+
+### Features
+
+* add all shadcn-ui components ([0481ecb](https://github.com/TriPSs/nx-extend/commit/0481ecba88adfc01f229ea54a3fef8e85cfbb28e))
+
+
+
 # [1.1.0](https://github.com/TriPSs/nx-extend/compare/shadcn-ui@1.0.2...shadcn-ui@1.1.0) (2024-04-26)
 
 
