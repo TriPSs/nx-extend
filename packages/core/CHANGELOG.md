@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [6.1.0](https://github.com/TriPSs/nx-extend/compare/core@6.0.2...core@6.1.0) (2024-05-05)
+
+
+### Features
+
+* **core:** Added dry run option to `execCommand` ([5ffd0e5](https://github.com/TriPSs/nx-extend/commit/5ffd0e573aec253584aec1a7f92cafdd8a941b56))
+
+
+
 ## [6.0.2](https://github.com/TriPSs/nx-extend/compare/core@6.0.1...core@6.0.2) (2024-04-25)
 
 
