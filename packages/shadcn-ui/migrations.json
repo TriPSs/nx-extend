@@ -1,0 +1,9 @@
+{
+  "generators": {
+    "change-add-executor": {
+      "version": "1.1.1",
+      "description": "'add' executor became reserved, changed to 'add-component'.",
+      "implementation": "./src/migrations/change-add-executor/change-add-executor"
+    }
+  }
+}
