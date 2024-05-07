@@ -2,6 +2,20 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [6.1.0](https://github.com/TriPSs/nx-extend/compare/firebase-hosting@6.0.9...firebase-hosting@6.1.0) (2024-05-07)
+
+
+### Bug Fixes
+
+* **firebase:** Use correct package name ([e4a71f4](https://github.com/TriPSs/nx-extend/commit/e4a71f4d18058e6dab3026bd6e075579c398cf5c))
+
+
+### Features
+
+* **firebase:** Remove `firebase-tool` dependency ([ed95e1f](https://github.com/TriPSs/nx-extend/commit/ed95e1fa04da2eecde217ca722790d94bf25b239))
+
+
+
 ## [6.0.10](https://github.com/TriPSs/nx-extend/compare/firebase-hosting@6.0.9...firebase-hosting@6.0.10) (2024-05-07)
 
 
