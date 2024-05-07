@@ -96,7 +96,7 @@ export default async function (tree: Tree, options: ShadecnUiSchema) {
   updateProjectConfiguration(tree, uiLibOptions.projectName, {
     ...readProjectConfiguration(tree, uiLibOptions.projectName),
     targets: {
-      add: {
+      'add-component': {
         executor: '@nx-extend/shadcn-ui:add'
       }
     }

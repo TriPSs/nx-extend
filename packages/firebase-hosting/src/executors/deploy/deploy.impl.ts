@@ -7,26 +7,25 @@ export interface ExecutorSchema {
   message?: string
 }
 
-export function deployExecutor(
+export async function deployExecutor(
   options: ExecutorSchema
   // context: ExecutorContext
 ): Promise<{ success: boolean }> {
   // Make sure the deployment target is defined
   execPackageManagerCommand(buildCommand([
-    'firebase target:apply',
+    'firebase-tools target:apply',
     `hosting ${options.site} ${options.identifier || options.site}`,
 
     options.project && `--project=${options.project}`
   ]))
 
-  return Promise.resolve(execPackageManagerCommand(buildCommand([
-      'firebase deploy',
-      `--only=hosting:${options.site}`,
+  return execPackageManagerCommand(buildCommand([
+    'firebase-tools deploy',
+    `--only=hosting:${options.site}`,
 
-      options.project && `--project=${options.project}`,
-      options.message && `-m "${options.message}"`
-    ])
-  ))
+    options.project && `--project=${options.project}`,
+    options.message && `-m "${options.message}"`
+  ]))
 }
 
 export default deployExecutor
