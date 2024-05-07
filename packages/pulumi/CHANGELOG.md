@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [5.1.0](https://github.com/TriPSs/nx-extend/compare/pulumi@5.0.6...pulumi@5.1.0) (2024-05-07)
+
+
+### Features
+
+* **pulumi:** Move setup of typescript to package ([ac6b939](https://github.com/TriPSs/nx-extend/commit/ac6b939e44273416aef6cbba49959f9b79d9d308))
+
+
+
 # [5.1.0](https://github.com/TriPSs/nx-extend/compare/pulumi@5.0.6...pulumi@5.1.0) (2024-05-05)
 
 
