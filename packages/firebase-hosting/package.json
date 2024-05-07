@@ -1,6 +1,6 @@
 {
   "name": "@nx-extend/firebase-hosting",
-  "version": "6.0.10",
+  "version": "6.1.0",
   "homepage": "https://github.com/TriPSs/nx-extend/blob/master/packages/firebase-hosting/README.md",
   "bugs": {
     "url": "https://github.com/tripss/nx-extend/issues"
@@ -11,9 +11,6 @@
   },
   "license": "MIT",
   "main": "src/index.js",
-  "dependencies": {
-    "firebase-tools": "^13.7.5"
-  },
   "builders": "./executors.json",
   "generators": "./generators.json"
 }
