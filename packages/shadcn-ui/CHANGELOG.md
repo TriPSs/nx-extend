@@ -30,6 +30,20 @@ This file was generated using [@jscutlery/semver](https://github.com/jscutlery/s
 
 
 
+# [1.1.0](https://github.com/TriPSs/nx-extend/compare/shadcn-ui@1.0.2...shadcn-ui@1.1.0) (2024-05-07)
+
+
+### Bug Fixes
+
+* **shadcn-ui:** Rename `add` executor to `add-component` ([8a0fb02](https://github.com/TriPSs/nx-extend/commit/8a0fb0292efbe10667857f35e02029a813715f63)), closes [#254](https://github.com/TriPSs/nx-extend/issues/254)
+
+
+### Features
+
+* add all shadcn-ui components ([0481ecb](https://github.com/TriPSs/nx-extend/commit/0481ecba88adfc01f229ea54a3fef8e85cfbb28e))
+
+
+
 # [1.1.0](https://github.com/TriPSs/nx-extend/compare/shadcn-ui@1.0.2...shadcn-ui@1.1.0) (2024-05-05)
 
 
