@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [6.0.10](https://github.com/TriPSs/nx-extend/compare/firebase-hosting@6.0.9...firebase-hosting@6.0.10) (2024-05-07)
+
+
+### Bug Fixes
+
+* **firebase:** Use correct package name ([e4a71f4](https://github.com/TriPSs/nx-extend/commit/e4a71f4d18058e6dab3026bd6e075579c398cf5c))
+
+
+
 ## [6.0.9](https://github.com/TriPSs/nx-extend/compare/firebase-hosting@6.0.8...firebase-hosting@6.0.9) (2024-04-26)
 
 

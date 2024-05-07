@@ -2,6 +2,22 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [9.0.0](https://github.com/TriPSs/nx-extend/compare/gcp-cloud-run@8.0.0...gcp-cloud-run@9.0.0) (2024-05-07)
+
+
+### Features
+
+* **gcp-cloud-run:** Added dry run option to just log the command ([2c5b6cd](https://github.com/TriPSs/nx-extend/commit/2c5b6cd708d455e46986cec7560d841e26fb52f9))
+* **gcp-cloud-run:** Added support for `sidecars` ([8c9a181](https://github.com/TriPSs/nx-extend/commit/8c9a181540258258be00fe996de5c42960b5e2bc))
+* **gcp-cloud-run:** Added support for volumes ([14c7190](https://github.com/TriPSs/nx-extend/commit/14c7190630447773db634e710c8f4c844f72ddf4))
+
+
+### BREAKING CHANGES
+
+* **gcp-cloud-run:** `buildWith` is removed, artifact registry is now always used
+
+
+
 # [9.0.0](https://github.com/TriPSs/nx-extend/compare/gcp-cloud-run@8.0.0...gcp-cloud-run@9.0.0) (2024-05-05)
 
 
