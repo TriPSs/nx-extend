@@ -60,4 +60,3 @@ add this target to the hosting section:
 | **`--site`**       | `string` | `null`  | Specify the site to deploy from the `.firebase.json`                                         |
 | **`--project`**    | `string` |         | Firebase Project to deploy to                                                                |
 | **`--identifier`** | `string` |         | Name of the hosting project in Firebase (if not defined `--site` is used by the firebase CLI |
-
