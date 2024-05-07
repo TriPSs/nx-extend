@@ -91,9 +91,7 @@ export function addToFirebaseJson(
     addDependenciesToPackageJson(
       host,
       {},
-      {
-        'firebase-tools': '11.9.0'
-      }
+      {}
     )
   )
 }
