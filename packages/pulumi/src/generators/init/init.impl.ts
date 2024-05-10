@@ -138,6 +138,10 @@ export default async function (tree: Tree, rawOptions: InitOptions) {
       refresh: {
         executor: '@nx-extend/pulumi:refresh',
         options: {}
+      },
+      import: {
+        executor: '@nx-extend/pulumi:import',
+        options: {}
       }
     },
     tags: options.parsedTags
