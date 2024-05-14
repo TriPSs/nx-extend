@@ -28,7 +28,7 @@
     "nx": "nx",
     "nx:update": "nx migrate latest",
     "start": "nx serve",
-    "test": "nx test",
+    "test": "nx run-many --all -t test",
     "workspace-generator": "nx workspace-generator"
   },
   "dependencies": {
