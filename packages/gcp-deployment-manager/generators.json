@@ -1,5 +1,5 @@
 {
-  "$schema": "http://json-schema.org/schema",
+  "$schema": "https://json-schema.org/schema",
   "name": "gcp-deployment-manager",
   "version": "0.0.1",
   "generators": {

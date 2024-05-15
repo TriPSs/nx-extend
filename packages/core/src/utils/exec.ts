@@ -3,10 +3,8 @@ import * as shell from 'shelljs'
 import { ExecOptions, ShellString } from 'shelljs'
 
 export interface Options extends ExecOptions {
-
   asString?: boolean
   asJSON?: boolean
-
 }
 
 export {
