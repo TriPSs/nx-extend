@@ -39470,6 +39470,7 @@ function run() {
             let baseSha;
             if (github.context.eventName === 'pull_request') {
                 core.info(`This is a pull request, get sha from "origin/${mainBranchName}"`);
+                console.log('github.context.payload.pull_request', github.context.payload.pull_request);
                 baseSha = (0, exec_1.execCommand)(`git merge-base origin/${mainBranchName} HEAD`, {
                     asString: true,
                     silent: !core.isDebug()
