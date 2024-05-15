@@ -2,6 +2,23 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [10.0.0](https://github.com/TriPSs/nx-extend/compare/gcp-cloud-run@9.0.0...gcp-cloud-run@10.0.0) (2024-05-15)
+
+### Dependency Updates
+
+* `core` updated to version `7.0.0`
+
+### Features
+
+* Updated Nx ([79325aa](https://github.com/TriPSs/nx-extend/commit/79325aa06e0251f45dbf295f6c19fc417a301fc7))
+
+
+### BREAKING CHANGES
+
+* Updated to Nx 19
+
+
+
 # [9.0.0](https://github.com/TriPSs/nx-extend/compare/gcp-cloud-run@8.0.0...gcp-cloud-run@9.0.0) (2024-05-07)
 
 
