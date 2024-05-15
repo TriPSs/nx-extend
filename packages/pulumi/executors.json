@@ -14,6 +14,11 @@
       "implementation": "./src/executors/refresh/refresh.impl",
       "schema": "./src/executors/refresh/schema.json",
       "description": "refresh executor"
+    },
+    "import": {
+      "implementation": "./src/executors/import/import.impl",
+      "schema": "./src/executors/import/schema.json",
+      "description": "import executor"
     }
   },
   "builders": {
@@ -31,6 +36,11 @@
       "implementation": "./src/executors/refresh/refresh.impl",
       "schema": "./src/executors/refresh/schema.json",
       "description": "refresh executor"
+    },
+    "import": {
+      "implementation": "./src/executors/import/import.impl",
+      "schema": "./src/executors/import/schema.json",
+      "description": "import executor"
     }
   }
 }
