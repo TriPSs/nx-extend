@@ -38,7 +38,7 @@ export async function endToEndRunner(
   try {
     switch (runner) {
       case 'cypress':
-        // eslint-disable-next-line @typescript-eslint/no-var-requires
+        // eslint-disable-next-line @typescript-eslint/no-var-requires,no-case-declarations
         const cypressExecutor = require('@nx/cypress/src/executors/cypress/cypress.impl').default
 
         return await cypressExecutor(rest, context)
@@ -46,19 +46,19 @@ export async function endToEndRunner(
       case 'playwright':
         logger.warn('Runner "playwright" is no longer maintained in favor of @nx/playwright!')
 
-        // eslint-disable-next-line @typescript-eslint/no-var-requires
+        // eslint-disable-next-line @typescript-eslint/no-var-requires,no-case-declarations
         const playwrightExecutor = require('@nx-extend/playwright/src/executors/test/test.impl').default
 
         return await playwrightExecutor(rest, context)
 
       case '@nx/playwright':
-        // eslint-disable-next-line @typescript-eslint/no-var-requires
+        // eslint-disable-next-line @typescript-eslint/no-var-requires,no-case-declarations
         const nxPlaywrightExecutor = require('@nx/playwright').playwrightExecutor
 
         return await nxPlaywrightExecutor(rest, context)
 
       case 'run-commands':
-        // eslint-disable-next-line @typescript-eslint/no-var-requires
+        // eslint-disable-next-line @typescript-eslint/no-var-requires,no-case-declarations
         const runCommandsExecutor = require('nx/src/executors/run-commands/run-commands.impl').default
 
         return await runCommandsExecutor(rest as RunCommandsOptions, context)

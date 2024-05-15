@@ -5,20 +5,14 @@ import { execCommand } from './utils/exec'
 
 async function run() {
   try {
-    // Get all options
-    const mainBranchName = core.getInput('main-branch-name')
-
     core.info(`Got head sha "${github.context.sha}"`)
-    let baseSha
+    let baseSha: string
 
     if (github.context.eventName === 'pull_request') {
-      core.info(`This is a pull request, get sha from "origin/${mainBranchName}"`)
-      baseSha = execCommand(`git merge-base origin/${mainBranchName} HEAD`, {
-        asString: true,
-        silent: !core.isDebug()
-      })
+      core.info(`This is a pull request, get sha from "origin/${github.context.payload.pull_request.base.ref}"`)
+      baseSha = github.context.payload.pull_request.base.sha
 
-      core.info(`Got base sha "${baseSha}" from "origin/${mainBranchName}"`)
+      core.info(`Got base sha "${baseSha}" from "origin/${github.context.payload.pull_request.base.ref}"`)
 
     } else {
       const tag = execCommand('git describe --tags --abbrev=0', {
@@ -29,7 +23,7 @@ async function run() {
       if (!tag) {
         core.warning(`No tags found, get base sha from origin!`)
 
-        baseSha = execCommand(`git rev-parse origin/${mainBranchName}~1`, {
+        baseSha = execCommand(`git rev-parse origin/${core.getInput('main-branch-name')}~1`, {
           asString: true,
           silent: !core.isDebug()
         })

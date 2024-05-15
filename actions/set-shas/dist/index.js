@@ -39464,17 +39464,12 @@ const exec_1 = __nccwpck_require__(8776);
 function run() {
     return tslib_1.__awaiter(this, void 0, void 0, function* () {
         try {
-            // Get all options
-            const mainBranchName = core.getInput('main-branch-name');
             core.info(`Got head sha "${github.context.sha}"`);
             let baseSha;
             if (github.context.eventName === 'pull_request') {
-                core.info(`This is a pull request, get sha from "origin/${mainBranchName}"`);
-                baseSha = (0, exec_1.execCommand)(`git merge-base origin/${mainBranchName} HEAD`, {
-                    asString: true,
-                    silent: !core.isDebug()
-                });
-                core.info(`Got base sha "${baseSha}" from "origin/${mainBranchName}"`);
+                core.info(`This is a pull request, get sha from "origin/${github.context.payload.pull_request.base.ref}"`);
+                baseSha = github.context.payload.pull_request.base.sha;
+                core.info(`Got base sha "${baseSha}" from "origin/${github.context.payload.pull_request.base.ref}"`);
             }
             else {
                 const tag = (0, exec_1.execCommand)('git describe --tags --abbrev=0', {
@@ -39483,7 +39478,7 @@ function run() {
                 });
                 if (!tag) {
                     core.warning(`No tags found, get base sha from origin!`);
-                    baseSha = (0, exec_1.execCommand)(`git rev-parse origin/${mainBranchName}~1`, {
+                    baseSha = (0, exec_1.execCommand)(`git rev-parse origin/${core.getInput('main-branch-name')}~1`, {
                         asString: true,
                         silent: !core.isDebug()
                     });

@@ -1,4 +1,4 @@
-import { logger } from '@nx/devkit'
+import { getValidSecrets } from '../../../utils/get-valid-secrets'
 
 /**
  * The following flags apply to a single container.
@@ -19,7 +19,7 @@ export interface ContainerFlags {
   envVars?: Record<string, string> // List of key-value pairs to set as environment variables.
   // updateEnvVars?: Record<string, string> // List of key-value pairs to set as environment variables.
   // removeEnvVars?: string[] // List of environment variables to be removed.
-  secrets?: string[]
+  secrets?: string[] | Record<string, string>
   // updateSecrets?: Record<string, string> // List of key-value pairs to set as secrets.
   // removeSecrets?: string[] // List of secrets to be removed.
   // clearSecrets?: boolean // Remove all secrets.
@@ -43,15 +43,7 @@ export function getContainerFlags(options: ContainerFlags, containerRequired: bo
     return env
   }, [])
 
-  const validSecrets = (options.secrets || []).map((secret) => {
-    if (secret.includes('=') && secret.includes(':')) {
-      return secret
-    }
-
-    logger.warn(`"${secret}" is not a valid secret! It should be in the following formats: "ENV_VAR_NAME=SECRET:VERSION" or "/secrets/api/key=SECRET:VERSION"`)
-    return false
-  })
-    .filter(Boolean)
+  const validSecrets = getValidSecrets(options.secrets)
 
   return [
     options.container && `--container=${options.container}`,
@@ -80,6 +72,6 @@ export function getContainerFlags(options: ContainerFlags, containerRequired: bo
     // options.removeLabels && `--remove-labels=${options.removeLabels}`,
     options.labels && `--clear-labels --labels=${options.labels.join(',')}`,
     // options.updateLabels && `--update-labels=${options.updateLabels}`,
-    options.volumeMount && `--add-volume-mount=volume=${options.volumeMount}`,
+    options.volumeMount && `--add-volume-mount=volume=${options.volumeMount}`
   ]
 }

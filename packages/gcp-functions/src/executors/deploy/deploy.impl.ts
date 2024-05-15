@@ -2,6 +2,8 @@ import { ExecutorContext, logger } from '@nx/devkit'
 import { buildCommand, execCommand } from '@nx-extend/core'
 import { join } from 'path'
 
+import { getValidSecrets } from '../../utils/get-valid-secrets'
+
 export interface DeployExecutorSchema {
   functionName: string
   runtime?: 'nodejs16' | 'nodejs18' | 'nodejs20' | 'recommended'
@@ -10,6 +12,7 @@ export interface DeployExecutorSchema {
   memory?: '128MB' | '256MB' | '512MB' | '1024MB' | '2048MB' | '4096MB'
   region: string
   envVarsFile?: string
+  envVars?: Record<string, string>
   allowUnauthenticated?: boolean
   maxInstances?: number
   trigger?: 'http' | 'topic' | 'recourse' | 'bucket'
@@ -22,7 +25,7 @@ export interface DeployExecutorSchema {
   securityLevel?: 'secure-optional' | 'secure-always'
   project?: string
   retry?: boolean
-  secrets?: string[]
+  secrets?: string[] | Record<string, string>
 
   // Gen 2 options
   gen?: 1 | 2
@@ -47,6 +50,7 @@ export async function deployExecutor(
     triggerEvent = null,
     triggerLocation = null,
     envVarsFile = null,
+    envVars,
     maxInstances = 10,
     project = null,
     memory = '128MB',
@@ -90,56 +94,50 @@ export async function deployExecutor(
 
   const { targets } = context.workspace.projects[context.projectName]
 
-  const validSecrets = secrets
-    .map((secret) => {
-      if (secret.includes('=') && secret.includes(':')) {
-        return secret
-      }
+  const validSecrets = getValidSecrets(secrets)
 
-      logger.warn(
-        `"${secret}" is not a valid secret! It should be in the following format "ENV_VAR_NAME=SECRET:VERSION"`
-      )
-      return false
-    })
-    .filter(Boolean)
+  const setEnvVars = Object.keys(envVars || {}).reduce((env, envVar) => {
+    env.push(`${envVar}=${envVars[envVar]}`)
 
-  let { success } = execCommand(
-    buildCommand([
-      `gcloud functions deploy`,
-      functionName,
-      gen === 2 && '--gen2',
-      `--trigger-${trigger}${triggerValue ? `=${triggerValue}` : ''}`,
-      triggerEvent && `--trigger-event=${triggerEvent}`,
-      triggerLocation && `--trigger-location=${triggerLocation}`,
-      `--runtime=${runtime}`,
-      `--memory=${correctMemory}`,
-      `--region=${region}`,
+    return env
+  }, [])
 
-      entryPoint && `--entry-point=${entryPoint}`,
-      envVarsFile && `--env-vars-file=${envVarsFile}`,
-      retry && `--retry`,
-      ingressSettings && `--ingress-settings=${ingressSettings}`,
-      egressSettings && `--egress-settings=${egressSettings}`,
-      vpcConnector && `--vpc-connector=${vpcConnector}`,
-      securityLevel && `--security-level=${securityLevel}`,
-      timeout && `--timeout=${timeout}`,
+  let { success } = execCommand(buildCommand([
+    `gcloud functions deploy`,
+    functionName,
+    gen === 2 && '--gen2',
+    `--trigger-${trigger}${triggerValue ? `=${triggerValue}` : ''}`,
+    triggerEvent && `--trigger-event=${triggerEvent}`,
+    triggerLocation && `--trigger-location=${triggerLocation}`,
+    `--runtime=${runtime}`,
+    `--memory=${correctMemory}`,
+    `--region=${region}`,
 
-      `--source=${join(
-        context.root,
-        targets?.build?.options?.outputPath.toString()
-      )}`,
-      `--max-instances=${maxInstances}`,
+    entryPoint && `--entry-point=${entryPoint}`,
+    envVarsFile && `--env-vars-file=${envVarsFile}`,
+    setEnvVars && `--set-env-vars=${setEnvVars.join(',')}`,
+    retry && `--retry`,
+    ingressSettings && `--ingress-settings=${ingressSettings}`,
+    egressSettings && `--egress-settings=${egressSettings}`,
+    vpcConnector && `--vpc-connector=${vpcConnector}`,
+    securityLevel && `--security-level=${securityLevel}`,
+    timeout && `--timeout=${timeout}`,
 
-      allowUnauthenticated && '--allow-unauthenticated',
-      serviceAccount && `--service-account=${serviceAccount}`,
+    `--source=${join(
+      context.root,
+      targets?.build?.options?.outputPath.toString()
+    )}`,
+    `--max-instances=${maxInstances}`,
 
-      validSecrets.length > 0 && `--set-secrets=${validSecrets.join(',')}`,
+    allowUnauthenticated && '--allow-unauthenticated',
+    serviceAccount && `--service-account=${serviceAccount}`,
 
-      project && `--project=${project}`,
+    validSecrets.length > 0 && `--set-secrets=${validSecrets.join(',')}`,
 
-      '--quiet'
-    ])
-  )
+    project && `--project=${project}`,
+
+    '--quiet'
+  ]))
 
   if (
     success &&
@@ -153,8 +151,8 @@ export async function deployExecutor(
         'gcloud run services update',
         functionName,
 
-        concurrency > 0 && `--concurrency ${concurrency}`,
-        cpu && `--cpu ${cpu}`,
+        concurrency > 0 && `--concurrency=${concurrency}`,
+        cpu && `--cpu=${cpu}`,
         cloudSqlInstance && `--add-cloudsql-instances=${cloudSqlInstance}`,
 
         `--region=${region}`,
