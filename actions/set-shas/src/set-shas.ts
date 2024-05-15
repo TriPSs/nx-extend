@@ -9,10 +9,12 @@ async function run() {
     const mainBranchName = core.getInput('main-branch-name')
 
     core.info(`Got head sha "${github.context.sha}"`)
-    let baseSha
+    let baseSha: string
 
     if (github.context.eventName === 'pull_request') {
       core.info(`This is a pull request, get sha from "origin/${mainBranchName}"`)
+      console.log('github.context.payload.pull_request',github.context.payload.pull_request)
+
       baseSha = execCommand(`git merge-base origin/${mainBranchName} HEAD`, {
         asString: true,
         silent: !core.isDebug()
