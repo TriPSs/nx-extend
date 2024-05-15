@@ -108,6 +108,7 @@ async function run() {
       core.endGroup()
     }
 
+    core.startGroup('Plan created')
     core.info('\n')
     core.info(`Created following plan: \n${JSON.stringify(matrixInclude, null, 2)}`)
     core.setOutput('matrix', {
