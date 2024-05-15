@@ -2,6 +2,24 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [6.0.0](https://github.com/TriPSs/nx-extend/compare/pulumi@5.1.0...pulumi@6.0.0) (2024-05-15)
+
+### Dependency Updates
+
+* `core` updated to version `7.0.0`
+
+### Features
+
+* **pulumi:** Added `import` executor ([09064e5](https://github.com/TriPSs/nx-extend/commit/09064e5b64a6e10be3552e8d96c326883d99ca4c))
+* Updated Nx ([79325aa](https://github.com/TriPSs/nx-extend/commit/79325aa06e0251f45dbf295f6c19fc417a301fc7))
+
+
+### BREAKING CHANGES
+
+* Updated to Nx 19
+
+
+
 # [5.1.0](https://github.com/TriPSs/nx-extend/compare/pulumi@5.0.6...pulumi@5.1.0) (2024-05-07)
 
 
