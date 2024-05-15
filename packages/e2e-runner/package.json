@@ -1,6 +1,6 @@
 {
   "name": "@nx-extend/e2e-runner",
-  "version": "10.0.0",
+  "version": "10.0.1",
   "main": "src/index.js",
   "generators": "./generators.json",
   "executors": "./executors.json",

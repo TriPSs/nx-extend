@@ -2,6 +2,13 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [10.0.1](https://github.com/TriPSs/nx-extend/compare/e2e-runner@10.0.0...e2e-runner@10.0.1) (2024-05-15)
+
+### Dependency Updates
+
+* `playwright` updated to version `8.0.0`
+
+
 # [10.0.0](https://github.com/TriPSs/nx-extend/compare/e2e-runner@9.0.1...e2e-runner@10.0.0) (2024-05-15)
 
 ### Dependency Updates
