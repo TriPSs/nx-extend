@@ -96,6 +96,7 @@ export class GcpCache implements RemoteCache {
 
     try {
       await this.bucket.upload(destination, { destination: file })
+
     } catch (err) {
       throw new Error(`Storage Cache: Upload error - ${err}`)
     }

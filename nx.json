@@ -22,7 +22,10 @@
       "cache": true
     },
     "version": {
+      "dependsOn": ["^version"],
+      "inputs": ["production"],
       "options": {
+        "trackDeps": true,
         "tagPrefix": "${target}@"
       }
     },
