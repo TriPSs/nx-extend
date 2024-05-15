@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [13.1.0](https://github.com/TriPSs/nx-extend/compare/gcp-functions@13.0.0...gcp-functions@13.1.0) (2024-05-15)
+
+
+### Features
+
+* **gcp-functions:** Support `envVars` and allow for objects/arrays for secrets ([edecb90](https://github.com/TriPSs/nx-extend/commit/edecb90a84a94491c1b0c5d59132fc31ca913340))
+
+
+
 # [13.0.0](https://github.com/TriPSs/nx-extend/compare/gcp-functions@12.1.1...gcp-functions@13.0.0) (2024-05-15)
 
 ### Dependency Updates
