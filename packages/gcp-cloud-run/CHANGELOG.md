@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [10.1.0](https://github.com/TriPSs/nx-extend/compare/gcp-cloud-run@10.0.0...gcp-cloud-run@10.1.0) (2024-05-15)
+
+
+### Features
+
+* **gcp-cloud-run:** Allow for objects/arrays for secrets ([8320a69](https://github.com/TriPSs/nx-extend/commit/8320a69040240bb3583acd94c270700749409eaf))
+
+
+
 # [10.0.0](https://github.com/TriPSs/nx-extend/compare/gcp-cloud-run@9.0.0...gcp-cloud-run@10.0.0) (2024-05-15)
 
 ### Dependency Updates
