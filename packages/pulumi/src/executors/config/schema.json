@@ -1,0 +1,34 @@
+{
+  "version": 2,
+  "outputCapture": "direct-nodejs",
+  "$schema": "https://json-schema.org/schema",
+  "type": "object",
+  "title": "Preview executor",
+  "description": "Preview",
+  "properties": {
+    "stack": {
+      "type": "string",
+      "description": "The target stack to use, if specified."
+    },
+    "root": {
+      "type": "string",
+      "description": "The working directory to run Pulumi commands from, if specified."
+    },
+    "action": {
+      "type": "string",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      }
+    },
+    "secret": {
+      "type": "boolean"
+    },
+    "name": {
+      "type": "string"
+    },
+    "value": {
+      "type": "string"
+    }
+  }
+}

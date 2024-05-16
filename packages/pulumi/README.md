@@ -23,3 +23,15 @@ nx g @nx-extend/pulumi:init
 
 | name | type | default | description |
 |------|------|---------|-------------|
+
+### Config
+
+Set config variable:
+```bash
+nx config <project-name> set --name="<name>" --value="<value>"
+```
+
+Set secret config variable:
+```bash
+nx config <project-name> set --secret --name="<name>" --value="<value>"
+```

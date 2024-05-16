@@ -19,6 +19,11 @@
       "implementation": "./src/executors/import/import.impl",
       "schema": "./src/executors/import/schema.json",
       "description": "import executor"
+    },
+    "config": {
+      "implementation": "./src/executors/config/config.impl",
+      "schema": "./src/executors/config/schema.json",
+      "description": "config executor"
     }
   },
   "builders": {
@@ -41,6 +46,11 @@
       "implementation": "./src/executors/import/import.impl",
       "schema": "./src/executors/import/schema.json",
       "description": "import executor"
+    },
+    "config": {
+      "implementation": "./src/executors/config/config.impl",
+      "schema": "./src/executors/config/schema.json",
+      "description": "config executor"
     }
   }
 }
