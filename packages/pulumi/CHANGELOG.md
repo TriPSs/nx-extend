@@ -2,6 +2,17 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [6.1.0](https://github.com/TriPSs/nx-extend/compare/pulumi@6.0.0...pulumi@6.1.0) (2024-05-16)
+
+
+### Features
+
+* **pulumi:** Added `config` executor ([970507f](https://github.com/TriPSs/nx-extend/commit/970507f914cbee1daa961e080e027b622b71ed10))
+* **pulumi:** Added `expectNoChanges` option to preview executor ([a42223b](https://github.com/TriPSs/nx-extend/commit/a42223baac2673893189c2b9846eca363ac04f44))
+* **pulumi:** Added `path` to `config` generator ([dcca572](https://github.com/TriPSs/nx-extend/commit/dcca5724f06b0f08ed9d5d06ab20d2c8eceb8c7f))
+
+
+
 # [6.0.0](https://github.com/TriPSs/nx-extend/compare/pulumi@5.1.0...pulumi@6.0.0) (2024-05-15)
 
 ### Dependency Updates
