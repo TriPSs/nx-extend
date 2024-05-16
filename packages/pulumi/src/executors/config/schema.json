@@ -21,6 +21,9 @@
         "index": 0
       }
     },
+    "path": {
+      "type": "boolean"
+    },
     "secret": {
       "type": "boolean"
     },

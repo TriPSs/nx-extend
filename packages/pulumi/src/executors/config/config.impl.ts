@@ -11,6 +11,7 @@ export interface PreviewOptions {
 
   action: string
   secret?: boolean
+  path?: boolean
   name?: string
   value?: string
 }
@@ -30,6 +31,7 @@ export default async function configExecutor(
     'pulumi config',
     options.action,
     options.secret && `--secret`,
+    options.path && `--path`,
     options.name && options.value && `"${options.name}" "${options.value}"`,
     options.stack && `--stack=${options.stack}`
   ]), {
