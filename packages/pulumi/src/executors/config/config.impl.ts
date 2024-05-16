@@ -7,11 +7,16 @@ import { which } from 'shelljs'
 export interface PreviewOptions {
   stack?: string
   root?: string
+  parent?: string
 
-  expectNoChanges?: boolean
+  action: string
+  secret?: boolean
+  path?: boolean
+  name?: string
+  value?: string
 }
 
-export default async function creatExecutor(
+export default async function configExecutor(
   options: PreviewOptions,
   context: ExecutorContext
 ): Promise<{ success: boolean }> {
@@ -23,9 +28,12 @@ export default async function creatExecutor(
 
   execSync(buildCommand([
     'PULUMI_EXPERIMENTAL=true',
-    'pulumi preview --diff --suppress-progress',
-    options.stack && `--stack=${options.stack}`,
-    options.expectNoChanges && '--expect-no-changes'
+    'pulumi config',
+    options.action,
+    options.secret && `--secret`,
+    options.path && `--path`,
+    options.name && options.value && `"${options.name}" "${options.value}"`,
+    options.stack && `--stack=${options.stack}`
   ]), {
     cwd: join(workspaceRoot, options.root ?? sourceRoot),
     stdio: 'inherit'
