@@ -7,6 +7,8 @@ import { which } from 'shelljs'
 export interface PreviewOptions {
   stack?: string
   root?: string
+
+  expectNoChanges?: boolean
 }
 
 export default async function creatExecutor(
@@ -22,7 +24,8 @@ export default async function creatExecutor(
   execSync(buildCommand([
     'PULUMI_EXPERIMENTAL=true',
     'pulumi preview --diff --suppress-progress',
-    options.stack && `--stack=${options.stack}`
+    options.stack && `--stack=${options.stack}`,
+    options.expectNoChanges && '--expect-no-changes'
   ]), {
     cwd: join(workspaceRoot, options.root ?? sourceRoot),
     stdio: 'inherit'
