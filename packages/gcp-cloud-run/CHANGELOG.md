@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [10.1.1](https://github.com/TriPSs/nx-extend/compare/gcp-cloud-run@10.1.0...gcp-cloud-run@10.1.1) (2024-05-17)
+
+
+### Bug Fixes
+
+* Fixed secrets not using keys ([d46f0d0](https://github.com/TriPSs/nx-extend/commit/d46f0d01b144b8b7d51bed8acc0248ad6a218a53))
+
+
+
 # [10.1.0](https://github.com/TriPSs/nx-extend/compare/gcp-cloud-run@10.0.0...gcp-cloud-run@10.1.0) (2024-05-15)
 
 
