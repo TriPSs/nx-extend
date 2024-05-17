@@ -115,7 +115,7 @@ export async function deployExecutor(
 
     entryPoint && `--entry-point=${entryPoint}`,
     envVarsFile && `--env-vars-file=${envVarsFile}`,
-    setEnvVars && `--set-env-vars=${setEnvVars.join(',')}`,
+    setEnvVars.length > 0 && `--set-env-vars=${setEnvVars.join(',')}`,
     retry && `--retry`,
     ingressSettings && `--ingress-settings=${ingressSettings}`,
     egressSettings && `--egress-settings=${egressSettings}`,
