@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [13.1.2](https://github.com/TriPSs/nx-extend/compare/gcp-functions@13.1.1...gcp-functions@13.1.2) (2024-05-17)
+
+
+### Bug Fixes
+
+* **gcp-functions:** Remove secrets from schema as it can be two options now ([d634049](https://github.com/TriPSs/nx-extend/commit/d6340491f1fa1c7200e59303a6bf1d6b3937dd46))
+
+
+
 ## [13.1.1](https://github.com/TriPSs/nx-extend/compare/gcp-functions@13.1.0...gcp-functions@13.1.1) (2024-05-17)
 
 
