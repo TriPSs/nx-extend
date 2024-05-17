@@ -6,7 +6,7 @@ export function getValidSecrets(secrets?: string[] | Record<string, string>): st
   }
 
   if (!Array.isArray(secrets)) {
-    secrets = Object.values(secrets).map((secret) => `${secret}=${secrets[secret]}`)
+    secrets = Object.keys(secrets).map((secret) => `${secret}=${secrets[secret]}`)
   }
 
   return secrets.map((secret) => {
