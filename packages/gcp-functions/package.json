@@ -1,6 +1,6 @@
 {
   "name": "@nx-extend/gcp-functions",
-  "version": "13.1.0",
+  "version": "13.1.1",
   "homepage": "https://github.com/TriPSs/nx-extend/blob/master/packages/gcp-functions/README.md",
   "bugs": {
     "url": "https://github.com/tripss/nx-extend/issues"

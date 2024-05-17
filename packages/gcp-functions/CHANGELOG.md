@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [13.1.1](https://github.com/TriPSs/nx-extend/compare/gcp-functions@13.1.0...gcp-functions@13.1.1) (2024-05-17)
+
+
+### Bug Fixes
+
+* **gcp-functions:** Fixed `--set-env-vars` always being set ([176f106](https://github.com/TriPSs/nx-extend/commit/176f106ffca4b7ee6af36e0312fc995d38891711))
+
+
+
 # [13.1.0](https://github.com/TriPSs/nx-extend/compare/gcp-functions@13.0.0...gcp-functions@13.1.0) (2024-05-15)
 
 
