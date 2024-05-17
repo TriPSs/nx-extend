@@ -90,10 +90,6 @@
         "secure-always"
       ]
     },
-    "secrets": {
-      "type": "array",
-      "default": []
-    },
     "gen": {
       "type": "number",
       "default": 2
