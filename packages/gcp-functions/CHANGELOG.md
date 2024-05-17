@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [13.1.3](https://github.com/TriPSs/nx-extend/compare/gcp-functions@13.1.2...gcp-functions@13.1.3) (2024-05-17)
+
+
+### Bug Fixes
+
+* Fixed secrets not using keys ([d46f0d0](https://github.com/TriPSs/nx-extend/commit/d46f0d01b144b8b7d51bed8acc0248ad6a218a53))
+
+
+
 ## [13.1.2](https://github.com/TriPSs/nx-extend/compare/gcp-functions@13.1.1...gcp-functions@13.1.2) (2024-05-17)
 
 
