@@ -8,7 +8,7 @@ export interface PreviewOptions {
   stack?: string
   root?: string
   parent?: string
-
+  showSecrets?: boolean
   action: string
   secret?: boolean
   path?: boolean
@@ -30,6 +30,7 @@ export default async function configExecutor(
     'PULUMI_EXPERIMENTAL=true',
     'pulumi config',
     options.action,
+    options.showSecrets && `--show-secrets`,
     options.secret && `--secret`,
     options.path && `--path`,
     options.name && options.value && `"${options.name}" "${options.value}"`,
