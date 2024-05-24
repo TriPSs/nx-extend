@@ -80,9 +80,7 @@ export async function extractExecutor(
       `--out-file='${templatedOutputDirectory}/${defaultLanguage}.json'`,
       '--id-interpolation-pattern=\'[sha512:contenthash:base64:6]\'',
       '--format=simple'
-    ]), {
-      silent: !options.debug && !USE_VERBOSE_LOGGING
-    })
+    ]))
 
     logger.info('Translations extracted')
 
