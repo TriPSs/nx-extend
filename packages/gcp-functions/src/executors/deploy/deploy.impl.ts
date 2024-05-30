@@ -65,7 +65,7 @@ export async function deployExecutor(
     concurrency = 1,
     cloudSqlInstance = null,
     timeout = null,
-    cpu
+    cpu = 1
   } = options
 
   let runtime = options.runtime || 'nodejs20'
@@ -82,10 +82,18 @@ export async function deployExecutor(
   } = options
 
   let correctMemory = memory as string
+  let correctCPU = cpu as number
 
-  // Use the correct memory for the right gen
-  if (gen === 2 && memory.endsWith('MB')) {
-    correctMemory = memory.replace('MB', 'Mi')
+  if (gen === 2) {
+    // Use the correct memory for the right gen
+    if (memory.endsWith('MB')) {
+      correctMemory = memory.replace('MB', 'Mi')
+    }
+
+    if (concurrency > 1 && correctCPU < 1) {
+      logger.warn('Setting "cpu" to "1" because concurrency is higher the 1')
+      correctCPU = 1
+    }
   }
 
   if (triggerValue && trigger === 'http') {
@@ -112,6 +120,8 @@ export async function deployExecutor(
     `--runtime=${runtime}`,
     `--memory=${correctMemory}`,
     `--region=${region}`,
+    concurrency > 0 && `--concurrency=${concurrency}`,
+    correctCPU && `--cpu=${correctCPU}`,
 
     entryPoint && `--entry-point=${entryPoint}`,
     envVarsFile && `--env-vars-file=${envVarsFile}`,
@@ -142,7 +152,7 @@ export async function deployExecutor(
   if (
     success &&
     gen === 2 &&
-    (concurrency > 0 || validSecrets.length > 0 || cloudSqlInstance)
+    cloudSqlInstance
   ) {
     logger.info('Updating service with more configurations')
 
@@ -151,8 +161,6 @@ export async function deployExecutor(
         'gcloud run services update',
         functionName,
 
-        concurrency > 0 && `--concurrency=${concurrency}`,
-        cpu && `--cpu=${cpu}`,
         cloudSqlInstance && `--add-cloudsql-instances=${cloudSqlInstance}`,
 
         `--region=${region}`,
