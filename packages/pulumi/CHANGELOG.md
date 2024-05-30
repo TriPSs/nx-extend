@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [6.2.0](https://github.com/TriPSs/nx-extend/compare/pulumi@6.1.0...pulumi@6.2.0) (2024-05-30)
+
+
+### Features
+
+* **pulumi:** Added `showSecrets` in `config` executor ([1fa045a](https://github.com/TriPSs/nx-extend/commit/1fa045ab2c917e3e06becb565f4b8fdd1521e3b8))
+
+
+
 # [6.1.0](https://github.com/TriPSs/nx-extend/compare/pulumi@6.0.0...pulumi@6.1.0) (2024-05-16)
 
 
