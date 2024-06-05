@@ -2,6 +2,10 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [10.1.2](https://github.com/TriPSs/nx-extend/compare/gcp-cloud-run@10.1.1...gcp-cloud-run@10.1.2) (2024-06-05)
+
+
+
 ## [10.1.1](https://github.com/TriPSs/nx-extend/compare/gcp-cloud-run@10.1.0...gcp-cloud-run@10.1.1) (2024-05-17)
 
 
