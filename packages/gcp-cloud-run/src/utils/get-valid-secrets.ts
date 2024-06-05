@@ -8,7 +8,11 @@ export function getValidSecrets(
   }
 
   if (typeof secrets === 'string') {
-    secrets = JSON.parse(secrets)
+    try {
+      secrets = JSON.parse(secrets)
+    } catch {
+      throw new Error('Invalid JSON passed to secrets argument')
+    }
   }
 
   if (!Array.isArray(secrets)) {
