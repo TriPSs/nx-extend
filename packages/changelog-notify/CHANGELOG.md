@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [7.0.1](https://github.com/TriPSs/nx-extend/compare/changelog-notify@7.0.0...changelog-notify@7.0.1) (2024-06-14)
+
+
+### Bug Fixes
+
+* **changelog-notify:** Fixed google chat throwing error with wrong env variable ([5585fa5](https://github.com/TriPSs/nx-extend/commit/5585fa5e2316df7ac806e7c1229d6ced2932538b))
+
+
+
 # [7.0.0](https://github.com/TriPSs/nx-extend/compare/changelog-notify@6.0.0...changelog-notify@7.0.0) (2024-05-15)
 
 
