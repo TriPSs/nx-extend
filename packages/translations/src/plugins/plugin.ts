@@ -11,7 +11,7 @@ import { calculateHashForCreateNodes } from '@nx/devkit/src/utils/calculate-hash
 import { getNamedInputs } from '@nx/devkit/src/utils/get-named-inputs'
 import { existsSync, readdirSync } from 'fs'
 import { getLockFileName } from 'nx/src/plugins/js/lock-file/lock-file'
-import { projectGraphCacheDirectory } from 'nx/src/utils/cache-directory'
+import { workspaceDataDirectory } from 'nx/src/utils/cache-directory'
 import { dirname, join } from 'path'
 
 import { BaseConfigFile, getConfigFileInRoot } from '../utils/config-file'
@@ -23,7 +23,7 @@ export interface TranslationPluginOptions {
   translateTargetName?: string
 }
 
-const cachePath = join(projectGraphCacheDirectory, 'nx-extend.translations.hash')
+const cachePath = join(workspaceDataDirectory, 'nx-extend.translations.hash')
 const targetsCache = existsSync(cachePath) ? readTargetsCache() : {}
 
 const calculatedTargets: Record<
@@ -52,7 +52,7 @@ export const createDependencies: CreateDependencies = () => {
 
 export const createNodes: CreateNodes<TranslationPluginOptions> = [
   '**/.translationsrc.json',
-  (configFilePath, options, context) => {
+  async (configFilePath, options, context) => {
     const projectRoot = dirname(configFilePath)
     const fullyQualifiedProjectRoot = join(context.workspaceRoot, projectRoot)
 
@@ -65,7 +65,7 @@ export const createNodes: CreateNodes<TranslationPluginOptions> = [
     const config = getConfigFileInRoot(projectRoot)
     options = normalizeOptions(options)
 
-    const hash = calculateHashForCreateNodes(projectRoot, options, context, [
+    const hash = await calculateHashForCreateNodes(projectRoot, options, context, [
       getLockFileName(detectPackageManager(context.workspaceRoot))
     ])
 
