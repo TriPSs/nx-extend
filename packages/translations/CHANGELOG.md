@@ -2,6 +2,18 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [13.0.3](https://github.com/TriPSs/nx-extend/compare/translations@13.0.2...translations@13.0.3) (2024-06-14)
+
+### Dependency Updates
+
+* `core` updated to version `7.0.2`
+
+### Bug Fixes
+
+* Re-add dep options that where supposed to be deprecated ([3854a73](https://github.com/TriPSs/nx-extend/commit/3854a73f3ba70453cf1cf7c8c82122eb17364bb8))
+
+
+
 ## [13.0.2](https://github.com/TriPSs/nx-extend/compare/translations@13.0.1...translations@13.0.2) (2024-06-14)
 
 ### Dependency Updates
