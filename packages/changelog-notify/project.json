@@ -25,7 +25,6 @@
         "tsConfig": "packages/changelog-notify/tsconfig.lib.json",
         "packageJson": "packages/changelog-notify/package.json",
         "main": "packages/changelog-notify/src/index.ts",
-        "buildableProjectDepsInPackageJsonType": "dependencies",
         "assets": [
           "packages/changelog-notify/*.md",
           {
@@ -43,8 +42,7 @@
             "glob": "executors.json",
             "output": "."
           }
-        ],
-        "updateBuildableProjectDepsInPackageJson": true
+        ]
       }
     },
     "version": {

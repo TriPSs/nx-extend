@@ -25,7 +25,6 @@
         "tsConfig": "packages/vercel/tsconfig.lib.json",
         "packageJson": "packages/vercel/package.json",
         "main": "packages/vercel/src/index.ts",
-        "buildableProjectDepsInPackageJsonType": "dependencies",
         "assets": [
           "packages/vercel/*.md",
           {
@@ -43,8 +42,7 @@
             "glob": "executors.json",
             "output": "."
           }
-        ],
-        "updateBuildableProjectDepsInPackageJson": true
+        ]
       }
     },
     "version": {

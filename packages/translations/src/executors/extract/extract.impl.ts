@@ -1,6 +1,6 @@
 import { ExecutorContext, logger } from '@nx/devkit'
 import { createProjectGraphAsync } from '@nx/workspace/src/core/project-graph'
-import { buildCommand, execCommand, USE_VERBOSE_LOGGING } from '@nx-extend/core'
+import { buildCommand, execCommand } from '@nx-extend/core'
 import { join } from 'path'
 
 import { injectProjectRoot } from '../../utils'
@@ -73,28 +73,13 @@ export async function extractExecutor(
     context.root
   )
 
-  try {
-    execCommand(buildCommand([
-      'npx formatjs extract',
-      `'${join(templatedSourceDirectory, options.pattern)}'`,
-      `--out-file='${templatedOutputDirectory}/${defaultLanguage}.json'`,
-      '--id-interpolation-pattern=\'[sha512:contenthash:base64:6]\'',
-      '--format=simple'
-    ]))
-
-    logger.info('Translations extracted')
-
-    return {
-      success: true
-    }
-  } catch (err) {
-    logger.error('Error extracting translations')
-    logger.error(err)
-  }
-
-  return {
-    success: false
-  }
+  return execCommand(buildCommand([
+    'npx formatjs extract',
+    `'${join(templatedSourceDirectory, options.pattern)}'`,
+    `--out-file='${templatedOutputDirectory}/${defaultLanguage}.json'`,
+    '--id-interpolation-pattern=\'[sha512:contenthash:base64:6]\'',
+    '--format=simple'
+  ]))
 }
 
 export const getConnectedLibs = (

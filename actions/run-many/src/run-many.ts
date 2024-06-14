@@ -1,5 +1,5 @@
 import * as core from '@actions/core'
-import { createProjectGraphAsync } from 'nx/src/project-graph/project-graph'
+import { readCachedProjectGraph } from 'nx/src/project-graph/project-graph'
 import { resolve } from 'path'
 import { hideBin } from 'yargs/helpers'
 import yargs from 'yargs/yargs'
@@ -68,7 +68,7 @@ async function run() {
       core.debug(JSON.stringify(projectsNamesToRun))
     }
 
-    const projectGraph = await createProjectGraphAsync()
+    const projectGraph = readCachedProjectGraph()
 
     // Get all affected projects
     const projectsToRun = projectsNamesToRun.filter((projectName: string) => {

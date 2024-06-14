@@ -25,7 +25,6 @@
         "tsConfig": "packages/playwright/tsconfig.lib.json",
         "packageJson": "packages/playwright/package.json",
         "main": "packages/playwright/src/index.ts",
-        "buildableProjectDepsInPackageJsonType": "dependencies",
         "assets": [
           "packages/playwright/*.md",
           {
@@ -43,8 +42,7 @@
             "glob": "executors.json",
             "output": "."
           }
-        ],
-        "updateBuildableProjectDepsInPackageJson": true
+        ]
       }
     },
     "version": {
