@@ -25,6 +25,8 @@
         "tsConfig": "packages/gcp-cloud-run/tsconfig.lib.json",
         "packageJson": "packages/gcp-cloud-run/package.json",
         "main": "packages/gcp-cloud-run/src/index.ts",
+        "buildableProjectDepsInPackageJsonType": "dependencies",
+        "updateBuildableProjectDepsInPackageJson": true,
         "assets": [
           "packages/gcp-cloud-run/*.md",
           {

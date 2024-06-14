@@ -10,6 +10,8 @@
       "options": {
         "outputPath": "dist/packages/gcp-task-runner",
         "main": "packages/gcp-task-runner/src/index.ts",
+        "buildableProjectDepsInPackageJsonType": "dependencies",
+        "updateBuildableProjectDepsInPackageJson": true,
         "tsConfig": "packages/gcp-task-runner/tsconfig.lib.json",
         "assets": [
           "packages/gcp-task-runner/*.md",

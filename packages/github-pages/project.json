@@ -10,6 +10,8 @@
       "options": {
         "outputPath": "dist/packages/github-pages",
         "main": "packages/github-pages/src/index.ts",
+        "buildableProjectDepsInPackageJsonType": "dependencies",
+        "updateBuildableProjectDepsInPackageJson": true,
         "tsConfig": "packages/github-pages/tsconfig.lib.json",
         "assets": [
           "packages/github-pages/*.md",

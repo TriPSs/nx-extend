@@ -29,6 +29,8 @@
         "tsConfig": "packages/e2e-runner/tsconfig.lib.json",
         "packageJson": "packages/e2e-runner/package.json",
         "main": "packages/e2e-runner/src/index.ts",
+        "buildableProjectDepsInPackageJsonType": "dependencies",
+        "updateBuildableProjectDepsInPackageJson": true,
         "assets": [
           "packages/e2e-runner/*.md",
           {

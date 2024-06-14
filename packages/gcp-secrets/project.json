@@ -25,6 +25,8 @@
         "tsConfig": "packages/gcp-secrets/tsconfig.lib.json",
         "packageJson": "packages/gcp-secrets/package.json",
         "main": "packages/gcp-secrets/src/index.ts",
+        "buildableProjectDepsInPackageJsonType": "dependencies",
+        "updateBuildableProjectDepsInPackageJson": true,
         "assets": [
           "packages/gcp-secrets/*.md",
           {

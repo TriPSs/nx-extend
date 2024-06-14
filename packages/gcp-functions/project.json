@@ -28,6 +28,8 @@
         "tsConfig": "packages/gcp-functions/tsconfig.lib.json",
         "packageJson": "packages/gcp-functions/package.json",
         "main": "packages/gcp-functions/src/index.ts",
+        "buildableProjectDepsInPackageJsonType": "dependencies",
+        "updateBuildableProjectDepsInPackageJson": true,
         "assets": [
           "LICENSE",
           "packages/gcp-functions/*.md",
