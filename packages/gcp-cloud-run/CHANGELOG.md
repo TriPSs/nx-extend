@@ -2,6 +2,45 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [10.1.2](https://github.com/TriPSs/nx-extend/compare/gcp-cloud-run@10.1.1...gcp-cloud-run@10.1.2) (2024-06-05)
+
+
+
+## [10.1.1](https://github.com/TriPSs/nx-extend/compare/gcp-cloud-run@10.1.0...gcp-cloud-run@10.1.1) (2024-05-17)
+
+
+### Bug Fixes
+
+* Fixed secrets not using keys ([d46f0d0](https://github.com/TriPSs/nx-extend/commit/d46f0d01b144b8b7d51bed8acc0248ad6a218a53))
+
+
+
+# [10.1.0](https://github.com/TriPSs/nx-extend/compare/gcp-cloud-run@10.0.0...gcp-cloud-run@10.1.0) (2024-05-15)
+
+
+### Features
+
+* **gcp-cloud-run:** Allow for objects/arrays for secrets ([8320a69](https://github.com/TriPSs/nx-extend/commit/8320a69040240bb3583acd94c270700749409eaf))
+
+
+
+# [10.0.0](https://github.com/TriPSs/nx-extend/compare/gcp-cloud-run@9.0.0...gcp-cloud-run@10.0.0) (2024-05-15)
+
+### Dependency Updates
+
+* `core` updated to version `7.0.0`
+
+### Features
+
+* Updated Nx ([79325aa](https://github.com/TriPSs/nx-extend/commit/79325aa06e0251f45dbf295f6c19fc417a301fc7))
+
+
+### BREAKING CHANGES
+
+* Updated to Nx 19
+
+
+
 # [9.0.0](https://github.com/TriPSs/nx-extend/compare/gcp-cloud-run@8.0.0...gcp-cloud-run@9.0.0) (2024-05-07)
 
 

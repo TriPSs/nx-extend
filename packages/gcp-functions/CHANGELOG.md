@@ -2,6 +2,72 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [13.1.5](https://github.com/TriPSs/nx-extend/compare/gcp-functions@13.1.4...gcp-functions@13.1.5) (2024-06-05)
+
+
+
+## [13.1.4](https://github.com/TriPSs/nx-extend/compare/gcp-functions@13.1.3...gcp-functions@13.1.4) (2024-05-30)
+
+
+### Bug Fixes
+
+* **gcp-functions:** Make sure `cpu` option is valid ([eac9b4c](https://github.com/TriPSs/nx-extend/commit/eac9b4ca41c7c3e46746d0ff5781ae1c443aea62))
+
+
+
+## [13.1.3](https://github.com/TriPSs/nx-extend/compare/gcp-functions@13.1.2...gcp-functions@13.1.3) (2024-05-17)
+
+
+### Bug Fixes
+
+* Fixed secrets not using keys ([d46f0d0](https://github.com/TriPSs/nx-extend/commit/d46f0d01b144b8b7d51bed8acc0248ad6a218a53))
+
+
+
+## [13.1.2](https://github.com/TriPSs/nx-extend/compare/gcp-functions@13.1.1...gcp-functions@13.1.2) (2024-05-17)
+
+
+### Bug Fixes
+
+* **gcp-functions:** Remove secrets from schema as it can be two options now ([d634049](https://github.com/TriPSs/nx-extend/commit/d6340491f1fa1c7200e59303a6bf1d6b3937dd46))
+
+
+
+## [13.1.1](https://github.com/TriPSs/nx-extend/compare/gcp-functions@13.1.0...gcp-functions@13.1.1) (2024-05-17)
+
+
+### Bug Fixes
+
+* **gcp-functions:** Fixed `--set-env-vars` always being set ([176f106](https://github.com/TriPSs/nx-extend/commit/176f106ffca4b7ee6af36e0312fc995d38891711))
+
+
+
+# [13.1.0](https://github.com/TriPSs/nx-extend/compare/gcp-functions@13.0.0...gcp-functions@13.1.0) (2024-05-15)
+
+
+### Features
+
+* **gcp-functions:** Support `envVars` and allow for objects/arrays for secrets ([edecb90](https://github.com/TriPSs/nx-extend/commit/edecb90a84a94491c1b0c5d59132fc31ca913340))
+
+
+
+# [13.0.0](https://github.com/TriPSs/nx-extend/compare/gcp-functions@12.1.1...gcp-functions@13.0.0) (2024-05-15)
+
+### Dependency Updates
+
+* `core` updated to version `7.0.0`
+
+### Features
+
+* Updated Nx ([79325aa](https://github.com/TriPSs/nx-extend/commit/79325aa06e0251f45dbf295f6c19fc417a301fc7))
+
+
+### BREAKING CHANGES
+
+* Updated to Nx 19
+
+
+
 ## [12.1.1](https://github.com/TriPSs/nx-extend/compare/gcp-functions@12.1.0...gcp-functions@12.1.1) (2024-04-26)
 
 

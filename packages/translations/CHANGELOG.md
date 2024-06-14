@@ -2,6 +2,32 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [13.0.1](https://github.com/TriPSs/nx-extend/compare/translations@13.0.0...translations@13.0.1) (2024-05-30)
+
+
+### Bug Fixes
+
+* **translations:** Never run extract in silent ([5362d64](https://github.com/TriPSs/nx-extend/commit/5362d649b5232fbc44d0e0ef439ff3ce2367bf64))
+
+
+
+# [13.0.0](https://github.com/TriPSs/nx-extend/compare/translations@12.0.1...translations@13.0.0) (2024-05-15)
+
+### Dependency Updates
+
+* `core` updated to version `7.0.0`
+
+### Features
+
+* Updated Nx ([79325aa](https://github.com/TriPSs/nx-extend/commit/79325aa06e0251f45dbf295f6c19fc417a301fc7))
+
+
+### BREAKING CHANGES
+
+* Updated to Nx 19
+
+
+
 ## [12.0.1](https://github.com/TriPSs/nx-extend/compare/translations@12.0.0...translations@12.0.1) (2024-04-26)
 
 

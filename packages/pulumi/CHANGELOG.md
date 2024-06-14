@@ -2,6 +2,44 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [6.2.0](https://github.com/TriPSs/nx-extend/compare/pulumi@6.1.0...pulumi@6.2.0) (2024-05-30)
+
+
+### Features
+
+* **pulumi:** Added `showSecrets` in `config` executor ([1fa045a](https://github.com/TriPSs/nx-extend/commit/1fa045ab2c917e3e06becb565f4b8fdd1521e3b8))
+
+
+
+# [6.1.0](https://github.com/TriPSs/nx-extend/compare/pulumi@6.0.0...pulumi@6.1.0) (2024-05-16)
+
+
+### Features
+
+* **pulumi:** Added `config` executor ([970507f](https://github.com/TriPSs/nx-extend/commit/970507f914cbee1daa961e080e027b622b71ed10))
+* **pulumi:** Added `expectNoChanges` option to preview executor ([a42223b](https://github.com/TriPSs/nx-extend/commit/a42223baac2673893189c2b9846eca363ac04f44))
+* **pulumi:** Added `path` to `config` generator ([dcca572](https://github.com/TriPSs/nx-extend/commit/dcca5724f06b0f08ed9d5d06ab20d2c8eceb8c7f))
+
+
+
+# [6.0.0](https://github.com/TriPSs/nx-extend/compare/pulumi@5.1.0...pulumi@6.0.0) (2024-05-15)
+
+### Dependency Updates
+
+* `core` updated to version `7.0.0`
+
+### Features
+
+* **pulumi:** Added `import` executor ([09064e5](https://github.com/TriPSs/nx-extend/commit/09064e5b64a6e10be3552e8d96c326883d99ca4c))
+* Updated Nx ([79325aa](https://github.com/TriPSs/nx-extend/commit/79325aa06e0251f45dbf295f6c19fc417a301fc7))
+
+
+### BREAKING CHANGES
+
+* Updated to Nx 19
+
+
+
 # [5.1.0](https://github.com/TriPSs/nx-extend/compare/pulumi@5.0.6...pulumi@5.1.0) (2024-05-07)
 
 
