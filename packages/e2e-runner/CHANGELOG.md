@@ -2,6 +2,13 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [10.0.2](https://github.com/TriPSs/nx-extend/compare/e2e-runner@10.0.1...e2e-runner@10.0.2) (2024-06-14)
+
+### Dependency Updates
+
+* `core` updated to version `7.0.1`
+
+
 ## [10.0.1](https://github.com/TriPSs/nx-extend/compare/e2e-runner@10.0.0...e2e-runner@10.0.1) (2024-05-15)
 
 ### Dependency Updates
