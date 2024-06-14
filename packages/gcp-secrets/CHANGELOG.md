@@ -2,6 +2,13 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [9.0.1](https://github.com/TriPSs/nx-extend/compare/gcp-secrets@9.0.0...gcp-secrets@9.0.1) (2024-06-14)
+
+### Dependency Updates
+
+* `core` updated to version `7.0.1`
+
+
 # [9.0.0](https://github.com/TriPSs/nx-extend/compare/gcp-secrets@8.0.0...gcp-secrets@9.0.0) (2024-05-15)
 
 ### Dependency Updates
