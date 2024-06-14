@@ -2,6 +2,18 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [6.2.2](https://github.com/TriPSs/nx-extend/compare/pulumi@6.2.1...pulumi@6.2.2) (2024-06-14)
+
+### Dependency Updates
+
+* `core` updated to version `7.0.2`
+
+### Bug Fixes
+
+* Re-add dep options that where supposed to be deprecated ([3854a73](https://github.com/TriPSs/nx-extend/commit/3854a73f3ba70453cf1cf7c8c82122eb17364bb8))
+
+
+
 ## [6.2.1](https://github.com/TriPSs/nx-extend/compare/pulumi@6.2.0...pulumi@6.2.1) (2024-06-14)
 
 ### Dependency Updates
