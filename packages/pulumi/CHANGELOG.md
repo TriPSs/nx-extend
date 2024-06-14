@@ -2,6 +2,13 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [6.2.1](https://github.com/TriPSs/nx-extend/compare/pulumi@6.2.0...pulumi@6.2.1) (2024-06-14)
+
+### Dependency Updates
+
+* `core` updated to version `7.0.1`
+
+
 # [6.2.0](https://github.com/TriPSs/nx-extend/compare/pulumi@6.1.0...pulumi@6.2.0) (2024-05-30)
 
 
