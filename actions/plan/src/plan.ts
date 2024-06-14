@@ -1,5 +1,5 @@
 import * as core from '@actions/core'
-import { createProjectGraphAsync } from 'nx/src/project-graph/project-graph'
+import { readCachedProjectGraph } from 'nx/src/project-graph/project-graph'
 import { resolve } from 'path'
 
 import { buildCommand } from './utils/build-command'
@@ -32,7 +32,7 @@ async function run() {
       core.debug(JSON.stringify(projectsNamesToPlanFor))
     }
 
-    const projectGraph = await createProjectGraphAsync()
+    const projectGraph = readCachedProjectGraph()
 
     // Get all affected projects
     const enabledProjects = projectsNamesToPlanFor.filter((projectName: string) => {
