@@ -34,7 +34,7 @@ export function formatSection(options: NotifyChangelogOptions, section: Section)
 
 export default async function notifyChangelog(options: NotifyChangelogOptions) {
   if (!GOOGLE_CHAT_CHANGELOG_WEBHOOK) {
-    throw new Error('No "SLACK_CHANGELOG_WEBHOOK" environment variable set!')
+    throw new Error('No "GOOGLE_CHAT_CHANGELOG_WEBHOOK" environment variable set!')
   }
 
   return {
