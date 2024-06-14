@@ -1,6 +1,6 @@
 {
   "name": "@nx-extend/gcp-secrets",
-  "version": "9.0.1",
+  "version": "9.0.2",
   "homepage": "https://github.com/TriPSs/nx-extend/blob/master/packages/gcp-secrets/README.md",
   "bugs": {
     "url": "https://github.com/tripss/nx-extend/issues"
