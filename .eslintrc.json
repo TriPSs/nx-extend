@@ -22,18 +22,7 @@
         "simple-import-sort/imports": [
           "warn",
           {
-            "groups": [
-              // Packages. `react` related packages come first.
-              ["^react", "^@?\\w"],
-              // "type" imports.
-              ["^.*\\u0000$"],
-              // Absolute imports and other imports such as Vue-style `@/foo`.
-              // Anything not matched in another group.
-              ["^"],
-              // Relative imports.
-              // Anything that starts with a dot.
-              ["^\\."]
-            ]
+            "groups": [["^react", "^@?\\w"], ["^.*\\u0000$"], ["^"], ["^\\."]]
           }
         ]
       }
@@ -41,12 +30,18 @@
     {
       "files": ["*.ts", "*.tsx"],
       "extends": ["plugin:@nx/typescript"],
-      "rules": {}
+      "rules": {
+        "@typescript-eslint/no-extra-semi": "error",
+        "no-extra-semi": "off"
+      }
     },
     {
       "files": ["*.js", "*.jsx"],
       "extends": ["plugin:@nx/javascript"],
-      "rules": {}
+      "rules": {
+        "@typescript-eslint/no-extra-semi": "error",
+        "no-extra-semi": "off"
+      }
     }
   ]
 }
