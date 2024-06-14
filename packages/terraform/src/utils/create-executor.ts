@@ -13,6 +13,7 @@ export interface ExecutorOptions {
   migrateState: boolean
   lock: boolean
   varFile: string
+  varString: string
 
   [key: string]: string | unknown
 }
@@ -27,7 +28,7 @@ export function createExecutor(command: string) {
     }
 
     const { sourceRoot } = context.workspace.projects[context.projectName]
-    const { backendConfig = [], planFile, ciMode, autoApproval, formatWrite, upgrade, migrateState, lock, varFile } = options
+    const { backendConfig = [], planFile, ciMode, autoApproval, formatWrite, upgrade, migrateState, lock, varFile, varString } = options
 
     let env = {}
     if (ciMode) {
@@ -46,15 +47,18 @@ export function createExecutor(command: string) {
         ),
         command === 'plan' && planFile && `-out ${planFile}`,
         command === 'plan' && varFile && `--var-file ${varFile}`,
+        command === 'plan' && varString && `--var ${varString}`,
         command === 'destroy' && autoApproval && '-auto-approve',
         command === 'apply' && autoApproval && '-auto-approve',
         command === 'apply' && planFile,
+        command === 'apply' && varString && `--var ${varString}`,
         command === 'fmt' && '--recursive',
         command === 'fmt' && !formatWrite && '--check --list',
         command === 'init' && upgrade && '-upgrade',
         command === 'init' && migrateState && '-migrate-state',
         command === 'providers' && lock && 'lock',
         command === 'test' && varFile && `--var-file ${varFile}`,
+        command === 'test' && varString && `--var ${varString}`,
       ]),
       {
         cwd: sourceRoot,
