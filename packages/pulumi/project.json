@@ -25,6 +25,8 @@
         "tsConfig": "packages/pulumi/tsconfig.lib.json",
         "packageJson": "packages/pulumi/package.json",
         "main": "packages/pulumi/src/index.ts",
+        "buildableProjectDepsInPackageJsonType": "dependencies",
+        "updateBuildableProjectDepsInPackageJson": true,
         "assets": [
           "packages/pulumi/*.md",
           {

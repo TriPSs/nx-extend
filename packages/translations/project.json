@@ -25,6 +25,8 @@
         "tsConfig": "packages/translations/tsconfig.lib.json",
         "packageJson": "packages/translations/package.json",
         "main": "packages/translations/src/index.ts",
+        "buildableProjectDepsInPackageJsonType": "dependencies",
+        "updateBuildableProjectDepsInPackageJson": true,
         "assets": [
           "packages/translations/*.md",
           {

@@ -25,6 +25,8 @@
         "tsConfig": "packages/terraform/tsconfig.lib.json",
         "packageJson": "packages/terraform/package.json",
         "main": "packages/terraform/src/index.ts",
+        "buildableProjectDepsInPackageJsonType": "dependencies",
+        "updateBuildableProjectDepsInPackageJson": true,
         "assets": [
           "packages/terraform/*.md",
           {

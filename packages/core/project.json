@@ -25,6 +25,8 @@
         "tsConfig": "packages/core/tsconfig.lib.json",
         "packageJson": "packages/core/package.json",
         "main": "packages/core/src/index.ts",
+        "buildableProjectDepsInPackageJsonType": "dependencies",
+        "updateBuildableProjectDepsInPackageJson": true,
         "assets": [
           "packages/core/*.md",
           {
