@@ -25,7 +25,6 @@
         "tsConfig": "packages/strapi/tsconfig.lib.json",
         "packageJson": "packages/strapi/package.json",
         "main": "packages/strapi/src/index.ts",
-        "buildableProjectDepsInPackageJsonType": "dependencies",
         "assets": [
           "packages/strapi/*.md",
           {
@@ -43,8 +42,7 @@
             "glob": "executors.json",
             "output": "."
           }
-        ],
-        "updateBuildableProjectDepsInPackageJson": true
+        ]
       }
     },
     "version": {

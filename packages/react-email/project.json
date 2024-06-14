@@ -25,7 +25,6 @@
         "tsConfig": "packages/react-email/tsconfig.lib.json",
         "packageJson": "packages/react-email/package.json",
         "main": "packages/react-email/src/index.ts",
-        "buildableProjectDepsInPackageJsonType": "dependencies",
         "assets": [
           "packages/react-email/*.md",
           {
@@ -43,8 +42,7 @@
             "glob": "executors.json",
             "output": "."
           }
-        ],
-        "updateBuildableProjectDepsInPackageJson": true
+        ]
       }
     },
     "version": {

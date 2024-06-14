@@ -25,7 +25,6 @@
         "tsConfig": "packages/translations/tsconfig.lib.json",
         "packageJson": "packages/translations/package.json",
         "main": "packages/translations/src/index.ts",
-        "buildableProjectDepsInPackageJsonType": "dependencies",
         "assets": [
           "packages/translations/*.md",
           {
@@ -43,8 +42,7 @@
             "glob": "executors.json",
             "output": "."
           }
-        ],
-        "updateBuildableProjectDepsInPackageJson": true
+        ]
       }
     },
     "version": {

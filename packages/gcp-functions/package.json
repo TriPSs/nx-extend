@@ -21,9 +21,5 @@
   },
   "nx-migrations": {
     "migrations": "./migrations.json"
-  },
-  "dependencies": {
-    "@nx/devkit": "17.2.0",
-    "@nx/webpack": "17.2.0"
   }
 }
