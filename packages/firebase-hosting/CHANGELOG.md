@@ -2,6 +2,13 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [7.0.1](https://github.com/TriPSs/nx-extend/compare/firebase-hosting@7.0.0...firebase-hosting@7.0.1) (2024-06-14)
+
+### Dependency Updates
+
+* `core` updated to version `7.0.1`
+
+
 # [7.0.0](https://github.com/TriPSs/nx-extend/compare/firebase-hosting@6.1.1...firebase-hosting@7.0.0) (2024-05-15)
 
 ### Dependency Updates
