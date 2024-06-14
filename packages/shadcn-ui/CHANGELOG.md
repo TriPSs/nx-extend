@@ -2,6 +2,13 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [2.0.1](https://github.com/TriPSs/nx-extend/compare/shadcn-ui@2.0.0...shadcn-ui@2.0.1) (2024-06-14)
+
+### Dependency Updates
+
+* `core` updated to version `7.0.1`
+
+
 # [2.0.0](https://github.com/TriPSs/nx-extend/compare/shadcn-ui@1.1.0...shadcn-ui@2.0.0) (2024-05-15)
 
 ### Dependency Updates
