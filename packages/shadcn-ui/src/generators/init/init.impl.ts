@@ -14,8 +14,6 @@ import { join } from 'path'
 
 import type { ShadecnUiSchema } from './schema'
 
-import { devDependencies } from '../../../package.json'
-
 function cleanupLib(tree: Tree, libDirectory: string) {
   // Remove the unneeded files
   tree.delete(`${libDirectory}/package.json`)
@@ -106,11 +104,11 @@ export default async function (tree: Tree, options: ShadecnUiSchema) {
     addDependenciesToPackageJson(
       tree,
       {
-        'class-variance-authority': devDependencies['class-variance-authority'],
-        'clsx': devDependencies['clsx'],
-        'lucide-react': devDependencies['lucide-react'],
-        'tailwind-merge': devDependencies['tailwind-merge'],
-        'tailwindcss-animate': devDependencies['tailwindcss-animate']
+        'class-variance-authority': '^0.7.0',
+        'clsx': '^2.1.1',
+        'lucide-react': '^0.395.0',
+        'tailwind-merge': '^2.3.0',
+        'tailwindcss-animate': '^1.0.7'
       },
       {}
     )
