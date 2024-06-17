@@ -13,7 +13,6 @@ import {
 import { initGenerator as jsInitGenerator } from '@nx/js'
 import * as path from 'path'
 
-import { devDependencies } from '../../../package.json'
 import { GcpDeploymentManagerGeneratorSchema } from './schema'
 
 interface NormalizedSchema extends GcpDeploymentManagerGeneratorSchema {
@@ -121,7 +120,7 @@ export default async function (
       host,
       {},
       {
-        '@google-cloud/functions-framework': devDependencies['@google-cloud/functions-framework']
+        '@google-cloud/functions-framework': '^3.4.0'
       }
     )
   )

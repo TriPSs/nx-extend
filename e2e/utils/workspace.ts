@@ -50,13 +50,19 @@ export function ensureNxProject(patchPlugins: string[] = []): void {
     env: process.env
   })
 
-  execSync('yarn install --immutable', {
+  installDeps()
+
+  execSync('echo "enableHardenedMode: false" >> .yarnrc.yml', {
     cwd: tmpProjectPath,
     stdio: 'inherit',
     env: process.env
   })
+}
 
-  execSync('echo "enableHardenedMode: false" >> .yarnrc.yml', {
+export function installDeps() {
+  const tmpProjectPath = tmpProjPath()
+
+  execSync('yarn install --immutable', {
     cwd: tmpProjectPath,
     stdio: 'inherit',
     env: process.env

@@ -12,8 +12,6 @@ import * as path from 'path'
 
 import type { ReactEmailSchema } from './schema'
 
-import { devDependencies } from '../../../package.json'
-
 function addFiles(host: Tree, options: NormalizedSchema) {
   generateFiles(host, path.join(__dirname, 'files'), options.projectRoot, {
     ...options,
@@ -60,8 +58,8 @@ export default async function (host: Tree, options: ReactEmailSchema) {
       host,
       {},
       {
-        'react-email': devDependencies['react-email'],
-        '@react-email/components': devDependencies['@react-email/components']
+        '@react-email/components': '0.0.19',
+        'react-email': '2.1.4'
       }
     )
   )
