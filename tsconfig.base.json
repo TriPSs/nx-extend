@@ -32,7 +32,8 @@
       "@nx-extend/react-email": ["packages/react-email/src/index.ts"],
       "@nx-extend/strapi": ["packages/strapi/src/index.ts"],
       "@nx-extend/translations": ["packages/translations/src/index.ts"],
-      "@nx-extend/vercel": ["packages/vercel/src/index.ts"]
+      "@nx-extend/vercel": ["packages/vercel/src/index.ts"],
+      "@nx-extend/docusaurus": ["packages/docusaurus/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

@@ -1,11 +1,14 @@
 {
   "extends": "../../tsconfig.base.json",
-
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "resolveJsonModule": true
+  },
   "files": [],
   "include": [],
   "references": [
     {
-      "path": "./tsconfig.e2e.json"
+      "path": "./tsconfig.lib.json"
     },
     {
       "path": "./tsconfig.spec.json"

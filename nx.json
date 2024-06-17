@@ -26,7 +26,8 @@
       "inputs": ["production"],
       "options": {
         "trackDeps": true,
-        "tagPrefix": "${target}@"
+        "tagPrefix": "${target}@",
+        "changelogHeader": " "
       }
     },
     "@nx/jest:jest": {

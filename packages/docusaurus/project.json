@@ -1,0 +1,62 @@
+{
+  "name": "docusaurus",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/docusaurus/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["packages/docusaurus/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/packages/docusaurus"],
+      "options": {
+        "jestConfig": "packages/docusaurus/jest.config.ts"
+      }
+    },
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/docusaurus",
+        "tsConfig": "packages/docusaurus/tsconfig.lib.json",
+        "packageJson": "packages/docusaurus/package.json",
+        "main": "packages/docusaurus/src/index.ts",
+        "buildableProjectDepsInPackageJsonType": "dependencies",
+        "updateBuildableProjectDepsInPackageJson": true,
+        "assets": [
+          "packages/docusaurus/*.md",
+          {
+            "input": "./packages/docusaurus/src",
+            "glob": "**/*.!(ts)",
+            "output": "./src"
+          },
+          {
+            "input": "./packages/docusaurus",
+            "glob": "generators.json",
+            "output": "."
+          },
+          {
+            "input": "./packages/docusaurus",
+            "glob": "executors.json",
+            "output": "."
+          }
+        ]
+      }
+    },
+    "version": {
+      "executor": "@jscutlery/semver:version",
+      "options": {}
+    },
+    "publish": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npm publish ./dist/packages/docusaurus --access public || true"
+      }
+    }
+  },
+  "tags": []
+}

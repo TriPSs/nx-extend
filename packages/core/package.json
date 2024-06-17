@@ -1,6 +1,6 @@
 {
   "name": "@nx-extend/core",
-  "version": "7.0.0",
+  "version": "7.0.1",
   "license": "MIT",
   "main": "src/index.js",
   "nx-migrations": {

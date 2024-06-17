@@ -1,12 +1,11 @@
 {
   "extends": "../../tsconfig.base.json",
-
-  "files": [],
+  "compilerOptions": {
+    "types": ["node", "jest"]
+  },
   "include": [],
+  "files": [],
   "references": [
-    {
-      "path": "./tsconfig.e2e.json"
-    },
     {
       "path": "./tsconfig.spec.json"
     }
