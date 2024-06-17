@@ -1,6 +1,17 @@
-# Changelog
+ 
+# [7.1.0](https://github.com/TriPSs/nx-extend/compare/core@7.0.0...core@7.1.0) (2024-06-17)
 
-This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
+
+### Bug Fixes
+
+* Re-add dep options that where supposed to be deprecated ([3854a73](https://github.com/TriPSs/nx-extend/commit/3854a73f3ba70453cf1cf7c8c82122eb17364bb8))
+
+
+### Features
+
+* Added `@nx-extend/docusaurus` ([e67b522](https://github.com/TriPSs/nx-extend/commit/e67b52208b32f4f7f6c68aa311c69a12a57783d4)), closes [#285](https://github.com/TriPSs/nx-extend/issues/285)
+
+
 
 ## [7.0.1](https://github.com/TriPSs/nx-extend/compare/core@7.0.0...core@7.0.1) (2024-06-17)
 
