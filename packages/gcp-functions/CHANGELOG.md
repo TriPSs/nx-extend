@@ -1,6 +1,10 @@
-# Changelog
+ 
+## [13.1.8](https://github.com/TriPSs/nx-extend/compare/gcp-functions@13.1.7...gcp-functions@13.1.8) (2024-06-17)
 
-This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
+### Dependency Updates
+
+* `core` updated to version `7.0.3`
+
 
 ## [13.1.7](https://github.com/TriPSs/nx-extend/compare/gcp-functions@13.1.6...gcp-functions@13.1.7) (2024-06-14)
 
