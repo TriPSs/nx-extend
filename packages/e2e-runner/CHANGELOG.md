@@ -2,6 +2,26 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [10.0.3](https://github.com/TriPSs/nx-extend/compare/e2e-runner@10.0.2...e2e-runner@10.0.3) (2024-06-14)
+
+### Dependency Updates
+
+* `playwright` updated to version `8.0.2`
+* `core` updated to version `7.0.2`
+
+### Bug Fixes
+
+* Re-add dep options that where supposed to be deprecated ([3854a73](https://github.com/TriPSs/nx-extend/commit/3854a73f3ba70453cf1cf7c8c82122eb17364bb8))
+
+
+
+## [10.0.2](https://github.com/TriPSs/nx-extend/compare/e2e-runner@10.0.1...e2e-runner@10.0.2) (2024-06-14)
+
+### Dependency Updates
+
+* `core` updated to version `7.0.1`
+
+
 ## [10.0.1](https://github.com/TriPSs/nx-extend/compare/e2e-runner@10.0.0...e2e-runner@10.0.1) (2024-05-15)
 
 ### Dependency Updates
