@@ -111,3 +111,4 @@ We have a workaround for you, check https://github.com/facebook/docusaurus/issue
 ```
 
 Once this has been updated, you should be able to run `yarn install` and then build your Docusaurus application.
+
