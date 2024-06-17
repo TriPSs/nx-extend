@@ -1,6 +1,10 @@
-# Changelog
+ 
+## [7.0.3](https://github.com/TriPSs/nx-extend/compare/firebase-hosting@7.0.2...firebase-hosting@7.0.3) (2024-06-17)
 
-This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
+### Dependency Updates
+
+* `core` updated to version `7.0.3`
+
 
 ## [7.0.2](https://github.com/TriPSs/nx-extend/compare/firebase-hosting@7.0.1...firebase-hosting@7.0.2) (2024-06-14)
 
