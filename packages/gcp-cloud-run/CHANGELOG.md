@@ -1,6 +1,10 @@
-# Changelog
+ 
+## [10.1.5](https://github.com/TriPSs/nx-extend/compare/gcp-cloud-run@10.1.4...gcp-cloud-run@10.1.5) (2024-06-17)
 
-This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
+### Dependency Updates
+
+* `core` updated to version `7.0.3`
+
 
 ## [10.1.4](https://github.com/TriPSs/nx-extend/compare/gcp-cloud-run@10.1.3...gcp-cloud-run@10.1.4) (2024-06-14)
 
