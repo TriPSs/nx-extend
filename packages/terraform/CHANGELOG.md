@@ -1,4 +1,8 @@
  
+## [6.0.5](https://github.com/TriPSs/nx-extend/compare/terraform@6.0.4...terraform@6.0.5) (2024-06-20)
+
+
+
 ## [6.0.4](https://github.com/TriPSs/nx-extend/compare/terraform@6.0.3...terraform@6.0.4) (2024-06-17)
 
 ### Dependency Updates
