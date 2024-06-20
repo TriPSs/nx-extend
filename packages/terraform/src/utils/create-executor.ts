@@ -14,7 +14,7 @@ export interface ExecutorOptions {
   lock: boolean
   varFile: string
   varString: string
-  reconfigure
+  reconfigure: string
 
   [key: string]: string | unknown
 }
