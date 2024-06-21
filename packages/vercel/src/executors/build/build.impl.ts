@@ -71,11 +71,12 @@ export function buildExecutor(
     settings: {}
   })
 
+  const vercelCommand = 'npx vercel@33.0.2'
   const vercelEnvironment = context.configurationName === 'production' ? 'production' : 'preview'
 
   // Pull latest
   const { success: pullSuccess } = execCommand(buildCommand([
-    'npx vercel pull --yes',
+    `${vercelCommand} pull --yes`,
     `--environment=${vercelEnvironment}`,
     vercelToken && `--token=${vercelToken}`,
 
@@ -115,7 +116,7 @@ export function buildExecutor(
   })
 
   const { success } = execCommand(buildCommand([
-    'npx vercel build',
+    `${vercelCommand} build`,
     `--output ${outputDirectory}/.vercel/output`,
     context.configurationName === 'production' && '--prod',
     options.config && `--local-config=${join(workspaceRoot, options.config)}`,
