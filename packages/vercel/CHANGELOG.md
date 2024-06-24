@@ -1,4 +1,13 @@
  
+# [8.1.0](https://github.com/TriPSs/nx-extend/compare/vercel@8.0.3...vercel@8.1.0) (2024-06-24)
+
+
+### Features
+
+* **vercel:** add archive option for deploy executor ([b2e6388](https://github.com/TriPSs/nx-extend/commit/b2e6388d141142f1a06e1d32181b0ed22a1ad128))
+
+
+
 ## [8.0.3](https://github.com/TriPSs/nx-extend/compare/vercel@8.0.2...vercel@8.0.3) (2024-06-17)
 
 ### Dependency Updates
