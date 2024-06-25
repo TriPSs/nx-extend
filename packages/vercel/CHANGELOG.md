@@ -1,4 +1,13 @@
  
+## [8.1.1](https://github.com/TriPSs/nx-extend/compare/vercel@8.1.0...vercel@8.1.1) (2024-06-25)
+
+
+### Bug Fixes
+
+* **vercel:** remove  archive option for deploy executor ([8d7929a](https://github.com/TriPSs/nx-extend/commit/8d7929ac5dc6cbd5559f546bb1085869b2c674ad))
+
+
+
 # [8.1.0](https://github.com/TriPSs/nx-extend/compare/vercel@8.0.3...vercel@8.1.0) (2024-06-24)
 
 
