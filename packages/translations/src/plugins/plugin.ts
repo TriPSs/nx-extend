@@ -18,7 +18,7 @@ export interface TranslationPluginOptions {
 export const createNodesV2: CreateNodesV2 = [
   '**/.translationsrc.json',
   async (configFiles, options: TranslationPluginOptions, context): Promise<CreateNodesResultV2> => {
-    console.log('context.workspaceRoot',context.workspaceRoot)
+
     return createNodesFromFiles(
       createTargets,
       configFiles,
