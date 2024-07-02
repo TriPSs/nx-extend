@@ -88,7 +88,7 @@ export const getConfigFileInRoot = <Config extends BaseConfigFile>(
   return configFile as Config
 }
 
-export const updateConfigFile = (context: ExecutorContext, update): void => {
+export const updateConfigFile = (context: ExecutorContext, update: object): void => {
   const fileLocation = resolve(getProjectRoot(context), '.translationsrc.json')
 
   writeJsonFile(fileLocation, Object.assign(readJsonFile(fileLocation), update))

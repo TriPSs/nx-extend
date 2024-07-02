@@ -1,18 +1,10 @@
-import {
-  CreateDependencies,
-  CreateNodes,
-  CreateNodesContext,
-  detectPackageManager,
-  readJsonFile,
-  TargetConfiguration,
-  writeJsonFile
-} from '@nx/devkit'
-import { calculateHashForCreateNodes } from '@nx/devkit/src/utils/calculate-hash-for-create-nodes'
+import { createNodesFromFiles } from '@nx/devkit'
 import { getNamedInputs } from '@nx/devkit/src/utils/get-named-inputs'
-import { existsSync, readdirSync } from 'fs'
-import { getLockFileName } from 'nx/src/plugins/js/lock-file/lock-file'
-import { workspaceDataDirectory } from 'nx/src/utils/cache-directory'
+import { readdirSync } from 'fs'
 import { dirname, join } from 'path'
+
+import type { CreateNodesResultV2, CreateNodesV2, TargetConfiguration } from '@nx/devkit'
+import type { CreateNodesContext, CreateNodesResult } from '@nx/devkit'
 
 import { BaseConfigFile, getConfigFileInRoot } from '../utils/config-file'
 
@@ -23,71 +15,46 @@ export interface TranslationPluginOptions {
   translateTargetName?: string
 }
 
-const cachePath = join(workspaceDataDirectory, 'nx-extend.translations.hash')
-const targetsCache = existsSync(cachePath) ? readTargetsCache() : {}
-
-const calculatedTargets: Record<
-  string,
-  Record<string, TargetConfiguration>
-> = {}
-
-function readTargetsCache(): Record<
-  string,
-  Record<string, TargetConfiguration>
-> {
-  return readJsonFile(cachePath)
-}
-
-function writeTargetsToCache(
-  targets: Record<string, Record<string, TargetConfiguration>>
-) {
-  writeJsonFile(cachePath, targets)
-}
-
-export const createDependencies: CreateDependencies = () => {
-  writeTargetsToCache(calculatedTargets)
-
-  return []
-}
-
-export const createNodes: CreateNodes<TranslationPluginOptions> = [
+export const createNodesV2: CreateNodesV2 = [
   '**/.translationsrc.json',
-  async (configFilePath, options, context) => {
-    const projectRoot = dirname(configFilePath)
-    const fullyQualifiedProjectRoot = join(context.workspaceRoot, projectRoot)
+  async (configFiles, options: TranslationPluginOptions, context): Promise<CreateNodesResultV2> => {
 
-    // Do not create a project if package.json and project.json isn't there
-    const siblingFiles = readdirSync(fullyQualifiedProjectRoot)
-    if (!siblingFiles.includes('project.json') || siblingFiles.includes('nx.json')) {
-      return {}
-    }
-
-    const config = getConfigFileInRoot(projectRoot)
-    options = normalizeOptions(options)
-
-    const hash = await calculateHashForCreateNodes(projectRoot, options, context, [
-      getLockFileName(detectPackageManager(context.workspaceRoot))
-    ])
-
-    const targets = targetsCache[hash] ?? buildTranslationTargets(
-      projectRoot,
-      context,
-      config,
-      options
+    return createNodesFromFiles(
+      createTargets,
+      configFiles,
+      options,
+      context
     )
+  }
+]
 
-    calculatedTargets[hash] = targets
+function createTargets(projectConfigurationFile: string, options: TranslationPluginOptions, context: CreateNodesContext): CreateNodesResult {
+  const projectRoot = dirname(projectConfigurationFile)
+  const fullyQualifiedProjectRoot = join(context.workspaceRoot, projectRoot)
 
-    return {
-      projects: {
-        [projectRoot]: {
-          root: projectRoot,
-          targets: targets
-        }
+  // Do not create a project if package.json and project.json isn't there
+  const siblingFiles = readdirSync(fullyQualifiedProjectRoot)
+  if (!siblingFiles.includes('project.json') || siblingFiles.includes('nx.json')) {
+    return {}
+  }
+
+  const config = getConfigFileInRoot(projectRoot)
+  options = normalizeOptions(options)
+
+  return {
+    projects: {
+      [projectRoot]: {
+        root: projectRoot,
+        targets: buildTranslationTargets(
+          projectRoot,
+          context,
+          config,
+          options
+        )
       }
     }
   }
-]
+}
 
 function buildTranslationTargets(
   projectRoot: string,
