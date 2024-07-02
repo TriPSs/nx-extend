@@ -111,7 +111,7 @@ export function buildExecutor(
       outputDirectory: getOutputDirectory(framework, outputDirectory),
       rootDirectory: null,
       directoryListing: false,
-      nodeVersion: options.nodeVersion || '18.x'
+      nodeVersion: options.nodeVersion || '20.x'
     }
   })
 
