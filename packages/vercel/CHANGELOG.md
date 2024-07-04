@@ -1,4 +1,23 @@
  
+# [9.0.0](https://github.com/TriPSs/nx-extend/compare/vercel@8.1.1...vercel@9.0.0) (2024-07-04)
+
+
+### Bug Fixes
+
+* **vercel:** Lock vercel version when building ([e5ffbf5](https://github.com/TriPSs/nx-extend/commit/e5ffbf5abd3a607ed8b235390151c2249bc448de)), closes [vercel/vercel#11097](https://github.com/vercel/vercel/issues/11097)
+
+
+### Features
+
+* **vercel:** Update to node version 20.x ([dc79b44](https://github.com/TriPSs/nx-extend/commit/dc79b44d92495c2f7ee8e665b0b8b730280bf376))
+
+
+### BREAKING CHANGES
+
+* **vercel:** Default node version is now 20.x
+
+
+
 ## [8.1.1](https://github.com/TriPSs/nx-extend/compare/vercel@8.1.0...vercel@8.1.1) (2024-06-25)
 
 
