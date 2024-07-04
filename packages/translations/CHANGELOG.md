@@ -1,4 +1,13 @@
  
+# [13.1.0](https://github.com/TriPSs/nx-extend/compare/translations@13.0.4...translations@13.1.0) (2024-07-04)
+
+
+### Features
+
+* **translations:** Updated plugin to `CreateNodesV2` ([1054268](https://github.com/TriPSs/nx-extend/commit/10542684c00f569c03453fa63bf08c007934320b))
+
+
+
 ## [13.0.4](https://github.com/TriPSs/nx-extend/compare/translations@13.0.3...translations@13.0.4) (2024-06-17)
 
 ### Dependency Updates
