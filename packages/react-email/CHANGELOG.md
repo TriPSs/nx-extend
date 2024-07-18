@@ -1,4 +1,8 @@
  
+## [2.0.4](https://github.com/TriPSs/nx-extend/compare/react-email@2.0.3...react-email@2.0.4) (2024-07-18)
+
+
+
 ## [2.0.3](https://github.com/TriPSs/nx-extend/compare/react-email@2.0.2...react-email@2.0.3) (2024-06-17)
 
 ### Dependency Updates
