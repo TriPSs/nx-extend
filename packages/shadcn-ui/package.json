@@ -18,8 +18,8 @@
   "devDependencies": {
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
-    "lucide-react": "^0.395.0",
-    "tailwind-merge": "^2.3.0",
+    "lucide-react": "^0.408.0",
+    "tailwind-merge": "^2.4.0",
     "tailwindcss-animate": "^1.0.7"
   },
   "builders": "./executors.json",

@@ -62,6 +62,8 @@ function addFiles(host: Tree, options: NormalizedSchema) {
 export default async function (host: Tree, options: StrapiGeneratorSchema) {
   const normalizedOptions = normalizeOptions(host, options)
 
+  // TODO:: Remove scripts we do not support from package.json
+
   addProjectConfiguration(host, normalizedOptions.projectName, {
     root: normalizedOptions.projectRoot,
     projectType: 'application',
