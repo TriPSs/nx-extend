@@ -6,6 +6,7 @@ export interface TicketInfo {
 }
 
 export const getTicketNrFromLine = (options: NotifyChangelogOptions, line: string): TicketInfo | undefined => {
+  // @ts-expect-error somehow now errors?
   const matches = new RegExp(/closes \[(?<repo>.*?)#(?<ticketNr>[0-9]+)\]/g)
     .exec(line)
 
