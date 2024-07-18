@@ -1,4 +1,8 @@
  
+## [13.1.9](https://github.com/TriPSs/nx-extend/compare/gcp-functions@13.1.8...gcp-functions@13.1.9) (2024-07-18)
+
+
+
 ## [13.1.8](https://github.com/TriPSs/nx-extend/compare/gcp-functions@13.1.7...gcp-functions@13.1.8) (2024-06-17)
 
 ### Dependency Updates
