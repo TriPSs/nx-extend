@@ -32,6 +32,9 @@ export const generatePackageJson = (
     }
   )
 
+  // Remove packageManager as this conflicts with yarn versions
+  delete packageJson.packageManager
+
   if (!packageJson.main) {
     packageJson.main = options.outputFileName || 'main.js'
   }
