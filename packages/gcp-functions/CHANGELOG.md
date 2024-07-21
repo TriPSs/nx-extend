@@ -1,4 +1,13 @@
  
+## [13.1.10](https://github.com/TriPSs/nx-extend/compare/gcp-functions@13.1.9...gcp-functions@13.1.10) (2024-07-21)
+
+
+### Bug Fixes
+
+* **gcp-functions:** Never add `packageManager` to generated package.json ([0a5bcaa](https://github.com/TriPSs/nx-extend/commit/0a5bcaaa8457148ca0645333959868618de77101))
+
+
+
 ## [13.1.9](https://github.com/TriPSs/nx-extend/compare/gcp-functions@13.1.8...gcp-functions@13.1.9) (2024-07-18)
 
 
