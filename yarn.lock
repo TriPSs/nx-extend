@@ -5692,6 +5692,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@evops/hcl-terraform-parser@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "@evops/hcl-terraform-parser@npm:1.0.0"
+  checksum: 10/d48b92b594a04a10a513e9e2984ac48437348ff23ff0e898e6fdb612715bb0a20c66d176b57f2b828c7c8da1cd282763aed152bcf17c00f67ae2c061c78212fd
+  languageName: node
+  linkType: hard
+
 "@fastify/busboy@npm:^2.0.0":
   version: 2.1.1
   resolution: "@fastify/busboy@npm:2.1.1"
@@ -7345,6 +7352,8 @@ __metadata:
 "@nx-extend/terraform@workspace:packages/terraform":
   version: 0.0.0-use.local
   resolution: "@nx-extend/terraform@workspace:packages/terraform"
+  dependencies:
+    "@evops/hcl-terraform-parser": "npm:^1.0.0"
   languageName: unknown
   linkType: soft
 
