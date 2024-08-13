@@ -18,6 +18,6 @@
   "builders": "./executors.json",
   "generators": "./generators.json",
   "dependencies": {
-    "@evops/hcl-terraform-parser": "^1.0.0"
+    "hcl2-json-parser": "^1.0.1"
   }
 }

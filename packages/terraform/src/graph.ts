@@ -1,9 +1,10 @@
-import * as hclParser from '@evops/hcl-terraform-parser'
 import {
   CreateDependencies,
+  logger,
   RawProjectGraphDependency,
   workspaceRoot
 } from '@nx/devkit'
+import * as hcl2JsonParser from 'hcl2-json-parser'
 import * as fs from 'node:fs/promises'
 import * as path from 'node:path'
 import { DependencyType } from 'nx/src/config/project-graph'
@@ -27,11 +28,20 @@ export const createDependencies: CreateDependencies = async (_, ctx) => {
 
     for (const file of tfFilesToProcess) {
       const data = await fs.readFile(file.file)
-      const hclFile = hclParser.parse(data)
-      const moduleCalls = hclFile['module_calls']
 
-      for (const moduleCall of Object.values(moduleCalls)) {
-        const depSourcePathRel = moduleCall.source
+      let parsed: hcl2JsonParser.HclDef
+
+      try {
+        parsed = await hcl2JsonParser.parseToObject(data.toString())
+      } catch (e) {
+        logger.warn(
+          `Failed to parse .tf file ${file.file}. Error: ${e.message}`
+        )
+        continue
+      }
+
+      for (const moduleCall of Object.values(parsed.module ?? [])) {
+        const depSourcePathRel = moduleCall[0]?.source
 
         if (!isLocalPath(depSourcePathRel)) {
           continue
