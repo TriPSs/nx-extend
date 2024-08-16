@@ -15,8 +15,6 @@
   },
   "license": "MIT",
   "main": "src/index.js",
-  "builders": "./executors.json",
-  "generators": "./generators.json",
   "dependencies": {
     "@docusaurus/core": "3.4.0",
     "@docusaurus/preset-classic": "3.4.0",
@@ -31,5 +29,10 @@
     "@docusaurus/tsconfig": "3.4.0",
     "@docusaurus/types": "3.4.0",
     "typescript": "~5.5.3"
-  }
+  },
+  "peerDependencies": {
+    "@nx/devkit": "^19.6.0"
+  },
+  "builders": "./executors.json",
+  "generators": "./generators.json"
 }

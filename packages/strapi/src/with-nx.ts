@@ -1,5 +1,4 @@
-import { parseTargetString, workspaceRoot } from '@nx/devkit'
-import { readCachedProjectGraph } from '@nx/workspace/src/core/project-graph'
+import { parseTargetString, readCachedProjectGraph, workspaceRoot } from '@nx/devkit'
 import path from 'node:path'
 
 export function withNx(config: any, webpack: any) {

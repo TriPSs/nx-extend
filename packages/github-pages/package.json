@@ -2,6 +2,9 @@
   "name": "@nx-extend/github-pages",
   "version": "7.0.3",
   "main": "src/index.js",
-  "generators": "./generators.json",
-  "executors": "./executors.json"
+  "peerDependencies": {
+    "@nx/devkit": "^19.6.0"
+  },
+  "executors": "./executors.json",
+  "generators": "./generators.json"
 }

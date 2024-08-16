@@ -11,6 +11,9 @@
   },
   "license": "MIT",
   "main": "src/index.js",
+  "peerDependencies": {
+    "@nx/devkit": "^19.6.0"
+  },
   "builders": "./executors.json",
   "generators": "./generators.json"
 }

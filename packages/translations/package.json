@@ -24,6 +24,9 @@
   "dependencies": {
     "@formatjs/cli": "^6.2.12"
   },
+  "peerDependencies": {
+    "@nx/devkit": "^19.6.0"
+  },
   "builders": "./executors.json",
   "generators": "./generators.json"
 }

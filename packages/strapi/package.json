@@ -19,6 +19,9 @@
     "@strapi/generate-new": "4.25.4",
     "@strapi/strapi": "4.25.4"
   },
+  "peerDependencies": {
+    "@nx/devkit": "^19.6.0"
+  },
   "builders": "./executors.json",
   "generators": "./generators.json"
 }

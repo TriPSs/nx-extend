@@ -1,5 +1,4 @@
-import { logger, parseTargetString } from '@nx/devkit'
-import { readCachedProjectGraph } from '@nx/workspace/src/core/project-graph'
+import { logger, parseTargetString, readCachedProjectGraph } from '@nx/devkit'
 import { buildCommand, getPackageManagerDlxCommand, USE_VERBOSE_LOGGING } from '@nx-extend/core'
 import * as childProcess from 'child_process'
 
