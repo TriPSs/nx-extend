@@ -1,6 +1,14 @@
-# Changelog
+ 
+## [6.0.5](https://github.com/TriPSs/nx-extend/compare/terraform@6.0.4...terraform@6.0.5) (2024-06-20)
 
-This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
+
+
+## [6.0.4](https://github.com/TriPSs/nx-extend/compare/terraform@6.0.3...terraform@6.0.4) (2024-06-17)
+
+### Dependency Updates
+
+* `core` updated to version `7.0.3`
+
 
 ## [6.0.3](https://github.com/TriPSs/nx-extend/compare/terraform@6.0.2...terraform@6.0.3) (2024-06-14)
 

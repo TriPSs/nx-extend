@@ -1,6 +1,23 @@
-# Changelog
+ 
+## [13.1.10](https://github.com/TriPSs/nx-extend/compare/gcp-functions@13.1.9...gcp-functions@13.1.10) (2024-07-21)
 
-This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
+
+### Bug Fixes
+
+* **gcp-functions:** Never add `packageManager` to generated package.json ([0a5bcaa](https://github.com/TriPSs/nx-extend/commit/0a5bcaaa8457148ca0645333959868618de77101))
+
+
+
+## [13.1.9](https://github.com/TriPSs/nx-extend/compare/gcp-functions@13.1.8...gcp-functions@13.1.9) (2024-07-18)
+
+
+
+## [13.1.8](https://github.com/TriPSs/nx-extend/compare/gcp-functions@13.1.7...gcp-functions@13.1.8) (2024-06-17)
+
+### Dependency Updates
+
+* `core` updated to version `7.0.3`
+
 
 ## [13.1.7](https://github.com/TriPSs/nx-extend/compare/gcp-functions@13.1.6...gcp-functions@13.1.7) (2024-06-14)
 

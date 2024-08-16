@@ -14,6 +14,7 @@ export interface ExecutorOptions {
   lock: boolean
   varFile: string
   varString: string
+  reconfigure: boolean
 
   [key: string]: string | unknown
 }
@@ -28,7 +29,19 @@ export function createExecutor(command: string) {
     }
 
     const { sourceRoot } = context.workspace.projects[context.projectName]
-    const { backendConfig = [], planFile, ciMode, autoApproval, formatWrite, upgrade, migrateState, lock, varFile, varString } = options
+    const {
+      backendConfig = [],
+      planFile,
+      ciMode,
+      autoApproval,
+      formatWrite,
+      upgrade,
+      migrateState,
+      lock,
+      varFile,
+      varString,
+      reconfigure
+    } = options
 
     let env = {}
     if (ciMode) {
@@ -38,11 +51,16 @@ export function createExecutor(command: string) {
       }
     }
 
+    let jsonBackendConfig = backendConfig
+    if (typeof jsonBackendConfig === 'string') {
+      jsonBackendConfig = JSON.parse(jsonBackendConfig)
+    }
+
     execSync(
       buildCommand([
         'terraform',
         command,
-        ...backendConfig.map(
+        ...jsonBackendConfig.map(
           (config) => `-backend-config="${config.key}=${config.name}"`
         ),
         command === 'plan' && planFile && `-out ${planFile}`,
@@ -56,9 +74,10 @@ export function createExecutor(command: string) {
         command === 'fmt' && !formatWrite && '--check --list',
         command === 'init' && upgrade && '-upgrade',
         command === 'init' && migrateState && '-migrate-state',
+        command === 'init' && reconfigure && '-reconfigure',
         command === 'providers' && lock && 'lock',
         command === 'test' && varFile && `--var-file ${varFile}`,
-        command === 'test' && varString && `--var ${varString}`,
+        command === 'test' && varString && `--var ${varString}`
       ]),
       {
         cwd: sourceRoot,

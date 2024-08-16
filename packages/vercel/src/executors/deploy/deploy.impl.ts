@@ -16,6 +16,7 @@ import { vercelToken } from '../../utils/vercel-token'
 export interface DeployOptions {
   buildTarget?: string
   regions?: string
+  archive?: 'tgz'
 }
 
 export async function deployExecutor(
@@ -56,6 +57,7 @@ export async function deployExecutor(
     context.configurationName === 'production' && '--prod',
     vercelToken && `--token=${vercelToken}`,
     options.regions && `--regions=${options.regions}`,
+    options.archive && `--archive=${options.archive}`,
 
     USE_VERBOSE_LOGGING && '--debug'
   ]), {

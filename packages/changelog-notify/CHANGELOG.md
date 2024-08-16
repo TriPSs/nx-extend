@@ -1,6 +1,7 @@
-# Changelog
+ 
+## [7.0.4](https://github.com/TriPSs/nx-extend/compare/changelog-notify@7.0.3...changelog-notify@7.0.4) (2024-07-18)
 
-This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
+
 
 ## [7.0.3](https://github.com/TriPSs/nx-extend/compare/changelog-notify@7.0.2...changelog-notify@7.0.3) (2024-06-14)
 

@@ -1,6 +1,47 @@
-# Changelog
+ 
+# [9.0.0](https://github.com/TriPSs/nx-extend/compare/vercel@8.1.1...vercel@9.0.0) (2024-07-04)
 
-This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
+
+### Bug Fixes
+
+* **vercel:** Lock vercel version when building ([e5ffbf5](https://github.com/TriPSs/nx-extend/commit/e5ffbf5abd3a607ed8b235390151c2249bc448de)), closes [vercel/vercel#11097](https://github.com/vercel/vercel/issues/11097)
+
+
+### Features
+
+* **vercel:** Update to node version 20.x ([dc79b44](https://github.com/TriPSs/nx-extend/commit/dc79b44d92495c2f7ee8e665b0b8b730280bf376))
+
+
+### BREAKING CHANGES
+
+* **vercel:** Default node version is now 20.x
+
+
+
+## [8.1.1](https://github.com/TriPSs/nx-extend/compare/vercel@8.1.0...vercel@8.1.1) (2024-06-25)
+
+
+### Bug Fixes
+
+* **vercel:** remove  archive option for deploy executor ([8d7929a](https://github.com/TriPSs/nx-extend/commit/8d7929ac5dc6cbd5559f546bb1085869b2c674ad))
+
+
+
+# [8.1.0](https://github.com/TriPSs/nx-extend/compare/vercel@8.0.3...vercel@8.1.0) (2024-06-24)
+
+
+### Features
+
+* **vercel:** add archive option for deploy executor ([b2e6388](https://github.com/TriPSs/nx-extend/commit/b2e6388d141142f1a06e1d32181b0ed22a1ad128))
+
+
+
+## [8.0.3](https://github.com/TriPSs/nx-extend/compare/vercel@8.0.2...vercel@8.0.3) (2024-06-17)
+
+### Dependency Updates
+
+* `core` updated to version `7.0.3`
+
 
 ## [8.0.2](https://github.com/TriPSs/nx-extend/compare/vercel@8.0.1...vercel@8.0.2) (2024-06-14)
 

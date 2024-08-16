@@ -1,4 +1,3 @@
-/// <reference types="node" />
 import { ShellString, ExecOptions } from 'shelljs';
 import { ChildProcess } from 'child_process';
 export interface Options extends ExecOptions {

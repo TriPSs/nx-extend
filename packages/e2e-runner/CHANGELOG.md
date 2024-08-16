@@ -1,6 +1,17 @@
-# Changelog
+ 
+## [10.0.5](https://github.com/TriPSs/nx-extend/compare/e2e-runner@10.0.4...e2e-runner@10.0.5) (2024-07-18)
 
-This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
+### Dependency Updates
+
+* `playwright` updated to version `8.0.3`
+
+
+## [10.0.4](https://github.com/TriPSs/nx-extend/compare/e2e-runner@10.0.3...e2e-runner@10.0.4) (2024-06-17)
+
+### Dependency Updates
+
+* `core` updated to version `7.0.3`
+
 
 ## [10.0.3](https://github.com/TriPSs/nx-extend/compare/e2e-runner@10.0.2...e2e-runner@10.0.3) (2024-06-14)
 

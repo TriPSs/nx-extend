@@ -1,6 +1,10 @@
-# Changelog
+ 
+## [8.0.3](https://github.com/TriPSs/nx-extend/compare/gcp-storage@8.0.2...gcp-storage@8.0.3) (2024-06-17)
 
-This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
+### Dependency Updates
+
+* `core` updated to version `7.0.3`
+
 
 ## [8.0.2](https://github.com/TriPSs/nx-extend/compare/gcp-storage@8.0.1...gcp-storage@8.0.2) (2024-06-14)
 

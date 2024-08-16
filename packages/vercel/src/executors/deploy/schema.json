@@ -9,6 +9,17 @@
     "regions": {
       "type": "string",
       "description": "Regions to deploy to"
+    },
+    "buildTarget": {
+      "type": "string",
+      "description": "Build target to deploy"
+    },
+    "archive": {
+      "type": "string",
+      "description": "Type of archive to use when uploading the build",
+      "enum": ["tgz"],
+      "x-prompt": "Archive type",
+      "x-display": "radio"
     }
   }
 }
