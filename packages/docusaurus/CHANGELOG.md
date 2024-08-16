@@ -1,4 +1,18 @@
  
+# [2.0.0](https://github.com/TriPSs/nx-extend/compare/docusaurus@1.0.1...docusaurus@2.0.0) (2024-08-16)
+
+
+### Features
+
+* Added `@nx/devkit` to `peerDependencies` ([2e2dd2b](https://github.com/TriPSs/nx-extend/commit/2e2dd2b997699f9d949b84cd8e96674b43725e56))
+
+
+### BREAKING CHANGES
+
+* `@nx/devkit` no longer included as dependency
+
+
+
 ## [1.0.1](https://github.com/TriPSs/nx-extend/compare/docusaurus@1.0.0...docusaurus@1.0.1) (2024-07-18)
 
 
