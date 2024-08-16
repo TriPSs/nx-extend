@@ -36,7 +36,7 @@
     "@nx/devkit": "19.6.0",
     "@nx/workspace": "19.6.0",
     "@types/tar": "^6.1.13",
-    "axios": "^1.7.2",
+    "axios": "^1.7.4",
     "crypto-js": "^4.2.0",
     "deepmerge": "^4.3.1",
     "rxjs-for-await": "^1.0.0",
