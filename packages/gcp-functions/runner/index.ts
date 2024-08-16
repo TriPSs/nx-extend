@@ -10,6 +10,8 @@ import type { DeployExecutorSchema } from '@nx-extend/gcp-functions/src/executor
 
 import { createRunnerModule } from './__runner.module'
 
+declare const module
+
 export type NxEndpoint = {
   endpoint: string
   func: HttpFunction
@@ -52,6 +54,11 @@ export async function bootstrapRunner(basicFunctionsMap: RunnerFunctionsMap, opt
   })
 
   await app.listen(options.port || 8080, '0.0.0.0').then(() => {
-    Logger.log('Functions running on http://localhost:8080')
+    Logger.log(`Functions running on http://localhost:${options.port || 8080}`)
   })
+
+  if (module.hot) {
+    module.hot.accept();
+    module.hot.dispose(() => app.close());
+  }
 }
