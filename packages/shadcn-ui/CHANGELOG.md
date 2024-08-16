@@ -1,4 +1,22 @@
  
+# [3.0.0](https://github.com/TriPSs/nx-extend/compare/shadcn-ui@2.0.4...shadcn-ui@3.0.0) (2024-08-16)
+
+### Dependency Updates
+
+* `core` updated to version `8.0.0`
+
+### Features
+
+* Added `@nx/devkit` to `peerDependencies` ([2e2dd2b](https://github.com/TriPSs/nx-extend/commit/2e2dd2b997699f9d949b84cd8e96674b43725e56))
+* Updated Nx to 19.6.0 ([32b5175](https://github.com/TriPSs/nx-extend/commit/32b517596ba4698046a104d232aba936a5cc1d7b))
+
+
+### BREAKING CHANGES
+
+* `@nx/devkit` no longer included as dependency
+
+
+
 ## [2.0.4](https://github.com/TriPSs/nx-extend/compare/shadcn-ui@2.0.3...shadcn-ui@2.0.4) (2024-07-18)
 
 
