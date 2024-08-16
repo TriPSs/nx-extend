@@ -7403,12 +7403,16 @@ __metadata:
 "@nx-extend/changelog-notify@workspace:packages/changelog-notify":
   version: 0.0.0-use.local
   resolution: "@nx-extend/changelog-notify@workspace:packages/changelog-notify"
+  peerDependencies:
+    "@nx/devkit": ^19.6.0
   languageName: unknown
   linkType: soft
 
 "@nx-extend/core@workspace:packages/core":
   version: 0.0.0-use.local
   resolution: "@nx-extend/core@workspace:packages/core"
+  peerDependencies:
+    "@nx/devkit": ^19.6.0
   languageName: unknown
   linkType: soft
 
@@ -7427,30 +7431,40 @@ __metadata:
     react: "npm:^18.3.1"
     react-dom: "npm:^18.3.1"
     typescript: "npm:~5.5.3"
+  peerDependencies:
+    "@nx/devkit": ^19.6.0
   languageName: unknown
   linkType: soft
 
 "@nx-extend/e2e-runner@workspace:packages/e2e-runner":
   version: 0.0.0-use.local
   resolution: "@nx-extend/e2e-runner@workspace:packages/e2e-runner"
+  peerDependencies:
+    "@nx/devkit": ^19.6.0
   languageName: unknown
   linkType: soft
 
 "@nx-extend/firebase-hosting@workspace:packages/firebase-hosting":
   version: 0.0.0-use.local
   resolution: "@nx-extend/firebase-hosting@workspace:packages/firebase-hosting"
+  peerDependencies:
+    "@nx/devkit": ^19.6.0
   languageName: unknown
   linkType: soft
 
 "@nx-extend/gcp-cloud-run@workspace:packages/gcp-cloud-run":
   version: 0.0.0-use.local
   resolution: "@nx-extend/gcp-cloud-run@workspace:packages/gcp-cloud-run"
+  peerDependencies:
+    "@nx/devkit": ^19.6.0
   languageName: unknown
   linkType: soft
 
 "@nx-extend/gcp-deployment-manager@workspace:packages/gcp-deployment-manager":
   version: 0.0.0-use.local
   resolution: "@nx-extend/gcp-deployment-manager@workspace:packages/gcp-deployment-manager"
+  peerDependencies:
+    "@nx/devkit": ^19.6.0
   languageName: unknown
   linkType: soft
 
@@ -7462,18 +7476,24 @@ __metadata:
     "@nestjs/common": "npm:^10.3.10"
     "@nestjs/core": "npm:^10.3.10"
     "@nestjs/platform-express": "npm:^10.3.10"
+  peerDependencies:
+    "@nx/devkit": ^19.6.0
   languageName: unknown
   linkType: soft
 
 "@nx-extend/gcp-secrets@workspace:packages/gcp-secrets":
   version: 0.0.0-use.local
   resolution: "@nx-extend/gcp-secrets@workspace:packages/gcp-secrets"
+  peerDependencies:
+    "@nx/devkit": ^19.6.0
   languageName: unknown
   linkType: soft
 
 "@nx-extend/gcp-storage@workspace:packages/gcp-storage":
   version: 0.0.0-use.local
   resolution: "@nx-extend/gcp-storage@workspace:packages/gcp-storage"
+  peerDependencies:
+    "@nx/devkit": ^19.6.0
   languageName: unknown
   linkType: soft
 
@@ -7483,25 +7503,31 @@ __metadata:
   dependencies:
     "@google-cloud/storage": "npm:7.12.0"
   peerDependencies:
-    "@nx/workspace": ^19.5.0
+    "@nx/devkit": ^19.6.0
   languageName: unknown
   linkType: soft
 
 "@nx-extend/github-pages@workspace:packages/github-pages":
   version: 0.0.0-use.local
   resolution: "@nx-extend/github-pages@workspace:packages/github-pages"
+  peerDependencies:
+    "@nx/devkit": ^19.6.0
   languageName: unknown
   linkType: soft
 
 "@nx-extend/playwright@workspace:packages/playwright":
   version: 0.0.0-use.local
   resolution: "@nx-extend/playwright@workspace:packages/playwright"
+  peerDependencies:
+    "@nx/devkit": ^19.6.0
   languageName: unknown
   linkType: soft
 
 "@nx-extend/pulumi@workspace:packages/pulumi":
   version: 0.0.0-use.local
   resolution: "@nx-extend/pulumi@workspace:packages/pulumi"
+  peerDependencies:
+    "@nx/devkit": ^19.6.0
   languageName: unknown
   linkType: soft
 
@@ -7511,6 +7537,8 @@ __metadata:
   dependencies:
     "@react-email/components": "npm:0.0.21"
     react-email: "npm:2.1.5"
+  peerDependencies:
+    "@nx/devkit": ^19.6.0
   languageName: unknown
   linkType: soft
 
@@ -7523,6 +7551,8 @@ __metadata:
     lucide-react: "npm:^0.408.0"
     tailwind-merge: "npm:^2.4.0"
     tailwindcss-animate: "npm:^1.0.7"
+  peerDependencies:
+    "@nx/devkit": ^19.6.0
   languageName: unknown
   linkType: soft
 
@@ -7532,12 +7562,16 @@ __metadata:
   dependencies:
     "@strapi/generate-new": "npm:4.25.4"
     "@strapi/strapi": "npm:4.25.4"
+  peerDependencies:
+    "@nx/devkit": ^19.6.0
   languageName: unknown
   linkType: soft
 
 "@nx-extend/terraform@workspace:packages/terraform":
   version: 0.0.0-use.local
   resolution: "@nx-extend/terraform@workspace:packages/terraform"
+  peerDependencies:
+    "@nx/devkit": ^19.6.0
   languageName: unknown
   linkType: soft
 
@@ -7546,12 +7580,16 @@ __metadata:
   resolution: "@nx-extend/translations@workspace:packages/translations"
   dependencies:
     "@formatjs/cli": "npm:^6.2.12"
+  peerDependencies:
+    "@nx/devkit": ^19.6.0
   languageName: unknown
   linkType: soft
 
 "@nx-extend/vercel@workspace:packages/vercel":
   version: 0.0.0-use.local
   resolution: "@nx-extend/vercel@workspace:packages/vercel"
+  peerDependencies:
+    "@nx/devkit": ^19.6.0
   languageName: unknown
   linkType: soft
 
