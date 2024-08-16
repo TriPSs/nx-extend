@@ -1,5 +1,4 @@
-import { ExecutorContext, logger } from '@nx/devkit'
-import { createProjectGraphAsync } from '@nx/workspace/src/core/project-graph'
+import { createProjectGraphAsync, ExecutorContext, logger } from '@nx/devkit'
 import { buildCommand, execCommand } from '@nx-extend/core'
 import { join } from 'path'
 

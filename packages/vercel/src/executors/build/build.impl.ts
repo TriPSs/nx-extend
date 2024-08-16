@@ -1,7 +1,12 @@
-import { parseTargetString, readJsonFile, workspaceRoot, writeJsonFile } from '@nx/devkit'
+import { parseTargetString, readCachedProjectGraph, readJsonFile, workspaceRoot, writeJsonFile } from '@nx/devkit'
 import { targetToTargetString } from '@nx/devkit/src/executors/parse-target-string'
-import { readCachedProjectGraph } from '@nx/workspace/src/core/project-graph'
-import { buildCommand, copyFile, execCommand, USE_VERBOSE_LOGGING } from '@nx-extend/core'
+import {
+  buildCommand,
+  copyFile,
+  execCommand,
+  getOutputDirectoryFromBuildTarget,
+  USE_VERBOSE_LOGGING
+} from '@nx-extend/core'
 import { existsSync, rmSync } from 'fs'
 import { join } from 'path'
 
@@ -10,7 +15,6 @@ import type { ExecutorContext } from '@nx/devkit'
 import { addEnvVariablesToFile } from '../../utils/add-env-variables-to-file'
 import { enrichVercelEnvFile } from '../../utils/enrich-vercel-env-file'
 import { getEnvVars } from '../../utils/get-env-vars'
-import { getOutputDirectoryFromBuildTarget } from '../../utils/get-output-directory-from-build-target'
 import { vercelToken } from '../../utils/vercel-token'
 import { getOutputDirectory } from './utils/get-output-directory'
 

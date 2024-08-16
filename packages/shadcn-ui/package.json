@@ -22,6 +22,9 @@
     "tailwind-merge": "^2.4.0",
     "tailwindcss-animate": "^1.0.7"
   },
+  "peerDependencies": {
+    "@nx/devkit": "^19.6.0"
+  },
   "builders": "./executors.json",
   "generators": "./generators.json"
 }

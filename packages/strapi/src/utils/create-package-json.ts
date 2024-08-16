@@ -1,7 +1,6 @@
-import { detectPackageManager, readJsonFile, writeJsonFile } from '@nx/devkit'
+import { detectPackageManager, readCachedProjectGraph, readJsonFile, writeJsonFile } from '@nx/devkit'
 import { createLockFile, createPackageJson as generatePackageJson } from '@nx/js'
-import { readCachedProjectGraph } from '@nx/workspace/src/core/project-graph'
-import { existsSync,writeFileSync } from 'fs'
+import { existsSync, writeFileSync } from 'fs'
 import { getLockFileName } from 'nx/src/plugins/js/lock-file/lock-file'
 
 import type { ExecutorContext } from '@nx/devkit'

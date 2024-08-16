@@ -2,11 +2,11 @@ import {
   detectPackageManager,
   ExecutorContext,
   logger,
+  readCachedProjectGraph,
   readJsonFile,
   writeJsonFile
 } from '@nx/devkit'
 import { createLockFile, createPackageJson } from '@nx/js'
-import { readCachedProjectGraph } from '@nx/workspace/src/core/project-graph'
 import * as fs from 'fs'
 import { getLockFileName } from 'nx/src/plugins/js/lock-file/lock-file'
 import { fileExists } from 'nx/src/utils/fileutils'
@@ -19,7 +19,7 @@ export const generatePackageJson = (
   options: WebpackExecutorOptions,
   outFile: string,
   omitOptionalDependencies = true,
-  generateLockFile?: boolean,
+  generateLockFile?: boolean
 ) => {
   const { root } = context.workspace.projects[context.projectName]
 
