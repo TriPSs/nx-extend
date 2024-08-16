@@ -1,4 +1,18 @@
  
+# [8.0.0](https://github.com/TriPSs/nx-extend/compare/github-pages@7.0.3...github-pages@8.0.0) (2024-08-16)
+
+
+### Features
+
+* Added `@nx/devkit` to `peerDependencies` ([2e2dd2b](https://github.com/TriPSs/nx-extend/commit/2e2dd2b997699f9d949b84cd8e96674b43725e56))
+
+
+### BREAKING CHANGES
+
+* `@nx/devkit` no longer included as dependency
+
+
+
 ## [7.0.3](https://github.com/TriPSs/nx-extend/compare/github-pages@7.0.2...github-pages@7.0.3) (2024-07-18)
 
 
