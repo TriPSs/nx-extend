@@ -1,4 +1,21 @@
  
+# [11.0.0](https://github.com/TriPSs/nx-extend/compare/gcp-cloud-run@10.1.5...gcp-cloud-run@11.0.0) (2024-08-16)
+
+### Dependency Updates
+
+* `core` updated to version `8.0.0`
+
+### Features
+
+* Added `@nx/devkit` to `peerDependencies` ([2e2dd2b](https://github.com/TriPSs/nx-extend/commit/2e2dd2b997699f9d949b84cd8e96674b43725e56))
+
+
+### BREAKING CHANGES
+
+* `@nx/devkit` no longer included as dependency
+
+
+
 ## [10.1.5](https://github.com/TriPSs/nx-extend/compare/gcp-cloud-run@10.1.4...gcp-cloud-run@10.1.5) (2024-06-17)
 
 ### Dependency Updates

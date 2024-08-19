@@ -1,6 +1,6 @@
 {
   "name": "@nx-extend/gcp-deployment-manager",
-  "version": "8.0.3",
+  "version": "9.0.0",
   "homepage": "https://github.com/TriPSs/nx-extend/blob/master/packages/gcp-deployment-manager/README.md",
   "bugs": {
     "url": "https://github.com/tripss/nx-extend/issues"
@@ -11,6 +11,9 @@
   },
   "license": "MIT",
   "main": "src/index.js",
+  "peerDependencies": {
+    "@nx/devkit": "^19.6.0"
+  },
   "builders": "./executors.json",
   "generators": "./generators.json"
 }

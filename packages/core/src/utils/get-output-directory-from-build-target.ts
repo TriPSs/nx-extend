@@ -1,5 +1,4 @@
-import { ExecutorContext, parseTargetString, readTargetOptions } from '@nx/devkit'
-import { readCachedProjectGraph } from '@nx/workspace/src/core/project-graph'
+import { ExecutorContext, parseTargetString, readCachedProjectGraph,readTargetOptions } from '@nx/devkit'
 
 export function getOutputDirectoryFromBuildTarget(context: ExecutorContext, buildTarget: string): string | undefined {
   const targetString = parseTargetString(buildTarget, readCachedProjectGraph())

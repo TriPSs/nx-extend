@@ -1,6 +1,6 @@
 {
   "name": "@nx-extend/translations",
-  "version": "13.1.0",
+  "version": "14.0.0",
   "keywords": [
     "nx",
     "translations",
@@ -23,6 +23,9 @@
   "main": "src/index.js",
   "dependencies": {
     "@formatjs/cli": "^6.2.12"
+  },
+  "peerDependencies": {
+    "@nx/devkit": "^19.6.0"
   },
   "builders": "./executors.json",
   "generators": "./generators.json"

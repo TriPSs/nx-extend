@@ -110,7 +110,9 @@ export default async function (tree: Tree, options: ShadecnUiSchema) {
         'tailwind-merge': '^2.3.0',
         'tailwindcss-animate': '^1.0.7'
       },
-      {}
+      {
+        tailwindcss: '^3.4.6'
+      }
     )
   )
 }

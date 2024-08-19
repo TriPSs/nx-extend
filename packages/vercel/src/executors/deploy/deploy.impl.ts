@@ -1,11 +1,16 @@
 import * as githubCore from '@actions/core'
-import { buildCommand, execCommand, isCI, USE_VERBOSE_LOGGING } from '@nx-extend/core'
+import {
+  buildCommand,
+  execCommand,
+  getOutputDirectoryFromBuildTarget,
+  isCI,
+  USE_VERBOSE_LOGGING
+} from '@nx-extend/core'
 import { existsSync } from 'fs'
 import { join } from 'path'
 
 import type { ExecutorContext } from '@nx/devkit'
 
-import { getOutputDirectoryFromBuildTarget } from '../../utils/get-output-directory-from-build-target'
 import { vercelToken } from '../../utils/vercel-token'
 
 export interface DeployOptions {

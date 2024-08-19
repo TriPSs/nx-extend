@@ -1,6 +1,6 @@
 {
   "name": "@nx-extend/gcp-functions",
-  "version": "13.1.10",
+  "version": "14.0.0",
   "homepage": "https://github.com/TriPSs/nx-extend/blob/master/packages/gcp-functions/README.md",
   "bugs": {
     "url": "https://github.com/tripss/nx-extend/issues"
@@ -11,14 +11,17 @@
   },
   "license": "MIT",
   "main": "src/index.js",
-  "builders": "./executors.json",
-  "generators": "./generators.json",
   "devDependencies": {
     "@google-cloud/functions-framework": "^3.4.1",
     "@nestjs/common": "^10.3.10",
     "@nestjs/core": "^10.3.10",
     "@nestjs/platform-express": "^10.3.10"
   },
+  "peerDependencies": {
+    "@nx/devkit": "^19.6.0"
+  },
+  "builders": "./executors.json",
+  "generators": "./generators.json",
   "nx-migrations": {
     "migrations": "./migrations.json"
   }

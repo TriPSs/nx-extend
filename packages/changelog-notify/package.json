@@ -1,6 +1,6 @@
 {
   "name": "@nx-extend/changelog-notify",
-  "version": "7.0.4",
+  "version": "8.0.0",
   "keywords": [
     "nx",
     "changelog",
@@ -16,6 +16,9 @@
   },
   "license": "MIT",
   "main": "src/index.js",
+  "peerDependencies": {
+    "@nx/devkit": "^19.6.0"
+  },
   "builders": "./executors.json",
   "generators": "./generators.json"
 }

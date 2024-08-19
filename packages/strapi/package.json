@@ -1,6 +1,6 @@
 {
   "name": "@nx-extend/strapi",
-  "version": "10.0.4",
+  "version": "11.0.0",
   "keywords": [
     "nx",
     "strapi"
@@ -18,6 +18,9 @@
   "dependencies": {
     "@strapi/generate-new": "4.25.4",
     "@strapi/strapi": "4.25.4"
+  },
+  "peerDependencies": {
+    "@nx/devkit": "^19.6.0"
   },
   "builders": "./executors.json",
   "generators": "./generators.json"

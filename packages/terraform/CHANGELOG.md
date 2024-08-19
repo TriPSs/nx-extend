@@ -1,4 +1,21 @@
  
+# [7.0.0](https://github.com/TriPSs/nx-extend/compare/terraform@6.0.5...terraform@7.0.0) (2024-08-16)
+
+### Dependency Updates
+
+* `core` updated to version `8.0.0`
+
+### Features
+
+* Added `@nx/devkit` to `peerDependencies` ([2e2dd2b](https://github.com/TriPSs/nx-extend/commit/2e2dd2b997699f9d949b84cd8e96674b43725e56))
+
+
+### BREAKING CHANGES
+
+* `@nx/devkit` no longer included as dependency
+
+
+
 ## [6.0.5](https://github.com/TriPSs/nx-extend/compare/terraform@6.0.4...terraform@6.0.5) (2024-06-20)
 
 
