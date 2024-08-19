@@ -19,5 +19,8 @@
     "@nx/devkit": "^19.6.0"
   },
   "builders": "./executors.json",
-  "generators": "./generators.json"
+  "generators": "./generators.json",
+  "dependencies": {
+    "hcl2-json-parser": "^1.0.1"
+  }
 }
