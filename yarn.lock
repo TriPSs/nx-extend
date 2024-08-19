@@ -7342,6 +7342,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@nx-extend/terraform@workspace:packages/terraform":
+  version: 0.0.0-use.local
+  resolution: "@nx-extend/terraform@workspace:packages/terraform"
+  dependencies:
+    hcl2-json-parser: "npm:^1.0.1"
+  languageName: unknown
+  linkType: soft
+
 "@nx-extend/translations@workspace:packages/translations":
   version: 0.0.0-use.local
   resolution: "@nx-extend/translations@workspace:packages/translations"
@@ -7999,14 +8007,6 @@ __metadata:
   checksum: 10/4b0330de1ceecd1002c7e7449094d0c41f2ed0e21765f4835ccc7b003f2f024ac557d503b9ffdf0918cf50b80d5b8c99dfc5a91927e7b3c468b09c6bb42a3c41
   languageName: node
   linkType: hard
-
-"@pulasthibandara/nx-extend-terraform@workspace:packages/terraform":
-  version: 0.0.0-use.local
-  resolution: "@pulasthibandara/nx-extend-terraform@workspace:packages/terraform"
-  dependencies:
-    hcl2-json-parser: "npm:^1.0.1"
-  languageName: unknown
-  linkType: soft
 
 "@radix-ui/colors@npm:1.0.1":
   version: 1.0.1
