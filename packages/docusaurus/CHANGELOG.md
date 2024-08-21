@@ -1,4 +1,13 @@
  
+## [2.0.1](https://github.com/tripss/nx-extend/compare/docusaurus@2.0.0...docusaurus@2.0.1) (2024-08-21)
+
+
+### Bug Fixes
+
+* **docusaurus:** Reorganize dependencies between dev and peer ([ed832a6](https://github.com/tripss/nx-extend/commit/ed832a645d4ecb40992dff0863c4f01d9d134c2e))
+
+
+
 # [2.0.0](https://github.com/TriPSs/nx-extend/compare/docusaurus@1.0.1...docusaurus@2.0.0) (2024-08-16)
 
 
