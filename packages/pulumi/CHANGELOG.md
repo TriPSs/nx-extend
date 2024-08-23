@@ -1,4 +1,13 @@
  
+# [7.1.0](https://github.com/tripss/nx-extend/compare/pulumi@7.0.0...pulumi@7.1.0) (2024-08-23)
+
+
+### Features
+
+* **pulumi:** Add GCP resource classes for service account, IAM custom role, Pub/Sub topic, IAM binding, DNS, and utility functions ([64e69b4](https://github.com/tripss/nx-extend/commit/64e69b488f647e79fae79dca09067c2dd1607942))
+
+
+
 # [7.0.0](https://github.com/TriPSs/nx-extend/compare/pulumi@6.2.3...pulumi@7.0.0) (2024-08-16)
 
 ### Dependency Updates
