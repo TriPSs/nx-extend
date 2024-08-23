@@ -1,6 +1,6 @@
 {
   "name": "nx",
-  "version": "19.6.1",
+  "version": "19.6.2",
   "private": false,
   "description": "The core Nx plugin contains the core functionality of Nx like the project graph, nx commands and task orchestration.",
   "repository": {
@@ -71,7 +71,7 @@
     "yargs-parser": "21.1.1",
     "node-machine-id": "1.1.12",
     "ora": "5.3.0",
-    "@nrwl/tao": "19.6.1"
+    "@nrwl/tao": "19.6.2"
   },
   "peerDependencies": {
     "@swc-node/register": "^1.8.0",
@@ -86,16 +86,16 @@
     }
   },
   "optionalDependencies": {
-    "@nx/nx-darwin-x64": "19.6.1",
-    "@nx/nx-darwin-arm64": "19.6.1",
-    "@nx/nx-linux-x64-gnu": "19.6.1",
-    "@nx/nx-linux-x64-musl": "19.6.1",
-    "@nx/nx-win32-x64-msvc": "19.6.1",
-    "@nx/nx-linux-arm64-gnu": "19.6.1",
-    "@nx/nx-linux-arm64-musl": "19.6.1",
-    "@nx/nx-linux-arm-gnueabihf": "19.6.1",
-    "@nx/nx-win32-arm64-msvc": "19.6.1",
-    "@nx/nx-freebsd-x64": "19.6.1"
+    "@nx/nx-darwin-x64": "19.6.2",
+    "@nx/nx-darwin-arm64": "19.6.2",
+    "@nx/nx-linux-x64-gnu": "19.6.2",
+    "@nx/nx-linux-x64-musl": "19.6.2",
+    "@nx/nx-win32-x64-msvc": "19.6.2",
+    "@nx/nx-linux-arm64-gnu": "19.6.2",
+    "@nx/nx-linux-arm64-musl": "19.6.2",
+    "@nx/nx-linux-arm-gnueabihf": "19.6.2",
+    "@nx/nx-win32-arm64-msvc": "19.6.2",
+    "@nx/nx-freebsd-x64": "19.6.2"
   },
   "nx-migrations": {
     "migrations": "./migrations.json",
