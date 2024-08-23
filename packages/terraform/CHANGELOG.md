@@ -1,4 +1,8 @@
  
+## [7.0.2](https://github.com/tripss/nx-extend/compare/terraform@7.0.1...terraform@7.0.2) (2024-08-23)
+
+
+
 ## [7.0.1](https://github.com/TriPSs/nx-extend/compare/terraform@7.0.0...terraform@7.0.1) (2024-08-19)
 
 
