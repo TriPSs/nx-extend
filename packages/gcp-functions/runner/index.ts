@@ -1,4 +1,4 @@
-import { Logger } from '@nestjs/common'
+import { INestApplication, Logger } from '@nestjs/common'
 import { NestFactory } from '@nestjs/core'
 import { ExpressAdapter } from '@nestjs/platform-express'
 import { FsTree } from 'nx/src/generators/tree'
@@ -9,8 +9,6 @@ import type { HttpFunction } from '@google-cloud/functions-framework'
 import type { DeployExecutorSchema } from '@nx-extend/gcp-functions/src/executors/deploy/deploy.impl'
 
 import { createRunnerModule } from './__runner.module'
-
-declare const module
 
 export type NxEndpoint = {
   endpoint: string
@@ -24,7 +22,7 @@ export interface RunnerOptions {
   port?: number
 }
 
-export async function bootstrapRunner(basicFunctionsMap: RunnerFunctionsMap, options: RunnerOptions = {}) {
+export async function bootstrapRunner(basicFunctionsMap: RunnerFunctionsMap, options: RunnerOptions = {}): Promise<INestApplication> {
   const nxTree = new FsTree(workspaceRoot, false)
   const projects = getProjects(nxTree)
 
@@ -57,8 +55,5 @@ export async function bootstrapRunner(basicFunctionsMap: RunnerFunctionsMap, opt
     Logger.log(`Functions running on http://localhost:${options.port || 8080}`)
   })
 
-  if (module.hot) {
-    module.hot.accept();
-    module.hot.dispose(() => app.close());
-  }
+  return app
 }
