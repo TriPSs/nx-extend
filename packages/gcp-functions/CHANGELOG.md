@@ -1,4 +1,18 @@
  
+# [14.1.0](https://github.com/tripss/nx-extend/compare/gcp-functions@14.0.1...gcp-functions@14.1.0) (2024-08-23)
+
+
+### Bug Fixes
+
+* **gcp-functions:** Add skipPackageManager option when generating package.json ([f42462b](https://github.com/tripss/nx-extend/commit/f42462bf792073d2dc59ababcf37476d3af7b28b))
+
+
+### Features
+
+* **gcp-functions-runner:** Return INestApplication from bootstrapRunner and cleanup ([92cfce9](https://github.com/tripss/nx-extend/commit/92cfce9ccb37871189fb8fdc5950dff5c0dea348))
+
+
+
 ## [14.0.1](https://github.com/tripss/nx-extend/compare/gcp-functions@14.0.0...gcp-functions@14.0.1) (2024-08-21)
 
 
