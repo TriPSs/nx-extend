@@ -28,12 +28,10 @@ export const generatePackageJson = (
     readCachedProjectGraph(),
     {
       root: context.root,
-      isProduction: omitOptionalDependencies
+      isProduction: omitOptionalDependencies,
+      skipPackageManager: true
     }
   )
-
-  // Remove packageManager as this conflicts with yarn versions
-  delete packageJson.packageManager
 
   if (!packageJson.main) {
     packageJson.main = options.outputFileName || 'main.js'
