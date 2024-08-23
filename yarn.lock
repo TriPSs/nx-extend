@@ -7764,9 +7764,14 @@ __metadata:
 "@nx-extend/pulumi@workspace:packages/pulumi":
   version: 0.0.0-use.local
   resolution: "@nx-extend/pulumi@workspace:packages/pulumi"
+  dependencies:
+    "@pulumi/gcp": "npm:^7.37.0"
   peerDependencies:
     "@nx/devkit": ^19.6.0
     "@pulumi/pulumi": ^3.129.0
+  dependenciesMeta:
+    "@pulumi/gcp":
+      optional: true
   languageName: unknown
   linkType: soft
 
