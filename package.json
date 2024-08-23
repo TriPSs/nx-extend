@@ -56,6 +56,8 @@
     "@nx/plugin": "19.6.1",
     "@nx/react": "19.6.1",
     "@nx/webpack": "19.6.1",
+    "@pulumi/gcp": "^7.37.0",
+    "@pulumi/pulumi": "^3.129.0",
     "@swc-node/register": "1.10.9",
     "@swc/core": "1.7.14",
     "@types/jest": "29.5.12",
