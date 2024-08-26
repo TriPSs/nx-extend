@@ -3,8 +3,9 @@ import * as pulumi from '@pulumi/pulumi'
 
 import { GCP_PROJECT_ID } from '../config'
 import { buildName, getFriendlyRoleName } from '../naming'
+import { BaseResource } from './base.resource'
 
-export class ServiceAccountResource extends pulumi.ComponentResource {
+export class ServiceAccountResource extends BaseResource {
 
   private readonly account: gcp.serviceaccount.Account
 
@@ -73,6 +74,10 @@ export class ServiceAccountResource extends pulumi.ComponentResource {
     })
 
     return this
+  }
+
+  public create(): void {
+    // Do nothing
   }
 
 }

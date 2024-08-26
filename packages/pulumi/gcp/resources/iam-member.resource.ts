@@ -3,8 +3,9 @@ import * as pulumi from '@pulumi/pulumi'
 
 import { GCP_PROJECT_ID } from '../config'
 import { getFriendlyRoleName } from '../naming'
+import { BaseResource } from './base.resource'
 
-export class IAMMemberResource extends pulumi.ComponentResource {
+export class IAMMemberResource extends BaseResource {
 
   constructor(
     private readonly member: string,

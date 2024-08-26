@@ -2,18 +2,18 @@ import * as gcp from '@pulumi/gcp'
 import * as pulumi from '@pulumi/pulumi'
 
 import { GCP_PROJECT_ID } from '../config'
+import { BaseResource } from './base.resource'
 
 export type DNS_TYPE = 'A' | 'AAAA' | 'MX' | 'TXT' | 'CNAME'
 export type DNS_VALUES = string | Array<string>
 
-export class DNSResource extends pulumi.ComponentResource {
-
-  private readonly friendlyDomain: string
-  public readonly zone: gcp.dns.ManagedZone
-
-  private emailDisabled = false
+export class DNSResource extends BaseResource {
 
   public static gmailSpfInclude = 'include:_spf.google.com'
+  public readonly zone: gcp.dns.ManagedZone
+
+  private readonly friendlyDomain: string
+  private emailDisabled = false
 
   constructor(
     private readonly domain: string,
@@ -143,6 +143,10 @@ export class DNSResource extends pulumi.ComponentResource {
     })
 
     return this
+  }
+
+  public create(): void {
+    // Do nothing
   }
 
   private resourceName(subDomain: string, type: DNS_TYPE): string {

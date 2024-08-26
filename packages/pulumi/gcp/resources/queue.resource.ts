@@ -3,8 +3,9 @@ import * as pulumi from '@pulumi/pulumi'
 
 import { GCP_PROJECT_ID } from '../config'
 import { buildName, getFriendlyMemberName, getFriendlyRoleName } from '../naming'
+import { BaseResource } from './base.resource'
 
-export class QueueResource extends pulumi.ComponentResource {
+export class QueueResource extends BaseResource {
 
   private readonly queue: gcp.cloudtasks.Queue
 
@@ -26,7 +27,9 @@ export class QueueResource extends pulumi.ComponentResource {
     })
   }
 
-  public create() {}
+  public create(): void {
+    // Do nothing
+  }
 
   public addEnqueuer(member: pulumi.Output<string>): QueueResource {
     return this.addMember(member, 'roles/cloudtasks.enqueuer')

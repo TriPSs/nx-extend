@@ -3,13 +3,14 @@ import * as pulumi from '@pulumi/pulumi'
 
 import { GCP_PROJECT_ID } from '../config'
 import { buildName, getFriendlyMemberName, getFriendlyRoleName } from '../naming'
+import { BaseResource } from './base.resource'
 
 const secretsConfig = new pulumi.Config('gcpR-secrets')
 
 /**
  * When adding secrets, make sure they are added to the namespace "gcpR-secrets"
  */
-export class SecretResource extends pulumi.ComponentResource {
+export class SecretResource extends BaseResource {
 
   private readonly secret: gcp.secretmanager.Secret
 
@@ -17,7 +18,7 @@ export class SecretResource extends pulumi.ComponentResource {
     private readonly secretName: string,
     private readonly args: Partial<gcp.secretmanager.SecretArgs> = {},
     private readonly opts: pulumi.ComponentResourceOptions = {},
-    private readonly secretOpts: pulumi.ComponentResourceOptions = {},
+    private readonly secretOpts: pulumi.ComponentResourceOptions = {}
   ) {
     super('secret-resource', secretName, {}, opts)
 

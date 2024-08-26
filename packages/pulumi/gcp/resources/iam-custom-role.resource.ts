@@ -3,8 +3,9 @@ import * as pulumi from '@pulumi/pulumi'
 
 import { GCP_PROJECT_ID } from '../config'
 import { getFriendlyRoleName } from '../naming'
+import { BaseResource } from './base.resource'
 
-export class IAMCustomRoleResource extends pulumi.ComponentResource {
+export class IAMCustomRoleResource extends BaseResource {
 
   private readonly role: gcp.projects.IAMCustomRole
 
@@ -21,10 +22,7 @@ export class IAMCustomRoleResource extends pulumi.ComponentResource {
     this.role = new gcp.projects.IAMCustomRole(friendlyRoleName, {
       project: GCP_PROJECT_ID,
       roleId,
-      title: 'Act as Service Account',
-      permissions: [
-        'iam.serviceAccounts.actAs'
-      ]
+      ...args
     }, {
       ...iamOpts,
       parent: this
