@@ -2,11 +2,12 @@ import * as gcp from '@pulumi/gcp'
 import * as pulumi from '@pulumi/pulumi'
 
 import { GCP_PROJECT_ID } from '../config'
+import { BaseResource } from './base.resource'
 
 export type DNS_TYPE = 'A' | 'AAAA' | 'MX' | 'TXT' | 'CNAME'
 export type DNS_VALUES = string | Array<string>
 
-export class DNSResource extends pulumi.ComponentResource {
+export class DNSResource extends BaseResource {
 
   private readonly friendlyDomain: string
   public readonly zone: gcp.dns.ManagedZone
@@ -143,6 +144,10 @@ export class DNSResource extends pulumi.ComponentResource {
     })
 
     return this
+  }
+
+  public create(): void {
+    // Do nothing
   }
 
   private resourceName(subDomain: string, type: DNS_TYPE): string {

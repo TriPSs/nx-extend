@@ -3,8 +3,9 @@ import * as pulumi from '@pulumi/pulumi'
 
 import { GCP_PROJECT_ID } from '../config'
 import { buildName, getFriendlyRoleName } from '../naming'
+import { BaseResource } from './base.resource'
 
-export class BucketResource extends pulumi.ComponentResource {
+export class BucketResource extends BaseResource {
 
   private readonly bucket: gcp.storage.Bucket
 
@@ -77,6 +78,10 @@ export class BucketResource extends pulumi.ComponentResource {
     }, {
       parent: this.bucket
     })
+  }
+
+  public create(): void {
+    // Do nothing
   }
 
 }

@@ -3,8 +3,9 @@ import * as pulumi from '@pulumi/pulumi'
 
 import { GCP_PROJECT_ID } from '../config'
 import { buildName, getFriendlyName, getFriendlyRoleName } from '../naming'
+import { BaseResource } from './base.resource'
 
-export class PubSubTopicResource extends pulumi.ComponentResource {
+export class PubSubTopicResource extends BaseResource {
 
   private readonly topic: gcp.pubsub.Topic
 

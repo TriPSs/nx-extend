@@ -3,8 +3,9 @@ import * as pulumi from '@pulumi/pulumi'
 
 import { GCP_PROJECT_ID } from '../config'
 import { getFriendlyRoleName } from '../naming'
+import { BaseResource } from './base.resource'
 
-export class IAMCustomRoleResource extends pulumi.ComponentResource {
+export class IAMCustomRoleResource extends BaseResource {
 
   private readonly role: gcp.projects.IAMCustomRole
 
