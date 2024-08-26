@@ -9,12 +9,11 @@ export type DNS_VALUES = string | Array<string>
 
 export class DNSResource extends BaseResource {
 
-  private readonly friendlyDomain: string
+  public static gmailSpfInclude = 'include:_spf.google.com'
   public readonly zone: gcp.dns.ManagedZone
 
+  private readonly friendlyDomain: string
   private emailDisabled = false
-
-  public static gmailSpfInclude = 'include:_spf.google.com'
 
   constructor(
     private readonly domain: string,

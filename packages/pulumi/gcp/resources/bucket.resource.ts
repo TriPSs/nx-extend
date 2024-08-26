@@ -57,6 +57,10 @@ export class BucketResource extends BaseResource {
     return this
   }
 
+  public create(): void {
+    // Do nothing
+  }
+
   private addMember(member: pulumi.Output<string>, role: string): void {
     member.apply((parsedMember) => {
       this.createMember(parsedMember, role)
@@ -78,10 +82,6 @@ export class BucketResource extends BaseResource {
     }, {
       parent: this.bucket
     })
-  }
-
-  public create(): void {
-    // Do nothing
   }
 
 }

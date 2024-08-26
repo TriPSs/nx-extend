@@ -18,7 +18,7 @@ export class SecretResource extends BaseResource {
     private readonly secretName: string,
     private readonly args: Partial<gcp.secretmanager.SecretArgs> = {},
     private readonly opts: pulumi.ComponentResourceOptions = {},
-    private readonly secretOpts: pulumi.ComponentResourceOptions = {},
+    private readonly secretOpts: pulumi.ComponentResourceOptions = {}
   ) {
     super('secret-resource', secretName, {}, opts)
 
