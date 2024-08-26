@@ -21,7 +21,7 @@ export class DNSResource extends pulumi.ComponentResource {
     private readonly opts: pulumi.ComponentResourceOptions = {},
     private readonly zoneOpts: pulumi.ComponentResourceOptions = {}
   ) {
-    super('straetus:dns-resource', DNSResource.makeDomainFriendly(domain), {}, opts)
+    super('dns-resource', DNSResource.makeDomainFriendly(domain), {}, opts)
 
     this.friendlyDomain = DNSResource.makeDomainFriendly(domain)
     this.zone = new gcp.dns.ManagedZone(this.friendlyDomain, {
