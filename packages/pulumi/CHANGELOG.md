@@ -1,4 +1,18 @@
  
+# [7.2.0](https://github.com/tripss/nx-extend/compare/pulumi@7.1.1...pulumi@7.2.0) (2024-08-26)
+
+
+### Bug Fixes
+
+* **pulumi:** Simplify IAM custom role creation using args spread ([7471839](https://github.com/tripss/nx-extend/commit/7471839c32a387092cf890d76336cad10c00411f))
+
+
+### Features
+
+* **pulumi:** Refactor import organization and remove unused code ([eda0431](https://github.com/tripss/nx-extend/commit/eda0431327e7752202f1b6074b800b2e9659c338))
+
+
+
 ## [7.1.1](https://github.com/tripss/nx-extend/compare/pulumi@7.1.0...pulumi@7.1.1) (2024-08-26)
 
 
