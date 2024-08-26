@@ -22,10 +22,7 @@ export class IAMCustomRoleResource extends BaseResource {
     this.role = new gcp.projects.IAMCustomRole(friendlyRoleName, {
       project: GCP_PROJECT_ID,
       roleId,
-      title: 'Act as Service Account',
-      permissions: [
-        'iam.serviceAccounts.actAs'
-      ]
+      ...args
     }, {
       ...iamOpts,
       parent: this
