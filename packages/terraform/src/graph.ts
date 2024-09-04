@@ -47,7 +47,10 @@ export const createDependencies: CreateDependencies = async (_, ctx) => {
           continue
         }
 
-        const depSourceAbs = path.resolve(file.file, depSourcePathRel)
+        const depSourceAbs = path.resolve(
+          path.dirname(file.file),
+          depSourcePathRel
+        )
 
         const depSourceRelativeToWorkspace = path.relative(
           workspaceRoot,
