@@ -16,6 +16,8 @@ export const iamRoles = {
     publisher: 'roles/pubsub.publisher',
     // Administers PubSub resources
     admin: 'roles/pubsub.admin',
+    // Editor PubSub resource
+    editor: 'roles/pubsub.editor',
     // Consumes PubSub messages
     subscriber: 'roles/pubsub.subscriber',
     // Provides read-only access to PubSub topics and subscriptions
