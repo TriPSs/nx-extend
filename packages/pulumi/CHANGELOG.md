@@ -1,4 +1,13 @@
  
+# [7.3.0](https://github.com/tripss/nx-extend/compare/pulumi@7.2.0...pulumi@7.3.0) (2024-09-05)
+
+
+### Features
+
+* **pulumi-gcp:** Add PubSub editor role ([b15bfb9](https://github.com/tripss/nx-extend/commit/b15bfb96af4ba05d8306fe9f959ea3da5c7e2284))
+
+
+
 # [7.2.0](https://github.com/tripss/nx-extend/compare/pulumi@7.1.1...pulumi@7.2.0) (2024-08-26)
 
 
