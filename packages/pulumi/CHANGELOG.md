@@ -1,4 +1,11 @@
  
+## [7.3.1](https://github.com/tripss/nx-extend/compare/pulumi@7.3.0...pulumi@7.3.1) (2024-09-06)
+
+### Dependency Updates
+
+* `core` updated to version `8.0.1`
+
+
 # [7.3.0](https://github.com/tripss/nx-extend/compare/pulumi@7.2.0...pulumi@7.3.0) (2024-09-05)
 
 
