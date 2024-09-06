@@ -1,4 +1,11 @@
  
+## [9.0.2](https://github.com/tripss/nx-extend/compare/gcp-deployment-manager@9.0.1...gcp-deployment-manager@9.0.2) (2024-09-06)
+
+### Dependency Updates
+
+* `core` updated to version `8.0.2`
+
+
 ## [9.0.1](https://github.com/tripss/nx-extend/compare/gcp-deployment-manager@9.0.0...gcp-deployment-manager@9.0.1) (2024-09-06)
 
 ### Dependency Updates
