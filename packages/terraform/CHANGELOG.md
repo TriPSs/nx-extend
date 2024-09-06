@@ -1,4 +1,11 @@
  
+## [7.0.4](https://github.com/tripss/nx-extend/compare/terraform@7.0.3...terraform@7.0.4) (2024-09-06)
+
+### Dependency Updates
+
+* `core` updated to version `8.0.1`
+
+
 ## [7.0.3](https://github.com/tripss/nx-extend/compare/terraform@7.0.2...terraform@7.0.3) (2024-09-04)
 
 
