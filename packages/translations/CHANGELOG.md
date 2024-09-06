@@ -1,4 +1,11 @@
  
+## [14.0.1](https://github.com/tripss/nx-extend/compare/translations@14.0.0...translations@14.0.1) (2024-09-06)
+
+### Dependency Updates
+
+* `core` updated to version `8.0.1`
+
+
 # [14.0.0](https://github.com/TriPSs/nx-extend/compare/translations@13.1.0...translations@14.0.0) (2024-08-16)
 
 ### Dependency Updates
