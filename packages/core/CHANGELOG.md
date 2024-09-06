@@ -1,4 +1,13 @@
  
+## [8.0.2](https://github.com/TriPSs/nx-extend/compare/core@8.0.1...core@8.0.2) (2024-09-06)
+
+
+### Bug Fixes
+
+* **core:** Fixed verbose logging of Nx always enabled ([7527115](https://github.com/TriPSs/nx-extend/commit/75271150448738b995038cb04583a6b21145d97d)), closes [#312](https://github.com/TriPSs/nx-extend/issues/312)
+
+
+
 ## [8.0.1](https://github.com/TriPSs/nx-extend/compare/core@8.0.0...core@8.0.1) (2024-09-06)
 
 
