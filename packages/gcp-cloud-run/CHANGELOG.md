@@ -1,4 +1,11 @@
  
+## [11.0.1](https://github.com/tripss/nx-extend/compare/gcp-cloud-run@11.0.0...gcp-cloud-run@11.0.1) (2024-09-06)
+
+### Dependency Updates
+
+* `core` updated to version `8.0.1`
+
+
 # [11.0.0](https://github.com/TriPSs/nx-extend/compare/gcp-cloud-run@10.1.5...gcp-cloud-run@11.0.0) (2024-08-16)
 
 ### Dependency Updates
