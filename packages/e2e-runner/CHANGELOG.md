@@ -1,4 +1,12 @@
  
+## [11.0.1](https://github.com/tripss/nx-extend/compare/e2e-runner@11.0.0...e2e-runner@11.0.1) (2024-09-06)
+
+### Dependency Updates
+
+* `playwright` updated to version `9.0.1`
+* `core` updated to version `8.0.1`
+
+
 # [11.0.0](https://github.com/TriPSs/nx-extend/compare/e2e-runner@10.0.5...e2e-runner@11.0.0) (2024-08-16)
 
 ### Dependency Updates
