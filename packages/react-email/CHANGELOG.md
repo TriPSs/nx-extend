@@ -1,4 +1,11 @@
  
+## [3.1.1](https://github.com/tripss/nx-extend/compare/react-email@3.1.0...react-email@3.1.1) (2024-09-06)
+
+### Dependency Updates
+
+* `core` updated to version `8.0.1`
+
+
 # [3.1.0](https://github.com/tripss/nx-extend/compare/react-email@3.0.1...react-email@3.1.0) (2024-08-23)
 
 
