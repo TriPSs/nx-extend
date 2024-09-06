@@ -1,4 +1,13 @@
  
+## [8.0.1](https://github.com/TriPSs/nx-extend/compare/core@8.0.0...core@8.0.1) (2024-09-06)
+
+
+### Bug Fixes
+
+* space ([befb4d7](https://github.com/TriPSs/nx-extend/commit/befb4d70ff67ebed9df9131a77f343e35e3d86fd))
+
+
+
 # [8.0.0](https://github.com/TriPSs/nx-extend/compare/core@7.0.3...core@8.0.0) (2024-08-16)
 
 
