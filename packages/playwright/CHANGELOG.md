@@ -1,4 +1,11 @@
  
+## [9.0.1](https://github.com/tripss/nx-extend/compare/playwright@9.0.0...playwright@9.0.1) (2024-09-06)
+
+### Dependency Updates
+
+* `core` updated to version `8.0.1`
+
+
 # [9.0.0](https://github.com/TriPSs/nx-extend/compare/playwright@8.0.3...playwright@9.0.0) (2024-08-16)
 
 ### Dependency Updates
