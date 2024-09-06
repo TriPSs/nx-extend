@@ -1,4 +1,11 @@
  
+## [8.0.2](https://github.com/tripss/nx-extend/compare/firebase-hosting@8.0.1...firebase-hosting@8.0.2) (2024-09-06)
+
+### Dependency Updates
+
+* `core` updated to version `8.0.2`
+
+
 ## [8.0.1](https://github.com/tripss/nx-extend/compare/firebase-hosting@8.0.0...firebase-hosting@8.0.1) (2024-09-06)
 
 ### Dependency Updates
