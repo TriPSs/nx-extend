@@ -75,7 +75,7 @@ export class GcpCache implements RemoteCache {
       await this.createTarFile(tarFilePath, hash, cacheDirectory)
 
       await this.uploadFile(cacheDirectory, this.getTarFileName(hash))
-      // commit file once we're sure all content is uploaded
+      // commit the file once we're sure all content is uploaded
       await this.uploadFile(cacheDirectory, this.getCommitFileName(hash))
 
       this.logger.debug(`Storage Cache: Stored ${hash}`)
