@@ -1,4 +1,8 @@
  
+## [3.1.3](https://github.com/tripss/nx-extend/compare/react-email@3.1.2...react-email@3.1.3) (2024-09-23)
+
+
+
 ## [3.1.2](https://github.com/tripss/nx-extend/compare/react-email@3.1.1...react-email@3.1.2) (2024-09-06)
 
 ### Dependency Updates
