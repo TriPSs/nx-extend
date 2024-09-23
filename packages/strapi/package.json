@@ -16,8 +16,8 @@
   "license": "MIT",
   "main": "src/index.js",
   "dependencies": {
-    "@strapi/generate-new": "4.25.8",
-    "@strapi/strapi": "4.25.8"
+    "@strapi/generate-new": "4.25.11",
+    "@strapi/strapi": "4.25.11"
   },
   "peerDependencies": {
     "@nx/devkit": "^19.6.0"
