@@ -1,4 +1,8 @@
  
+## [11.0.4](https://github.com/tripss/nx-extend/compare/strapi@11.0.3...strapi@11.0.4) (2024-09-23)
+
+
+
 ## [11.0.3](https://github.com/tripss/nx-extend/compare/strapi@11.0.2...strapi@11.0.3) (2024-09-06)
 
 ### Dependency Updates
