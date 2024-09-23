@@ -1,4 +1,8 @@
  
+## [2.0.2](https://github.com/tripss/nx-extend/compare/docusaurus@2.0.1...docusaurus@2.0.2) (2024-09-23)
+
+
+
 ## [2.0.1](https://github.com/tripss/nx-extend/compare/docusaurus@2.0.0...docusaurus@2.0.1) (2024-08-21)
 
 
