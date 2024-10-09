@@ -22,10 +22,10 @@
 
 ```
 # npm
-npm install @extend/docusaurus --save-dev
+npm install @nx-extend/docusaurus --save-dev
 
 # yarn
-yarn add @extend/docusaurus --dev
+yarn add @nx-extend/docusaurus --dev
 ```
 
 ### Generate Your App
