@@ -1,5 +1,6 @@
-import { ExecutorContext } from '@nx/devkit'
 import { buildCommand, execPackageManagerCommand } from '@nx-extend/core'
+
+import type { ExecutorContext } from '@nx/devkit'
 
 import 'dotenv/config'
 
