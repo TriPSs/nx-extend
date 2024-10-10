@@ -1,4 +1,13 @@
  
+## [8.0.3](https://github.com/TriPSs/nx-extend/compare/gcp-task-runner@8.0.2...gcp-task-runner@8.0.3) (2024-10-10)
+
+
+### Bug Fixes
+
+* **gcp-task-runner:** Add @nx/workspace to peer dependencies ([883b4c6](https://github.com/TriPSs/nx-extend/commit/883b4c691dd898c74dc67f169ee2cc348f63d7cc))
+
+
+
 ## [8.0.2](https://github.com/TriPSs/nx-extend/compare/gcp-task-runner@8.0.1...gcp-task-runner@8.0.2) (2024-09-23)
 
 
