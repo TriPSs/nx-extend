@@ -1,4 +1,13 @@
  
+# [3.2.0](https://github.com/tripss/nx-extend/compare/react-email@3.1.3...react-email@3.2.0) (2024-10-10)
+
+
+### Features
+
+* **react-email:** Add tsconfig.json and .eslintrc.json templates to init generator ([08a456a](https://github.com/tripss/nx-extend/commit/08a456ae6a413a03624cd342785ecbd0777e2d19))
+
+
+
 ## [3.1.3](https://github.com/tripss/nx-extend/compare/react-email@3.1.2...react-email@3.1.3) (2024-09-23)
 
 
