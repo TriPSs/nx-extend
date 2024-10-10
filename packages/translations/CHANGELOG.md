@@ -1,4 +1,8 @@
  
+## [14.0.3](https://github.com/tripss/nx-extend/compare/translations@14.0.2...translations@14.0.3) (2024-10-10)
+
+
+
 ## [14.0.2](https://github.com/tripss/nx-extend/compare/translations@14.0.1...translations@14.0.2) (2024-09-06)
 
 ### Dependency Updates
