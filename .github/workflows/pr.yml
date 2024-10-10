@@ -32,10 +32,10 @@ jobs:
         run: yarn install
 
       - name: Compile latest "set-shas" action
-        run: nx compile actions-set-shas
+        run: yarn nx compile actions-set-shas
 
       - name: Compile latest "plan" action
-        run: nx compile actions-plan
+        run: yarn nx compile actions-plan
 
       - name: Derive appropriate SHAs for base and head for `nx affected` commands
         uses: ./actions/set-shas
@@ -86,10 +86,10 @@ jobs:
           key: cache-node-modules-${{ hashFiles('yarn.lock') }}
 
       - name: Compile latest "set-shas" action
-        run: nx compile actions-set-shas
+        run: yarn nx compile actions-set-shas
 
       - name: Compile latest "run-many" action
-        run: nx compile actions-run-many
+        run: yarn nx compile actions-run-many
 
       - name: Derive appropriate SHAs for base and head for `nx affected` commands
         uses: ./actions/set-shas
