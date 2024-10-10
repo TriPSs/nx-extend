@@ -12473,14 +12473,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vercel/ncc@npm:0.38.0":
-  version: 0.38.0
-  resolution: "@vercel/ncc@npm:0.38.0"
+"@vercel/ncc@npm:0.34.0":
+  version: 0.34.0
+  resolution: "@vercel/ncc@npm:0.34.0"
   dependencies:
     node-gyp: "npm:latest"
   bin:
     ncc: dist/ncc/cli.js
-  checksum: 10/bd92496540eb825fdb65ac2ed338abecba77527aeb9a807f7253f89e085dd00fd5736d9ebb35788fa180f3d24967e2c1e08f34ee08bd9ed5435b50a2a6fd2b81
+  checksum: 10/4e37779157242c6f4e0a9a30022422d67243c6d958311862f3498e5ee1cdea1c45e0717ff75e6204f2658b3b498b5a484a4c909652d8a6366e38a333f4396281
   languageName: node
   linkType: hard
 
@@ -26279,7 +26279,7 @@ __metadata:
     "@types/yargs": "npm:^17.0.33"
     "@typescript-eslint/eslint-plugin": "npm:8.8.1"
     "@typescript-eslint/parser": "npm:8.8.1"
-    "@vercel/ncc": "npm:0.38.0"
+    "@vercel/ncc": "npm:0.34.0"
     axios: "npm:^1.7.7"
     crypto-js: "npm:^4.2.0"
     deepmerge: "npm:^4.3.1"
