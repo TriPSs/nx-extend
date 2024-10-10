@@ -31,6 +31,12 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
         run: yarn install
 
+      - name: Compile latest "set-shas" action
+        run: yarn nx compile actions-set-shas
+
+      - name: Compile latest "plan" action
+        run: yarn nx compile actions-plan
+
       - name: Derive appropriate SHAs for base and head for `nx affected` commands
         uses: ./actions/set-shas
         with:
@@ -78,6 +84,12 @@ jobs:
           path: |
             **/node_modules
           key: cache-node-modules-${{ hashFiles('yarn.lock') }}
+
+      - name: Compile latest "set-shas" action
+        run: yarn nx compile actions-set-shas
+
+      - name: Compile latest "run-many" action
+        run: yarn nx compile actions-run-many
 
       - name: Derive appropriate SHAs for base and head for `nx affected` commands
         uses: ./actions/set-shas
