@@ -6,7 +6,9 @@
     "declaration": true,
     "types": [
       "node"
-    ]
+    ],
+    "esModuleInterop": true,
+    "moduleResolution": "node"
   },
   "exclude": [
     "**/*.spec.ts",
