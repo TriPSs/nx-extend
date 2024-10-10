@@ -8,5 +8,5 @@
     "strict": true
   },
   "files": [],
-  "include": []
+  "include": ["src/**/*.js", "src/**/*.jsx", "src/**/*.ts", "src/**/*.tsx"]
 }
