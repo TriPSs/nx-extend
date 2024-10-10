@@ -37,6 +37,9 @@ jobs:
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
+      - name: Compile latest actions
+        run: yarn nx run-many --target compile --all
+
       - name: Derive appropriate SHAs for base and head for `nx affected` commands
         uses: ./actions/set-shas
         with:
