@@ -1,4 +1,13 @@
  
+## [2.0.3](https://github.com/tripss/nx-extend/compare/docusaurus@2.0.2...docusaurus@2.0.3) (2024-10-10)
+
+
+### Bug Fixes
+
+* **docusaurus:** Fixed package name in README.md ([0c3449f](https://github.com/tripss/nx-extend/commit/0c3449f6fb6ba2b2c36045fad9cb6316263556d0)), closes [#322](https://github.com/tripss/nx-extend/issues/322)
+
+
+
 ## [2.0.2](https://github.com/tripss/nx-extend/compare/docusaurus@2.0.1...docusaurus@2.0.2) (2024-09-23)
 
 
