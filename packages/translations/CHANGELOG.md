@@ -1,4 +1,18 @@
  
+# [15.0.0](https://github.com/tripss/nx-extend/compare/translations@14.0.3...translations@15.0.0) (2024-10-11)
+
+
+### Features
+
+* Update to NX v20.0.0 ([78dad2e](https://github.com/tripss/nx-extend/commit/78dad2e7a71d42ebf6bb9416389e4fdcb277313c))
+
+
+### BREAKING CHANGES
+
+* NX is updated to v20.0.0
+
+
+
 ## [14.0.3](https://github.com/tripss/nx-extend/compare/translations@14.0.2...translations@14.0.3) (2024-10-10)
 
 
