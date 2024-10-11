@@ -1,6 +1,7 @@
 import {
   addDependenciesToPackageJson,
   addProjectConfiguration,
+  detectPackageManager,
   formatFiles,
   generateFiles,
   names,
@@ -8,27 +9,39 @@ import {
   Tree, workspaceRoot
 } from '@nx/devkit'
 import { NormalizedSchema, normalizeOptions } from '@nx-extend/core'
-import generateNew from '@strapi/generate-new/dist/generate-new'
-import hasYarn from '@strapi/generate-new/dist/utils/has-yarn'
-import machineID from '@strapi/generate-new/dist/utils/machine-id'
+import { createStrapi } from 'create-strapi-app'
 import * as crypto from 'crypto'
 import * as path from 'path'
 
 import type { StrapiGeneratorSchema } from './schema'
 
 import packageJson from '../../../package.json'
+import { machineID } from '../../utils/machine-id'
 
 // Base off https://github.com/strapi/strapi/blob/main/packages/generators/app/src/index.ts#L19
 function generateStrapi(options: NormalizedSchema) {
-  return generateNew({
-    rootPath: options.projectRoot,
+  const version = packageJson.dependencies['@strapi/strapi']
+  const packageManager = detectPackageManager()
+
+  if (packageManager === 'bun') {
+    throw new Error('Bun is not supported!')
+  }
+
+  return createStrapi({
     name: options.projectName,
+    rootPath: options.projectRoot,
+    packageManager: packageManager,
+    database: {
+      client: 'sqlite',
+      connection: {
+        filename: '.tmp/data.db',
+      },
+    },
     // disable quickstart run app after creation
-    runQuickstartApp: false,
+    runApp: false,
     // use package.json version as strapiVersion (all packages have the same version);
-    strapiVersion: packageJson.dependencies['@strapi/strapi'],
-    debug: false,
-    quick: true,
+    strapiVersion: version,
+    isQuickstart: true,
     packageJsonStrapi: {
       template: undefined,
       starter: undefined
@@ -37,15 +50,13 @@ function generateStrapi(options: NormalizedSchema) {
     docker: process.env.DOCKER === 'true',
     deviceId: machineID(),
     tmpPath: path.resolve(workspaceRoot, 'tmp', options.projectName),
-    // use yarn if available and --use-npm isn't true
-    useYarn: hasYarn(),
     installDependencies: false,
-    strapiDependencies: [
-      '@strapi/strapi',
-      '@strapi/plugin-users-permissions',
-      '@strapi/plugin-i18n'
-    ],
-    additionalsDependencies: {},
+    dependencies: {
+      '@strapi/strapi': version,
+      '@strapi/plugin-users-permissions': version,
+      'better-sqlite3': '11.3.0'
+    },
+    devDependencies: {},
     useTypescript: true
   })
 }
