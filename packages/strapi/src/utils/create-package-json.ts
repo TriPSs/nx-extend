@@ -11,7 +11,7 @@ export async function createPackageJson(
   context: ExecutorContext,
   generateLockFile: boolean
 ) {
-  const { root } = context.workspace.projects[context.projectName]
+  const { root } = context.projectsConfigurations.projects[context.projectName]
 
   let existingDeps = {}
   // User can define its own root (Same CMS multiple apps)

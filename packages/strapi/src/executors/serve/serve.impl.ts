@@ -18,7 +18,7 @@ export async function serveExecutor(
   options: ServeExecutorOptions,
   context: ExecutorContext
 ): Promise<{ success: boolean }> {
-  const { root } = context.workspace.projects[context.projectName]
+  const { root } = context.projectsConfigurations.projects[context.projectName]
 
   const {
     build = true,

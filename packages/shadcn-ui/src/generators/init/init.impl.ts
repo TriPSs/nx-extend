@@ -39,39 +39,38 @@ function getLibRoot(host: Tree, fileName: string) {
 }
 
 export default async function (tree: Tree, options: ShadecnUiSchema) {
-  await libraryGenerator(tree, {
-    name: options.uiName,
-    skipFormat: true,
-    style: 'css',
-    linter: Linter.EsLint
-  })
-
   const uiLibOptions = await determineProjectNameAndRootOptions(tree, {
-    callingGenerator: '@nx-extend/shadcn-ui:init',
     name: options.uiName,
-    projectType: 'library'
+    projectType: 'library',
+    directory: getLibRoot(tree, options.uiName)
   })
 
-  const uiRoot = getLibRoot(tree, uiLibOptions.projectRoot)
-  addTsConfigPath(tree, `${uiLibOptions.importPath}/*`, [`${uiRoot}/src/*`])
-  cleanupLib(tree, uiRoot)
-
   await libraryGenerator(tree, {
-    name: options.utilsName,
+    name: options.uiName,
     skipFormat: true,
     style: 'css',
-    linter: Linter.EsLint
+    linter: Linter.EsLint,
+    directory: uiLibOptions.projectRoot
   })
 
   const utilsLibOptions = await determineProjectNameAndRootOptions(tree, {
-    callingGenerator: '@nx-extend/shadcn-ui:init',
     name: options.utilsName,
-    projectType: 'library'
+    projectType: 'library',
+    directory: getLibRoot(tree, options.utilsName)
   })
 
-  const utilRoot = getLibRoot(tree, utilsLibOptions.projectRoot)
-  addTsConfigPath(tree, `${utilsLibOptions.importPath}/*`, [`${utilRoot}/src/*`])
-  cleanupLib(tree, utilRoot)
+  await libraryGenerator(tree, {
+    name: options.utilsName,
+    skipFormat: true,
+    style: 'css',
+    linter: Linter.EsLint,
+    directory: utilsLibOptions.projectRoot
+  })
+
+  addTsConfigPath(tree, `${uiLibOptions.importPath}/*`, [`${uiLibOptions.projectRoot}/src/*`])
+  addTsConfigPath(tree, `${utilsLibOptions.importPath}/*`, [`${utilsLibOptions.projectRoot}/src/*`])
+  cleanupLib(tree, uiLibOptions.projectRoot)
+  cleanupLib(tree, utilsLibOptions.projectRoot)
 
   addFilesToUtilsLib(tree, `${getLibRoot(tree, options.utilsName)}/src`)
 
@@ -80,8 +79,8 @@ export default async function (tree: Tree, options: ShadecnUiSchema) {
     'style': 'default',
     'rsc': false,
     'tailwind': {
-      'config': join(utilRoot, 'tailwind.config.js'),
-      'css': join(utilRoot, 'global.css'),
+      'config': join(utilsLibOptions.projectRoot, 'tailwind.config.js'),
+      'css': join(utilsLibOptions.projectRoot, 'global.css'),
       'baseColor': 'neutral',
       'cssVariables': true
     },

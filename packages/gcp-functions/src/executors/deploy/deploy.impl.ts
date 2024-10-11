@@ -100,7 +100,7 @@ export async function deployExecutor(
     throw new Error('"triggerValue" is not accepted when trigger is "http"!')
   }
 
-  const { targets } = context.workspace.projects[context.projectName]
+  const { targets } = context.projectsConfigurations.projects[context.projectName]
 
   const validSecrets = getValidSecrets(secrets)
 

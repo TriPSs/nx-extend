@@ -24,7 +24,7 @@ export default async function configExecutor(
     throw new Error('pulumi is not installed!')
   }
 
-  const { sourceRoot } = context.workspace.projects[context.projectName]
+  const { sourceRoot } = context.projectsConfigurations.projects[context.projectName]
 
   execSync(buildCommand([
     'PULUMI_EXPERIMENTAL=true',
