@@ -10,7 +10,7 @@ export async function addExecutor(
   options: ExecutorSchema,
   context: ExecutorContext
 ): Promise<{ success: boolean }> {
-  const { root } = context.workspace.projects[context.projectName]
+  const { root } = context.projectsConfigurations.projects[context.projectName]
 
   return execPackageManagerCommand(
     buildCommand([

@@ -1,4 +1,18 @@
  
+# [8.0.0](https://github.com/tripss/nx-extend/compare/pulumi@7.3.5...pulumi@8.0.0) (2024-10-11)
+
+
+### Features
+
+* Update to NX v20.0.0 ([78dad2e](https://github.com/tripss/nx-extend/commit/78dad2e7a71d42ebf6bb9416389e4fdcb277313c))
+
+
+### BREAKING CHANGES
+
+* NX is updated to v20.0.0
+
+
+
 ## [7.3.5](https://github.com/tripss/nx-extend/compare/pulumi@7.3.4...pulumi@7.3.5) (2024-10-10)
 
 

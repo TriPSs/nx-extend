@@ -28,7 +28,7 @@ export function createExecutor(command: string) {
       throw new Error('Terraform is not installed!')
     }
 
-    const { sourceRoot } = context.workspace.projects[context.projectName]
+    const { sourceRoot } = context.projectsConfigurations.projects[context.projectName]
     const {
       backendConfig = [],
       planFile,

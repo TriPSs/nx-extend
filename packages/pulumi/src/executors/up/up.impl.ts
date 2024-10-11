@@ -21,7 +21,7 @@ export default async function createExecutor(
     throw new Error('pulumi is not installed!')
   }
 
-  const { sourceRoot } = context.workspace.projects[context.projectName]
+  const { sourceRoot } = context.projectsConfigurations.projects[context.projectName]
 
   execSync(buildCommand([
     'pulumi up --suppress-progress',

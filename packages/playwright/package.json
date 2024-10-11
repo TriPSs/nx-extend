@@ -1,6 +1,6 @@
 {
   "name": "@nx-extend/playwright",
-  "version": "9.0.2",
+  "version": "10.0.0",
   "keywords": [
     "nx",
     "playwright"

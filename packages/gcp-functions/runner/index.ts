@@ -3,7 +3,7 @@ import { NestFactory } from '@nestjs/core'
 import { ExpressAdapter } from '@nestjs/platform-express'
 import { FsTree } from 'nx/src/generators/tree'
 import { getProjects } from 'nx/src/generators/utils/project-configuration'
-import { workspaceRoot } from 'nx/src/utils/app-root'
+import { workspaceRoot } from 'nx/src/utils/workspace-root'
 
 import type { HttpFunction } from '@google-cloud/functions-framework'
 import type { DeployExecutorSchema } from '@nx-extend/gcp-functions/src/executors/deploy/deploy.impl'

@@ -25,7 +25,7 @@ export async function buildExecutor(
   options: BuildExecutorSchema,
   context: ExecutorContext
 ): Promise<{ success: boolean }> {
-  const { root } = context.workspace.projects[context.projectName]
+  const { root } = context.projectsConfigurations.projects[context.projectName]
 
   if (!options.outputPath) {
     throw new Error('No "outputPath" defined in options!')

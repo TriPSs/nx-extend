@@ -45,7 +45,7 @@ export async function deployExecutor(
   options: ExecutorSchema,
   context: ExecutorContext
 ): Promise<{ success: boolean }> {
-  const { root } = context.workspace.projects[context.projectName]
+  const { root } = context.projectsConfigurations.projects[context.projectName]
 
   const buildTarget = options.buildTarget || `${context.projectName}:build`
   const outputDirectory = getOutputDirectoryFromBuildTarget(context, buildTarget)
