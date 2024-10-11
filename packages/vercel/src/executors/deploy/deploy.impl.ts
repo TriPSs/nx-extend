@@ -23,7 +23,7 @@ export async function deployExecutor(
   options: DeployOptions,
   context: ExecutorContext
 ): Promise<{ success: boolean }> {
-  const { targets } = context.workspace.projects[context.projectName]
+  const { targets } = context.projectsConfigurations.projects[context.projectName]
 
   let outputDirectory = ''
 

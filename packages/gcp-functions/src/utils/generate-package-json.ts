@@ -21,7 +21,7 @@ export const generatePackageJson = (
   omitOptionalDependencies = true,
   generateLockFile?: boolean
 ) => {
-  const { root } = context.workspace.projects[context.projectName]
+  const { root } = context.projectsConfigurations.projects[context.projectName]
 
   const packageJson = createPackageJson(
     context.projectName,

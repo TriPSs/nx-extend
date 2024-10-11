@@ -23,7 +23,7 @@ export async function extractExecutor(
   options: ExtractSchema,
   context: ExecutorContext
 ): Promise<{ success: boolean }> {
-  const { root } = context.workspace.projects[context.projectName]
+  const { root } = context.projectsConfigurations.projects[context.projectName]
 
   const {
     outputDirectory = options.output,
@@ -117,7 +117,7 @@ export const getLibsRoot = async (
         return
       }
 
-      const libMetadata = context.workspace.projects[connectedLib.target]
+      const libMetadata = context.projectsConfigurations.projects[connectedLib.target]
       targetsDone.push(connectedLib.target)
 
       if (!roots.includes(libMetadata.sourceRoot)) {

@@ -11,7 +11,7 @@ export async function serveExecutor(
   options: ServeExecutorOptions,
   context: ExecutorContext
 ): Promise<{ success: boolean }> {
-  const { sourceRoot, root } = context.workspace.projects[context.projectName]
+  const { sourceRoot, root } = context.projectsConfigurations.projects[context.projectName]
 
   return execPackageManagerCommand(buildCommand([
     'react-email dev',

@@ -12,7 +12,7 @@ export async function updateExecutor(
   options: Options,
   context: ExecutorContext
 ): Promise<{ success: boolean }> {
-  const { sourceRoot } = context.workspace.projects[context.projectName]
+  const { sourceRoot } = context.projectsConfigurations.projects[context.projectName]
 
   return Promise.resolve(
     execCommand(

@@ -16,7 +16,7 @@ export async function deployExecutor(
     throw new Error('No "GH_PAGES_ACCESS_TOKEN" is set!')
   }
 
-  const { targets } = context.workspace.projects[context.projectName]
+  const { targets } = context.projectsConfigurations.projects[context.projectName]
 
   if (!targets?.build?.options?.outputPath) {
     throw new Error('No build target configured!')

@@ -37,7 +37,7 @@ export async function deployExecutor(
   options: DeploySchema,
   context: ExecutorContext
 ): Promise<{ success: boolean }> {
-  const { sourceRoot } = context.workspace.projects[context.projectName]
+  const { sourceRoot } = context.projectsConfigurations.projects[context.projectName]
 
   if (isEncryptionKeySet()) {
     try {

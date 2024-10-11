@@ -14,7 +14,7 @@ export async function exportExecutor(
   options: ServeExecutorOptions,
   context: ExecutorContext
 ): Promise<{ success: boolean }> {
-  const { sourceRoot, root } = context.workspace.projects[context.projectName]
+  const { sourceRoot, root } = context.projectsConfigurations.projects[context.projectName]
 
   if (!options.outputPath) {
     throw new Error('No "outputPath" defined in options!')
