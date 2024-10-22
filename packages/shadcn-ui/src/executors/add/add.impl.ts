@@ -14,7 +14,7 @@ export async function addExecutor(
 
   return execPackageManagerCommand(
     buildCommand([
-      'shadcn-ui@latest add',
+      'shadcn-ui@0.8.0 add',
       (options.component ?? '').length === 0 ? '--all' : options.component,
       options.overwrite && '--overwrite',
       '--path=src',
