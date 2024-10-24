@@ -16,7 +16,7 @@
   "license": "MIT",
   "main": "src/index.js",
   "peerDependencies": {
-    "@nx/devkit": "^19.6.0",
+    "@nx/devkit": "^20.0.0",
     "@pulumi/pulumi": "^3.129.0"
   },
   "optionalDependencies": {

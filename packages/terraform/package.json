@@ -19,7 +19,7 @@
     "hcl2-json-parser": "^1.0.1"
   },
   "peerDependencies": {
-    "@nx/devkit": "^19.6.0"
+    "@nx/devkit": "^20.0.0"
   },
   "builders": "./executors.json",
   "generators": "./generators.json"
