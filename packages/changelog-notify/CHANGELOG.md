@@ -1,4 +1,13 @@
  
+# [8.1.0](https://github.com/tripss/nx-extend/compare/changelog-notify@8.0.0...changelog-notify@8.1.0) (2024-10-24)
+
+
+### Features
+
+* Update NX peerDependencies to v20.0.0 ([67e1f69](https://github.com/tripss/nx-extend/commit/67e1f69f0d5cdde653858224af6ddd89c91f7309))
+
+
+
 # [8.0.0](https://github.com/TriPSs/nx-extend/compare/changelog-notify@7.0.4...changelog-notify@8.0.0) (2024-08-16)
 
 

@@ -1,4 +1,13 @@
  
+# [8.1.0](https://github.com/TriPSs/nx-extend/compare/core@8.0.2...core@8.1.0) (2024-10-24)
+
+
+### Features
+
+* Update NX peerDependencies to v20.0.0 ([67e1f69](https://github.com/TriPSs/nx-extend/commit/67e1f69f0d5cdde653858224af6ddd89c91f7309))
+
+
+
 ## [8.0.2](https://github.com/TriPSs/nx-extend/compare/core@8.0.1...core@8.0.2) (2024-09-06)
 
 

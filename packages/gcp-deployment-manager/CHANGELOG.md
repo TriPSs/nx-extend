@@ -1,4 +1,16 @@
  
+# [10.1.0](https://github.com/tripss/nx-extend/compare/gcp-deployment-manager@10.0.0...gcp-deployment-manager@10.1.0) (2024-10-24)
+
+### Dependency Updates
+
+* `core` updated to version `8.1.0`
+
+### Features
+
+* Update NX peerDependencies to v20.0.0 ([67e1f69](https://github.com/tripss/nx-extend/commit/67e1f69f0d5cdde653858224af6ddd89c91f7309))
+
+
+
 # [10.0.0](https://github.com/tripss/nx-extend/compare/gcp-deployment-manager@9.0.2...gcp-deployment-manager@10.0.0) (2024-10-11)
 
 

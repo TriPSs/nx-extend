@@ -1,4 +1,17 @@
  
+# [11.1.0](https://github.com/tripss/nx-extend/compare/e2e-runner@11.0.3...e2e-runner@11.1.0) (2024-10-24)
+
+### Dependency Updates
+
+* `playwright` updated to version `10.1.0`
+* `core` updated to version `8.1.0`
+
+### Features
+
+* Update NX peerDependencies to v20.0.0 ([67e1f69](https://github.com/tripss/nx-extend/commit/67e1f69f0d5cdde653858224af6ddd89c91f7309))
+
+
+
 ## [11.0.3](https://github.com/tripss/nx-extend/compare/e2e-runner@11.0.2...e2e-runner@11.0.3) (2024-10-11)
 
 ### Dependency Updates

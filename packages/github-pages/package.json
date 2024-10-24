@@ -1,6 +1,6 @@
 {
   "name": "@nx-extend/github-pages",
-  "version": "9.0.0",
+  "version": "9.1.0",
   "main": "src/index.js",
   "peerDependencies": {
     "@nx/devkit": "^20.0.0"

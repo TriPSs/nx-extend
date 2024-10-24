@@ -1,6 +1,6 @@
 {
   "name": "@nx-extend/e2e-runner",
-  "version": "11.0.3",
+  "version": "11.1.0",
   "homepage": "https://github.com/TriPSs/nx-extend/blob/master/packages/e2e-runner/README.md",
   "bugs": {
     "url": "https://github.com/tripss/nx-extend/issues"
