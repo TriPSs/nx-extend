@@ -1,4 +1,13 @@
  
+# [8.1.0](https://github.com/TriPSs/nx-extend/compare/gcp-task-runner@8.0.3...gcp-task-runner@8.1.0) (2024-10-24)
+
+
+### Features
+
+* Update NX peerDependencies to v20.0.0 ([67e1f69](https://github.com/TriPSs/nx-extend/commit/67e1f69f0d5cdde653858224af6ddd89c91f7309))
+
+
+
 ## [8.0.3](https://github.com/TriPSs/nx-extend/compare/gcp-task-runner@8.0.2...gcp-task-runner@8.0.3) (2024-10-10)
 
 
