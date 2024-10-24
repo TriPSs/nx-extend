@@ -3,7 +3,7 @@
   "version": "9.0.0",
   "main": "src/index.js",
   "peerDependencies": {
-    "@nx/devkit": "^19.6.0"
+    "@nx/devkit": "^20.0.0"
   },
   "executors": "./executors.json",
   "generators": "./generators.json"
