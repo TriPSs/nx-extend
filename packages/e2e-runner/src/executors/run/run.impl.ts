@@ -7,6 +7,7 @@ export interface RunOptions {
   runner: 'cypress' | 'playwright' | '@nx/playwright' | 'run-commands'
   runnerTarget?: string
   watch?: boolean
+  skipTargets?: boolean
   targets: NxTargetOptions[]
 }
 
@@ -21,18 +22,20 @@ export async function endToEndRunner(
   options: RunOptions,
   context: ExecutorContext
 ): Promise<{ success: boolean }> {
-  const { runner, targets, ...rest } = options
+  const { runner, targets, skipTargets, ...rest } = options
 
-  runningTargets = targets.map((targetOptions) => new NxTarget(targetOptions))
+  if (!skipTargets) {
+    runningTargets = targets.map((targetOptions) => new NxTarget(targetOptions))
 
-  try {
-    // Start all targets
-    await Promise.all(runningTargets.map((nxTarget) => nxTarget.setup()))
+    try {
+      // Start all targets
+      await Promise.all(runningTargets.map((nxTarget) => nxTarget.setup()))
 
-  } catch {
-    await killTargets()
+    } catch {
+      await killTargets()
 
-    return { success: false }
+      return { success: false }
+    }
   }
 
   try {

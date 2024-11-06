@@ -5,6 +5,12 @@
   "title": "Build executor",
   "description": "",
   "type": "object",
-  "properties": {},
+  "properties": {
+    "skipTargets": {
+      "type": "boolean",
+      "description": "When `true` the provided targets will be skipped.",
+      "default": false
+    }
+  },
   "required": []
 }
