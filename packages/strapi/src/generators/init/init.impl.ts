@@ -43,7 +43,6 @@ function generateStrapi(options: NormalizedSchema) {
     strapiDependencies: [
       '@strapi/strapi',
       '@strapi/plugin-users-permissions',
-      '@strapi/plugin-i18n'
     ],
     additionalsDependencies: {},
     useTypescript: true
