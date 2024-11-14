@@ -1,4 +1,19 @@
  
+# [15.2.0](https://github.com/tripss/nx-extend/compare/gcp-functions@15.1.1...gcp-functions@15.2.0) (2024-11-14)
+
+
+### Bug Fixes
+
+* **gcp-functions:** Remove export from index.ts barrel file ([4cf177a](https://github.com/tripss/nx-extend/commit/4cf177a6bb14ebe3e9df3e9f6a525360a41f107d))
+* **gcp-functions:** schema.json formatting ([b812545](https://github.com/tripss/nx-extend/commit/b812545239cb9f220bfa8c2695e2b154475059ad))
+
+
+### Features
+
+* **gcp-functions:** Extend allowed memory 8GB for gen 1 and 16GB / 32 GB for gen 2 ([d6d3559](https://github.com/tripss/nx-extend/commit/d6d355983ad510934e3f24e03620435f8e21af83))
+
+
+
 ## [15.1.1](https://github.com/tripss/nx-extend/compare/gcp-functions@15.1.0...gcp-functions@15.1.1) (2024-10-24)
 
 
