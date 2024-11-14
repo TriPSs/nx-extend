@@ -1,6 +1,6 @@
 import { ensureNxProject } from '../../utils/workspace'
 import { runNxCommandAsync } from '../../utils/run-nx-command-async'
-import { checkFilesExist } from '@nx/plugin/testing'
+import { checkFilesExist, readJson } from '@nx/plugin/testing'
 
 describe('shadcn/ui e2e', () => {
 
@@ -22,14 +22,15 @@ describe('shadcn/ui e2e', () => {
       `${utilsLibName}/src/index.ts`,
       'components.json'
     )).not.toThrow()
-  })
 
-  // it('should be able add a button', async () => {
-  //   await runNxCommandAsync(`add ${uiLibName} button`)
-  //
-  //   expect(() => checkFilesExist(
-  //     `${uiLibName}/src/button.tsx`,
-  //   )).not.toThrow()
-  // })
+    const componentsJSON = readJson('components.json')
+    expect(componentsJSON.tailwind.config).toEqual(`${utilsLibName}/src/tailwind.config.ts`)
+    expect(componentsJSON.tailwind.css).toEqual(`${utilsLibName}/src/global.css`)
+    expect(componentsJSON.aliases.hooks).toEqual(`@proj/${uiLibName}/hooks`)
+
+    const tsconfigJSON = readJson('tsconfig.base.json')
+    expect(tsconfigJSON.compilerOptions.paths[`@proj/${uiLibName}`][0]).toEqual(`${uiLibName}/src`)
+    expect(tsconfigJSON.compilerOptions.paths[`@proj/${utilsLibName}`][0]).toEqual(`${utilsLibName}/src`)
+  })
 
 })
