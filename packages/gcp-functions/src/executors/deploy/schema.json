@@ -46,7 +46,10 @@
         "512MB",
         "1024MB",
         "2048MB",
-        "4096MB"
+        "4096MB",
+        "8192MB",
+        "16384MB",
+        "32768MB"
       ]
     },
     "allowUnauthenticated": {
