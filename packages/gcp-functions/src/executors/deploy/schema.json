@@ -17,7 +17,13 @@
     "trigger": {
       "type": "string",
       "description": "Trigger type",
-      "enum": ["http", "bucket", "topic", "resource", "event"]
+      "enum": [
+        "http",
+        "bucket",
+        "topic",
+        "resource",
+        "event"
+      ]
     },
     "triggerValue": {
       "type": "string",
@@ -25,7 +31,12 @@
     },
     "runtime": {
       "type": "string",
-      "enum": ["nodejs16", "nodejs18", "nodejs20", "recommended"]
+      "enum": [
+        "nodejs16",
+        "nodejs18",
+        "nodejs20",
+        "recommended"
+      ]
     },
     "memory": {
       "type": "string",
@@ -59,18 +70,28 @@
     },
     "ingressSettings": {
       "type": "string",
-      "enum": ["all", "internal-only", "internal-and-gclb"]
+      "enum": [
+        "all",
+        "internal-only",
+        "internal-and-gclb"
+      ]
     },
     "egressSettings": {
       "type": "string",
-      "enum": ["all", "private-ranges-only"]
+      "enum": [
+        "all",
+        "private-ranges-only"
+      ]
     },
     "vpcConnector": {
       "type": "string"
     },
     "securityLevel": {
       "type": "string",
-      "enum": ["secure-optional", "secure-always"]
+      "enum": [
+        "secure-optional",
+        "secure-always"
+      ]
     },
     "gen": {
       "type": "number",
