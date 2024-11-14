@@ -3,13 +3,15 @@ import { buildCommand, execCommand } from '@nx-extend/core'
 import { join } from 'path'
 
 import { getValidSecrets } from '../../utils/get-valid-secrets'
+import { Gen, ValidMemory } from '../../types'
+import { validateResources } from '../../utils/validate-resources'
 
 export interface DeployExecutorSchema {
   functionName: string
   runtime?: 'nodejs16' | 'nodejs18' | 'nodejs20' | 'recommended'
   entryPoint?: string
   serviceAccount?: string
-  memory?: '128MB' | '256MB' | '512MB' | '1024MB' | '2048MB' | '4096MB'
+  memory?: ValidMemory
   region: string
   envVarsFile?: string
   envVars?: Record<string, string>
@@ -28,7 +30,7 @@ export interface DeployExecutorSchema {
   secrets?: string[] | Record<string, string>
 
   // Gen 2 options
-  gen?: 1 | 2
+  gen?: Gen
   concurrency?: number
   timeout?: number
   cloudSqlInstance?: string
@@ -80,6 +82,8 @@ export async function deployExecutor(
 
     allowUnauthenticated = trigger === 'http'
   } = options
+
+  validateResources({ cpu, memory, gen })
 
   let correctMemory = memory as string
   let correctCPU = cpu as number
