@@ -16,7 +16,11 @@ export async function addExecutor(
       (options.component ?? '').length === 0 ? '--all' : options.component,
       options.overwrite && '--overwrite'
     ]),
-    {}
+    {
+      env: {
+        TS_NODE_PROJECT: 'tsconfig.base.json'
+      }
+    }
   )
 }
 
