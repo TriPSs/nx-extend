@@ -33,4 +33,21 @@ describe('shadcn/ui e2e', () => {
     expect(tsconfigJSON.compilerOptions.paths[`@proj/${utilsLibName}`][0]).toEqual(`${utilsLibName}/src`)
   })
 
+  it('should be able add button ui', async () => {
+    await runNxCommandAsync(`add-component ${uiLibName} button`)
+
+    expect(() => checkFilesExist(
+      `${uiLibName}/src/ui/button.tsx`,
+    )).not.toThrow()
+  })
+
+  it('should be able add sidebar ui', async () => {
+    await runNxCommandAsync(`add-component ${uiLibName} sidebar`)
+
+    expect(() => checkFilesExist(
+      `${uiLibName}/src/ui/sidebar.tsx`,
+      `${uiLibName}/src/hooks/use-mobile.tsx`,
+    )).not.toThrow()
+  })
+
 })

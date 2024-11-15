@@ -18,6 +18,7 @@ export async function addExecutor(
     ]),
     {
       env: {
+        ...process.env,
         TS_NODE_PROJECT: 'tsconfig.base.json'
       }
     }
