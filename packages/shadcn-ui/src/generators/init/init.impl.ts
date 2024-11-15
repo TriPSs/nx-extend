@@ -50,7 +50,8 @@ export default async function (tree: Tree, options: ShadecnUiSchema) {
     skipFormat: true,
     style: 'css',
     linter: Linter.EsLint,
-    directory: uiLibOptions.projectRoot
+    directory: uiLibOptions.projectRoot,
+    skipTsConfig: true
   })
 
   const utilsLibOptions = await determineProjectNameAndRootOptions(tree, {
@@ -64,9 +65,12 @@ export default async function (tree: Tree, options: ShadecnUiSchema) {
     skipFormat: true,
     style: 'css',
     linter: Linter.EsLint,
-    directory: utilsLibOptions.projectRoot
+    directory: utilsLibOptions.projectRoot,
+    skipTsConfig: true
   })
 
+  addTsConfigPath(tree, `${uiLibOptions.importPath}`, [`${uiLibOptions.projectRoot}/src`])
+  addTsConfigPath(tree, `${utilsLibOptions.importPath}`, [`${utilsLibOptions.projectRoot}/src`])
   addTsConfigPath(tree, `${uiLibOptions.importPath}/*`, [`${uiLibOptions.projectRoot}/src/*`])
   addTsConfigPath(tree, `${utilsLibOptions.importPath}/*`, [`${utilsLibOptions.projectRoot}/src/*`])
   cleanupLib(tree, uiLibOptions.projectRoot)
@@ -79,14 +83,15 @@ export default async function (tree: Tree, options: ShadecnUiSchema) {
     'style': 'default',
     'rsc': false,
     'tailwind': {
-      'config': join(utilsLibOptions.projectRoot, 'tailwind.config.js'),
-      'css': join(utilsLibOptions.projectRoot, 'global.css'),
+      'config': join(utilsLibOptions.projectRoot, 'src/tailwind.config.ts'),
+      'css': join(utilsLibOptions.projectRoot, 'src/global.css'),
       'baseColor': 'neutral',
       'cssVariables': true
     },
     'aliases': {
       'components': uiLibOptions.importPath,
-      'utils': utilsLibOptions.importPath
+      'utils': utilsLibOptions.importPath,
+      "hooks": `${uiLibOptions.importPath}/hooks`
     }
   })
 
