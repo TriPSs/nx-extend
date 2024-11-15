@@ -42,7 +42,7 @@ describe('shadcn/ui e2e', () => {
   })
 
   it('should be able add sidebar ui', async () => {
-    await runNxCommandAsync(`add-component ${uiLibName} sidebar`)
+    await runNxCommandAsync(`add-component ${uiLibName} sidebar --overwrite`) // Overwrites are needed because of button ui conflicts
 
     expect(() => checkFilesExist(
       `${uiLibName}/src/ui/sidebar.tsx`,
