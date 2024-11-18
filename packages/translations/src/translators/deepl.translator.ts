@@ -153,34 +153,42 @@ export default class DeeplTranslator {
           .replace(/}/g, '</deepSkip>')
           .replace(/'<a'/g, '<deepLink')
           .replace(/'<\/a>'/g, '</deepLink>')}`,
-        `target_lang=${toLocale.split('_').shift()}`,
-        `source_lang=${this.config.defaultLanguage}`,
+        `target_lang=${toLocale.split('_').shift().split('-').shift()}`,
+        `source_lang=${this.config.defaultLanguage.split('_').shift().split('-').shift()}`,
         'preserve_formatting=1',
         'tag_handling=xml',
         'ignore_tags=deepSkip',
         this.config?.translatorOptions?.formality &&
-          this.formalitySupportedLangs.includes(toLocale) &&
-          `formality=${this.config.translatorOptions.formality}`
+        this.formalitySupportedLangs.includes(toLocale) &&
+        `formality=${this.config.translatorOptions.formality}`
       ].filter(Boolean)
 
-      const {
-        status,
-        data: { translations }
-      } = await axios.get<any>(url.join('&'))
+      const { status, data } = await axios.get(url.join('&'),{
+        validateStatus: () => true
+      })
 
       if (status === 429) {
         logger.warn('To many requests, wait and retry')
+
       } else if (status === 456) {
         throw new Error('Rate limit!')
+
+      } else if (status === 400) {
+        translatedMessages.push({
+          key: message.key,
+          value: 'Error translating!'
+        })
+
+        continue
       }
 
       translatedMessages.push({
         key: message.key,
-        value: translations[0].text
+        value: data.translations[0].text
           .replace(/<deepSkip>/g, '{')
           .replace(/<\/deepSkip>/g, '}')
-          .replace(/<deepLink/g, "'<a'")
-          .replace(/<\/deepLink>/g, "'</a>'")
+          .replace(/<deepLink/g, '\'<a\'')
+          .replace(/<\/deepLink>/g, '\'</a>\'')
       })
     }
 
