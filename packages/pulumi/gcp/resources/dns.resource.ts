@@ -5,11 +5,13 @@ import { GCP_PROJECT_ID } from '../config'
 import { BaseResource } from './base.resource'
 
 export type DNS_TYPE = 'A' | 'AAAA' | 'MX' | 'TXT' | 'CNAME'
-export type DNS_VALUES = string | Array<string>
+export type DNS_VALUES = string | Array<string> | pulumi.Output<string>
 
 export class DNSResource extends BaseResource {
 
   public static gmailSpfInclude = 'include:_spf.google.com'
+  public static firebaseSpfInclude = 'include:_spf.firebasemail.com'
+
   public readonly zone: gcp.dns.ManagedZone
 
   private readonly friendlyDomain: string
@@ -56,11 +58,6 @@ export class DNSResource extends BaseResource {
       .createRecord('www', 'CNAME', 'cname.vercel-dns.com.')
   }
 
-  public createCmsRecord(): DNSResource {
-    return this
-      .createCNAMERecord('cms', 'ghs.googlehosted.com.')
-  }
-
   public createGmailMxRecords(): DNSResource {
     return this
       .createMxRecord(
@@ -102,22 +99,25 @@ export class DNSResource extends BaseResource {
   }
 
   /**
-   * Creates a SPF records, possible adds other values to the TXT record
+   * Creates an SPF records, possible adds other values to the TXT record
    */
   public createSpfRecord(subDomain: string, ips: string[], ...values: string[]): DNSResource {
-    return this
-      .createTXTRecord(subDomain, `v=spf1 ${ips.join(' ')} -all`, ...values)
+    return this.createTXTRecord(subDomain, `v=spf1 ${ips.join(' ')} -all`, ...values)
   }
 
   public createDefaultDomainKeyRecord(subDomain = '_domainkey', value = '"o=~"'): DNSResource {
-    return this
-      .createRecord(subDomain, 'TXT', value)
+    return this.createRecord(subDomain, 'TXT', value)
   }
 
-  public createDmarcRecord(subDomain = '_dmarc'): DNSResource {
-    return this
-      // add: adkim=s;aspf=s; ? https://support.google.com/a/answer/2466563
-      .createTXTRecord(subDomain, `v=DMARC1;p=reject;pct=100;rua=mailto:dmarc-reports@${this.domain}`)
+  public createDmarcRecord(subDomain = '_dmarc', mailTo?: string): DNSResource {
+    return this.createTXTRecord(subDomain, [
+      'v=DMARC1',
+      'p=reject',
+      'pct=100',
+      mailTo && `rua=mailto:${mailTo}@${this.domain}`,
+      'adkim=s',
+      'aspf=s'
+    ].filter(Boolean).join(';'))
   }
 
   public createTXTRecord(subDomain: string, ...values: string[]): DNSResource {
@@ -126,6 +126,14 @@ export class DNSResource extends BaseResource {
 
   public createCNAMERecord(subDomain: string, ...values: DNS_VALUES[]): DNSResource {
     return this.createRecord(subDomain, 'CNAME', ...values)
+  }
+
+  public createARecord(subDomain: string, ...values: DNS_VALUES[]): DNSResource {
+    return this.createRecord(subDomain, 'A', ...values)
+  }
+
+  public createAAAARecord(subDomain: string, ...values: DNS_VALUES[]): DNSResource {
+    return this.createRecord(subDomain, 'AAAA', ...values)
   }
 
   public createRecord(subDomain: string, type: DNS_TYPE, ...values: DNS_VALUES[]): DNSResource {

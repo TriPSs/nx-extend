@@ -10,5 +10,7 @@ export * from './resources/iam-custom-role.resource'
 export * from './resources/pub-sub-topic.resource'
 export * from './resources/queue.resource'
 export * from './resources/secret.resource'
+export * from './resources/load-balancer.resource'
+export * from './resources/backend-service-backend.resource'
 export * from './resources/service-account.resource'
 

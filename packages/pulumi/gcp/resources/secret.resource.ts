@@ -2,6 +2,7 @@ import * as gcp from '@pulumi/gcp'
 import * as pulumi from '@pulumi/pulumi'
 
 import { GCP_PROJECT_ID } from '../config'
+import { iamRoles } from '../iam-roles'
 import { buildName, getFriendlyMemberName, getFriendlyRoleName } from '../naming'
 import { BaseResource } from './base.resource'
 
@@ -49,7 +50,7 @@ export class SecretResource extends BaseResource {
   }
 
   public addAccessor(member: pulumi.Output<string>): SecretResource {
-    return this.addMember(member, 'roles/secretmanager.secretAccessor')
+    return this.addMember(member, iamRoles.secretmanager.secretAccessor)
   }
 
   public addMember(member: pulumi.Output<string>, role: string): SecretResource {
