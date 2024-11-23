@@ -1,4 +1,13 @@
  
+# [11.2.0](https://github.com/tripss/nx-extend/compare/e2e-runner@11.1.0...e2e-runner@11.2.0) (2024-11-06)
+
+
+### Features
+
+* **e2e-runner-run:** Add skipTargets option to executor configuration ([c78d4e0](https://github.com/tripss/nx-extend/commit/c78d4e02aaa62d7d650b252dcf804b46dcd1ce35))
+
+
+
 # [11.1.0](https://github.com/tripss/nx-extend/compare/e2e-runner@11.0.3...e2e-runner@11.1.0) (2024-10-24)
 
 ### Dependency Updates

@@ -1,4 +1,23 @@
  
+# [4.2.0](https://github.com/tripss/nx-extend/compare/shadcn-ui@4.1.2...shadcn-ui@4.2.0) (2024-11-15)
+
+
+### Features
+
+* add TS_NODE_PROJECT env for specify tsconfig file name ([9215391](https://github.com/tripss/nx-extend/commit/92153912b69aa820a7d2e167e01f05f9b51a7657))
+* renew shadcn ui add process ([d60558b](https://github.com/tripss/nx-extend/commit/d60558bc192c4a7695848c3c5abf602564915e3d))
+* renew shadcn ui init process ([ecee32c](https://github.com/tripss/nx-extend/commit/ecee32c23114914157fa01662b2c5da134be28df))
+
+
+
+## [4.1.2](https://github.com/tripss/nx-extend/compare/shadcn-ui@4.1.1...shadcn-ui@4.1.2) (2024-11-06)
+
+
+
+## [4.1.1](https://github.com/tripss/nx-extend/compare/shadcn-ui@4.1.0...shadcn-ui@4.1.1) (2024-10-24)
+
+
+
 # [4.1.0](https://github.com/tripss/nx-extend/compare/shadcn-ui@4.0.1...shadcn-ui@4.1.0) (2024-10-24)
 
 ### Dependency Updates

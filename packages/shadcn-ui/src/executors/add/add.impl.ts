@@ -10,17 +10,18 @@ export async function addExecutor(
   options: ExecutorSchema,
   context: ExecutorContext
 ): Promise<{ success: boolean }> {
-  const { root } = context.projectsConfigurations.projects[context.projectName]
-
   return execPackageManagerCommand(
     buildCommand([
-      'shadcn-ui@0.8.0 add',
+      'shadcn@latest add',
       (options.component ?? '').length === 0 ? '--all' : options.component,
-      options.overwrite && '--overwrite',
-      '--path=src',
-      `--cwd=${root}`
+      options.overwrite && '--overwrite'
     ]),
-    {}
+    {
+      env: {
+        ...process.env,
+        TS_NODE_PROJECT: 'tsconfig.base.json'
+      }
+    }
   )
 }
 
