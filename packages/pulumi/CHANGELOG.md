@@ -1,4 +1,20 @@
  
+# [9.0.0](https://github.com/tripss/nx-extend/compare/pulumi@8.1.1...pulumi@9.0.0) (2024-11-23)
+
+
+### Features
+
+* **pulumi:** Add Load Balancer and Backend Service Resources ([6c587bd](https://github.com/tripss/nx-extend/commit/6c587bdb3052de652d285daa8b0665e9fde5a8a8))
+* **pulumi:** Add name getter to BucketResource in pulumi-gcp ([c36c644](https://github.com/tripss/nx-extend/commit/c36c6447ffb8d77216741fa6ff27be62f92114a2))
+* **pulumi:** Added all of IAM roles for GCP services ([56a7d21](https://github.com/tripss/nx-extend/commit/56a7d21688cc4b2fa8456e5aef6cca8e601381cd))
+
+
+### BREAKING CHANGES
+
+* **pulumi:** Some names changed as this was automatically generated
+
+
+
 ## [8.1.1](https://github.com/tripss/nx-extend/compare/pulumi@8.1.0...pulumi@8.1.1) (2024-10-24)
 
 
