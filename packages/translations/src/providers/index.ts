@@ -3,6 +3,7 @@ import { ExecutorContext, logger } from '@nx/devkit'
 import type { BaseConfigFile } from '../utils/config-file'
 
 import BaseProvider from './base.provider'
+import File from './file.provider'
 import PoeditorProvider, { PoeditorConfig } from './poeditor.provider'
 import SimpleLocalize, { SimpleLocalizeConfig } from './simplelocalize.provider'
 import TraduoraProvider, { TraduoraConfig } from './traduora.provider'
@@ -25,6 +26,9 @@ export const getProvider = async (
 
     case 'simplelocalize':
       return new SimpleLocalize(context, configFile as SimpleLocalizeConfig)
+
+    case 'file':
+      return new File(context, configFile as SimpleLocalizeConfig)
 
     default:
       logger.warn(`"${provider}" is not an valid provider!`)

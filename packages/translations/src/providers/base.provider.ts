@@ -125,14 +125,9 @@ export default abstract class BaseProvider<Config extends BaseConfigFile> {
     await translator.translateAll(this)
   }
 
-  public abstract getTranslations(
-    language: string
-  ): Promise<{ [key: string]: string }>
+  public abstract getTranslations(language: string): Promise<{ [key: string]: string }>
 
-  public abstract uploadTranslations(
-    language: string,
-    translations: { [key: string]: string }
-  ): Promise<boolean>
+  public abstract uploadTranslations(language: string, translations: { [key: string]: string }): Promise<boolean>
 
   public getSourceTerms() {
     if (!existsSync(this.sourceFile)) {

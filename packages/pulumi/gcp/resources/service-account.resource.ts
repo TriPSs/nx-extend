@@ -28,6 +28,10 @@ export class ServiceAccountResource extends BaseResource {
     })
   }
 
+  public get id(): pulumi.Output<string> {
+    return this.account.id
+  }
+
   public get member(): pulumi.Output<string> {
     return this.account.member
   }

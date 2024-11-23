@@ -2,6 +2,7 @@ import * as gcp from '@pulumi/gcp'
 import * as pulumi from '@pulumi/pulumi'
 
 import { GCP_PROJECT_ID } from '../config'
+import { iamRoles } from '../iam-roles'
 import { buildName, getFriendlyMemberName, getFriendlyRoleName } from '../naming'
 import { BaseResource } from './base.resource'
 
@@ -32,7 +33,7 @@ export class QueueResource extends BaseResource {
   }
 
   public addEnqueuer(member: pulumi.Output<string>): QueueResource {
-    return this.addMember(member, 'roles/cloudtasks.enqueuer')
+    return this.addMember(member, iamRoles.cloudtasks.enqueuer)
   }
 
   public addMember(member: pulumi.Output<string>, role: string): QueueResource {

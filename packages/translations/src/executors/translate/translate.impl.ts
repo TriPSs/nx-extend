@@ -32,7 +32,7 @@ export async function translateExtractor(
       success: true
     }
   } catch (err) {
-    logger.error('Error pushing source file')
+     logger.error('Error translating files')
     logger.error(err.message || err)
   }
 

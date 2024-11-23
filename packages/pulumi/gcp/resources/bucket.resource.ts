@@ -2,6 +2,7 @@ import * as gcp from '@pulumi/gcp'
 import * as pulumi from '@pulumi/pulumi'
 
 import { GCP_PROJECT_ID } from '../config'
+import { iamRoles } from '../iam-roles'
 import { buildName, getFriendlyRoleName } from '../naming'
 import { BaseResource } from './base.resource'
 
@@ -27,32 +28,36 @@ export class BucketResource extends BaseResource {
     })
   }
 
+  public get name() {
+    return this.bucket.name
+  }
+
   public addLegacyObjectReader(member: pulumi.Output<string>): BucketResource {
-    this.addMember(member, 'roles/storage.legacyObjectReader')
+    this.addMember(member, iamRoles.storage.legacyObjectReader)
 
     return this
   }
 
   public addLegacyObjectOwner(member: pulumi.Output<string>): BucketResource {
-    this.addMember(member, 'roles/storage.legacyObjectOwner')
+    this.addMember(member, iamRoles.storage.legacyObjectOwner)
 
     return this
   }
 
   public addObjectAdmin(member: pulumi.Output<string>): BucketResource {
-    this.addMember(member, 'roles/storage.objectAdmin')
+    this.addMember(member, iamRoles.storage.objectAdmin)
 
     return this
   }
 
   public addObjectViewer(member: pulumi.Output<string>): BucketResource {
-    this.addMember(member, 'roles/storage.objectViewer')
+    this.addMember(member, iamRoles.storage.objectViewer)
 
     return this
   }
 
   public addObjectCreator(member: pulumi.Output<string>): BucketResource {
-    this.addMember(member, 'roles/storage.objectCreator')
+    this.addMember(member, iamRoles.storage.objectCreator)
 
     return this
   }
