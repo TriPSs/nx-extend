@@ -28,6 +28,10 @@ export class BucketResource extends BaseResource {
     })
   }
 
+  public get name() {
+    return this.bucket.name
+  }
+
   public addLegacyObjectReader(member: pulumi.Output<string>): BucketResource {
     this.addMember(member, iamRoles.storage.legacyObjectReader)
 
