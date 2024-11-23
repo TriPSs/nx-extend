@@ -43,13 +43,27 @@ jobs:
         id: plan
         uses: tripss/nx-extend/actions/plan@improvements
         with:
+          # Plan projects with the following targets          
           targets: |
             test
             build
             e2e
 
+          # Available options
+          # <target>MaxJobs     - Amount of max jobs for this target
+          # <target>Tag         - Tag the targets project needs to have (Supports conditional)
+          # <target>PreTargets  - Targets of the targeted project to run before running the target
+          # <target>postTargets - Targets of the targeted project to run after running the target
+          # <target>Parallel    - Amount of projects it can run in parallel
+            
+          # Run build target when project has tag "build=enabled" AND "service" tag is not "vercel" OR has tag "service=react" 
+          targetBuildTag:
+            build=enabled,service!=vercel
+            service=react
+
           testMaxJobs: 1
-          testTag: tests=enabled
+          testTag: |
+            tests=enabled
 
           buildMaxJobs: 3
           buildPreTargets: |
@@ -79,5 +93,7 @@ jobs:
           index: ${{ matrix.index }}
           count: ${{ matrix.count }}
           tag: ${{ matrix.tag }}
+          parallel: ${{ matrix.parallel }}
           preTargets: ${{ matrix.preTargets }}
+          postTargets: ${{ matrix.postTargets }}
 ```
