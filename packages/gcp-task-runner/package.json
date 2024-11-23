@@ -3,7 +3,7 @@
   "version": "8.1.0",
   "main": "src/index.js",
   "dependencies": {
-    "@google-cloud/storage": "7.13.0"
+    "@google-cloud/storage": "7.14.0"
   },
   "peerDependencies": {
     "@nx/devkit": "^20.0.0",
