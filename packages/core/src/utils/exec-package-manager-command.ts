@@ -7,16 +7,12 @@ import { buildCommand } from './build-command'
 import { execCommand, Options } from './exec'
 
 export function getPackageManagerDlxCommand() {
-  return nxGetPackageManagerCommand(detectPackageManager()).dlx
-}
-
-export function getPackageManagerCommand() {
-  return process.env.NX_EXTEND_COMMAND_USE_NPX ? 'npx' : getPackageManagerDlxCommand()
+  return process.env.NX_EXTEND_COMMAND_USE_NPX ? 'npx' : nxGetPackageManagerCommand(detectPackageManager()).dlx
 }
 
 export function execPackageManagerCommand(command: string, options?: Options) {
   return execCommand(buildCommand([
-    getPackageManagerCommand(),
+    getPackageManagerDlxCommand(),
     command
   ]), options)
 }

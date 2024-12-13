@@ -1,5 +1,5 @@
 import { workspaceRoot } from '@nx/devkit'
-import { buildCommand, getPackageManagerCommand } from '@nx-extend/core'
+import { buildCommand, getPackageManagerDlxCommand } from '@nx-extend/core'
 import { execSync } from 'child_process'
 
 export interface ExecutorSchema {
@@ -9,7 +9,7 @@ export interface ExecutorSchema {
 
 export async function addExecutor(options: ExecutorSchema): Promise<{ success: boolean }> {
   execSync(buildCommand([
-    getPackageManagerCommand(),
+    getPackageManagerDlxCommand(),
     'shadcn@latest add',
     (options.component ?? '').length === 0 ? '--all' : options.component,
     options.overwrite && '--overwrite'
