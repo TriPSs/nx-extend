@@ -1,4 +1,16 @@
  
+# [9.2.0](https://github.com/tripss/nx-extend/compare/gcp-storage@9.1.0...gcp-storage@9.2.0) (2024-12-13)
+
+### Dependency Updates
+
+* `core` updated to version `8.1.1`
+
+### Features
+
+* **gcp-storage:** Add support for multiple upload directories ([fd78290](https://github.com/tripss/nx-extend/commit/fd78290a191ad67c482335b154586843320e01ed))
+
+
+
 # [9.1.0](https://github.com/tripss/nx-extend/compare/gcp-storage@9.0.2...gcp-storage@9.1.0) (2024-10-24)
 
 ### Dependency Updates
