@@ -1,6 +1,6 @@
 {
   "name": "@nx-extend/firebase-hosting",
-  "version": "8.1.0",
+  "version": "8.1.1",
   "homepage": "https://github.com/TriPSs/nx-extend/blob/master/packages/firebase-hosting/README.md",
   "bugs": {
     "url": "https://github.com/tripss/nx-extend/issues"
