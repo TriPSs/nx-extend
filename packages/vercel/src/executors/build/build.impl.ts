@@ -25,7 +25,7 @@ export interface BuildOptions {
   buildTarget?: string
   framework?: string
   outputPath?: string
-  nodeVersion?: '16.x'
+  nodeVersion?: '20.x' | '22.x'
   config: string
 }
 
@@ -115,7 +115,7 @@ export function buildExecutor(
       outputDirectory: getOutputDirectory(framework, outputDirectory),
       rootDirectory: null,
       directoryListing: false,
-      nodeVersion: options.nodeVersion || '20.x'
+      nodeVersion: options.nodeVersion || '22.x'
     }
   })
 

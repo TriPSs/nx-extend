@@ -37,7 +37,7 @@ describe('shadcn/ui e2e', () => {
     await runNxCommandAsync(`add-component ${uiLibName} button`)
 
     expect(() => checkFilesExist(
-      `${uiLibName}/src/ui/button.tsx`,
+      `${uiLibName}/src/button.tsx`,
     )).not.toThrow()
   })
 
@@ -45,7 +45,7 @@ describe('shadcn/ui e2e', () => {
     await runNxCommandAsync(`add-component ${uiLibName} sidebar --overwrite`) // Overwrites are needed because of button ui conflicts
 
     expect(() => checkFilesExist(
-      `${uiLibName}/src/ui/sidebar.tsx`,
+      `${uiLibName}/src/sidebar.tsx`,
       `${uiLibName}/src/hooks/use-mobile.tsx`,
     )).not.toThrow()
   })

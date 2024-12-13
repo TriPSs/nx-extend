@@ -28,7 +28,7 @@ export class BucketResource extends BaseResource {
     })
   }
 
-  public get name() {
+  public get name(): pulumi.Output<string> {
     return this.bucket.name
   }
 

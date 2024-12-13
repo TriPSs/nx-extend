@@ -45,6 +45,9 @@ export class SecretResource extends BaseResource {
       new gcp.secretmanager.SecretVersion(buildName(this.secretName, 'secret-version'), {
         secret: this.secret.id,
         secretData: typeof secretValue === 'string' ? secretValue : JSON.stringify(secretValue)
+      }, {
+        parent: this.secret,
+        aliases: [{ parent: pulumi.rootStackResource }]
       })
     })
   }

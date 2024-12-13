@@ -89,9 +89,10 @@ export default async function (tree: Tree, options: ShadecnUiSchema) {
       'cssVariables': true
     },
     'aliases': {
-      'components': uiLibOptions.importPath,
+      'ui': uiLibOptions.importPath,
+      'components': `${uiLibOptions.importPath}/components`,
       'utils': utilsLibOptions.importPath,
-      "hooks": `${uiLibOptions.importPath}/hooks`
+      'hooks': `${uiLibOptions.importPath}/hooks`
     }
   })
 
