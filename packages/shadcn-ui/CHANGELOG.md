@@ -1,4 +1,17 @@
  
+## [4.2.1](https://github.com/tripss/nx-extend/compare/shadcn-ui@4.2.0...shadcn-ui@4.2.1) (2024-12-13)
+
+### Dependency Updates
+
+* `core` updated to version `8.1.1`
+
+### Bug Fixes
+
+* **shadcn-ui:** Fixed user input not propagating to lib ([c7b8a51](https://github.com/tripss/nx-extend/commit/c7b8a5188145e15496b7a366bcabc8eff5f60975))
+* **shadcn-ui:** Update alias paths ([645ca55](https://github.com/tripss/nx-extend/commit/645ca55bab219524b9bf4d1fc9830b31b0a56eeb))
+
+
+
 # [4.2.0](https://github.com/tripss/nx-extend/compare/shadcn-ui@4.1.2...shadcn-ui@4.2.0) (2024-11-15)
 
 
