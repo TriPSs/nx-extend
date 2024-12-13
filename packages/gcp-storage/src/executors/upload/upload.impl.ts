@@ -4,36 +4,53 @@ import { join, resolve } from 'path'
 
 export interface UploadExecutorSchema {
   bucket: string
-  directory: string
+  directory?: string
+  directories?: string[]
   gzip: boolean
-  gzipExtensions: string
+  gzipExtensions?: string
 }
 
 export async function uploadExecutor(
   options: UploadExecutorSchema,
   context: ExecutorContext
 ): Promise<{ success: boolean }> {
-  const { directory, gzip = false, gzipExtensions, bucket } = options
+  const { directory, directories, gzip = false, gzipExtensions, bucket } = options
 
-  if (!directory) {
+  if (!directory && (!directories || directories.length === 0)) {
     throw new Error('"directory" is required!')
   }
 
-  const directoryToUpload = join(context.root, directory)
+  const uploadDirectories = directories || [`${directory}:/`]
 
-  const uploadTo = `gs://${bucket}`
+  let success = true
+  for (const uploadDirectory of uploadDirectories) {
+    if (!uploadDirectory.includes(':')) {
+      logger.error(`Invalid upload directory "${uploadDirectory}", must be in format "localPath:bucketPath"`)
+      success = false
+      break
+    }
 
-  logger.info(`Start upload assets from "${directoryToUpload}" to "${uploadTo}"`)
+    const [localPath, bucketPath] = uploadDirectory.split(':')
+    const directoryToUpload = join(context.root, localPath)
+    const uploadTo = `gs://${bucket}${bucketPath}`
 
-  return Promise.resolve(
-    execCommand(buildCommand([
+    logger.info(`Start upload assets from "${directoryToUpload}" to "${uploadTo}"`)
+
+    const result = execCommand(buildCommand([
       'gsutil rsync -R',
       gzip && `-z "${gzipExtensions}"`,
 
       resolve(process.cwd(), directoryToUpload),
       uploadTo
     ]))
-  )
+
+    if (!result.success) {
+      success = false
+      break
+    }
+  }
+
+  return { success }
 }
 
 export default uploadExecutor

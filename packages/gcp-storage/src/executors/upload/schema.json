@@ -14,6 +14,13 @@
       "type": "string",
       "description": "Directory to upload"
     },
+    "directories": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Directory to upload"
+    },
     "gzip": {
       "type": "boolean",
       "description": "Should the files that are uploaded be gzipped",
