@@ -1,4 +1,14 @@
  
+## [8.1.1](https://github.com/TriPSs/nx-extend/compare/core@8.1.0...core@8.1.1) (2024-12-13)
+
+
+### Bug Fixes
+
+* **shadcn-ui:** Fixed user input not propagating to lib ([c7b8a51](https://github.com/TriPSs/nx-extend/commit/c7b8a5188145e15496b7a366bcabc8eff5f60975))
+* **shadcn-ui:** Update alias paths ([645ca55](https://github.com/TriPSs/nx-extend/commit/645ca55bab219524b9bf4d1fc9830b31b0a56eeb))
+
+
+
 # [8.1.0](https://github.com/TriPSs/nx-extend/compare/core@8.0.2...core@8.1.0) (2024-10-24)
 
 
