@@ -1,4 +1,21 @@
  
+# [12.0.0](https://github.com/tripss/nx-extend/compare/vercel@11.1.0...vercel@12.0.0) (2024-12-13)
+
+### Dependency Updates
+
+* `core` updated to version `8.1.1`
+
+### Features
+
+* **vercel:** Update Node.js version options in Vercel build executor ([0ddc9c9](https://github.com/tripss/nx-extend/commit/0ddc9c94c19dbd010a0efadaeb21ede5df8e2410))
+
+
+### BREAKING CHANGES
+
+* **vercel:** The default node version is now set to `22.x` (LTS)
+
+
+
 # [11.1.0](https://github.com/tripss/nx-extend/compare/vercel@11.0.0...vercel@11.1.0) (2024-10-24)
 
 ### Dependency Updates
