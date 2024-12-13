@@ -16,6 +16,23 @@
 
 
 
+# [15.2.0](https://github.com/tripss/nx-extend/compare/translations@15.1.1...translations@15.2.0) (2024-12-13)
+
+### Dependency Updates
+
+* `core` updated to version `8.1.1`
+
+### Bug Fixes
+
+* **translations:** Handle error status codes and improve language splitting ([f5be3ab](https://github.com/tripss/nx-extend/commit/f5be3abf2df54c1b7ded52af8c56e2b6a4fdff4a))
+
+
+### Features
+
+* **translations:** Add File provider implementation ([0fd0ff1](https://github.com/tripss/nx-extend/commit/0fd0ff1fbfab3752edd2694820cb3bbd864e096e))
+
+
+
 # [15.2.0](https://github.com/tripss/nx-extend/compare/translations@15.1.1...translations@15.2.0) (2024-11-23)
 
 
