@@ -1,4 +1,13 @@
  
+## [15.2.2](https://github.com/tripss/nx-extend/compare/gcp-functions@15.2.1...gcp-functions@15.2.2) (2024-12-14)
+
+
+### Bug Fixes
+
+* **gcp-functions-deploy:** Added missing envVars and secrets in schema ([35b4758](https://github.com/tripss/nx-extend/commit/35b47584d640a42740dda326e368bf55624b117c))
+
+
+
 ## [15.2.1](https://github.com/tripss/nx-extend/compare/gcp-functions@15.2.0...gcp-functions@15.2.1) (2024-12-13)
 
 ### Dependency Updates
