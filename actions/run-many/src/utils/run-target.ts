@@ -33,7 +33,6 @@ export async function runTarget(
     'npx nx run-many',
     `--target=${target}`,
     `--projects=${projectsWithTarget.join(',')}`,
-    `--output-style=stream`,
     config && `--configuration=${config}`,
     (core.isDebug() || argv.verbose) && '--verbose',
     `${getRestArgs()}`
