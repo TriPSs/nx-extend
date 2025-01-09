@@ -109,7 +109,7 @@ export class DNSResource extends BaseResource {
     return this.createRecord(subDomain, 'TXT', value)
   }
 
-  public createDmarcRecord(subDomain = '_dmarc', mailTo?: string, adkim = 's', aspf = 's'): DNSResource {
+  public createDmarcRecord(subDomain = '_dmarc', mailTo?: string, adkim: string | false = 's', aspf: string | false = 's'): DNSResource {
     return this.createTXTRecord(subDomain, [
       'v=DMARC1',
       'p=reject',
