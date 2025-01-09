@@ -1,4 +1,13 @@
  
+## [9.0.1](https://github.com/tripss/nx-extend/compare/pulumi@9.0.0...pulumi@9.0.1) (2025-01-09)
+
+
+### Bug Fixes
+
+* **pulumi:** Make `adkim` and `aspf` configurable ([a21d324](https://github.com/tripss/nx-extend/commit/a21d324d48ea37a9e369fdb07bc8d9957c9a0b8e))
+
+
+
 # [9.0.0](https://github.com/tripss/nx-extend/compare/pulumi@8.1.1...pulumi@9.0.0) (2024-12-13)
 
 ### Dependency Updates
