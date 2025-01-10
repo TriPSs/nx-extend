@@ -113,8 +113,8 @@
     },
     "secrets": {
       "type": [
-        "string",
-        "object"
+        "object",
+        "stringArray"
       ]
     }
   }
