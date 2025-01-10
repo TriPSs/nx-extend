@@ -1,4 +1,13 @@
  
+## [15.2.4](https://github.com/tripss/nx-extend/compare/gcp-functions@15.2.3...gcp-functions@15.2.4) (2025-01-10)
+
+
+### Bug Fixes
+
+* **gcp-functions:** Correct schema type for 'secrets' in deploy executor ([42b0aa4](https://github.com/tripss/nx-extend/commit/42b0aa4a13bccc778c94fd27478e74757e7caa4c))
+
+
+
 ## [15.2.3](https://github.com/tripss/nx-extend/compare/gcp-functions@15.2.2...gcp-functions@15.2.3) (2025-01-10)
 
 
