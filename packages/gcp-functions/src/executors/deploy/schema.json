@@ -112,9 +112,13 @@
       "type": "number"
     },
     "secrets": {
-      "type": [
-        "object",
-        "stringArray"
+      "oneOf": [
+        {
+          "type": "array"
+        },
+        {
+          "type": "object"
+        }
       ]
     }
   }
