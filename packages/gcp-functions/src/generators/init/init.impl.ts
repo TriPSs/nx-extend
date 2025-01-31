@@ -69,7 +69,7 @@ export default async function (
     sourceRoot: `${normalizedOptions.projectRoot}/src`,
     targets: {
       lint: {
-        executor: '@nrwl/linter:eslint',
+        executor: '@nx/eslint:lint',
         options: {}
       },
       test: {
