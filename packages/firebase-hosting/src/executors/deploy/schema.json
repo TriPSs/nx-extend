@@ -13,6 +13,10 @@
     "identifier": {
       "type": "string",
       "description": "Identifier name in Firebase Hosting"
+    },
+    "cliVersion": {
+      "type": "string",
+      "description": "Specific version of the Firebase CLI to use, left empty will use the latest"
     }
   }
 }

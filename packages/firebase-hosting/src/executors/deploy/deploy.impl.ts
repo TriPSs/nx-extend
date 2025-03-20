@@ -5,22 +5,29 @@ export interface ExecutorSchema {
   identifier?: string
   project?: string
   message?: string
+
+  cliVersion?: string
 }
 
 export async function deployExecutor(
   options: ExecutorSchema
   // context: ExecutorContext
 ): Promise<{ success: boolean }> {
+  let cliCommand = 'firebase-tools'
+  if (options.cliVersion) {
+    cliCommand = `firebase-tools@${options.cliVersion}`
+  }
+
   // Make sure the deployment target is defined
   execPackageManagerCommand(buildCommand([
-    'firebase-tools target:apply',
+    `${cliCommand} target:apply`,
     `hosting ${options.site} ${options.identifier || options.site}`,
 
     options.project && `--project=${options.project}`
   ]))
 
   return execPackageManagerCommand(buildCommand([
-    'firebase-tools deploy',
+    `${cliCommand} deploy`,
     `--only=hosting:${options.site}`,
 
     options.project && `--project=${options.project}`,
