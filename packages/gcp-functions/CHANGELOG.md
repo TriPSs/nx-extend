@@ -1,4 +1,13 @@
  
+## [15.2.5](https://github.com/tripss/nx-extend/compare/gcp-functions@15.2.4...gcp-functions@15.2.5) (2025-03-20)
+
+
+### Bug Fixes
+
+* **gcp-functions:** Update lint executor to use '@nx/eslint:lint' ([384433c](https://github.com/tripss/nx-extend/commit/384433c1c4128d06639dd1f1795eb6b2628e40c6))
+
+
+
 ## [15.2.4](https://github.com/tripss/nx-extend/compare/gcp-functions@15.2.3...gcp-functions@15.2.4) (2025-01-10)
 
 
