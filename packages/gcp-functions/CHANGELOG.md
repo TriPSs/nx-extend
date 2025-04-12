@@ -1,4 +1,13 @@
  
+## [15.2.6](https://github.com/tripss/nx-extend/compare/gcp-functions@15.2.5...gcp-functions@15.2.6) (2025-04-12)
+
+
+### Bug Fixes
+
+* **gcp-functions:** allow nodejs22 ([b921026](https://github.com/tripss/nx-extend/commit/b921026e22b7e35b60237dcb805415ecbc727f4c))
+
+
+
 ## [15.2.5](https://github.com/tripss/nx-extend/compare/gcp-functions@15.2.4...gcp-functions@15.2.5) (2025-03-20)
 
 
