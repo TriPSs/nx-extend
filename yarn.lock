@@ -5184,16 +5184,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nestjs/common@npm:^10.4.8":
-  version: 10.4.8
-  resolution: "@nestjs/common@npm:10.4.8"
+"@nestjs/common@npm:^11.0.16":
+  version: 11.0.16
+  resolution: "@nestjs/common@npm:11.0.16"
   dependencies:
     iterare: "npm:1.2.1"
-    tslib: "npm:2.7.0"
+    tslib: "npm:2.8.1"
     uid: "npm:2.0.2"
   peerDependencies:
     class-transformer: "*"
     class-validator: "*"
+    file-type: ^20.4.1
     reflect-metadata: ^0.1.12 || ^0.2.0
     rxjs: ^7.1.0
   peerDependenciesMeta:
@@ -5201,7 +5202,7 @@ __metadata:
       optional: true
     class-validator:
       optional: true
-  checksum: 10/4484e7ad9ecffa515cfc8042ff6eb000b80bc196f1638c0707726018436ee80b5ed30114c60450affce9e38290017260659eeaa5e315f4a1ce2d89f6e7d022ae
+  checksum: 10/e212da5be940b3cee4ec802263672313c55c55851382facd69d650e1afd6e16fe08829e00e4384fa80e3d724292e5e998fe3da6be04e6710034cd99f1ad791f8
   languageName: node
   linkType: hard
 
@@ -5623,7 +5624,7 @@ __metadata:
   resolution: "@nx-extend/gcp-functions@workspace:packages/gcp-functions"
   dependencies:
     "@google-cloud/functions-framework": "npm:^3.4.2"
-    "@nestjs/common": "npm:^10.4.8"
+    "@nestjs/common": "npm:^11.0.16"
     "@nestjs/core": "npm:^10.4.8"
     "@nestjs/platform-express": "npm:^10.4.8"
   peerDependencies:
@@ -28768,6 +28769,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"tslib@npm:2.8.1, tslib@npm:^2.8.1":
+  version: 2.8.1
+  resolution: "tslib@npm:2.8.1"
+  checksum: 10/3e2e043d5c2316461cb54e5c7fe02c30ef6dccb3384717ca22ae5c6b5bc95232a6241df19c622d9c73b809bea33b187f6dbc73030963e29950c2141bc32a79f7
+  languageName: node
+  linkType: hard
+
 "tslib@npm:^1.10.0, tslib@npm:^1.13.0, tslib@npm:^1.8.1, tslib@npm:^1.9.0, tslib@npm:^1.9.3":
   version: 1.14.1
   resolution: "tslib@npm:1.14.1"
@@ -28779,13 +28787,6 @@ __metadata:
   version: 2.8.0
   resolution: "tslib@npm:2.8.0"
   checksum: 10/1bc7c43937477059b4d26f2dbde7e49ef0fb4f38f3014e0603eaea76d6a885742c8b1762af45949145e5e7408a736d20ded949da99dabc8ccba1fc5531d2d927
-  languageName: node
-  linkType: hard
-
-"tslib@npm:^2.8.1":
-  version: 2.8.1
-  resolution: "tslib@npm:2.8.1"
-  checksum: 10/3e2e043d5c2316461cb54e5c7fe02c30ef6dccb3384717ca22ae5c6b5bc95232a6241df19c622d9c73b809bea33b187f6dbc73030963e29950c2141bc32a79f7
   languageName: node
   linkType: hard
 
