@@ -17,6 +17,7 @@ export interface DeployOptions {
   buildTarget?: string
   regions?: string
   archive?: 'tgz'
+  deployment?: 'preview' | 'production'
 }
 
 export async function deployExecutor(
@@ -54,7 +55,7 @@ export async function deployExecutor(
 
   const { success, output } = execCommand(buildCommand([
     'npx vercel deploy --prebuilt',
-    context.configurationName === 'production' && '--prod',
+    (context.configurationName === 'production' || options.deployment === 'production') && '--prod',
     vercelToken && `--token=${vercelToken}`,
     options.regions && `--regions=${options.regions}`,
     options.archive && `--archive=${options.archive}`,

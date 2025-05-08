@@ -26,7 +26,8 @@ export interface BuildOptions {
   framework?: string
   outputPath?: string
   nodeVersion?: '20.x' | '22.x'
-  config: string
+  config?: string
+  deployment?: 'preview' | 'production'
 }
 
 export function buildExecutor(
@@ -122,7 +123,7 @@ export function buildExecutor(
   const { success } = execCommand(buildCommand([
     `${vercelCommand} build`,
     `--output ${outputDirectory}/.vercel/output`,
-    context.configurationName === 'production' && '--prod',
+    (context.configurationName === 'production' || options.deployment === 'production') && '--prod',
     options.config && `--local-config=${join(workspaceRoot, options.config)}`,
     vercelToken && `--token=${vercelToken}`,
 
