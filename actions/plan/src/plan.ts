@@ -50,6 +50,7 @@ async function run() {
     for (const target of targets) {
       const tagConditions = core.getMultilineInput(`${target}Tag`, { trimWhitespace: true })
       const maxJobs = parseInt(core.getInput(`${target}MaxJobs`), 10) || 1
+      const config = core.getInput(`${target}Config`)
       const parallel = core.getInput(`${target}Parallel`)
       const preTargets = core.getMultilineInput(`${target}PreTargets`) || []
       const postTargets = core.getMultilineInput(`${target}PostTargets`) || []
@@ -57,6 +58,7 @@ async function run() {
       core.startGroup(`Target "${target}"`)
       core.info(`- ${target}Tag: ${cleanLogConditions(tagConditions)}`)
       core.info(`- ${target}MaxJobs: ${maxJobs}`)
+      core.info(`- ${target}Config: ${config || 'prod'}`)
       core.info(`- ${target}Parallel: ${parallel}`)
       core.info(`- ${target}PreTargets: ${preTargets.join(' AND ')}`)
       core.info(`- ${target}PostTargets: ${postTargets.join(' AND ')}`)
@@ -101,7 +103,8 @@ async function run() {
           postTargets: postTargets.join('\n'),
           index: i + 1,
           count: maxJobCount,
-          parallel
+          parallel,
+          config
         })
       }
 
