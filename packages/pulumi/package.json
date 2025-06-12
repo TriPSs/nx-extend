@@ -20,7 +20,7 @@
     "@pulumi/pulumi": "^3.129.0"
   },
   "optionalDependencies": {
-    "@pulumi/gcp": "^8.10.0"
+    "@pulumi/gcp": "^8.34.0"
   },
   "builders": "./executors.json",
   "generators": "./generators.json"

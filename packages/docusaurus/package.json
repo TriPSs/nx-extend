@@ -16,12 +16,12 @@
   "license": "MIT",
   "main": "src/index.js",
   "devDependencies": {
-    "@docusaurus/core": "3.6.3",
-    "@docusaurus/module-type-aliases": "3.6.3",
-    "@docusaurus/preset-classic": "3.6.3",
-    "@docusaurus/tsconfig": "3.6.3",
-    "@docusaurus/types": "3.6.3",
-    "typescript": "~5.7.2"
+    "@docusaurus/core": "3.8.1",
+    "@docusaurus/module-type-aliases": "3.8.1",
+    "@docusaurus/preset-classic": "3.8.1",
+    "@docusaurus/tsconfig": "3.8.1",
+    "@docusaurus/types": "3.8.1",
+    "typescript": "~5.8.3"
   },
   "peerDependencies": {
     "@docusaurus/core": "^3.4.0",

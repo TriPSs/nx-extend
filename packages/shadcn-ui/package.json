@@ -16,10 +16,10 @@
   "license": "MIT",
   "main": "src/index.js",
   "devDependencies": {
-    "class-variance-authority": "^0.7.0",
+    "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "lucide-react": "^0.460.0",
-    "tailwind-merge": "^2.5.4",
+    "lucide-react": "^0.514.0",
+    "tailwind-merge": "^3.3.1",
     "tailwindcss-animate": "^1.0.7"
   },
   "peerDependencies": {
