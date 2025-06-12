@@ -1,4 +1,18 @@
  
+# [12.1.0](https://github.com/tripss/nx-extend/compare/vercel@12.0.0...vercel@12.1.0) (2025-06-12)
+
+
+### Bug Fixes
+
+* **vercel:** Handle 'production' deployment option correctly ([c75085d](https://github.com/tripss/nx-extend/commit/c75085d1f3f8236b8b1c568896e03512eec8dcee))
+
+
+### Features
+
+* **vercel:** Add optional deployment type for build and deploy executors ([c9f5857](https://github.com/tripss/nx-extend/commit/c9f58576a5a2db1d3a14ff974cfb75fc7f9ba40c))
+
+
+
 # [12.0.0](https://github.com/tripss/nx-extend/compare/vercel@11.1.0...vercel@12.0.0) (2024-12-13)
 
 ### Dependency Updates
