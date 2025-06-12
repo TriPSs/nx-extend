@@ -1,4 +1,8 @@
  
+## [9.0.3](https://github.com/tripss/nx-extend/compare/pulumi@9.0.2...pulumi@9.0.3) (2025-06-12)
+
+
+
 ## [9.0.2](https://github.com/tripss/nx-extend/compare/pulumi@9.0.1...pulumi@9.0.2) (2025-01-09)
 
 
