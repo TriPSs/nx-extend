@@ -35,6 +35,13 @@
         "20.x",
         "22.x"
       ]
+    },
+    "deployment": {
+      "type": "string",
+      "enum": [
+        "preview",
+        "production"
+      ]
     }
   },
   "required": [

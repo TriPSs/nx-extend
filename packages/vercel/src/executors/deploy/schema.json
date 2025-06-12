@@ -20,6 +20,13 @@
       "enum": ["tgz"],
       "x-prompt": "Archive type",
       "x-display": "radio"
+    },
+    "deployment": {
+      "type": "string",
+      "enum": [
+        "preview",
+        "production"
+      ]
     }
   }
 }
