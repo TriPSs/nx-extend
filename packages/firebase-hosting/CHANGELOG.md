@@ -1,4 +1,13 @@
  
+# [8.2.0](https://github.com/tripss/nx-extend/compare/firebase-hosting@8.1.1...firebase-hosting@8.2.0) (2025-03-20)
+
+
+### Features
+
+* **firebase-hosting:** Add support for specifying Firebase CLI version in deploy executor ([e17ad95](https://github.com/tripss/nx-extend/commit/e17ad952e05dfff136cf57df396ea728edb4ed1f))
+
+
+
 ## [8.1.1](https://github.com/tripss/nx-extend/compare/firebase-hosting@8.1.0...firebase-hosting@8.1.1) (2024-12-13)
 
 ### Dependency Updates

@@ -1,4 +1,49 @@
  
+## [15.2.6](https://github.com/tripss/nx-extend/compare/gcp-functions@15.2.5...gcp-functions@15.2.6) (2025-04-12)
+
+
+### Bug Fixes
+
+* **gcp-functions:** allow nodejs22 ([b921026](https://github.com/tripss/nx-extend/commit/b921026e22b7e35b60237dcb805415ecbc727f4c))
+
+
+
+## [15.2.5](https://github.com/tripss/nx-extend/compare/gcp-functions@15.2.4...gcp-functions@15.2.5) (2025-03-20)
+
+
+### Bug Fixes
+
+* **gcp-functions:** Update lint executor to use '@nx/eslint:lint' ([384433c](https://github.com/tripss/nx-extend/commit/384433c1c4128d06639dd1f1795eb6b2628e40c6))
+
+
+
+## [15.2.4](https://github.com/tripss/nx-extend/compare/gcp-functions@15.2.3...gcp-functions@15.2.4) (2025-01-10)
+
+
+### Bug Fixes
+
+* **gcp-functions:** Correct schema type for 'secrets' in deploy executor ([42b0aa4](https://github.com/tripss/nx-extend/commit/42b0aa4a13bccc778c94fd27478e74757e7caa4c))
+
+
+
+## [15.2.3](https://github.com/tripss/nx-extend/compare/gcp-functions@15.2.2...gcp-functions@15.2.3) (2025-01-10)
+
+
+### Bug Fixes
+
+* **gcp-functions:** Correct schema type for 'secrets' in deploy executor ([7d79d2d](https://github.com/tripss/nx-extend/commit/7d79d2d1313c859a24097e3f573ddb40ecce7d13))
+
+
+
+## [15.2.2](https://github.com/tripss/nx-extend/compare/gcp-functions@15.2.1...gcp-functions@15.2.2) (2024-12-14)
+
+
+### Bug Fixes
+
+* **gcp-functions-deploy:** Added missing envVars and secrets in schema ([35b4758](https://github.com/tripss/nx-extend/commit/35b47584d640a42740dda326e368bf55624b117c))
+
+
+
 ## [15.2.1](https://github.com/tripss/nx-extend/compare/gcp-functions@15.2.0...gcp-functions@15.2.1) (2024-12-13)
 
 ### Dependency Updates
