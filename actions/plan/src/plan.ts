@@ -58,7 +58,7 @@ async function run() {
       core.startGroup(`Target "${target}"`)
       core.info(`- ${target}Tag: ${cleanLogConditions(tagConditions)}`)
       core.info(`- ${target}MaxJobs: ${maxJobs}`)
-      core.info(`- ${target}Config: ${config || 'prod'}`)
+      core.info(`- ${target}Config: ${config}`)
       core.info(`- ${target}Parallel: ${parallel}`)
       core.info(`- ${target}PreTargets: ${preTargets.join(' AND ')}`)
       core.info(`- ${target}PostTargets: ${postTargets.join(' AND ')}`)
