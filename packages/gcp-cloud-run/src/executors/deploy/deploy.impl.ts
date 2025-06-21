@@ -116,7 +116,7 @@ export async function deployExecutor(
     gcloudDeploy = 'gcloud beta run deploy'
   }
 
-  const deployCommand = buildCommand([
+  return execCommand(buildCommand([
     `${gcloudDeploy} ${name}`,
     `--project=${project}`,
     '--platform=managed',
@@ -145,9 +145,7 @@ export async function deployExecutor(
 
     // Add all sidecars
     ...sidecars.flatMap((sidecarOptions) => getContainerFlags(sidecarOptions, true)),
-  ])
-
-  return execCommand(deployCommand, {
+  ]), {
     cwd: distDirectory
   }, options.dryRun)
 }
