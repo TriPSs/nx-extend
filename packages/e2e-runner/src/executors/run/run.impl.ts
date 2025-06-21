@@ -49,6 +49,7 @@ export async function endToEndRunner(
       case 'playwright':
         logger.warn('Runner "playwright" is no longer maintained in favor of @nx/playwright!')
 
+        // TODO:: This is still being added to npm package.json
         // eslint-disable-next-line @typescript-eslint/no-var-requires,no-case-declarations
         const playwrightExecutor = require('@nx-extend/playwright/src/executors/test/test.impl').default
 
