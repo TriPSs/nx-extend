@@ -1,4 +1,22 @@
  
+# [12.0.0](https://github.com/tripss/nx-extend/compare/e2e-runner@11.2.1...e2e-runner@12.0.0) (2025-07-17)
+
+### Dependency Updates
+
+* `playwright` updated to version `11.0.0`
+* `core` updated to version `9.0.0`
+
+### Features
+
+* Bump peer dependency `@nx/devkit` to ^21.0.0 across packages ([93011f6](https://github.com/tripss/nx-extend/commit/93011f6f86adaa0796a2f514849d4805206dae89))
+
+
+### BREAKING CHANGES
+
+* Updated `@nx/devkit` in all packages for compatibility with Nx 21.
+
+
+
 ## [11.2.1](https://github.com/tripss/nx-extend/compare/e2e-runner@11.2.0...e2e-runner@11.2.1) (2024-12-13)
 
 ### Dependency Updates
