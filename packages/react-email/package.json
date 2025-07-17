@@ -20,7 +20,7 @@
     "react-email": "4.0.16"
   },
   "peerDependencies": {
-    "@nx/devkit": "^20.0.0"
+    "@nx/devkit": "^21.0.0"
   },
   "builders": "./executors.json",
   "generators": "./generators.json"
