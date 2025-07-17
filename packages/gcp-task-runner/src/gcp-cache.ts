@@ -49,7 +49,7 @@ export class GcpCache {
         terminalOutput: (
           await this.bucket.file(this.getTerminalOutFileName(hash)).download()
         ).toString(),
-        outputsPath: cacheDirectory
+        outputsPath: `${cacheDirectory}/${hash}`
       }
     } catch (err) {
       this.hadError = true
