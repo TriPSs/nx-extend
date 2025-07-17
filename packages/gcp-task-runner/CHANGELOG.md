@@ -1,4 +1,24 @@
  
+# [9.0.0](https://github.com/TriPSs/nx-extend/compare/gcp-task-runner@8.1.1...gcp-task-runner@9.0.0) (2025-07-17)
+
+
+### Bug Fixes
+
+* **gcp-task-runner:** Ensure cache output path includes hash ([5f68df8](https://github.com/TriPSs/nx-extend/commit/5f68df8af518c53f22c9d5e767fd317a36617937))
+
+
+### Features
+
+* Bump peer dependency `@nx/devkit` to ^21.0.0 across packages ([93011f6](https://github.com/TriPSs/nx-extend/commit/93011f6f86adaa0796a2f514849d4805206dae89))
+* **gcp-task-runner:** Be compatible with Nx 21 ([c99b1db](https://github.com/TriPSs/nx-extend/commit/c99b1db726eeb41b86172c4a3e1752c1249b0e36))
+
+
+### BREAKING CHANGES
+
+* Updated `@nx/devkit` in all packages for compatibility with Nx 21.
+
+
+
 ## [8.1.1](https://github.com/TriPSs/nx-extend/compare/gcp-task-runner@8.1.0...gcp-task-runner@8.1.1) (2024-12-13)
 
 
