@@ -16,11 +16,11 @@
   "license": "MIT",
   "main": "src/index.js",
   "peerDependencies": {
-    "@nx/devkit": "^20.0.0",
+    "@nx/devkit": "^21.0.0",
     "@pulumi/pulumi": "^3.129.0"
   },
   "optionalDependencies": {
-    "@pulumi/gcp": "^8.34.0"
+    "@pulumi/gcp": "^8.38.0"
   },
   "builders": "./executors.json",
   "generators": "./generators.json"

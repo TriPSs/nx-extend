@@ -11,7 +11,7 @@
 ### Install
 
 ```sh
-npm install -D @nx-extend/gcp-task-runner
+npm install -D @nx/gcs-cache@npm:@nx-extend/gcp-task-runner@<latest version>
 ```
 
 ## Usage
@@ -22,14 +22,8 @@ Update your `nx.json` with the following
 
 ```json
 {
-  "tasksRunnerOptions": {
-    "default": {
-      "runner": "@nx-extend/gcp-task-runner",
-      "options": {
-        "bucket": "gs://your-bucket",
-        ...
-      }
-    }
+  "gcs": {
+    "bucket": "your-bucket"
   }
 }
 ```

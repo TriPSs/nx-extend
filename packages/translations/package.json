@@ -22,10 +22,10 @@
   "license": "MIT",
   "main": "src/index.js",
   "dependencies": {
-    "@formatjs/cli": "^6.7.1"
+    "@formatjs/cli": "^6.7.2"
   },
   "peerDependencies": {
-    "@nx/devkit": "^20.0.0"
+    "@nx/devkit": "^21.0.0"
   },
   "builders": "./executors.json",
   "generators": "./generators.json"
