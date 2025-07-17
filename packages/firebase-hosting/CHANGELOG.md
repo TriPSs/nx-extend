@@ -1,4 +1,21 @@
  
+# [9.0.0](https://github.com/tripss/nx-extend/compare/firebase-hosting@8.2.0...firebase-hosting@9.0.0) (2025-07-17)
+
+### Dependency Updates
+
+* `core` updated to version `9.0.0`
+
+### Features
+
+* Bump peer dependency `@nx/devkit` to ^21.0.0 across packages ([93011f6](https://github.com/tripss/nx-extend/commit/93011f6f86adaa0796a2f514849d4805206dae89))
+
+
+### BREAKING CHANGES
+
+* Updated `@nx/devkit` in all packages for compatibility with Nx 21.
+
+
+
 # [8.2.0](https://github.com/tripss/nx-extend/compare/firebase-hosting@8.1.1...firebase-hosting@8.2.0) (2025-03-20)
 
 
