@@ -1,4 +1,18 @@
  
+# [4.0.0](https://github.com/tripss/nx-extend/compare/docusaurus@3.1.3...docusaurus@4.0.0) (2025-07-17)
+
+
+### chore
+
+* Update Nx to 21.2.4 and bump related dependencies ([59c8efb](https://github.com/tripss/nx-extend/commit/59c8efbae84de2dfc7f1d01c6603a070afba344c))
+
+
+### BREAKING CHANGES
+
+* Nx has been updated to 21
+
+
+
 ## [3.1.3](https://github.com/tripss/nx-extend/compare/docusaurus@3.1.2...docusaurus@3.1.3) (2025-06-12)
 
 
