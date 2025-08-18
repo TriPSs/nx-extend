@@ -1,4 +1,18 @@
  
+# [10.0.0](https://github.com/TriPSs/nx-extend/compare/github-pages@9.1.0...github-pages@10.0.0) (2025-08-18)
+
+
+### Features
+
+* Bump peer dependency `@nx/devkit` to ^21.0.0 across packages ([93011f6](https://github.com/TriPSs/nx-extend/commit/93011f6f86adaa0796a2f514849d4805206dae89))
+
+
+### BREAKING CHANGES
+
+* Updated `@nx/devkit` in all packages for compatibility with Nx 21.
+
+
+
 # [10.0.0](https://github.com/TriPSs/nx-extend/compare/github-pages@9.1.0...github-pages@10.0.0) (2025-08-14)
 
 
