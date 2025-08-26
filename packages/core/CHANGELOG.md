@@ -1,4 +1,8 @@
  
+## [9.0.1](https://github.com/TriPSs/nx-extend/compare/core@9.0.0...core@9.0.1) (2025-08-26)
+
+
+
 # [9.0.0](https://github.com/TriPSs/nx-extend/compare/core@8.1.1...core@9.0.0) (2025-08-26)
 
 
