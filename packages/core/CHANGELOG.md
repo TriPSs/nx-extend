@@ -1,4 +1,23 @@
  
+# [9.0.0](https://github.com/TriPSs/nx-extend/compare/core@8.1.1...core@9.0.0) (2025-08-26)
+
+
+### Bug Fixes
+
+* Force re-release ([0daa1f0](https://github.com/TriPSs/nx-extend/commit/0daa1f0794bc4be58599e595d0c680136db0d3ff))
+
+
+### Features
+
+* Bump peer dependency `@nx/devkit` to ^21.0.0 across packages ([93011f6](https://github.com/TriPSs/nx-extend/commit/93011f6f86adaa0796a2f514849d4805206dae89))
+
+
+### BREAKING CHANGES
+
+* Updated `@nx/devkit` in all packages for compatibility with Nx 21.
+
+
+
 # [9.0.0](https://github.com/TriPSs/nx-extend/compare/core@8.1.1...core@9.0.0) (2025-08-18)
 
 
