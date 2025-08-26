@@ -1,4 +1,27 @@
  
+# [16.0.0](https://github.com/tripss/nx-extend/compare/gcp-functions@15.2.7...gcp-functions@16.0.0) (2025-08-26)
+
+### Dependency Updates
+
+* `core` updated to version `9.0.0`
+
+### chore
+
+* Update Nx to 21.2.4 and bump related dependencies ([59c8efb](https://github.com/tripss/nx-extend/commit/59c8efbae84de2dfc7f1d01c6603a070afba344c))
+
+
+### Features
+
+* Bump peer dependency `@nx/devkit` to ^21.0.0 across packages ([93011f6](https://github.com/tripss/nx-extend/commit/93011f6f86adaa0796a2f514849d4805206dae89))
+
+
+### BREAKING CHANGES
+
+* Updated `@nx/devkit` in all packages for compatibility with Nx 21.
+* Nx has been updated to 21
+
+
+
 # [16.0.0](https://github.com/tripss/nx-extend/compare/gcp-functions@15.2.7...gcp-functions@16.0.0) (2025-07-17)
 
 ### Dependency Updates
