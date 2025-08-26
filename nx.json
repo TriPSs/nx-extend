@@ -23,7 +23,7 @@
     },
     "version": {
       "dependsOn": ["^version"],
-      "inputs": ["production", "sharedGlobals"],
+      "inputs": ["production"],
       "options": {
         "trackDeps": true,
         "tagPrefix": "${target}@",
