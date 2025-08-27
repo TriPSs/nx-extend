@@ -6314,8 +6314,8 @@ __metadata:
     "@nx/devkit": ^21.0.0
     clsx: ^2.1.1
     prism-react-renderer: ^2.3.1
-    react: ^18.3.1
-    react-dom: ^18.3.1
+    react: ^18.0.0 || ^19.0.0
+    react-dom: ^18.0.0 || ^19.0.0
   languageName: unknown
   linkType: soft
 
