@@ -3,6 +3,7 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/github-pages/src",
   "projectType": "library",
+  "tags": [],
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",
@@ -62,6 +63,5 @@
         "command": "npm publish ./dist/packages/github-pages --access public || true"
       }
     }
-  },
-  "tags": []
+  }
 }

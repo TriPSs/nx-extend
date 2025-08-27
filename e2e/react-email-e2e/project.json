@@ -3,6 +3,8 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
   "sourceRoot": "e2e/react-email-e2e/src",
+  "tags": [],
+  "implicitDependencies": ["react-email"],
   "targets": {
     "e2e": {
       "executor": "@nx/jest:jest",
@@ -13,7 +15,5 @@
       },
       "dependsOn": ["react-email:build"]
     }
-  },
-  "tags": [],
-  "implicitDependencies": ["react-email"]
+  }
 }

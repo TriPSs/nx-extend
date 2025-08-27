@@ -3,6 +3,7 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/gcp-task-runner/src",
   "projectType": "library",
+  "tags": [],
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",
@@ -62,6 +63,5 @@
         "command": "npm publish ./dist/packages/gcp-task-runner --access public || true"
       }
     }
-  },
-  "tags": []
+  }
 }
