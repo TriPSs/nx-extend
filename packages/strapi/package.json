@@ -16,7 +16,7 @@
   "license": "MIT",
   "main": "src/index.js",
   "dependencies": {
-    "@strapi/generate-new": "4.25.12",
+    "@strapi/generate-new": "4.25.23",
     "@strapi/strapi": "4.25.11"
   },
   "peerDependencies": {

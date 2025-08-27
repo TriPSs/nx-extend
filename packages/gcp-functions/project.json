@@ -3,6 +3,7 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/gcp-functions/src",
   "projectType": "library",
+  "tags": [],
   "targets": {
     "lint": {
       "executor": "@nrwl/linter:eslint",
@@ -72,6 +73,5 @@
         "command": "npm publish ./dist/packages/gcp-functions --access public || true"
       }
     }
-  },
-  "tags": []
+  }
 }

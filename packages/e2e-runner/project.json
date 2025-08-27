@@ -3,6 +3,7 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/e2e-runner/src",
   "projectType": "library",
+  "tags": [],
   "targets": {
     "lint": {
       "executor": "@nrwl/linter:eslint",
@@ -71,6 +72,5 @@
         "command": "npm publish ./dist/packages/e2e-runner --access public || true"
       }
     }
-  },
-  "tags": []
+  }
 }

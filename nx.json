@@ -23,7 +23,7 @@
     },
     "version": {
       "dependsOn": ["^version"],
-      "inputs": ["production"],
+      "inputs": ["production", "^production"],
       "options": {
         "trackDeps": true,
         "tagPrefix": "${target}@",

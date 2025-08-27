@@ -3,6 +3,7 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/firebase-hosting/src",
   "projectType": "library",
+  "tags": [],
   "targets": {
     "lint": {
       "executor": "@nrwl/linter:eslint",
@@ -64,6 +65,5 @@
         "command": "npm publish ./dist/packages/firebase-hosting --access public || true"
       }
     }
-  },
-  "tags": []
+  }
 }

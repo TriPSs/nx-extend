@@ -3,6 +3,8 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
   "sourceRoot": "e2e/gcp-secrets-e2e/src",
+  "tags": [],
+  "implicitDependencies": ["gcp-secrets"],
   "targets": {
     "e2e": {
       "executor": "@nx/jest:jest",
@@ -13,7 +15,5 @@
       },
       "dependsOn": ["gcp-secrets:build"]
     }
-  },
-  "tags": [],
-  "implicitDependencies": ["gcp-secrets"]
+  }
 }
