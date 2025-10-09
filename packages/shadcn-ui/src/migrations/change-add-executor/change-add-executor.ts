@@ -1,5 +1,4 @@
-import { Tree, updateProjectConfiguration } from '@nx/devkit'
-import { getProjects } from 'nx/src/generators/utils/project-configuration'
+import { getProjects, Tree, updateProjectConfiguration } from '@nx/devkit'
 
 /**
  * Migrates all "add" targets with @nx-extend/shadcn-ui:add target to become "add-component"
