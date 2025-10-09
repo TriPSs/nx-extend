@@ -4641,9 +4641,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@google-cloud/storage@npm:7.17.0, @google-cloud/storage@npm:^7.17.0":
-  version: 7.17.0
-  resolution: "@google-cloud/storage@npm:7.17.0"
+"@google-cloud/storage@npm:7.17.2, @google-cloud/storage@npm:^7.17.2":
+  version: 7.17.2
+  resolution: "@google-cloud/storage@npm:7.17.2"
   dependencies:
     "@google-cloud/paginator": "npm:^5.0.0"
     "@google-cloud/projectify": "npm:^4.0.0"
@@ -4660,7 +4660,7 @@ __metadata:
     retry-request: "npm:^7.0.0"
     teeny-request: "npm:^9.0.0"
     uuid: "npm:^8.0.0"
-  checksum: 10/882514c12994c60fba4f2759c656ce264d45fbc046f364ba9d23794444ff4b32cb40425f1c73df48549ac072d7ed8d450b2118cf0016b48e46d1dc1c8632157e
+  checksum: 10/b35b456cb4a5a9ed39559c9a146b7e7f3000d5601ca8c628f3b85d11ee207b12fb65b8aa1bc5ab87f956d3bccba493889fe6c8e2566f79802760ce674557c011
   languageName: node
   linkType: hard
 
@@ -6377,7 +6377,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nx-extend/gcp-task-runner@workspace:packages/gcp-task-runner"
   dependencies:
-    "@google-cloud/storage": "npm:7.17.0"
+    "@google-cloud/storage": "npm:7.17.2"
   peerDependencies:
     "@nx/devkit": ^21.0.0
     "@nx/workspace": ^21.0.0
@@ -25544,7 +25544,7 @@ __metadata:
   resolution: "nx-extend@workspace:."
   dependencies:
     "@actions/core": "npm:^1.11.1"
-    "@google-cloud/storage": "npm:^7.17.0"
+    "@google-cloud/storage": "npm:^7.17.2"
     "@jamesives/github-pages-deploy-action": "npm:^4.7.3"
     "@jscutlery/semver": "npm:^5.7.1"
     "@nx/devkit": "npm:21.4.1"

@@ -46,7 +46,7 @@
     "yargs": "^17.7.2"
   },
   "devDependencies": {
-    "@google-cloud/storage": "^7.17.0",
+    "@google-cloud/storage": "^7.17.2",
     "@jamesives/github-pages-deploy-action": "^4.7.3",
     "@jscutlery/semver": "^5.7.1",
     "@nx/eslint-plugin": "21.4.1",
