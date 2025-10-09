@@ -13089,7 +13089,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axios@npm:^1.11.0, axios@npm:^1.12.0, axios@npm:^1.12.2":
+"axios@npm:^1.11.0, axios@npm:^1.12.0":
   version: 1.12.2
   resolution: "axios@npm:1.12.2"
   dependencies:
@@ -25761,7 +25761,6 @@ __metadata:
     "@typescript-eslint/eslint-plugin": "npm:8.46.0"
     "@typescript-eslint/parser": "npm:8.46.0"
     "@vercel/ncc": "npm:0.34.0"
-    axios: "npm:^1.12.2"
     crypto-js: "npm:^4.2.0"
     deepmerge: "npm:^4.3.1"
     dotenv: "npm:17.2.3"
