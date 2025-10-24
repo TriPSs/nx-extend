@@ -1,4 +1,8 @@
  
+## [12.0.1](https://github.com/tripss/nx-extend/compare/gcp-secrets@12.0.0...gcp-secrets@12.0.1) (2025-10-24)
+
+
+
 # [12.0.0](https://github.com/tripss/nx-extend/compare/gcp-secrets@11.1.1...gcp-secrets@12.0.0) (2025-10-24)
 
 ### Dependency Updates
