@@ -1,4 +1,8 @@
  
+## [13.0.1](https://github.com/tripss/nx-extend/compare/gcp-cloud-run@13.0.0...gcp-cloud-run@13.0.1) (2025-10-24)
+
+
+
 # [13.0.0](https://github.com/tripss/nx-extend/compare/gcp-cloud-run@12.1.1...gcp-cloud-run@13.0.0) (2025-10-24)
 
 ### Dependency Updates
