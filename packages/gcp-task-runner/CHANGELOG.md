@@ -1,4 +1,22 @@
  
+## [9.0.3](https://github.com/TriPSs/nx-extend/compare/gcp-task-runner@9.0.2...gcp-task-runner@9.0.3) (2025-10-24)
+
+
+### Bug Fixes
+
+* **packages:** Bump `@google-cloud/storage` to `7.17.2` ([f08e4c0](https://github.com/TriPSs/nx-extend/commit/f08e4c03830d4e6c1926bf78603d636a759d0e85))
+
+
+
+## [9.0.3](https://github.com/TriPSs/nx-extend/compare/gcp-task-runner@9.0.2...gcp-task-runner@9.0.3) (2025-10-24)
+
+
+### Bug Fixes
+
+* **packages:** Bump `@google-cloud/storage` to `7.17.2` ([f08e4c0](https://github.com/TriPSs/nx-extend/commit/f08e4c03830d4e6c1926bf78603d636a759d0e85))
+
+
+
 ## [9.0.2](https://github.com/TriPSs/nx-extend/compare/gcp-task-runner@9.0.1...gcp-task-runner@9.0.2) (2025-08-27)
 
 

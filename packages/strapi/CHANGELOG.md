@@ -1,11 +1,24 @@
  
-## [13.0.1](https://github.com/tripss/nx-extend/compare/strapi@13.0.0...strapi@13.0.1) (2025-10-24)
+# [13.0.0](https://github.com/tripss/nx-extend/compare/strapi@12.1.2...strapi@13.0.0) (2025-10-24)
 
+### Dependency Updates
+
+* `core` updated to version `9.0.2`
 
 ### Bug Fixes
 
 * **strapi:** Remove `package.json` import and hardcode `strapiVersion` ([1f32ea4](https://github.com/tripss/nx-extend/commit/1f32ea438b92320a566d34484df3b7407000af03))
 * **strapi:** Use peerDependencies for `@strapi/strapi` versioning ([8a8f1ee](https://github.com/tripss/nx-extend/commit/8a8f1ee2ee7a2f1a2c581b968803fa14d8273881))
+
+
+### Features
+
+* Bump peer dependency `@nx/devkit` to ^21.0.0 across packages ([93011f6](https://github.com/tripss/nx-extend/commit/93011f6f86adaa0796a2f514849d4805206dae89))
+
+
+### BREAKING CHANGES
+
+* Updated `@nx/devkit` in all packages for compatibility with Nx 21.
 
 
 
