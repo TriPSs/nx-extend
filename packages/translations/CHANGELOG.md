@@ -3,6 +3,10 @@
 
 
 
+## [16.0.1](https://github.com/tripss/nx-extend/compare/translations@16.0.0...translations@16.0.1) (2025-10-24)
+
+
+
 # [16.0.0](https://github.com/tripss/nx-extend/compare/translations@15.2.1...translations@16.0.0) (2025-10-24)
 
 ### Dependency Updates
