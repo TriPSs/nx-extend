@@ -3,6 +3,10 @@
 
 
 
+## [5.0.1](https://github.com/tripss/nx-extend/compare/react-email@5.0.0...react-email@5.0.1) (2025-10-24)
+
+
+
 # [5.0.0](https://github.com/tripss/nx-extend/compare/react-email@4.1.2...react-email@5.0.0) (2025-10-24)
 
 ### Dependency Updates
