@@ -1,4 +1,24 @@
  
+# [4.0.0](https://github.com/tripss/nx-extend/compare/docusaurus@3.1.3...docusaurus@4.0.0) (2025-10-24)
+
+
+### Bug Fixes
+
+* **docusaurus:** Release version 4.0.1 ([84555ee](https://github.com/tripss/nx-extend/commit/84555ee303d9425bebdab168c4c72755998ba9e4))
+* Force re-release ([0daa1f0](https://github.com/tripss/nx-extend/commit/0daa1f0794bc4be58599e595d0c680136db0d3ff))
+
+
+### chore
+
+* Update Nx to 21.2.4 and bump related dependencies ([59c8efb](https://github.com/tripss/nx-extend/commit/59c8efbae84de2dfc7f1d01c6603a070afba344c))
+
+
+### BREAKING CHANGES
+
+* Nx has been updated to 21
+
+
+
 # [4.0.0](https://github.com/tripss/nx-extend/compare/docusaurus@3.1.3...docusaurus@4.0.0) (2025-08-27)
 
 
