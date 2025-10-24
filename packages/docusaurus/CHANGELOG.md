@@ -8,6 +8,15 @@
 
 
 
+## [4.0.1](https://github.com/tripss/nx-extend/compare/docusaurus@4.0.0...docusaurus@4.0.1) (2025-10-24)
+
+
+### Bug Fixes
+
+* **docusaurus:** Release version 4.0.1 ([84555ee](https://github.com/tripss/nx-extend/commit/84555ee303d9425bebdab168c4c72755998ba9e4))
+
+
+
 # [4.0.0](https://github.com/tripss/nx-extend/compare/docusaurus@3.1.3...docusaurus@4.0.0) (2025-10-24)
 
 
