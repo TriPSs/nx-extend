@@ -1,4 +1,27 @@
  
+# [10.0.0](https://github.com/tripss/nx-extend/compare/pulumi@9.0.3...pulumi@10.0.0) (2025-10-24)
+
+### Dependency Updates
+
+* `core` updated to version `9.0.2`
+
+### chore
+
+* Update Nx to 21.2.4 and bump related dependencies ([59c8efb](https://github.com/tripss/nx-extend/commit/59c8efbae84de2dfc7f1d01c6603a070afba344c))
+
+
+### Features
+
+* Bump peer dependency `@nx/devkit` to ^21.0.0 across packages ([93011f6](https://github.com/tripss/nx-extend/commit/93011f6f86adaa0796a2f514849d4805206dae89))
+
+
+### BREAKING CHANGES
+
+* Updated `@nx/devkit` in all packages for compatibility with Nx 21.
+* Nx has been updated to 21
+
+
+
 # [10.0.0](https://github.com/tripss/nx-extend/compare/pulumi@9.0.3...pulumi@10.0.0) (2025-08-27)
 
 ### Dependency Updates
