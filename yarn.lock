@@ -6538,7 +6538,7 @@ __metadata:
     "@strapi/generate-new": "npm:4.25.23"
   peerDependencies:
     "@nx/devkit": ^21.0.0
-    "@strapi/strapi": 4.25.24
+    "@strapi/strapi": ^4.25.24
   languageName: unknown
   linkType: soft
 
