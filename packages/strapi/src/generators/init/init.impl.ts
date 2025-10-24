@@ -16,8 +16,6 @@ import * as path from 'path'
 
 import type { StrapiGeneratorSchema } from './schema'
 
-import packageJson from '../../../package.json'
-
 // Base off https://github.com/strapi/strapi/blob/main/packages/generators/app/src/index.ts#L19
 function generateStrapi(options: NormalizedSchema) {
   return generateNew({
@@ -26,7 +24,7 @@ function generateStrapi(options: NormalizedSchema) {
     // disable quickstart run app after creation
     runQuickstartApp: false,
     // use package.json version as strapiVersion (all packages have the same version);
-    strapiVersion: packageJson.peerDependencies['@strapi/strapi'],
+    strapiVersion: '4.25.24',
     debug: false,
     quick: true,
     packageJsonStrapi: {

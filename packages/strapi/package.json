@@ -20,7 +20,7 @@
   },
   "peerDependencies": {
     "@nx/devkit": "^21.0.0",
-    "@strapi/strapi": "4.25.24"
+    "@strapi/strapi": "^4.25.24"
   },
   "builders": "./executors.json",
   "generators": "./generators.json"
