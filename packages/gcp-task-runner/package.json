@@ -6,7 +6,7 @@
     "@google-cloud/storage": "7.17.2"
   },
   "peerDependencies": {
-    "@nx/devkit": "^21.0.0",
-    "@nx/workspace": "^21.0.0"
+    "@nx/devkit": "^22.0.0",
+    "@nx/workspace": "^22.0.0"
   }
 }
