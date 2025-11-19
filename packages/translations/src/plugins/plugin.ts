@@ -4,7 +4,7 @@ import { readdirSync } from 'fs'
 import { dirname, join } from 'path'
 
 import type { CreateNodesResultV2, CreateNodesV2, TargetConfiguration } from '@nx/devkit'
-import type { CreateNodesContext, CreateNodesResult } from '@nx/devkit'
+import type { CreateNodesContextV2, CreateNodesResult } from '@nx/devkit'
 
 import { BaseConfigFile, getConfigFileInRoot } from '../utils/config-file'
 
@@ -28,7 +28,7 @@ export const createNodesV2: CreateNodesV2 = [
   }
 ]
 
-function createTargets(projectConfigurationFile: string, options: TranslationPluginOptions, context: CreateNodesContext): CreateNodesResult {
+function createTargets(projectConfigurationFile: string, options: TranslationPluginOptions, context: CreateNodesContextV2): CreateNodesResult {
   const projectRoot = dirname(projectConfigurationFile)
   const fullyQualifiedProjectRoot = join(context.workspaceRoot, projectRoot)
 
@@ -58,7 +58,7 @@ function createTargets(projectConfigurationFile: string, options: TranslationPlu
 
 function buildTranslationTargets(
   projectRoot: string,
-  context: CreateNodesContext,
+  context: CreateNodesContextV2,
   config: BaseConfigFile,
   options: TranslationPluginOptions
 ): Record<string, TargetConfiguration> {
@@ -85,7 +85,7 @@ function buildTranslationTargets(
 
 function buildExtract(
   projectRoot: string,
-  context: CreateNodesContext
+  context: CreateNodesContextV2
 ): TargetConfiguration {
   const namedInputs = getNamedInputs(projectRoot, context)
 
