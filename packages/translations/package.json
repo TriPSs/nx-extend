@@ -1,6 +1,6 @@
 {
   "name": "@nx-extend/translations",
-  "version": "16.0.0",
+  "version": "16.0.1",
   "keywords": [
     "nx",
     "translations",
@@ -22,10 +22,10 @@
   "license": "MIT",
   "main": "src/index.js",
   "dependencies": {
-    "@formatjs/cli": "^6.7.3"
+    "@formatjs/cli": "^6.7.4"
   },
   "peerDependencies": {
-    "@nx/devkit": "^21.0.0"
+    "@nx/devkit": "^22.0.0"
   },
   "builders": "./executors.json",
   "generators": "./generators.json"

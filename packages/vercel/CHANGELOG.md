@@ -1,4 +1,12 @@
  
+## [13.0.1](https://github.com/tripss/nx-extend/compare/vercel@13.0.0...vercel@13.0.1) (2025-10-24)
+
+
+
+## [13.0.1](https://github.com/tripss/nx-extend/compare/vercel@13.0.0...vercel@13.0.1) (2025-10-24)
+
+
+
 # [13.0.0](https://github.com/tripss/nx-extend/compare/vercel@12.1.0...vercel@13.0.0) (2025-10-24)
 
 ### Dependency Updates

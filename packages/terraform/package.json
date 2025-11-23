@@ -1,6 +1,6 @@
 {
   "name": "@nx-extend/terraform",
-  "version": "9.0.0",
+  "version": "9.0.1",
   "keywords": [
     "nx",
     "terraform"
@@ -19,7 +19,7 @@
     "hcl2-json-parser": "^1.0.1"
   },
   "peerDependencies": {
-    "@nx/devkit": "^21.0.0"
+    "@nx/devkit": "^22.0.0"
   },
   "builders": "./executors.json",
   "generators": "./generators.json"

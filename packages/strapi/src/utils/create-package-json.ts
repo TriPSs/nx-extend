@@ -26,7 +26,8 @@ export async function createPackageJson(
     readCachedProjectGraph(),
     {
       root: context.root,
-      isProduction: true
+      isProduction: true,
+      skipPackageManager: true
     }
   )
 

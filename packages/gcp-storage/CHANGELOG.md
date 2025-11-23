@@ -1,4 +1,12 @@
  
+## [10.0.1](https://github.com/tripss/nx-extend/compare/gcp-storage@10.0.0...gcp-storage@10.0.1) (2025-10-24)
+
+
+
+## [10.0.1](https://github.com/tripss/nx-extend/compare/gcp-storage@10.0.0...gcp-storage@10.0.1) (2025-10-24)
+
+
+
 # [10.0.0](https://github.com/tripss/nx-extend/compare/gcp-storage@9.2.0...gcp-storage@10.0.0) (2025-10-24)
 
 ### Dependency Updates

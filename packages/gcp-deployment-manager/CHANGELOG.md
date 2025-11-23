@@ -1,4 +1,8 @@
  
+## [11.0.1](https://github.com/tripss/nx-extend/compare/gcp-deployment-manager@11.0.0...gcp-deployment-manager@11.0.1) (2025-10-24)
+
+
+
 # [11.0.0](https://github.com/tripss/nx-extend/compare/gcp-deployment-manager@10.1.1...gcp-deployment-manager@11.0.0) (2025-10-24)
 
 ### Dependency Updates

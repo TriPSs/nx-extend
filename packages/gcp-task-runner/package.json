@@ -3,10 +3,10 @@
   "version": "9.0.3",
   "main": "src/index.js",
   "dependencies": {
-    "@google-cloud/storage": "7.17.2"
+    "@google-cloud/storage": "7.17.3"
   },
   "peerDependencies": {
-    "@nx/devkit": "^21.0.0",
-    "@nx/workspace": "^21.0.0"
+    "@nx/devkit": "^22.0.0",
+    "@nx/workspace": "^22.0.0"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@nx-extend/gcp-functions",
-  "version": "16.0.0",
+  "version": "16.0.1",
   "homepage": "https://github.com/TriPSs/nx-extend/blob/master/packages/gcp-functions/README.md",
   "bugs": {
     "url": "https://github.com/tripss/nx-extend/issues"
@@ -13,12 +13,12 @@
   "main": "src/index.js",
   "devDependencies": {
     "@google-cloud/functions-framework": "^4.0.0",
-    "@nestjs/common": "^11.1.6",
-    "@nestjs/core": "^11.1.6",
-    "@nestjs/platform-express": "^11.1.6"
+    "@nestjs/common": "^11.1.9",
+    "@nestjs/core": "^11.1.9",
+    "@nestjs/platform-express": "^11.1.9"
   },
   "peerDependencies": {
-    "@nx/devkit": "^21.0.0"
+    "@nx/devkit": "^22.0.0"
   },
   "builders": "./executors.json",
   "generators": "./generators.json",

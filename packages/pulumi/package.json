@@ -1,6 +1,6 @@
 {
   "name": "@nx-extend/pulumi",
-  "version": "10.0.0",
+  "version": "10.0.1",
   "keywords": [
     "nx",
     "pulumi"
@@ -16,11 +16,11 @@
   "license": "MIT",
   "main": "src/index.js",
   "peerDependencies": {
-    "@nx/devkit": "^21.0.0",
+    "@nx/devkit": "^22.0.0",
     "@pulumi/pulumi": "^3.129.0"
   },
   "optionalDependencies": {
-    "@pulumi/gcp": "^9.3.0"
+    "@pulumi/gcp": "^9.5.0"
   },
   "builders": "./executors.json",
   "generators": "./generators.json"

@@ -1,6 +1,6 @@
 {
   "name": "@nx-extend/shadcn-ui",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "keywords": [
     "nx",
     "shadcn-ui"
@@ -18,12 +18,12 @@
   "devDependencies": {
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "lucide-react": "^0.545.0",
-    "tailwind-merge": "^3.3.1",
+    "lucide-react": "^0.554.0",
+    "tailwind-merge": "^3.4.0",
     "tailwindcss-animate": "^1.0.7"
   },
   "peerDependencies": {
-    "@nx/devkit": "^21.0.0"
+    "@nx/devkit": "^22.0.0"
   },
   "builders": "./executors.json",
   "generators": "./generators.json"
