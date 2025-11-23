@@ -1,4 +1,18 @@
  
+# [10.0.0](https://github.com/TriPSs/nx-extend/compare/gcp-task-runner@9.0.3...gcp-task-runner@10.0.0) (2025-11-23)
+
+
+### Features
+
+* Upgrade `@nx/*` version 22.0.0 ([edbcb5d](https://github.com/TriPSs/nx-extend/commit/edbcb5d44267e67bf9942c92f08d75840d337978))
+
+
+### BREAKING CHANGES
+
+* Updated to Nx v22
+
+
+
 ## [9.0.3](https://github.com/TriPSs/nx-extend/compare/gcp-task-runner@9.0.2...gcp-task-runner@9.0.3) (2025-10-24)
 
 
