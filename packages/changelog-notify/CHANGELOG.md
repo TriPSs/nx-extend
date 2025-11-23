@@ -1,4 +1,18 @@
  
+# [10.0.0](https://github.com/tripss/nx-extend/compare/changelog-notify@9.0.1...changelog-notify@10.0.0) (2025-11-23)
+
+
+### Features
+
+* Upgrade `@nx/*` version 22.0.0 ([edbcb5d](https://github.com/tripss/nx-extend/commit/edbcb5d44267e67bf9942c92f08d75840d337978))
+
+
+### BREAKING CHANGES
+
+* Updated to Nx v22
+
+
+
 ## [9.0.1](https://github.com/tripss/nx-extend/compare/changelog-notify@9.0.0...changelog-notify@9.0.1) (2025-10-24)
 
 
