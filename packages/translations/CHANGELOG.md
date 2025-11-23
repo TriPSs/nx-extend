@@ -1,4 +1,26 @@
  
+# [17.0.0](https://github.com/tripss/nx-extend/compare/translations@16.0.1...translations@17.0.0) (2025-11-23)
+
+### Dependency Updates
+
+* `core` updated to version `10.0.0`
+
+### Bug Fixes
+
+* **translations:** Update types to latest `@nx/devkit` versions ([e6b034f](https://github.com/tripss/nx-extend/commit/e6b034f0031bd333638ab58d41f1c90be1b1d3c4))
+
+
+### Features
+
+* Upgrade `@nx/*` version 22.0.0 ([edbcb5d](https://github.com/tripss/nx-extend/commit/edbcb5d44267e67bf9942c92f08d75840d337978))
+
+
+### BREAKING CHANGES
+
+* Updated to Nx v22
+
+
+
 ## [16.0.1](https://github.com/tripss/nx-extend/compare/translations@16.0.0...translations@16.0.1) (2025-10-24)
 
 
