@@ -58,7 +58,7 @@
     "@nx/webpack": "22.0.4",
     "@pulumi/gcp": "^9.6.0",
     "@pulumi/pulumi": "^3.209.0",
-    "@strapi/strapi": "4.25.24",
+    "@strapi/strapi": "4.26.0",
     "@types/jest": "30.0.0",
     "@types/node": "24.10.1",
     "@types/shelljs": "^0.8.17",
