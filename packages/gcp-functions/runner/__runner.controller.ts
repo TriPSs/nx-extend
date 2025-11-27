@@ -1,7 +1,7 @@
 import { Controller, Delete, Get, Logger, Options, Post, Req, Res } from '@nestjs/common'
-import { Request, Response } from 'express'
 
 import type { NxEndpoints } from './'
+import type { Request, Response } from 'express'
 
 export function createController(gcpFunctions: NxEndpoints) {
   @Controller()
