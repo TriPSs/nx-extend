@@ -16,11 +16,11 @@
   "license": "MIT",
   "main": "src/index.js",
   "dependencies": {
-    "@strapi/generate-new": "4.25.23"
+    "@strapi/generate-new": "4.26.0"
   },
   "peerDependencies": {
     "@nx/devkit": "^22.0.0",
-    "@strapi/strapi": "^4.25.24"
+    "@strapi/strapi": "^4.26.0"
   },
   "builders": "./executors.json",
   "generators": "./generators.json"

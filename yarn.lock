@@ -6545,10 +6545,10 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nx-extend/strapi@workspace:packages/strapi"
   dependencies:
-    "@strapi/generate-new": "npm:4.25.23"
+    "@strapi/generate-new": "npm:4.26.0"
   peerDependencies:
     "@nx/devkit": ^22.0.0
-    "@strapi/strapi": ^4.25.24
+    "@strapi/strapi": ^4.26.0
   languageName: unknown
   linkType: soft
 
@@ -9961,25 +9961,6 @@ __metadata:
     react-router-dom: ^5.2.0
     styled-components: ^5.2.1
   checksum: 10/b5d3d5d936396d08889f9833a44a47bc2ad30dec98aaf2314bbaa68f0eb5256b3fd9168d70a24c74eff205a3ecf53fada685d5bdfeb8b6a2090f6e9bbf2d191e
-  languageName: node
-  linkType: hard
-
-"@strapi/generate-new@npm:4.25.23":
-  version: 4.25.23
-  resolution: "@strapi/generate-new@npm:4.25.23"
-  dependencies:
-    "@sentry/node": "npm:6.19.7"
-    chalk: "npm:^4.1.2"
-    execa: "npm:5.1.1"
-    fs-extra: "npm:10.0.0"
-    inquirer: "npm:8.2.5"
-    lodash: "npm:4.17.21"
-    node-fetch: "npm:2.7.0"
-    node-machine-id: "npm:^1.1.10"
-    ora: "npm:^5.4.1"
-    semver: "npm:7.5.4"
-    tar: "npm:6.2.1"
-  checksum: 10/3fc10dce1299d8fa32a3b708984bdcdad89161ca89efaf2859ffd70f15617d675e8a889da45a5fda1fc3c84e91d954a77ee50ed361a6e5e411ec2ff50e2d900b
   languageName: node
   linkType: hard
 
