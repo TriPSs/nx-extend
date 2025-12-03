@@ -1,4 +1,21 @@
  
+# [12.0.0](https://github.com/tripss/nx-extend/compare/gcp-deployment-manager@11.0.1...gcp-deployment-manager@12.0.0) (2025-11-23)
+
+### Dependency Updates
+
+* `core` updated to version `10.0.0`
+
+### Features
+
+* Upgrade `@nx/*` version 22.0.0 ([edbcb5d](https://github.com/tripss/nx-extend/commit/edbcb5d44267e67bf9942c92f08d75840d337978))
+
+
+### BREAKING CHANGES
+
+* Updated to Nx v22
+
+
+
 ## [11.0.1](https://github.com/tripss/nx-extend/compare/gcp-deployment-manager@11.0.0...gcp-deployment-manager@11.0.1) (2025-10-24)
 
 
