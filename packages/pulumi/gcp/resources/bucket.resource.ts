@@ -85,7 +85,8 @@ export class BucketResource extends BaseResource {
       role,
       condition
     }, {
-      parent: this.bucket
+      parent: this.bucket,
+      protect: false
     })
   }
 
