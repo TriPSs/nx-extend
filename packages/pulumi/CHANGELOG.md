@@ -1,4 +1,13 @@
  
+## [11.0.1](https://github.com/tripss/nx-extend/compare/pulumi@11.0.0...pulumi@11.0.1) (2025-12-22)
+
+
+### Bug Fixes
+
+* **pulumi:** Add `protect` option in bucket resource ([5773fe8](https://github.com/tripss/nx-extend/commit/5773fe8e27cc5b5d9f0f32f7d3cbad37c7f7fd68))
+
+
+
 # [11.0.0](https://github.com/tripss/nx-extend/compare/pulumi@10.0.1...pulumi@11.0.0) (2025-11-23)
 
 ### Dependency Updates
