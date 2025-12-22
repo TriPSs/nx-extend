@@ -1,4 +1,13 @@
  
+# [14.1.0](https://github.com/tripss/nx-extend/compare/strapi@14.0.0...strapi@14.1.0) (2025-12-22)
+
+
+### Features
+
+* **strapi:** Upgrade Strapi dependencies to v4.26.0 ([faad9a6](https://github.com/tripss/nx-extend/commit/faad9a6b0b6c91b896b97580ceafdec72de2a9f0))
+
+
+
 # [14.0.0](https://github.com/tripss/nx-extend/compare/strapi@13.0.2...strapi@14.0.0) (2025-11-23)
 
 ### Dependency Updates
