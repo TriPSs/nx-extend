@@ -32,6 +32,7 @@
       "type": "string",
       "description": "What version of node to configure",
       "enum": [
+        "20.x",
         "22.x",
         "24.x"
       ]
