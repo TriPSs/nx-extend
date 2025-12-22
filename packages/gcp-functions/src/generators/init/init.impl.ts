@@ -120,7 +120,7 @@ export default async function (
       host,
       {},
       {
-        '@google-cloud/functions-framework': '^3.4.0'
+        '@google-cloud/functions-framework': '^4.0.1'
       }
     )
   )
