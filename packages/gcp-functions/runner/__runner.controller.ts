@@ -45,9 +45,9 @@ export function createController(gcpFunctions: NxEndpoints) {
     }
 
     public async executeFunction(req: Request, res: Response): Promise<void> {
-      const endpoint = this.endpoints.find(({ endpoint }) => (
-        req.path.startsWith(endpoint)
-      ))
+      const endpoint = this.endpoints.find(({ endpoint }) =>
+        `/${req.path.split('/').slice(1).shift()}` === endpoint
+      )
 
       if (endpoint) {
         if (endpoint.trigger === 'http') {
