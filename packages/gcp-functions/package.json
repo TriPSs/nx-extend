@@ -12,10 +12,10 @@
   "license": "MIT",
   "main": "src/index.js",
   "devDependencies": {
-    "@google-cloud/functions-framework": "^4.0.1",
-    "@nestjs/common": "^11.1.9",
-    "@nestjs/core": "^11.1.9",
-    "@nestjs/platform-express": "^11.1.9"
+    "@google-cloud/functions-framework": "^5.0.0",
+    "@nestjs/common": "^11.1.12",
+    "@nestjs/core": "^11.1.12",
+    "@nestjs/platform-express": "^11.1.12"
   },
   "peerDependencies": {
     "@nx/devkit": "^22.0.0"
