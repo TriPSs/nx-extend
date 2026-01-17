@@ -16,8 +16,8 @@
   "license": "MIT",
   "main": "src/index.js",
   "devDependencies": {
-    "@react-email/components": "1.0.1",
-    "react-email": "5.0.5"
+    "@react-email/components": "1.0.4",
+    "react-email": "5.2.5"
   },
   "peerDependencies": {
     "@nx/devkit": "^22.0.0"

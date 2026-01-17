@@ -22,7 +22,7 @@
   "license": "MIT",
   "main": "src/index.js",
   "dependencies": {
-    "@formatjs/cli": "^6.7.4"
+    "@formatjs/cli": "^6.11.0"
   },
   "peerDependencies": {
     "@nx/devkit": "^22.0.0"
