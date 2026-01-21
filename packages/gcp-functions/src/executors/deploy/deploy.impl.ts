@@ -70,7 +70,7 @@ export async function deployExecutor(
     cpu = 1
   } = options
 
-  let runtime = options.runtime || 'nodejs20'
+  let runtime = options.runtime || 'recommended'
   // If "recommended" option is selected set the currently recommended one of Google (https://cloud.google.com/functions/docs/concepts/nodejs-runtime)
   if (runtime === 'recommended') {
     runtime = 'nodejs24'
