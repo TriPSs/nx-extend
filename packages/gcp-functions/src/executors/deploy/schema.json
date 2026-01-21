@@ -36,6 +36,7 @@
         "nodejs18",
         "nodejs20",
         "nodejs22",
+        "nodejs24",
         "recommended"
       ]
     },

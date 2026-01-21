@@ -2,13 +2,13 @@ import { ExecutorContext, logger } from '@nx/devkit'
 import { buildCommand, execCommand } from '@nx-extend/core'
 import { join } from 'path'
 
-import { getValidSecrets } from '../../utils/get-valid-secrets'
 import { Gen, ValidMemory } from '../../types'
+import { getValidSecrets } from '../../utils/get-valid-secrets'
 import { validateResources } from '../../utils/validate-resources'
 
 export interface DeployExecutorSchema {
   functionName: string
-  runtime?: 'nodejs16' | 'nodejs18' | 'nodejs20' | 'recommended'
+  runtime?: 'nodejs16' | 'nodejs18' | 'nodejs20' | 'nodejs22' | 'nodejs24' | 'recommended'
   entryPoint?: string
   serviceAccount?: string
   memory?: ValidMemory
@@ -73,7 +73,7 @@ export async function deployExecutor(
   let runtime = options.runtime || 'nodejs20'
   // If "recommended" option is selected set the currently recommended one of Google (https://cloud.google.com/functions/docs/concepts/nodejs-runtime)
   if (runtime === 'recommended') {
-    runtime = 'nodejs20'
+    runtime = 'nodejs24'
   }
 
   // Options with default values based of trigger type
