@@ -1,4 +1,12 @@
  
+## [6.0.2](https://github.com/tripss/nx-extend/compare/shadcn-ui@6.0.1...shadcn-ui@6.0.2) (2026-01-21)
+
+
+
+## [6.0.1](https://github.com/tripss/nx-extend/compare/shadcn-ui@6.0.0...shadcn-ui@6.0.1) (2025-12-22)
+
+
+
 # [6.0.0](https://github.com/tripss/nx-extend/compare/shadcn-ui@5.0.1...shadcn-ui@6.0.0) (2025-11-23)
 
 ### Dependency Updates

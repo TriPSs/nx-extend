@@ -1,4 +1,8 @@
  
+## [10.0.1](https://github.com/TriPSs/nx-extend/compare/gcp-task-runner@10.0.0...gcp-task-runner@10.0.1) (2025-12-22)
+
+
+
 # [10.0.0](https://github.com/TriPSs/nx-extend/compare/gcp-task-runner@9.0.3...gcp-task-runner@10.0.0) (2025-11-23)
 
 

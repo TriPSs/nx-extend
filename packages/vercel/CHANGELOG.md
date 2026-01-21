@@ -1,4 +1,23 @@
  
+# [15.0.0](https://github.com/tripss/nx-extend/compare/vercel@14.0.0...vercel@15.0.0) (2025-12-22)
+
+
+### Bug Fixes
+
+* **vercel:** Add support for Node.js v20 in the Vercel build executor schema ([c80fa22](https://github.com/tripss/nx-extend/commit/c80fa2244d7d429e6250c7e60d6b6b0eb2218fa4))
+
+
+### Features
+
+* **vercel:** Add support for Node.js v24 in Vercel build executor ([e25f93b](https://github.com/tripss/nx-extend/commit/e25f93b0830026e129d4c01627ce0e28e715ac82))
+
+
+### BREAKING CHANGES
+
+* **vercel:** Default node version is set to `24.x`, `20.x` is removed.
+
+
+
 # [14.0.0](https://github.com/tripss/nx-extend/compare/vercel@13.0.1...vercel@14.0.0) (2025-11-23)
 
 ### Dependency Updates

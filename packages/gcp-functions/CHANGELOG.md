@@ -1,4 +1,27 @@
  
+# [18.0.0](https://github.com/tripss/nx-extend/compare/gcp-functions@17.0.1...gcp-functions@18.0.0) (2026-01-21)
+
+
+### Bug Fixes
+
+* **gcp-functions:** Fix endpoint matching logic in `__runner.controller.ts` ([7f281ac](https://github.com/tripss/nx-extend/commit/7f281ac20f349442ac78574dd88ce6986ac19fb6))
+
+
+### Features
+
+* **gcp-functions:** Add support for Node.js v22 and v24 in deploy executor ([745b8c0](https://github.com/tripss/nx-extend/commit/745b8c0dbf4881e806144d89a0b4832bc0e3b5f7))
+
+
+### BREAKING CHANGES
+
+* **gcp-functions:** Change recommended node version to v24
+
+
+
+## [17.0.1](https://github.com/tripss/nx-extend/compare/gcp-functions@17.0.0...gcp-functions@17.0.1) (2025-12-22)
+
+
+
 # [17.0.0](https://github.com/tripss/nx-extend/compare/gcp-functions@16.0.1...gcp-functions@17.0.0) (2025-11-23)
 
 ### Dependency Updates
