@@ -1,4 +1,8 @@
  
+## [14.1.1](https://github.com/tripss/nx-extend/compare/strapi@14.1.0...strapi@14.1.1) (2026-01-21)
+
+
+
 # [14.1.0](https://github.com/tripss/nx-extend/compare/strapi@14.0.0...strapi@14.1.0) (2025-12-22)
 
 
