@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "outputCapture": "direct-nodejs",
+  "$schema": "https://json-schema.org/schema",
+  "type": "object",
+  "title": "Workspace executor",
+  "description": "Workspace",
+  "properties": {}
+}

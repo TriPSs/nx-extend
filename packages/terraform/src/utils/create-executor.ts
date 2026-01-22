@@ -15,6 +15,11 @@ export interface ExecutorOptions {
   varFile: string
   varString: string
   reconfigure: boolean
+  workspace: string
+  list: boolean
+  select: boolean
+  create: boolean
+  remove: boolean
 
   [key: string]: string | unknown
 }
@@ -40,7 +45,12 @@ export function createExecutor(command: string) {
       lock,
       varFile,
       varString,
-      reconfigure
+      reconfigure,  
+      workspace,
+      list,
+      select,
+      create,
+      remove
     } = options
 
     let env = {}
@@ -51,6 +61,42 @@ export function createExecutor(command: string) {
       }
     }
 
+    let workspaceArgs: string[] = [];
+
+    if (command === 'workspace') {
+      const actions = [select, create, remove, list].filter(Boolean);
+
+      if (actions.length < 1) {
+        throw new Error('At least one action is required for workspace command, select, create, remove or list');
+      }
+
+      if (actions.length > 1) {
+        throw new Error('Only one action is allowed for workspace command, select, create, remove or list');
+      }
+
+      if (!list && !workspace){
+        throw new Error('Workspace name is required for workspace command, select, create, remove or list');
+      }
+
+      if (select) {
+        workspaceArgs.push(`select ${workspace}`);
+      }
+
+      if (create) {
+        workspaceArgs.push(`new ${workspace}`);
+      }
+
+      if (remove) {
+        workspaceArgs.push(`delete ${workspace}`);
+      }
+
+      if (list) {
+        workspaceArgs.push(`list`);
+      }
+
+      workspaceArgs.push(workspace);
+    }
+    
     let jsonBackendConfig = backendConfig
     if (typeof jsonBackendConfig === 'string') {
       jsonBackendConfig = JSON.parse(jsonBackendConfig)
@@ -60,6 +106,7 @@ export function createExecutor(command: string) {
       buildCommand([
         'terraform',
         command,
+        ...workspaceArgs,
         ...jsonBackendConfig.map(
           (config) => `-backend-config="${config.key}=${config.name}"`
         ),
@@ -77,7 +124,11 @@ export function createExecutor(command: string) {
         command === 'init' && reconfigure && '-reconfigure',
         command === 'providers' && lock && 'lock',
         command === 'test' && varFile && `--var-file ${varFile}`,
-        command === 'test' && varString && `--var ${varString}`
+        command === 'test' && varString && `--var ${varString}`,
+        command === 'workspace' && workspace && select && `select ${workspace}`,
+        command === 'workspace' && workspace && create && `new ${workspace}`,
+        command === 'workspace' && workspace && remove && `delete ${workspace}`,
+        command === 'workspace' && list && `list`
       ]),
       {
         cwd: sourceRoot,
