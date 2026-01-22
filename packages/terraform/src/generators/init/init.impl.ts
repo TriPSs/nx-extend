@@ -94,6 +94,14 @@ export default async function (
         options: {
           ciMode: true
         }
+      },
+      workspace: {
+        executor: '@nx-extend/terraform:workspace',
+        options: {
+          ciMode: true,
+          workspace: 'default',
+          workspaceAction: 'select'
+        }
       }
     },
     tags: options.parsedTags

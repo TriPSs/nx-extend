@@ -42,9 +42,53 @@ nx run <terraform-project-name>:apply
 nx run <terraform-project-name>:destroy
 nx run <terraform-project-name>:validate
 nx run <terraform-project-name>:test
+nx run <terraform-project-name>:workspace
 ```
 
 #### Available options:
 
-| name | type | default | description |
-|------|------|---------|-------------|
+#### Available options
+
+| Name | Type | Default | Description | Supported Commands |
+| :--- | :--- | :--- | :--- | :--- |
+| `ciMode` | `boolean` | `false` | Enables CI mode (sets `TF_IN_AUTOMATION=true` and `TF_INPUT=0`). | All |
+| `varFile` | `string` | - | Path to a variable file (passed as `--var-file`). | `plan`, `apply`, `test` |
+| `varString` | `string` | - | Inline variables (passed as `--var`). | `plan`, `apply`, `test` |
+| `planFile` | `string` | - | Path to output the plan file (e.g., `tfplan`). | `plan`, `apply` |
+| `autoApproval` | `boolean` | `false` | Skips interactive approval (passed as `-auto-approve`). | `apply`, `destroy` |
+| `workspace` | `string` | - | Name of the workspace. **Required** for `new`, `select`, and `delete` actions. | `workspace` |
+| `workspaceAction` | `string` | `select` | Action to perform on the workspace. Accepted values: `select`, `new`, `delete`, `list`. | `workspace` |
+| `backendConfig` | `array` | `[]` | Backend configuration (e.g., `[{ "key": "bucket", "name": "my-bucket" }]`). | `init` |
+| `reconfigure` | `boolean` | `false` | Reconfigure the backend (passed as `-reconfigure`). | `init` |
+| `migrateState` | `boolean` | `false` | Migrate state during init (passed as `-migrate-state`). | `init` |
+| `upgrade` | `boolean` | `false` | Install the latest module and provider versions (passed as `-upgrade`). | `init` |
+| `formatWrite` | `boolean` | `false` | If `true`, updates files in place. If `false`, only checks formatting. | `fmt` |
+| `lock` | `boolean` | `false` | Update the lock file (passed as `lock`). | `providers` |
+
+
+#### Usage examples
+
+##### Using variables files
+
+```bash
+# Plan with a specific tfvars file
+nx run my-project:plan --varFile=config/dev.tfvars
+
+# Apply with inline variables
+nx run my-project:apply --varString="region=us-east-1"
+```
+
+#### Managing workspaces
+```bash
+# List all workspaces
+nx run my-project:workspace --workspaceAction=list
+
+# Create a new workspace named 'staging'
+nx run my-project:workspace --workspaceAction=new --workspace=staging
+
+# Select 'staging' workspace (default action is select)
+nx run my-project:workspace --workspace=staging
+
+# Delete 'staging' workspace
+nx run my-project:workspace --workspaceAction=delete --workspace=staging
+```
