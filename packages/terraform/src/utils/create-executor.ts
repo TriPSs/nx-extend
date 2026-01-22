@@ -75,7 +75,7 @@ export function createExecutor(command: string) {
       }
 
       if (!list && !workspace){
-        throw new Error('Workspace name is required for workspace command, select, create, remove or list');
+        throw new Error('Workspace name is required for workspace command, select, create or remove');
       }
 
       if (select) {
@@ -93,10 +93,8 @@ export function createExecutor(command: string) {
       if (list) {
         workspaceArgs.push(`list`);
       }
-
-      workspaceArgs.push(workspace);
     }
-    
+
     let jsonBackendConfig = backendConfig
     if (typeof jsonBackendConfig === 'string') {
       jsonBackendConfig = JSON.parse(jsonBackendConfig)
@@ -107,9 +105,9 @@ export function createExecutor(command: string) {
         'terraform',
         command,
         ...workspaceArgs,
-        ...jsonBackendConfig.map(
+        ...(command === 'init' ? jsonBackendConfig.map(
           (config) => `-backend-config="${config.key}=${config.name}"`
-        ),
+        ) : []),
         command === 'plan' && planFile && `-out ${planFile}`,
         command === 'plan' && varFile && `--var-file ${varFile}`,
         command === 'plan' && varString && `--var ${varString}`,
@@ -124,11 +122,7 @@ export function createExecutor(command: string) {
         command === 'init' && reconfigure && '-reconfigure',
         command === 'providers' && lock && 'lock',
         command === 'test' && varFile && `--var-file ${varFile}`,
-        command === 'test' && varString && `--var ${varString}`,
-        command === 'workspace' && workspace && select && `select ${workspace}`,
-        command === 'workspace' && workspace && create && `new ${workspace}`,
-        command === 'workspace' && workspace && remove && `delete ${workspace}`,
-        command === 'workspace' && list && `list`
+        command === 'test' && varString && `--var ${varString}`
       ]),
       {
         cwd: sourceRoot,
