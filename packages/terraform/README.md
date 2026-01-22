@@ -47,8 +47,6 @@ nx run <terraform-project-name>:workspace
 
 #### Available options:
 
-#### Available options
-
 | Name | Type | Default | Description | Supported Commands |
 | :--- | :--- | :--- | :--- | :--- |
 | `ciMode` | `boolean` | `false` | Enables CI mode (sets `TF_IN_AUTOMATION=true` and `TF_INPUT=0`). | All |

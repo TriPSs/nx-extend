@@ -60,11 +60,11 @@ export function createExecutor(command: string) {
     if (command === 'workspace') {
       if (workspaceAction === 'list') {
         workspaceArgs.push(workspaceAction);
-      }else {
+      } else {
         if (!workspace) {
-          throw new Error('Workspace name is required for workspace command, select, new ordelete');
+          throw new Error('Workspace name is required for workspace command, select, new or delete');
         }
-        workspaceArgs.push(workspaceAction ,workspace);
+        workspaceArgs.push(workspaceAction, workspace);
       }
     }
 
