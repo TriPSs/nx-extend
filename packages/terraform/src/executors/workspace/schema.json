@@ -5,5 +5,14 @@
   "type": "object",
   "title": "Workspace executor",
   "description": "Workspace",
-  "properties": {}
+  "properties": {
+    "workspaceAction": {
+      "type": "string",
+      "enum": ["select", "new", "delete", "list"],
+      "default": "select"
+    },
+    "workspace": {
+      "type": "string"
+    }
+  }
 }
