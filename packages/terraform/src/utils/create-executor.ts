@@ -15,6 +15,8 @@ export interface ExecutorOptions {
   varFile: string
   varString: string
   reconfigure: boolean
+  workspace: string
+  workspaceAction: 'select' | 'new' | 'delete' | 'list'
 
   [key: string]: string | unknown
 }
@@ -40,7 +42,9 @@ export function createExecutor(command: string) {
       lock,
       varFile,
       varString,
-      reconfigure
+      reconfigure,  
+      workspace,  
+      workspaceAction = 'select'
     } = options
 
     let env = {}
@@ -48,6 +52,19 @@ export function createExecutor(command: string) {
       env = {
         TF_IN_AUTOMATION: true,
         TF_INPUT: 0
+      }
+    }
+
+    let workspaceArgs: string[] = [];
+
+    if (command === 'workspace') {
+      if (workspaceAction === 'list') {
+        workspaceArgs.push(workspaceAction);
+      } else {
+        if (!workspace) {
+          throw new Error('Workspace name is required for workspace command, select, new or delete');
+        }
+        workspaceArgs.push(workspaceAction, workspace);
       }
     }
 
@@ -60,9 +77,10 @@ export function createExecutor(command: string) {
       buildCommand([
         'terraform',
         command,
-        ...jsonBackendConfig.map(
+        ...workspaceArgs,
+        ...(command === 'init' ? jsonBackendConfig.map(
           (config) => `-backend-config="${config.key}=${config.name}"`
-        ),
+        ) : []),
         command === 'plan' && planFile && `-out ${planFile}`,
         command === 'plan' && varFile && `--var-file ${varFile}`,
         command === 'plan' && varString && `--var ${varString}`,
