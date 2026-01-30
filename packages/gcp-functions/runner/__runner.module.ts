@@ -5,13 +5,11 @@ import type { NxEndpoints } from './'
 import { createController } from './__runner.controller'
 
 export function createRunnerModule(gcpFunctions: NxEndpoints) {
-  // Always add health endpoint
+  // Always add a health endpoint
   gcpFunctions.push({
     endpoint: '/_check/health',
     trigger: 'http',
-    func: (req, res) => res
-      .status(200)
-      .send()
+    func: (req, res) => res.status(200).send()
   })
 
   @Module({
