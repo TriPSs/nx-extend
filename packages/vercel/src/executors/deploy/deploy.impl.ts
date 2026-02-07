@@ -2,7 +2,6 @@ import * as githubCore from '@actions/core'
 import {
   buildCommand,
   execCommand,
-  getOutputDirectoryFromBuildTarget,
   isCI,
   USE_VERBOSE_LOGGING
 } from '@nx-extend/core'
@@ -11,10 +10,9 @@ import { join } from 'path'
 
 import type { ExecutorContext } from '@nx/devkit'
 
-import { vercelToken } from '../../utils/vercel-token'
+import { VERCEL_COMMAND, VERCEL_TOKEN } from '../../utils/constants'
 
 export interface DeployOptions {
-  buildTarget?: string
   regions?: string
   archive?: 'tgz'
   deployment?: 'preview' | 'production'
@@ -24,45 +22,21 @@ export async function deployExecutor(
   options: DeployOptions,
   context: ExecutorContext
 ): Promise<{ success: boolean }> {
-  const { targets } = context.projectsConfigurations.projects[context.projectName]
-
-  let outputDirectory = ''
-
-  if (options.buildTarget) {
-    outputDirectory = getOutputDirectoryFromBuildTarget(context, options.buildTarget)
-  } else {
-    const projectVercelBuildTarget = Object.keys(targets).find((target) => (
-      targets[target].executor === '@nx-extend/vercel:build'
-    ))
-
-    if (projectVercelBuildTarget) {
-      let projectBuildTarget = targets[projectVercelBuildTarget]?.options?.buildTarget || 'build-next'
-      if (!projectBuildTarget.includes(':')) {
-        projectBuildTarget = `${context.projectName}:${projectBuildTarget}`
-      }
-
-      outputDirectory = getOutputDirectoryFromBuildTarget(context, projectBuildTarget)
-    }
-  }
-
-  if (!outputDirectory) {
-    throw new Error(`Could not find the builds output path!`)
-  }
-
-  if (!existsSync(join(outputDirectory, '.vercel/project.json'))) {
+  const { root: projectRoot } = context.projectsConfigurations.projects[context.projectName]
+  if (!existsSync(join(projectRoot, 'project.json'))) {
     throw new Error('No ".vercel/project.json" found in dist folder! ')
   }
 
   const { success, output } = execCommand(buildCommand([
-    'npx vercel deploy --prebuilt',
+    `${VERCEL_COMMAND} deploy --prebuilt`,
     (context.configurationName === 'production' || options.deployment === 'production') && '--prod',
-    vercelToken && `--token=${vercelToken}`,
+    VERCEL_TOKEN && `--token=${VERCEL_TOKEN}`,
     options.regions && `--regions=${options.regions}`,
     options.archive && `--archive=${options.archive}`,
 
     USE_VERBOSE_LOGGING && '--debug'
   ]), {
-    cwd: outputDirectory
+    cwd: projectRoot
   })
 
   // When running in GitHub CI add the URL of the deployment as summary

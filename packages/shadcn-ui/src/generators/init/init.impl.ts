@@ -79,20 +79,21 @@ export default async function (tree: Tree, options: ShadecnUiSchema) {
   addFilesToUtilsLib(tree, `${getLibRoot(tree, options.utilsName)}/src`)
 
   writeJson(tree, 'components.json', {
-    '$schema': 'https://ui.shadcn.com/schema.json',
-    'style': 'default',
-    'rsc': false,
-    'tailwind': {
-      'config': join(utilsLibOptions.projectRoot, 'src/tailwind.config.ts'),
-      'css': join(utilsLibOptions.projectRoot, 'src/global.css'),
-      'baseColor': 'neutral',
-      'cssVariables': true
+    $schema: 'https://ui.shadcn.com/schema.json',
+    style: 'default',
+    rsc: false,
+    tailwind: {
+      config: join(utilsLibOptions.projectRoot, 'src/tailwind.config.ts'),
+      css: join(utilsLibOptions.projectRoot, 'src/global.css'),
+      baseColor: 'neutral',
+      cssVariables: true
     },
-    'aliases': {
-      'ui': uiLibOptions.importPath,
-      'components': `${uiLibOptions.importPath}/components`,
-      'utils': utilsLibOptions.importPath,
-      'hooks': `${uiLibOptions.importPath}/hooks`
+    aliases: {
+      ui: uiLibOptions.importPath,
+      components: `${uiLibOptions.importPath}/components`,
+      utils: utilsLibOptions.importPath,
+      hooks: `${uiLibOptions.importPath}/hooks`,
+      lib: uiLibOptions.importPath
     }
   })
 

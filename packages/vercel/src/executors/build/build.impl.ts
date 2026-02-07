@@ -13,9 +13,9 @@ import { join } from 'path'
 import type { ExecutorContext } from '@nx/devkit'
 
 import { addEnvVariablesToFile } from '../../utils/add-env-variables-to-file'
+import { VERCEL_COMMAND, VERCEL_TOKEN } from '../../utils/constants'
 import { enrichVercelEnvFile } from '../../utils/enrich-vercel-env-file'
 import { getEnvVars } from '../../utils/get-env-vars'
-import { vercelToken } from '../../utils/vercel-token'
 import { getOutputDirectory } from './utils/get-output-directory'
 
 export interface BuildOptions {
@@ -69,34 +69,35 @@ export function buildExecutor(
     })
   }
 
-  // First make sure the .vercel/project.json exists
-  writeJsonFile(`./${vercelDirectory}/project.json`, {
+  const { root: projectRoot } = context.projectsConfigurations.projects[context.projectName]
+
+  // Create repo.json, used for deployments to Vercel
+  writeJsonFile(`./${vercelDirectory}/repo.json`, {
+    orgId: options.orgId,
+    remoteName: 'origin',
+    projects: [
+      {
+        id: options.projectId,
+        name: context.projectName,
+        directory: projectRoot
+      }
+    ]
+  })
+
+  // First, make sure the .vercel/project.json exists
+  const vercelProjectJson = `${projectRoot}/${vercelDirectory}/project.json`
+  writeJsonFile(vercelProjectJson, {
     projectId: options.projectId,
     orgId: options.orgId,
     settings: {}
   })
 
-  const vercelCommand = 'npx vercel@33.0.2'
   const vercelEnvironment = (context.configurationName === 'production' || options.deployment === 'production')
     ? 'production'
     : 'preview'
 
-  // Pull latest
-  const { success: pullSuccess } = execCommand(buildCommand([
-    `${vercelCommand} pull --yes`,
-    `--environment=${vercelEnvironment}`,
-    vercelToken && `--token=${vercelToken}`,
-
-    USE_VERBOSE_LOGGING && '--debug'
-  ]))
-
-  if (!pullSuccess) {
-    throw new Error(`Was unable to pull!`)
-  }
-
-  const vercelProjectJson = `./${vercelDirectory}/project.json`
   const vercelEnvFile = `.env.${vercelEnvironment}.local`
-  const vercelEnvFileLocation = join(context.root, vercelDirectory)
+  const vercelEnvFileLocation = join(projectRoot, vercelDirectory)
 
   const envVars = getEnvVars(options.envVars, true)
   if (envVars.length > 0) {
@@ -122,32 +123,35 @@ export function buildExecutor(
     }
   })
 
+  const projectVercelDirectory = `${projectRoot}/${vercelDirectory}`
   const { success } = execCommand(buildCommand([
-    `${vercelCommand} build`,
-    `--output ${outputDirectory}/.vercel/output`,
+    `${VERCEL_COMMAND} build`,
+    `--output ${projectVercelDirectory}/output`,
     vercelEnvironment === 'production' && '--prod',
     options.config && `--local-config=${join(workspaceRoot, options.config)}`,
-    vercelToken && `--token=${vercelToken}`,
+    VERCEL_TOKEN && `--token=${VERCEL_TOKEN}`,
 
     USE_VERBOSE_LOGGING && '--debug'
-  ]))
+  ]), {
+    cwd: projectRoot
+  })
 
   if (success) {
     // Write the project.json to the .vercel directory
     writeJsonFile(
-      join(outputDirectory, vercelDirectory, 'project.json'),
+      join(projectVercelDirectory, 'project.json'),
       readJsonFile(vercelProjectJson)
     )
     // Also copy over the env files
     copyFile(
       vercelEnvFileLocation,
-      join(outputDirectory, vercelDirectory),
+      projectVercelDirectory,
       vercelEnvFile
     )
     // Also copy the .vercelignore
     copyFile(
       context.root,
-      join(outputDirectory, vercelDirectory),
+      projectVercelDirectory,
       '.vercelignore'
     )
   }
