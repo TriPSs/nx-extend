@@ -1,4 +1,18 @@
  
+# [16.0.0](https://github.com/tripss/nx-extend/compare/vercel@15.0.0...vercel@16.0.0) (2026-02-07)
+
+
+### Features
+
+* **vercel:** Simplify execution logic and enhance token handling ([41a837e](https://github.com/tripss/nx-extend/commit/41a837ec19703a786fbc0b3089981169ab44805a))
+
+
+### BREAKING CHANGES
+
+* **vercel:** Updated the Vercel CLI to 50.x, this now requires the root directory to be set inside the vercel project.
+
+
+
 # [15.0.0](https://github.com/tripss/nx-extend/compare/vercel@14.0.0...vercel@15.0.0) (2025-12-22)
 
 
