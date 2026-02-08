@@ -16,6 +16,7 @@ import { addEnvVariablesToFile } from '../../utils/add-env-variables-to-file'
 import { VERCEL_COMMAND, VERCEL_TOKEN } from '../../utils/constants'
 import { enrichVercelEnvFile } from '../../utils/enrich-vercel-env-file'
 import { getEnvVars } from '../../utils/get-env-vars'
+import { createRepoJson } from './utils/create-repo-json'
 import { getOutputDirectory } from './utils/get-output-directory'
 
 export interface BuildOptions {
@@ -60,31 +61,13 @@ export function buildExecutor(
     throw new Error(`"${buildTarget}" target has no "outputPath" configured!`)
   }
 
-  const vercelDirectory = '.vercel'
-  const vercelDirectoryLocation = join(context.root, vercelDirectory)
-
-  if (existsSync(vercelDirectoryLocation)) {
-    rmSync(vercelDirectoryLocation, {
-      recursive: true
-    })
-  }
-
   const { root: projectRoot } = context.projectsConfigurations.projects[context.projectName]
 
   // Create repo.json, used for deployments to Vercel
-  writeJsonFile(`./${vercelDirectory}/repo.json`, {
-    orgId: options.orgId,
-    remoteName: 'origin',
-    projects: [
-      {
-        id: options.projectId,
-        name: context.projectName,
-        directory: projectRoot
-      }
-    ]
-  })
+  createRepoJson(options.orgId, options.projectId, context.projectName, projectRoot)
 
   // First, make sure the .vercel/project.json exists
+  const vercelDirectory = '.vercel'
   const vercelProjectJson = `${projectRoot}/${vercelDirectory}/project.json`
   writeJsonFile(vercelProjectJson, {
     projectId: options.projectId,

@@ -4222,9 +4222,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@google-cloud/storage@npm:^7.18.0":
-  version: 7.18.0
-  resolution: "@google-cloud/storage@npm:7.18.0"
+"@google-cloud/storage@npm:^7.19.0":
+  version: 7.19.0
+  resolution: "@google-cloud/storage@npm:7.19.0"
   dependencies:
     "@google-cloud/paginator": "npm:^5.0.0"
     "@google-cloud/projectify": "npm:^4.0.0"
@@ -4232,7 +4232,7 @@ __metadata:
     abort-controller: "npm:^3.0.0"
     async-retry: "npm:^1.3.3"
     duplexify: "npm:^4.1.3"
-    fast-xml-parser: "npm:^4.4.1"
+    fast-xml-parser: "npm:^5.3.4"
     gaxios: "npm:^6.0.2"
     google-auth-library: "npm:^9.6.3"
     html-entities: "npm:^2.5.2"
@@ -4241,7 +4241,7 @@ __metadata:
     retry-request: "npm:^7.0.0"
     teeny-request: "npm:^9.0.0"
     uuid: "npm:^8.0.0"
-  checksum: 10/29ca208cf88770dd60ac7868ec69bffa43e3cba03cbb49dd7064593f777e66181a8cba6f1993f36193f009be07bc02129d0ecac9f9f09f8a8b6a8d90a9e5ba86
+  checksum: 10/6fa0621ff702f3e8e8e4edd25c1f7582b5f2a0b44866ad0b94cd3f074ff58b9164d1c470222bf9c29fcf54c27fabb4ff6706ee073a706c6a67673a8e19b17c30
   languageName: node
   linkType: hard
 
@@ -6225,7 +6225,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nx-extend/gcp-task-runner@workspace:packages/gcp-task-runner"
   dependencies:
-    "@google-cloud/storage": "npm:^7.18.0"
+    "@google-cloud/storage": "npm:^7.19.0"
   peerDependencies:
     "@nx/devkit": ^22.0.0
     "@nx/workspace": ^22.0.0
@@ -6267,7 +6267,7 @@ __metadata:
   resolution: "@nx-extend/react-email@workspace:packages/react-email"
   dependencies:
     "@react-email/components": "npm:1.0.7"
-    react-email: "npm:5.2.6"
+    react-email: "npm:5.2.8"
   peerDependencies:
     "@nx/devkit": ^22.0.0
   languageName: unknown
@@ -7508,7 +7508,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@pulumi/pulumi@npm:^3.142.0, @pulumi/pulumi@npm:^3.218.0":
+"@pulumi/pulumi@npm:^3.142.0":
   version: 3.218.0
   resolution: "@pulumi/pulumi@npm:3.218.0"
   dependencies:
@@ -7549,6 +7549,50 @@ __metadata:
     typescript:
       optional: true
   checksum: 10/7aed499f43736b5f1f4d95bc5f20f58a62de391e8ebc83dce699b32f6d5c80a09b3822ada35129132078b240ae7ae25474b2002a5535b7452a374c46c0e53259
+  languageName: node
+  linkType: hard
+
+"@pulumi/pulumi@npm:^3.219.0":
+  version: 3.219.0
+  resolution: "@pulumi/pulumi@npm:3.219.0"
+  dependencies:
+    "@grpc/grpc-js": "npm:^1.10.1"
+    "@logdna/tail-file": "npm:^2.0.6"
+    "@npmcli/arborist": "npm:^9.0.0"
+    "@opentelemetry/api": "npm:^1.9"
+    "@opentelemetry/exporter-zipkin": "npm:^1.28"
+    "@opentelemetry/instrumentation": "npm:^0.55"
+    "@opentelemetry/instrumentation-grpc": "npm:^0.55"
+    "@opentelemetry/resources": "npm:^1.28"
+    "@opentelemetry/sdk-trace-base": "npm:^1.28"
+    "@opentelemetry/sdk-trace-node": "npm:^1.28"
+    "@types/google-protobuf": "npm:^3.15.5"
+    "@types/semver": "npm:^7.5.6"
+    "@types/tmp": "npm:^0.2.6"
+    execa: "npm:^5.1.0"
+    fdir: "npm:^6.5.0"
+    google-protobuf: "npm:^3.21.4"
+    got: "npm:^11.8.6"
+    ini: "npm:^2.0.0"
+    js-yaml: "npm:^3.14.2"
+    minimist: "npm:^1.2.6"
+    normalize-package-data: "npm:^6.0.0"
+    package-directory: "npm:^8.1.0"
+    picomatch: "npm:^3.0.1"
+    require-from-string: "npm:^2.0.1"
+    semver: "npm:^7.5.2"
+    source-map-support: "npm:^0.5.6"
+    tmp: "npm:^0.2.4"
+    upath: "npm:^1.1.0"
+  peerDependencies:
+    ts-node: ">= 7.0.1 < 12"
+    typescript: ">= 3.8.3 < 6"
+  peerDependenciesMeta:
+    ts-node:
+      optional: true
+    typescript:
+      optional: true
+  checksum: 10/696aab98b759212030829f875c442c089050480c804aa2aa9d01820ed23f5876d12d98ad9a28f135e6429241a09eb7a9835295b4ce6160afcfef30d097fa9484
   languageName: node
   linkType: hard
 
@@ -12609,7 +12653,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axios@npm:^1.12.0, axios@npm:^1.13.4":
+"axios@npm:^1.12.0":
   version: 1.13.4
   resolution: "axios@npm:1.13.4"
   dependencies:
@@ -12617,6 +12661,17 @@ __metadata:
     form-data: "npm:^4.0.4"
     proxy-from-env: "npm:^1.1.0"
   checksum: 10/54b7ef71c64837f9d52475832337f520cf6fa85c94612e03a3a2aad7082804a2544741267122696662147e90e6d2746601346984cf531ae715ecdb56d586a04c
+  languageName: node
+  linkType: hard
+
+"axios@npm:^1.13.5":
+  version: 1.13.5
+  resolution: "axios@npm:1.13.5"
+  dependencies:
+    follow-redirects: "npm:^1.15.11"
+    form-data: "npm:^4.0.5"
+    proxy-from-env: "npm:^1.1.0"
+  checksum: 10/db726d09902565ef9a0632893530028310e2ec2b95b727114eca1b101450b00014133dfc3871cffc87983fb922bca7e4874d7e2826d1550a377a157cdf3f05b6
   languageName: node
   linkType: hard
 
@@ -16095,10 +16150,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dotenv@npm:17.2.3":
-  version: 17.2.3
-  resolution: "dotenv@npm:17.2.3"
-  checksum: 10/f8b78626ebfff6e44420f634773375c9651808b3e1a33df6d4cc19120968eea53e100f59f04ec35f2a20b2beb334b6aba4f24040b2f8ad61773f158ac042a636
+"dotenv@npm:17.2.4":
+  version: 17.2.4
+  resolution: "dotenv@npm:17.2.4"
+  checksum: 10/3b0fdfb40aebfec3a3b4421990b5874cb93c5a259d20ef637ead237a360cbaf753879d3a66e5c044147658824d86ffead6a4090e8ebb727782e5717fcdb636dd
   languageName: node
   linkType: hard
 
@@ -17487,14 +17542,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fast-xml-parser@npm:^4.4.1":
-  version: 4.5.3
-  resolution: "fast-xml-parser@npm:4.5.3"
+"fast-xml-parser@npm:^5.3.4":
+  version: 5.3.5
+  resolution: "fast-xml-parser@npm:5.3.5"
   dependencies:
-    strnum: "npm:^1.1.1"
+    strnum: "npm:^2.1.2"
   bin:
     fxparser: src/cli/cli.js
-  checksum: 10/ca22bf9d65c10b8447c1034c13403e90ecee210e2b3852690df3d8a42b8a46ec655fae7356096abd98a15b89ddaf11878587b1773e0c3be4cbc2ac4af4c7bf95
+  checksum: 10/913363c2cf9ab8038bd2b666698d99d44b977725f0198f3dfff3a5d34c3109ef49d3a163a0f390f69ed00ad33b81355112dec8be5e79a13f8e6c7aaf146204b8
   languageName: node
   linkType: hard
 
@@ -17820,7 +17875,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"follow-redirects@npm:^1.0.0, follow-redirects@npm:^1.15.6, follow-redirects@npm:^1.15.9":
+"follow-redirects@npm:^1.0.0, follow-redirects@npm:^1.15.11, follow-redirects@npm:^1.15.6, follow-redirects@npm:^1.15.9":
   version: 1.15.11
   resolution: "follow-redirects@npm:1.15.11"
   peerDependenciesMeta:
@@ -17936,7 +17991,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"form-data@npm:^4.0.0, form-data@npm:^4.0.4":
+"form-data@npm:^4.0.0, form-data@npm:^4.0.4, form-data@npm:^4.0.5":
   version: 4.0.5
   resolution: "form-data@npm:4.0.5"
   dependencies:
@@ -24715,7 +24770,7 @@ __metadata:
   resolution: "nx-extend@workspace:."
   dependencies:
     "@actions/core": "npm:^1.11.1"
-    "@google-cloud/storage": "npm:^7.18.0"
+    "@google-cloud/storage": "npm:^7.19.0"
     "@jamesives/github-pages-deploy-action": "npm:^4.7.4"
     "@jscutlery/semver": "npm:^5.7.1"
     "@nx/devkit": "npm:22.1.2"
@@ -24728,7 +24783,7 @@ __metadata:
     "@nx/webpack": "npm:22.1.2"
     "@nx/workspace": "npm:22.1.2"
     "@pulumi/gcp": "npm:^9.11.0"
-    "@pulumi/pulumi": "npm:^3.218.0"
+    "@pulumi/pulumi": "npm:^3.219.0"
     "@strapi/strapi": "npm:4.26.0"
     "@types/jest": "npm:30.0.0"
     "@types/node": "npm:24.10.1"
@@ -24738,10 +24793,10 @@ __metadata:
     "@typescript-eslint/eslint-plugin": "npm:8.54.0"
     "@typescript-eslint/parser": "npm:8.54.0"
     "@vercel/ncc": "npm:0.34.0"
-    axios: "npm:^1.13.4"
+    axios: "npm:^1.13.5"
     crypto-js: "npm:^4.2.0"
     deepmerge: "npm:^4.3.1"
-    dotenv: "npm:17.2.3"
+    dotenv: "npm:17.2.4"
     eslint: "npm:9.39.2"
     eslint-config-prettier: "npm:10.1.8"
     eslint-plugin-simple-import-sort: "npm:^12.1.1"
@@ -27659,9 +27714,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-email@npm:5.2.6":
-  version: 5.2.6
-  resolution: "react-email@npm:5.2.6"
+"react-email@npm:5.2.8":
+  version: 5.2.8
+  resolution: "react-email@npm:5.2.8"
   dependencies:
     "@babel/parser": "npm:^7.27.0"
     "@babel/traverse": "npm:^7.27.0"
@@ -27682,7 +27737,7 @@ __metadata:
     tsconfig-paths: "npm:4.2.0"
   bin:
     email: dist/index.js
-  checksum: 10/4d558a56f5cbcb08528c7f4806b7d1205946e27286ad1ec1a3dd391b33671608f1b2beb1e1494079473623a107a066bacc78d454b331bd2c1c3e41301e2d4e38
+  checksum: 10/cd86ea070e9ef856efd880cb3bda14c1965294d012cf7ffa5a3682a33dd3118007b540e94d3fa418643872e8fc223d219011d2b00cce5f489f015f80842005e9
   languageName: node
   linkType: hard
 
@@ -30693,10 +30748,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"strnum@npm:^1.1.1":
-  version: 1.1.2
-  resolution: "strnum@npm:1.1.2"
-  checksum: 10/ccd6297a1fdaf0fc8ea0ea904acdae76878d49a4b0d98a70155df4bc081fd88eac5ec99fb150f3d1d1af065c1898d38420705259ba6c39aa850c671bcd54e35d
+"strnum@npm:^2.1.2":
+  version: 2.1.2
+  resolution: "strnum@npm:2.1.2"
+  checksum: 10/7d894dff385e3a5c5b29c012cf0a7ea7962a92c6a299383c3d6db945ad2b6f3e770511356a9774dbd54444c56af1dc7c435dad6466c47293c48173274dd6c631
   languageName: node
   linkType: hard
 
