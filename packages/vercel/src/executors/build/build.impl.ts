@@ -61,21 +61,13 @@ export function buildExecutor(
     throw new Error(`"${buildTarget}" target has no "outputPath" configured!`)
   }
 
-  const vercelDirectory = '.vercel'
-  const vercelDirectoryLocation = join(context.root, vercelDirectory)
-
-  if (existsSync(vercelDirectoryLocation)) {
-    rmSync(vercelDirectoryLocation, {
-      recursive: true
-    })
-  }
-
   const { root: projectRoot } = context.projectsConfigurations.projects[context.projectName]
 
   // Create repo.json, used for deployments to Vercel
   createRepoJson(options.orgId, options.projectId, context.projectName, projectRoot)
 
   // First, make sure the .vercel/project.json exists
+  const vercelDirectory = '.vercel'
   const vercelProjectJson = `${projectRoot}/${vercelDirectory}/project.json`
   writeJsonFile(vercelProjectJson, {
     projectId: options.projectId,
