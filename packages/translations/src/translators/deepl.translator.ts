@@ -147,7 +147,6 @@ export default class DeeplTranslator {
 
       const url = [
         `${this.endpoint}/v2/translate?`,
-        `auth_key=${this.apiKey}`,
         `text=${message.value
           .replace(/{/g, '<deepSkip>')
           .replace(/}/g, '</deepSkip>')
@@ -164,7 +163,10 @@ export default class DeeplTranslator {
       ].filter(Boolean)
 
       const { status, data } = await axios.get(url.join('&'),{
-        validateStatus: () => true
+        validateStatus: () => true,
+        headers: {
+         Authorization: `DeepL-Auth-Key ${this.apiKey}`
+        }
       })
 
       if (status === 429) {
