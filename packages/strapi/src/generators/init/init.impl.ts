@@ -23,8 +23,7 @@ function generateStrapi(options: NormalizedSchema) {
     name: options.projectName,
     // disable quickstart run app after creation
     runQuickstartApp: false,
-    // use package.json version as strapiVersion (all packages have the same version);
-    strapiVersion: '4.25.24',
+    strapiVersion: '4.26.1',
     debug: false,
     quick: true,
     packageJsonStrapi: {
