@@ -37,6 +37,7 @@ export async function deployExecutor(
     cwd: projectRoot
   })
 
+  // TODO:: Bring back once we get everything working with @actions/core v3
   // When running in GitHub CI add the URL of the deployment as summary
   // if (isCI()) {
   //   // Add comment instead of summary (Look at https://github.com/mshick/add-pr-comment)
