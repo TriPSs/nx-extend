@@ -1,4 +1,8 @@
  
+## [16.1.1](https://github.com/tripss/nx-extend/compare/vercel@16.1.0...vercel@16.1.1) (2026-02-09)
+
+
+
 # [16.1.0](https://github.com/tripss/nx-extend/compare/vercel@16.0.0...vercel@16.1.0) (2026-02-08)
 
 
