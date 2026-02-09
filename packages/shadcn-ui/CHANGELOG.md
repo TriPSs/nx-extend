@@ -1,4 +1,17 @@
  
+# [6.1.0](https://github.com/tripss/nx-extend/compare/shadcn-ui@6.0.3...shadcn-ui@6.1.0) (2026-02-07)
+
+
+### Features
+
+* **shadcn-ui:** Add 'lib' alias to component generation schema ([8680efd](https://github.com/tripss/nx-extend/commit/8680efd3bb92a475b384600b6e959a0c736f8a41))
+
+
+
+## [6.0.3](https://github.com/tripss/nx-extend/compare/shadcn-ui@6.0.2...shadcn-ui@6.0.3) (2026-02-05)
+
+
+
 ## [6.0.2](https://github.com/tripss/nx-extend/compare/shadcn-ui@6.0.1...shadcn-ui@6.0.2) (2026-01-21)
 
 

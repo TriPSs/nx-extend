@@ -1,4 +1,21 @@
  
+# [17.1.0](https://github.com/tripss/nx-extend/compare/translations@17.0.3...translations@17.1.0) (2026-02-08)
+
+
+### Features
+
+* **translations:** Add Authorization header for DeepL API requests ([f97b7bf](https://github.com/tripss/nx-extend/commit/f97b7bfe1c821e31c1da1cc2fbaae75fc283693e))
+
+
+
+## [17.0.3](https://github.com/tripss/nx-extend/compare/translations@17.0.2...translations@17.0.3) (2026-02-05)
+
+
+
+## [17.0.2](https://github.com/tripss/nx-extend/compare/translations@17.0.1...translations@17.0.2) (2026-01-21)
+
+
+
 ## [17.0.1](https://github.com/tripss/nx-extend/compare/translations@17.0.0...translations@17.0.1) (2026-01-21)
 
 

@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "outputCapture": "direct-nodejs",
+  "$schema": "https://json-schema.org/schema",
+  "type": "object",
+  "title": "Workspace executor",
+  "description": "Workspace",
+  "properties": {
+    "workspaceAction": {
+      "type": "string",
+      "enum": ["select", "new", "delete", "list"],
+      "default": "select"
+    },
+    "workspace": {
+      "type": "string"
+    },
+    "ciMode": {
+      "type": "boolean",
+      "default": true
+    }
+  }
+}

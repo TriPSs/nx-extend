@@ -1,4 +1,27 @@
  
+## [18.0.3](https://github.com/tripss/nx-extend/compare/gcp-functions@18.0.2...gcp-functions@18.0.3) (2026-02-05)
+
+
+
+## [18.0.2](https://github.com/tripss/nx-extend/compare/gcp-functions@18.0.1...gcp-functions@18.0.2) (2026-01-30)
+
+
+### Bug Fixes
+
+* **gcp-functions:** Improve endpoint matching for request routing ([cc5b5e3](https://github.com/tripss/nx-extend/commit/cc5b5e365b71bf41b38b66b9218c854d5fbd1f83))
+* **gcp-functions:** Set default runtime to Node.js v24 when using "recommended" fallback ([8a7320d](https://github.com/tripss/nx-extend/commit/8a7320da6e394ef7d7d804a7405abd62e6d62f0b))
+
+
+
+## [18.0.1](https://github.com/tripss/nx-extend/compare/gcp-functions@18.0.0...gcp-functions@18.0.1) (2026-01-21)
+
+
+### Bug Fixes
+
+* **gcp-functions:** Improve type safety and formatting in `__runner.controller.ts` ([5635ac7](https://github.com/tripss/nx-extend/commit/5635ac783ce6bf87f17b2ac6edc1c445cd1cabae))
+
+
+
 # [18.0.0](https://github.com/tripss/nx-extend/compare/gcp-functions@17.0.1...gcp-functions@18.0.0) (2026-01-21)
 
 

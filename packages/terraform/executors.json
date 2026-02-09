@@ -39,6 +39,11 @@
       "implementation": "./src/executors/test/test.impl",
       "schema": "./src/executors/test/schema.json",
       "description": "test executor"
+    },
+    "workspace": {
+      "implementation": "./src/executors/workspace/workspace.impl",
+      "schema": "./src/executors/workspace/schema.json",
+      "description": "workspace executor"
     }
   },
   "builders": {
@@ -81,6 +86,11 @@
       "implementation": "./src/executors/test/test.impl",
       "schema": "./src/executors/test/schema.json",
       "description": "test executor"
+    },
+    "workspace": {
+      "implementation": "./src/executors/workspace/workspace.impl",
+      "schema": "./src/executors/workspace/schema.json",
+      "description": "workspace executor"
     }
   }
 }

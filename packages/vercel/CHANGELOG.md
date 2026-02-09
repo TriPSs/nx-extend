@@ -1,4 +1,32 @@
  
+## [16.1.1](https://github.com/tripss/nx-extend/compare/vercel@16.1.0...vercel@16.1.1) (2026-02-09)
+
+
+
+# [16.1.0](https://github.com/tripss/nx-extend/compare/vercel@16.0.0...vercel@16.1.0) (2026-02-08)
+
+
+### Features
+
+* **vercel:** Refactor repo.json creation logic into utility function ([3902ccf](https://github.com/tripss/nx-extend/commit/3902ccf45fb26f94f74c846d2a35e40cf321eb0e))
+* **vercel:** Refactor Vercel directory handling and repo.json creation logic ([c8d0081](https://github.com/tripss/nx-extend/commit/c8d0081d1487bf555f1be65578ddc2eff18c4387))
+
+
+
+# [16.0.0](https://github.com/tripss/nx-extend/compare/vercel@15.0.0...vercel@16.0.0) (2026-02-07)
+
+
+### Features
+
+* **vercel:** Simplify execution logic and enhance token handling ([41a837e](https://github.com/tripss/nx-extend/commit/41a837ec19703a786fbc0b3089981169ab44805a))
+
+
+### BREAKING CHANGES
+
+* **vercel:** Updated the Vercel CLI to 50.x, this now requires the root directory to be set inside the vercel project.
+
+
+
 # [15.0.0](https://github.com/tripss/nx-extend/compare/vercel@14.0.0...vercel@15.0.0) (2025-12-22)
 
 

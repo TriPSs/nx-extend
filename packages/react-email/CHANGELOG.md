@@ -1,4 +1,16 @@
  
+## [6.0.5](https://github.com/tripss/nx-extend/compare/react-email@6.0.4...react-email@6.0.5) (2026-02-08)
+
+
+
+## [6.0.4](https://github.com/tripss/nx-extend/compare/react-email@6.0.3...react-email@6.0.4) (2026-02-05)
+
+
+
+## [6.0.3](https://github.com/tripss/nx-extend/compare/react-email@6.0.2...react-email@6.0.3) (2026-01-21)
+
+
+
 ## [6.0.2](https://github.com/tripss/nx-extend/compare/react-email@6.0.1...react-email@6.0.2) (2026-01-21)
 
 

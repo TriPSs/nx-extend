@@ -1,4 +1,21 @@
  
+# [10.1.0](https://github.com/tripss/nx-extend/compare/terraform@10.0.0...terraform@10.1.0) (2026-01-26)
+
+
+### Bug Fixes
+
+* **terraform:** Update error message and refine workspace command handling in createExecutor ([6e1b6d0](https://github.com/tripss/nx-extend/commit/6e1b6d0d8e307b83bb62a79be8d2a935bebbcf3c))
+
+
+### Features
+
+* **terraform:** Add workspace executor functionality ([3c75ffc](https://github.com/tripss/nx-extend/commit/3c75ffcb8fd776c2656ebe516175fe11c1dae127))
+* **terraform:** Enhance README and implement workspace command options ([f9e063a](https://github.com/tripss/nx-extend/commit/f9e063ad4f863b3dff0c85c0ac034de0e58c90cc))
+* **terraform:** Update README and schema to include ciMode option ([b3f0ea3](https://github.com/tripss/nx-extend/commit/b3f0ea38775b69d9470bb4a3cb372890d5fdf4e7))
+* **terraform:** Update workspace schema to include action options ([e0ecd31](https://github.com/tripss/nx-extend/commit/e0ecd3101e9f9c761396755b28447dad7c98f741))
+
+
+
 # [10.0.0](https://github.com/tripss/nx-extend/compare/terraform@9.0.1...terraform@10.0.0) (2025-11-23)
 
 ### Dependency Updates
