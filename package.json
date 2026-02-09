@@ -31,8 +31,11 @@
     "test": "nx run-many --all -t test",
     "workspace-generator": "nx workspace-generator"
   },
+  "resolutions": {
+    "@actions/core": "^3.0.0"
+  },
   "dependencies": {
-    "@actions/core": "^1.11.1",
+    "@actions/core": "^3.0.0",
     "@nx/devkit": "22.1.2",
     "@nx/workspace": "22.1.2",
     "@types/tar": "^6.1.13",

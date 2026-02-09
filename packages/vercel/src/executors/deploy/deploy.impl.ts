@@ -55,7 +55,7 @@ export async function deployExecutor(
         .addLink('Vercel URL', url.trim())
         .write()
 
-      await githubCore.setOutput('url', url)
+      githubCore.setOutput('url', url)
     }
   }
 
