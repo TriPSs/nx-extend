@@ -7,7 +7,6 @@ import {
   getOutputDirectoryFromBuildTarget,
   USE_VERBOSE_LOGGING
 } from '@nx-extend/core'
-import { existsSync, rmSync } from 'fs'
 import { join } from 'path'
 
 import type { ExecutorContext } from '@nx/devkit'
