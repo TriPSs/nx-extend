@@ -1,8 +1,6 @@
-import * as githubCore from '@actions/core'
 import {
   buildCommand,
   execCommand,
-  isCI,
   USE_VERBOSE_LOGGING
 } from '@nx-extend/core'
 import { existsSync } from 'fs'
@@ -40,24 +38,24 @@ export async function deployExecutor(
   })
 
   // When running in GitHub CI add the URL of the deployment as summary
-  if (isCI()) {
-    // Add comment instead of summary (Look at https://github.com/mshick/add-pr-comment)
-    const parts = output.split('\n')
-
-    const url = parts.find(
-      (part) =>
-        part.trim().startsWith('https://') &&
-        part.trim().endsWith('.vercel.app')
-    )
-
-    if (url) {
-      await githubCore.summary
-        .addLink('Vercel URL', url.trim())
-        .write()
-
-      githubCore.setOutput('url', url)
-    }
-  }
+  // if (isCI()) {
+  //   // Add comment instead of summary (Look at https://github.com/mshick/add-pr-comment)
+  //   const parts = output.split('\n')
+  //
+  //   const url = parts.find(
+  //     (part) =>
+  //       part.trim().startsWith('https://') &&
+  //       part.trim().endsWith('.vercel.app')
+  //   )
+  //
+  //   if (url) {
+  //     await githubCore.summary
+  //       .addLink('Vercel URL', url.trim())
+  //       .write()
+  //
+  //     githubCore.setOutput('url', url)
+  //   }
+  // }
 
   return { success }
 }
