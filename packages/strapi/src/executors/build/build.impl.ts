@@ -1,6 +1,7 @@
 import { ExecutorContext, workspaceRoot } from '@nx/devkit'
 // @ts-expect-error it is there but there are no interfaces
 import { build as nodeBuild } from '@strapi/admin/cli'
+// @ts-expect-error it is there but there are no interfaces
 import tsUtils from '@strapi/typescript-utils'
 import { join } from 'path'
 
