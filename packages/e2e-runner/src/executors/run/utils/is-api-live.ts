@@ -6,7 +6,7 @@ export const isApiLive = async (
   options: Partial<{ rejectUnauthorized: boolean }> = {}
 ): Promise<boolean> => {
   const axiosConfig: AxiosRequestConfig = {
-    timeout: 500
+    timeout: 2_500
   }
 
   if (options?.rejectUnauthorized !== undefined) {
