@@ -1,4 +1,14 @@
  
+# [14.2.0](https://github.com/tripss/nx-extend/compare/strapi@14.1.1...strapi@14.2.0) (2026-02-11)
+
+
+### Features
+
+* **strapi:** Upgrade Strapi core version and clean up dependencies ([fef5ccd](https://github.com/tripss/nx-extend/commit/fef5ccd251ce1a2fa59b3213832cc07ebdefd8de))
+* **strapi:** Upgrade Strapi dependencies to 4.26.1 across root and packages ([1ec0661](https://github.com/tripss/nx-extend/commit/1ec06614781612f64081dfa9b9dcde1261074fe6))
+
+
+
 # [14.2.0](https://github.com/tripss/nx-extend/compare/strapi@14.1.1...strapi@14.2.0) (2026-02-09)
 
 
