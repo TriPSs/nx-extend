@@ -8,15 +8,6 @@
 
 
 
-# [16.2.0](https://github.com/tripss/nx-extend/compare/vercel@16.1.0...vercel@16.2.0) (2026-02-09)
-
-
-### Features
-
-* Upgrade @actions/* dependencies ([e732a3d](https://github.com/tripss/nx-extend/commit/e732a3d78201b86cfc2ba1475500a638f9f8c5ee))
-
-
-
 ## [16.1.1](https://github.com/tripss/nx-extend/compare/vercel@16.1.0...vercel@16.1.1) (2026-02-09)
 
 
