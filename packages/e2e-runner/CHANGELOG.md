@@ -1,4 +1,13 @@
  
+## [13.0.1](https://github.com/tripss/nx-extend/compare/e2e-runner@13.0.0...e2e-runner@13.0.1) (2026-02-11)
+
+
+### Bug Fixes
+
+* **e2e-runner:** Increase API timeout in `is-api-live` utility ([e89f556](https://github.com/tripss/nx-extend/commit/e89f5562a241b0d5f5fdf871f74c6fdf42e1edc2))
+
+
+
 # [13.0.0](https://github.com/tripss/nx-extend/compare/e2e-runner@12.0.1...e2e-runner@13.0.0) (2025-11-23)
 
 ### Dependency Updates
