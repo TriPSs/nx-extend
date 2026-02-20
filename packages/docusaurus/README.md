@@ -4,88 +4,79 @@
   <img src="https://badgen.net/npm/v/@nx-extend/docusaurus" alt="@nx-extend/docusaurus NPM package">
 </a>
 
-**Nx plugin for working with [docusaurus](https://docusaurus.io/)**.
+**Nx plugin for working with [Docusaurus](https://docusaurus.io/)**.
 
-## This was originally build by [nx-plus](https://github.com/ZachJW34/nx-plus)
+## Features
 
-## Contents
+- Generate Docusaurus applications in your Nx workspace
+- Development server with hot reload
+- Production builds with optimization
+- Bundle analyzer support
+- Full Nx integration with caching and dependencies
 
-- [Prerequisite](#prerequisite)
-- [Getting Started](#getting-started)
-- [Schematics (i.e. code generation)](#schematics-ie-code-generation)
-- [Builders (i.e. task runners)](#builders-ie-task-runners)
-- [Troubleshooting](#troubleshooting)
+## Attribution
 
-## Getting Started
+This was originally built by [nx-plus](https://github.com/ZachJW34/nx-plus).
 
-### Install Plugin
+## Setup
 
-```
-# npm
-npm install @nx-extend/docusaurus --save-dev
+### Install
 
-# yarn
-yarn add @nx-extend/docusaurus --dev
+```sh
+npm install -D @nx-extend/docusaurus
 ```
 
-### Generate Your App
+## Usage
 
-```
+### Generate Application
+
+Generate a new Docusaurus application:
+
+```sh
 nx g @nx-extend/docusaurus:app my-app
 ```
 
-### Serve Your App
+#### Available Options
 
-```
+| Name            | Type      | Default | Description                                |
+|-----------------|-----------|---------|---------------------------------------------|
+| **`name`**      | `string`  | -       | The name of your app                        |
+| **`tags`**      | `string`  | -       | Tags to use for linting (comma-delimited)   |
+| **`directory`** | `string`  | `apps`  | A directory where the project is placed     |
+| **`skipFormat`** | `boolean` | `false` | Skip formatting files                       |
+
+### Serve
+
+Start the development server:
+
+```sh
 nx serve my-app
 ```
 
-## Schematics (i.e. code generation)
+#### Available Options
 
-### Application
+| Name          | Type      | Default      | Description                                          |
+|---------------|-----------|--------------|------------------------------------------------------|
+| **`port`**    | `number`  | `3000`       | Use specified port                                   |
+| **`host`**    | `string`  | `localhost`  | Use specified host                                   |
+| **`hotOnly`** | `boolean` | `false`      | Do not fallback to page refresh if hot reload fails  |
+| **`open`**    | `boolean` | `false`      | Open page in the browser                             |
 
-`nx g @nx-extend/docusaurus:app <name> [options]`
+### Build
 
-| Arguments | Description           |
-| --------- | --------------------- |
-| `<name>`  | The name of your app. |
+Build your application for production:
 
-| Options        | Default | Description                                |
-| -------------- | ------- | ------------------------------------------ |
-| `--tags`       | -       | Tags to use for linting (comma-delimited). |
-| `--directory`  | `apps`  | A directory where the project is placed.   |
-| `--skipFormat` | `false` | Skip formatting files.                     |
+```sh
+nx build my-app
+```
 
-## Builders (i.e. task runners)
+#### Available Options
 
-### Dev Server
-
-`nx serve <name> [options]`
-
-| Arguments | Description           |
-| --------- | --------------------- |
-| `<name>`  | The name of your app. |
-
-| Options     | Default     | Description                                          |
-| ----------- | ----------- | ---------------------------------------------------- |
-| `--port`    | `3000`      | Use specified port.                                  |
-| `--host`    | `localhost` | Use specified host.                                  |
-| `--hotOnly` | `false`     | Do not fallback to page refresh if hot reload fails. |
-| `--open`    | `false`     | Open page in the browser.                            |
-
-### Browser
-
-`nx build <name> [options]`
-
-| Arguments | Description           |
-| --------- | --------------------- |
-| `<name>`  | The name of your app. |
-
-| Options            | Default | Description                                                                    |
-| ------------------ | ------- | ------------------------------------------------------------------------------ |
-| `--bundleAnalyzer` | `false` | Visualize size of webpack output files with an interactive zoomable treemap.   |
-| `--outputPath`     | -       | The full path for the new output directory, relative to the current workspace. |
-| `--minify`         | `true`  | Build website minimizing JS bundles.                                           |
+| Name                | Type      | Default | Description                                                                    |
+|---------------------|-----------|---------|--------------------------------------------------------------------------------|
+| **`bundleAnalyzer`** | `boolean` | `false` | Visualize size of webpack output files with an interactive zoomable treemap    |
+| **`outputPath`**    | `string`  | -       | The full path for the new output directory, relative to the current workspace  |
+| **`minify`**        | `boolean` | `true`  | Build website minimizing JS bundles                                            |
 
 ## Troubleshooting
 
@@ -98,16 +89,14 @@ Docusaurus user: you probably have this known error due to using a monorepo/work
 We have a workaround for you, check https://github.com/facebook/docusaurus/issues/3515
 ```
 
-**package.json:**
+**Solution (package.json):**
 
-```
+```json
 {
-  // ...
   "resolutions": {
     "terser": "^4.0.0"
   }
-  // ...
 }
 ```
 
-Once this has been updated, you should be able to run `yarn install` and then build your Docusaurus application.
+Once this has been updated, run `yarn install` and then build your Docusaurus application.

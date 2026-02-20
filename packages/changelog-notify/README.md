@@ -4,9 +4,20 @@
   <img src="https://badgen.net/npm/v/@nx-extend/changelog-notify" alt="@nx-extend/changelog-notify NPM package">
 </a>
 
-**Nx plugin to notify you of generated changelogs created by [jscutlery/semver](https://github.com/jscutlery/semver)**.
+**Nx plugin to send notifications about generated changelogs to various platforms**.
+
+## Features
+
+- Send changelog notifications to Google Chat
+- Integration with [@jscutlery/semver](https://github.com/jscutlery/semver)
+- Automatic notification on version releases
+- Configurable as post-target for version bumps
 
 ## Setup
+
+### Prerequisites
+
+- [@jscutlery/semver](https://github.com/jscutlery/semver) configured in your workspace
 
 ### Install
 
@@ -15,6 +26,10 @@ npm install -D @nx-extend/changelog-notify
 ```
 
 ## Usage
+
+### Google Chat Notifications
+
+Add the `send-release-to-chat` target to your project's `project.json` and configure it as a post-target for versioning:
 
 ```json
 {
@@ -40,3 +55,20 @@ npm install -D @nx-extend/changelog-notify
   }
 }
 ```
+
+## Available Options
+
+| Name        | Type     | Default | Description                                |
+|-------------|----------|---------|--------------------------------------------|
+| **`tag`**   | `string` | -       | Version tag from semver (use `${tag}`)     |
+| **`notes`** | `string` | -       | Release notes from semver (use `${notes}`) |
+
+## How It Works
+
+1. When you run the version command with the production configuration, it will bump your version
+2. After the version is bumped, the `postTargets` are executed
+3. The `send-release-to-chat` target sends the release information to your configured Google Chat webhook
+
+## Environment Variables
+
+Make sure to set your Google Chat webhook URL in the appropriate environment variable or configuration file as required by your project setup.

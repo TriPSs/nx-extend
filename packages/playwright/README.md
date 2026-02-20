@@ -1,4 +1,4 @@
-> [!IMPORTANT]  
+> [!IMPORTANT]
 > This package is no longer maintained in favor of @nx/playwright
 
 # @nx-extend/playwright
@@ -8,6 +8,12 @@
 </a>
 
 **Nx plugin for adding [Playwright](https://playwright.dev/) to your app**.
+
+## Features
+
+- Add Playwright E2E testing to your Nx workspace
+- Integration with @nx-extend/e2e-runner for automated setup
+- Support for starting services before tests
 
 ## Setup
 
@@ -20,8 +26,7 @@ nx g @nx-extend/playwright:init
 
 ## Usage
 
-When running `nx e2e <your-project>` it will directly start Playwright, if you need to build/server your app first
-Update your project targets to the following
+When running `nx e2e <your-project>` it will directly start Playwright. If you need to build/serve your app first, update your project targets to the following:
 
 ```json
 {
@@ -42,3 +47,6 @@ Update your project targets to the following
 }
 ```
 
+## Migration
+
+This package is deprecated. Please migrate to [@nx/playwright](https://nx.dev/packages/playwright) for continued support and updates.
