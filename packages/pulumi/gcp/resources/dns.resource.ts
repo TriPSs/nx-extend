@@ -11,6 +11,7 @@ export class DNSResource extends BaseResource {
 
   public static gmailSpfInclude = 'include:_spf.google.com'
   public static firebaseSpfInclude = 'include:_spf.firebasemail.com'
+  public static sendgridSpfInclude = 'include:sendgrid.net'
 
   public readonly zone: gcp.dns.ManagedZone
 
