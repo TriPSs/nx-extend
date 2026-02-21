@@ -6,6 +6,14 @@
 
 **Nx plugin for working with [shadcn/ui](https://ui.shadcn.com/)**.
 
+## Features
+
+- Add shadcn/ui components to your Nx workspace
+- Automatic setup of UI library and utilities
+- Tailwind CSS integration
+- Theme customization support
+- Add individual or all components at once
+
 ## Setup
 
 ### Install
@@ -15,7 +23,9 @@ npm install -D @nx-extend/shadcn-ui
 nx g @nx-extend/shadcn-ui:init
 ```
 
-After installation update your APPs `tailwind.config.ts` to this:
+### Configure Tailwind
+
+After installation, update your app's `tailwind.config.ts` to:
 
 ```ts
 import { buildConfig } from '../libs/<lib directory>/src/tailwind.config'
@@ -23,7 +33,9 @@ import { buildConfig } from '../libs/<lib directory>/src/tailwind.config'
 export default buildConfig(__dirname)
 ```
 
-If you are using Remix you can import `global.css` directly like:
+### Remix Integration
+
+If you are using Remix, you can import `global.css` directly:
 
 ```tsx
 import stylesheet from '@<scope>/<utils lib name>/global.css'
@@ -35,20 +47,36 @@ export const links: LinksFunction = () => [
 
 ## Usage
 
-### Add
+### Add Component
+
+Add a single component to your UI library:
 
 ```sh
 nx add-component <ui lib name> button
 ```
 
-### All all components
+### Add All Components
+
+Add all available shadcn/ui components:
 
 ```sh
 nx add-component <ui lib name>
 ```
 
-## Updating the theme
+## Updating the Theme
 
-The generated `global.css` uses the default shadcn/ui theme.
-Using the shadcn/ui theme editor, you can effortlessly apply a different theme.
+The generated `global.css` uses the default shadcn/ui theme. Using the shadcn/ui theme editor, you can effortlessly apply a different theme.
+
 Explore available themes here: https://ui.shadcn.com/themes
+
+## Available Components
+
+shadcn/ui provides a wide range of beautifully designed components including:
+- Buttons, inputs, and forms
+- Cards, dialogs, and modals
+- Dropdowns and menus
+- Navigation components
+- Data tables
+- And many more
+
+Visit https://ui.shadcn.com/docs/components for the full list of available components.

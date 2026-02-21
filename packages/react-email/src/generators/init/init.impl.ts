@@ -58,8 +58,8 @@ export default async function (host: Tree, options: ReactEmailSchema) {
       host,
       {},
       {
-        '@react-email/components': '0.0.19',
-        'react-email': '2.1.4'
+        '@react-email/components': '1.0.7',
+        'react-email': '5.2.8'
       }
     )
   )
