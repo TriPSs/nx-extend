@@ -53,10 +53,10 @@ export class DNSResource extends BaseResource {
     return domain.replace(/\./g, '-')
   }
 
-  public createVercelRecords(): DNSResource {
+  public createVercelRecords(ip = '76.76.21.21', cname = 'cname.vercel-dns.com.'): DNSResource {
     return this
-      .createRecord('@', 'A', '76.76.21.21')
-      .createRecord('www', 'CNAME', 'cname.vercel-dns.com.')
+      .createRecord('@', 'A', ip)
+      .createRecord('www', 'CNAME', cname)
   }
 
   public createGmailMxRecords(): DNSResource {
