@@ -2,30 +2,37 @@ import * as gcp from '@pulumi/gcp'
 import * as pulumi from '@pulumi/pulumi'
 
 import { GCP_PROJECT_ID } from '../config'
-import { getFriendlyRoleName } from '../naming'
+import { getFriendlyMemberName, getFriendlyName } from '../naming'
 import { BaseResource } from './base.resource'
 
 export class IAMMemberResource extends BaseResource {
 
   constructor(
     private readonly member: string,
-    private readonly role: string,
-    private readonly opts: pulumi.ComponentResourceOptions = {},
-    private readonly iamOpts: pulumi.ComponentResourceOptions = {}
+    opts: pulumi.ComponentResourceOptions = {}
   ) {
-    super('iam-member-resource', getFriendlyRoleName(member, role), {}, opts)
+    super('iam-member-resource', getFriendlyMemberName(member), {}, opts)
   }
 
-  public create(condition?: gcp.projects.IAMMemberArgs['condition']) {
-    new gcp.projects.IAMMember(getFriendlyRoleName(this.member, this.role), {
+  public addRole(
+    role: string,
+    condition?: gcp.projects.IAMMemberArgs['condition'],
+    opts: pulumi.ComponentResourceOptions = {}
+  ) {
+    new gcp.projects.IAMMember(getFriendlyName(role), {
       project: GCP_PROJECT_ID,
       member: this.member,
-      role: this.role,
+      role,
       condition
     }, {
-      ...this.iamOpts,
+      ...opts,
       parent: this
     })
+
+    return this
   }
 
+  public create() {
+    // Do nothing
+  }
 }
