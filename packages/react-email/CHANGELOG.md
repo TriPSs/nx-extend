@@ -1,4 +1,22 @@
  
+# [6.1.0](https://github.com/tripss/nx-extend/compare/react-email@6.0.5...react-email@6.1.0) (2026-02-24)
+
+### Dependency Updates
+
+* `core` updated to version `10.1.0`
+
+### Bug Fixes
+
+* **react-email:** Upgrade [@react-email](https://github.com/react-email) dependencies ([59abc7a](https://github.com/tripss/nx-extend/commit/59abc7ab0927fe74ee1a843829c7a3215c4afda4))
+
+
+### Features
+
+* Enhance README.md for all plugins with detailed usage and examples ([606ca93](https://github.com/tripss/nx-extend/commit/606ca933e0ac34db39048be562b0c4f10a3c606b))
+* Upgrade Nx to version 22.5.2 ([c9feaa5](https://github.com/tripss/nx-extend/commit/c9feaa52ac6d5613056ca92a9a3119a7ff814667))
+
+
+
 ## [6.0.5](https://github.com/tripss/nx-extend/compare/react-email@6.0.4...react-email@6.0.5) (2026-02-08)
 
 
