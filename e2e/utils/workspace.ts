@@ -68,3 +68,13 @@ export function installDeps() {
     env: process.env
   })
 }
+
+export function addDepsToProject(deps: string[]) {
+  const tmpProjectPath = tmpProjPath()
+
+  execSync('yarn add ' + deps.join(' '), {
+    cwd: tmpProjectPath,
+    stdio: 'inherit',
+    env: process.env
+  })
+}

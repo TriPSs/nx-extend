@@ -4,8 +4,14 @@
   <img src="https://badgen.net/npm/v/@nx-extend/gcp-deployment-manager" alt="@nx-extend/gcp-deployment-manager NPM package">
 </a>
 
-**Nx plugin for deploying your Google resources
-with [Deployment Manager](https://cloud.google.com/deployment-manager/docs)**.
+**Nx plugin for deploying your Google resources with [Deployment Manager](https://cloud.google.com/deployment-manager/docs)**.
+
+## Features
+
+- Deploy Google Cloud resources using configuration files
+- Infrastructure as code with YAML or Python templates
+- Manage resource lifecycle
+- Integration with Nx workspace
 
 ## Setup
 
@@ -18,11 +24,18 @@ nx g @nx-extend/gcp-deployment-manager:init
 
 ## Usage
 
-#### Available options:
+### Deploy
 
-| name            | type     | default | description                              |
+Deploy your resources to Google Cloud:
+
+```sh
+nx deploy <project-name>
+```
+
+#### Available Options
+
+| Name            | Type     | Default | Description                              |
 |-----------------|----------|---------|------------------------------------------|
-| **`--project`** | `string` |         | GCP project to deploy to                 |
-| **`--file`**    | `string` | `null`  | file from source to create               |
-| **`--name`**    | `string` | `null`  | Name of the resource inside Google Cloud |
-
+| **`project`**   | `string` | -       | GCP project to deploy to                 |
+| **`file`**      | `string` | -       | File from source to create               |
+| **`name`**      | `string` | -       | Name of the resource inside Google Cloud |

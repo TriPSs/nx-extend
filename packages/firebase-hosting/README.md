@@ -4,7 +4,14 @@
   <img src="https://badgen.net/npm/v/@nx-extend/firebase-hosting" alt="@nx-extend/firebase-hosting NPM package">
 </a>
 
-**Nx plugin for deploy your app to [Firebase Hosting](https://firebase.google.com/products/hosting)**.
+**Nx plugin to deploy your app to [Firebase Hosting](https://firebase.google.com/products/hosting)**.
+
+## Features
+
+- Deploy static sites to Firebase Hosting
+- Automatic integration with Firebase configuration
+- Multi-site hosting support
+- Seamless integration with Nx build targets
 
 ## Setup
 
@@ -19,7 +26,6 @@ This will add the following to the target:
 
 ```json
 {
-  ...other targets
   "deploy": {
     "executor": "@nx-extend/firebase-hosting:deploy",
     "options": {
@@ -29,12 +35,10 @@ This will add the following to the target:
 }
 ```
 
-And create a `.firebase.json` file if it does not exist already, if it exists it will
-add this target to the hosting section:
+And create a `.firebase.json` file if it does not exist already. If it exists, it will add this target to the hosting section:
 
 ```json
 {
-  ...other firebase config
   "hosting": [
     {
       "target": "<provided site name>",
@@ -53,10 +57,16 @@ add this target to the hosting section:
 
 ### Deploy
 
-#### Available options:
+Deploy your application to Firebase Hosting:
 
-| name               | type     | default | description                                                                                  |
+```sh
+nx deploy <project-name>
+```
+
+#### Available Options
+
+| Name               | Type     | Default | Description                                                                                  |
 |--------------------|----------|---------|----------------------------------------------------------------------------------------------|
-| **`--site`**       | `string` | `null`  | Specify the site to deploy from the `.firebase.json`                                         |
-| **`--project`**    | `string` |         | Firebase Project to deploy to                                                                |
-| **`--identifier`** | `string` |         | Name of the hosting project in Firebase (if not defined `--site` is used by the firebase CLI |
+| **`site`**         | `string` | -       | Specify the site to deploy from the `.firebase.json`                                         |
+| **`project`**      | `string` | -       | Firebase Project to deploy to                                                                |
+| **`identifier`**   | `string` | -       | Name of the hosting project in Firebase (if not defined `--site` is used by the Firebase CLI) |

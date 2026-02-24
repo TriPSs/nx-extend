@@ -4,9 +4,21 @@
   <img src="https://badgen.net/npm/v/@nx-extend/gcp-secrets" alt="@nx-extend/gcp-secrets NPM package">
 </a>
 
-**Nx plugin for deploy your secrets [Secret Manager](https://cloud.google.com/secret-manager)**.
+**Nx plugin to deploy your secrets to [Secret Manager](https://cloud.google.com/secret-manager)**.
+
+## Features
+
+- Encrypt and decrypt secrets locally
+- Deploy secrets to Google Cloud Secret Manager
+- Label management for secrets
+- Configurable update behavior (destroy, delete, or disable)
+- Integration with Nx workspace
 
 ## Setup
+
+### Prerequisites
+
+- `GCP_SECRETS_ENCRYPTION_KEY` environment variable set with your encryption key
 
 ### Install
 
@@ -17,37 +29,61 @@ nx g @nx-extend/gcp-secrets:init
 
 ## Usage
 
-Add an environment variable named `GCP_SECRETS_ENCRYPTION_KEY` that holds your key to encrypt and decrypt your secrets.
+Add an environment variable named `GCP_SECRETS_ENCRYPTION_KEY` that holds your key to encrypt and decrypt your secrets:
+
+```sh
+export GCP_SECRETS_ENCRYPTION_KEY="your-encryption-key"
+```
 
 ### Decrypt
 
-#### Available options:
+Decrypt secrets locally:
 
-| name           | type     | default | description                            |
+```sh
+nx decrypt <project-name>
+```
+
+#### Available Options
+
+| Name           | Type     | Default | Description                            |
 |----------------|----------|---------|----------------------------------------|
-| **`--secret`** | `string` |         | Only decrypt the secret with this name |
+| **`secret`**   | `string` | -       | Only decrypt the secret with this name |
 
 ### Deploy
 
-#### Available options:
+Deploy secrets to Google Cloud Secret Manager:
 
-| name            | type     | default | description                            |
+```sh
+nx deploy <project-name>
+```
+
+#### Available Options
+
+| Name            | Type     | Default | Description                            |
 |-----------------|----------|---------|----------------------------------------|
-| **`--project`** | `string` |         | GCP project to deploy to               |
-| **`--secret`**  | `string` |         | Only decrypt the secret with this name |
+| **`project`**   | `string` | -       | GCP project to deploy to               |
+| **`secret`**    | `string` | -       | Only deploy the secret with this name  |
 
 ### Encrypt
 
-#### Available options:
+Encrypt secrets locally:
 
-| name           | type     | default | description                            |
+```sh
+nx encrypt <project-name>
+```
+
+#### Available Options
+
+| Name           | Type     | Default | Description                            |
 |----------------|----------|---------|----------------------------------------|
-| **`--secret`** | `string` |         | Only decrypt the secret with this name |
+| **`secret`**   | `string` | -       | Only encrypt the secret with this name |
 
-## Meta data explained
+## Meta Data Explained
 
-| Attribute        | default   | description                                                 |
+When configuring secrets, you can use the following metadata attributes:
+
+| Attribute        | Default   | Description                                                 |
 |------------------|-----------|-------------------------------------------------------------|
-| status           |           | Status of the file, `encrypted` or `decrypted`              |
-| labels           | `[]`      | Array of labels to add to the secrets                       |
-| onUpdateBehavior | `destroy` | What to do when updating, `destory`, `delete`, or `disable` |
+| **`status`**     | -         | Status of the file: `encrypted` or `decrypted`              |
+| **`labels`**     | `[]`      | Array of labels to add to the secrets                       |
+| **`onUpdateBehavior`** | `destroy` | What to do when updating: `destroy`, `delete`, or `disable` |

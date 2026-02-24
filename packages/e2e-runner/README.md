@@ -6,6 +6,15 @@
 
 **Nx plugin to start your API and then run the Cypress/Playwright E2E tests**.
 
+## Features
+
+- Start multiple targets before running tests
+- Health check URLs to ensure targets are ready
+- Support for Cypress, Playwright, and custom runners
+- Configurable retry attempts for health checks
+- Optional log forwarding from targets
+- Reuse existing servers option
+
 ## Setup
 
 ### Install
@@ -15,18 +24,21 @@ npm install -D @nx-extend/e2e-runner
 nx g @nx-extend/e2e-runner:add
 ```
 
-#### Available options:
+## Usage
 
-> All options of @nrwl/cypress:cypress are available here if runner = cypress
-> All options of @nx-extend/playwright:test are available here if runner = playwright
-> All options of @nx/workspace:run-commands are available here if runner = run-commands
+### Available Options
 
-### Target options:
+All options of the specified runner are available:
+- `@nrwl/cypress:cypress` options (if `runner = cypress`)
+- `@nx-extend/playwright:test` options (if `runner = playwright`)
+- `@nx/playwright` options (if `runner = @nx/playwright`)
+- `@nx/workspace:run-commands` options (if `runner = run-commands`)
 
-The `targets` option is used to define targets that should be started before running the tests.
-Each target can be configured with the following options.
+### Target Configuration
 
-```typescript
+The `targets` option is used to define targets that should be started before running the tests. Each target can be configured with the following options:
+
+```ts
 {
   target: string // The target to run.
   checkUrl?: string // The url to check if the target is "live", a target is live if this url returns a status-code in the 200 range.
@@ -38,15 +50,14 @@ Each target can be configured with the following options.
 }
 ```
 
-Example target
+## Example Configuration
 
 ```json
 {
-  ...
   "e2e": {
     "executor": "@nx-extend/e2e-runner:run",
     "options": {
-      "runner": "playwright | cypress | run-commands | @nx/playwright",
+      "runner": "playwright",
       "targets": [
         {
           "target": "app:serve",
@@ -65,3 +76,10 @@ Example target
   }
 }
 ```
+
+## How It Works
+
+1. The executor starts all configured targets in parallel
+2. For each target with a `checkUrl`, it performs health checks
+3. Once all targets are healthy (or max tries reached), the E2E tests run
+4. After tests complete, all started targets are terminated

@@ -1,5 +1,5 @@
 import { readJson, readFile } from '@nx/plugin/testing'
-import { ensureNxProject } from '../../utils/workspace'
+import { addDepsToProject, ensureNxProject } from '../../utils/workspace'
 import { runNxCommandAsync } from '../../utils/run-nx-command-async'
 
 describe('react email e2e', () => {
@@ -37,6 +37,8 @@ describe('react email e2e', () => {
   })
 
   it('should be able to export', async () => {
+    addDepsToProject(['react', 'react-dom'])
+
     await runNxCommandAsync(`export ${appName}`)
 
     expect(readFile(`dist/${appName}/index.html`)).toMatchSnapshot()

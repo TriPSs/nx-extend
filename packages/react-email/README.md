@@ -6,6 +6,14 @@
 
 **Nx plugin for building emails with [React Email](https://react.email)**.
 
+## Features
+
+- Build and preview emails using React components
+- Live development server for email templates
+- Export emails to static HTML
+- Full TypeScript support
+- Integration with Nx workspace
+
 ## Setup
 
 ### Install
@@ -19,16 +27,56 @@ nx g @nx-extend/react-email:init
 
 ### Serve
 
+Start the React Email development server to preview your email templates:
+
+```sh
+nx serve <project-name>
+```
+
 #### Available options:
 
-| name | type | default | description |
-|------|------|---------|-------------|
+| Name       | Type     | Default | Description                           |
+|------------|----------|---------|---------------------------------------|
+| **`port`** | `string` | -       | Port to run the development server on |
 
 ### Export
 
+Export your email templates to static HTML files:
+
+```sh
+nx export <project-name>
+```
+
 #### Available options:
 
-| name               | type     | default | description                        |
-|--------------------|----------|---------|------------------------------------|
-| **`--outputPath`** | `string` |         | Output path to output the build to |
+| Name              | Type     | Default | Description                        |
+|-------------------|----------|---------|------------------------------------|
+| **`outputPath`**  | `string` | -       | Output path to output the build to |
 
+## Examples
+
+### Start Development Server
+
+```sh
+nx serve my-emails --port=3000
+```
+
+### Export Email Templates
+
+```sh
+nx export my-emails --outputPath=dist/emails
+```
+
+## Project Structure
+
+After initialization, your project will typically have the following structure:
+
+```
+my-emails/
+├── src/
+│   └── emails/
+│       └── welcome.tsx
+└── project.json
+```
+
+Create email components in the `src/emails` directory using React Email components.
