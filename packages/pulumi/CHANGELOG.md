@@ -1,4 +1,24 @@
  
+# [12.0.0](https://github.com/tripss/nx-extend/compare/pulumi@11.1.0...pulumi@12.0.0) (2026-02-24)
+
+
+### Code Refactoring
+
+* **pulumi:** Remove unused service account exports ([b42ba5a](https://github.com/tripss/nx-extend/commit/b42ba5a4980eb547db4311c5f099f1b345a3f807))
+
+
+### Features
+
+* **pulumi:** Refactor IAM member resource for enhanced flexibility ([7895dd2](https://github.com/tripss/nx-extend/commit/7895dd285e6fc41fde6cb02a1604226d500e2d26))
+
+
+### BREAKING CHANGES
+
+* **pulumi:** Remove all (probably) incorrect default service accounts
+* **pulumi:** `IAMMemberResource` now accepts multiple roles thourgh the `addRole`
+
+
+
 # [11.1.0](https://github.com/tripss/nx-extend/compare/pulumi@11.0.3...pulumi@11.1.0) (2026-02-24)
 
 ### Dependency Updates
