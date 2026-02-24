@@ -2,7 +2,7 @@ import * as gcp from '@pulumi/gcp'
 import * as pulumi from '@pulumi/pulumi'
 
 import { GCP_PROJECT_ID } from '../config'
-import { getFriendlyMemberName, getFriendlyName } from '../naming'
+import { getFriendlyName, getFriendlyRoleName } from '../naming'
 import { BaseResource } from './base.resource'
 
 export class IAMMemberResource extends BaseResource {
@@ -11,7 +11,7 @@ export class IAMMemberResource extends BaseResource {
     private readonly member: string,
     opts: pulumi.ComponentResourceOptions = {}
   ) {
-    super('iam-member-resource', getFriendlyMemberName(member), {}, opts)
+    super('iam-member-resource', getFriendlyName(member), {}, opts)
   }
 
   public addRole(
@@ -19,7 +19,7 @@ export class IAMMemberResource extends BaseResource {
     condition?: gcp.projects.IAMMemberArgs['condition'],
     opts: pulumi.ComponentResourceOptions = {}
   ) {
-    new gcp.projects.IAMMember(getFriendlyName(role), {
+    new gcp.projects.IAMMember(getFriendlyRoleName(this.member, role), {
       project: GCP_PROJECT_ID,
       member: this.member,
       role,
