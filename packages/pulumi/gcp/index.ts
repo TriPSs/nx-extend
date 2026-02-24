@@ -14,4 +14,5 @@ export * from './resources/secret.resource'
 export * from './resources/load-balancer.resource'
 export * from './resources/backend-service-backend.resource'
 export * from './resources/service-account.resource'
+export * from './resources/iam-member.resource'
 
