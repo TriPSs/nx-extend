@@ -1,4 +1,17 @@
  
+# [18.1.0](https://github.com/tripss/nx-extend/compare/gcp-functions@18.0.3...gcp-functions@18.1.0) (2026-02-24)
+
+### Dependency Updates
+
+* `core` updated to version `10.1.0`
+
+### Features
+
+* Enhance README.md for all plugins with detailed usage and examples ([606ca93](https://github.com/tripss/nx-extend/commit/606ca933e0ac34db39048be562b0c4f10a3c606b))
+* Upgrade Nx to version 22.5.2 ([c9feaa5](https://github.com/tripss/nx-extend/commit/c9feaa52ac6d5613056ca92a9a3119a7ff814667))
+
+
+
 ## [18.0.3](https://github.com/tripss/nx-extend/compare/gcp-functions@18.0.2...gcp-functions@18.0.3) (2026-02-05)
 
 

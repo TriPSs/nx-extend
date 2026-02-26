@@ -1,4 +1,17 @@
  
+# [13.1.0](https://github.com/tripss/nx-extend/compare/e2e-runner@13.0.1...e2e-runner@13.1.0) (2026-02-24)
+
+### Dependency Updates
+
+* `playwright` updated to version `12.1.0`
+* `core` updated to version `10.1.0`
+
+### Features
+
+* Enhance README.md for all plugins with detailed usage and examples ([606ca93](https://github.com/tripss/nx-extend/commit/606ca933e0ac34db39048be562b0c4f10a3c606b))
+
+
+
 ## [13.0.1](https://github.com/tripss/nx-extend/compare/e2e-runner@13.0.0...e2e-runner@13.0.1) (2026-02-11)
 
 

@@ -1,4 +1,45 @@
  
+# [12.0.0](https://github.com/tripss/nx-extend/compare/pulumi@11.1.0...pulumi@12.0.0) (2026-02-24)
+
+
+### Code Refactoring
+
+* **pulumi:** Remove unused service account exports ([b42ba5a](https://github.com/tripss/nx-extend/commit/b42ba5a4980eb547db4311c5f099f1b345a3f807))
+
+
+### Features
+
+* **pulumi:** Refactor IAM member resource for enhanced flexibility ([7895dd2](https://github.com/tripss/nx-extend/commit/7895dd285e6fc41fde6cb02a1604226d500e2d26))
+
+
+### BREAKING CHANGES
+
+* **pulumi:** Remove all (probably) incorrect default service accounts
+* **pulumi:** `IAMMemberResource` now accepts multiple roles thourgh the `addRole`
+
+
+
+# [11.1.0](https://github.com/tripss/nx-extend/compare/pulumi@11.0.3...pulumi@11.1.0) (2026-02-24)
+
+### Dependency Updates
+
+* `core` updated to version `10.1.0`
+
+### Bug Fixes
+
+* **pulumi:** Export IAM member resource ([07a18fb](https://github.com/tripss/nx-extend/commit/07a18fbbddc6f0662a0093a1e44de76b75565fe5))
+
+
+### Features
+
+* Enhance README.md for all plugins with detailed usage and examples ([606ca93](https://github.com/tripss/nx-extend/commit/606ca933e0ac34db39048be562b0c4f10a3c606b))
+* **pulumi:** Add flexibility to DNS record creation ([d91abcf](https://github.com/tripss/nx-extend/commit/d91abcf5413df2b3a626d36b3d56aae30bea0f41))
+* **pulumi:** Add GCP API services constants ([dfa81db](https://github.com/tripss/nx-extend/commit/dfa81dbddf60c407233d5e486153b7f8065ec605))
+* **pulumi:** Add SendGrid SPF include constant to DNS resource ([3bf8fbd](https://github.com/tripss/nx-extend/commit/3bf8fbd28ebcbdc6f7034b73dd52554073bf9bac))
+* Upgrade Nx to version 22.5.2 ([c9feaa5](https://github.com/tripss/nx-extend/commit/c9feaa52ac6d5613056ca92a9a3119a7ff814667))
+
+
+
 ## [11.0.3](https://github.com/tripss/nx-extend/compare/pulumi@11.0.2...pulumi@11.0.3) (2026-02-05)
 
 

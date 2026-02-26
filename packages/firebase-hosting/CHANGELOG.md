@@ -1,4 +1,16 @@
  
+# [10.1.0](https://github.com/tripss/nx-extend/compare/firebase-hosting@10.0.0...firebase-hosting@10.1.0) (2026-02-24)
+
+### Dependency Updates
+
+* `core` updated to version `10.1.0`
+
+### Features
+
+* Enhance README.md for all plugins with detailed usage and examples ([606ca93](https://github.com/tripss/nx-extend/commit/606ca933e0ac34db39048be562b0c4f10a3c606b))
+
+
+
 # [10.0.0](https://github.com/tripss/nx-extend/compare/firebase-hosting@9.0.1...firebase-hosting@10.0.0) (2025-11-23)
 
 ### Dependency Updates
