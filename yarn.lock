@@ -18524,7 +18524,6 @@ __metadata:
     nx: "npm:22.5.2"
     prettier: "npm:3.8.1"
     shelljs: "npm:^0.10.0"
-    tar: "npm:^7.5.9"
     ts-jest: "npm:29.4.6"
     ts-node: "npm:10.9.2"
     tslib: "npm:^2.8.1"
@@ -22976,7 +22975,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tar@npm:*, tar@npm:^7.4.3, tar@npm:^7.5.4, tar@npm:^7.5.9":
+"tar@npm:*, tar@npm:^7.4.3, tar@npm:^7.5.4":
   version: 7.5.9
   resolution: "tar@npm:7.5.9"
   dependencies:
