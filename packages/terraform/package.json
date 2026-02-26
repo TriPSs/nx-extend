@@ -5,7 +5,7 @@
     "nx",
     "terraform"
   ],
-  "homepage": "https://github.com/TriPSs/nx-extend/blob/master/packages/terraform/README.md",
+  "homepage": "https://github.com/tripss/nx-extend/blob/master/packages/terraform/README.md",
   "bugs": {
     "url": "https://github.com/tripss/nx-extend/issues"
   },

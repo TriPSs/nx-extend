@@ -9,7 +9,7 @@
     "gcp",
     "storage"
   ],
-  "homepage": "https://github.com/TriPSs/nx-extend/blob/master/packages/gcp-storage/README.md",
+  "homepage": "https://github.com/tripss/nx-extend/blob/master/packages/gcp-storage/README.md",
   "bugs": {
     "url": "https://github.com/tripss/nx-extend/issues"
   },

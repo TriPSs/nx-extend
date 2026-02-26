@@ -5,5 +5,5 @@ export const addEnvVariablesToFile = (envFile: string, envVars: string[]) => {
     writeFileSync(envFile, '')
   }
 
-  appendFileSync(envFile, envVars.join('\r\n'))
+  appendFileSync(envFile, `\r\n${envVars.join('\r\n')}`)
 }

@@ -5,7 +5,7 @@
     "nx",
     "shadcn-ui"
   ],
-  "homepage": "https://github.com/TriPSs/nx-extend/blob/master/packages/shadcn-ui/README.md",
+  "homepage": "https://github.com/tripss/nx-extend/blob/master/packages/shadcn-ui/README.md",
   "bugs": {
     "url": "https://github.com/tripss/nx-extend/issues"
   },
