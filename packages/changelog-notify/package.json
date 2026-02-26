@@ -6,7 +6,7 @@
     "changelog",
     "notify"
   ],
-  "homepage": "https://github.com/TriPSs/nx-extend/blob/master/packages/changelog-notify/README.md",
+  "homepage": "https://github.com/tripss/nx-extend/blob/master/packages/changelog-notify/README.md",
   "bugs": {
     "url": "https://github.com/tripss/nx-extend/issues"
   },
