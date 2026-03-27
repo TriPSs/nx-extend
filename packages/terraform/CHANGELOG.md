@@ -1,4 +1,8 @@
  
+## [10.2.1](https://github.com/tripss/nx-extend/compare/terraform@10.2.0...terraform@10.2.1) (2026-03-27)
+
+
+
 # [10.2.0](https://github.com/tripss/nx-extend/compare/terraform@10.1.0...terraform@10.2.0) (2026-02-24)
 
 ### Dependency Updates
