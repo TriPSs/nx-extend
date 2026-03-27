@@ -1,4 +1,8 @@
  
+## [13.1.1](https://github.com/tripss/nx-extend/compare/gcp-secrets@13.1.0...gcp-secrets@13.1.1) (2026-03-27)
+
+
+
 # [13.1.0](https://github.com/tripss/nx-extend/compare/gcp-secrets@13.0.0...gcp-secrets@13.1.0) (2026-02-24)
 
 ### Dependency Updates
