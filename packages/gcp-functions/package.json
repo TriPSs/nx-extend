@@ -13,9 +13,9 @@
   "main": "src/index.js",
   "devDependencies": {
     "@google-cloud/functions-framework": "^5.0.2",
-    "@nestjs/common": "^11.1.14",
-    "@nestjs/core": "^11.1.14",
-    "@nestjs/platform-express": "^11.1.14"
+    "@nestjs/common": "^11.1.17",
+    "@nestjs/core": "^11.1.17",
+    "@nestjs/platform-express": "^11.1.17"
   },
   "peerDependencies": {
     "@nx/devkit": "^22.0.0"
