@@ -1,4 +1,8 @@
  
+## [10.1.1](https://github.com/tripss/nx-extend/compare/changelog-notify@10.1.0...changelog-notify@10.1.1) (2026-03-27)
+
+
+
 # [10.1.0](https://github.com/tripss/nx-extend/compare/changelog-notify@10.0.0...changelog-notify@10.1.0) (2026-02-24)
 
 
