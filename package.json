@@ -12,7 +12,7 @@
     "@actions/core": "^1.11.1",
     "@nx/devkit": "22.5.2",
     "@nx/workspace": "22.5.2",
-    "axios": "^1.13.6",
+    "axios": "^1.14.0",
     "crypto-js": "^4.2.0",
     "deepmerge": "^4.3.1",
     "shelljs": "^0.10.0",
@@ -21,9 +21,11 @@
     "yargs": "^17.7.2"
   },
   "devDependencies": {
+    "@google-cloud/functions-framework": "^5.0.2",
     "@google-cloud/storage": "^7.19.0",
     "@jamesives/github-pages-deploy-action": "^4.7.4",
     "@jscutlery/semver": "^5.7.1",
+    "@nestjs/common": "^11.1.17",
     "@nx/eslint-plugin": "22.5.2",
     "@nx/jest": "22.5.2",
     "@nx/js": "22.5.2",
