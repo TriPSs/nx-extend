@@ -26,6 +26,8 @@
     "@jamesives/github-pages-deploy-action": "^4.7.4",
     "@jscutlery/semver": "^5.7.1",
     "@nestjs/common": "^11.1.17",
+    "@nestjs/core": "^11.1.17",
+    "@nestjs/platform-express": "^11.1.17",
     "@nx/eslint-plugin": "22.5.2",
     "@nx/jest": "22.5.2",
     "@nx/js": "22.5.2",
