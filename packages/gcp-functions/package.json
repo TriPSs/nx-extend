@@ -11,13 +11,11 @@
   },
   "license": "MIT",
   "main": "src/index.js",
-  "devDependencies": {
+  "peerDependencies": {
     "@google-cloud/functions-framework": "^5.0.2",
     "@nestjs/common": "^11.1.17",
     "@nestjs/core": "^11.1.17",
-    "@nestjs/platform-express": "^11.1.17"
-  },
-  "peerDependencies": {
+    "@nestjs/platform-express": "^11.1.17",
     "@nx/devkit": "^22.0.0"
   },
   "builders": "./executors.json",
