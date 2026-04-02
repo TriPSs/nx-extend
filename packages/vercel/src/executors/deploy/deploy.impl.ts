@@ -3,8 +3,6 @@ import {
   execCommand,
   USE_VERBOSE_LOGGING
 } from '@nx-extend/core'
-import { existsSync } from 'fs'
-import { join } from 'path'
 
 import type { ExecutorContext } from '@nx/devkit'
 
@@ -21,9 +19,6 @@ export async function deployExecutor(
   context: ExecutorContext
 ): Promise<{ success: boolean }> {
   const { root: projectRoot } = context.projectsConfigurations.projects[context.projectName]
-  if (!existsSync(join(projectRoot, 'project.json'))) {
-    throw new Error('No ".vercel/project.json" found in dist folder! ')
-  }
 
   const { success, output } = execCommand(buildCommand([
     `${VERCEL_COMMAND} deploy --prebuilt`,
