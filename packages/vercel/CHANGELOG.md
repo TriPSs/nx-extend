@@ -1,4 +1,13 @@
  
+## [16.2.2](https://github.com/tripss/nx-extend/compare/vercel@16.2.1...vercel@16.2.2) (2026-04-23)
+
+
+### Bug Fixes
+
+* **vercel:** Remove redundant file existence check in deploy executor ([768a91b](https://github.com/tripss/nx-extend/commit/768a91b9e8ab8f3941360dfe26cd46d8609d6ab3))
+
+
+
 ## [16.2.1](https://github.com/tripss/nx-extend/compare/vercel@16.2.0...vercel@16.2.1) (2026-03-27)
 
 
