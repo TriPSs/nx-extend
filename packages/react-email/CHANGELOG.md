@@ -1,4 +1,18 @@
  
+# [7.0.0](https://github.com/tripss/nx-extend/compare/react-email@6.1.1...react-email@7.0.0) (2026-04-23)
+
+
+### Features
+
+* **react-email:** Update `react-email` dependency to `6.0.0` ([db05176](https://github.com/tripss/nx-extend/commit/db05176a7331a52d7502d5b01c6d20bcaddc62d8))
+
+
+### BREAKING CHANGES
+
+* **react-email:** Updated to `react-email` v6
+
+
+
 ## [6.1.1](https://github.com/tripss/nx-extend/compare/react-email@6.1.0...react-email@6.1.1) (2026-03-27)
 
 
