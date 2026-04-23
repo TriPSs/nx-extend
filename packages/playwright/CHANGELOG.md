@@ -1,4 +1,8 @@
  
+## [12.1.1](https://github.com/tripss/nx-extend/compare/playwright@12.1.0...playwright@12.1.1) (2026-03-27)
+
+
+
 # [12.1.0](https://github.com/tripss/nx-extend/compare/playwright@12.0.0...playwright@12.1.0) (2026-02-24)
 
 ### Dependency Updates

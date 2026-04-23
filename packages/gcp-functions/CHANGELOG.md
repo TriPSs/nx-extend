@@ -1,4 +1,17 @@
  
+## [18.1.2](https://github.com/tripss/nx-extend/compare/gcp-functions@18.1.1...gcp-functions@18.1.2) (2026-03-28)
+
+
+### Bug Fixes
+
+* **gcp-functions:** Adjusted dependencies in `package.json` to align with package requirements ([172d51f](https://github.com/tripss/nx-extend/commit/172d51f0f2e64d8e4d0b274959c4587f653e5d88))
+
+
+
+## [18.1.1](https://github.com/tripss/nx-extend/compare/gcp-functions@18.1.0...gcp-functions@18.1.1) (2026-03-27)
+
+
+
 # [18.1.0](https://github.com/tripss/nx-extend/compare/gcp-functions@18.0.3...gcp-functions@18.1.0) (2026-02-24)
 
 ### Dependency Updates

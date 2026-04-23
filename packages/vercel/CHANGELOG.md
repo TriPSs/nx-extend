@@ -1,4 +1,13 @@
  
+## [16.2.1](https://github.com/tripss/nx-extend/compare/vercel@16.2.0...vercel@16.2.1) (2026-03-27)
+
+
+### Bug Fixes
+
+* **vercel:** Ensure environment variables are appended with a leading newline ([c598ff4](https://github.com/tripss/nx-extend/commit/c598ff4f0bd2c64c6823ab3065e0a2a2b0c2e6c7))
+
+
+
 # [16.2.0](https://github.com/tripss/nx-extend/compare/vercel@16.1.0...vercel@16.2.0) (2026-02-24)
 
 ### Dependency Updates

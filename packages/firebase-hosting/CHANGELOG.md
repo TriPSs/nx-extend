@@ -1,4 +1,8 @@
  
+## [10.1.1](https://github.com/tripss/nx-extend/compare/firebase-hosting@10.1.0...firebase-hosting@10.1.1) (2026-03-27)
+
+
+
 # [10.1.0](https://github.com/tripss/nx-extend/compare/firebase-hosting@10.0.0...firebase-hosting@10.1.0) (2026-02-24)
 
 ### Dependency Updates
