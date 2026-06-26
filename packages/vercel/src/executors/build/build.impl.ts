@@ -1,5 +1,11 @@
-import { parseTargetString, readCachedProjectGraph, readJsonFile, workspaceRoot, writeJsonFile } from '@nx/devkit'
-import { targetToTargetString } from '@nx/devkit/src/executors/parse-target-string'
+import {
+  parseTargetString,
+  readCachedProjectGraph,
+  readJsonFile,
+  targetToTargetString,
+  workspaceRoot,
+  writeJsonFile
+} from '@nx/devkit'
 import {
   buildCommand,
   copyFile,
@@ -63,7 +69,12 @@ export function buildExecutor(
   const { root: projectRoot } = context.projectsConfigurations.projects[context.projectName]
 
   // Create repo.json, used for deployments to Vercel
-  createRepoJson(options.orgId, options.projectId, context.projectName, projectRoot)
+  createRepoJson(
+    options.orgId,
+    options.projectId,
+    context.projectName,
+    projectRoot
+  )
 
   // First, make sure the .vercel/project.json exists
   const vercelDirectory = '.vercel'
@@ -74,7 +85,7 @@ export function buildExecutor(
     settings: {}
   })
 
-  const vercelEnvironment = (context.configurationName === 'production' || options.deployment === 'production')
+  const vercelEnvironment = context.configurationName === 'production' || options.deployment === 'production'
     ? 'production'
     : 'preview'
 
@@ -125,17 +136,9 @@ export function buildExecutor(
       readJsonFile(vercelProjectJson)
     )
     // Also copy over the env files
-    copyFile(
-      vercelEnvFileLocation,
-      projectVercelDirectory,
-      vercelEnvFile
-    )
+    copyFile(vercelEnvFileLocation, projectVercelDirectory, vercelEnvFile)
     // Also copy the .vercelignore
-    copyFile(
-      context.root,
-      projectVercelDirectory,
-      '.vercelignore'
-    )
+    copyFile(context.root, projectVercelDirectory, '.vercelignore')
   }
 
   return Promise.resolve({ success })

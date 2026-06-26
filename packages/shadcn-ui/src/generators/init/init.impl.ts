@@ -2,11 +2,14 @@ import {
   addDependenciesToPackageJson,
   generateFiles,
   getWorkspaceLayout,
-  joinPathFragments, readProjectConfiguration,
+  joinPathFragments,
+  readProjectConfiguration,
   runTasksInSerial,
-  Tree, updateProjectConfiguration, writeJson
+  Tree,
+  updateProjectConfiguration,
+  writeJson
 } from '@nx/devkit'
-import { determineProjectNameAndRootOptions } from '@nx/devkit/src/generators/project-name-and-root-utils'
+import { determineProjectNameAndRootOptions } from '@nx/devkit/internal'
 import { Linter } from '@nx/eslint'
 import { addTsConfigPath } from '@nx/js'
 import { libraryGenerator } from '@nx/react'
@@ -32,10 +35,7 @@ function addFilesToUtilsLib(host: Tree, libDirectory: string) {
 }
 
 function getLibRoot(host: Tree, fileName: string) {
-  return joinPathFragments(
-    getWorkspaceLayout(host).libsDir,
-    fileName
-  )
+  return joinPathFragments(getWorkspaceLayout(host).libsDir, fileName)
 }
 
 export default async function (tree: Tree, options: ShadecnUiSchema) {
@@ -111,7 +111,7 @@ export default async function (tree: Tree, options: ShadecnUiSchema) {
       tree,
       {
         'class-variance-authority': '^0.7.0',
-        'clsx': '^2.1.1',
+        clsx: '^2.1.1',
         'lucide-react': '^0.395.0',
         'tailwind-merge': '^2.3.0',
         'tailwindcss-animate': '^1.0.7'

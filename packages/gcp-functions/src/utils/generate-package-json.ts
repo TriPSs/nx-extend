@@ -12,7 +12,7 @@ import { getLockFileName } from 'nx/src/plugins/js/lock-file/lock-file'
 import { fileExists } from 'nx/src/utils/fileutils'
 import { join } from 'path'
 
-import type { WebpackExecutorOptions } from '@nx/webpack/src/executors/webpack/schema'
+import type { WebpackExecutorOptions } from '@nx/webpack'
 
 export const generatePackageJson = (
   context: ExecutorContext,
@@ -44,7 +44,9 @@ export const generatePackageJson = (
   const dependencies = {}
   const buildFile = fs.readFileSync(outFile, 'utf8')
   const re2 = /"(.*)"/gm
-  const externalDependencies = buildFile.match(/require\("[a-zA-Z0-9@./-]+"\)/gm)
+  const externalDependencies = buildFile.match(
+    /require\("[a-zA-Z0-9@./-]+"\)/gm
+  )
 
   // Get the package version from the root
   if (externalDependencies) {
