@@ -1,7 +1,7 @@
-import webpackExecutor, { WebpackExecutorEvent } from '@nx/webpack/internal'
+import { ExecutorContext, runExecutor } from '@nx/devkit'
+import webpackExecutor, { WebpackExecutorEvent } from '@nx/webpack/dist/src/executors/webpack/webpack.impl'
 import { join } from 'path'
 
-import type { ExecutorContext } from '@nx/devkit'
 import type { WebpackExecutorOptions } from '@nx/webpack'
 
 import { generatePackageJson } from '../../utils/generate-package-json'
