@@ -1,7 +1,5 @@
 import { ExecutorContext, workspaceRoot } from '@nx/devkit'
 // @ts-expect-error it is there but there are no interfaces
-import { build as nodeBuild } from '@strapi/admin/cli'
-// @ts-expect-error it is there but there are no interfaces
 import tsUtils from '@strapi/typescript-utils'
 import { join } from 'path'
 
@@ -47,6 +45,15 @@ export async function buildExecutor(
 
   const strapiRoot = join(workspaceRoot, options.root || root)
   const tsConfig = loadTsConfig(workspaceRoot, options.tsConfig)
+
+  // Resolved from the Strapi project rather than from this plugin. In an npm
+  // workspace `@strapi/admin` is a dependency of the project's `@strapi/strapi`
+  // and npm may leave it nested there, in which case a plain top-level import
+  // of `@strapi/admin/cli` cannot see it and the executor dies before it runs.
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  const { build: nodeBuild } = require(
+    require.resolve('@strapi/admin/cli', { paths: [strapiRoot, workspaceRoot] })
+  )
 
   // nodeBuild somehow only compiles the admin panel
   await tsUtils.compile(strapiRoot, {
