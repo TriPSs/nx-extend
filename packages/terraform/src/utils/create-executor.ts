@@ -6,7 +6,7 @@ import { mkdirSync } from 'fs'
 
 export interface ExecutorOptions {
   root?: string // Local target options override
-  backendConfig: { key: string; name: string }[]
+  backendConfig?: { key: string; name: string }[]
   autoApproval: boolean
   planFile: string
   ciMode: boolean
@@ -76,15 +76,14 @@ export function createExecutor(command: string) {
       platforms = []
     } = options
 
-    const env: Record<string, string | number | boolean> = {}
+    const env: Record<string, string> = {}
     if (ciMode) {
-      env.TF_IN_AUTOMATION = true
-      env.TF_INPUT = 0
+      env.TF_IN_AUTOMATION = 'true'
+      env.TF_INPUT = '0'
     }
 
-    let resolvedCacheDir = ''
-    if (cacheDir) {
-      resolvedCacheDir = path.isAbsolute(cacheDir) ? cacheDir : path.resolve(targetDirectory || '.', cacheDir)
+    if (cacheEnabled && cacheDir) {
+      const resolvedCacheDir = path.isAbsolute(cacheDir) ? cacheDir : path.resolve(targetDirectory || '.', cacheDir)
       mkdirSync(resolvedCacheDir, { recursive: true })
       env.TF_PLUGIN_CACHE_DIR = resolvedCacheDir
     }
@@ -107,28 +106,24 @@ export function createExecutor(command: string) {
       }
     }
 
-    let jsonBackendConfig = backendConfig
-    if (typeof jsonBackendConfig === 'string') {
-      jsonBackendConfig = JSON.parse(jsonBackendConfig)
-    }
+    const jsonBackendConfig = backendConfig ?? []
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const processEnv = (globalThis as any).process?.env || {}
-    const execEnv = {
+    const execEnv: Record<string, string> = {
       ...processEnv,
       ...env
     }
 
     // Handle provider lock and mirror commands
     if (command === 'providers' && lock && mirror) {
+      const lockArgs = ['providers', 'lock']
+      if (cacheEnabled) lockArgs.push('-enable-plugin-cache')
+      platforms.forEach(p => lockArgs.push(`-platform=${p}`))
+
       execFileSync(
         'terraform',
-        [
-          'providers',
-          'lock',
-          ...(cacheEnabled ? ['-enable-plugin-cache'] : []),
-          ...(platforms.length > 0 ? platforms.map(p => `-platform=${p}`) : [])
-        ],
+        lockArgs,
         {
           cwd: targetDirectory,
           stdio: 'inherit',
@@ -136,14 +131,13 @@ export function createExecutor(command: string) {
         }
       )
 
+      const mirrorArgs = ['providers', 'mirror']
+      platforms.forEach(p => mirrorArgs.push(`-platform=${p}`))
+      if (resolvedMirrorDir) mirrorArgs.push(resolvedMirrorDir)
+
       execFileSync(
         'terraform',
-        [
-          'providers',
-          'mirror',
-          ...(platforms.length > 0 ? platforms.map(p => `-platform=${p}`) : []),
-          resolvedMirrorDir!
-        ],
+        mirrorArgs,
         {
           cwd: targetDirectory,
           stdio: 'inherit',
@@ -151,35 +145,59 @@ export function createExecutor(command: string) {
         }
       )
     } else {
-      const args = [
-        command,
-        ...workspaceArgs,
-        ...(command === 'init' ? jsonBackendConfig.map(
-          (config) => `-backend-config=${config.key}=${config.name}`
-        ) : []),
-        command === 'plan' && planFile && `-out ${planFile}`,
-        command === 'plan' && varFile && `--var-file ${varFile}`,
-        command === 'plan' && varString && `--var ${varString}`,
-        command === 'plan' && lock === false && '-lock=false',
-        command === 'destroy' && autoApproval && '-auto-approve',
-        command === 'apply' && autoApproval && '-auto-approve',
-        command === 'apply' && planFile,
-        command === 'apply' && varString && `--var ${varString}`,
-        command === 'fmt' && '--recursive',
-        command === 'fmt' && !formatWrite && '--check --list',
-        command === 'init' && upgrade && '-upgrade',
-        command === 'init' && migrateState && '-migrate-state',
-        command === 'init' && reconfigure && '-reconfigure',
-        command === 'init' && lock === false && '-lock=false',
-        command === 'providers' && lock && 'lock',
-        ...(command === 'providers' && lock && cacheEnabled ? ['-enable-plugin-cache'] : []),
-        ...(command === 'providers' && lock && platforms.length > 0 ? platforms.map(p => `-platform=${p}`) : []),
-        command === 'providers' && mirror && 'mirror',
-        ...(command === 'providers' && mirror && platforms.length > 0 ? platforms.map(p => `-platform=${p}`) : []),
-        command === 'providers' && mirror && resolvedMirrorDir,
-        command === 'test' && varFile && `--var-file ${varFile}`,
-        command === 'test' && varString && `--var ${varString}`
-      ].filter((arg): arg is string => typeof arg === 'string' && arg !== '')
+      const args: string[] = [command, ...workspaceArgs]
+
+      if (command === 'init') {
+        jsonBackendConfig.forEach(config => args.push(`-backend-config=${config.key}=${config.name}`))
+        if (upgrade) args.push('-upgrade')
+        if (migrateState) args.push('-migrate-state')
+        if (reconfigure) args.push('-reconfigure')
+        if (lock === false) args.push('-lock=false')
+      }
+
+      if (command === 'plan') {
+        if (planFile) args.push(`-out=${planFile}`)
+        if (varFile) args.push(`-var-file=${varFile}`)
+        if (varString) args.push('-var', varString)
+        if (lock === false) args.push('-lock=false')
+      }
+
+      if (command === 'destroy') {
+        if (autoApproval) args.push('-auto-approve')
+      }
+
+      if (command === 'apply') {
+        if (autoApproval) args.push('-auto-approve')
+        if (planFile) {
+          args.push(planFile)
+        } else {
+          if (varFile) args.push(`-var-file=${varFile}`)
+          if (varString) args.push('-var', varString)
+        }
+      }
+
+      if (command === 'fmt') {
+        args.push('-recursive')
+        if (!formatWrite) args.push('-check', '-list=true')
+      }
+
+      if (command === 'providers') {
+        if (lock) {
+          args.push('lock')
+          if (cacheEnabled) args.push('-enable-plugin-cache')
+          platforms.forEach(p => args.push(`-platform=${p}`))
+        }
+        if (mirror) {
+          args.push('mirror')
+          platforms.forEach(p => args.push(`-platform=${p}`))
+          if (resolvedMirrorDir) args.push(resolvedMirrorDir)
+        }
+      }
+
+      if (command === 'test') {
+        if (varFile) args.push(`-var-file=${varFile}`)
+        if (varString) args.push('-var', varString)
+      }
 
       execFileSync(
         'terraform',
