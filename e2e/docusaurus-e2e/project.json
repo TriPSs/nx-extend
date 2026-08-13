@@ -3,7 +3,7 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
   "sourceRoot": "e2e/docusaurus-e2e/src",
-  "tags": [],
+  "tags": ["ci=off"],
   "implicitDependencies": ["docusaurus"],
   "targets": {
     "e2e": {
