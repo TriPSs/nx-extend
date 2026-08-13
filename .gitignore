@@ -49,3 +49,7 @@ Thumbs.db
 .cursor/rules/nx-rules.mdc
 .github/instructions/nx.instructions.md
 .npmrc
+
+.claude/worktrees
+.nx/polygraph
+.nx/self-healing
