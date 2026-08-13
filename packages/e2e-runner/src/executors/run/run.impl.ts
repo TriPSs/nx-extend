@@ -65,6 +65,7 @@ export async function endToEndRunner(
         // eslint-disable-next-line @typescript-eslint/no-var-requires,no-case-declarations
         const runCommandsExecutor = require('nx/src/executors/run-commands/run-commands.impl').default
 
+        rest['__unparsed__'] ??= []
         return await runCommandsExecutor(rest as RunCommandsOptions, context)
 
       default:

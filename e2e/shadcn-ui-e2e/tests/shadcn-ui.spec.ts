@@ -29,8 +29,8 @@ describe('shadcn/ui e2e', () => {
     expect(componentsJSON.aliases.hooks).toEqual(`@proj/${uiLibName}/hooks`)
 
     const tsconfigJSON = readJson('tsconfig.base.json')
-    expect(tsconfigJSON.compilerOptions.paths[`@proj/${uiLibName}`][0]).toEqual(`${uiLibName}/src`)
-    expect(tsconfigJSON.compilerOptions.paths[`@proj/${utilsLibName}`][0]).toEqual(`${utilsLibName}/src`)
+    expect(tsconfigJSON.compilerOptions.paths[`@proj/${uiLibName}`][0]).toEqual(`./${uiLibName}/src`)
+    expect(tsconfigJSON.compilerOptions.paths[`@proj/${utilsLibName}`][0]).toEqual(`./${utilsLibName}/src`)
   })
 
   it('should be able add button ui', async () => {
