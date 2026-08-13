@@ -1,4 +1,11 @@
  
+## [13.1.3](https://github.com/tripss/nx-extend/compare/e2e-runner@13.1.2...e2e-runner@13.1.3) (2026-08-13)
+
+
+### Bug Fixes
+
+* **e2e-runner:** Ensure `__unparsed__` property is initialized for executor input ([0e39bd1](https://github.com/tripss/nx-extend/commit/0e39bd1a5e9cb598d5e04f585ce5ba9e7f7ac224))
+
 ## [13.1.2](https://github.com/tripss/nx-extend/compare/e2e-runner@13.1.1...e2e-runner@13.1.2) (2026-08-03)
 
 ### Dependency Updates
