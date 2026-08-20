@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@actions/core": "^3.0.1",
+    "@actions/github": "^9.1.1",
     "@nx/devkit": "23.1.1",
     "@nx/workspace": "23.1.1",
     "axios": "^1.19.0",
@@ -44,7 +45,7 @@
     "@types/yargs": "^17.0.35",
     "@typescript-eslint/eslint-plugin": "8.67.0",
     "@typescript-eslint/parser": "8.67.0",
-    "@vercel/ncc": "0.34.0",
+    "@vercel/ncc": "0.45.0",
     "dotenv": "17.4.2",
     "eslint": "9.39.2",
     "eslint-config-prettier": "10.1.8",

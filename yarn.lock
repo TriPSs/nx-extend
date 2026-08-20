@@ -36,7 +36,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@actions/github@npm:9.1.1":
+"@actions/github@npm:9.1.1, @actions/github@npm:^9.1.1":
   version: 9.1.1
   resolution: "@actions/github@npm:9.1.1"
   dependencies:
@@ -8827,14 +8827,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vercel/ncc@npm:0.34.0":
-  version: 0.34.0
-  resolution: "@vercel/ncc@npm:0.34.0"
+"@vercel/ncc@npm:0.45.0":
+  version: 0.45.0
+  resolution: "@vercel/ncc@npm:0.45.0"
   dependencies:
     node-gyp: "npm:latest"
   bin:
     ncc: dist/ncc/cli.js
-  checksum: 10/4e37779157242c6f4e0a9a30022422d67243c6d958311862f3498e5ee1cdea1c45e0717ff75e6204f2658b3b498b5a484a4c909652d8a6366e38a333f4396281
+  checksum: 10/51f6be140dc24e7b685cca6cce02098ff31d642263d053eaf6387b53456d120f390d0683b4ae63249f323207d40508ae0da2138b4b630c5ce6565a9d4d5ebf79
   languageName: node
   linkType: hard
 
@@ -18511,6 +18511,7 @@ __metadata:
   resolution: "nx-extend@workspace:."
   dependencies:
     "@actions/core": "npm:^3.0.1"
+    "@actions/github": "npm:^9.1.1"
     "@google-cloud/functions-framework": "npm:^5.0.5"
     "@google-cloud/storage": "npm:^7.21.0"
     "@jamesives/github-pages-deploy-action": "npm:^4.9.0"
@@ -18536,7 +18537,7 @@ __metadata:
     "@types/yargs": "npm:^17.0.35"
     "@typescript-eslint/eslint-plugin": "npm:8.67.0"
     "@typescript-eslint/parser": "npm:8.67.0"
-    "@vercel/ncc": "npm:0.34.0"
+    "@vercel/ncc": "npm:0.45.0"
     axios: "npm:^1.19.0"
     crypto-js: "npm:^4.2.0"
     deepmerge: "npm:^4.3.1"
