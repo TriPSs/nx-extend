@@ -8,7 +8,8 @@ import type {
   CreateNodesContext,
   CreateNodesResult,
   CreateNodesResultArray,
-  TargetConfiguration} from '@nx/devkit'
+  TargetConfiguration
+} from '@nx/devkit'
 
 import { BaseConfigFile, getConfigFileInRoot } from '../utils/config-file'
 
