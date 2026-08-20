@@ -1,5 +1,4 @@
 import * as core from '@actions/core'
-import { readCachedProjectGraph } from 'nx/src/project-graph/project-graph'
 import { resolve } from 'path'
 import { hideBin } from 'yargs/helpers'
 import yargs from 'yargs/yargs'
@@ -68,7 +67,11 @@ async function run() {
       core.debug(JSON.stringify(projectsNamesToRun))
     }
 
-    const projectGraph = readCachedProjectGraph()
+    const projectGraph = JSON.parse(execCommand<string>('npx nx graph --file=stdout', {
+      asString: true,
+      silent: !(core.isDebug() || argv.verbose),
+      cwd
+    })).graph
 
     // Get all affected projects
     const projectsToRun = projectsNamesToRun.filter((projectName: string) => {

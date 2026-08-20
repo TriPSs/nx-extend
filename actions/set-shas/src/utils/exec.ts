@@ -1,6 +1,6 @@
 import { ChildProcess } from 'child_process'
 import * as shell from 'shelljs'
-import { ExecOptions,ShellString } from 'shelljs'
+import { ExecOptions, ShellString } from 'shelljs'
 
 export interface Options extends ExecOptions {
 

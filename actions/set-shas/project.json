@@ -8,7 +8,8 @@
       "executor": "nx:run-commands",
       "options": {
         "commands": [
-          "npx esbuild ./actions/set-shas/src/set-shas.ts --bundle --platform=node --target=node24 --format=cjs --outfile=./actions/set-shas/dist/index.js"
+          "npx esbuild ./actions/set-shas/src/set-shas.ts --bundle --platform=node --target=node24 --format=cjs --outfile=./actions/set-shas/dist/index.js",
+          "cp ./node_modules/shelljs/src/exec-child.js ./actions/set-shas/dist/exec-child.js"
         ]
       }
     },
