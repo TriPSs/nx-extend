@@ -18,12 +18,12 @@
   "devDependencies": {
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "lucide-react": "^1.21.0",
+    "lucide-react": "^1.31.0",
     "tailwind-merge": "^3.6.0",
     "tailwindcss-animate": "^1.0.7"
   },
   "peerDependencies": {
-    "@nx/devkit": "^22.0.0"
+    "@nx/devkit": "^23.0.0"
   },
   "builders": "./executors.json",
   "generators": "./generators.json"

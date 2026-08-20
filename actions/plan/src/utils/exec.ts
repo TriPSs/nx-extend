@@ -18,7 +18,7 @@ export type Result<Output> = Output extends string
   : Output
 
 export const execCommand = <Output = { success: boolean, output: string }>(
-  command,
+  command: string,
   options: Options = {
     asString: false,
     asJSON: false

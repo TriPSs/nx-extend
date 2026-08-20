@@ -1,8 +1,8 @@
 import { ExecutorContext } from '@nx/devkit'
 import { execFileSync } from 'child_process'
-import { which } from 'shelljs'
-import * as path from 'path'
 import { mkdirSync } from 'fs'
+import * as path from 'path'
+import { which } from 'shelljs'
 
 export interface ExecutorOptions {
   root?: string // Local target options override
@@ -46,14 +46,13 @@ export function createExecutor(command: string) {
     const terraformRootValue = projectConfig && 'terraformRoot' in projectConfig
       ? (projectConfig as Record<string, unknown>).terraformRoot
       : undefined
+
     const projectTerraformRoot = typeof terraformRootValue === 'string'
       ? terraformRootValue
       : undefined
-    const defaultSourceRoot = projectConfig?.sourceRoot
 
-    const targetDirectory = options.root ??
-                projectTerraformRoot ??
-                defaultSourceRoot
+    const defaultSourceRoot = projectConfig?.sourceRoot
+    const targetDirectory = options.root ?? projectTerraformRoot ?? defaultSourceRoot
 
     const {
       backendConfig = [],
@@ -93,16 +92,18 @@ export function createExecutor(command: string) {
       resolvedMirrorDir = path.resolve(targetDirectory || '.', '.terraform', 'providers')
     }
 
-    let workspaceArgs: string[] = [];
+    const workspaceArgs: string[] = []
 
     if (command === 'workspace') {
       if (workspaceAction === 'list') {
-        workspaceArgs.push(workspaceAction);
+        workspaceArgs.push(workspaceAction)
+
       } else {
         if (!workspace) {
-          throw new Error('Workspace name is required for workspace command, select, new or delete');
+          throw new Error('Workspace name is required for workspace command, select, new or delete')
         }
-        workspaceArgs.push(workspaceAction, workspace);
+
+        workspaceArgs.push(workspaceAction, workspace)
       }
     }
 
