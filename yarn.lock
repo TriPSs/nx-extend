@@ -8827,17 +8827,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vercel/ncc@npm:0.45.0":
-  version: 0.45.0
-  resolution: "@vercel/ncc@npm:0.45.0"
-  dependencies:
-    node-gyp: "npm:latest"
-  bin:
-    ncc: dist/ncc/cli.js
-  checksum: 10/51f6be140dc24e7b685cca6cce02098ff31d642263d053eaf6387b53456d120f390d0683b4ae63249f323207d40508ae0da2138b4b630c5ce6565a9d4d5ebf79
-  languageName: node
-  linkType: hard
-
 "@webassemblyjs/ast@npm:1.14.1, @webassemblyjs/ast@npm:^1.14.1":
   version: 1.14.1
   resolution: "@webassemblyjs/ast@npm:1.14.1"
@@ -12541,7 +12530,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"esbuild@npm:^0.28.0":
+"esbuild@npm:0.28.1, esbuild@npm:^0.28.0":
   version: 0.28.1
   resolution: "esbuild@npm:0.28.1"
   dependencies:
@@ -18537,11 +18526,11 @@ __metadata:
     "@types/yargs": "npm:^17.0.35"
     "@typescript-eslint/eslint-plugin": "npm:8.67.0"
     "@typescript-eslint/parser": "npm:8.67.0"
-    "@vercel/ncc": "npm:0.45.0"
     axios: "npm:^1.19.0"
     crypto-js: "npm:^4.2.0"
     deepmerge: "npm:^4.3.1"
     dotenv: "npm:17.4.2"
+    esbuild: "npm:0.28.1"
     eslint: "npm:9.39.2"
     eslint-config-prettier: "npm:10.1.8"
     eslint-plugin-simple-import-sort: "npm:^12.1.1"

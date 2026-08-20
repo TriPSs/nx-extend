@@ -9,7 +9,7 @@
       "executor": "nx:run-commands",
       "options": {
         "commands": [
-          "npx ncc build ./actions/plan/src/plan.ts --out ./actions/plan/dist"
+          "npx esbuild ./actions/plan/src/plan.ts --bundle --platform=node --target=node24 --format=cjs --outfile=./actions/plan/dist/index.js"
         ]
       }
     },
