@@ -1,10 +1,14 @@
 import { createNodesFromFiles } from '@nx/devkit'
-import { getNamedInputs } from '@nx/devkit/src/utils/get-named-inputs'
+import { getNamedInputs } from '@nx/devkit/internal'
 import { readdirSync } from 'fs'
 import { dirname, join } from 'path'
 
-import type { CreateNodesResultV2, CreateNodesV2, TargetConfiguration } from '@nx/devkit'
-import type { CreateNodesContextV2, CreateNodesResult } from '@nx/devkit'
+import type {
+  CreateNodes,
+  CreateNodesContext,
+  CreateNodesResult,
+  CreateNodesResultArray,
+  TargetConfiguration} from '@nx/devkit'
 
 import { BaseConfigFile, getConfigFileInRoot } from '../utils/config-file'
 
@@ -15,26 +19,31 @@ export interface TranslationPluginOptions {
   translateTargetName?: string
 }
 
-export const createNodesV2: CreateNodesV2 = [
+export const createNodes: CreateNodes = [
   '**/.translationsrc.json',
-  async (configFiles, options: TranslationPluginOptions, context): Promise<CreateNodesResultV2> => {
-
-    return createNodesFromFiles(
-      createTargets,
-      configFiles,
-      options,
-      context
-    )
+  async (
+    configFiles,
+    options: TranslationPluginOptions,
+    context
+  ): Promise<CreateNodesResultArray> => {
+    return createNodesFromFiles(createTargets, configFiles, options, context)
   }
 ]
 
-function createTargets(projectConfigurationFile: string, options: TranslationPluginOptions, context: CreateNodesContextV2): CreateNodesResult {
+function createTargets(
+  projectConfigurationFile: string,
+  options: TranslationPluginOptions,
+  context: CreateNodesContext
+): CreateNodesResult {
   const projectRoot = dirname(projectConfigurationFile)
   const fullyQualifiedProjectRoot = join(context.workspaceRoot, projectRoot)
 
   // Do not create a project if package.json and project.json isn't there
   const siblingFiles = readdirSync(fullyQualifiedProjectRoot)
-  if (!siblingFiles.includes('project.json') || siblingFiles.includes('nx.json')) {
+  if (
+    !siblingFiles.includes('project.json') ||
+    siblingFiles.includes('nx.json')
+  ) {
     return {}
   }
 
@@ -45,12 +54,7 @@ function createTargets(projectConfigurationFile: string, options: TranslationPlu
     projects: {
       [projectRoot]: {
         root: projectRoot,
-        targets: buildTranslationTargets(
-          projectRoot,
-          context,
-          config,
-          options
-        )
+        targets: buildTranslationTargets(projectRoot, context, config, options)
       }
     }
   }
@@ -58,7 +62,7 @@ function createTargets(projectConfigurationFile: string, options: TranslationPlu
 
 function buildTranslationTargets(
   projectRoot: string,
-  context: CreateNodesContextV2,
+  context: CreateNodesContext,
   config: BaseConfigFile,
   options: TranslationPluginOptions
 ): Record<string, TargetConfiguration> {
@@ -85,7 +89,7 @@ function buildTranslationTargets(
 
 function buildExtract(
   projectRoot: string,
-  context: CreateNodesContextV2
+  context: CreateNodesContext
 ): TargetConfiguration {
   const namedInputs = getNamedInputs(projectRoot, context)
 
