@@ -25,7 +25,7 @@
     "@formatjs/cli": "^6.16.11"
   },
   "peerDependencies": {
-    "@nx/devkit": "^22.0.0"
+    "@nx/devkit": "^23.0.0"
   },
   "builders": "./executors.json",
   "generators": "./generators.json"
