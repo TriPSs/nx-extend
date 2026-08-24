@@ -22,6 +22,7 @@ node_modules
 *.launch
 .settings/
 *.sublime-workspace
+.air/plans
 
 # IDE - VSCode
 .vscode/*

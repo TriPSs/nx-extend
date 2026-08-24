@@ -1,7 +1,7 @@
 import * as fs from 'fs'
 import * as path from 'path'
 
-export function copyFolderSync(from, to) {
+export function copyFolderSync(from: string, to: string) {
   fs.readdirSync(from).forEach((element) => {
     const stat = fs.lstatSync(path.join(from, element))
     const toPath = path.join(to, element)
