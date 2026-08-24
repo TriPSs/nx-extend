@@ -1,17 +1,16 @@
-import { ExecutorContext, workspaceRoot } from '@nx/devkit'
-// @ts-expect-error it is there but there are no interfaces
-import { build as nodeBuild } from '@strapi/admin/cli'
-// @ts-expect-error it is there but there are no interfaces
-import tsUtils from '@strapi/typescript-utils'
-import { join } from 'path'
+import { detectPackageManager, ExecutorContext, getPackageManagerCommand, workspaceRoot } from '@nx/devkit'
+import { execFile } from 'node:child_process'
+import { existsSync } from 'node:fs'
+import { join } from 'node:path'
+import { promisify } from 'node:util'
 
 import 'dotenv/config'
 
 import { copyFavicon } from '../../utils/copy-favicon'
 import { copyFolderSync } from '../../utils/copy-folder'
 import { createPackageJson } from '../../utils/create-package-json'
-import { createStrapiLogger } from './utils/create-strapi-logger'
-import { loadTsConfig } from './utils/load-ts-config'
+
+const run = promisify(execFile)
 
 export interface BuildExecutorSchema {
   production?: boolean
@@ -46,26 +45,26 @@ export async function buildExecutor(
   })
 
   const strapiRoot = join(workspaceRoot, options.root || root)
-  const tsConfig = loadTsConfig(workspaceRoot, options.tsConfig)
+  const packageManager = getPackageManagerCommand(detectPackageManager()).exec.split(' ')
 
-  // nodeBuild somehow only compiles the admin panel
-  await tsUtils.compile(strapiRoot, {
-    watch: false,
-    configOptions: {
-      options: {
-        incremental: true,
-        outDir: distDir
-      }
-    }
-  })
-
-  await nodeBuild({
-    ignorePrompts: true,
-    minify: Boolean(options.production),
+  await run(packageManager[0], [
+    ...packageManager.slice(1),
+    'strapi',
+    'build',
+    ...(options.production ? ['--minify'] : [])
+  ], {
     cwd: strapiRoot,
-    logger: createStrapiLogger(),
-    tsConfig
+    env: process.env
   })
+
+  // Strapi 5 writes compiled server files to dist and the Vite admin build to build.
+  if (existsSync(join(strapiRoot, 'dist'))) {
+    copyFolderSync(join(strapiRoot, 'dist'), distDir)
+  }
+
+  if (existsSync(join(strapiRoot, 'build'))) {
+    copyFolderSync(join(strapiRoot, 'build'), join(distDir, 'build'))
+  }
 
   await createPackageJson(
     options.outputPath,
@@ -74,9 +73,12 @@ export async function buildExecutor(
     options.generateLockFile
   )
 
-  await copyFolderSync(`${strapiRoot}/public`, `${distDir}/public`)
-  await copyFavicon(`${strapiRoot}`, distDir)
-  await copyFavicon(`${strapiRoot}/public`, distDir)
+  if (existsSync(join(strapiRoot, 'public'))) {
+    copyFolderSync(join(strapiRoot, 'public'), join(distDir, 'public'))
+  }
+
+  copyFavicon(`${strapiRoot}`, distDir)
+  copyFavicon(`${strapiRoot}/public`, distDir)
 
   return { success: true }
 }
