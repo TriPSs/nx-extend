@@ -1,0 +1,26 @@
+e2e/docusaurus-e2e/project.json
+  h_b13471b77746e9 6
+packages/docusaurus/src/generators/application/generator.ts
+  s_aca013b2cf2594::t_85eb1c5bb30130 145-146,154-157
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "b0d35bfc2f504c03149e6d19632e7a71fa0101f8",
+  "prompts": {},
+  "humans": {
+    "h_b13471b77746e9": {
+      "author": "Tycho Bokdam <tycho@palmtreecoding.com>"
+    }
+  },
+  "sessions": {
+    "s_aca013b2cf2594": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0ae95-272d-7473-bc5a-6cfdbb95773d",
+        "model": "unknown"
+      },
+      "human_author": "Tycho Bokdam <tycho@palmtreecoding.com>"
+    }
+  }
+}
