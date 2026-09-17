@@ -1,0 +1,14 @@
+packages/gcp-storage/src/executors/upload/upload.impl.ts
+  h_b13471b77746e9 3-4,44
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "875a53048a8fa9b7c834567456eb20a40f30063f",
+  "prompts": {},
+  "humans": {
+    "h_b13471b77746e9": {
+      "author": "Tycho Bokdam <tycho@palmtreecoding.com>"
+    }
+  }
+}
