@@ -1,0 +1,113 @@
+.github/workflows/release.yml
+  h_b13471b77746e9 14-18
+.github/workflows/pr.yml
+  h_b13471b77746e9 17-21,78
+packages/terraform/src/utils/create-executor.ts
+  h_b13471b77746e9 125,127,131,134,146,185,189
+  h_b13471b77746e9 85-87,126,128-130,137-141,147-148,199-203
+actions/plan/jest.config.ts
+  s_aca013b2cf2594::t_0ab609a9a6fed4 7-8,10-13
+actions/plan/tsconfig.json
+  s_aca013b2cf2594::t_a5cc0918e1b200 9
+actions/plan/tsconfig.spec.json
+  s_aca013b2cf2594::t_7fc440e876ede9 6
+actions/run-many/tsconfig.json
+  s_aca013b2cf2594::t_fcbc3412302871 9
+actions/set-shas/tsconfig.json
+  s_aca013b2cf2594::t_54ba3e3b582cff 7
+e2e/docusaurus-e2e/tsconfig.json
+  s_aca013b2cf2594::t_19a9f42be36f79 4
+e2e/gcp-deployment-manager-e2e/tsconfig.json
+  s_aca013b2cf2594::t_12d9e217871211 12
+e2e/gcp-functions-e2e/tsconfig.json
+  s_aca013b2cf2594::t_eae0711385ecc3 12
+e2e/gcp-secrets-e2e/tsconfig.json
+  s_aca013b2cf2594::t_66ed90881911e6 12
+e2e/react-email-e2e/tsconfig.json
+  s_aca013b2cf2594::t_cc32347d1a9c4e 12
+e2e/shadcn-ui-e2e/tsconfig.json
+  s_aca013b2cf2594::t_48aa503b775fc9 12
+e2e/strapi-e2e/tsconfig.json
+  s_aca013b2cf2594::t_a62c5efbdf11cd 13
+e2e/translations-e2e/tsconfig.json
+  s_aca013b2cf2594::t_d8a0cd10a35daf 12
+jest.preset.js
+  s_aca013b2cf2594::t_c6c28c594c4582 3,12-14
+packages/changelog-notify/tsconfig.json
+  s_aca013b2cf2594::t_8eb6e3fa63c1cb 12
+packages/core/tsconfig.json
+  s_aca013b2cf2594::t_6cc23f326e30c3 12
+packages/docusaurus/tsconfig.json
+  s_aca013b2cf2594::t_c1358b5893e4a6 5
+packages/e2e-runner/tsconfig.json
+  s_aca013b2cf2594::t_d5a2bb3e52cf36 12
+packages/firebase-hosting/tsconfig.json
+  s_aca013b2cf2594::t_19192badd987b5 12
+packages/gcp-cloud-run/tsconfig.json
+  s_aca013b2cf2594::t_110d99f64cf11f 12
+packages/gcp-deployment-manager/tsconfig.json
+  s_aca013b2cf2594::t_2ac98f4b2cae75 12
+packages/gcp-functions/tsconfig.json
+  s_aca013b2cf2594::t_354a10fffb31f7 12
+packages/gcp-secrets/tsconfig.json
+  s_aca013b2cf2594::t_512cd4e9fde107 12
+packages/gcp-storage/tsconfig.json
+  s_aca013b2cf2594::t_fcd98c486da33b 12
+packages/gcp-task-runner/tsconfig.json
+  s_aca013b2cf2594::t_7e79174231f8c6 4
+packages/github-pages/tsconfig.json
+  s_aca013b2cf2594::t_17a3b2560560ce 12
+packages/playwright/tsconfig.json
+  s_aca013b2cf2594::t_9da8806143dc81 12
+packages/pulumi/package.json
+  s_aca013b2cf2594::t_51165a3496cfca 20
+packages/pulumi/tsconfig.json
+  s_aca013b2cf2594::t_87c2dc6b8b083b 12
+packages/react-email/tsconfig.json
+  s_aca013b2cf2594::t_54e0a0a2e3e65d 12
+packages/shadcn-ui/tsconfig.json
+  s_aca013b2cf2594::t_0a39e8735fee18 12
+packages/strapi/tsconfig.json
+  s_aca013b2cf2594::t_b0b246b8ec95be 5
+packages/terraform/tsconfig.json
+  s_aca013b2cf2594::t_116a997ce83c69 12
+packages/translations/tsconfig.json
+  s_aca013b2cf2594::t_377141d61aac31 12
+packages/vercel/tsconfig.json
+  s_aca013b2cf2594::t_e5582ce5d33d4d 12
+tools/tsconfig.tools.json
+  s_aca013b2cf2594::t_5b30be2578aa51 8
+.eslintrc.json
+  h_b13471b77746e9 4,34-35,42-43
+actions/plan/src/utils/__tests__/actions-core.spec.ts
+  h_b13471b77746e9 1-23
+actions/plan/src/utils/__tests__/has-one-of-required-tags.spec.ts
+  h_b13471b77746e9 13-15,19-21,25-37,43-45,49-56,60-62,68-77,81-85
+package.json
+  h_b13471b77746e9 5-7,28-29,46,54,73
+packages/translations/src/plugins/plugin.ts
+  h_b13471b77746e9 23,25,32,48,54-59,69,116-124
+yarn.lock
+  h_b13471b77746e9 335,1635,5069,7300-7315,7750,8091,8171,8433-8439,12725,12913,15044,15100,18335-18336,18355,18364,18388,22107,24428
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "b8fd63225bfb6becfc3417fd74f37da7e597ba1e",
+  "prompts": {},
+  "humans": {
+    "h_b13471b77746e9": {
+      "author": "Tycho Bokdam <tycho@palmtreecoding.com>"
+    }
+  },
+  "sessions": {
+    "s_aca013b2cf2594": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0ae95-272d-7473-bc5a-6cfdbb95773d",
+        "model": "unknown"
+      },
+      "human_author": "Tycho Bokdam <tycho@palmtreecoding.com>"
+    }
+  }
+}
