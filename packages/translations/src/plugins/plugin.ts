@@ -20,20 +20,16 @@ export interface TranslationPluginOptions {
   translateTargetName?: string
 }
 
-export const createNodes: CreateNodes = [
+export const createNodes: CreateNodes<TranslationPluginOptions> = [
   '**/.translationsrc.json',
-  async (
-    configFiles,
-    options: TranslationPluginOptions,
-    context
-  ): Promise<CreateNodesResultArray> => {
+  async (configFiles, options, context): Promise<CreateNodesResultArray> => {
     return createNodesFromFiles(createTargets, configFiles, options, context)
   }
 ]
 
 function createTargets(
   projectConfigurationFile: string,
-  options: TranslationPluginOptions,
+  options: TranslationPluginOptions | undefined,
   context: CreateNodesContext
 ): CreateNodesResult {
   const projectRoot = dirname(projectConfigurationFile)
@@ -49,13 +45,18 @@ function createTargets(
   }
 
   const config = getConfigFileInRoot(projectRoot)
-  options = normalizeOptions(options)
+  const normalizedOptions = normalizeOptions(options)
 
   return {
     projects: {
       [projectRoot]: {
         root: projectRoot,
-        targets: buildTranslationTargets(projectRoot, context, config, options)
+        targets: buildTranslationTargets(
+          projectRoot,
+          context,
+          config,
+          normalizedOptions
+        )
       }
     }
   }
@@ -65,7 +66,7 @@ function buildTranslationTargets(
   projectRoot: string,
   context: CreateNodesContext,
   config: BaseConfigFile,
-  options: TranslationPluginOptions
+  options: Required<TranslationPluginOptions>
 ): Record<string, TargetConfiguration> {
   const targets: Record<string, TargetConfiguration> = {}
 
@@ -112,12 +113,13 @@ function buildExecutor(type: string): TargetConfiguration {
   }
 }
 
-function normalizeOptions(options: TranslationPluginOptions) {
-  options ??= {}
-  options.extractTargetName ??= 'extract-translations'
-  options.pullTargetName ??= 'pull-translations'
-  options.pushTargetName ??= 'push-translations'
-  options.translateTargetName ??= 'translate'
-
-  return options
+function normalizeOptions(
+  options: TranslationPluginOptions | undefined
+): Required<TranslationPluginOptions> {
+  return {
+    extractTargetName: options?.extractTargetName ?? 'extract-translations',
+    pullTargetName: options?.pullTargetName ?? 'pull-translations',
+    pushTargetName: options?.pushTargetName ?? 'push-translations',
+    translateTargetName: options?.translateTargetName ?? 'translate'
+  }
 }

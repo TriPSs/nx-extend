@@ -2,6 +2,9 @@
   "name": "nx-extend",
   "version": "2.0.0",
   "private": true,
+  "engines": {
+    "node": ">=22.15.0"
+  },
   "license": "MIT",
   "workspaces": {
     "packages": [
@@ -22,6 +25,8 @@
     "yargs": "^17.7.2"
   },
   "devDependencies": {
+    "@babel/core": "^7.29.7",
+    "@babel/preset-env": "^7.29.7",
     "@google-cloud/functions-framework": "^5.0.5",
     "@google-cloud/storage": "^7.21.0",
     "@jamesives/github-pages-deploy-action": "^4.9.0",
@@ -38,6 +43,7 @@
     "@nx/webpack": "23.1.1",
     "@pulumi/gcp": "^9.34.1",
     "@pulumi/pulumi": "^3.257.0",
+    "@stylistic/eslint-plugin": "^5.10.0",
     "@types/jest": "30.0.0",
     "@types/node": "24.10.1",
     "@types/shelljs": "^0.10.0",
@@ -45,6 +51,7 @@
     "@types/yargs": "^17.0.35",
     "@typescript-eslint/eslint-plugin": "8.67.0",
     "@typescript-eslint/parser": "8.67.0",
+    "babel-jest": "30.4.1",
     "dotenv": "17.4.2",
     "esbuild": "0.28.1",
     "eslint": "9.39.2",
@@ -63,7 +70,7 @@
     "typescript": "6.0.3",
     "webpack": "5.109.2",
     "webpack-cli": "^7.2.2",
-    "webpack-dev-server": "6.0.0"
+    "webpack-dev-server": "^5.2.1"
   },
   "packageManager": "yarn@4.17.0"
 }

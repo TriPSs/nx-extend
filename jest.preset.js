@@ -1,8 +1,6 @@
 const nxPreset = require('@nx/jest/preset').default
 
-const esmPackages = [
-  '@actions',
-]
+const esmPackages = ['@actions']
 
 module.exports = {
   ...nxPreset,
@@ -11,5 +9,7 @@ module.exports = {
   testEnvironment: 'node',
   watchman: false,
 
-  transformIgnorePatterns: [`node_modules/(?!(${esmPackages.join('|')})/)`]
+  transformIgnorePatterns: [
+    `node_modules/(?!(${esmPackages.join('|')})/|.*\\.mjs$)`
+  ]
 }
