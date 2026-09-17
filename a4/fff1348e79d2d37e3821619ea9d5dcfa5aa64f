@@ -1,0 +1,44 @@
+actions/run-many/src/utils/get-project-graph.ts
+  h_b13471b77746e9 1-23
+actions/plan/src/plan.ts
+  h_b13471b77746e9 6-7,41,99,123
+  s_aca013b2cf2594::t_64477efa938fd1 8-10,16-19,57-59,108,124
+actions/run-many/src/run-many.ts
+  h_b13471b77746e9 8,26,28-29,31,35,78,104,106-107,109
+  s_aca013b2cf2594::t_c244382b5f751e 27,32-34,102-103,105
+actions/plan/dist/index.js
+  s_aca013b2cf2594::t_5552548e7f74fe 29756,29785-29802,29862-29879,29883-29890,29892,29895-29897,29925-29927,29951-29954
+actions/plan/project.json
+  s_aca013b2cf2594::t_7a47d7c9298a18 12,15-16
+actions/plan/src/utils/__tests__/get-project-graph.spec.ts
+  s_aca013b2cf2594::t_127a48ba971c61 1-38
+actions/plan/src/utils/get-project-graph.ts
+  s_aca013b2cf2594::t_6b006b53aa2b9a 1-23
+actions/run-many/dist/index.js
+  s_aca013b2cf2594::t_8c440dfb3f38f0 21682,21719,34251,35866-35883,36061-36079,36083,36098-36100
+actions/run-many/project.json
+  s_aca013b2cf2594::t_57d3dce08f7b99 11,20
+actions/set-shas/project.json
+  s_aca013b2cf2594::t_0178495fbd4d12 11,14-15,20
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "a4fff1348e79d2d37e3821619ea9d5dcfa5aa64f",
+  "prompts": {},
+  "humans": {
+    "h_b13471b77746e9": {
+      "author": "Tycho Bokdam <tycho@palmtreecoding.com>"
+    }
+  },
+  "sessions": {
+    "s_aca013b2cf2594": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0ae95-272d-7473-bc5a-6cfdbb95773d",
+        "model": "unknown"
+      },
+      "human_author": "Tycho Bokdam <tycho@palmtreecoding.com>"
+    }
+  }
+}
