@@ -1,3 +1,7 @@
+jest.mock('@actions/core', () => ({
+  debug: jest.fn()
+}))
+
 import { hasOneOfRequiredTags } from '../has-one-of-required-tags'
 
 const projectTags = [
