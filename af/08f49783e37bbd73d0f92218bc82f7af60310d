@@ -1,0 +1,24 @@
+nx.json
+  s_aca013b2cf2594::t_94e7a7003b245c 36,43-54
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "af08f49783e37bbd73d0f92218bc82f7af60310d",
+  "prompts": {},
+  "humans": {
+    "h_b13471b77746e9": {
+      "author": "Tycho Bokdam <tycho@palmtreecoding.com>"
+    }
+  },
+  "sessions": {
+    "s_aca013b2cf2594": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0ae95-272d-7473-bc5a-6cfdbb95773d",
+        "model": "unknown"
+      },
+      "human_author": "Tycho Bokdam <tycho@palmtreecoding.com>"
+    }
+  }
+}
