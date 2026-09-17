@@ -1,0 +1,16 @@
+packages/strapi/src/executors/serve/serve.impl.ts
+  h_b13471b77746e9 3,23,35,38
+packages/strapi/src/executors/build/build.impl.ts
+  h_b13471b77746e9 2,55-56
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "b9514014e1212c71acfe326515630db7ea497a0d",
+  "prompts": {},
+  "humans": {
+    "h_b13471b77746e9": {
+      "author": "Tycho Bokdam <tycho@palmtreecoding.com>"
+    }
+  }
+}
