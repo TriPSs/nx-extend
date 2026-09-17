@@ -9,6 +9,7 @@ module.exports = {
   testTimeout: 350_000,
   maxWorkers: 1,
   testEnvironment: 'node',
+  watchman: false,
 
   transformIgnorePatterns: [`node_modules/(?!(${esmPackages.join('|')})/)`]
 }
