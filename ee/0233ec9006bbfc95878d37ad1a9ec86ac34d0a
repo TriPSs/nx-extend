@@ -1,0 +1,16 @@
+packages/pulumi/gcp/github.ts
+  h_b13471b77746e9 1-64
+packages/pulumi/gcp/index.ts
+  h_b13471b77746e9 18
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "ee0233ec9006bbfc95878d37ad1a9ec86ac34d0a",
+  "prompts": {},
+  "humans": {
+    "h_b13471b77746e9": {
+      "author": "Tycho Bokdam <tycho@palmtreecoding.com>"
+    }
+  }
+}
