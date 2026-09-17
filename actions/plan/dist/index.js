@@ -29753,7 +29753,7 @@ function endGroup() {
 }
 
 // actions/plan/src/plan.ts
-var import_path = require("path");
+var import_path2 = require("path");
 
 // actions/plan/src/utils/build-command.ts
 var buildCommand = (parts) => {
@@ -29781,6 +29781,24 @@ var execCommand = (command, options = {
     output: result.stdout
   };
 };
+
+// actions/plan/src/utils/get-project-graph.ts
+var import_fs2 = require("fs");
+var import_os3 = require("os");
+var import_path = require("path");
+function getProjectGraph(cwd, silent) {
+  const temporaryDirectory = (0, import_fs2.mkdtempSync)((0, import_path.join)((0, import_os3.tmpdir)(), "nx-extend-graph-"));
+  const graphFile = (0, import_path.join)(temporaryDirectory, "project-graph.json");
+  try {
+    execCommand(`npx nx graph --file="${graphFile}"`, {
+      silent,
+      cwd
+    });
+    return JSON.parse((0, import_fs2.readFileSync)(graphFile, "utf8")).graph;
+  } finally {
+    (0, import_fs2.rmSync)(temporaryDirectory, { recursive: true, force: true });
+  }
+}
 
 // actions/plan/src/utils/has-one-of-required-tags.ts
 function hasTagMatchingCondition(condition, tags) {
@@ -29841,37 +29859,42 @@ async function run() {
   try {
     const workingDirectory = getInput("workingDirectory") || "";
     const affectedOnly = getBooleanInput("affectedOnly");
-    const targets = getMultilineInput("targets", { required: true, trimWhitespace: true });
-    const cwd = (0, import_path.resolve)(process.cwd(), workingDirectory);
-    const projectsNamesToPlanFor = JSON.parse(execCommand(
-      buildCommand([
-        "npx nx show projects --json",
-        affectedOnly && "--affected"
-      ]),
-      {
-        asString: true,
-        silent: !isDebug(),
-        cwd
-      }
-    ));
+    const targets = getMultilineInput("targets", {
+      required: true,
+      trimWhitespace: true
+    });
+    const cwd = (0, import_path2.resolve)(process.cwd(), workingDirectory);
+    const projectsNamesToPlanFor = JSON.parse(
+      execCommand(
+        buildCommand([
+          "npx nx show projects --json",
+          affectedOnly && "--affected"
+        ]),
+        {
+          asString: true,
+          silent: !isDebug(),
+          cwd
+        }
+      )
+    );
     if (!affectedOnly) {
       debug(JSON.stringify(projectsNamesToPlanFor));
     }
-    const projectGraph = JSON.parse(execCommand("npx nx graph --file=stdout", {
-      asString: true,
-      silent: !isDebug(),
-      cwd
-    })).graph;
-    const enabledProjects = projectsNamesToPlanFor.filter((projectName) => {
-      const project = projectGraph.nodes?.[projectName]?.data;
-      if (!project) {
-        return false;
+    const projectGraph = getProjectGraph(cwd, !isDebug());
+    const enabledProjects = projectsNamesToPlanFor.filter(
+      (projectName) => {
+        const project = projectGraph.nodes?.[projectName]?.data;
+        if (!project) {
+          return false;
+        }
+        return !(project.tags || []).includes("ci=off");
       }
-      return !(project.tags || []).includes("ci=off");
-    });
+    );
     const matrixInclude = [];
     for (const target of targets) {
-      const tagConditions = getMultilineInput(`${target}Tag`, { trimWhitespace: true });
+      const tagConditions = getMultilineInput(`${target}Tag`, {
+        trimWhitespace: true
+      });
       const maxJobs = parseInt(getInput(`${target}MaxJobs`), 10) || 1;
       const config = getInput(`${target}Config`);
       const parallel = getInput(`${target}Parallel`);
@@ -29899,7 +29922,9 @@ async function run() {
         debug(debugMessage);
         continue;
       }
-      info(`Found ${amountOfProjectsWithTarget.length} projects that match the required conditions`);
+      info(
+        `Found ${amountOfProjectsWithTarget.length} projects that match the required conditions`
+      );
       let maxJobCount = 1;
       for (let i = maxJobs; i > 0; i--) {
         if (amountOfProjectsWithTarget.length / i >= 2) {
@@ -29923,8 +29948,10 @@ async function run() {
     }
     startGroup("Plan created");
     info("\n");
-    info(`Created following plan: 
-${JSON.stringify(matrixInclude, null, 2)}`);
+    info(
+      `Created following plan:
+${JSON.stringify(matrixInclude, null, 2)}`
+    );
     setOutput("matrix", {
       include: matrixInclude
     });

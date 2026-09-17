@@ -5,6 +5,7 @@ import yargs from 'yargs/yargs'
 
 import { buildCommand } from './utils/build-command'
 import { execCommand } from './utils/exec'
+import { getProjectGraph } from './utils/get-project-graph'
 import { hasOneOfRequiredTags } from './utils/has-one-of-required-tags'
 import { runTarget } from './utils/run-target'
 
@@ -22,9 +23,16 @@ export const argv = yargs(hideBin(process.argv))
 async function run() {
   try {
     // Get all options
-    const tagConditions = (argv.tag ? [argv.tag] : core.getMultilineInput('tag', { trimWhitespace: true }))
+    const tagConditions = argv.tag
+      ? [argv.tag]
+      : core.getMultilineInput('tag', { trimWhitespace: true })
+
     const target = core.getInput('target', { required: !argv.target }) || argv.target
-    const affectedOnly = argv.affectedOnly !== undefined ? argv.affectedOnly : core.getBooleanInput('affectedOnly')
+
+    const affectedOnly = argv.affectedOnly !== undefined
+      ? argv.affectedOnly
+      : core.getBooleanInput('affectedOnly')
+
     const config = core.getInput('config') || argv.config
     const jobIndex = parseInt(core.getInput('index') || '1', 10)
     const jobCount = parseInt(core.getInput('count') || '1', 10)
@@ -67,11 +75,7 @@ async function run() {
       core.debug(JSON.stringify(projectsNamesToRun))
     }
 
-    const projectGraph = JSON.parse(execCommand<string>('npx nx graph --file=stdout', {
-      asString: true,
-      silent: !(core.isDebug() || argv.verbose),
-      cwd
-    })).graph
+    const projectGraph = getProjectGraph(cwd, !(core.isDebug() || argv.verbose))
 
     // Get all affected projects
     const projectsToRun = projectsNamesToRun.filter((projectName: string) => {
@@ -95,10 +99,14 @@ async function run() {
       }
 
       // If a tag is provided the project should have it
-      return (!tagConditions || tagConditions.length === 0) || hasOneOfRequiredTags(projectName, tags, tagConditions)
-    }).sort((projectNameA: string, projectNameB: string) => (
+      return (
+        !tagConditions ||
+        tagConditions.length === 0 ||
+        hasOneOfRequiredTags(projectName, tags, tagConditions)
+      )
+    }).sort((projectNameA: string, projectNameB: string) =>
       projectNameA.localeCompare(projectNameB)
-    ))
+    )
 
     const sliceSize = Math.max(Math.floor(projectsToRun.length / jobCount), 1)
     const runProjects =

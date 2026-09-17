@@ -9,9 +9,11 @@
       "executor": "nx:run-commands",
       "options": {
         "commands": [
+          "rm -rf ./actions/plan/dist",
           "npx esbuild ./actions/plan/src/plan.ts --bundle --platform=node --target=node24 --format=cjs --outfile=./actions/plan/dist/index.js",
           "cp ./node_modules/shelljs/src/exec-child.js ./actions/plan/dist/exec-child.js"
-        ]
+        ],
+        "parallel": false
       }
     },
     "publish": {

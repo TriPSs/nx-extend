@@ -3,13 +3,20 @@ import { resolve } from 'path'
 
 import { buildCommand } from './utils/build-command'
 import { execCommand } from './utils/exec'
-import { cleanLogConditions, hasOneOfRequiredTags } from './utils/has-one-of-required-tags'
+import { getProjectGraph } from './utils/get-project-graph'
+import {
+  cleanLogConditions,
+  hasOneOfRequiredTags
+} from './utils/has-one-of-required-tags'
 
 async function run() {
   try {
     const workingDirectory = core.getInput('workingDirectory') || ''
     const affectedOnly = core.getBooleanInput('affectedOnly')
-    const targets = core.getMultilineInput('targets', { required: true, trimWhitespace: true })
+    const targets = core.getMultilineInput('targets', {
+      required: true,
+      trimWhitespace: true
+    })
 
     const cwd = resolve(process.cwd(), workingDirectory)
 
@@ -31,11 +38,7 @@ async function run() {
       core.debug(JSON.stringify(projectsNamesToPlanFor))
     }
 
-    const projectGraph = JSON.parse(execCommand<string>('npx nx graph --file=stdout', {
-      asString: true,
-      silent: !core.isDebug(),
-      cwd
-    })).graph
+    const projectGraph = getProjectGraph(cwd, !core.isDebug())
 
     // Get all affected projects
     const enabledProjects = projectsNamesToPlanFor.filter((projectName: string) => {
@@ -51,7 +54,9 @@ async function run() {
     const matrixInclude = []
 
     for (const target of targets) {
-      const tagConditions = core.getMultilineInput(`${target}Tag`, { trimWhitespace: true })
+      const tagConditions = core.getMultilineInput(`${target}Tag`, {
+        trimWhitespace: true
+      })
       const maxJobs = parseInt(core.getInput(`${target}MaxJobs`), 10) || 1
       const config = core.getInput(`${target}Config`)
       const parallel = core.getInput(`${target}Parallel`)
@@ -91,7 +96,7 @@ async function run() {
       let maxJobCount = 1
       for (let i = maxJobs; i > 0; i--) {
         // Each job needs to at-least run 2 projects
-        if ((amountOfProjectsWithTarget.length / i) >= 2) {
+        if (amountOfProjectsWithTarget.length / i >= 2) {
           maxJobCount = i
           break
         }
@@ -100,8 +105,7 @@ async function run() {
       for (let i = 0; i < maxJobCount; i++) {
         matrixInclude.push({
           target,
-          tag: tagConditions
-            .join('\n'),
+          tag: tagConditions.join('\n'),
           preTargets: preTargets.join('\n'),
           postTargets: postTargets.join('\n'),
           index: i + 1,
@@ -116,10 +120,8 @@ async function run() {
 
     core.startGroup('Plan created')
     core.info('\n')
-    core.info(`Created following plan: \n${JSON.stringify(matrixInclude, null, 2)}`)
-    core.setOutput('matrix', {
-      include: matrixInclude
-    })
+    core.info(`Created following plan:\n${JSON.stringify(matrixInclude, null, 2)}`)
+    core.setOutput('matrix', { include: matrixInclude })
     core.setOutput('hasPlan', matrixInclude.length > 0)
   } catch (err) {
     core.setFailed(err)

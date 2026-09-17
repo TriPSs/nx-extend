@@ -21679,7 +21679,7 @@ var require_require_directory = __commonJS({
   "node_modules/require-directory/index.js"(exports2, module2) {
     "use strict";
     var fs2 = require("fs");
-    var join = require("path").join;
+    var join2 = require("path").join;
     var resolve6 = require("path").resolve;
     var dirname3 = require("path").dirname;
     var defaultOptions = {
@@ -21716,7 +21716,7 @@ var require_require_directory = __commonJS({
       }
       path = !path ? dirname3(m.filename) : resolve6(dirname3(m.filename), path);
       fs2.readdirSync(path).forEach(function(filename) {
-        var joined = join(path, filename), files, key, obj;
+        var joined = join2(path, filename), files, key, obj;
         if (fs2.statSync(joined).isDirectory() && options.recurse) {
           files = requireDirectory(m, joined, options);
           if (Object.keys(files).length) {
@@ -34248,7 +34248,7 @@ function info(message) {
 }
 
 // actions/run-many/src/run-many.ts
-var import_path5 = require("path");
+var import_path6 = require("path");
 
 // node_modules/yargs/build/lib/yerror.js
 var YError = class _YError extends Error {
@@ -35863,6 +35863,24 @@ var execCommand = (command, options = {
   };
 };
 
+// actions/run-many/src/utils/get-project-graph.ts
+var import_fs6 = require("fs");
+var import_os3 = require("os");
+var import_path5 = require("path");
+function getProjectGraph(cwd, silent) {
+  const temporaryDirectory = (0, import_fs6.mkdtempSync)((0, import_path5.join)((0, import_os3.tmpdir)(), "nx-extend-graph-"));
+  const graphFile = (0, import_path5.join)(temporaryDirectory, "project-graph.json");
+  try {
+    execCommand(`npx nx graph --file="${graphFile}"`, {
+      silent,
+      cwd
+    });
+    return JSON.parse((0, import_fs6.readFileSync)(graphFile, "utf8")).graph;
+  } finally {
+    (0, import_fs6.rmSync)(temporaryDirectory, { recursive: true, force: true });
+  }
+}
+
 // actions/run-many/src/utils/has-one-of-required-tags.ts
 function hasTagMatchingCondition(condition, tags) {
   if (condition.includes("=")) {
@@ -36040,29 +36058,29 @@ async function run() {
     debug(`Pre targets ${JSON.stringify(preTargets, null, 2)}`);
     debug(`Post targets ${JSON.stringify(postTargets, null, 2)}`);
     if (tagConditions.length > 0) {
-      info(`Running all projects with one of the following tags "${tagConditions.join(", ")}"`);
+      info(
+        `Running all projects with one of the following tags "${tagConditions.join(", ")}"`
+      );
     }
-    const cwd = (0, import_path5.resolve)(process.cwd(), workingDirectory);
-    const projectsNamesToRun = JSON.parse(execCommand(
-      buildCommand([
-        "npx nx show projects --json",
-        affectedOnly && "--affected",
-        `-t ${target}`
-      ]),
-      {
-        asString: true,
-        silent: !(isDebug() || argv.verbose),
-        cwd
-      }
-    ));
+    const cwd = (0, import_path6.resolve)(process.cwd(), workingDirectory);
+    const projectsNamesToRun = JSON.parse(
+      execCommand(
+        buildCommand([
+          "npx nx show projects --json",
+          affectedOnly && "--affected",
+          `-t ${target}`
+        ]),
+        {
+          asString: true,
+          silent: !(isDebug() || argv.verbose),
+          cwd
+        }
+      )
+    );
     if (!affectedOnly) {
       debug(JSON.stringify(projectsNamesToRun));
     }
-    const projectGraph = JSON.parse(execCommand("npx nx graph --file=stdout", {
-      asString: true,
-      silent: !(isDebug() || argv.verbose),
-      cwd
-    })).graph;
+    const projectGraph = getProjectGraph(cwd, !(isDebug() || argv.verbose));
     const projectsToRun = projectsNamesToRun.filter((projectName) => {
       const project = projectGraph.nodes?.[projectName]?.data;
       if (!project) {
@@ -36077,7 +36095,9 @@ async function run() {
         return true;
       }
       return !tagConditions || tagConditions.length === 0 || hasOneOfRequiredTags(projectName, tags, tagConditions);
-    }).sort((projectNameA, projectNameB) => projectNameA.localeCompare(projectNameB));
+    }).sort(
+      (projectNameA, projectNameB) => projectNameA.localeCompare(projectNameB)
+    );
     const sliceSize = Math.max(Math.floor(projectsToRun.length / jobCount), 1);
     const runProjects = jobIndex < jobCount ? projectsToRun.slice(sliceSize * (jobIndex - 1), sliceSize * jobIndex) : projectsToRun.slice(sliceSize * (jobIndex - 1));
     if (preTargets.length > 0) {
