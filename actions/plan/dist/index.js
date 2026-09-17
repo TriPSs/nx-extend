@@ -29864,32 +29864,28 @@ async function run() {
       trimWhitespace: true
     });
     const cwd = (0, import_path2.resolve)(process.cwd(), workingDirectory);
-    const projectsNamesToPlanFor = JSON.parse(
-      execCommand(
-        buildCommand([
-          "npx nx show projects --json",
-          affectedOnly && "--affected"
-        ]),
-        {
-          asString: true,
-          silent: !isDebug(),
-          cwd
-        }
-      )
-    );
+    const projectsNamesToPlanFor = JSON.parse(execCommand(
+      buildCommand([
+        "npx nx show projects --json",
+        affectedOnly && "--affected"
+      ]),
+      {
+        asString: true,
+        silent: !isDebug(),
+        cwd
+      }
+    ));
     if (!affectedOnly) {
       debug(JSON.stringify(projectsNamesToPlanFor));
     }
     const projectGraph = getProjectGraph(cwd, !isDebug());
-    const enabledProjects = projectsNamesToPlanFor.filter(
-      (projectName) => {
-        const project = projectGraph.nodes?.[projectName]?.data;
-        if (!project) {
-          return false;
-        }
-        return !(project.tags || []).includes("ci=off");
+    const enabledProjects = projectsNamesToPlanFor.filter((projectName) => {
+      const project = projectGraph.nodes?.[projectName]?.data;
+      if (!project) {
+        return false;
       }
-    );
+      return !(project.tags || []).includes("ci=off");
+    });
     const matrixInclude = [];
     for (const target of targets) {
       const tagConditions = getMultilineInput(`${target}Tag`, {
@@ -29922,9 +29918,7 @@ async function run() {
         debug(debugMessage);
         continue;
       }
-      info(
-        `Found ${amountOfProjectsWithTarget.length} projects that match the required conditions`
-      );
+      info(`Found ${amountOfProjectsWithTarget.length} projects that match the required conditions`);
       let maxJobCount = 1;
       for (let i = maxJobs; i > 0; i--) {
         if (amountOfProjectsWithTarget.length / i >= 2) {
@@ -29948,13 +29942,9 @@ async function run() {
     }
     startGroup("Plan created");
     info("\n");
-    info(
-      `Created following plan:
-${JSON.stringify(matrixInclude, null, 2)}`
-    );
-    setOutput("matrix", {
-      include: matrixInclude
-    });
+    info(`Created following plan:
+${JSON.stringify(matrixInclude, null, 2)}`);
+    setOutput("matrix", { include: matrixInclude });
     setOutput("hasPlan", matrixInclude.length > 0);
   } catch (err) {
     setFailed(err);
