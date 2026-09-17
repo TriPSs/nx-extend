@@ -1,0 +1,25 @@
+packages/gcp-storage/src/executors/upload/upload.impl.ts
+  h_b13471b77746e9 43
+  s_aca013b2cf2594::t_2af443a5103d9d 3
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "fcc907b1cf7771e2aafb29de78361b51d5cdc268",
+  "prompts": {},
+  "humans": {
+    "h_b13471b77746e9": {
+      "author": "Tycho Bokdam <tycho@palmtreecoding.com>"
+    }
+  },
+  "sessions": {
+    "s_aca013b2cf2594": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0ae95-272d-7473-bc5a-6cfdbb95773d",
+        "model": "unknown"
+      },
+      "human_author": "Tycho Bokdam <tycho@palmtreecoding.com>"
+    }
+  }
+}
