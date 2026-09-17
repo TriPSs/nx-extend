@@ -36058,25 +36058,21 @@ async function run() {
     debug(`Pre targets ${JSON.stringify(preTargets, null, 2)}`);
     debug(`Post targets ${JSON.stringify(postTargets, null, 2)}`);
     if (tagConditions.length > 0) {
-      info(
-        `Running all projects with one of the following tags "${tagConditions.join(", ")}"`
-      );
+      info(`Running all projects with one of the following tags "${tagConditions.join(", ")}"`);
     }
     const cwd = (0, import_path6.resolve)(process.cwd(), workingDirectory);
-    const projectsNamesToRun = JSON.parse(
-      execCommand(
-        buildCommand([
-          "npx nx show projects --json",
-          affectedOnly && "--affected",
-          `-t ${target}`
-        ]),
-        {
-          asString: true,
-          silent: !(isDebug() || argv.verbose),
-          cwd
-        }
-      )
-    );
+    const projectsNamesToRun = JSON.parse(execCommand(
+      buildCommand([
+        "npx nx show projects --json",
+        affectedOnly && "--affected",
+        `-t ${target}`
+      ]),
+      {
+        asString: true,
+        silent: !(isDebug() || argv.verbose),
+        cwd
+      }
+    ));
     if (!affectedOnly) {
       debug(JSON.stringify(projectsNamesToRun));
     }
