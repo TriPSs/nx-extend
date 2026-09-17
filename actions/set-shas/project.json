@@ -8,15 +8,16 @@
       "executor": "nx:run-commands",
       "options": {
         "commands": [
-          "npx ncc build ./actions/set-shas/src/set-shas.ts --out ./actions/set-shas/dist"
-        ]
+          "rm -rf ./actions/set-shas/dist",
+          "npx esbuild ./actions/set-shas/src/set-shas.ts --bundle --platform=node --target=node24 --format=cjs --outfile=./actions/set-shas/dist/index.js",
+          "cp ./node_modules/shelljs/src/exec-child.js ./actions/set-shas/dist/exec-child.js"
+        ],
+        "parallel": false
       }
     },
     "publish": {
       "executor": "nx:run-commands",
-      "dependsOn": [
-        "compile"
-      ],
+      "dependsOn": ["compile"],
       "options": {
         "commands": [
           "git add ./actions/set-shas/dist -f || true",

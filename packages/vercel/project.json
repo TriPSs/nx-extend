@@ -11,13 +11,6 @@
         "lintFilePatterns": ["packages/vercel/**/*.ts"]
       }
     },
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/packages/vercel"],
-      "options": {
-        "jestConfig": "packages/vercel/jest.config.ts"
-      }
-    },
     "build": {
       "executor": "@nx/js:tsc",
       "outputs": ["{options.outputPath}"],

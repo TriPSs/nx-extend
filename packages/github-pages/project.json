@@ -46,13 +46,6 @@
         "lintFilePatterns": ["packages/github-pages/**/*.ts"]
       }
     },
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/packages/github-pages"],
-      "options": {
-        "jestConfig": "packages/github-pages/jest.config.ts"
-      }
-    },
     "version": {
       "executor": "@jscutlery/semver:version",
       "options": {}

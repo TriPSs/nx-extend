@@ -11,13 +11,6 @@
         "lintFilePatterns": ["packages/changelog-notify/**/*.ts"]
       }
     },
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/packages/changelog-notify"],
-      "options": {
-        "jestConfig": "packages/changelog-notify/jest.config.ts"
-      }
-    },
     "build": {
       "executor": "@nx/js:tsc",
       "outputs": ["{options.outputPath}"],

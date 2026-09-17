@@ -11,13 +11,6 @@
         "lintFilePatterns": ["packages/translations/**/*.ts"]
       }
     },
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/packages/translations"],
-      "options": {
-        "jestConfig": "packages/translations/jest.config.ts"
-      }
-    },
     "build": {
       "executor": "@nx/js:tsc",
       "outputs": ["{options.outputPath}"],

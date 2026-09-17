@@ -1,6 +1,6 @@
 import { logger } from '@nx/devkit'
 import axios, { AxiosInstance } from 'axios'
-import * as FormData from 'form-data'
+import FormData = require('form-data')
 
 import { BaseConfigFile, updateConfigFile } from '../utils/config-file'
 import BaseProvider from './base.provider'

@@ -3,17 +3,15 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
   "sourceRoot": "e2e/docusaurus-e2e/src",
-  "tags": ["ci=off"],
+  "tags": [],
   "implicitDependencies": ["docusaurus"],
   "targets": {
     "e2e": {
-      "executor": "@nx/jest:jest",
+      "dependsOn": ["docusaurus:build"],
       "options": {
-        "jestConfig": "e2e/docusaurus-e2e/jest.config.ts",
-        "runInBand": true,
-        "passWithNoTests": false
-      },
-      "dependsOn": ["docusaurus:build"]
+        "passWithNoTests": false,
+        "runInBand": true
+      }
     }
   }
 }
