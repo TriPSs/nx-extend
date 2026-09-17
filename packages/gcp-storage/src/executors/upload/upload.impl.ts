@@ -1,7 +1,6 @@
 import { ExecutorContext, logger } from '@nx/devkit'
 import { buildCommand, execCommand } from '@nx-extend/core'
-import { join, resolve } from 'path'
-import { workspaceRoot } from 'nx/src/utils/workspace-root'
+import { join } from 'path'
 
 export interface UploadExecutorSchema {
   bucket: string
@@ -41,7 +40,7 @@ export async function uploadExecutor(
       'gsutil rsync -R',
       gzip && `-z "${gzipExtensions}"`,
 
-      resolve(workspaceRoot, directoryToUpload),
+      directoryToUpload,
       uploadTo
     ]))
 
