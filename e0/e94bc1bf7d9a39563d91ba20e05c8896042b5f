@@ -1,0 +1,30 @@
+e2e/gcp-secrets-e2e/project.json
+  h_b13471b77746e9 10,12-14
+e2e/gcp-deployment-manager-e2e/project.json
+  h_b13471b77746e9 10,12-14
+e2e/translations-e2e/project.json
+  h_b13471b77746e9 10,12-14
+e2e/shadcn-ui-e2e/project.json
+  h_b13471b77746e9 10,12-14
+e2e/react-email-e2e/project.json
+  h_b13471b77746e9 10,12-14
+e2e/strapi-e2e/project.json
+  h_b13471b77746e9 10,12-14
+e2e/gcp-functions-e2e/project.json
+  h_b13471b77746e9 10,12-14
+e2e/docusaurus-e2e/project.json
+  h_b13471b77746e9 10,12-14
+nx.json
+  h_b13471b77746e9 57-104
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "e0e94bc1bf7d9a39563d91ba20e05c8896042b5f",
+  "prompts": {},
+  "humans": {
+    "h_b13471b77746e9": {
+      "author": "Tycho Bokdam <tycho@palmtreecoding.com>"
+    }
+  }
+}
