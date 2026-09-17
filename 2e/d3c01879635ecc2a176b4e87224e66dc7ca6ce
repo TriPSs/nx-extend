@@ -1,0 +1,24 @@
+actions/plan/src/utils/__tests__/has-one-of-required-tags.spec.ts
+  s_aca013b2cf2594::t_a97c2fb4e44135 1-4
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "2ed3c01879635ecc2a176b4e87224e66dc7ca6ce",
+  "prompts": {},
+  "humans": {
+    "h_b13471b77746e9": {
+      "author": "Tycho Bokdam <tycho@palmtreecoding.com>"
+    }
+  },
+  "sessions": {
+    "s_aca013b2cf2594": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0ae95-272d-7473-bc5a-6cfdbb95773d",
+        "model": "unknown"
+      },
+      "human_author": "Tycho Bokdam <tycho@palmtreecoding.com>"
+    }
+  }
+}
