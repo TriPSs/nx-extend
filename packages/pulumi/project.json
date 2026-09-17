@@ -11,13 +11,6 @@
         "lintFilePatterns": ["packages/pulumi/**/*.ts"]
       }
     },
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/packages/pulumi"],
-      "options": {
-        "jestConfig": "packages/pulumi/jest.config.ts"
-      }
-    },
     "build": {
       "executor": "@nx/js:tsc",
       "outputs": ["{options.outputPath}"],

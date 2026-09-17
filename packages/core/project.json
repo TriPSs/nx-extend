@@ -11,13 +11,6 @@
         "lintFilePatterns": ["packages/core/**/*.ts"]
       }
     },
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/packages/core"],
-      "options": {
-        "jestConfig": "packages/core/jest.config.ts"
-      }
-    },
     "build": {
       "executor": "@nx/js:tsc",
       "outputs": ["{options.outputPath}"],

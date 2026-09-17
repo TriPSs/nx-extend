@@ -7,13 +7,11 @@
   "implicitDependencies": ["gcp-functions"],
   "targets": {
     "e2e": {
-      "executor": "@nx/jest:jest",
+      "dependsOn": ["gcp-functions:build"],
       "options": {
-        "jestConfig": "e2e/gcp-functions-e2e/jest.config.ts",
-        "runInBand": true,
-        "passWithNoTests": false
-      },
-      "dependsOn": ["gcp-functions:build"]
+        "passWithNoTests": false,
+        "runInBand": true
+      }
     }
   }
 }

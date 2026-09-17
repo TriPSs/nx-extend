@@ -24,13 +24,6 @@
         ],
         "parallel": false
       }
-    },
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/actions/plan"],
-      "options": {
-        "jestConfig": "actions/plan/jest.config.ts"
-      }
     }
   }
 }

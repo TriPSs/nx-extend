@@ -46,13 +46,6 @@
         "lintFilePatterns": ["packages/gcp-task-runner/**/*.ts"]
       }
     },
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/packages/gcp-task-runner"],
-      "options": {
-        "jestConfig": "packages/gcp-task-runner/jest.config.ts"
-      }
-    },
     "version": {
       "executor": "@jscutlery/semver:version",
       "options": {}

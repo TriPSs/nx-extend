@@ -11,13 +11,6 @@
         "lintFilePatterns": ["packages/react-email/**/*.ts"]
       }
     },
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/packages/react-email"],
-      "options": {
-        "jestConfig": "packages/react-email/jest.config.ts"
-      }
-    },
     "build": {
       "executor": "@nx/js:tsc",
       "outputs": ["{options.outputPath}"],

@@ -11,13 +11,6 @@
         "lintFilePatterns": ["packages/strapi/**/*.ts"]
       }
     },
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/packages/strapi"],
-      "options": {
-        "jestConfig": "packages/strapi/jest.config.ts"
-      }
-    },
     "build": {
       "executor": "@nx/js:tsc",
       "outputs": ["{options.outputPath}"],

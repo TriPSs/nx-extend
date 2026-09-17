@@ -11,13 +11,6 @@
         "lintFilePatterns": ["packages/shadcn-ui/**/*.ts"]
       }
     },
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/packages/shadcn-ui"],
-      "options": {
-        "jestConfig": "packages/shadcn-ui/jest.config.ts"
-      }
-    },
     "build": {
       "executor": "@nx/js:tsc",
       "outputs": ["{options.outputPath}"],
