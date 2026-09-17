@@ -1,4 +1,5 @@
 import { detectPackageManager, ExecutorContext, getPackageManagerCommand, workspaceRoot } from '@nx/devkit'
+import { USE_VERBOSE_LOGGING } from '@nx-extend/core'
 import { execFile } from 'node:child_process'
 import { existsSync } from 'node:fs'
 import { join } from 'node:path'
@@ -51,7 +52,8 @@ export async function buildExecutor(
     ...packageManager.slice(1),
     'strapi',
     'build',
-    ...(options.production ? ['--minify'] : [])
+    ...(options.production ? ['--minify'] : []),
+    ...(USE_VERBOSE_LOGGING ? ['--debug'] : []),
   ], {
     cwd: strapiRoot,
     env: process.env

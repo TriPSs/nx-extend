@@ -1,5 +1,6 @@
 import { ExecutorContext } from '@nx/devkit'
 import { buildCommand, execPackageManagerCommand } from '@nx-extend/core'
+import { resolve } from 'node:path'
 
 import 'dotenv/config'
 
@@ -19,6 +20,7 @@ export async function serveExecutor(
   context: ExecutorContext
 ): Promise<{ success: boolean }> {
   const { root } = context.projectsConfigurations.projects[context.projectName]
+  const strapiRoot = resolve(options.root || root)
 
   const {
     build = true,
@@ -29,12 +31,11 @@ export async function serveExecutor(
 
   return execPackageManagerCommand(buildCommand([
     'strapi develop',
-    '--ignore-prompts',
     !build && '--no-build',
-    watchAdmin && '--watch-admin',
+    !watchAdmin && '--no-watch-admin',
     browser && `--browser=${browser}`
   ]), {
-    cwd: options.root || root,
+    cwd: strapiRoot,
     env: {
       ...process.env,
       ...envVars
