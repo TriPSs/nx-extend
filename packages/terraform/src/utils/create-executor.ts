@@ -54,6 +54,35 @@ export function createExecutor(command: string) {
     const defaultSourceRoot = projectConfig?.sourceRoot
     const targetDirectory = options.root ?? projectTerraformRoot ?? defaultSourceRoot
 
+    // Establish the absolute workspace root reliably
+    const workspaceRoot = context.root
+    // Combine path token expansion and backward-compatible resolution
+    const resolveAndExpandPath = (pathStr: string | undefined): string | undefined => {
+      if (!pathStr) return pathStr
+      // Grab project relative root, default to empty string if missing
+      const projRelativeRoot = projectConfig?.root || ''
+      // Turn it into an absolute project path
+      const absoluteProjectRoot = path.resolve(workspaceRoot, projRelativeRoot)
+      // Global replace using regex to avoid single-instance string.replace bugs
+      const expanded = pathStr
+        .replace(/\{workspaceRoot\}/g, workspaceRoot)
+        .replace(/\{projectRoot\}/g, absoluteProjectRoot)
+      // If workspaceRoot token was used, resolve relative to workspaceRoot
+      if (pathStr.includes('{workspaceRoot}')) {
+        return expanded
+      }
+      // If projectRoot token was used, it's already expanded
+      if (pathStr.includes('{projectRoot}')) {
+        return expanded
+      }
+      // For paths without tokens: return if absolute, otherwise resolve to projectRoot
+      if (path.isAbsolute(expanded)) {
+        return expanded
+      }
+      return path.resolve(absoluteProjectRoot, expanded)
+    }
+
+
     const {
       backendConfig = [],
       planFile,
@@ -82,16 +111,18 @@ export function createExecutor(command: string) {
     }
 
     if (cacheEnabled && cacheDir) {
-      const resolvedCacheDir = path.isAbsolute(cacheDir)
-        ? cacheDir
-        : path.resolve(targetDirectory || '.', cacheDir)
-      mkdirSync(resolvedCacheDir, { recursive: true })
-      env.TF_PLUGIN_CACHE_DIR = resolvedCacheDir
+      const resolvedCacheDir = resolveAndExpandPath(cacheDir)
+      if (resolvedCacheDir) {
+        mkdirSync(resolvedCacheDir, { recursive: true })
+        env.TF_PLUGIN_CACHE_DIR = resolvedCacheDir
+      }
     }
 
-    let resolvedMirrorDir = mirrorDir
+    let resolvedMirrorDir = mirrorDir ? resolveAndExpandPath(mirrorDir) : undefined
     if (mirror && !resolvedMirrorDir) {
-      resolvedMirrorDir = path.resolve(targetDirectory || '.', '.terraform', 'providers')
+      const projRelativeRoot = projectConfig?.root || ''
+      const absoluteProjectRoot = path.resolve(workspaceRoot, projRelativeRoot)
+      resolvedMirrorDir = path.resolve(absoluteProjectRoot, '.terraform', 'providers')
     }
 
     const workspaceArgs: string[] = []
