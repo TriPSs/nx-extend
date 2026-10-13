@@ -22,7 +22,6 @@ node_modules
 *.launch
 .settings/
 *.sublime-workspace
-.air/plans
 
 # IDE - VSCode
 .vscode/*
@@ -54,3 +53,4 @@ Thumbs.db
 .claude/worktrees
 .nx/polygraph
 .nx/self-healing
+.nx/migrate-runs

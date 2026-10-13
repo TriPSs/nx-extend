@@ -142,8 +142,8 @@ export async function applicationGenerator(
   const installTask = addDependenciesToPackageJson(
     host,
     {
-      '@docusaurus/core': '3.4.0',
-      '@docusaurus/preset-classic': '3.4.0',
+      '@docusaurus/core': '3.10.2',
+      '@docusaurus/preset-classic': '3.10.2',
       '@mdx-js/react': '^3.0.0',
       'clsx': '^2.0.0',
       'prism-react-renderer': '^2.3.0',
@@ -151,10 +151,10 @@ export async function applicationGenerator(
       'react-dom': '^18.0.0'
     },
     {
-      '@docusaurus/module-type-aliases': '3.4.0',
-      '@docusaurus/tsconfig': '3.4.0',
-      '@docusaurus/types': '3.4.0',
-      'typescript': '~5.2.2'
+      '@docusaurus/module-type-aliases': '3.10.2',
+      '@docusaurus/tsconfig': '3.10.2',
+      '@docusaurus/types': '3.10.2',
+      'typescript': '~5.9.3'
     }
   )
   if (!normalizedOptions.skipFormat) {

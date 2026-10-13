@@ -1,5 +1,11 @@
-import { parseTargetString, readCachedProjectGraph, readJsonFile, workspaceRoot, writeJsonFile } from '@nx/devkit'
-import { targetToTargetString } from '@nx/devkit/src/executors/parse-target-string'
+import {
+  parseTargetString,
+  readCachedProjectGraph,
+  readJsonFile,
+  workspaceRoot,
+  writeJsonFile,
+  targetToTargetString
+} from '@nx/devkit'
 import {
   buildCommand,
   copyFile,
@@ -35,7 +41,8 @@ export function buildExecutor(
   context: ExecutorContext
 ): Promise<{ success: boolean }> {
   const framework = options.framework || 'nextjs'
-  let buildTarget = options.buildTarget || (framework === 'nextjs' ? 'build-next' : 'build')
+  let buildTarget =
+    options.buildTarget || (framework === 'nextjs' ? 'build-next' : 'build')
 
   if (!buildTarget.includes(':')) {
     buildTarget = `${context.projectName}:${buildTarget}`
@@ -55,15 +62,23 @@ export function buildExecutor(
     throw new Error(`Invalid build target "${buildTarget}"!`)
   }
 
-  const outputDirectory = options.outputPath || getOutputDirectoryFromBuildTarget(context, buildTarget)
+  const outputDirectory =
+    options.outputPath ||
+    getOutputDirectoryFromBuildTarget(context, buildTarget)
   if (!outputDirectory) {
     throw new Error(`"${buildTarget}" target has no "outputPath" configured!`)
   }
 
-  const { root: projectRoot } = context.projectsConfigurations.projects[context.projectName]
+  const { root: projectRoot } =
+    context.projectsConfigurations.projects[context.projectName]
 
   // Create repo.json, used for deployments to Vercel
-  createRepoJson(options.orgId, options.projectId, context.projectName, projectRoot)
+  createRepoJson(
+    options.orgId,
+    options.projectId,
+    context.projectName,
+    projectRoot
+  )
 
   // First, make sure the .vercel/project.json exists
   const vercelDirectory = '.vercel'
@@ -74,9 +89,11 @@ export function buildExecutor(
     settings: {}
   })
 
-  const vercelEnvironment = (context.configurationName === 'production' || options.deployment === 'production')
-    ? 'production'
-    : 'preview'
+  const vercelEnvironment =
+    context.configurationName === 'production' ||
+    options.deployment === 'production'
+      ? 'production'
+      : 'preview'
 
   const vercelEnvFile = `.env.${vercelEnvironment}.local`
   const vercelEnvFileLocation = join(projectRoot, vercelDirectory)
@@ -106,17 +123,20 @@ export function buildExecutor(
   })
 
   const projectVercelDirectory = `${projectRoot}/${vercelDirectory}`
-  const { success } = execCommand(buildCommand([
-    `${VERCEL_COMMAND} build`,
-    `--output ${projectVercelDirectory}/output`,
-    vercelEnvironment === 'production' && '--prod',
-    options.config && `--local-config=${join(workspaceRoot, options.config)}`,
-    VERCEL_TOKEN && `--token=${VERCEL_TOKEN}`,
+  const { success } = execCommand(
+    buildCommand([
+      `${VERCEL_COMMAND} build`,
+      `--output ${projectVercelDirectory}/output`,
+      vercelEnvironment === 'production' && '--prod',
+      options.config && `--local-config=${join(workspaceRoot, options.config)}`,
+      VERCEL_TOKEN && `--token=${VERCEL_TOKEN}`,
 
-    USE_VERBOSE_LOGGING && '--debug'
-  ]), {
-    cwd: projectRoot
-  })
+      USE_VERBOSE_LOGGING && '--debug'
+    ]),
+    {
+      cwd: projectRoot
+    }
+  )
 
   if (success) {
     // Write the project.json to the .vercel directory
@@ -125,17 +145,9 @@ export function buildExecutor(
       readJsonFile(vercelProjectJson)
     )
     // Also copy over the env files
-    copyFile(
-      vercelEnvFileLocation,
-      projectVercelDirectory,
-      vercelEnvFile
-    )
+    copyFile(vercelEnvFileLocation, projectVercelDirectory, vercelEnvFile)
     // Also copy the .vercelignore
-    copyFile(
-      context.root,
-      projectVercelDirectory,
-      '.vercelignore'
-    )
+    copyFile(context.root, projectVercelDirectory, '.vercelignore')
   }
 
   return Promise.resolve({ success })

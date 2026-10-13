@@ -1,8 +1,8 @@
 import { ExecutorContext } from '@nx/devkit'
 import { execFileSync } from 'child_process'
-import { which } from 'shelljs'
-import * as path from 'path'
 import { mkdirSync } from 'fs'
+import * as path from 'path'
+import { which } from 'shelljs'
 
 export interface ExecutorOptions {
   root?: string // Local target options override
@@ -46,14 +46,42 @@ export function createExecutor(command: string) {
     const terraformRootValue = projectConfig && 'terraformRoot' in projectConfig
       ? (projectConfig as Record<string, unknown>).terraformRoot
       : undefined
+
     const projectTerraformRoot = typeof terraformRootValue === 'string'
       ? terraformRootValue
       : undefined
-    const defaultSourceRoot = projectConfig?.sourceRoot
 
-    const targetDirectory = options.root ??
-                projectTerraformRoot ??
-                defaultSourceRoot
+    const defaultSourceRoot = projectConfig?.sourceRoot
+    const targetDirectory = options.root ?? projectTerraformRoot ?? defaultSourceRoot
+
+    // Establish the absolute workspace root reliably
+    const workspaceRoot = context.root
+    // Combine path token expansion and backward-compatible resolution
+    const resolveAndExpandPath = (pathStr: string | undefined): string | undefined => {
+      if (!pathStr) return pathStr
+      // Grab project relative root, default to empty string if missing
+      const projRelativeRoot = projectConfig?.root || ''
+      // Turn it into an absolute project path
+      const absoluteProjectRoot = path.resolve(workspaceRoot, projRelativeRoot)
+      // Global replace using regex to avoid single-instance string.replace bugs
+      const expanded = pathStr
+        .replace(/\{workspaceRoot\}/g, workspaceRoot)
+        .replace(/\{projectRoot\}/g, absoluteProjectRoot)
+      // If workspaceRoot token was used, resolve relative to workspaceRoot
+      if (pathStr.includes('{workspaceRoot}')) {
+        return expanded
+      }
+      // If projectRoot token was used, it's already expanded
+      if (pathStr.includes('{projectRoot}')) {
+        return expanded
+      }
+      // For paths without tokens: return if absolute, otherwise resolve to projectRoot
+      if (path.isAbsolute(expanded)) {
+        return expanded
+      }
+      return path.resolve(absoluteProjectRoot, expanded)
+    }
+
 
     const {
       backendConfig = [],
@@ -83,26 +111,32 @@ export function createExecutor(command: string) {
     }
 
     if (cacheEnabled && cacheDir) {
-      const resolvedCacheDir = path.isAbsolute(cacheDir) ? cacheDir : path.resolve(targetDirectory || '.', cacheDir)
-      mkdirSync(resolvedCacheDir, { recursive: true })
-      env.TF_PLUGIN_CACHE_DIR = resolvedCacheDir
+      const resolvedCacheDir = resolveAndExpandPath(cacheDir)
+      if (resolvedCacheDir) {
+        mkdirSync(resolvedCacheDir, { recursive: true })
+        env.TF_PLUGIN_CACHE_DIR = resolvedCacheDir
+      }
     }
 
-    let resolvedMirrorDir = mirrorDir
+    let resolvedMirrorDir = mirrorDir ? resolveAndExpandPath(mirrorDir) : undefined
     if (mirror && !resolvedMirrorDir) {
-      resolvedMirrorDir = path.resolve(targetDirectory || '.', '.terraform', 'providers')
+      const projRelativeRoot = projectConfig?.root || ''
+      const absoluteProjectRoot = path.resolve(workspaceRoot, projRelativeRoot)
+      resolvedMirrorDir = path.resolve(absoluteProjectRoot, '.terraform', 'providers')
     }
 
-    let workspaceArgs: string[] = [];
+    const workspaceArgs: string[] = []
 
     if (command === 'workspace') {
       if (workspaceAction === 'list') {
-        workspaceArgs.push(workspaceAction);
+        workspaceArgs.push(workspaceAction)
+
       } else {
         if (!workspace) {
-          throw new Error('Workspace name is required for workspace command, select, new or delete');
+          throw new Error('Workspace name is required for workspace command, select, new or delete')
         }
-        workspaceArgs.push(workspaceAction, workspace);
+
+        workspaceArgs.push(workspaceAction, workspace)
       }
     }
 
@@ -119,36 +153,30 @@ export function createExecutor(command: string) {
     if (command === 'providers' && lock && mirror) {
       const lockArgs = ['providers', 'lock']
       if (cacheEnabled) lockArgs.push('-enable-plugin-cache')
-      platforms.forEach(p => lockArgs.push(`-platform=${p}`))
+      platforms.forEach((p) => lockArgs.push(`-platform=${p}`))
 
-      execFileSync(
-        'terraform',
-        lockArgs,
-        {
-          cwd: targetDirectory,
-          stdio: 'inherit',
-          env: execEnv
-        }
-      )
+      execFileSync('terraform', lockArgs, {
+        cwd: targetDirectory,
+        stdio: 'inherit',
+        env: execEnv
+      })
 
       const mirrorArgs = ['providers', 'mirror']
-      platforms.forEach(p => mirrorArgs.push(`-platform=${p}`))
+      platforms.forEach((p) => mirrorArgs.push(`-platform=${p}`))
       if (resolvedMirrorDir) mirrorArgs.push(resolvedMirrorDir)
 
-      execFileSync(
-        'terraform',
-        mirrorArgs,
-        {
-          cwd: targetDirectory,
-          stdio: 'inherit',
-          env: execEnv
-        }
-      )
+      execFileSync('terraform', mirrorArgs, {
+        cwd: targetDirectory,
+        stdio: 'inherit',
+        env: execEnv
+      })
     } else {
       const args: string[] = [command, ...workspaceArgs]
 
       if (command === 'init') {
-        jsonBackendConfig.forEach(config => args.push(`-backend-config=${config.key}=${config.name}`))
+        jsonBackendConfig.forEach((config) =>
+          args.push(`-backend-config=${config.key}=${config.name}`)
+        )
         if (upgrade) args.push('-upgrade')
         if (migrateState) args.push('-migrate-state')
         if (reconfigure) args.push('-reconfigure')
@@ -185,11 +213,11 @@ export function createExecutor(command: string) {
         if (lock) {
           args.push('lock')
           if (cacheEnabled) args.push('-enable-plugin-cache')
-          platforms.forEach(p => args.push(`-platform=${p}`))
+          platforms.forEach((p) => args.push(`-platform=${p}`))
         }
         if (mirror) {
           args.push('mirror')
-          platforms.forEach(p => args.push(`-platform=${p}`))
+          platforms.forEach((p) => args.push(`-platform=${p}`))
           if (resolvedMirrorDir) args.push(resolvedMirrorDir)
         }
       }
@@ -199,15 +227,11 @@ export function createExecutor(command: string) {
         if (varString) args.push('-var', varString)
       }
 
-      execFileSync(
-        'terraform',
-        args,
-        {
-          cwd: targetDirectory,
-          stdio: 'inherit',
-          env: execEnv
-        }
-      )
+      execFileSync('terraform', args, {
+        cwd: targetDirectory,
+        stdio: 'inherit',
+        env: execEnv
+      })
     }
 
     return Promise.resolve({ success: true })

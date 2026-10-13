@@ -7,13 +7,11 @@
   "implicitDependencies": ["react-email"],
   "targets": {
     "e2e": {
-      "executor": "@nx/jest:jest",
+      "dependsOn": ["react-email:build"],
       "options": {
-        "jestConfig": "e2e/react-email-e2e/jest.config.ts",
-        "runInBand": true,
-        "passWithNoTests": false
-      },
-      "dependsOn": ["react-email:build"]
+        "passWithNoTests": false,
+        "runInBand": true
+      }
     }
   }
 }

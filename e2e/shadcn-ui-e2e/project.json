@@ -7,13 +7,11 @@
   "implicitDependencies": ["shadcn-ui"],
   "targets": {
     "e2e": {
-      "executor": "@nx/jest:jest",
+      "dependsOn": ["shadcn-ui:build"],
       "options": {
-        "jestConfig": "e2e/shadcn-ui-e2e/jest.config.ts",
-        "runInBand": true,
-        "passWithNoTests": false
-      },
-      "dependsOn": ["shadcn-ui:build"]
+        "passWithNoTests": false,
+        "runInBand": true
+      }
     }
   }
 }

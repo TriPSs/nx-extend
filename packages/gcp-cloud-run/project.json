@@ -11,13 +11,6 @@
         "lintFilePatterns": ["packages/gcp-cloud-run/**/*.ts"]
       }
     },
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/packages/gcp-cloud-run"],
-      "options": {
-        "jestConfig": "packages/gcp-cloud-run/jest.config.ts"
-      }
-    },
     "build": {
       "executor": "@nx/js:tsc",
       "outputs": ["{options.outputPath}"],

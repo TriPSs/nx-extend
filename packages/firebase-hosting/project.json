@@ -11,13 +11,6 @@
         "lintFilePatterns": ["packages/firebase-hosting/**/*.ts"]
       }
     },
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/packages/firebase-hosting"],
-      "options": {
-        "jestConfig": "packages/firebase-hosting/jest.config.ts"
-      }
-    },
     "build": {
       "executor": "@nx/js:tsc",
       "outputs": ["{options.outputPath}"],

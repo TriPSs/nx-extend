@@ -14,13 +14,6 @@
         ]
       }
     },
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/packages/gcp-functions"],
-      "options": {
-        "jestConfig": "packages/gcp-functions/jest.config.ts"
-      }
-    },
     "build": {
       "executor": "@nx/js:tsc",
       "outputs": ["{options.outputPath}"],

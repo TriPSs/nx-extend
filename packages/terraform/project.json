@@ -11,13 +11,6 @@
         "lintFilePatterns": ["packages/terraform/**/*.ts"]
       }
     },
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/packages/terraform"],
-      "options": {
-        "jestConfig": "packages/terraform/jest.config.ts"
-      }
-    },
     "build": {
       "executor": "@nx/js:tsc",
       "outputs": ["{options.outputPath}"],

@@ -1,7 +1,7 @@
 {
   "root": true,
   "ignorePatterns": ["**/*"],
-  "plugins": ["@nx", "simple-import-sort"],
+  "plugins": ["@nx", "@stylistic", "simple-import-sort"],
   "overrides": [
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
@@ -31,16 +31,16 @@
       "files": ["*.ts", "*.tsx"],
       "extends": ["plugin:@nx/typescript"],
       "rules": {
-        "@typescript-eslint/no-extra-semi": "error",
-        "no-extra-semi": "off"
+        "no-extra-semi": "off",
+        "@stylistic/no-extra-semi": "error"
       }
     },
     {
       "files": ["*.js", "*.jsx"],
       "extends": ["plugin:@nx/javascript"],
       "rules": {
-        "@typescript-eslint/no-extra-semi": "error",
-        "no-extra-semi": "off"
+        "no-extra-semi": "off",
+        "@stylistic/no-extra-semi": "error"
       }
     }
   ]

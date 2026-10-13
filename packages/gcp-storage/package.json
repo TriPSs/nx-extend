@@ -1,6 +1,6 @@
 {
   "name": "@nx-extend/gcp-storage",
-  "version": "11.1.2",
+  "version": "12.0.0",
   "keywords": [
     "nx",
     "google cloud platform",
@@ -20,7 +20,7 @@
   "license": "MIT",
   "main": "src/index.js",
   "peerDependencies": {
-    "@nx/devkit": "^22.0.0"
+    "@nx/devkit": "^23.0.0"
   },
   "builders": "./executors.json",
   "generators": "./generators.json"

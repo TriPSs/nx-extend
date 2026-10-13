@@ -7,13 +7,11 @@
   "implicitDependencies": ["strapi"],
   "targets": {
     "e2e": {
-      "executor": "@nx/jest:jest",
+      "dependsOn": ["strapi:build"],
       "options": {
-        "jestConfig": "e2e/strapi-e2e/jest.config.ts",
-        "runInBand": true,
-        "passWithNoTests": false
-      },
-      "dependsOn": ["strapi:build"]
+        "passWithNoTests": false,
+        "runInBand": true
+      }
     }
   }
 }

@@ -1,4 +1,25 @@
  
+## [11.0.0](https://github.com/tripss/nx-extend/compare/terraform@10.4.1...terraform@11.0.0) (2026-09-17)
+
+### Dependency Updates
+
+* `core` updated to version `11.0.0`
+
+### ⚠ BREAKING CHANGES
+
+* Drop support for Nx v22
+* Upgraded Nx to v23
+
+### Features
+
+* Upgrade `[@nx](https://github.com/nx)` and related packages to 23.1.1 ([1b2f25e](https://github.com/tripss/nx-extend/commit/1b2f25e004d37daca932c55ddcaccec890a8f9bd))
+* Upgrade `@nx/devkit` peerDependency to version ^23.0.0 ([e7279b3](https://github.com/tripss/nx-extend/commit/e7279b38e9974f37b27efdf4fe86d171f921443f))
+
+### Bug Fixes
+
+* **config:** Align Nx 23 compatibility settings ([b8fd632](https://github.com/tripss/nx-extend/commit/b8fd63225bfb6becfc3417fd74f37da7e597ba1e))
+* **terraform:** fix argument passing for execFileSync compatibility ([9f3a852](https://github.com/tripss/nx-extend/commit/9f3a8525b3836023090128cbaa0af99b800b2ed7))
+
 ## [10.4.1](https://github.com/tripss/nx-extend/compare/terraform@10.4.0...terraform@10.4.1) (2026-08-05)
 
 

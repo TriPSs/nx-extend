@@ -1,6 +1,6 @@
 import { logger } from '@nx/devkit'
 import axios, { AxiosInstance } from 'axios'
-import * as deepmerge from 'deepmerge'
+import deepmerge = require('deepmerge')
 
 import { BaseConfigFile } from '../utils/config-file'
 import BaseProvider from './base.provider'

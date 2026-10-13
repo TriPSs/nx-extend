@@ -7,13 +7,11 @@
   "implicitDependencies": ["gcp-deployment-manager"],
   "targets": {
     "e2e": {
-      "executor": "@nx/jest:jest",
+      "dependsOn": ["gcp-deployment-manager:build"],
       "options": {
-        "jestConfig": "e2e/gcp-deployment-manager-e2e/jest.config.ts",
-        "runInBand": true,
-        "passWithNoTests": false
-      },
-      "dependsOn": ["gcp-deployment-manager:build"]
+        "passWithNoTests": false,
+        "runInBand": true
+      }
     }
   }
 }

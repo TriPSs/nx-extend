@@ -11,13 +11,6 @@
         "lintFilePatterns": ["packages/playwright/**/*.ts"]
       }
     },
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/packages/playwright"],
-      "options": {
-        "jestConfig": "packages/playwright/jest.config.ts"
-      }
-    },
     "build": {
       "executor": "@nx/js:tsc",
       "outputs": ["{options.outputPath}"],

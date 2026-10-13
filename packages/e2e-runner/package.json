@@ -1,6 +1,6 @@
 {
   "name": "@nx-extend/e2e-runner",
-  "version": "13.1.2",
+  "version": "14.0.0",
   "homepage": "https://github.com/tripss/nx-extend/blob/master/packages/e2e-runner/README.md",
   "bugs": {
     "url": "https://github.com/tripss/nx-extend/issues"
@@ -12,7 +12,7 @@
   "license": "MIT",
   "main": "src/index.js",
   "peerDependencies": {
-    "@nx/devkit": "^22.0.0"
+    "@nx/devkit": "^23.0.0"
   },
   "executors": "./executors.json",
   "generators": "./generators.json",

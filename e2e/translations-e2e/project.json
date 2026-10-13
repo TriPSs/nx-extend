@@ -7,13 +7,11 @@
   "implicitDependencies": ["translations"],
   "targets": {
     "e2e": {
-      "executor": "@nx/jest:jest",
+      "dependsOn": ["translations:build"],
       "options": {
-        "jestConfig": "e2e/translations-e2e/jest.config.ts",
-        "runInBand": true,
-        "passWithNoTests": false
-      },
-      "dependsOn": ["translations:build"]
+        "passWithNoTests": false,
+        "runInBand": true
+      }
     }
   }
 }

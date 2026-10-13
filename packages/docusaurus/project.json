@@ -11,13 +11,6 @@
         "lintFilePatterns": ["packages/docusaurus/**/*.ts"]
       }
     },
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/packages/docusaurus"],
-      "options": {
-        "jestConfig": "packages/docusaurus/jest.config.ts"
-      }
-    },
     "build": {
       "executor": "@nx/js:tsc",
       "outputs": ["{options.outputPath}"],

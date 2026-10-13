@@ -33,16 +33,25 @@
         "changelogHeader": " "
       }
     },
-    "@nx/jest:jest": {
-      "cache": true,
-      "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"],
+    "test": {
       "options": {
         "passWithNoTests": true
       },
       "configurations": {
         "ci": {
           "ci": true,
-          "codeCoverage": true
+          "coverage": true
+        }
+      }
+    },
+    "e2e": {
+      "options": {
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "coverage": true
         }
       }
     }
@@ -54,5 +63,52 @@
   },
   "parallel": 1,
   "defaultBase": "master",
-  "analytics": false
+  "analytics": false,
+  "plugins": [
+    {
+      "plugin": "@nx/jest/plugin",
+      "options": {
+        "targetName": "test"
+      },
+      "include": [
+        "actions/plan/**/*",
+        "packages/changelog-notify/**/*",
+        "packages/core/**/*",
+        "packages/docusaurus/**/*",
+        "packages/e2e-runner/**/*",
+        "packages/firebase-hosting/**/*",
+        "packages/gcp-cloud-run/**/*",
+        "packages/gcp-deployment-manager/**/*",
+        "packages/gcp-functions/**/*",
+        "packages/gcp-secrets/**/*",
+        "packages/gcp-storage/**/*",
+        "packages/gcp-task-runner/**/*",
+        "packages/github-pages/**/*",
+        "packages/playwright/**/*",
+        "packages/pulumi/**/*",
+        "packages/react-email/**/*",
+        "packages/shadcn-ui/**/*",
+        "packages/strapi/**/*",
+        "packages/terraform/**/*",
+        "packages/translations/**/*",
+        "packages/vercel/**/*"
+      ]
+    },
+    {
+      "plugin": "@nx/jest/plugin",
+      "options": {
+        "targetName": "e2e"
+      },
+      "include": [
+        "e2e/docusaurus-e2e/**/*",
+        "e2e/gcp-deployment-manager-e2e/**/*",
+        "e2e/gcp-functions-e2e/**/*",
+        "e2e/gcp-secrets-e2e/**/*",
+        "e2e/react-email-e2e/**/*",
+        "e2e/shadcn-ui-e2e/**/*",
+        "e2e/strapi-e2e/**/*",
+        "e2e/translations-e2e/**/*"
+      ]
+    }
+  ]
 }

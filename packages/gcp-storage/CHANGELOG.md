@@ -1,4 +1,27 @@
  
+## [12.0.0](https://github.com/tripss/nx-extend/compare/gcp-storage@11.1.2...gcp-storage@12.0.0) (2026-09-17)
+
+### Dependency Updates
+
+* `core` updated to version `11.0.0`
+
+### ⚠ BREAKING CHANGES
+
+* Drop support for Nx v22
+* Upgraded Nx to v23
+
+### Features
+
+* Upgrade `[@nx](https://github.com/nx)` and related packages to 23.1.1 ([1b2f25e](https://github.com/tripss/nx-extend/commit/1b2f25e004d37daca932c55ddcaccec890a8f9bd))
+* Upgrade `@nx/devkit` peerDependency to version ^23.0.0 ([e7279b3](https://github.com/tripss/nx-extend/commit/e7279b38e9974f37b27efdf4fe86d171f921443f))
+
+### Bug Fixes
+
+* **config:** Align Nx 23 compatibility settings ([b8fd632](https://github.com/tripss/nx-extend/commit/b8fd63225bfb6becfc3417fd74f37da7e597ba1e))
+* **gcp-storage:** Preserve project-relative upload paths ([fcc907b](https://github.com/tripss/nx-extend/commit/fcc907b1cf7771e2aafb29de78361b51d5cdc268))
+* **gcp-storage:** Resolve upload paths relative to workspace root ([27aa1c1](https://github.com/tripss/nx-extend/commit/27aa1c181ddd3bbe657ae0bc3c5725ffb7442e7e))
+* **gcp-storage:** Resolve upload paths with `workspaceRoot` to ensure consistency ([875a530](https://github.com/tripss/nx-extend/commit/875a53048a8fa9b7c834567456eb20a40f30063f))
+
 ## [11.1.2](https://github.com/tripss/nx-extend/compare/gcp-storage@11.1.1...gcp-storage@11.1.2) (2026-08-03)
 
 ### Dependency Updates

@@ -11,13 +11,6 @@
         "lintFilePatterns": ["packages/gcp-deployment-manager/**/*.ts"]
       }
     },
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/packages/gcp-deployment-manager"],
-      "options": {
-        "jestConfig": "packages/gcp-deployment-manager/jest.config.ts"
-      }
-    },
     "build": {
       "executor": "@nx/js:tsc",
       "outputs": ["{options.outputPath}"],
