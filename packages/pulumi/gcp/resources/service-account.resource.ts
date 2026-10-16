@@ -83,12 +83,16 @@ export class ServiceAccountResource extends BaseResource {
     return this
   }
 
-  /** Grants queue enqueue access and invocation access only to the listed workers. */
-  public addTaskQueueAccess(queue: QueueResource, services: readonly string[]): this {
+  /** Grants queue enqueue access and invocation access to the listed workers in the given location. */
+  public addTaskQueueAccess(
+    queue: QueueResource,
+    services: readonly string[],
+    location: string = GCP_DEFAULT_REGION
+  ): this {
     queue.addEnqueuer(this.member)
 
     for (const service of services) {
-      this.addCloudRunRole({ service, location: GCP_DEFAULT_REGION }, iamRoles.run.invoker)
+      this.addCloudRunRole({ service, location }, iamRoles.run.invoker)
     }
 
     return this
