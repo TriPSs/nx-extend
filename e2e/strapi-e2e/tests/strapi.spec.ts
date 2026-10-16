@@ -22,7 +22,8 @@ describe('(e2e) strapi', () => {
     )).not.toThrow()
 
     const packageJson = readJsonFile(join(tmpProjPath(), appName, 'package.json'))
-    expect(packageJson.dependencies['@strapi/strapi']).toMatch('5.52.1')
+    const pluginPackageJson = readJsonFile(join(__dirname, '../../../packages/strapi/package.json'))
+    expect(packageJson.dependencies['@strapi/strapi']).toBe(pluginPackageJson.dependencies['create-strapi'])
 
     // The generator deliberately skips installs; install the generated application
     // separately so the build exercises the project's local Strapi 5 CLI.
@@ -33,7 +34,11 @@ describe('(e2e) strapi', () => {
 
     execSync('yarn install', {
       cwd: join(tmpProjPath(), appName),
-      stdio: 'inherit'
+      stdio: 'inherit',
+      env: {
+        ...process.env,
+        YARN_ENABLE_IMMUTABLE_INSTALLS: 'false'
+      }
     })
   })
 
