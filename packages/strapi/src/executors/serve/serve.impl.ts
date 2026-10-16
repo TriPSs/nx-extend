@@ -20,7 +20,7 @@ export async function serveExecutor(
   context: ExecutorContext
 ): Promise<{ success: boolean }> {
   const { root } = context.projectsConfigurations.projects[context.projectName]
-  const strapiRoot = resolve(options.root || root)
+  const strapiRoot = resolve(context.root, options.root || root)
 
   const {
     build = true,
