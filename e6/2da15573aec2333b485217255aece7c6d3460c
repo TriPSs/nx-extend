@@ -1,0 +1,24 @@
+yarn.lock
+  s_0567d9485461eb::t_02ec94a3edf978 358,583,1736,1784,3101,3130,3619,4536,6387,8180,8203,8210,8270,8735,9594,9863,10083,12035,12139,15745,16214,19027,20365,20448,20477,20642,21432,21446,23167,23203,23353,24604,24664
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "e62da15573aec2333b485217255aece7c6d3460c",
+  "prompts": {},
+  "humans": {
+    "h_b13471b77746e9": {
+      "author": "Tycho Bokdam <tycho@palmtreecoding.com>"
+    }
+  },
+  "sessions": {
+    "s_0567d9485461eb": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a144fa-4ff5-7f53-820d-d9290c1906ee",
+        "model": "unknown"
+      },
+      "human_author": "Tycho Bokdam <tycho@palmtreecoding.com>"
+    }
+  }
+}
