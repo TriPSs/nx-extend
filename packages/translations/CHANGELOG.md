@@ -1,4 +1,10 @@
  
+## [18.0.1](https://github.com/tripss/nx-extend/compare/translations@18.0.0...translations@18.0.1) (2026-10-16)
+
+### Dependency Updates
+
+* `core` updated to version `11.0.1`
+
 ## [18.0.0](https://github.com/tripss/nx-extend/compare/translations@17.2.6...translations@18.0.0) (2026-09-17)
 
 ### Dependency Updates
