@@ -1,4 +1,20 @@
  
+## [13.1.0](https://github.com/tripss/nx-extend/compare/pulumi@13.0.0...pulumi@13.1.0) (2026-10-16)
+
+### Dependency Updates
+
+* `core` updated to version `11.0.1`
+
+### Features
+
+* Add task queue access helper for service accounts ([011da89](https://github.com/tripss/nx-extend/commit/011da89a913c9058d89b8f3194388b5bdfe231ec))
+
+### Bug Fixes
+
+* Add missing Google Cloud IAM roles ([c0e3bd8](https://github.com/tripss/nx-extend/commit/c0e3bd8c153a59e14cd3b490de4457096754cc1a))
+* **pulumi:** Allow an explicit task worker location ([b53f878](https://github.com/tripss/nx-extend/commit/b53f878a47b051508453e7e595a3225cbecb9253))
+* Resolve workspace lint and build errors ([ad98141](https://github.com/tripss/nx-extend/commit/ad98141f35d3f433ebfa3c696f2a79f4a6b4af3d))
+
 ## [13.0.0](https://github.com/tripss/nx-extend/compare/pulumi@12.0.5...pulumi@13.0.0) (2026-09-17)
 
 ### Dependency Updates
