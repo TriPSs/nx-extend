@@ -1,0 +1,27 @@
+packages/strapi/src/executors/serve/serve.impl.ts
+  s_be6326ca03df2d::t_e9d04547242dc7 23
+packages/strapi/src/executors/serve/serve.impl.spec.ts
+  s_be6326ca03df2d::t_a7c41b062f1b93 14,16-19,27
+  s_be6326ca03df2d::t_e9d04547242dc7 1-13,15,20-26,28-49
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "3012f4ab53bca6eeeec88a1b143542dbd5e7e7c3",
+  "prompts": {},
+  "humans": {
+    "h_b13471b77746e9": {
+      "author": "Tycho Bokdam <tycho@palmtreecoding.com>"
+    }
+  },
+  "sessions": {
+    "s_be6326ca03df2d": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a144f8-09bf-7703-9ae0-0a4f27b200f7",
+        "model": "gpt-6-astra"
+      },
+      "human_author": "Tycho Bokdam <tycho@palmtreecoding.com>"
+    }
+  }
+}
