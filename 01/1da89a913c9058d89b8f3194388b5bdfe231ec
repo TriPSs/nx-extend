@@ -1,0 +1,15 @@
+packages/pulumi/gcp/resources/service-account.resource.ts
+  h_b13471b77746e9 4-7,86-92
+  h_b13471b77746e9 93-96
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "011da89a913c9058d89b8f3194388b5bdfe231ec",
+  "prompts": {},
+  "humans": {
+    "h_b13471b77746e9": {
+      "author": "Tycho Bokdam <tycho@palmtreecoding.com>"
+    }
+  }
+}
