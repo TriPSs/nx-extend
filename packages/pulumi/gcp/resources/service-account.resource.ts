@@ -1,7 +1,10 @@
 import * as gcp from '@pulumi/gcp'
 import * as pulumi from '@pulumi/pulumi'
 
-import { GCP_PROJECT_ID } from '../config'
+import type { QueueResource } from './queue.resource'
+
+import { GCP_DEFAULT_REGION, GCP_PROJECT_ID } from '../config'
+import { iamRoles } from '../iam-roles'
 import { buildName, getFriendlyRoleName } from '../naming'
 import { BaseResource } from './base.resource'
 
@@ -76,6 +79,17 @@ export class ServiceAccountResource extends BaseResource {
       parent: this.account,
       protect: false
     })
+
+    return this
+  }
+
+  /** Grants queue enqueue access and invocation access only to the listed workers. */
+  public addTaskQueueAccess(queue: QueueResource, services: readonly string[]): this {
+    queue.addEnqueuer(this.member)
+
+    for (const service of services) {
+      this.addCloudRunRole({ service, location: GCP_DEFAULT_REGION }, iamRoles.run.invoker)
+    }
 
     return this
   }
