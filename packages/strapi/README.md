@@ -28,12 +28,13 @@ nx g @nx-extend/strapi:init
 ```
 
 The generator creates the application without installing its dependencies or
-starting a server. Install dependencies from the generated application's
-directory before running its Nx targets:
+starting a server. From the workspace root, install dependencies in the generated
+project root (the `root` in its project configuration, typically
+`apps/<project-name>`). Use a subshell so subsequent Nx commands still run from
+the workspace root:
 
 ```sh
-cd <project-name>
-yarn install
+(cd apps/<project-name> && yarn install)
 ```
 
 ## Usage
