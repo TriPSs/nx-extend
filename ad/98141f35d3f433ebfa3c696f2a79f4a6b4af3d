@@ -1,0 +1,43 @@
+packages/gcp-functions/runner/index.ts
+  h_b13471b77746e9 8
+tsconfig.base.json
+  s_be6326ca03df2d::t_114f649cc05d73 13
+packages/gcp-task-runner/src/gcp-cache.ts
+  s_be6326ca03df2d::t_114f649cc05d73 108,120,134,147
+packages/changelog-notify/src/executors/slack/notify-slack.impl.ts
+  s_be6326ca03df2d::t_114f649cc05d73 30
+packages/pulumi/gcp/github.ts
+  h_b13471b77746e9 4
+  h_b13471b77746e9 5
+packages/e2e-runner/src/executors/run/utils/nx-target.ts
+  s_be6326ca03df2d::t_114f649cc05d73 79
+packages/gcp-functions/src/utils/validate-resources.spec.ts
+  h_b13471b77746e9 2
+packages/gcp-secrets/src/utils/encryption.ts
+  h_b13471b77746e9 2
+packages/gcp-storage/src/executors/upload/upload.impl.ts
+  h_b13471b77746e9 4
+packages/vercel/src/executors/build/build.impl.ts
+  h_b13471b77746e9 5,7
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "ad98141f35d3f433ebfa3c696f2a79f4a6b4af3d",
+  "prompts": {},
+  "humans": {
+    "h_b13471b77746e9": {
+      "author": "Tycho Bokdam <tycho@palmtreecoding.com>"
+    }
+  },
+  "sessions": {
+    "s_be6326ca03df2d": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a144f8-09bf-7703-9ae0-0a4f27b200f7",
+        "model": "gpt-6-astra"
+      },
+      "human_author": "Tycho Bokdam <tycho@palmtreecoding.com>"
+    }
+  }
+}
