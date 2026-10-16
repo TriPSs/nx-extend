@@ -1,4 +1,10 @@
  
+## [7.0.1](https://github.com/tripss/nx-extend/compare/shadcn-ui@7.0.0...shadcn-ui@7.0.1) (2026-10-16)
+
+### Dependency Updates
+
+* `core` updated to version `11.0.1`
+
 ## [7.0.0](https://github.com/tripss/nx-extend/compare/shadcn-ui@6.2.5...shadcn-ui@7.0.0) (2026-09-17)
 
 ### Dependency Updates
