@@ -1,4 +1,19 @@
  
+## [15.1.0](https://github.com/tripss/nx-extend/compare/strapi@15.0.0...strapi@15.1.0) (2026-10-16)
+
+### Dependency Updates
+
+* `core` updated to version `11.0.1`
+
+### Features
+
+* **strapi:** Add `resolve` usage and support for verbose logging in build and serve executors ([b951401](https://github.com/tripss/nx-extend/commit/b9514014e1212c71acfe326515630db7ea497a0d))
+* **strapi:** Upgrade to v5.52.1 ([00e2465](https://github.com/tripss/nx-extend/commit/00e2465533d35d359813d17d651cd74845bc30b3))
+
+### Bug Fixes
+
+* **strapi:** Resolve serve paths from the workspace root ([3012f4a](https://github.com/tripss/nx-extend/commit/3012f4ab53bca6eeeec88a1b143542dbd5e7e7c3))
+
 ## [15.0.0](https://github.com/tripss/nx-extend/compare/strapi@14.2.2...strapi@15.0.0) (2026-09-17)
 
 ### Dependency Updates
