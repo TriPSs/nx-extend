@@ -10,7 +10,8 @@
         "commands": [
           "rm -rf ./actions/run-many/dist",
           "npx esbuild ./actions/run-many/src/run-many.ts --bundle --platform=node --target=node24 --format=cjs --outfile=./actions/run-many/dist/index.js",
-          "cp ./node_modules/shelljs/src/exec-child.js ./actions/run-many/dist/exec-child.js"
+          "cp ./node_modules/shelljs/src/exec-child.js ./actions/run-many/dist/exec-child.js",
+          "node ./actions/run-many/dist/index.js --help"
         ],
         "parallel": false
       }

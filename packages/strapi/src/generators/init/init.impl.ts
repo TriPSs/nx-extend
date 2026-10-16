@@ -1,65 +1,37 @@
 import {
-  addDependenciesToPackageJson,
   addProjectConfiguration,
   formatFiles,
-  generateFiles,
-  names,
-  offsetFromRoot, runTasksInSerial,
-  Tree, workspaceRoot
+  Tree,
+  workspaceRoot
 } from '@nx/devkit'
 import { NormalizedSchema, normalizeOptions } from '@nx-extend/core'
-import generateNew from '@strapi/generate-new/dist/generate-new'
-import hasYarn from '@strapi/generate-new/dist/utils/has-yarn'
-import machineID from '@strapi/generate-new/dist/utils/machine-id'
-import * as crypto from 'crypto'
-import * as path from 'path'
+import { execFile } from 'node:child_process'
+import { promisify } from 'node:util'
 
 import type { StrapiGeneratorSchema } from './schema'
 
-// Base off https://github.com/strapi/strapi/blob/main/packages/generators/app/src/index.ts#L19
-function generateStrapi(options: NormalizedSchema) {
-  return generateNew({
-    rootPath: options.projectRoot,
-    name: options.projectName,
-    // disable quickstart run app after creation
-    runQuickstartApp: false,
-    strapiVersion: '4.26.1',
-    debug: false,
-    quick: true,
-    packageJsonStrapi: {
-      template: undefined,
-      starter: undefined
-    },
-    uuid: (process.env.STRAPI_UUID_PREFIX || '') + crypto.randomUUID(),
-    docker: process.env.DOCKER === 'true',
-    deviceId: machineID(),
-    tmpPath: path.resolve(workspaceRoot, 'tmp', options.projectName),
-    // use yarn if available and --use-npm isn't true
-    useYarn: hasYarn(),
-    installDependencies: false,
-    strapiDependencies: [
-      '@strapi/strapi',
-      '@strapi/plugin-users-permissions',
-      '@strapi/plugin-i18n'
-    ],
-    additionalsDependencies: {},
-    useTypescript: true
-  })
-}
+const run = promisify(execFile)
 
-function addFiles(host: Tree, options: NormalizedSchema) {
-  generateFiles(host, path.join(__dirname, 'files'), options.projectRoot, {
-    ...options,
-    ...names(options.name),
-    offsetFromRoot: offsetFromRoot(options.projectRoot),
-    template: ''
+async function generateStrapi(options: NormalizedSchema) {
+  const cli = require.resolve('create-strapi/bin/index.js')
+
+  await run(process.execPath, [
+    cli,
+    options.projectRoot,
+    '--quickstart',
+    '--no-run',
+    '--ts',
+    '--no-install',
+    '--skip-cloud',
+    '--non-interactive',
+    '--no-git-init'
+  ], {
+    cwd: workspaceRoot
   })
 }
 
 export default async function (host: Tree, options: StrapiGeneratorSchema) {
   const normalizedOptions = normalizeOptions(host, options)
-
-  // TODO:: Remove scripts we do not support from package.json
 
   addProjectConfiguration(host, normalizedOptions.projectName, {
     root: normalizedOptions.projectRoot,
@@ -89,19 +61,5 @@ export default async function (host: Tree, options: StrapiGeneratorSchema) {
 
   await generateStrapi(normalizedOptions)
 
-  addFiles(host, normalizedOptions)
   await formatFiles(host)
-
-  return runTasksInSerial(
-    addDependenciesToPackageJson(
-      host,
-      {
-        react: '^18.0.0',
-        'react-dom': '^18.0.0',
-        'react-router-dom': '5.3.4',
-        'styled-components': '5.3.3'
-      },
-      {}
-    )
-  )
 }

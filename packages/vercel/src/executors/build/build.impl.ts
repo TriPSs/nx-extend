@@ -2,9 +2,9 @@ import {
   parseTargetString,
   readCachedProjectGraph,
   readJsonFile,
+  targetToTargetString,
   workspaceRoot,
-  writeJsonFile,
-  targetToTargetString
+  writeJsonFile
 } from '@nx/devkit'
 import {
   buildCommand,

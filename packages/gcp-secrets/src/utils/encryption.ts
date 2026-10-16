@@ -1,4 +1,5 @@
 import { AES, enc } from 'crypto-js'
+
 import { SecretFile } from './file'
 
 const {

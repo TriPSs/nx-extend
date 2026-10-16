@@ -1,6 +1,7 @@
-import { GCP_PROJECT_ID, iamRoles, ServiceAccountResource } from '@nx-extend/pulumi/gcp'
 import * as gcp from '@pulumi/gcp'
 import * as pulumi from '@pulumi/pulumi'
+
+import { GCP_PROJECT_ID, iamRoles, ServiceAccountResource } from './'
 
 /**
  * Creates a GitHub identity provider within a Google Cloud Platform workload identity pool, allowing specific repositories to authenticate via a service account.

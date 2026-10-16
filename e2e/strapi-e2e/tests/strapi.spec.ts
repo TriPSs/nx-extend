@@ -1,4 +1,7 @@
-import { checkFilesExist, rmDist } from '@nx/plugin/testing'
+import { readJsonFile } from '@nx/devkit'
+import { checkFilesExist, rmDist, tmpProjPath } from '@nx/plugin/testing'
+import { execSync } from 'node:child_process'
+import { join } from 'node:path'
 import { ensureNxProject } from '../../utils/workspace'
 import { runNxCommandAsync } from '../../utils/run-nx-command-async'
 
@@ -14,8 +17,29 @@ describe('(e2e) strapi', () => {
     await runNxCommandAsync(`generate @nx-extend/strapi:init ${appName}`)
 
     expect(() => checkFilesExist(
-      `${appName}/src/index.ts`
+      `${appName}/src/index.ts`,
+      `${appName}/config/admin.ts`
     )).not.toThrow()
+
+    const packageJson = readJsonFile(join(tmpProjPath(), appName, 'package.json'))
+    const pluginPackageJson = readJsonFile(join(__dirname, '../../../packages/strapi/package.json'))
+    expect(packageJson.dependencies['@strapi/strapi']).toBe(pluginPackageJson.dependencies['create-strapi'])
+
+    // The generator deliberately skips installs; install the generated application
+    // separately so the build exercises the project's local Strapi 5 CLI.
+    execSync('touch yarn.lock', {
+      cwd: join(tmpProjPath(), appName),
+      stdio: 'inherit'
+    })
+
+    execSync('yarn install', {
+      cwd: join(tmpProjPath(), appName),
+      stdio: 'inherit',
+      env: {
+        ...process.env,
+        YARN_ENABLE_IMMUTABLE_INSTALLS: 'false'
+      }
+    })
   })
 
   it('should be able to build', async () => {

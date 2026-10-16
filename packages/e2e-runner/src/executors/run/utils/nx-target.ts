@@ -76,7 +76,7 @@ export class NxTarget {
   }
 
   private async startProcess(): Promise<void> {
-    let processExitedReject = (error: Error) => {}
+    let processExitedReject: (error: Error) => void
 
     this.processExitedPromise = new Promise(
       (_, reject) => (processExitedReject = reject)

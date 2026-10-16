@@ -6,6 +6,9 @@
 
 **Nx plugin to generate and run your [Strapi](https://strapi.io/) project**.
 
+This plugin generates Strapi 5.52.1 applications. Strapi 5.52.1 requires a
+supported Node.js release; use Node.js 22 or later (Node.js 24 is recommended).
+
 ## Features
 
 - Generate Strapi applications in your Nx workspace
@@ -24,6 +27,16 @@ npm install -D @nx-extend/strapi
 nx g @nx-extend/strapi:init
 ```
 
+The generator creates the application without installing its dependencies or
+starting a server. From the workspace root, install dependencies in the generated
+project root (the `root` in its project configuration, typically
+`apps/<project-name>`). Use a subshell so subsequent Nx commands still run from
+the workspace root:
+
+```sh
+(cd apps/<project-name> && yarn install)
+```
+
 ## Usage
 
 ### Build
@@ -33,6 +46,11 @@ Build your Strapi application:
 ```sh
 nx build <project-name>
 ```
+
+The build runs Strapi 5's public `strapi build` command, then places the
+compiled server, Vite admin build, public assets, and a deployment
+`package.json` in the configured output directory. Its `start` script runs
+`strapi start`.
 
 #### Available Options
 
