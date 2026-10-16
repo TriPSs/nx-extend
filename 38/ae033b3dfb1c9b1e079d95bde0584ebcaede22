@@ -1,0 +1,28 @@
+package.json
+  s_be6326ca03df2d::t_665710d1a3af27 25
+actions/run-many/project.json
+  s_be6326ca03df2d::t_665710d1a3af27 13-14
+yarn.lock
+  s_be6326ca03df2d::t_12c86b72354055 9269,19093,23586
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "38ae033b3dfb1c9b1e079d95bde0584ebcaede22",
+  "prompts": {},
+  "humans": {
+    "h_b13471b77746e9": {
+      "author": "Tycho Bokdam <tycho@palmtreecoding.com>"
+    }
+  },
+  "sessions": {
+    "s_be6326ca03df2d": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a144f8-09bf-7703-9ae0-0a4f27b200f7",
+        "model": "gpt-6-astra"
+      },
+      "human_author": "Tycho Bokdam <tycho@palmtreecoding.com>"
+    }
+  }
+}
