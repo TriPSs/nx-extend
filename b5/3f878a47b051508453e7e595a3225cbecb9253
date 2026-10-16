@@ -1,0 +1,24 @@
+packages/pulumi/gcp/resources/service-account.resource.ts
+  s_3025e625268bfe::t_503ecc310514f2 86-91,95
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "b53f878a47b051508453e7e595a3225cbecb9253",
+  "prompts": {},
+  "humans": {
+    "h_b13471b77746e9": {
+      "author": "Tycho Bokdam <tycho@palmtreecoding.com>"
+    }
+  },
+  "sessions": {
+    "s_3025e625268bfe": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a14575-fe15-7a53-8962-276bac40c839",
+        "model": "gpt-6-astra"
+      },
+      "human_author": "Tycho Bokdam <tycho@palmtreecoding.com>"
+    }
+  }
+}
