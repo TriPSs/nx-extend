@@ -105,7 +105,7 @@ export class GcpCache {
       await this.bucket.upload(destination, { destination: file })
 
     } catch (err) {
-      throw new Error(`Storage Cache: Upload error - ${err}`)
+      throw new Error(`Storage Cache: Upload error - ${err}`, { cause: err })
     }
   }
 
@@ -117,7 +117,7 @@ export class GcpCache {
         })
 
     } catch (err) {
-      throw new Error(`Storage Cache: Upload file error - ${err}`)
+      throw new Error(`Storage Cache: Upload file error - ${err}`, { cause: err })
     }
   }
 
@@ -131,7 +131,7 @@ export class GcpCache {
     } catch (err) {
       this.logger.error(`Error creating tar file for has "${hash}"`, err)
 
-      throw new Error(`Error creating tar file - ${err}`)
+      throw new Error(`Error creating tar file - ${err}`, { cause: err })
     }
   }
 
@@ -144,7 +144,7 @@ export class GcpCache {
     } catch (err) {
       this.logger.error(`Error extracting tar file "${file.name}"`, err)
 
-      throw new Error(`\`Error extracting tar file "${file.name}" - ${err}`)
+      throw new Error(`\`Error extracting tar file "${file.name}" - ${err}`, { cause: err })
     }
   }
 

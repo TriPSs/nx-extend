@@ -1,5 +1,5 @@
-import { validateResources } from './validate-resources'
 import { Gen, ValidMemory } from '../types'
+import { validateResources } from './validate-resources'
 
 describe('validateResources', () => {
   it('should throw an error if memory is gen2 and gen is 1', () => {

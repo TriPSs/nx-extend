@@ -5,8 +5,8 @@ import { FsTree } from 'nx/src/generators/tree'
 import { getProjects } from 'nx/src/generators/utils/project-configuration'
 import { workspaceRoot } from 'nx/src/utils/workspace-root'
 
+import type { DeployExecutorSchema } from '../src/executors/deploy/deploy.impl'
 import type { HttpFunction } from '@google-cloud/functions-framework'
-import type { DeployExecutorSchema } from '@nx-extend/gcp-functions/src/executors/deploy/deploy.impl'
 
 import { createRunnerModule } from './__runner.module'
 

@@ -27,7 +27,7 @@ export function formatSection(options: NotifySlackOptions, section: Section) {
       type: 'section',
       text: {
         type: 'mrkdwn',
-        text: line.replace(/\[(.*?)\][\[\(].*?[\]\)]/g, '$1')
+        text: line.replace(/\[(.*?)\][[(].*?[\])]/g, '$1')
           .replace('* **', '*')
           .replace(':**', ':*')
       },
