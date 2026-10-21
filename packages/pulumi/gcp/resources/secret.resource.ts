@@ -14,6 +14,7 @@ const secretsConfig = new pulumi.Config('gcpR-secrets')
 export class SecretResource extends BaseResource {
 
   private readonly secret: gcp.secretmanager.Secret
+  private secretValue: pulumi.Input<string | object>
 
   constructor(
     private readonly secretName: string,
@@ -36,7 +37,25 @@ export class SecretResource extends BaseResource {
     })
   }
 
+  public setValue(value: string | object) {
+    this.secretValue = value
+
+    return this
+  }
+
   public create(isObject?: boolean) {
+    if (this.secretValue) {
+      new gcp.secretmanager.SecretVersion(buildName(this.secretName, 'secret-version'), {
+        secret: this.secret.id,
+        secretData: typeof this.secretValue === 'string' ? this.secretValue : JSON.stringify(this.secretValue)
+      }, {
+        parent: this.secret,
+        aliases: [{ parent: pulumi.rootStackResource }]
+      })
+
+      return
+    }
+
     const secret = isObject
       ? secretsConfig.requireSecretObject(this.secretName)
       : secretsConfig.requireSecret(this.secretName)
