@@ -1,0 +1,150 @@
+packages/vercel/README.md
+  s_9156a98958596d::t_0a93f58432cee7 18-19
+packages/pulumi/package.json
+  s_9156a98958596d::t_0a93f58432cee7 19
+packages/react-email/package.json
+  s_9156a98958596d::t_0a93f58432cee7 19
+packages/github-pages/README.md
+  s_9156a98958596d::t_0a93f58432cee7 18-19
+packages/gcp-storage/package.json
+  s_9156a98958596d::t_0a93f58432cee7 23
+packages/vercel/package.json
+  s_9156a98958596d::t_0a93f58432cee7 19
+packages/gcp-deployment-manager/README.md
+  s_9156a98958596d::t_0a93f58432cee7 18-19
+packages/e2e-runner/README.md
+  s_9156a98958596d::t_0a93f58432cee7 20-21
+packages/changelog-notify/package.json
+  s_9156a98958596d::t_0a93f58432cee7 20
+packages/gcp-functions/package.json
+  s_9156a98958596d::t_0a93f58432cee7 19
+packages/gcp-secrets/package.json
+  s_9156a98958596d::t_0a93f58432cee7 15
+packages/gcp-task-runner/README.md
+  s_9156a98958596d::t_0a93f58432cee7 18-19
+packages/react-email/README.md
+  s_9156a98958596d::t_0a93f58432cee7 19-20
+packages/shadcn-ui/package.json
+  s_9156a98958596d::t_0a93f58432cee7 26
+packages/firebase-hosting/package.json
+  s_9156a98958596d::t_0a93f58432cee7 15
+packages/core/package.json
+  s_9156a98958596d::t_0a93f58432cee7 7
+packages/strapi/README.md
+  s_9156a98958596d::t_0a93f58432cee7 23-24
+packages/terraform/package.json
+  s_9156a98958596d::t_0a93f58432cee7 22
+packages/strapi/package.json
+  s_9156a98958596d::t_0a93f58432cee7 22
+packages/core/README.md
+  s_9156a98958596d::t_0a93f58432cee7 14-17
+packages/gcp-cloud-run/README.md
+  s_9156a98958596d::t_0a93f58432cee7 20-21
+packages/terraform/README.md
+  s_9156a98958596d::t_0a93f58432cee7 23-24
+packages/gcp-functions/README.md
+  s_9156a98958596d::t_0a93f58432cee7 20-21,67,73-74
+  s_9156a98958596d::t_c66d1a9d1fc4ff 75
+packages/github-pages/package.json
+  s_9156a98958596d::t_0a93f58432cee7 6
+packages/shadcn-ui/README.md
+  s_9156a98958596d::t_0a93f58432cee7 19-20
+packages/gcp-secrets/README.md
+  s_9156a98958596d::t_0a93f58432cee7 19-20
+packages/docusaurus/README.md
+  s_9156a98958596d::t_0a93f58432cee7 23-24
+packages/firebase-hosting/README.md
+  s_9156a98958596d::t_0a93f58432cee7 18-19
+packages/gcp-storage/README.md
+  s_9156a98958596d::t_0a93f58432cee7 18-19
+packages/gcp-task-runner/package.json
+  s_9156a98958596d::t_0a93f58432cee7 9
+packages/translations/README.md
+  s_9156a98958596d::t_0a93f58432cee7 20-21
+packages/gcp-deployment-manager/package.json
+  s_9156a98958596d::t_0a93f58432cee7 15
+packages/playwright/README.md
+  s_9156a98958596d::t_0a93f58432cee7 20-21
+packages/gcp-cloud-run/package.json
+  s_9156a98958596d::t_0a93f58432cee7 15
+packages/e2e-runner/package.json
+  s_9156a98958596d::t_0a93f58432cee7 15
+packages/playwright/package.json
+  s_9156a98958596d::t_0a93f58432cee7 19
+packages/translations/package.json
+  s_9156a98958596d::t_0a93f58432cee7 28
+packages/changelog-notify/README.md
+  s_9156a98958596d::t_0a93f58432cee7 18-19
+packages/docusaurus/package.json
+  s_9156a98958596d::t_0a93f58432cee7 30
+packages/pulumi/README.md
+  s_9156a98958596d::t_0a93f58432cee7 20-21
+packages/changelog-notify/project.json
+  s_9156a98958596d::t_99f1b92775f787 9,11
+packages/core/project.json
+  s_9156a98958596d::t_f8df66cea854a3 9,11
+packages/docusaurus/project.json
+  s_9156a98958596d::t_9bd363994c40a5 9,11
+packages/e2e-runner/project.json
+  s_9156a98958596d::t_70aa983e662d16 9,12
+packages/firebase-hosting/project.json
+  s_9156a98958596d::t_70da7e3f907235 9,11
+packages/gcp-cloud-run/project.json
+  s_9156a98958596d::t_2103415ab28263 9,11
+packages/gcp-deployment-manager/project.json
+  s_9156a98958596d::t_38121da7c704da 9,11
+packages/gcp-functions/project.json
+  s_9156a98958596d::t_298e0a2ebc2122 9,11
+packages/gcp-functions/src/executors/build/build.impl.ts
+  s_9156a98958596d::t_f17fbf474ce0d8 1-4,8,17,21,23-25,29-40,42-49,52-80
+packages/gcp-functions/src/executors/build/webpack.config.js
+  s_9156a98958596d::t_187df4857a43ef 1-2
+packages/gcp-functions/src/generators/init-runner/files-runner/webpack.config.js.template
+  s_9156a98958596d::t_4af2f4acd2916a 1,3-6
+packages/gcp-functions/src/generators/init-runner/init.impl.ts
+  s_9156a98958596d::t_6b176647d1e494 70,73
+packages/gcp-functions/src/generators/init/init.impl.ts
+  s_9156a98958596d::t_b1a0c2a366e72d 72-73,76,78
+packages/gcp-secrets/project.json
+  s_9156a98958596d::t_474eba6e5ec758 9,11
+packages/gcp-storage/project.json
+  s_9156a98958596d::t_cc631a632a6266 9,11
+packages/gcp-task-runner/project.json
+  s_9156a98958596d::t_075977449c65b4 43,46
+packages/github-pages/project.json
+  s_9156a98958596d::t_dc7baf5fd05a9f 43,46
+packages/playwright/project.json
+  s_9156a98958596d::t_8c66ad2d6c8f47 9,11
+packages/pulumi/project.json
+  s_9156a98958596d::t_d43522d2553af2 9,11
+packages/react-email/project.json
+  s_9156a98958596d::t_d39e56bfaa54db 9,11
+packages/shadcn-ui/project.json
+  s_9156a98958596d::t_0f27cf85201603 9,11
+packages/strapi/project.json
+  s_9156a98958596d::t_278950db416d3e 9,11
+packages/terraform/project.json
+  s_9156a98958596d::t_91d4819c744b0b 9,11
+packages/translations/project.json
+  s_9156a98958596d::t_87c02980e07b79 9,11
+packages/vercel/project.json
+  s_9156a98958596d::t_55f2f30e9e88cb 9,11
+yarn.lock
+  s_9156a98958596d::t_bf7779d418250c 4899,4907,4925,4937,4945,4953,4961,4973,4981,4989,4999,5008,5016,5026,5038,5053,5063,5074,5084,5092
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "ae5039671680a50bb387caf980248c698e2a5533",
+  "prompts": {},
+  "sessions": {
+    "s_9156a98958596d": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a14587-653c-7fb1-8230-94e2a659014e",
+        "model": "gpt-6-astra"
+      },
+      "human_author": "Tycho Bokdam <tycho@palmtreecoding.com>"
+    }
+  }
+}
