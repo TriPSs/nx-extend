@@ -1,0 +1,19 @@
+nx.json
+  s_9156a98958596d::t_66c032f29714d9 114-117
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "6ee651cdc342d817ee87e2e0e01a6e7694bc51ef",
+  "prompts": {},
+  "sessions": {
+    "s_9156a98958596d": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a14587-653c-7fb1-8230-94e2a659014e",
+        "model": "unknown"
+      },
+      "human_author": "Tycho Bokdam <tycho@palmtreecoding.com>"
+    }
+  }
+}
