@@ -1,0 +1,18 @@
+package.json
+  h_b13471b77746e9 44-45
+packages/pulumi/package.json
+  h_b13471b77746e9 23
+yarn.lock
+  h_b13471b77746e9 5024,6332-6334,6338,6342-6344,6379,17737-17738
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "a91cfca6e5d4375bae5f68721b7903f8f0d00754",
+  "prompts": {},
+  "humans": {
+    "h_b13471b77746e9": {
+      "author": "Tycho Bokdam <tycho@palmtreecoding.com>"
+    }
+  }
+}
