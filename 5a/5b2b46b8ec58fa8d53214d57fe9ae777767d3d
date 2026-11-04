@@ -1,0 +1,16 @@
+package.json
+  h_b13471b77746e9 19
+yarn.lock
+  h_b13471b77746e9 8784-8786,8792,17767
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "5a5b2b46b8ec58fa8d53214d57fe9ae777767d3d",
+  "prompts": {},
+  "humans": {
+    "h_b13471b77746e9": {
+      "author": "Tycho Bokdam <tycho@palmtreecoding.com>"
+    }
+  }
+}
