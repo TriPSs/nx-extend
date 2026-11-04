@@ -5046,7 +5046,7 @@ __metadata:
   dependencies:
     class-variance-authority: "npm:^0.7.1"
     clsx: "npm:^2.1.1"
-    lucide-react: "npm:^1.56.0"
+    lucide-react: "npm:^1.66.0"
     tailwind-merge: "npm:^3.7.0"
     tailwindcss-animate: "npm:^1.0.7"
   peerDependencies:
@@ -15971,16 +15971,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lucide-react@npm:^1.56.0":
-  version: 1.57.0
-  resolution: "lucide-react@npm:1.57.0"
+"lucide-react@npm:^1.66.0":
+  version: 1.66.0
+  resolution: "lucide-react@npm:1.66.0"
   peerDependencies:
     "@types/react": "*"
     react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
   peerDependenciesMeta:
     "@types/react":
       optional: true
-  checksum: 10/7730842c349d93f97888e786083e3fee0d5fab39a524d978c22e9f39beee7632a9e4227c4113a5754ae7bd95adf2ac763ad8604a4e33c08c9ea81961314fc16a
+  checksum: 10/8a206ce8c529ed67f74850dd36dd490622ab86bb929cda44cb67d6e1bf20e233854cfdeb2a9ebe190471739364553db2692ad40b850c90d4b5a18d816f23b194
   languageName: node
   linkType: hard
 
