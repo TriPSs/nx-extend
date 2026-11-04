@@ -5021,7 +5021,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nx-extend/pulumi@workspace:packages/pulumi"
   dependencies:
-    "@pulumi/gcp": "npm:^10.1.0"
+    "@pulumi/gcp": "npm:^10.2.0"
   peerDependencies:
     "@nx/devkit": ^23.0.0
     "@pulumi/pulumi": ^3.142.0
@@ -6329,19 +6329,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@pulumi/gcp@npm:^10.1.0":
-  version: 10.1.1
-  resolution: "@pulumi/gcp@npm:10.1.1"
+"@pulumi/gcp@npm:^10.2.0":
+  version: 10.2.0
+  resolution: "@pulumi/gcp@npm:10.2.0"
   dependencies:
     "@pulumi/pulumi": "npm:^3.142.0"
     "@types/express": "npm:^4.16.0"
-  checksum: 10/9639a909a2bf3c19de9699df7adc12641885c4316b12ea45494a4e8ded8b9b757f43f70ed3272aa20a4b05e22d3822e8a6383b6ca8c63695b32bd6017120c5c5
+  checksum: 10/cf14e6fd0c3ef6f191e07dd28a0132252f93e4478db93397fb800b27fae9a762b77fae8d9477b5f9185d5b466fb663b8b9f7324d93d9e013db102b3db9c32f90
   languageName: node
   linkType: hard
 
-"@pulumi/pulumi@npm:^3.142.0, @pulumi/pulumi@npm:^3.268.0":
-  version: 3.268.0
-  resolution: "@pulumi/pulumi@npm:3.268.0"
+"@pulumi/pulumi@npm:^3.142.0, @pulumi/pulumi@npm:^3.273.0":
+  version: 3.273.0
+  resolution: "@pulumi/pulumi@npm:3.273.0"
   dependencies:
     "@grpc/grpc-js": "npm:^1.10.1"
     "@logdna/tail-file": "npm:^2.0.6"
@@ -6376,7 +6376,7 @@ __metadata:
       optional: true
     typescript:
       optional: true
-  checksum: 10/7a3ffdf36af8bb3da837475a53cdcf3ee3d4a8c3a00c5a40508595f8d189abaa50392eea731676f83c5b0f91bf5310cb4331b0bde220ed83696ff41c96906b06
+  checksum: 10/08efbba467ee55f7eaa137bb1678fbcf0f56141c085288a8e006934d7e66941662a048255fb91bfa4b5a3652050863e3df2c41b68cdad78e5d08a6ac6b67ded4
   languageName: node
   linkType: hard
 
@@ -17734,8 +17734,8 @@ __metadata:
     "@nx/react": "npm:23.3.0"
     "@nx/webpack": "npm:23.3.0"
     "@nx/workspace": "npm:23.3.0"
-    "@pulumi/gcp": "npm:^10.1.0"
-    "@pulumi/pulumi": "npm:^3.268.0"
+    "@pulumi/gcp": "npm:^10.2.0"
+    "@pulumi/pulumi": "npm:^3.273.0"
     "@stylistic/eslint-plugin": "npm:^5.10.0"
     "@types/jest": "npm:30.0.0"
     "@types/node": "npm:26.6.5"
