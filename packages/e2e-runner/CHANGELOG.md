@@ -1,4 +1,15 @@
  
+## [14.1.0](https://github.com/tripss/nx-extend/compare/e2e-runner@14.0.1...e2e-runner@14.1.0) (2026-11-04)
+
+### Dependency Updates
+
+* `playwright` updated to version `13.1.0`
+* `core` updated to version `11.1.0`
+
+### Features
+
+* **e2e-runner:** Bump minor version to 14.1.0 ([924991e](https://github.com/tripss/nx-extend/commit/924991e9d0a2b22c594cd6800481724d8cec9215))
+
 ## [14.0.1](https://github.com/tripss/nx-extend/compare/e2e-runner@14.0.0...e2e-runner@14.0.1) (2026-10-16)
 
 ### Dependency Updates
