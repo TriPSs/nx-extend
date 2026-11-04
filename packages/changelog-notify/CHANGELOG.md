@@ -1,4 +1,10 @@
  
+## [11.1.0](https://github.com/tripss/nx-extend/compare/changelog-notify@11.0.1...changelog-notify@11.1.0) (2026-11-04)
+
+### Features
+
+* **changelog-notify:** Bump minor version to 11.1.0 ([f5a0fde](https://github.com/tripss/nx-extend/commit/f5a0fde5e45eb491aac785db4de73586eee623be))
+
 ## [11.0.1](https://github.com/tripss/nx-extend/compare/changelog-notify@11.0.0...changelog-notify@11.0.1) (2026-10-16)
 
 ### Bug Fixes
