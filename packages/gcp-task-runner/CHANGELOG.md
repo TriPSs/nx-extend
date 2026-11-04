@@ -1,4 +1,10 @@
  
+## [11.1.0](https://github.com/TriPSs/nx-extend/compare/gcp-task-runner@11.0.1...gcp-task-runner@11.1.0) (2026-11-04)
+
+### Features
+
+* **gcp-task-runner:** Bump minor version to 11.1.0 ([06f0823](https://github.com/TriPSs/nx-extend/commit/06f08236c60fedd8a22fb4bdc66cca1c050adf52))
+
 ## [11.0.1](https://github.com/TriPSs/nx-extend/compare/gcp-task-runner@11.0.0...gcp-task-runner@11.0.1) (2026-10-16)
 
 ### Bug Fixes
