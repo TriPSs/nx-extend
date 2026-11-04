@@ -1,4 +1,10 @@
  
+## [11.1.0](https://github.com/TriPSs/nx-extend/compare/core@11.0.1...core@11.1.0) (2026-11-04)
+
+### Features
+
+* **core:** Bump minor version to 11.1.0 ([bbc53be](https://github.com/TriPSs/nx-extend/commit/bbc53bee311d18cf80010e216c2416cdd148ac72))
+
 ## [11.0.1](https://github.com/TriPSs/nx-extend/compare/core@11.0.0...core@11.0.1) (2026-10-16)
 
 ## [11.0.0](https://github.com/TriPSs/nx-extend/compare/core@10.2.0...core@11.0.0) (2026-09-17)
