@@ -1,4 +1,14 @@
  
+## [11.1.0](https://github.com/tripss/nx-extend/compare/terraform@11.0.0...terraform@11.1.0) (2026-10-16)
+
+### Dependency Updates
+
+* `core` updated to version `11.0.1`
+
+### Features
+
+* **terraform:** add token expansion for path configuration ([b0b70e3](https://github.com/tripss/nx-extend/commit/b0b70e3a7bde92df96e8d3ddc23d5e44ef7e2620))
+
 ## [11.0.0](https://github.com/tripss/nx-extend/compare/terraform@10.4.1...terraform@11.0.0) (2026-09-17)
 
 ### Dependency Updates

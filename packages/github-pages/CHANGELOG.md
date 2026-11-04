@@ -1,4 +1,6 @@
  
+## [12.0.1](https://github.com/TriPSs/nx-extend/compare/github-pages@12.0.0...github-pages@12.0.1) (2026-10-16)
+
 ## [12.0.0](https://github.com/TriPSs/nx-extend/compare/github-pages@11.1.0...github-pages@12.0.0) (2026-09-17)
 
 ### ⚠ BREAKING CHANGES

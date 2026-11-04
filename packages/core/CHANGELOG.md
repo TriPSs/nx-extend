@@ -1,4 +1,6 @@
  
+## [11.0.1](https://github.com/TriPSs/nx-extend/compare/core@11.0.0...core@11.0.1) (2026-10-16)
+
 ## [11.0.0](https://github.com/TriPSs/nx-extend/compare/core@10.2.0...core@11.0.0) (2026-09-17)
 
 ### ⚠ BREAKING CHANGES
