@@ -1,0 +1,14 @@
+force-release
+  h_b13471b77746e9 1
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "5733d8cc0504f8fb791408b90e7ec68f14dcd7b7",
+  "prompts": {},
+  "humans": {
+    "h_b13471b77746e9": {
+      "author": "Tycho Bokdam <tycho@palmtreecoding.com>"
+    }
+  }
+}
