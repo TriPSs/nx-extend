@@ -1,4 +1,14 @@
  
+## [15.2.0](https://github.com/tripss/nx-extend/compare/strapi@15.1.0...strapi@15.2.0) (2026-11-04)
+
+### Dependency Updates
+
+* `core` updated to version `11.1.0`
+
+### Features
+
+* **strapi:** Bump minor version to 15.2.0 ([5a3f718](https://github.com/tripss/nx-extend/commit/5a3f71877e51d13544fce80a4e39e2e82e8cf1e5))
+
 ## [15.1.0](https://github.com/tripss/nx-extend/compare/strapi@15.0.0...strapi@15.1.0) (2026-10-16)
 
 ### Dependency Updates
