@@ -1,4 +1,14 @@
  
+## [17.1.0](https://github.com/tripss/nx-extend/compare/vercel@17.0.1...vercel@17.1.0) (2026-11-04)
+
+### Dependency Updates
+
+* `core` updated to version `11.1.0`
+
+### Features
+
+* **vercel:** Bump minor version to 17.1.0 ([60006d7](https://github.com/tripss/nx-extend/commit/60006d734168e3a66801773da589f4736fccf220))
+
 ## [17.0.1](https://github.com/tripss/nx-extend/compare/vercel@17.0.0...vercel@17.0.1) (2026-10-16)
 
 ### Dependency Updates
