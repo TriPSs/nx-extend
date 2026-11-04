@@ -1,4 +1,14 @@
  
+## [15.1.0](https://github.com/tripss/nx-extend/compare/gcp-cloud-run@15.0.1...gcp-cloud-run@15.1.0) (2026-11-04)
+
+### Dependency Updates
+
+* `core` updated to version `11.1.0`
+
+### Features
+
+* **gcp-cloud-run:** Bump minor version to 15.1.0 ([2d3fa08](https://github.com/tripss/nx-extend/commit/2d3fa086e1e8e2e6576d0b0e8cfb0ac1615a42c5))
+
 ## [15.0.1](https://github.com/tripss/nx-extend/compare/gcp-cloud-run@15.0.0...gcp-cloud-run@15.0.1) (2026-10-16)
 
 ### Dependency Updates
