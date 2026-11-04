@@ -1,4 +1,14 @@
  
+## [19.1.0](https://github.com/tripss/nx-extend/compare/gcp-functions@19.0.1...gcp-functions@19.1.0) (2026-11-04)
+
+### Dependency Updates
+
+* `core` updated to version `11.1.0`
+
+### Features
+
+* **gcp-functions:** Bump minor version to 19.1.0 ([2aeea05](https://github.com/tripss/nx-extend/commit/2aeea05513adffa9a835ac130dba9384a6c55d31))
+
 ## [19.0.1](https://github.com/tripss/nx-extend/compare/gcp-functions@19.0.0...gcp-functions@19.0.1) (2026-10-16)
 
 ### Dependency Updates
