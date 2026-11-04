@@ -1,4 +1,14 @@
  
+## [11.2.0](https://github.com/tripss/nx-extend/compare/terraform@11.1.0...terraform@11.2.0) (2026-11-04)
+
+### Dependency Updates
+
+* `core` updated to version `11.1.0`
+
+### Features
+
+* **terraform:** Bump minor version to 11.2.0 ([5659ef3](https://github.com/tripss/nx-extend/commit/5659ef30c6ecf9a21e31e6b6410e7a24645af2d6))
+
 ## [11.1.0](https://github.com/tripss/nx-extend/compare/terraform@11.0.0...terraform@11.1.0) (2026-10-16)
 
 ### Dependency Updates
