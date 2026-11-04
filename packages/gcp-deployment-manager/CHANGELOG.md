@@ -1,4 +1,14 @@
  
+## [13.1.0](https://github.com/tripss/nx-extend/compare/gcp-deployment-manager@13.0.1...gcp-deployment-manager@13.1.0) (2026-11-04)
+
+### Dependency Updates
+
+* `core` updated to version `11.1.0`
+
+### Features
+
+* **gcp-deployment-manager:** Bump minor version to 13.1.0 ([5e639a5](https://github.com/tripss/nx-extend/commit/5e639a55c33f311aa966a4820536228bc685b0a3))
+
 ## [13.0.1](https://github.com/tripss/nx-extend/compare/gcp-deployment-manager@13.0.0...gcp-deployment-manager@13.0.1) (2026-10-16)
 
 ### Dependency Updates
