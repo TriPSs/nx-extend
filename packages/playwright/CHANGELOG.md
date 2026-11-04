@@ -1,4 +1,14 @@
  
+## [13.1.0](https://github.com/tripss/nx-extend/compare/playwright@13.0.1...playwright@13.1.0) (2026-11-04)
+
+### Dependency Updates
+
+* `core` updated to version `11.1.0`
+
+### Features
+
+* **playwright:** Bump minor version to 13.1.0 ([d9662c7](https://github.com/tripss/nx-extend/commit/d9662c7b0ebcd29c88fb47bcebb9c1dbd20aefa8))
+
 ## [13.0.1](https://github.com/tripss/nx-extend/compare/playwright@13.0.0...playwright@13.0.1) (2026-10-16)
 
 ### Dependency Updates
