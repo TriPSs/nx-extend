@@ -1,0 +1,19 @@
+packages/changelog-notify/package.json
+  s_f6a4749807e247::t_2241ae9f59e698 3
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "f5a0fde5e45eb491aac785db4de73586eee623be",
+  "prompts": {},
+  "sessions": {
+    "s_f6a4749807e247": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1a78d-b191-7102-b336-333bf9e975a0",
+        "model": "gpt-6-astra"
+      },
+      "human_author": "Tycho Bokdam <tycho@palmtreecoding.com>"
+    }
+  }
+}
