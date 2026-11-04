@@ -1,4 +1,15 @@
  
+## [13.2.0](https://github.com/tripss/nx-extend/compare/pulumi@13.1.0...pulumi@13.2.0) (2026-11-04)
+
+### Dependency Updates
+
+* `core` updated to version `11.1.0`
+
+### Features
+
+* **pulumi:** Allow setting secret resource values directly ([cd4416e](https://github.com/tripss/nx-extend/commit/cd4416ebb0873aa1eb128f4ceb9090197a5faf04))
+* **pulumi:** Bump minor version to 13.2.0 ([bd6ad29](https://github.com/tripss/nx-extend/commit/bd6ad29267c825292a981ab640f96b07ed952387))
+
 ## [13.1.0](https://github.com/tripss/nx-extend/compare/pulumi@13.0.0...pulumi@13.1.0) (2026-10-16)
 
 ### Dependency Updates
