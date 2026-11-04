@@ -1,0 +1,19 @@
+packages/gcp-storage/package.json
+  s_f6a4749807e247::t_feb9f6eb876617 3
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "50fa8fb8c8e64f58d191faccdeb7da78b88c36fa",
+  "prompts": {},
+  "sessions": {
+    "s_f6a4749807e247": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1a78d-b191-7102-b336-333bf9e975a0",
+        "model": "gpt-6-astra"
+      },
+      "human_author": "Tycho Bokdam <tycho@palmtreecoding.com>"
+    }
+  }
+}
