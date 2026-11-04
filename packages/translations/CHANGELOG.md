@@ -1,4 +1,14 @@
  
+## [18.1.0](https://github.com/tripss/nx-extend/compare/translations@18.0.1...translations@18.1.0) (2026-11-04)
+
+### Dependency Updates
+
+* `core` updated to version `11.1.0`
+
+### Features
+
+* **translations:** Bump minor version to 18.1.0 ([51d769d](https://github.com/tripss/nx-extend/commit/51d769d05ac236f9838d78a80b54427ce2e36591))
+
 ## [18.0.1](https://github.com/tripss/nx-extend/compare/translations@18.0.0...translations@18.0.1) (2026-10-16)
 
 ### Dependency Updates
