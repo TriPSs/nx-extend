@@ -1,0 +1,24 @@
+packages/shadcn-ui/package.json
+  s_6dd85190598f23::t_c4f82381ca451f 21
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "05839b980fb6f516bd3afad2ce3e6e03ba2ec2b1",
+  "prompts": {},
+  "humans": {
+    "h_b13471b77746e9": {
+      "author": "Tycho Bokdam <tycho@palmtreecoding.com>"
+    }
+  },
+  "sessions": {
+    "s_6dd85190598f23": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1a706-95ee-7990-adac-cd065e79059a",
+        "model": "gpt-6-astra"
+      },
+      "human_author": "Tycho Bokdam <tycho@palmtreecoding.com>"
+    }
+  }
+}
