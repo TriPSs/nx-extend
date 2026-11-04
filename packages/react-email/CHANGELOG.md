@@ -1,4 +1,14 @@
  
+## [8.1.0](https://github.com/tripss/nx-extend/compare/react-email@8.0.1...react-email@8.1.0) (2026-11-04)
+
+### Dependency Updates
+
+* `core` updated to version `11.1.0`
+
+### Features
+
+* **react-email:** Bump minor version to 8.1.0 ([5fc7676](https://github.com/tripss/nx-extend/commit/5fc767633b2ed43b938c3bfa9cbad0d9f5982f77))
+
 ## [8.0.1](https://github.com/tripss/nx-extend/compare/react-email@8.0.0...react-email@8.0.1) (2026-10-16)
 
 ### Dependency Updates
