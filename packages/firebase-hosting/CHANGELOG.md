@@ -1,4 +1,14 @@
  
+## [11.1.0](https://github.com/tripss/nx-extend/compare/firebase-hosting@11.0.1...firebase-hosting@11.1.0) (2026-11-04)
+
+### Dependency Updates
+
+* `core` updated to version `11.1.0`
+
+### Features
+
+* **firebase-hosting:** Bump minor version to 11.1.0 ([0f5072f](https://github.com/tripss/nx-extend/commit/0f5072f1ad809d42ae5e40705156c24f5b67d4d5))
+
 ## [11.0.1](https://github.com/tripss/nx-extend/compare/firebase-hosting@11.0.0...firebase-hosting@11.0.1) (2026-10-16)
 
 ### Dependency Updates
