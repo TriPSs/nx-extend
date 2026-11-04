@@ -1,0 +1,19 @@
+packages/vercel/package.json
+  s_f6a4749807e247::t_4f2b8bf117b0f9 3
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "60006d734168e3a66801773da589f4736fccf220",
+  "prompts": {},
+  "sessions": {
+    "s_f6a4749807e247": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1a78d-b191-7102-b336-333bf9e975a0",
+        "model": "gpt-6-astra"
+      },
+      "human_author": "Tycho Bokdam <tycho@palmtreecoding.com>"
+    }
+  }
+}
