@@ -1,4 +1,14 @@
  
+## [17.0.1](https://github.com/tripss/nx-extend/compare/vercel@17.0.0...vercel@17.0.1) (2026-10-16)
+
+### Dependency Updates
+
+* `core` updated to version `11.0.1`
+
+### Bug Fixes
+
+* Resolve workspace lint and build errors ([ad98141](https://github.com/tripss/nx-extend/commit/ad98141f35d3f433ebfa3c696f2a79f4a6b4af3d))
+
 ## [17.0.0](https://github.com/tripss/nx-extend/compare/vercel@16.2.3...vercel@17.0.0) (2026-09-17)
 
 ### Dependency Updates

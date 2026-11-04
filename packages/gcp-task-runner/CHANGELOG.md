@@ -1,4 +1,10 @@
  
+## [11.0.1](https://github.com/TriPSs/nx-extend/compare/gcp-task-runner@11.0.0...gcp-task-runner@11.0.1) (2026-10-16)
+
+### Bug Fixes
+
+* Resolve workspace lint and build errors ([ad98141](https://github.com/TriPSs/nx-extend/commit/ad98141f35d3f433ebfa3c696f2a79f4a6b4af3d))
+
 ## [11.0.0](https://github.com/TriPSs/nx-extend/compare/gcp-task-runner@10.1.1...gcp-task-runner@11.0.0) (2026-09-17)
 
 ### ⚠ BREAKING CHANGES

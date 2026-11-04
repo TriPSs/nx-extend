@@ -1,6 +1,6 @@
 {
   "name": "@nx-extend/strapi",
-  "version": "15.0.0",
+  "version": "15.2.0",
   "keywords": [
     "nx",
     "strapi"
@@ -16,7 +16,7 @@
   "license": "MIT",
   "main": "src/index.js",
   "dependencies": {
-    "create-strapi": "5.57.0"
+    "create-strapi": "5.60.0"
   },
   "peerDependencies": {
     "@nx/devkit": "^23.0.0",

@@ -1,4 +1,10 @@
  
+## [13.0.1](https://github.com/tripss/nx-extend/compare/playwright@13.0.0...playwright@13.0.1) (2026-10-16)
+
+### Dependency Updates
+
+* `core` updated to version `11.0.1`
+
 ## [13.0.0](https://github.com/tripss/nx-extend/compare/playwright@12.1.2...playwright@13.0.0) (2026-09-17)
 
 ### Dependency Updates
