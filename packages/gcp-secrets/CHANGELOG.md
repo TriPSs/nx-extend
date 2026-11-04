@@ -1,4 +1,14 @@
  
+## [14.1.0](https://github.com/tripss/nx-extend/compare/gcp-secrets@14.0.1...gcp-secrets@14.1.0) (2026-11-04)
+
+### Dependency Updates
+
+* `core` updated to version `11.1.0`
+
+### Features
+
+* **gcp-secrets:** Bump minor version to 14.1.0 ([5a1150d](https://github.com/tripss/nx-extend/commit/5a1150d07b23e390fe15329bb8b8e3a2dc4f3e99))
+
 ## [14.0.1](https://github.com/tripss/nx-extend/compare/gcp-secrets@14.0.0...gcp-secrets@14.0.1) (2026-10-16)
 
 ### Dependency Updates
