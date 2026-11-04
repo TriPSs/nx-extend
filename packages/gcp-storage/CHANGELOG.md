@@ -1,4 +1,14 @@
  
+## [12.1.0](https://github.com/tripss/nx-extend/compare/gcp-storage@12.0.1...gcp-storage@12.1.0) (2026-11-04)
+
+### Dependency Updates
+
+* `core` updated to version `11.1.0`
+
+### Features
+
+* **gcp-storage:** Bump minor version to 12.1.0 ([50fa8fb](https://github.com/tripss/nx-extend/commit/50fa8fb8c8e64f58d191faccdeb7da78b88c36fa))
+
 ## [12.0.1](https://github.com/tripss/nx-extend/compare/gcp-storage@12.0.0...gcp-storage@12.0.1) (2026-10-16)
 
 ### Dependency Updates
