@@ -1,0 +1,24 @@
+packages/strapi/package.json
+  s_6dd85190598f23::t_44f61507ad9bd3 19
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "a7b9f3f3e9fa6458075764675f2e32793c8acdda",
+  "prompts": {},
+  "humans": {
+    "h_b13471b77746e9": {
+      "author": "Tycho Bokdam <tycho@palmtreecoding.com>"
+    }
+  },
+  "sessions": {
+    "s_6dd85190598f23": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1a706-95ee-7990-adac-cd065e79059a",
+        "model": "gpt-6-astra"
+      },
+      "human_author": "Tycho Bokdam <tycho@palmtreecoding.com>"
+    }
+  }
+}
