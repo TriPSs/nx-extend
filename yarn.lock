@@ -13997,11 +13997,11 @@ __metadata:
   linkType: hard
 
 "image-size@npm:^2.0.2":
-  version: 2.0.2
-  resolution: "image-size@npm:2.0.2"
+  version: 2.1.0
+  resolution: "image-size@npm:2.1.0"
   bin:
     image-size: bin/image-size.js
-  checksum: 10/d15203279fe7ada01252d8c56ba97516385d6d5ac2cbf3d734580fc88db4f5272b9b3f7f378ad63abc7d06b5500c43b90d9f84626e2bda1cab403c16eb469592
+  checksum: 10/b61dcf30c06cd64e9d9f43d19e49750b927f684bf4fd738e3f5a0aa7191ee703ecd16bdcd09eee34b74820a257d3955af798b0fca088d8d6be9cfa6c5d717171
   languageName: node
   linkType: hard
 
