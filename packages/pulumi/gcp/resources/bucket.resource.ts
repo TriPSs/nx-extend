@@ -66,9 +66,9 @@ export class BucketResource extends BaseResource {
     // Do nothing
   }
 
-  private addMember(member: pulumi.Output<string>, role: string): void {
+  public addMember(member: pulumi.Output<string>, role: string, condition?: gcp.projects.IAMMemberArgs['condition']): void {
     member.apply((parsedMember) => {
-      this.createMember(parsedMember, role)
+      this.createMember(parsedMember, role, condition)
     })
   }
 
