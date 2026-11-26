@@ -1,4 +1,10 @@
  
+## [13.4.0](https://github.com/tripss/nx-extend/compare/pulumi@13.3.0...pulumi@13.4.0) (2026-11-26)
+
+### Features
+
+* **pulumi:** Return bucket resource from addMember ([d904c9c](https://github.com/tripss/nx-extend/commit/d904c9c8972712de4100059e07934e980eb61d91))
+
 ## [13.3.0](https://github.com/tripss/nx-extend/compare/pulumi@13.2.0...pulumi@13.3.0) (2026-11-26)
 
 ### Features
