@@ -1,4 +1,10 @@
  
+## [13.3.0](https://github.com/tripss/nx-extend/compare/pulumi@13.2.0...pulumi@13.3.0) (2026-11-26)
+
+### Features
+
+* **pulumi:** Expose bucket IAM member conditions ([32dbdb9](https://github.com/tripss/nx-extend/commit/32dbdb980a6ac20e44b0471f81093c63779d182c))
+
 ## [13.2.0](https://github.com/tripss/nx-extend/compare/pulumi@13.1.0...pulumi@13.2.0) (2026-11-04)
 
 ### Dependency Updates
